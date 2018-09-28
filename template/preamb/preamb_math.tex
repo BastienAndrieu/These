@@ -1,0 +1,66 @@
+% Math packages, notations
+\usepackage{amssymb}
+\usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
+\let\equation\gather \let\endequation\endgather
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+\usepackage{cases}
+
+
+
+% Notations
+\newcommand*{\determinant}[1]{\left\lvert {#1} \right\rvert}
+\newcommand*{\inv}[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+\newcommand*{\inverse}[1]{\ensuremath{{#1} ^{-1}}} % inverse matrix
+\newcommand*{\transpose}[1]{\ensuremath{{#1} ^\mathsf{T}}} % transpose matrix
+\newcommand*{\dotprod}[2]{ \transpose{#1} {#2} } % dot product
+\newcommand*{\crossprod}[2]{ {#1} \times {#2} } % cross product
+\newcommand*{\normtwo}[1]{ \left\| {#1} \right\| } % Euclidean norm
+\newcommand*{\vit}[1]{\boldsymbol{#1}} % greek letter vector
+\newcommand*{\vrm}[1]{\mathbf{#1}} % latin letter vector
+\newcommand*{\unitized}[1]{ \frac{#1}{\normtwo{#1}} }
+
+\DeclareMathOperator*{\argmin}{\arg\!\min} % argmin
+
+\newcommand*{\bigO}[1]{O\!\left( {#1} \right)} % big-O
+\newcommand*{\littleo}[1]{o\!\left( {#1} \right)} % little-o
+
+
+\newcommand*{\bx}{\vit{x}}
+\newcommand*{\bd}{\vit{\delta}}
+\newcommand*{\bg}{\vit{\gamma}}
+\newcommand*{\bl}{\vit{\lambda}}
+\renewcommand*{\bs}{\vit{\sigma}} % originally backslash in typewriter font
+
+\newcommand{\colvec}[1]{\begin{pmatrix} #1 \end{pmatrix}} % vector printed in column
+\newcommand{\rowvec}[1]{ \transpose{\begin{pmatrix} #1 \end{pmatrix}} } % vector printed in row (transposed column)
+
+% Differential operators
+\newcommand*{\jacobian}[1]{\mathbf{J}_{#1}}
+\newcommand*{\gradient}[1]{\nabla \! {#1}}
+\newcommand*{\hessian}[1]{\mathbf{H}_{#1}}
+
+
+% Reference interval for Chebyshev polynomials
+\newcommand*{\chebinterval}{\left[ -1, 1 \right]}
+
+% Condition number
+\newcommand*{\cond}[1]{\mathrm{cond} \! \left( {#1} \right)}
+
+% Differential geometry
+\newcommand{\fff}{\mathbf{I}}    % first fundamental form
+\newcommand{\sff}{\mathbf{I\!I}} % second fundamental form
+
+
+% Encircled text
+\newcommand{\pgftextcircled}[1]{                                                                    
+    \setbox0=\hbox{#1}%
+    \dimen0\wd0%
+    \divide\dimen0 by 2%
+    \begin{tikzpicture}[baseline=(a.base)]%
+        \useasboundingbox (-\the\dimen0,0pt) rectangle (\the\dimen0,1pt);
+        \node[circle,draw,outer sep=0pt,inner sep=0.1ex] (a) {#1};
+    \end{tikzpicture}
+}
+

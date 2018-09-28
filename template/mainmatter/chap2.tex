@@ -1,0 +1,67 @@
+\def\chapterabstract{This is the chapter abstract.}
+\chapter{Another chapter with a very, very long title that spans many, many lines}% (bla bla blablablabla bla bla bla blabla), OMG this is sooooo long}
+
+%\lettrine{P}{atches}
+\printskip Patches incident to a sharp edge in a convex region of the surface separate and leave a gap as they propagate individually because points along the edge follow multiple directions. 
+This gap must be filled in order to ensure a valid B-rep model. New patches are then created from these singular edges and inserted in the B-rep model with appropriate topological links to form a valid surface. These new patches are then propagated in the same way as other ones.
+
+\section{Test math macros}
+\label{sec:testmathmacros}
+\subsection{Matrices}
+Inverse, transpose
+\begin{equation}
+	A = \inverse{B} = \inv{B} = \transpose{C}.
+\end{equation}
+Determinant
+\begin{equation}
+	\det A = \determinant{A}.
+\end{equation}
+
+\subsection{Vectors}
+
+Column vector
+\begin{equation}
+	\bx = \colvec{ x_1 \\ \vdots \\ x_n }
+    = \rowvec{ x_1 & \ldots & x_n }.
+\end{equation}
+
+Greek, latin vectors, cross product
+\begin{equation}
+	\vit{a} = \crossprod{\vrm{b}}{\vrm{c}}.
+\end{equation}
+
+Dot product
+\begin{equation}
+	a = \dotprod{\vrm{b}}{\vrm{c}}.
+\end{equation}
+
+Unit vector
+\begin{equation}
+	\vrm{n} = \unitized{ \crossprod{\bx_u}{\bx_v} }.
+\end{equation}
+
+\subsection{Frequently used symbols}
+\begin{equation}
+	\bd, \bg, \bl, \bs, \bx.
+\end{equation}
+
+\subsection{Differential operators}
+Gradient, Jacobian and Hessian matrices of function $f$
+\begin{equation}
+	\gradient{f}, \jacobian{f}, \hessian{f}.
+\end{equation}
+
+\subsection{Other macros}
+Encircled \pgftextcircled{text}.\par
+Big O notation:  $\bigO{n \log{}n}$. \par
+Little o notation:  $\littleo{x}$. \par
+
+\lipsum
+\begin{equation}
+	y = ax + b.
+\end{equation}
+
+\section*{Unnumbered section}
+\sectionmark{Unnumbered section}
+
+\lipsum[1-12]

@@ -1,0 +1,456 @@
+\def\titlefont{\sffamily}%\rmfamily}%
+
+% Table of contents style
+\renewcommand*{\contentsname}{Table of contents}
+\renewcommand*{\cftchapterfont}{\titlefont\bfseries}
+% \renewcommand*{\cftchapterpagefont}{\sffamily\bfseries}
+% \renewcommand*{\cftchapterleader}{%
+% 	\cftchapterfont\cftdotfill{\cftchapterdotsep}
+% }
+% \renewcommand*{\cftchapterdotsep}{\cftdotsep}
+%%% no extra space before the entry, or in the LoF/LoT
+% \setlength{\cftbeforechapterskip}{0pt plus 0pt}
+% \renewcommand*{\insertchapterspace}{}
+
+
+\maxtocdepth{subsection}
+
+% Titles
+\colorlet{colchapttl}{black}%mydarkgray}%DodgerBlue3}%
+
+%\usepackage[explicit,newlinetospace]{titlesec}
+
+% \renewenvironment{leftbar}{%
+% \def\FrameCommand{{\color{colchapttl}\vrule width 3pt} \hspace{12pt}}%
+% \MakeFramed {\advance\hsize-\width \FrameRestore}}%
+% {\endMakeFramed}
+% Format chapter titles
+% \def\chapterabstract{}
+% \titleformat{\chapter} % <command>
+% [hang] % <shape>
+% {\sffamily} % <format>
+% {%
+% \parbox[t]{\dimexpr0.12\linewidth-20pt\relax}{\bfseries\fontsize{48}{48}\selectfont\raisebox{-1.25\height}{\color{colchapttl}\thechapter}}
+% }% <label>
+% {1em}% <sep>
+% {\begin{minipage}[t]{0.9\linewidth}\begin{leftbar}{\bfseries\Huge\color{colchapttl}
+% \rule{0pt}{2ex}\strut#1\hfil\vskip2ex\break}
+% {\rmfamily\itshape\chapterabstract}% \chapterabstract% 
+% \rule[-1.5ex]{0pt}{1.5ex}\end{leftbar}\end{minipage}
+% } % <before code>
+% %{} % <after code>
+% \titlespacing{\chapter}{0pt}{2\baselineskip}{6\baselineskip}
+
+
+
+% *************************************
+% % Format section titles
+% \titleformat{\section} % <command>
+% [hang] % <shape>
+% {\color{colchapttl}\sffamily\Large\bfseries} % <format>
+% {\rlap{\thesection}} % <label>
+% {2em} % <sep>
+% {#1} % <before code>
+% %{} % <after code>
+
+% % Format subsection titles
+% \titleformat{\subsection} % <command>
+% [hang] % <shape>
+% {\color{colchapttl}\sffamily\large\bfseries} % <format>
+% {\rlap{\thesubsection}} % <label>
+% {3em} % <sep>
+% {#1} % <before code>
+% %{} % <after code>
+% *************************************
+
+
+
+% memoir chapter style
+\makechapterstyle{mychapsty}{
+\renewcommand\chapnumfont{\color{colchapttl}\sffamily\Huge\bfseries\centering}
+\renewcommand\chaptitlefont{\color{colchapttl}\sffamily\Huge\bfseries\raggedright}
+}
+
+
+
+
+\makechapterstyle{mysouthall}{%
+\setlength{\afterchapskip}{5\baselineskip}
+\setlength{\beforechapskip}{36pt}
+\setlength{\midchapskip}{\textwidth}
+\addtolength{\midchapskip}{-\beforechapskip}
+\renewcommand*{\chapterheadstart}{\vspace*{2\baselineskip}}
+\renewcommand*{\chaptitlefont}{\huge\rmfamily\raggedright}
+\renewcommand*{\chapnumfont}{\chaptitlefont}
+\renewcommand*{\printchaptername}{}
+\renewcommand*{\chapternamenum}{}
+\renewcommand*{\afterchapternum}{}
+\renewcommand*{\printchapternum}{%
+\begin{minipage}[t][\baselineskip][b]{\beforechapskip}
+{\vspace{0pt}\chapnumfont%%%\figureversion{lining}
+\thechapter}
+\end{minipage}}
+\renewcommand*{\printchaptertitle}[1]{%
+\hfill\begin{minipage}[t]{\midchapskip}
+{\vspace{0pt}\chaptitlefont ##1\par}\end{minipage}}
+\renewcommand*{\afterchaptertitle}{%
+\par\vspace{\baselineskip}%
+%\hrulefill
+\par\nobreak\noindent \vskip\afterchapskip}}
+
+
+
+
+\newif\ifNoChapNumber
+\makeatletter
+\makechapterstyle{simple}{
+\renewcommand\chapternamenum{}
+\renewcommand\printchaptername{}
+\renewcommand\printchapternum{}
+\renewcommand\chapnumfont{\sffamily\HUGE\bfseries}
+\renewcommand\chaptitlefont{\sffamily\HUGE\bfseries\raggedright}
+\renewcommand\printchaptertitle[1]{%
+\begin{tabular}{@{}p{1cm}|!{\quad}p{\textwidth-1cm-2em-4\tabcolsep }}
+\ifNoChapNumber\relax\else\chapnumfont \thechapter\fi
+& \chaptitlefont ##1 
+\end{tabular}
+\NoChapNumberfalse
+}
+\renewcommand\printchapternonum{\NoChapNumbertrue}
+}
+
+
+\newlength{\numberheight}
+\newlength{\barlength}
+
+\makeatletter
+\makechapterstyle{myveelo}{%
+\setlength{\beforechapskip}{40pt}
+\setlength{\midchapskip}{25pt}
+\setlength{\afterchapskip}{40pt}
+\renewcommand{\chapnamefont}{\normalfont\sffamily\LARGE\flushright}
+\renewcommand{\chapnumfont}{\normalfont\sffamily\HUGE}
+\renewcommand{\chaptitlefont}{\normalfont\sffamily\HUGE\bfseries\flushright}
+\renewcommand{\printchaptername}{%
+\chapnamefont\MakeUppercase{\@chapapp}}
+\renewcommand{\chapternamenum}{}
+\setlength{\numberheight}{18mm}
+\setlength{\barlength}{\paperwidth}
+\addtolength{\barlength}{-\textwidth}
+\addtolength{\barlength}{-\spinemargin}
+\renewcommand{\printchaptername}{\hfill}
+\renewcommand{\printchapternum}{%
+\makebox[0pt][l]{%
+\hspace{.8em}%
+\resizebox{!}{\numberheight}{\chapnumfont \thechapter}%
+\hspace{.8em}%
+\rule{\barlength}{\numberheight}
+}
+}
+
+\renewcommand\printchaptertitle[1]{%
+  \vspace{-67pt}
+  \chaptitlefont ##1 
+}
+
+\makeoddfoot{plain}{}{}{\thepage}
+}
+\makeatother
+
+
+
+% \newlength{\numberheight}
+% \newlength{\barlength}
+\makeatletter
+\makechapterstyle{bastien}{%
+\setlength{\beforechapskip}{40pt}
+\setlength{\midchapskip}{25pt}
+\setlength{\afterchapskip}{40pt}
+\renewcommand{\chapnamefont}{}
+\renewcommand{\chapnumfont}{\normalfont\sffamily\fontsize{48}{48}\selectfont}%\normalfont\sffamily\HUGE}
+\renewcommand{\chaptitlefont}{\normalfont\sffamily\HUGE\bfseries\flushright}
+\renewcommand{\printchaptername}{}
+\renewcommand{\chapternamenum}{}
+\setlength{\numberheight}{18mm}
+\setlength{\barlength}{\paperwidth}
+\addtolength{\barlength}{-\textwidth}
+\addtolength{\barlength}{-\spinemargin}
+\renewcommand{\printchapternum}{}
+\renewcommand\printchaptertitle[1]{%
+  \chaptitlefont ##1 
+%   \ifNoChapNumber
+%     \relax
+%   \else
+%     {\chapnumfont \thechapter}
+%   \fi
+  \makebox[0pt][l]{%
+    \ifNoChapNumber
+      \relax
+    \else
+      %\hspace{.8em}%
+      \resizebox{!}{\numberheight}{\chapnumfont \thechapter}%
+      \hspace{.8em}%
+    \fi
+    \rule{\barlength}{\numberheight}
+  }
+  \NoChapNumberfalse
+}
+\renewcommand\printchapternonum{\NoChapNumbertrue}
+}
+\makeatother
+
+
+
+
+
+
+\makechapterstyle{mychapterstyle}{
+\setlength{\beforechapskip}{40pt}
+\setlength{\midchapskip}{25pt}
+\setlength{\afterchapskip}{60pt}
+
+\newlength{\ttltopskip}
+\setlength{\ttltopskip}{60mm}
+\setlength{\barlength}{0.37\foremargin}
+\setlength{\numberheight}{14mm}
+
+\renewcommand{\chapnamefont}{}
+\renewcommand{\chapnumfont}{\normalfont\titlefont\fontsize{1.6\numberheight}{0mm}\selectfont}
+\renewcommand{\chaptitlefont}{\normalfont\titlefont\Huge\flushright\bfseries}
+\renewcommand{\printchaptername}{}
+\renewcommand{\chapternamenum}{}
+\renewcommand{\printchapternum}{}
+
+\renewcommand\printchaptertitle[1]{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=-\ttltopskip] at (current page.north east) {%
+      \begin{tikzpicture}[remember picture, overlay]
+      	% >>> helpers ---------------
+        % \draw[red] (0,0) -- (-\textwidth-\foremargin,0);
+        % \draw[green] (0,\numberheight) -- (-\textwidth-\foremargin,\numberheight);
+        % \draw[blue] (-\foremargin,0) -- (-\foremargin,\numberheight);
+        % \draw[blue] (-\textwidth-\foremargin,0) -- (-\textwidth-\foremargin,\numberheight);
+        % ----------------------- <<<
+        \ifNoChapNumber
+          \draw[colchapttl,fill=colchapttl] (0,0) rectangle (-2\barlength,\numberheight);
+    	\else
+          \draw[colchapttl,fill=colchapttl] (0,0) rectangle(-\barlength,\numberheight);
+          \node[anchor=south, 
+            yshift=-\ttltopskip,
+            xshift=-0.5\barlength-0.5\foremargin),
+            inner sep=0mm]%
+            at (current page.north east)%
+          {\color{colchapttl}\chapnumfont\thechapter\ };
+        \fi
+        \node[anchor=north east,
+          yshift=-\ttltopskip + 10mm + 3.8mm,
+          xshift=-\foremargin,
+          text width=\textwidth,
+          inner sep=0mm]%
+          at (current page.north east)%
+        {\chaptitlefont\color{colchapttl}##1\vfill};
+      \end{tikzpicture}%
+    };
+  \end{tikzpicture}%
+}
+
+\renewcommand\printchapternonum{\NoChapNumbertrue}
+}
+
+
+
+
+
+
+
+
+
+%\chapterstyle{mychapsty}
+\chapterstyle{mychapterstyle}%myveelo}%bastien}
+
+
+
+
+
+\usepackage{lettrine}  % dropped capitals. doesn't work so well with doublespacing?
+\renewcommand{\LettrineTextFont}{\scshape}
+\renewcommand{\DefaultLhang}{0.1}
+\renewcommand{\DefaultNindent}{0pt}
+% \renewcommand{\DefaultOptionsFile}{\lettrineconffile}
+
+
+
+
+
+
+
+
+
+
+%\titlespacing*{\chapter}{0pt}{50pt}{30pt}
+%\titlespacing*{\chapter}{0pt}{0pt}{0pt}
+
+
+% \newlength{\topmrg}
+% \newlength{\rgtmrg}
+% \newlength{\rectw}
+% \newlength{\recth}
+
+% \setlength{\topmrg}{60mm}
+% \setlength{\rgtmrg}{\foremargin} % equal to \setlrmarginsandblock in preamb_layout.tex
+% %\setlength{\rectw}{16mm}
+% \setlength{\rectw}{0.37\rgtmrg}
+% \setlength{\recth}{14mm}
+
+
+
+% \newcommand*\chapterlabel{}
+% \titleformat{\chapter}[display]  % type (section,chapter,etc...) to vary,  shape (eg display-type)
+% 	{\normalfont\titlefont\Huge} % format of the chapter
+% 	{\gdef\chapterlabel{\thechapter\ }}     % the label 
+%  	{0pt} % separation between label and chapter-title
+%  	  {\begin{tikzpicture}[remember picture,overlay]
+%     \node[yshift=-\topmrg] at (current page.north east)
+%       {\begin{tikzpicture}[remember picture, overlay]
+%       	% >>> helpers ---------------
+% %       	\draw[red] (0,0) -- (-\textwidth-\rgtmrg,0);
+% %         \draw[green] (0,\recth) -- (-\textwidth-\rgtmrg,\recth);
+% %         \draw[blue] (-\rgtmrg,0) -- (-\rgtmrg,\recth);
+% %         \draw[blue] (-\textwidth-\rgtmrg,0) -- (-\textwidth-\rgtmrg,\recth);
+%         % ----------------------- <<<
+%         \draw[colchapttl,fill=colchapttl] (0,0) rectangle(-\rectw,\recth); %(32.5mm,15mm);
+% 		\node[anchor=south, 
+%         yshift=-\topmrg,
+%         xshift=-0.5\rectw-0.5\rgtmrg),%        minimum height=\recth,        align=center,        minimum width=\rgtmrg-\rectw,
+%         inner sep=0mm] at (current page.north east)
+%         {\color{colchapttl}%
+%         \fontsize{1.6\recth}{0mm}\selectfont\chapterlabel%
+%         %\resizebox{!}{\recth}{\chapterlabel}%
+%         };
+%         \node[anchor=north east,
+%         yshift=-\topmrg + 10mm + 3.8mm,
+%         xshift=-\rgtmrg,
+%         text width=\textwidth,%        minimum height=30mm,
+%         inner sep=0mm %,rectangle, draw=black, dashed
+%         ] (chapttl) at (current page.north east)
+%         {\flushright\bfseries\color{colchapttl}#1\vfill};
+% %               {\parbox[top][30mm][t]{\textwidth}{\flushright\bfseries\color{colchapttl}#1}};
+%        \end{tikzpicture}
+%       };
+%    \end{tikzpicture}
+%    \gdef\chapterlabel{}
+%   } % code before the title body
+
+
+
+% \titleformat{name=\chapter, numberless}[display]  % type (section,chapter,etc...) to vary,  shape (eg display-type)
+% 	{\normalfont\titlefont\Huge} % format of the chapter
+% 	{\gdef\chapterlabel{\thechapter\ }}     % the label 
+%  	{0pt} % separation between label and chapter-title
+%  	  {\begin{tikzpicture}[remember picture,overlay]
+%     \node[yshift=-\topmrg] at (current page.north east)
+%       {\begin{tikzpicture}[remember picture, overlay]
+%         \draw[colchapttl,fill=colchapttl] (0,0) rectangle (-2\rectw,\recth);%(-\rgtmrg+3mm,\recth); 
+%         \node[anchor=north east,
+%         yshift=-\topmrg + 10mm + 3.8mm,
+%         xshift=-\rgtmrg,
+%         text width=\textwidth,%        minimum height=30mm,
+%         inner sep=0mm] at (current page.north east)
+%         {\flushright\bfseries\color{colchapttl}#1\vfill};
+% %               {\parbox[top][30mm][t]{\textwidth}{\flushright\bfseries\color{colchapttl}#1}};
+%        \end{tikzpicture}
+%       };
+%    \end{tikzpicture}
+%    \gdef\chapterlabel{}
+%   } % code before the title body
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \topmrg = 8cm
+% \rgtmrg = 3.25cm % equal to \setlrmarginsandblock in preamb_layout.tex
+% \rectw = 16mm
+% \recth = 14mm
+
+% \newdimen\stroke
+% \stroke = 2pt
+
+% \titleformat{\chapter}[display]  % type (section,chapter,etc...) to vary,  shape (eg display-type)
+% 	{\normalfont\sffamily\Huge} % format of the chapter
+% 	{\gdef\chapterlabel{\thechapter\ }}     % the label 
+%  	{0pt} % separation between label and chapter-title
+%  	  {\begin{tikzpicture}[remember picture,overlay]
+%     \node[yshift=-\topmrg] at (current page.north east)
+%       {\begin{tikzpicture}[remember picture, overlay]
+%       	% >>> helpers ---------------
+% %       	\draw[red] (0,0) -- (-\textwidth-\rgtmrg,0);
+% %         \draw[green] (0,\recth) -- (-\textwidth-\rgtmrg,\recth);
+% %         \draw[blue] (-\rgtmrg,0) -- (-\rgtmrg,\recth);
+% %         \draw[blue] (-\textwidth-\rgtmrg,0) -- (-\textwidth-\rgtmrg,\recth);
+%         % ----------------------- <<<
+%         \draw[colchapttl,fill=colchapttl] (0,0) rectangle(-\rgtmrg+3mm,\recth); %(32.5mm,15mm);
+% 		\node[anchor=south, 
+%         yshift=-\topmrg,%+\stroke,
+%         xshift=-0.5\rectw-0.5\rgtmrg+3mm),%        minimum height=\recth,
+%         inner sep=0mm] at (current page.north east)
+%         {\color{white}\fontsize{1.6\recth-2\stroke}{0mm}\selectfont\bfseries\chapterlabel};
+%         \node[anchor=north east,
+%         yshift=-\topmrg + 10mm,
+%         xshift=-\rgtmrg,
+%         text width=\textwidth,%        minimum height=30mm,
+%         inner sep=0mm] at (current page.north east)
+%               {\parbox[top][30mm][t]{\textwidth}{\flushright\bfseries\color{colchapttl}#1}};
+%        \end{tikzpicture}
+%       };
+%    \end{tikzpicture}
+%    \gdef\chapterlabel{}
+%   } % code before the title body
+% %\titlespacing*{\chapter}{0pt}{50pt}{30pt}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Format chapter abstracts
+\def\abstractname{}
+\def\abstitleskip{0pt}
+
+
+
+
+
+% Subsections
+\setsecheadstyle{\color{colchapttl}\Large\bfseries\raggedright\titlefont}
+\setbeforesecskip{-\onelineskip}
+\setaftersecskip{\onelineskip}
+
+% Subsubsections
+\setsubsecheadstyle{\color{colchapttl}\large\bfseries\sethangfrom{\noindent ##1}\raggedright\titlefont}
+\setbeforesubsecskip{-\onelineskip}
+\setaftersubsecskip{\onelineskip}
