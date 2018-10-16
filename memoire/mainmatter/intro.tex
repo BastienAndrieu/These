@@ -1,0 +1,45 @@
+\def\chapterabstract{}
+\chapter*{Introduction}
+\chaptermark{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+\section*{Contexte}%?
+Les surfaces (ou interfaces) en propagation interviennent dans de nombreuses applications scientifiques et industrielles. Elles résultent de phénomènes mettant en jeu des couplages multiphysiques complexes comme la combustion, les interactions fluide-structure, les écoulements multi-phasiques ou encore la croissance dendritique de cristaux. C’est généralement au niveau de ces surfaces qu’a lieu la physique la plus intéressante, il est donc indispensable d’en déterminer avec précision l’évolution au cours du temps\ldots
+
+
+\section*{Formulation du problème}% d'interface en propagation}
+formulation lagrangienne traditionnelle (approche EDP) : vecteur vitesse 
+\begin{equation}
+	\frac{\partial \bx}{\partial t} = \vrm{u}(\bx,t),
+\end{equation}
+ou vitesse normale 
+\begin{equation}
+	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t).
+\end{equation}
+(les 2 sont équivalentes)\\
+ambiguïté de la normale dans le cas piecewise-smooth\\
+formulation plus générale (approche "géométrique") : principe de Huygens (propagation de proche en proche), enveloppe de sphères (e.g. ondes) ou de boules (e.g. flamme) (condition d'entropie \cite{sethian1999}).
+
+\section*{État de l'art}
+résolution analytique impossible $\to$ méthodes numériques\\
+\subsection*{Méthodes numériques pour le suivi d'interfaces}
+2 façons de traiter l'interface
+\begin{itemize}
+	\item point de vue eulérien $\to$ représentation implicite
+	\begin{itemize}
+		\item ex. : \eng{level-set}, \eng{Volume-of-fluid}, interfaces diffuses\ldots
+	\end{itemize}
+	\item point de vue lagrangien $\to$ représentation explicite
+	\begin{itemize}
+		\item ex. : \eng{front-tracking}, \eng{face-offsetting}, ordre élevé\ldots
+	\end{itemize}
+\end{itemize}
+
+type de problèmes visés dans cette thèse, motivation high-order, \brep
+\subsection*{Représentation par les frontières}
+
+
+\section*{Contributions}% aka "Description de la thèse/démarche"
+
+
+\section*{Organisation du manuscrit}

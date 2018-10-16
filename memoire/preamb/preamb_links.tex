@@ -1,0 +1,28 @@
+%https://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
+\usepackage[pagebackref]{hyperref}
+\hypersetup{colorlinks=true,
+	linkcolor=DodgerBlue3,%myred,%redlink,%deepblue,%DarkBlue,
+	anchorcolor=myred,%DarkRed,%
+    citecolor=black,%mygreen,
+	pdfdisplaydoctitle=true,
+	pdfpagemode=UseOutlines,%
+	bookmarksnumbered=true,
+	bookmarksopen=true}
+    
+\usepackage{memhfixc} % Must be used on memoir document class after hyperref (?)
+
+\usepackage{cleveref} % after hyperref
+\crefname{equation}{}{equations}
+\crefname{figure}{figure}{figures}
+\crefformat{equation}{(#2#1#3)}
+\Crefformat{equation}{Équation~(#2#1#3)}
+\crefformat{appendix}{#2appendice~#1#3}
+\Crefformat{appendix}{#2Appendice~#1#3}
+\crefformat{chapter}{#2chapitre~#1#3}
+\Crefformat{chapter}{#2Chapitre~#1#3}
+\crefformat{section}{#2section~#1#3}
+\Crefformat{section}{#2Section~#1#3}
+\crefformat{figure}{#2figure~#1#3}
+\Crefformat{figure}{#2Figure~#1#3}
+\crefformat{table}{#2tableau~#1#3}
+\Crefformat{table}{#2Tableau~#1#3}

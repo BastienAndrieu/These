@@ -1,0 +1,153 @@
+\newboolean{titlerectangle}
+\setboolean{titlerectangle}{true}
+
+\newboolean{titlehelpers}
+\setboolean{titlehelpers}{true}
+
+\newboolean{sansseriftitles}
+\setboolean{sansseriftitles}{false}
+
+\ifthenelse{\boolean{sansseriftitles}}{
+	\def\titlefont{\sffamily}%
+}
+{
+	\def\titlefont{\rmfamily}%
+}
+
+% Table of contents style
+\renewcommand*{\contentsname}{Table of contents}
+\renewcommand*{\cftchapterfont}{\titlefont\bfseries}
+
+
+
+\maxtocdepth{subsection}
+
+% Titles
+\colorlet{colchapttl}{mydarkgray}%black}%DodgerBlue3}%
+
+
+
+\makeatletter
+\makechapterstyle{mychapterstyle}{
+\setlength{\beforechapskip}{0pt}%40pt}
+\setlength{\midchapskip}{0pt}%25pt}
+\newlength{\afterchapskipdef}
+\newlength{\afterchapskipxtra}
+\setlength{\afterchapskipdef}{8\onelineskip}%60pt}%
+
+\newif\ifNoChapNumber
+\newlength{\barheight}
+\newlength{\barlength}
+\newlength{\ttltopskip}
+\setlength{\ttltopskip}{60mm}
+\setlength{\barlength}{0.37\foremargin}
+\setlength{\barheight}{14mm}
+
+\newlength{\numberheight}
+\ifthenelse{\boolean{sansseriftitles}}{
+	\setlength{\numberheight}{1.6\barheight}
+}
+{
+	\setlength{\numberheight}{1.63\barheight}
+}
+
+\newlength{\yshiftchapname}
+\newlength{\yshiftchapnum}
+\setlength{\yshiftchapname}{-\ttltopskip + 10mm + 3.9mm}
+\setlength{\yshiftchapnum}{-\ttltopskip - 0.1mm}
+
+
+\renewcommand{\chapnamefont}{\scshape\titlefont}
+\renewcommand{\chapnumfont}{\normalfont\titlefont\fontsize{\numberheight}{0mm}\selectfont}
+\renewcommand{\chaptitlefont}{\normalfont\titlefont\bfseries\Huge\flushright}
+\renewcommand{\printchaptername}{}%\chapnamefont\@chapapp}
+\renewcommand{\chapternamenum}{}
+\renewcommand{\printchapternum}{}
+
+
+\renewcommand\printchaptertitle[1]{
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=-\ttltopskip] at (current page.north east) {%
+      \begin{tikzpicture}[remember picture, overlay]%
+      	\ifthenelse{\boolean{titlehelpers}}{
+	      	% >>> helpers ---------------
+	         \draw[red] (0,0) -- (-\textwidth-\foremargin,0);%
+	         \draw[green] (0,\barheight) -- (-\textwidth-\foremargin,\barheight);%
+	         \draw[blue] (-\foremargin,0) -- (-\foremargin,\barheight);%
+	         \draw[blue] (-\textwidth-\foremargin,0) -- (-\textwidth-\foremargin,\barheight);%
+	        % ----------------------- <<<
+        }{}%        
+        \ifNoChapNumber%
+        	\ifthenelse{\boolean{titlerectangle}}{
+        		\draw[colchapttl,fill=colchapttl] (\barlength,0) rectangle (-2\barlength,\barheight);% rectangle noir
+}{}%
+    		\else%
+    		\ifthenelse{\boolean{titlerectangle}}{
+	           \draw[colchapttl,fill=colchapttl] (\barlength,0) rectangle(-\barlength,\barheight);% rectangle noir
+	           }{}%
+          \node[anchor=south, 
+            yshift=\yshiftchapnum,%
+            xshift=-0.5\barlength-0.5\foremargin),%
+            inner sep=0mm]%
+            at (current page.north east)%
+          {\color{colchapttl}\chapnumfont\thechapter};%
+        \fi%
+        \node[anchor=north east,
+          yshift=\yshiftchapname,%
+          xshift=-\foremargin,%
+          text width=\textwidth,% rectangle, draw=black, dotted, thick,
+          inner sep=0mm]%
+          (chapttl)%
+          at (current page.north east)%
+        {\chaptitlefont\color{colchapttl}##1\vfill};%
+        \gettikzxy{(chapttl.south west)}{\bx}{\by}%
+        \global\afterchapskipxtra=-\by%
+        \pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
+        \global\afterchapskip=\afterchapskip%
+%         \ifNoChapNumber%
+%           \relax%
+%         \else%
+%           \node[anchor=north east,inner sep=0pt]%
+%               at (-\foremargin,\barheight)%
+%               {{\chapnamefont\MakeLowercase{\@chapapp}}};%
+%         \fi%
+      \end{tikzpicture}%
+    };%
+  \end{tikzpicture}%
+}
+\renewcommand\printchapternonum{\NoChapNumbertrue}
+}
+\makeatother
+
+% helper (check if proper space after chapter title)
+\newcommand{\printskip}{%
+}%\textbf{\the\afterchapskipdef~$+$~\the\afterchapskipxtra~$=$~\the\afterchapskip}%
+
+\makeatletter
+\newcommand{\printchapapp}{}%This is a \MakeLowercase{\@chapapp}.}%
+\makeatother
+
+
+\chapterstyle{mychapterstyle}%veelo}%
+
+%% Format chapter abstracts
+\def\abstractname{}
+\def\abstitleskip{0pt}
+
+\usepackage{lettrine}  % dropped capitals
+\renewcommand{\LettrineTextFont}{\scshape}
+\renewcommand{\DefaultLhang}{0.1}
+\renewcommand{\DefaultNindent}{0pt}
+% \renewcommand{\DefaultOptionsFile}{\lettrineconffile}
+
+
+
+%% Subsections
+\setsecheadstyle{\color{colchapttl}\titlefont\Large\bfseries\raggedright}
+\setbeforesecskip{-\onelineskip}
+\setaftersecskip{\onelineskip}
+
+%% Subsubsections
+\setsubsecheadstyle{\color{colchapttl}\titlefont\large\bfseries\sethangfrom{\noindent ##1}\raggedright}
+\setbeforesubsecskip{-\onelineskip}
+\setaftersubsecskip{\onelineskip}

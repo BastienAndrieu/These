@@ -1,0 +1,48 @@
+\usepackage{graphicx}
+
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\makeatletter
+\newcommand{\gettikzxy}[3]{%
+  \tikz@scan@one@point\pgfutil@firstofone#1\relax
+  \edef#2{\the\pgf@x}%
+  \edef#3{\the\pgf@y}%
+}
+
+\newcommand{\globalgettikzxy}[3]{%
+  \tikz@scan@one@point\pgfutil@firstofone#1\relax
+  \edef\@tempdima{\the\pgf@x}%
+  \edef\@tempdimb{\the\pgf@y}%
+  \global#2=\@tempdima%
+  \global#3=\@tempdimb%
+}
+
+\newcommand\getwidthofnode[2]{%
+    \pgfextractx{\pgf@xb}{\pgfpointanchor{#2}{east}}%
+    \pgfextractx{\pgf@xa}{\pgfpointanchor{#2}{west}}% 
+    \pgfmathsetlength{\pgf@xb}{\pgf@xb - \pgf@xa}%
+	\global#1=\pgf@xb%
+}
+
+\newcommand\getheightofnode[2]{%
+    \pgfextracty{\pgf@yb}{\pgfpointanchor{#2}{north}}%
+    \pgfextracty{\pgf@ya}{\pgfpointanchor{#2}{south}}% 
+    \pgfmathsetlength{\pgf@yb}{\pgf@yb - \pgf@ya}%
+	\global#1=\pgf@yb%
+}
+\makeatother
+
+
+
+
+% chemin(s) des figures
+\graphicspath{{./figures/}}%,{../fig2/}}
+
+
+% controle des objets flottants (figures, tables)
+\renewcommand{\topfraction}{0.7}     % autorise 70% page de graphique en haut
+\renewcommand{\bottomfraction}{0.5}  % autorise 50% page de graphique en bas
+\renewcommand{\floatpagefraction}{0.7}
+\renewcommand{\textfraction}{0.1}

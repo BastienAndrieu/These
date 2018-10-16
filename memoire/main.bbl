@@ -1,0 +1,148 @@
+\begin{thebibliography}{10}
+
+\bibitem{sethian1999}
+{\scshape J.~A. Sethian}.
+\newblock {\itshape {Level Set Methods and Fast Marching Methods: Evolving
+  Interfaces in Computational Geometry, Fluid Mechanics, Computer Vision, and
+  Materials Science}\/}.
+\newblock Cambridge Monographs on Applied and Computational Mathematics.
+  Cambridge University Press, 1999.
+
+\bibitem{peternell1997}
+{\scshape M.~Peternell} et {\scshape H.~Pottmann}.
+\newblock {Computing Rational Parametrizations of Canal Surfaces}.
+\newblock {\itshape Journal of Symbolic Computation\/}, {\bfseries
+  23}~(2-3)~:~pp. 255--266, 1997.
+
+\bibitem{gelston1995}
+{\scshape S.~M. Gelston} et {\scshape D.~Dutta}.
+\newblock Boundary surface recovery from skeleton curves and surfaces.
+\newblock {\itshape Computer Aided Geometric Design\/}, {\bfseries
+  12}~(1)~:~pp. 27--51, 1995.
+
+\bibitem{patrikalakis2009}
+{\scshape N.~M. Patrikalakis} et {\scshape T.~Maekawa}.
+\newblock {\itshape Shape interrogation for computer aided design and
+  manufacturing\/}.
+\newblock Springer Science \& Business Media, 2009.
+
+\bibitem{hohmeyer1992}
+{\scshape M.~E. Hohmeyer}.
+\newblock {\itshape {Robust and Efficient Surface Intersection for Solid
+  Modeling}\/}.
+\newblock Thèse de Doctorat, EECS Department, University of California,
+  Berkeley, 1992.
+
+\bibitem{dokken2001}
+{\scshape T.~Dokken}.
+\newblock {Approximate Implicitization}.
+\newblock {\itshape Mathematical Methods for Curves and Surfaces\/}, pp.
+  81--102, 2001.
+
+\bibitem{houghton1985}
+{\scshape E.~G. Houghton}, {\scshape R.~F. Emnett}, {\scshape J.~D. Factor} et
+  {\scshape C.~L. Sabharwal}.
+\newblock Implementation of a divide-and-conquer method for intersection of
+  parametric surfaces.
+\newblock {\itshape Computer Aided Geometric Design\/}, {\bfseries
+  2}~(1-3)~:~pp. 173--183, 1985.
+
+\bibitem{barnhill1990}
+{\scshape R.~E. Barnhill} et {\scshape S.~Kersey}.
+\newblock A marching method for parametric surface/surface intersection.
+\newblock {\itshape Computer Aided Geometric Design\/}, {\bfseries
+  7}~(1-4)~:~pp. 257--280, 1990.
+
+\bibitem{mason2002}
+{\scshape J.~Mason} et {\scshape D.~Handscomb}.
+\newblock {\itshape {Chebyshev Polynomials}\/}.
+\newblock CRC Press, 2002.
+
+\bibitem{canuto2006}
+{\scshape C.~Canuto}, {\scshape M.~Y. Hussaini}, {\scshape A.~Quarteroni} et
+  {\scshape T.~A. Zang}.
+\newblock {\itshape {Spectral Methods. Fundamentals in Single Domains}\/}.
+\newblock Springer-Verlag Berlin Heidelberg, 2006.
+
+\bibitem{gil2007}
+{\scshape A.~Gil}, {\scshape J.~Segura} et {\scshape N.~M. Temme}.
+\newblock {\itshape {Numerical Methods for Special Functions}\/}.
+\newblock Society for Industrial and Applied Mathematics, Philadelphia, PA,
+  USA, 2007.
+
+\bibitem{clenshaw1955}
+{\scshape C.~Clenshaw}.
+\newblock {A note on the summation of Chebyshev series}.
+\newblock {\itshape Mathematics of Computation\/}, {\bfseries 9}~(51)~:~pp.
+  118--120, 1955.
+
+\bibitem{wengle1978}
+{\scshape H.~Wengle} et {\scshape J.~H. Seinfeld}.
+\newblock Pseudospectral solution of atmospheric diffusion problems.
+\newblock {\itshape Journal of computational Physics\/}, {\bfseries
+  26}~(1)~:~pp. 87--106, 1978.
+
+\bibitem{peyret2002}
+{\scshape R.~Peyret}.
+\newblock {\itshape {Spectral Methods for Incompressible Viscous Flow}\/}.
+\newblock Applied Mathematical Sciences. Springer New York, 2002.
+
+\bibitem{chorin1980}
+{\scshape A.~J. Chorin}.
+\newblock {Flame Advection and Propagation Algorithms}.
+\newblock {\itshape Journal of Computational Physics\/}, {\bfseries
+  35}~(1)~:~pp. 1--11, 1980.
+
+\bibitem{sethian1990}
+{\scshape J.~A. Sethian}.
+\newblock {Numerical algorithms for propagating interfaces: Hamilton-Jacobi
+  equations and conservation laws}.
+\newblock {\itshape Journal of Differential Geometry\/}, {\bfseries
+  31}~(1)~:~pp. 131--161, 1990.
+
+\bibitem{jiao2007}
+{\scshape X.~Jiao}.
+\newblock {Face Offsetting: A Unified Approach for Explicit Moving Interfaces}.
+\newblock {\itshape Journal of Computational Physics\/}, {\bfseries
+  220}~(2)~:~pp. 612--625, 2007.
+
+\bibitem{popinet1999}
+{\scshape S.~Popinet} et {\scshape S.~Zaleski}.
+\newblock A front-tracking algorithm for accurate representation of surface
+  tension.
+\newblock {\itshape International Journal for Numerical Methods in Fluids\/},
+  {\bfseries 30}~(6)~:~pp. 775--793, 1999.
+
+\bibitem{tryggvason2001}
+{\scshape G.~Tryggvason}, {\scshape B.~Bunner}, {\scshape A.~Esmaeeli},
+  {\scshape D.~Juric}, {\scshape N.~Al-Rawahi}, {\scshape W.~Tauber}, {\scshape
+  J.~Han}, {\scshape S.~Nas} et {\scshape Y.-J. Jan}.
+\newblock {A Front-Tracking Method for the Computations of Multiphase Flow}.
+\newblock {\itshape Journal of Computational Physics\/}, {\bfseries
+  169}~(2)~:~pp. 708 -- 759, 2001.
+
+\bibitem{veerapaneni2011}
+{\scshape S.~K. Veerapaneni}, {\scshape A.~Rahimian}, {\scshape G.~Biros} et
+  {\scshape D.~Zorin}.
+\newblock {A Fast Algorithm for Simulating Vesicle Flows in Three Dimensions}.
+\newblock {\itshape Journal of Computational Physics\/}, {\bfseries
+  230}~(14)~:~pp. 5610--5634, 2011.
+
+\bibitem{gueyffier2015}
+{\scshape D.~Gueyffier}, {\scshape F.~Roux}, {\scshape Y.~Fabignon}, {\scshape
+  G.~Chaineray}, {\scshape N.~Lupoglazoff}, {\scshape F.~Vuillot}, {\scshape
+  J.~Hijlkema} et {\scshape F.~Alauzet}.
+\newblock {Accurate Computation of Grain Burning Coupled with Flow Simulation
+  in Rocket Chamber}.
+\newblock {\itshape Journal of Propulsion and Power\/}, {\bfseries
+  31}~(6)~:~pp. 1761 -- 1776, 2015.
+
+\bibitem{gueyffier1999}
+{\scshape D.~Gueyffier}, {\scshape J.~Li}, {\scshape A.~Nadim}, {\scshape
+  R.~Scardovelli} et {\scshape S.~Zaleski}.
+\newblock Volume-of-fluid interface tracking with smoothed surface stress
+  methods for three-dimensional flows.
+\newblock {\itshape Journal of Computational Physics\/}, {\bfseries
+  152}~(2)~:~pp. 423--456, 1999.
+
+\end{thebibliography}

@@ -153,3 +153,27 @@ Math macros\footnote{This is a footnote.} are tested in \Cref{sec:testmathmacros
 %   \end{minipage}
 %   \caption{Verbatim texts}
 % \end{figure}
+
+
+\begin{figure}
+  \centering
+  \hspace*{\fill}
+  \subbottom[Subfigure 1]{
+  \includegraphics[height=45mm]{imr_trimmed_patch_xyz}
+  %\fbox{SUBFIGURE ONE}\label{sf:1}
+  }
+  \hfill
+  \begin{tikzpicture}
+      \useasboundingbox (0,0) rectangle(3cm,5cm);
+	  \coordinate (a) at (5mm,45mm);
+	  \draw[-latex] (a) to ([yshift=-3cm]a) node [left] {$x$};
+	  \draw[-latex] (a) to node [above] {$y$} ([xshift=2cm]a);
+  \end{tikzpicture}
+  \hfill
+  \subbottom[Subfigure 2]{
+  \includegraphics[height=45mm]{imr_trimmed_patch_xyz}
+  %\fbox{SUBFIGURE TWO}\label{sf:2}
+  }
+  \hspace*{\fill}
+  \caption{Figure with two subfigures} 
+\end{figure}
