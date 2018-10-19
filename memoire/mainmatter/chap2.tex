@@ -1,1 +1,96 @@
 \chapter{Méthode d'ordre élevé pour le suivi d'un patch rectangulaire de surface}
+
+(méthode pseudo-spectrale : solution développée dans une base de fonctions globales et régulières, résidu annulé exactement en un nombre discret de points de collocation, donnant une EDO en temps par point de collocation)\\
+
+suivi lagrangien de marqueurs/points de collocation situés sur la surface\\
+
+\section{Discrétisation spatiale}
+
+Choix des fonctions de base et des marqueurs/points de collocation\\
+\subsection{État de l'art}
+\begin{itemize}
+	\item harmoniques sphériques \cite{veerapaneni2011}, polynômes trigonométriques \cite{gueyffier2015} $\to$ contraintes topologiques (genre 0, sans bord ou périodique) (méthode de continuation \cite{bruno2007} pour s'affranchir de cette contrainte, mais complexe (POUs, \ldots) et jamais utilisé pour des surfaces en mouvement)
+	\item CAO : courbes/surfaces polynomiales (algébriques)/rationnelles (en produit tensoriel) par morceaux (B-splines/NURBS), utilisant la base de Bernstein
+	\begin{equation}
+		B_n^N(x) = \binom{N}{n} \left( 1 - x \right)^{N-n} x^n.
+	\end{equation}
+	\begin{itemize}
+		\item[+] coefficients = points de contrôle dans l'espace physique
+		\item[+] partition de l'unité $\Rightarrow$ propriété d'enveloppe convexe
+		\item[-] algorithme d'évaluation (de Casteljau) numériquement stable mais couteux $\bigO{N^2}$
+		\item[-] points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas exploitables comme marqueurs lagrangiens
+		\item[-] peu pratiques pour réduire/élever le degré des polynômes
+	\end{itemize}
+\end{itemize}
+\bigskip
+on choisit les polynômes de Chebyshev, couramment employés dans les méthodes spectrales dans le cas non-périodique
+\subsection{Polynômes de Chebyshev}
+
+\subsubsection{Définition}
+	\begin{itemize}
+		\item cos, récurrence, pour $x \in \chebinterval$ 
+		\begin{equation*}
+			T_0(x) = 1, \quad T_1(x) = x,
+		\end{equation*}				
+		et pour $n \geq 2$,
+		\begin{equation}
+			T_n(x) = 2x T_{n-1}(x) - T_{n-2}(x).
+			\label{eq:recurrence_chebyshev}
+		\end{equation}
+		\item extrema (CGL) (minimise phénomène de Runge pour l'interpolation)
+	\end{itemize}
+	
+\subsubsection{Développement en série de Chebyshev, approximation de fonctions}
+fonctions d'une variable
+\begin{itemize}
+	\item orthogonalité $\Rightarrow$ aspect multirésolution, élévation/réduction de degré directe et quasi-optimale (d'ailleurs utilisé en CAO \cite{lachance1988})
+	\item série tronquée $\truncseries{f}{N}$, erreur de troncature
+	\item interpolant $\interpolant{f}{N}$, erreur d'aliasing
+	\item CGL $\to$ DCT, transformation rapide
+\end{itemize}
+généralisation à plusieurs variables (produit-tensoriel)
+
+\paragraph{Représentation de courbes et de surfaces.}
+courbe $\bg : \chebinterval \to \mathbb{R}^3$
+\begin{equation}
+	\truncseries{\bg}{N}(t) = \sum_{n=0}^{N} \hat{\bg}_{n} T_n(t).
+\end{equation}
+surface $\bs : \chebinterval^2 \to \mathbb{R}^3$
+\begin{equation}
+	\truncseries{\bs}{MN}(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \hat{\bs}_{mn} T_m(u) T_n(v).
+\end{equation}
+
+\subsubsection{Évaluation}
+algorithme de sommation de Clenshaw exploitant la relation de récurrence \eqref{eq:recurrence_chebyshev}) \cite{clenshaw1955}, numériquement stable et efficace ($\bigO{N}$)
+
+\subsubsection{Dérivation}
+\begin{itemize}
+	\item matrice de dérivation (espace physique)
+	\item formule de récurrence (espace spectral), remarque de \cite[Section 2.3, p~.94]{wengle1978}%, \cite[p.~46]{peyret2013}
+\end{itemize}
+
+\subsubsection{Quadrature}
+Clenshaw-Curtis\\
+calcul (approché) longueur de courbe/aire de surface
+
+\subsubsection{Précision spectrale}
+Si $f \in C^p(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002}.\\
+illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$
+
+
+
+\section{Discrétisation temporelle}
+\begin{itemize}
+	\item champ de vitesse connu : intégration classique, schéma explicite (Euler, RK)
+	\item vitesse normale connue : approximation EdS
+	\begin{itemize}
+		\item calcul dérivées par différentiation spectrale
+		\item calcul normale et composante tangentielle
+		\item non-linéarités $\to$ aliasing, peut causer instabilité \cite{rahimian2015}
+	\end{itemize}
+	\item auto-intersections
+	\begin{itemize}
+		\item globales (traitées au chapitre 3)
+		\item locales \cite{farouki1986}
+	\end{itemize}
+\end{itemize}

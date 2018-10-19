@@ -1,5 +1,15 @@
 %https://tex.stackexchange.com/questions/50747/options-for-appearance-of-links-in-hyperref
-\usepackage[pagebackref]{hyperref}
+\usepackage[pagebackref]{hyperref} % hyper link to page where reference is cited
+\renewcommand*{\backrefsep}{, }
+\renewcommand*{\backreflastsep}{ et }
+\renewcommand*{\backreftwosep}{ et }
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+    \ifcase #1 {\color{red}(Pas cité)}%\relax%
+    \or        (cf. p.~#2)%
+    \else      (cf. pp.~#2)%
+    \fi}
+
 \hypersetup{colorlinks=true,
 	linkcolor=DodgerBlue3,%myred,%redlink,%deepblue,%DarkBlue,
 	anchorcolor=myred,%DarkRed,%
@@ -7,7 +17,8 @@
 	pdfdisplaydoctitle=true,
 	pdfpagemode=UseOutlines,%
 	bookmarksnumbered=true,
-	bookmarksopen=true}
+	bookmarksopen=true,
+	hypertexnames=true}
     
 \usepackage{memhfixc} % Must be used on memoir document class after hyperref (?)
 

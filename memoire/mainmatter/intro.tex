@@ -4,21 +4,22 @@
 \addcontentsline{toc}{chapter}{Introduction}
 
 \section*{Contexte}%?
-Les surfaces (ou interfaces) en propagation interviennent dans de nombreuses applications scientifiques et industrielles. Elles résultent de phénomènes mettant en jeu des couplages multiphysiques complexes comme la combustion, les interactions fluide-structure, les écoulements multi-phasiques ou encore la croissance dendritique de cristaux. C’est généralement au niveau de ces surfaces qu’a lieu la physique la plus intéressante, il est donc indispensable d’en déterminer avec précision l’évolution au cours du temps\ldots
+%Les surfaces (ou interfaces) en propagation interviennent dans de nombreuses applications scientifiques et industrielles. Elles résultent de phénomènes mettant en jeu des couplages multiphysiques complexes comme la combustion, les interactions fluide-structure, les écoulements multi-phasiques ou encore la croissance dendritique de cristaux. C’est généralement au niveau de ces surfaces qu’a lieu la physique la plus intéressante, il est donc indispensable d’en déterminer avec précision l’évolution au cours du temps\ldots
 
 
 \section*{Formulation du problème}% d'interface en propagation}
 formulation lagrangienne traditionnelle (approche EDP) : vecteur vitesse 
-\begin{equation}
-	\frac{\partial \bx}{\partial t} = \vrm{u}(\bx,t),
-\end{equation}
+%\begin{equation}
+%	\frac{\partial \bx}{\partial t} = \vrm{u}(\bx,t),
+%\end{equation}
 ou vitesse normale 
-\begin{equation}
-	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t).
-\end{equation}
-(les 2 sont équivalentes)\\
-ambiguïté de la normale dans le cas piecewise-smooth\\
-formulation plus générale (approche "géométrique") : principe de Huygens (propagation de proche en proche), enveloppe de sphères (e.g. ondes) ou de boules (e.g. flamme) (condition d'entropie \cite{sethian1999}).
+%\begin{equation}
+%	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t).
+%\end{equation}
+%(les 2 sont équivalentes)
+\\
+problème de définition de la normale dans le cas piecewise-smooth\\
+$\to$ formulation plus générale (approche ``géométrique'') : principe de Huygens (propagation de proche en proche), enveloppe de sphères (e.g. ondes) ou de boules (e.g. flamme) (condition d'entropie \cite{sethian1999}).
 
 \section*{État de l'art}
 résolution analytique impossible $\to$ méthodes numériques\\
@@ -27,16 +28,31 @@ résolution analytique impossible $\to$ méthodes numériques\\
 \begin{itemize}
 	\item point de vue eulérien $\to$ représentation implicite
 	\begin{itemize}
-		\item ex. : \eng{level-set}, \eng{Volume-of-fluid}, interfaces diffuses\ldots
+		\item ex. : \eng{level-set} \cite{sethian1999}, \eng{Volume-of-fluid} \cite{gueyffier1999}, \etc
+		\item[+] : formulation simple, facilement généralisable à $n$ dimensions, supporte naturellement les changements topologiques de l'interface $\to$ bien adapté aux interfaces fluide-fluide ;
+		\item[-] : besoin de reconstruire l'interface, quantités géométriques mal résolues, mauvaise conservation de la masse et besoin de réinitialiser la fonction distance pour \eng{level-set}, besoin d'extrapoler les conditions aux limites ;
 	\end{itemize}
+	
 	\item point de vue lagrangien $\to$ représentation explicite
 	\begin{itemize}
-		\item ex. : \eng{front-tracking}, \eng{face-offsetting}, ordre élevé\ldots
+		\item ex. : \eng{front-tracking} \cite{popinet1999, tryggvason2001}, \eng{face-offsetting} \cite{jiao2007}, \etc
+		\item[+] : fine résolution des quantités géométriques, application directe et précise des conditions aux limites ;
+		\item[-] : supporte mal les grandes déformations, besoin de redistribuer les marqueurs (voire de remailler complètement), nécessite traitement explicite des changements topologiques (complexe en 3d);
 	\end{itemize}
 \end{itemize}
 
-type de problèmes visés dans cette thèse, motivation high-order, \brep
+\bigskip
+type de problèmes visés dans cette thèse : interface = frontière solide (déformable) d'un domaine fluide $\Rightarrow$ déformations modérées, peu de changements de topologie $\Rightarrow$ on adopte la description lagrangienne
+on s'intéresse en particulier aux cas où l'interface est \emph{piecewise smooth}% ($\Rightarrow$ champ de vitesse continu en module mais pas en direction)
+, ce qui est souvent le cas dans les applications industrielles\\
+
+méthodes high-order intéressantes lorsque la solution est régulière car précises à bas coût, mais phénomène de Gibbs en présence de singularités \cite{bruno2007}\\
+
+dans les applications visées, la définition de la géométrie initiale passe par une phase de CAO
+
+
 \subsection*{Représentation par les frontières}
+formalisme \brep
 
 
 \section*{Contributions}% aka "Description de la thèse/démarche"

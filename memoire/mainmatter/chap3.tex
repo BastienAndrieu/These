@@ -1,18 +1,42 @@
 \chapter{Généralisation aux surfaces régulières par morceaux de topologie quelconque}
+\chaptermark{Généralisation aux surfaces de topologie quelconque}
 
 \section{Construction des nouvelles faces}
-\subsection{Arêtes convexes}
-\subsection{Sommets convexes}
 
+paramétrisation et limites du domaine paramétrique
+
+\subsection{Arêtes convexes}
+paramétrisation approchée des courbes d'intersection (choix du paramètre, fitting LS série de Chebyshev univariée), portion de \eng{canal surface} approchée 
+
+\subsection{Sommets convexes}
+deux variantes :
+
+\subsubsection{Une face trimmée}
+$(u,v) \equiv$ coordonnées sphériques\\
++ : 1 seule face, spectre Chebyshev étroit
+
+
+\subsubsection{Plusieurs faces non trimmées}
+polygone sphérique découpé en quads \cite{hahn1989}\\
++ : domaine paramétrique non trimmé
 
 
 \section{Résolution des intersections entre faces}
 \subsection{État de l'art}
+état de l'art méthodes d'intersection de surfaces paramétriques :
+review complète \cite{patrikalakis2009}\\
+subdivision \cite{houghton1985}, implicitisation approchée \cite{dokken2001}, suivi (marching) \cite{barnhill1990}, Hohmeyer \cite{hohmeyer1992} (critère de détection de boucles sur les enveloppes de normales, paramétrisation monotone et tracé des branches d'intersection)
+
+
 \subsection{Approche retenue}
-
-
-
-\section{Reconstitution d'un modèle \brep~ valide}
+adaptation de l'approche de Hohmeyer \cite{hohmeyer1992} (full Chebyshev / Chebyshev-Bernstein)
+\begin{itemize}
+	\item changement de base \cite{rababah2003}
+	\item subdivision : changement de variable (détail en annexe) / algorithme de Casteljau (ref?) (remarques complexité et conditionnement)
+	\item volumes englobants convexes : oriented bounding box \cite{fournier1994} (détail en annexe) / enveloppe convexe (comparer volumes)
+	\item test de séparation : théorème de séparation des convexes \cite{eberly2002} / optimisation linéaire \cite{seidel1991}
+	\item traitement des intersections tangentielles
+\end{itemize}
 
 
 
@@ -20,6 +44,7 @@
 
 \subsection{Propagation suivant un champ de vitesse continu}
 sphère/cube dans un écoulement tourbillonnaire incompressible analytique de période temporelle $2T$\\
+calcul (exact) de volume avec quadrature de Clenshaw-Curtis (étanchéité (continuité $G^0$ partout) garantie car les marqueurs de bord coïncident tout au long de la déformation)\\
 convergence de l'erreur d'approximation sur la position, l'aire et le volume à $t = 0$ et $t = T$ pour différents niveaux de discrétisations spatiale et temporelle\\
 + convergence de la variation de volume au cours de la déformation
 

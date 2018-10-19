@@ -1,11 +1,18 @@
+%
 \newboolean{titlerectangle}
 \setboolean{titlerectangle}{true}
-
+%
 \newboolean{titlehelpers}
 \setboolean{titlehelpers}{true}
-
+%
 \newboolean{sansseriftitles}
-\setboolean{sansseriftitles}{false}
+\setboolean{sansseriftitles}{false}%{true}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \ifthenelse{\boolean{sansseriftitles}}{
 	\def\titlefont{\sffamily}%

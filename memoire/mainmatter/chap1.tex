@@ -1,13 +1,41 @@
 \chapter{Algorithme pour la propagation d'une surface régulière par morceaux}
 
-\section{Construction de l'enveloppe des sphères}
+\textit{on veut mettre en place un algorithme basé sur le principe de Huygens (avec condition d'entropie) pour simuler la propagation d'une surface représentée suivant le formalisme BREP, i.e. pour construire un nouveau modèle BREP (géométrie et topologie) correspondant à une enveloppe de boules (EdB) centrées sur la surface courante. }
 
-\subsection{Enveloppe d'un ensemble de sphères à un paramètre}
-\cite{peternell1997}
+\section{Construction géométrique de l'enveloppe des sphères}
+traitement séparé de chaque entité \brep  :
+\begin{itemize}
+	\item faces $\to$ EdS à deux paramètres ;
+	\item arêtes
+	\begin{itemize}
+		\item smooth $\to$ préservée car vitesse continue ;
+		\item convexe $\to$ EdS à un paramètre (nouvelle(s) face(s)) ;
+		\item concave $\to$ aucune influence sur l'EdB ;
+	\end{itemize}
+	\item sommets
+	\begin{itemize}
+		\item smooth $\to$ préservé car vitesse continue ;
+		\item convexe $\to$ nouvelle(s) face(s) sphérique(s) ;
+		\item concave $\to$ aucune influence sur l'EdB.
+	\end{itemize}
+\end{itemize}
 
 
-\subsection{Enveloppe d'un ensemble de sphères à deux paramètres}
-\cite{gelston1995}
+\subsection{Enveloppe d'une famille de sphères à un paramètre}
+%\subsection{Enveloppe d'un ensemble de sphères à un paramètre}
+\eng{canal surfaces} \cite{peternell1997} (\eng{spine curve} $\to$ « squelette » (ou axe médian))
+
+\subsection{Enveloppe d'une famille de sphères à deux paramètres}
+extension \eng{canal surfaces} \cite{gelston1995}\\
+différence avec le simple transport suivant la normale \cite{jiao2001}
 
 
 \section{Application de la condition d'entropie}
+résolution des intersections (pas encore de détail sur la méthode) $\to$ faces trimmées, nouveaux sommets/arêtes
+
+\section{Reconstitution topologique du modèle \brep}
+\ldots
+
+
+\bigskip
+\textit{il faut maintenant faire le choix d'une méthode numérique pour appliquer cet algorithme de façon pratique\ldots}

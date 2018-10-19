@@ -12,44 +12,48 @@ The style file: mybibstyle.bst
 Database file #1: biblio/intersections.bib
 Database file #2: biblio/chebyshev.bib
 Database file #3: biblio/interface_propagation.bib
-You've used 22 entries,
+Database file #4: biblio/spectral.bib
+Warning--empty booktitle in fournier1994
+Warning--can't use both volume and number fields in fournier1994
+You've used 33 entries,
             2278 wiz_defined-function locations,
-            667 strings with 8019 characters,
-and the built_in function-call counts, 9101 in all, are:
-= -- 681
-> -- 199
-< -- 15
-+ -- 81
-- -- 59
-* -- 584
-:= -- 976
-add.period$ -- 68
-call.type$ -- 22
-change.case$ -- 15
+            730 strings with 9671 characters,
+and the built_in function-call counts, 13671 in all, are:
+= -- 1053
+> -- 267
+< -- 26
++ -- 111
+- -- 78
+* -- 850
+:= -- 1457
+add.period$ -- 101
+call.type$ -- 33
+change.case$ -- 27
 chr.to.int$ -- 0
-cite$ -- 22
-duplicate$ -- 935
-empty$ -- 903
-format.name$ -- 73
-if$ -- 2054
+cite$ -- 35
+duplicate$ -- 1404
+empty$ -- 1350
+format.name$ -- 96
+if$ -- 3096
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 198
-newline$ -- 113
-num.names$ -- 22
-pop$ -- 247
+int.to.str$ -- 33
+missing$ -- 291
+newline$ -- 168
+num.names$ -- 33
+pop$ -- 371
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 282
+skip$ -- 443
 stack$ -- 0
-substring$ -- 473
-swap$ -- 712
-text.length$ -- 15
+substring$ -- 761
+swap$ -- 1059
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 65
-width$ -- 24
-write$ -- 240
+warning$ -- 2
+while$ -- 103
+width$ -- 35
+write$ -- 361
+(There were 2 warnings)
