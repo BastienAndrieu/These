@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  18 OCT 2018 18:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  26 OCT 2018 17:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1901,12 +1901,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
 
@@ -1917,7 +1912,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 ]
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 54.
+(Font)              using `U/stmry/m/n' instead on input line 56.
 
 [6]) [7]
 \openout2 = `mainmatter/chap3.aux'.
@@ -1926,16 +1921,11 @@ LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 
 
 
-] [9]
-Overfull \hbox (3.56184pt too wide) in paragraph at lines 32--33
-[]\T1/LinuxLibertineT-TLF/m/n/12 (-10) adaptation de l'ap-proche de Hoh-meyer [
-[]][] (full Che-by-shev / Chebyshev-Bernstein) 
- []
-
-) [10]
+] [9]) [10]
 \openout2 = `mainmatter/chap4.aux'.
 
- (./mainmatter/chap4.tex) [11
+ (./mainmatter/chap4.tex)
+[11
 
 
 
@@ -1949,12 +1939,12 @@ Overfull \hbox (3.56184pt too wide) in paragraph at lines 32--33
 ]) [13]
 \openout2 = `mainmatter/concl.aux'.
 
-
-(./mainmatter/concl.tex [14
-
+ (./mainmatter/concl.tex [14
 
 
-]) [15] [16
+
+]) [15]
+[16
 
 
 ] (./main.bbl (./main.brf)
@@ -1982,7 +1972,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 70.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: C8497C8CA64C98F13E3F5160C683BA30;2374.
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 4FABD6973600C9965F995A39A0B3588E;1601.
+(rerunfilecheck)             Checksum: F874A2BF20DAD93472F7DD19152B7E8E;1906.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2016,10 +2006,10 @@ t/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr8.pfb></opt/tools/texl
 ive/2016/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></opt/tools/texlive/2016/t
 exmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt/tools/texlive/2016/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (21 pages, 374391 bytes).
+Output written on main.pdf (21 pages, 374867 bytes).
 PDF statistics:
- 430 PDF objects out of 1000 (max. 8388607)
- 391 compressed objects within 4 object streams
+ 443 PDF objects out of 1000 (max. 8388607)
+ 403 compressed objects within 5 object streams
  102 named destinations out of 1000 (max. 500000)
  32997 words of extra memory for PDF output out of 35830 (max. 10000000)
 
