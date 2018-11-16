@@ -6,7 +6,7 @@
 \usepackage{mathtools}
 \usepackage{stmaryrd}
 \usepackage{cases}
-
+\usepackage{esint}
 
 
 % Notations
@@ -33,8 +33,8 @@
 \newcommand*{\bl}{\vit{\lambda}}
 \renewcommand*{\bs}{\vit{\sigma}} % originally backslash in typewriter font
 
-\newcommand*{\nv}{\vrm{n}} % normal vector
-\newcommand*{\unv}{\hat{\nv}} % unit normal vector
+\newcommand*{\unv}{\vrm{n}} % unit normal vector
+\newcommand*{\nv}{\hat{\unv}} % normal vector
 
 \newcommand{\colvec}[1]{\begin{pmatrix} #1 \end{pmatrix}} % vector printed in column
 \newcommand{\rowvec}[1]{ \transpose{\begin{pmatrix} #1 \end{pmatrix}} } % vector printed in row (transposed column)
@@ -43,10 +43,9 @@
 \newcommand*{\jacobian}[1]{\mathbf{J}_{#1}}
 \newcommand*{\gradient}[1]{\nabla \! {#1}}
 \newcommand*{\hessian}[1]{\mathbf{H}_{#1}}
+\newcommand*{\divergence}[1]{\nabla \cdot {#1}}%\mathrm{div}{#1}}
 
 
-% Reference interval for Chebyshev polynomials
-\newcommand*{\chebinterval}{\left[ -1, 1 \right]}
 
 % Condition number
 \newcommand*{\cond}[1]{\mathrm{cond} \! \left( {#1} \right)}
@@ -55,6 +54,15 @@
 \newcommand{\fff}{\mathbf{I}}    % first fundamental form
 \newcommand{\sff}{\mathbf{I\!I}} % second fundamental form
 
+
+
+
+%% Chebyshev polynomials
+% Reference interval
+\newcommand*{\chebinterval}{\left[ -1, 1 \right]}
+\newcommand*{\series}[1]{S{#1}}
+\newcommand*{\truncseries}[2]{P_{#2}{#1}}
+\newcommand*{\interpolant}[2]{I_{#2}{#1}}
 
 % Encircled text
 \newcommand{\pgftextcircled}[1]{                                                                    
