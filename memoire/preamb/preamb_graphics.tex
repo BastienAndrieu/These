@@ -1,9 +1,65 @@
 \usepackage{graphicx}
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
 
 \usepackage{tikz}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc, external}
+%\tikzexternalize[prefix=figures/pgf/]
 
+\usetikzlibrary{pgfplots.colorbrewer}
+
+\definecolor{s1}{HTML}{68ABD9}
+\definecolor{s2}{HTML}{FA6655}%{FAA43A}%
+\definecolor{s3}{HTML}{AADA57}%{60BD68}%
+\definecolor{s4}{HTML}{897EDA}
+\definecolor{s5}{HTML}{FAA43A}%{FA6655}%
+\definecolor{s6}{HTML}{60BD68}%{AADA57}%
+\definecolor{s7}{HTML}{F094C3}
+\definecolor{s8}{HTML}{A3A3A3}
+
+\pgfplotscreateplotcyclelist{set1}{
+  	s1, mark=square*,   mark size=1.2pt\\
+	s2, mark=*,         mark size=1.5pt\\
+	s3, mark=triangle*, mark size=1.7pt\\
+	s4, mark=diamond*,  mark size=1.7pt\\
+	s5, mark=square*,   mark size=1.2pt\\
+	s6, mark=*,         mark size=1.5pt\\
+	s7, mark=triangle*, mark size=1.7pt\\
+	s8, mark=diamond*,  mark size=1.5pt\\
+}
+
+
+\pgfmathsetlengthmacro\MajorTickLength{
+	\pgfkeysvalueof{/pgfplots/major tick length} * 0.75
+}
+\pgfmathsetlengthmacro\MinorTickLength{
+	\MajorTickLength * 0.5
+}
+\pgfplotsset{
+	cycle multiindex* list={
+		set1
+		\nextlist
+		thick
+		\nextlist
+		mark options={scale=.85}%
+	},
+	clip mode=individual,
+	axis line style={line width=0.5pt},
+	grid style={line width=0.3pt, draw=black!13},
+	major grid style={line width=0.4pt,draw=black!25},
+	every tick/.style={
+        black,
+        line width=0.5pt
+      },
+    major tick length=\MajorTickLength,
+    minor tick length=\MinorTickLength,
+	legend cell align={left},
+	legend style={line width=0.5pt}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter
 \newcommand{\gettikzxy}[3]{%
   \tikz@scan@one@point\pgfutil@firstofone#1\relax

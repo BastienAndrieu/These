@@ -1,41 +1,75 @@
-\chapter{Algorithme pour la propagation d'une surface régulière par morceaux}
+\chapter[Algorithme de propagation d'interfaces régulières par morceaux]{Algorithme général pour la propagation d'interfaces régulières par morceaux}
 
-\textit{on veut mettre en place un algorithme basé sur le principe de Huygens (avec condition d'entropie) pour simuler la propagation d'une surface représentée suivant le formalisme BREP, i.e. pour construire un nouveau modèle BREP (géométrie et topologie) correspondant à une enveloppe de boules (EdB) centrées sur la surface courante. }
+\textit{on veut mettre en place un algorithme basé sur le principe de Huygens (avec condition d'entropie) pour simuler la propagation d'une interface représentée suivant le formalisme \brep, i.e. pour construire un nouveau modèle \brep~(géométrie et topologie) correspondant à une enveloppe de boules (EdB) centrées sur l'interface courante.}
 
-\section{Construction géométrique de l'enveloppe des sphères}
-traitement séparé de chaque entité \brep  :
+
+\section{Traitement des différentes entités \brep}
+on construit d'abord une EdS (partielle), puis on la transforme en EdB pour respecter la condition d'entropie. Chaque entité du modèle \brep~est traitée spécifiquement
+
+vitesse normale continue $\Rightarrow$ rayon des sphères évolue continument 
+sur toute l'interface
+\subsection{Traitement des faces}
+chaque face repose sur une surface orientée de continuité géométrique élevée (d'ordre 1 ou plus) donc chaque point sur une face a exactement 2 vis-à-vis sur l'EdS (un dans le sens de la normale, et un dans le sens opposé) (sous réserve d'une condition, détaillée dans la \Sref{sec:EdS_2param})
+
+
+\subsection{Traitement des arêtes}
 \begin{itemize}
-	\item faces $\to$ EdS à deux paramètres ;
-	\item arêtes
-	\begin{itemize}
-		\item smooth $\to$ préservée car vitesse continue ;
-		\item convexe $\to$ EdS à un paramètre (nouvelle(s) face(s)) ;
-		\item concave $\to$ aucune influence sur l'EdB ;
-	\end{itemize}
-	\item sommets
-	\begin{itemize}
-		\item smooth $\to$ préservé car vitesse continue ;
-		\item convexe $\to$ nouvelle(s) face(s) sphérique(s) ;
-		\item concave $\to$ aucune influence sur l'EdB.
-	\end{itemize}
+	\item douce $\to$ préservée car vitesse continue ;
+	\item (vive) convexe $\to$ EdS à un paramètre (nouvelle(s) \textit{sur}face(s)) ;
+	\item (vive) concave $\to$ aucune influence sur l'EdB (on ne construit pas son EdS, d'où le ``partiel'') ;
+\end{itemize}
+
+\subsection{Traitement des sommets}
+\begin{itemize}
+	\item smooth $\to$ préservé car vitesse continue ;
+	\item convexe $\to$ nouvelle(s) \textit{sur}face(s) sphérique(s) ;
+	\item concave $\to$ aucune influence sur l'EdB.
 \end{itemize}
 
 
+%\begin{itemize}
+%	\item faces $\to$ EdS à deux paramètres (justifier) ;
+%	\item arêtes
+%	\begin{itemize}
+%		\item douce $\to$ préservée car vitesse continue ;
+%		\item (vive) convexe $\to$ EdS à un paramètre (nouvelle(s) \textit{sur}face(s)) ;
+%		\item (vive) concave $\to$ aucune influence sur l'EdB (on ne construit pas son EdS, d'où le ``partiel'') ;
+%	\end{itemize}
+%	\item sommets
+%	\begin{itemize}
+%		\item smooth $\to$ préservé car vitesse continue ;
+%		\item convexe $\to$ nouvelle(s) \textit{sur}face(s) sphérique(s) ;
+%		\item concave $\to$ aucune influence sur l'EdB.
+%	\end{itemize}
+%\end{itemize}
+
+%\section{Ce titre de section est vraiment trop long,\newline il faudrait trouver un moyen de le raccourcir,\newline il s'étend sur plusieurs lignes, c'est beaucoup trop long}
+
+
+\section{Construction de l'enveloppe des sphères}%{Construction géométrique de l'enveloppe des sphères}
+
 \subsection{Enveloppe d'une famille de sphères à un paramètre}
 %\subsection{Enveloppe d'un ensemble de sphères à un paramètre}
-\eng{canal surfaces} \cite{peternell1997} (\eng{spine curve} $\to$ « squelette » (ou axe médian))
+\eng{canal surfaces} \cite{peternell1997} (\eng{spine curve} $\to$ squelette (ou axe médian))
 
 \subsection{Enveloppe d'une famille de sphères à deux paramètres}
+\label{sec:EdS_2param}
 extension \eng{canal surfaces} \cite{gelston1995}\\
 différence avec le simple transport suivant la normale \cite{jiao2001}
+
+
 
 
 \section{Application de la condition d'entropie}
 résolution des intersections (pas encore de détail sur la méthode) $\to$ faces trimmées, nouveaux sommets/arêtes
 
-\section{Reconstitution topologique du modèle \brep}
-\cite{peternell1997}
+\subsection{Reconstitution topologique du modèle \brep}
+Intersections de paires de surfaces ($\to$ courbes\footnote{dans le cas général, non-dégénéré (cf. cours ``Topologie et géométrie différentielle'')\label{foot}}), de triplets de surface (ou de paires de courbes) ($\to$ points\textsuperscript{~\ref{foot}})\\
+graphe d'adjacence des surfaces, courbes, points \cite[Chap. 4]{pentcheva2010}\\
+formation des faces (\eng{wires} $\to$ chaînes?) \cite[Chap. 7]{pentcheva2010}, arêtes et sommets \cite[Chap. 5]{pentcheva2010}
+
 \ldots
+
 
 
 \bigskip

@@ -1,1 +1,49 @@
 \chapter{Déformation de maillage surfacique}
+
+\textit{on veut mettre au point une méthodologie pour déformer un maillage de la surface en propagation en utilisant le modèle BREP dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformables.}
+
+\section{Méthodes de simulation dans des géométries déformables}
+État de l'art :
+\begin{enumerate}
+	\item maillage volumique conforme à l'interface
+	\begin{enumerate}
+		\item\label{item:ale} un seul maillage \eng{body-fitted} avec formulation ALE : frontière = maillage de l'interface, intérieur déformé de façon arbitraire (nécessite généralement de préserver la connectivité)
+		\item plusieurs maillages \eng{body-fitted} qui se superposent (méthode Chimère \cite{meakin1989, wang2000}, FLUSEPA \cite{brenner1991} ) 
+		\begin{itemize}
+			\item[+] facilite la génération du maillage en volume lorsque la géométrie est complexe (\eg hyper-sustentateurs), et évite de déformer un maillage 3d
+			\item[-] nécessite de traiter les intersections entre les blocs de maillage, limité aux mouvements rigides (?)
+		\end{itemize}
+	\end{enumerate}
+	\item maillage volumique non conforme à l'interface (\eng{immersed/embedded boundary methods} \cite{peskin2002}) : fluide traité de façon eulérienne (maillage fixe), soit explicitement \cite{wang2012, hovnanian2012}{\color{gray},  soit implicitement \cite{bruchon2009}}
+	\begin{itemize}
+		\item[+] évite de générer et déformer un maillage 3d autour d'une géométrie complexe
+		\item[-] application des conditions aux limites
+	\end{itemize}
+\end{enumerate}
+
+ici, on se concentre sur les applications utilisant la méthodologie \ref{item:ale}, et on ne s'occupe que du maillage de la frontière/interface. On se limite également aux maillages triangulaires, linéaires par morceaux (mais extension aux maillages hybrides, courbes envisageable)
+
+\section{\ldots?}%Enjeux}
+\begin{itemize}
+	\item enjeu : ``localiser'' les entités du maillage sur le modèle \brep
+	\item limiter les distorsions des faces du maillage $\to$ déplacements tangentiels (lissage, optimisation)
+	\item approche naïve : maillage conforme aux frontières des faces \brep
+	\begin{itemize}
+		\item un maillage par face \brep
+		\item maillage unique des arêtes \brep~ pour garantir la conformité globale
+		\item[+] lissage/optimisation dans l'espace $uv$ 2d
+		\item[-] contraintes excessives sur le maillage (détailler)
+	\end{itemize}
+	\item persistance des entités \brep~ au cours de la déformation
+	\item respect des caractéristiques géométriques (sommets et arêtes vifs) $\to$ contraintes sur les n\oe uds et arêtes du maillage
+\end{itemize}
+
+
+\bigskip
+
+Hypergraphe\\
+Projection d'un déplacement $xyz$ sur une surface paramétrique\\
+Projection d'un déplacement $xyz$ sur une surface \brep~ composite (traversée des arêtes \brep~ douces)
+
+
+

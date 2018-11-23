@@ -44,6 +44,12 @@
 \newblock {\itshape Journal of Computational Physics\/}, {\bfseries
   227}~(2)~:~pp. 1094 -- 1125, 2007.
 
+\bibitem{pentcheva2010}
+{\scshape M.~Pentcheva}.
+\newblock {\itshape {Conversion CSG-BRep de sc{\`e}nes d{\'e}finies par des
+  quadriques}\/}.
+\newblock Thèse de Doctorat, Universit{\'e} Nancy II, 2010.
+
 \bibitem{peternell1997}
 {\scshape M.~Peternell} et {\scshape H.~Pottmann}.
 \newblock {Computing Rational Parametrizations of Canal Surfaces}.
@@ -123,8 +129,8 @@
 
 \bibitem{patrikalakis2009}
 {\scshape N.~M. Patrikalakis} et {\scshape T.~Maekawa}.
-\newblock {\itshape Shape interrogation for computer aided design and
-  manufacturing\/}.
+\newblock {\itshape {Shape Interrogation for Computer Aided Design and
+  Manufacturing}\/}.
 \newblock Springer Science \& Business Media, 2009.
 
 \bibitem{houghton1985}
@@ -177,6 +183,54 @@
 \newblock {\itshape Discrete \& Computational Geometry\/}, {\bfseries
   6}~(3)~:~pp. 423--434, 1991.
 
+\bibitem{meakin1989}
+{\scshape R.~L. Meakin} et {\scshape N.~E. Suhs}.
+\newblock Unsteady aerodynamic simulation of multiple bodies in relative
+  motion.
+\newblock Dans {\itshape 9th AIAA Computational Fluid Dynamics Conference\/},
+  p. 1996, 1989.
+
+\bibitem{wang2000}
+{\scshape Z.~J. Wang} et {\scshape V.~Parthasarathy}.
+\newblock {A fully automated Chimera methodology for multiple moving body
+  problems}.
+\newblock {\itshape International Journal for Numerical Methods in Fluids\/},
+  {\bfseries 33}~(7)~:~pp. 919--938, 2000.
+
+\bibitem{brenner1991}
+{\scshape P.~Brenner}.
+\newblock Three-dimensional aerodynamics with moving bodies applied to solid
+  propellant.
+\newblock Dans {\itshape 27th Joint Propulsion Conference\/}, p. 2304, 1991.
+
+\bibitem{peskin2002}
+{\scshape C.~S. Peskin}.
+\newblock The immersed boundary method.
+\newblock {\itshape Acta numerica\/}, {\bfseries 11}~:~pp. 479--517, 2002.
+
+\bibitem{wang2012}
+{\scshape K.~Wang}, {\scshape J.~Gr{\'e}tarsson}, {\scshape A.~Main} et
+  {\scshape C.~Farhat}.
+\newblock Computational algorithms for tracking dynamic fluid--structure
+  interfaces in embedded boundary methods.
+\newblock {\itshape International Journal for Numerical Methods in Fluids\/},
+  {\bfseries 70}~(4)~:~pp. 515--535, 2012.
+
+\bibitem{hovnanian2012}
+{\scshape J.~Hovnanian}.
+\newblock {\itshape {M{\'e}thode de fronti{\`e}res immerg{\'e}es pour la
+  m{\'e}canique des fluides. Application {\`a} la simulation de la nage.}\/}.
+\newblock Thèse de Doctorat, Universit{\'e} Sciences et Technologies-Bordeaux
+  I, 2012.
+
+\bibitem{bruchon2009}
+{\scshape J.~Bruchon}, {\scshape H.~Digonnet} et {\scshape T.~Coupez}.
+\newblock {Using a signed distance function for the simulation of metal forming
+  processes: Formulation of the contact condition and mesh adaptation. From a
+  Lagrangian approach to an Eulerian approach}.
+\newblock {\itshape International Journal for Numerical Methods in
+  Engineering\/}, {\bfseries 78}~(8)~:~pp. 980--1008, 2009.
+
 \bibitem{canuto2006}
 {\scshape C.~Canuto}, {\scshape M.~Y. Hussaini}, {\scshape A.~Quarteroni} et
   {\scshape T.~A. Zang}.
@@ -215,5 +269,13 @@
 \newblock {\itshape {Spectral Methods for Incompressible Viscous Flow}\/},
   volume 148.
 \newblock Springer Science \& Business Media, 2013.
+
+\bibitem{alauzet2016}
+{\scshape F.~Alauzet}, {\scshape B.~Fabr{\`e}ges}, {\scshape M.~A.
+  Fern{\'a}ndez} et {\scshape M.~Landajuela}.
+\newblock {Nitsche-XFEM for the coupling of an incompressible fluid with
+  immersed thin-walled structures}.
+\newblock {\itshape Computer Methods in Applied Mechanics and Engineering\/},
+  {\bfseries 301}~:~pp. 300--335, 2016.
 
 \end{thebibliography}

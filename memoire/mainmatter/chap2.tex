@@ -1,9 +1,9 @@
 \chapter{Méthode d'ordre élevé pour le suivi d'un patch rectangulaire de surface}
+\label{chap:methode_ps}
 
 (méthode pseudo-spectrale : solution développée dans une base de fonctions globales et régulières, résidu annulé exactement en un nombre discret de points de collocation, donnant une EDO en temps par point de collocation)\\
 
-suivi lagrangien de marqueurs/points de collocation situés sur la surface\\
-\cite{peternell1997}
+suivi lagrangien de marqueurs/points de collocation situés sur la surface
 
 \section{Discrétisation spatiale}
 
@@ -18,7 +18,7 @@ Choix des fonctions de base et des marqueurs/points de collocation\\
 	\begin{itemize}
 		\item[+] coefficients = points de contrôle dans l'espace physique
 		\item[+] partition de l'unité $\Rightarrow$ propriété d'enveloppe convexe
-		\item[-] algorithme d'évaluation (de Casteljau) numériquement stable mais couteux $\bigO{N^2}$
+		\item[-] algorithme d'évaluation (de Casteljau) numériquement stable mais coûteux $\bigO{N^2}$
 		\item[-] points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas exploitables comme marqueurs lagrangiens
 		\item[-] peu pratiques pour réduire/élever le degré des polynômes
 	\end{itemize}
@@ -26,7 +26,6 @@ Choix des fonctions de base et des marqueurs/points de collocation\\
 \bigskip
 on choisit les polynômes de Chebyshev, couramment employés dans les méthodes spectrales dans le cas non-périodique
 \subsection{Polynômes de Chebyshev}
-\cite{peternell1997}
 
 \subsubsection{Définition}
 	\begin{itemize}
@@ -63,7 +62,7 @@ surface $\bs : \chebinterval^2 \to \mathbb{R}^3$
 \end{equation}
 
 \subsubsection{Évaluation}
-algorithme de sommation de Clenshaw exploitant la relation de récurrence \eqref{eq:recurrence_chebyshev}) \cite{clenshaw1955}, numériquement stable et efficace ($\bigO{N}$)
+algorithme de sommation de Clenshaw exploitant la relation de récurrence \eqref{eq:recurrence_chebyshev} \cite{clenshaw1955}, numériquement stable et efficace ($\bigO{N}$)
 
 \subsubsection{Dérivation}
 \begin{itemize}
@@ -77,23 +76,34 @@ calcul (approché) longueur de courbe/aire de surface
 
 \subsubsection{Précision spectrale}
 Si $f \in C^p(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002}.\\
+\paragraph{Remarque.}
 illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$
 
 
 
-\section{Discrétisation temporelle}
-\cite{peternell1997}
+\section{Intégration temporelle}%{Discrétisation temporelle}
 \begin{itemize}
 	\item champ de vitesse connu : intégration classique, schéma explicite (Euler, RK)
 	\item vitesse normale connue : approximation EdS
 	\begin{itemize}
 		\item calcul dérivées par différentiation spectrale
 		\item calcul normale et composante tangentielle
-		\item non-linéarités $\to$ aliasing, peut causer instabilité \cite{rahimian2015}
+%		\item non-linéarités $\to$ aliasing, peut causer instabilité \cite{rahimian2015}
 	\end{itemize}
+%	\item auto-intersections
+%	\begin{itemize}
+%		\item globales (traitées au chapitre 3)
+%		\item locales \cite{farouki1986}
+%	\end{itemize}
+\end{itemize}
+
+
+\section{Instabilités\ldots}
+\begin{itemize}
+	\item non-linéarités $\to$ aliasing, peut causer instabilité \cite{rahimian2015}, atténuation : sur-échantillonnage, filtrage
 	\item auto-intersections
 	\begin{itemize}
-		\item globales (traitées au chapitre 3)
-		\item locales \cite{farouki1986}
+		\item globales (traitées au \Cref{chap:multi_patch})
+		\item locales \cite{farouki1986} (détection, résolution??)
 	\end{itemize}
 \end{itemize}

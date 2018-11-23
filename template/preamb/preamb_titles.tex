@@ -1,6 +1,9 @@
 \newboolean{titlerectangle}
 \setboolean{titlerectangle}{true}
 
+\newboolean{titlevbar}
+\setboolean{titlevbar}{true}
+
 \newboolean{titlehelpers}
 \setboolean{titlehelpers}{true}
 
@@ -27,6 +30,181 @@
 
 
 
+
+
+\newif\ifNoChapNumber
+\makeatletter
+\makechapterstyle{VZ34}{
+	\renewcommand\chapternamenum{}
+	\renewcommand\printchaptername{}
+	\renewcommand\printchapternum{}
+	\renewcommand\chapnumfont{\Huge\bfseries}
+	\renewcommand\chaptitlefont{\Huge\bfseries\raggedright}
+	\renewcommand\printchaptertitle[1]{%
+		\begin{tabular}{@{}p{1cm}|!{\quad}p{\textwidth-1cm-2em-4\tabcolsep }}
+			\ifNoChapNumber\relax\else\chapnumfont \thechapter\fi
+			& \chaptitlefont ##1
+		\end{tabular}
+		\NoChapNumberfalse
+	}
+	\renewcommand\printchapternonum{\NoChapNumbertrue}
+}
+
+\makechapterstyle{VZ34b}{
+	\renewcommand\chapternamenum{}
+	\renewcommand\printchaptername{}
+	\renewcommand\printchapternum{}
+	\renewcommand\chapnumfont%{\Huge\bfseries\raggedright}
+	{\normalfont\titlefont\fontsize{22.82mm}{0mm}\selectfont\raggedright}
+	\renewcommand\chaptitlefont{\Huge\bfseries\raggedleft}
+	\renewcommand\printchaptertitle[1]{%
+		\begin{tabular}{@{}p{\textwidth-2em-4\tabcolsep }!{\space}|!{\space}p{1cm}}
+			\chaptitlefont ##1
+			& \ifNoChapNumber\relax\else\chapnumfont \thechapter\fi
+		\end{tabular}
+		\NoChapNumberfalse
+	}
+	\renewcommand\printchapternonum{\NoChapNumbertrue}
+}
+\makeatother
+
+\chapterstyle{VZ34b}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% helper macros
+\newcommand{\ChapWithNumber}[1]{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[yshift=-3cm] at (current page.north west) {%
+			\begin{tikzpicture}[remember picture, overlay]
+				\draw[fill=yellow] (0,0) rectangle (\stockwidth,3cm);
+				\node[%
+					anchor=east,%
+					xshift=.9\stockwidth,%
+					rectangle,%
+					rounded corners=20pt,%
+					inner sep=11pt,%
+					fill=red]%
+					{\color{white}\chapnamefont\thechapter\space #1};
+			\end{tikzpicture}%
+			};
+	\end{tikzpicture}
+}
+
+\newcommand{\ChapWithoutNumber}[1]{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[yshift=-3cm] at (current page.north west) {%
+			\begin{tikzpicture}[remember picture, overlay]
+				\draw[fill=yellow] (0,0) rectangle (\stockwidth,3cm);
+				\node[%
+					anchor=east,%
+					xshift=.9\stockwidth,%
+					rectangle,%
+					rounded corners=20pt,%
+					inner sep=11pt,%
+					fill=red]%
+					{\color{white}\chapnamefont#1};
+			\end{tikzpicture}%
+		};
+	\end{tikzpicture}
+}
+
+
+\newif\ifnumberedchap
+\numberedchaptrue
+\makechapterstyle{texblogtikz}{
+	\renewcommand\chapnamefont{\normalfont\sffamily\Huge\bfseries}
+	\renewcommand\chapnumfont{\normalfont\sffamily\Huge\bfseries}
+	\renewcommand\chaptitlefont{\normalfont\sffamily\Huge\bfseries}
+	\renewcommand\chapternamenum{}
+	\renewcommand{\afterchapternum}{}
+	\renewcommand\printchaptername{}
+	\renewcommand\printchapternum{}
+	\renewcommand\printchapternonum{\global\numberedchapfalse}
+	\renewcommand\printchaptertitle[1]{%
+		\ifnumberedchap
+			\ChapWithNumber{##1}
+		\else
+			\ChapWithoutNumber{##1}
+		\fi
+		\global\numberedchaptrue
+	}
+}
+%\chapterstyle{texblogtikz}
+%\aliaspagestyle{chapter}{empty} % just to save some space
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \makeatletter
 \makechapterstyle{mychapterstyle}{
 \setlength{\beforechapskip}{0pt}%40pt}
@@ -39,7 +217,7 @@
 \newlength{\barheight}
 \newlength{\barlength}
 \newlength{\ttltopskip}
-\setlength{\ttltopskip}{60mm}
+\setlength{\ttltopskip}{60mm}%{60mm}
 \setlength{\barlength}{0.37\foremargin}
 \setlength{\barheight}{14mm}
 
@@ -56,64 +234,70 @@
 \setlength{\yshiftchapname}{-\ttltopskip + 10mm + 3.9mm}
 \setlength{\yshiftchapnum}{-\ttltopskip - 0.1mm}
 
+\newlength{\vbaryshift}
+\setlength{\vbaryshift}{1.25mm}
+\newlength{\vbarxshift}
+\setlength{\vbarxshift}{3.0mm}
 
 \renewcommand{\chapnamefont}{\scshape\titlefont}
 \renewcommand{\chapnumfont}{\normalfont\titlefont\fontsize{\numberheight}{0mm}\selectfont}
-\renewcommand{\chaptitlefont}{\normalfont\titlefont\bfseries\Huge\flushright}
+\renewcommand{\chaptitlefont}{\normalfont\titlefont\bfseries\Huge\raggedleft}%\flushright}
 \renewcommand{\printchaptername}{}%\chapnamefont\@chapapp}
 \renewcommand{\chapternamenum}{}
 \renewcommand{\printchapternum}{}
 
 
 \renewcommand\printchaptertitle[1]{
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift=-\ttltopskip] at (current page.north east) {%
-      \begin{tikzpicture}[remember picture, overlay]%
-      	\ifthenelse{\boolean{titlehelpers}}{
-	      	% >>> helpers ---------------
-	         \draw[red] (0,0) -- (-\textwidth-\foremargin,0);%
-	         \draw[green] (0,\barheight) -- (-\textwidth-\foremargin,\barheight);%
-	         \draw[blue] (-\foremargin,0) -- (-\foremargin,\barheight);%
-	         \draw[blue] (-\textwidth-\foremargin,0) -- (-\textwidth-\foremargin,\barheight);%
-	        % ----------------------- <<<
-        }{}%        
-        \ifNoChapNumber%
-        	\ifthenelse{\boolean{titlerectangle}}{
-        		\draw[colchapttl,fill=colchapttl] (\barlength,0) rectangle (-2\barlength,\barheight);% rectangle noir
-}{}%
-    		\else%
-    		\ifthenelse{\boolean{titlerectangle}}{
-	           \draw[colchapttl,fill=colchapttl] (\barlength,0) rectangle(-\barlength,\barheight);% rectangle noir
-	           }{}%
-          \node[anchor=south, 
-            yshift=\yshiftchapnum,%
-            xshift=-0.5\barlength-0.5\foremargin),%
-            inner sep=0mm]%
-            at (current page.north east)%
-          {\color{colchapttl}\chapnumfont\thechapter};%
-        \fi%
-        \node[anchor=north east,
-          yshift=\yshiftchapname,%
-          xshift=-\foremargin,%
-          text width=\textwidth,% rectangle, draw=black, dotted, thick,
-          inner sep=0mm]%
-          (chapttl)%
-          at (current page.north east)%
-        {\chaptitlefont\color{colchapttl}##1\vfill};%
-        \gettikzxy{(chapttl.south west)}{\bx}{\by}%
-        \global\afterchapskipxtra=-\by%
-        \pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
-        \global\afterchapskip=\afterchapskip%
-%         \ifNoChapNumber%
-%           \relax%
-%         \else%
-%           \node[anchor=north east,inner sep=0pt]%
-%               at (-\foremargin,\barheight)%
-%               {{\chapnamefont\MakeLowercase{\@chapapp}}};%
-%         \fi%
-      \end{tikzpicture}%
-    };%
-  \end{tikzpicture}%
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[yshift=-\ttltopskip] at (current page.north east) {%
+			\begin{tikzpicture}[remember picture, overlay]%
+				\node[%draw=red, dashed,%*****
+					anchor=north east,%
+					%yshift=\yshiftchapname,%
+					%xshift=-\foremargin,%
+					text width=\textwidth-\vbarxshift,%
+					minimum height=\barheight,%
+					align=right,%
+					inner sep=0mm%
+					]%
+					(chapttl)%
+					at ([xshift=-\foremargin-\vbarxshift, yshift=\yshiftchapname] current page.north east)%
+					{\chaptitlefont\color{colchapttl}##1};%
+				%
+				%\draw[red, very thick, dotted] (chapttl.west) -- (chapttl.east);%*****
+				%
+				\gettikzxy{(chapttl.south west)}{\bx}{\by}%
+				\global\afterchapskipxtra=-\by%
+				\pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
+				\global\afterchapskip=\afterchapskip%
+				%
+				\ifNoChapNumber%
+					\draw[black, thick]%
+						([xshift=\vbarxshift, yshift= \vbaryshift] chapttl.north east)%
+						--%
+						([xshift=\vbarxshift, yshift=-\vbaryshift] chapttl.south east);%
+					%\relax%
+				\else%
+					\node[%draw=blue, dashed,%*****
+						anchor=west,%
+						align=left,%
+						xshift=2\vbarxshift,%
+						inner sep=0mm%
+						]%
+						(chapnum)% 
+						at (chapttl.east)%
+						{\color{colchapttl}\chapnumfont\thechapter};%
+					%
+					%\draw[blue, very thick, dotted] (chapnum.west) -- (chapnum.east);%*****
+					%
+					\draw[black, thick]%
+						([xshift=\vbarxshift, yshift= \vbaryshift] chapttl.north east)%
+						--%
+						([xshift=\vbarxshift, yshift=-\vbaryshift] chapttl.south east);%
+				\fi
+			\end{tikzpicture}%
+		};%
+	\end{tikzpicture}%
 }
 \renewcommand\printchapternonum{\NoChapNumbertrue}
 }
@@ -121,7 +305,8 @@
 
 % helper (check if proper space after chapter title)
 \newcommand{\printskip}{%
-}%\textbf{\the\afterchapskipdef~$+$~\the\afterchapskipxtra~$=$~\the\afterchapskip}%
+%\textbf{\the\afterchapskipdef~$+$~\the\afterchapskipxtra~$=$~\the\afterchapskip}%
+}
 
 \makeatletter
 \newcommand{\printchapapp}{}%This is a \MakeLowercase{\@chapapp}.}%
@@ -129,6 +314,16 @@
 
 
 \chapterstyle{mychapterstyle}%veelo}%
+
+
+
+
+
+
+
+
+
+
 
 %% Format chapter abstracts
 \def\abstractname{}
@@ -151,3 +346,4 @@
 \setsubsecheadstyle{\color{colchapttl}\titlefont\large\bfseries\sethangfrom{\noindent ##1}\raggedright}
 \setbeforesubsecskip{-\onelineskip}
 \setaftersubsecskip{\onelineskip}
+

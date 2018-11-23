@@ -1,18 +1,14 @@
-%
 \newboolean{titlerectangle}
 \setboolean{titlerectangle}{true}
-%
+
+\newboolean{titlevbar}
+\setboolean{titlevbar}{true}
+
 \newboolean{titlehelpers}
 \setboolean{titlehelpers}{true}
-%
+
 \newboolean{sansseriftitles}
-\setboolean{sansseriftitles}{false}%{true}%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+\setboolean{sansseriftitles}{false}
 
 \ifthenelse{\boolean{sansseriftitles}}{
 	\def\titlefont{\sffamily}%
@@ -63,64 +59,117 @@
 \setlength{\yshiftchapname}{-\ttltopskip + 10mm + 3.9mm}
 \setlength{\yshiftchapnum}{-\ttltopskip - 0.1mm}
 
+\newlength{\vbaryshift}
+\setlength{\vbaryshift}{1.25mm}
+\newlength{\vbarxshift}
+\setlength{\vbarxshift}{2.5mm}
+\newlength{\vbarthck}
+\setlength{\vbarthck}{0.6pt}
+\newlength{\vbartipthck}
+\setlength{\vbartipthck}{0.15pt}
 
 \renewcommand{\chapnamefont}{\scshape\titlefont}
 \renewcommand{\chapnumfont}{\normalfont\titlefont\fontsize{\numberheight}{0mm}\selectfont}
-\renewcommand{\chaptitlefont}{\normalfont\titlefont\bfseries\Huge\flushright}
+\renewcommand{\chaptitlefont}{\normalfont\titlefont\bfseries\huge}%
 \renewcommand{\printchaptername}{}%\chapnamefont\@chapapp}
 \renewcommand{\chapternamenum}{}
 \renewcommand{\printchapternum}{}
 
 
 \renewcommand\printchaptertitle[1]{
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[yshift=-\ttltopskip] at (current page.north east) {%
-      \begin{tikzpicture}[remember picture, overlay]%
-      	\ifthenelse{\boolean{titlehelpers}}{
-	      	% >>> helpers ---------------
-	         \draw[red] (0,0) -- (-\textwidth-\foremargin,0);%
-	         \draw[green] (0,\barheight) -- (-\textwidth-\foremargin,\barheight);%
-	         \draw[blue] (-\foremargin,0) -- (-\foremargin,\barheight);%
-	         \draw[blue] (-\textwidth-\foremargin,0) -- (-\textwidth-\foremargin,\barheight);%
-	        % ----------------------- <<<
-        }{}%        
-        \ifNoChapNumber%
-        	\ifthenelse{\boolean{titlerectangle}}{
-        		\draw[colchapttl,fill=colchapttl] (\barlength,0) rectangle (-2\barlength,\barheight);% rectangle noir
-}{}%
-    		\else%
-    		\ifthenelse{\boolean{titlerectangle}}{
-	           \draw[colchapttl,fill=colchapttl] (\barlength,0) rectangle(-\barlength,\barheight);% rectangle noir
-	           }{}%
-          \node[anchor=south, 
-            yshift=\yshiftchapnum,%
-            xshift=-0.5\barlength-0.5\foremargin),%
-            inner sep=0mm]%
-            at (current page.north east)%
-          {\color{colchapttl}\chapnumfont\thechapter};%
-        \fi%
-        \node[anchor=north east,
-          yshift=\yshiftchapname,%
-          xshift=-\foremargin,%
-          text width=\textwidth,% rectangle, draw=black, dotted, thick,
-          inner sep=0mm]%
-          (chapttl)%
-          at (current page.north east)%
-        {\chaptitlefont\color{colchapttl}##1\vfill};%
-        \gettikzxy{(chapttl.south west)}{\bx}{\by}%
-        \global\afterchapskipxtra=-\by%
-        \pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
-        \global\afterchapskip=\afterchapskip%
-%         \ifNoChapNumber%
-%           \relax%
-%         \else%
-%           \node[anchor=north east,inner sep=0pt]%
-%               at (-\foremargin,\barheight)%
-%               {{\chapnamefont\MakeLowercase{\@chapapp}}};%
-%         \fi%
-      \end{tikzpicture}%
-    };%
-  \end{tikzpicture}%
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[yshift=-\ttltopskip] at (current page.north east) {%
+			\begin{tikzpicture}[remember picture, overlay]%
+				%\node[%draw=red, dashed,%*****
+				%	anchor=north east,%
+				%	%yshift=\yshiftchapname,%
+				%	%xshift=-\foremargin,%
+				%	text width=\textwidth-\vbarxshift,%
+				%	minimum height=\barheight,%
+				%	align=flush right,%justify,%
+				%	inner sep=0mm%
+				%	]%
+				%	(chapttl)%
+				%	at ([xshift=-\foremargin-\vbarxshift, yshift=\yshiftchapname] current page.north east)%
+				%	{\chaptitlefont\color{colchapttl}##1\par};%
+				%
+				%\draw[red, very thick, dotted] (chapttl.west) -- (chapttl.east);%*****
+				%
+				%\gettikzxy{(chapttl.south west)}{\bx}{\by}%
+				%\global\afterchapskipxtra=-\by%
+				%\pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
+				%\global\afterchapskip=\afterchapskip%
+				%
+				\ifNoChapNumber%
+                                        \node[%draw=red, dashed,%*****
+					anchor=north east,%
+					%yshift=\yshiftchapname,%
+					%xshift=-\foremargin,%
+					text width=\textwidth,%
+					minimum height=\barheight,%
+					align=flush right,%justify,%
+					inner sep=0mm%
+					]%
+					(chapttl)%
+					at ([xshift=-\foremargin, yshift=\yshiftchapname] current page.north east)%
+					{\chaptitlefont\color{colchapttl}##1\par};
+					%\draw[black, thick]%
+					%	([xshift=\vbarxshift, yshift= \vbaryshift] chapttl.north east)%
+					%	--%
+					%	([xshift=\vbarxshift, yshift=-\vbaryshift] chapttl.south east);%
+					%\relax%
+				\else%
+                                        \node[%draw=red, dashed,%*****
+					anchor=north east,%
+					%yshift=\yshiftchapname,%
+					%xshift=-\foremargin,%
+					text width=\textwidth-\vbarxshift,%
+					minimum height=\barheight,%
+					align=flush right,%justify,%
+					inner sep=0mm%
+					]%
+					(chapttl)%
+					at ([xshift=-\foremargin-\vbarxshift, yshift=\yshiftchapname] current page.north east)%
+					{\chaptitlefont\color{colchapttl}##1\par};%
+					\node[%draw=blue, dashed,%*****
+						anchor=north west,%west,%
+						align=left,%
+						xshift=2\vbarxshift,%
+						inner sep=0mm%
+						]%
+						(chapnum)% 
+						at (chapttl.north east)%(chapttl.east)%
+						{\color{colchapttl}\chapnumfont\thechapter};%
+					%
+					%\draw[blue, very thick, dotted] (chapnum.west) -- (chapnum.east);%*****
+					%
+%\draw[colchapttl, line width=2\vbarthck]%thick]%
+%([xshift=\vbarxshift, yshift= \vbaryshift] chapttl.north east)%
+%--%
+%([xshift=\vbarxshift, yshift=-\vbaryshift] chapttl.south east);%
+%
+\coordinate (a) at ([xshift=\vbarxshift+\vbartipthck,yshift=-\vbaryshift] chapttl.south east);
+\coordinate (b) at ([xshift=\vbarxshift+\vbarthck]chapttl.east);
+\coordinate (c) at ([xshift=\vbarxshift+\vbartipthck,yshift=+\vbaryshift] chapttl.north east);
+\coordinate (d) at ([xshift=\vbarxshift-\vbartipthck,yshift=+\vbaryshift] chapttl.north east);
+\coordinate (e) at ([xshift=\vbarxshift-\vbarthck]chapttl.east);
+\coordinate (f) at ([xshift=\vbarxshift-\vbartipthck,yshift=-\vbaryshift] chapttl.south east);
+%
+\path [fill=colchapttl]%
+(a) [in=0, out=90] to %
+[in=270, out=90] (b) to [in=270, out=90] %
+(c) -- %
+(d) [in=180, out=270] to %
+[in=90, out=270] (e) to [in=90, out=270] %
+(f) -- cycle;
+				\fi
+                                \gettikzxy{(chapttl.south west)}{\bx}{\by}%
+				\global\afterchapskipxtra=-\by%
+				\pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
+				\global\afterchapskip=\afterchapskip%
+			\end{tikzpicture}%
+		};%
+	\end{tikzpicture}%
 }
 \renewcommand\printchapternonum{\NoChapNumbertrue}
 }
@@ -128,7 +177,8 @@
 
 % helper (check if proper space after chapter title)
 \newcommand{\printskip}{%
-}%\textbf{\the\afterchapskipdef~$+$~\the\afterchapskipxtra~$=$~\the\afterchapskip}%
+%\textbf{\the\afterchapskipdef~$+$~\the\afterchapskipxtra~$=$~\the\afterchapskip}%
+}
 
 \makeatletter
 \newcommand{\printchapapp}{}%This is a \MakeLowercase{\@chapapp}.}%
@@ -136,6 +186,16 @@
 
 
 \chapterstyle{mychapterstyle}%veelo}%
+
+
+
+
+
+
+
+
+
+
 
 %% Format chapter abstracts
 \def\abstractname{}
@@ -149,12 +209,26 @@
 
 
 
-%% Subsections
-\setsecheadstyle{\color{colchapttl}\titlefont\Large\bfseries\raggedright}
-\setbeforesecskip{-\onelineskip}
+%% Sections
+\setsecheadstyle{\color{colchapttl}\titlefont\Large\bfseries}%\raggedright}
+\setbeforesecskip{-2\onelineskip}
 \setaftersecskip{\onelineskip}
+\setsecindent{0pt}
 
-%% Subsubsections
+%% Subsections
 \setsubsecheadstyle{\color{colchapttl}\titlefont\large\bfseries\sethangfrom{\noindent ##1}\raggedright}
 \setbeforesubsecskip{-\onelineskip}
 \setaftersubsecskip{\onelineskip}
+\setsubsecindent{0pt}
+
+%% Subsubsections
+\setsubsubsecheadstyle{\color{colchapttl}\titlefont\bfseries\sethangfrom{\noindent ##1}\raggedright}
+%\setbeforesubsubsecskip{-\onelineskip}
+%\setaftersubsubsecskip{\onelineskip}
+%\setsubsubsecindent{0pt}
+
+%% Paragraphs
+\setparaheadstyle{\bfseries\sethangfrom{\noindent ##1}\raggedright}
+%\setbeforeparaskip{-\onelineskip}
+%\setafterparaskip{-1em}
+%\setparaindent{0pt}

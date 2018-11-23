@@ -13,47 +13,48 @@ Database file #1: biblio/intersections.bib
 Database file #2: biblio/chebyshev.bib
 Database file #3: biblio/interface_propagation.bib
 Database file #4: biblio/spectral.bib
+Database file #5: biblio/moving_geometries.bib
 Warning--empty booktitle in fournier1994
 Warning--can't use both volume and number fields in fournier1994
-You've used 33 entries,
+You've used 42 entries,
             2278 wiz_defined-function locations,
-            730 strings with 9671 characters,
-and the built_in function-call counts, 13671 in all, are:
-= -- 1053
-> -- 267
-< -- 26
-+ -- 111
-- -- 78
-* -- 850
-:= -- 1457
-add.period$ -- 101
-call.type$ -- 33
-change.case$ -- 27
+            782 strings with 11323 characters,
+and the built_in function-call counts, 17219 in all, are:
+= -- 1333
+> -- 333
+< -- 33
++ -- 139
+- -- 97
+* -- 1053
+:= -- 1840
+add.period$ -- 128
+call.type$ -- 42
+change.case$ -- 38
 chr.to.int$ -- 0
-cite$ -- 35
-duplicate$ -- 1404
-empty$ -- 1350
-format.name$ -- 96
-if$ -- 3096
+cite$ -- 44
+duplicate$ -- 1780
+empty$ -- 1691
+format.name$ -- 120
+if$ -- 3903
 int.to.chr$ -- 0
-int.to.str$ -- 33
-missing$ -- 291
-newline$ -- 168
-num.names$ -- 33
-pop$ -- 371
+int.to.str$ -- 42
+missing$ -- 365
+newline$ -- 213
+num.names$ -- 42
+pop$ -- 474
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 443
+skip$ -- 566
 stack$ -- 0
-substring$ -- 761
-swap$ -- 1059
-text.length$ -- 26
+substring$ -- 940
+swap$ -- 1334
+text.length$ -- 33
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 2
-while$ -- 103
-width$ -- 35
-write$ -- 361
+while$ -- 129
+width$ -- 44
+write$ -- 460
 (There were 2 warnings)

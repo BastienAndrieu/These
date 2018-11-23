@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  26 OCT 2018 17:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  23 NOV 2018 18:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -943,13 +943,13 @@ LaTeX Info: Redefining \noscshape on input line 82.
 Stock height and width: 845.04684pt by 597.50787pt
 Top and edge trims: 0pt and 0pt
 Page height and width: 845.04684pt by 597.50787pt
-Text height and width: 679pt by 412pt
-Spine and edge margins: 92.47145pt and 92.47145pt
+Text height and width: 679pt by 415pt
+Spine and edge margins: 91.04872pt and 91.04872pt
 Upper and lower margins: 85.35826pt and 80.68858pt
 Headheight and headsep: 14.5pt and 19.8738pt
 Footskip: 14.5pt
 Columnsep and columnseprule: 10pt and 0pt
-Marginparsep and marginparwidth: 7pt and 78.47145pt
+Marginparsep and marginparwidth: 7pt and 77.04872pt
 Sidecapsep and sidecapwidth: 7pt and 92pt
 Sidebarhsep and sidebarwidth: 7pt and 92pt
 Sidebarvsep and sidebartopsep: 14.5pt and 0pt
@@ -1124,22 +1124,7 @@ Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 21.
 Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 21.
 Package hyperref Info: Option `bookmarksopen' set `true' on input line 21.
 Package hyperref Info: Option `hypertexnames' set `true' on input line 21.
-
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/cleveref/cleveref.sty
-Package: cleveref 2013/12/28 v0.19 Intelligent cross-referencing
-LaTeX Info: Redefining \Cref on input line 955.
-Package cleveref Info: `hyperref' support loaded on input line 2230.
-LaTeX Info: Redefining \cref on input line 2230.
-LaTeX Info: Redefining \Cref on input line 2230.
-LaTeX Info: Redefining \crefrange on input line 2230.
-LaTeX Info: Redefining \Crefrange on input line 2230.
-LaTeX Info: Redefining \cpageref on input line 2230.
-LaTeX Info: Redefining \Cpageref on input line 2230.
-LaTeX Info: Redefining \cpagerefrange on input line 2230.
-LaTeX Info: Redefining \Cpagerefrange on input line 2230.
-LaTeX Info: Redefining \labelcref on input line 2230.
-LaTeX Info: Redefining \labelcpageref on input line 2230.
-))
+)
 (./preamb/preamb_graphics.tex
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
@@ -1158,6 +1143,9 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 \Gin@req@height=\dimen154
 \Gin@req@width=\dimen155
 )
+(/opt/tools/texlive/2016/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2016/08/10 v1.14 Data Visualization (1.14)
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
@@ -1430,16 +1418,143 @@ File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
 )))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks40
+\t@pgfplots@tokb=\toks41
+\t@pgfplots@tokc=\toks42
+\pgfplots@tmpa=\dimen263
+\c@pgfplots@coordindex=\count175
+\c@pgfplots@scanlineindex=\count176
+
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
+.code.tex))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.c
+ode.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
+soldpgfsupp_loader.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.cod
+e.tex)
+Package pgfplots: loading complementary arithmetics for your pgf version...
+
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
+soldpgfsupp_pgflibraryfpu.code.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
+soldpgfsupp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count177
+))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code
+.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+liststructure.code.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+liststructureext.code.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+array.code.tex
+\c@pgfplotsarray@tmp=\count178
+)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+matrix.code.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
+shared.code.tex
+\c@pgfplotstable@counta=\count179
+\t@pgfplotstable@a=\toks43
+)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
+deque.code.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.co
+de.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.da
+ta.code.tex))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb
+.code.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
+s.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count180
+
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
+.surfshading.pgfsys-pdftex.def)))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.
+code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.cod
+e.tex))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.c
+ode.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.c
+ode.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandle
+r.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.
+code.tex)))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.
+tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessin
+g.code.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.cod
+e.tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.
+tex)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex
+)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.te
+x)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/modules/pgfmoduledecoration
+s.code.tex
+\pgfdecoratedcompleteddistance=\dimen264
+\pgfdecoratedremainingdistance=\dimen265
+\pgfdecoratedinputsegmentcompleteddistance=\dimen266
+\pgfdecoratedinputsegmentremainingdistance=\dimen267
+\pgf@decorate@distancetomove=\dimen268
+\pgf@decorate@repeatstate=\count181
+\pgfdecorationsegmentamplitude=\dimen269
+\pgfdecorationsegmentlength=\dimen270
+)
+\tikz@lib@dec@box=\box40
+)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.pathmorphing.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
+brarydecorations.pathmorphing.code.tex))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarydecorations.pathreplacing.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
+brarydecorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count182
+\pgfplots@xmin@reg=\dimen271
+\pgfplots@xmax@reg=\dimen272
+\pgfplots@ymin@reg=\dimen273
+\pgfplots@ymax@reg=\dimen274
+\pgfplots@zmin@reg=\dimen275
+\pgfplots@zmax@reg=\dimen276
+)
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmar
+ks.code.tex
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+)))
 (/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2013/07/15 v3.0.1a (rcs-revision 1.9)
-)) (./preamb/preamb_math.tex
+)
+(/opt/tools/texlive/2016/texmf-dist/tex/latex/pgf/frontendlayer/libraries/tikzl
+ibraryexternal.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzexternalshared.code.tex))
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
+s.colorbrewer.code.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarycolorb
+rewer.code.tex))) (./preamb/preamb_math.tex
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks40
+\@emptytoks=\toks44
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
@@ -1455,51 +1570,51 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks41
-\ex@=\dimen263
+\@emptytoks=\toks45
+\ex@=\dimen277
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen264
+\pmbraise@=\dimen278
 )
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count175
+\inf@bad=\count183
 LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count176
-\leftroot@=\count177
+\uproot@=\count184
+\leftroot@=\count185
 LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count178
-\DOTSCASE@=\count179
+\classnum@=\count186
+\DOTSCASE@=\count187
 LaTeX Info: Redefining \ldots on input line 394.
 LaTeX Info: Redefining \dots on input line 397.
 LaTeX Info: Redefining \cdots on input line 518.
-\Mathstrutbox@=\box40
-\strutbox@=\box41
-\big@size=\dimen265
+\Mathstrutbox@=\box41
+\strutbox@=\box42
+\big@size=\dimen279
 LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
-\macc@depth=\count180
-\c@MaxMatrixCols=\count181
+\macc@depth=\count188
+\c@MaxMatrixCols=\count189
 \dotsspace@=\muskip11
-\c@parentequation=\count182
-\dspbrk@lvl=\count183
-\tag@help=\toks42
-\row@=\count184
-\column@=\count185
-\maxfields@=\count186
-\andhelp@=\toks43
-\eqnshift@=\dimen266
-\alignsep@=\dimen267
-\tagshift@=\dimen268
-\tagwidth@=\dimen269
-\totwidth@=\dimen270
-\lineht@=\dimen271
-\@envbody=\toks44
+\c@parentequation=\count190
+\dspbrk@lvl=\count191
+\tag@help=\toks46
+\row@=\count192
+\column@=\count193
+\maxfields@=\count194
+\andhelp@=\toks47
+\eqnshift@=\dimen280
+\alignsep@=\dimen281
+\tagshift@=\dimen282
+\tagwidth@=\dimen283
+\totwidth@=\dimen284
+\lineht@=\dimen285
+\@envbody=\toks48
 \multlinegap=\skip194
 \multlinetaggap=\skip256
-\mathdisplay@stack=\toks45
+\mathdisplay@stack=\toks49
 LaTeX Info: Redefining \[ on input line 2739.
 LaTeX Info: Redefining \] on input line 2740.
 )
@@ -1508,15 +1623,15 @@ Package: mathtools 2015/11/12 v1.18 mathematical typesetting tools
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count187
-\calc@Bcount=\count188
-\calc@Adimen=\dimen272
-\calc@Bdimen=\dimen273
+\calc@Acount=\count266
+\calc@Bcount=\count267
+\calc@Adimen=\dimen286
+\calc@Bdimen=\dimen287
 \calc@Askip=\skip257
 \calc@Bskip=\skip258
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count189
+\calc@Ccount=\count268
 \calc@Cskip=\skip259
 )
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/mathtools/mhsetup.sty
@@ -1526,15 +1641,15 @@ LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\)'isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count190
-\l_MT_multwidth_dim=\dimen274
+\g_MT_multlinerow_int=\count269
+\l_MT_multwidth_dim=\dimen288
 \origjot=\skip260
-\l_MT_shortvdotswithinadjustabove_dim=\dimen275
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen276
-\l_MT_above_intertext_sep=\dimen277
-\l_MT_below_intertext_sep=\dimen278
-\l_MT_above_shortintertext_sep=\dimen279
-\l_MT_below_shortintertext_sep=\dimen280
+\l_MT_shortvdotswithinadjustabove_dim=\dimen289
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen290
+\l_MT_above_intertext_sep=\dimen291
+\l_MT_below_intertext_sep=\dimen292
+\l_MT_above_shortintertext_sep=\dimen293
+\l_MT_below_shortintertext_sep=\dimen294
 )
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
 Package: stmaryrd 1994/03/03 St Mary's Road symbol package
@@ -1558,39 +1673,43 @@ Package: esint
 \numberheight=\skip266
 \yshiftchapname=\skip267
 \yshiftchapnum=\skip268
+\vbaryshift=\skip269
+\vbarxshift=\skip270
+\vbarthck=\skip271
+\vbartipthck=\skip272
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/lettrine/lettrine.sty
 File: lettrine.sty 2015/08/31 v1.9 (Daniel Flipo)
-\c@DefaultLines=\count191
-\c@DefaultDepth=\count192
-\DefaultFindent=\dimen281
-\DefaultNindent=\dimen282
-\DefaultSlope=\dimen283
-\DiscardVskip=\dimen284
-\L@lbox=\box42
-\L@tbox=\box43
-\c@L@lines=\count193
-\c@L@depth=\count194
-\L@Pindent=\dimen285
-\L@Findent=\dimen286
-\L@Nindent=\dimen287
-\L@lraise=\dimen288
-\L@first=\dimen289
-\L@next=\dimen290
-\L@slope=\dimen291
-\L@height=\dimen292
-\L@novskip=\dimen293
-\LettrineWidth=\dimen294
-\LettrineHeight=\dimen295
-\LettrineDepth=\dimen296
+\c@DefaultLines=\count270
+\c@DefaultDepth=\count271
+\DefaultFindent=\dimen295
+\DefaultNindent=\dimen296
+\DefaultSlope=\dimen297
+\DiscardVskip=\dimen298
+\L@lbox=\box43
+\L@tbox=\box44
+\c@L@lines=\count272
+\c@L@depth=\count273
+\L@Pindent=\dimen299
+\L@Findent=\dimen300
+\L@Nindent=\dimen301
+\L@lraise=\dimen302
+\L@first=\dimen303
+\L@next=\dimen304
+\L@slope=\dimen305
+\L@height=\dimen306
+\L@novskip=\dimen307
+\LettrineWidth=\dimen308
+\LettrineHeight=\dimen309
+\LettrineDepth=\dimen310
 
 Loading lettrine.cfg
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/lettrine/lettrine.cfg)))
 (./preamb/preamb_pagestyle.tex) (./preamb/preamb_captions.tex
-\c@subfigure=\count266
-\cftbeforesubfigureskip=\skip269
-\cftsubfigureindent=\skip270
-\cftsubfigurenumwidth=\skip271
+\c@subfigure=\count274
+\cftbeforesubfigureskip=\skip273
+\cftsubfigureindent=\skip274
+\cftsubfigurenumwidth=\skip275
 )
 (./preamb/preamb_macros.tex)
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/showlabels/showlabels.sty
@@ -1598,61 +1717,61 @@ Package: showlabels 2016/06/09 v1.8
 
 Package: `showlabels' v1.8 <2016/06/09>
 with amsmath equation tags
-\SL@labelposition=\count267
+\SL@labelposition=\count275
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2016/05/14 v2.6a Micro-typographical refinements (RS)
-\MT@toks=\toks46
-\MT@count=\count268
+\MT@toks=\toks50
+\MT@count=\count276
 LaTeX Info: Redefining \textls on input line 774.
-\MT@outer@kern=\dimen297
+\MT@outer@kern=\dimen311
 LaTeX Info: Redefining \textmicrotypecontext on input line 1310.
-\MT@listname@count=\count269
+\MT@listname@count=\count277
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2016/05/14 v2.6a Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 916.
 LaTeX Info: Redefining \lslig on input line 916.
-\MT@outer@space=\skip272
+\MT@outer@space=\skip276
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2016/05/14 v2.6a microtype main configuration file (RS)
-)))
+))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/changebar/changebar.sty
 Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
-\cb@nextpoint=\count270
-\cb@topleft=\count271
-\cb@topright=\count272
-\cb@botleft=\count273
-\cb@botright=\count274
-\cb@cnta=\count275
-\cb@cntb=\count276
-\cb@dima=\dimen298
-\cb@curbarwd=\dimen299
-\cb@page=\count277
-\cb@pagecount=\count278
-\cb@odd@left=\dimen300
-\cb@odd@right=\dimen301
-\cb@even@left=\dimen302
-\cb@even@right=\dimen303
+\cb@nextpoint=\count278
+\cb@topleft=\count279
+\cb@topright=\count280
+\cb@botleft=\count281
+\cb@botright=\count282
+\cb@cnta=\count283
+\cb@cntb=\count284
+\cb@dima=\dimen312
+\cb@curbarwd=\dimen313
+\cb@page=\count285
+\cb@pagecount=\count286
+\cb@odd@left=\dimen314
+\cb@odd@right=\dimen315
+\cb@even@left=\dimen316
+\cb@even@right=\dimen317
 \cb@writexy=\write5
 \cb@readxy=\read3
 \openout5 = `main.cb2'.
 
-\changebarwidth=\skip273
-\deletebarwidth=\skip274
-\changebarsep=\skip275
-\c@changebargrey=\count279
+\changebarwidth=\skip277
+\deletebarwidth=\skip278
+\changebarsep=\skip279
+\c@changebargrey=\count287
 \cb@write=\write6
 \cb@read=\read4
 \openout6 = `main.cb'.
 
-)
+))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count280
+\c@lips@count=\count288
 ) (./main.aux
 (./mainmatter/intro.aux) (./mainmatter/chap1.aux) (./mainmatter/chap2.aux)
 (./mainmatter/chap3.aux) (./mainmatter/chap4.aux) (./mainmatter/chap5.aux)
@@ -1696,21 +1815,21 @@ Package frenchb.ldf Info: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)             compatibility with enumerate package,
 (frenchb.ldf)              on input line 22.
 LaTeX Info: Redefining \up on input line 22.
-\c@mv@tabular=\count281
-\c@mv@boldtabular=\count282
+\c@mv@tabular=\count289
+\c@mv@boldtabular=\count290
  (/opt/tools/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count283
-\scratchdimen=\dimen304
-\scratchbox=\box44
-\nofMPsegments=\count284
-\nofMParguments=\count285
-\everyMPshowfont=\toks47
-\MPscratchCnt=\count286
-\MPscratchDim=\dimen305
-\MPnumerator=\count287
-\makeMPintoPDFobject=\count288
-\everyMPtoPDFconversion=\toks48
+\scratchcounter=\count291
+\scratchdimen=\dimen318
+\scratchbox=\box45
+\nofMPsegments=\count292
+\nofMParguments=\count293
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count294
+\MPscratchDim=\dimen319
+\MPnumerator=\count295
+\makeMPintoPDFobject=\count296
+\everyMPtoPDFconversion=\toks52
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1728,7 +1847,7 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box45
+\AtBeginShipoutBox=\box46
 Package hyperref Info: Link coloring ON on input line 22.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -1737,7 +1856,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/opt/tools/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count289
+\c@section@level=\count297
 )
 Redoing nameref's sectioning
 Redoing nameref's label
@@ -1750,6 +1869,9 @@ LaTeX Info: Redefining \nameref on input line 22.
 \openout7 = `main.out'.
 
  ABD: EveryShipout initializing macros
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.14}).
+
 LaTeX Info: Redefining \microtypecontext on input line 22.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2),
@@ -1772,10 +1894,9 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 33.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 24.88pt on input line 33.
- (./main.toc
+(./main.toc
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 2.
-
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/lm/ot1lmr.fd
+ (/opt/tools/texlive/2016/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/mt-cmr.cfg
@@ -1826,11 +1947,9 @@ LaTeX Font Info:    Try loading font information for U+esint on input line 2.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/esint/uesint.fd
 File: uesint.fd 
-)) [1
+) [1
 
-{/opt/tools/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
-
-]
+{/opt/tools/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]) [2]
 \openout2 = `mainmatter/intro.aux'.
 
 
@@ -1850,23 +1969,21 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 14.4pt on input line 26.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 12.0pt on input line 31.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.42 \end{itemize}
+                   [1
 
+
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 45--48
 
  []
 
 
-Underfull \vbox (badness 4156) has occurred while \output is active []
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.48 
-      [1
-
-
-]
 Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
@@ -1891,12 +2008,17 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 
 
 
-]) [4]
+]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 67.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 67.
+) [4]
 \openout2 = `mainmatter/chap2.aux'.
 
 
 (./mainmatter/chap2.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
@@ -1912,39 +2034,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--11
 ]
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 56.
+(Font)              using `U/stmry/m/n' instead on input line 55.
 
-[6]) [7]
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--79
+
+ []
+
+[6]
+Overfull \hbox (33.49661pt too wide) in paragraph at lines 103--104
+[]\T1/LinuxLibertineT-TLF/m/n/12 (-10) non-linéarités $\OMS/lmsy/m/n/12 !$ \T1/
+LinuxLibertineT-TLF/m/n/12 (-10) alia-sing, peut cau-ser in-sta-bi-lité [[]][],
+ at-té-nua-tion : sur-échantillonnage,
+ []
+
+) [7]
 \openout2 = `mainmatter/chap3.aux'.
 
  (./mainmatter/chap3.tex [8
 
 
 
-] [9]) [10]
+] [9]
+Overfull \hbox (0.56184pt too wide) in paragraph at lines 32--33
+[]\T1/LinuxLibertineT-TLF/m/n/12 (-10) adaptation de l'ap-proche de Hoh-meyer [
+[]][] (full Che-by-shev / Chebyshev-Bernstein) 
+ []
+
+) [10]
 \openout2 = `mainmatter/chap4.aux'.
 
- (./mainmatter/chap4.tex)
-[11
+ (./mainmatter/chap4.tex [11
+
+
+
+]) [12]
+\openout2 = `mainmatter/chap5.aux'.
+
+ (./mainmatter/chap5.tex) [13
 
 
 
 ]
-\openout2 = `mainmatter/chap5.aux'.
-
- (./mainmatter/chap5.tex [12
-
-
-
-]) [13]
 \openout2 = `mainmatter/concl.aux'.
 
- (./mainmatter/concl.tex [14
+
+(./mainmatter/concl.tex [14
 
 
 
-]) [15]
-[16
+]) [15] [16
 
 
 ] (./main.bbl (./main.brf)
@@ -1958,21 +2097,21 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
 [17
 
 
-] [18]) [19]
+] [18] [19]) [20]
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 70.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 70.
- (./main.aux (./mainmatter/intro.aux) (./mainmatter/chap1.aux)
-(./mainmatter/chap2.aux) (./mainmatter/chap3.aux) (./mainmatter/chap4.aux)
-(./mainmatter/chap5.aux) (./mainmatter/concl.aux))
+ (./main.aux (./mainmatter/intro.aux)
+(./mainmatter/chap1.aux) (./mainmatter/chap2.aux) (./mainmatter/chap3.aux)
+(./mainmatter/chap4.aux) (./mainmatter/chap5.aux) (./mainmatter/concl.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 70.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 70.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: C8497C8CA64C98F13E3F5160C683BA30;2374.
+(rerunfilecheck)             Checksum: 33D8CCAE7A3F8FEE65B18C99C08C1A30;2905.
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: F874A2BF20DAD93472F7DD19152B7E8E;1906.
+(rerunfilecheck)             Checksum: 257646F89C1CF4A03829C19A4E847AFD;2049.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1980,13 +2119,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 70.
  ) 
 Here is how much of TeX's memory you used:
- 28161 strings out of 493013
- 507282 string characters out of 6131034
- 730339 words of memory out of 5000000
- 30888 multiletter control sequences out of 15000+600000
- 107388 words of font info for 145 fonts, out of 8000000 for 9000
+ 38661 strings out of 493013
+ 871442 string characters out of 6131034
+ 1308170 words of memory out of 5000000
+ 41155 multiletter control sequences out of 15000+600000
+ 123943 words of font info for 190 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
- 66i,13n,59p,581b,1206s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,13n,120p,785b,1203s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/to
 ols/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/opt/tools/texlive/20
 16/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/tools/texlive/2016/texmf-d
@@ -2006,10 +2145,10 @@ t/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr8.pfb></opt/tools/texl
 ive/2016/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></opt/tools/texlive/2016/t
 exmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt/tools/texlive/2016/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (21 pages, 374867 bytes).
+Output written on main.pdf (22 pages, 386360 bytes).
 PDF statistics:
- 443 PDF objects out of 1000 (max. 8388607)
- 403 compressed objects within 5 object streams
- 102 named destinations out of 1000 (max. 500000)
- 32997 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 515 PDF objects out of 1000 (max. 8388607)
+ 474 compressed objects within 5 object streams
+ 125 named destinations out of 1000 (max. 500000)
+ 37661 words of extra memory for PDF output out of 42996 (max. 10000000)
 
