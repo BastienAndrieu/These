@@ -1,21 +1,32 @@
 \chapter[Algorithme de propagation d'interfaces régulières par morceaux]{Algorithme général pour la propagation d'interfaces régulières par morceaux}
+\label{chap:algo_general}
 
-\textit{on veut mettre en place un algorithme basé sur le principe de Huygens (avec condition d'entropie) pour simuler la propagation d'une interface représentée suivant le formalisme \brep, i.e. pour construire un nouveau modèle \brep~(géométrie et topologie) correspondant à une enveloppe de boules (EdB) centrées sur l'interface courante.}
+%Voir \autoref{fig:some_figure}, \autoref{chap:methode_ps}, \autoref{annex:test}, \autoref{eq:recurrence_chebyshev},  \autoref{sec:EdS_2param}, \autoref{foot}, et enfin \autoref{item:ale}
+
+\begin{figure}
+\centering
+some content
+\caption{Some caption}
+\label{fig:some_figure}
+\end{figure}
+
+
+\textit{on veut mettre en place un algorithme basé sur le principe de Huygens (avec condition d'entropie) pour simuler la propagation d'une interface représentée suivant le formalisme \brep, i.e. pour construire un nouveau modèle \brep\ (géométrie et topologie) correspondant à une enveloppe de boules (EdB) centrées sur l'interface courante.}
 
 
 \section{Traitement des différentes entités \brep}
-on construit d'abord une EdS (partielle), puis on la transforme en EdB pour respecter la condition d'entropie. Chaque entité du modèle \brep~est traitée spécifiquement
+on construit d'abord une EdS (partielle), puis on la transforme en EdB pour respecter la condition d'entropie. Chaque entité du modèle \brep\ est traitée spécifiquement
 
 vitesse normale continue $\Rightarrow$ rayon des sphères évolue continument 
 sur toute l'interface
 \subsection{Traitement des faces}
-chaque face repose sur une surface orientée de continuité géométrique élevée (d'ordre 1 ou plus) donc chaque point sur une face a exactement 2 vis-à-vis sur l'EdS (un dans le sens de la normale, et un dans le sens opposé) (sous réserve d'une condition, détaillée dans la \Sref{sec:EdS_2param})
+chaque face repose sur une surface orientée de continuité géométrique élevée (d'ordre 1 ou plus) donc chaque point sur une face a exactement 2 vis-à-vis sur l'EdS (un dans le sens de la normale, et un dans le sens opposé) (sous réserve d'une condition, détaillée dans la \autoref{sec:EdS_2param})
 
 
 \subsection{Traitement des arêtes}
 \begin{itemize}
 	\item douce $\to$ préservée car vitesse continue ;
-	\item (vive) convexe $\to$ EdS à un paramètre (nouvelle(s) \textit{sur}face(s)) ;
+	\item (vive) convexe $\to$ EdS à un paramètre (nouvelle \textit{sur}face) ;
 	\item (vive) concave $\to$ aucune influence sur l'EdB (on ne construit pas son EdS, d'où le ``partiel'') ;
 \end{itemize}
 

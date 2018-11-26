@@ -10,15 +10,21 @@
     \else      (cf. pp.~#2)%
     \fi}
 
-\hypersetup{colorlinks=true,
+\hypersetup{
+	breaklinks,
+	colorlinks=true,
 	linkcolor=DodgerBlue3,
 	anchorcolor=myred,%DarkRed,%
-    citecolor=redlink,%black,%mygreen,
+    citecolor=DodgerBlue3,%redlink,%black,%mygreen,
 	pdfdisplaydoctitle=true,
 	pdfpagemode=UseOutlines,%
 	bookmarksnumbered=true,
 	bookmarksopen=true,
-	hypertexnames=true}
+	hypertexnames=true,
+	linktoc=all,
+	pdftitle={Ma thèse},
+	pdfauthor={Bastien Andrieu}
+	}
     
 \usepackage{memhfixc} % Must be used on memoir document class after hyperref (?)
 
@@ -26,4 +32,4 @@
 
 \renewcommand*{\sectionrefname}{Section~}
 \renewcommand*{\chapterrefname}{Chapitre~}
-
+\renewcommand*{\appendixrefname}{Appendice~}

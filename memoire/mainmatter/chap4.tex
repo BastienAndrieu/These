@@ -1,6 +1,6 @@
 \chapter{Déformation de maillage surfacique}
 
-\textit{on veut mettre au point une méthodologie pour déformer un maillage de la surface en propagation en utilisant le modèle BREP dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformables.}
+\textit{on veut mettre au point une méthodologie pour déformer un maillage de la surface en propagation en utilisant le modèle \brep\ dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformables.}
 
 \section{Méthodes de simulation dans des géométries déformables}
 État de l'art :
@@ -23,27 +23,42 @@
 
 ici, on se concentre sur les applications utilisant la méthodologie \ref{item:ale}, et on ne s'occupe que du maillage de la frontière/interface. On se limite également aux maillages triangulaires, linéaires par morceaux (mais extension aux maillages hybrides, courbes envisageable)
 
-\section{\ldots?}%Enjeux}
+\section{Objectifs et enjeux}
+\subsection{Objectifs}
+\begin{enumerate}
+	\item préserver la connectivité du maillage autant que faire se peut ($\Rightarrow$ déformation pure)
+	\item maintenir une bonne qualité de maillage ($\Rightarrow$ métrique à définir, lissage/optimisation par déplacements tangentiels)
+	\item le maillage doit représenter fidèlement l'interface ($\Rightarrow$ sommets localisés exactement sur la surface \brep) et ses caractéristiques géométriques (arêtes vives, coins, \ldots) ($\Rightarrow$ contraintes sur les n\oe uds et arêtes du maillage dans ces régions) ($\to$ persistance des entités \brep?)
+\end{enumerate}
+
+Déformation = mouvement induit par la propagation + lissage/optimisation
+
+\subsection{Enjeux}
 \begin{itemize}
-	\item enjeu : ``localiser'' les entités du maillage sur le modèle \brep
-	\item limiter les distorsions des faces du maillage $\to$ déplacements tangentiels (lissage, optimisation)
-	\item approche naïve : maillage conforme aux frontières des faces \brep
-	\begin{itemize}
-		\item un maillage par face \brep
-		\item maillage unique des arêtes \brep~ pour garantir la conformité globale
-		\item[+] lissage/optimisation dans l'espace $uv$ 2d
-		\item[-] contraintes excessives sur le maillage (détailler)
-	\end{itemize}
-	\item persistance des entités \brep~ au cours de la déformation
-	\item respect des caractéristiques géométriques (sommets et arêtes vifs) $\to$ contraintes sur les n\oe uds et arêtes du maillage
+	\item ``localiser'' les entités du maillage sur le modèle \brep\ (face \brep\ et coordonnées $uv$) 
+	\item associer des n\oe uds/arêtes du maillage aux sommets/arêtes vifs du modèle \brep
+%	\item persistance des entités \brep\  au cours de la déformation
 \end{itemize}
 
+\section{Approche naïve/simple}
+Maillage conforme aux frontières des faces \brep\ \cite{andrieu2017}
+\begin{itemize}
+	\item un maillage par face \brep
+	\item maillage unique des arêtes \brep\ pour garantir la conformité globale
+	\item[+] lissage/optimisation dans l'espace $uv$ 2d, les caractéristiques géométriques sont naturellement représentées par le maillage
+	\item[-] contraintes excessives sur le maillage (détailler \ldots), persistance des entités \brep\  pas flexible
+\end{itemize}
+%	\item persistance des entités \brep\  au cours de la déformation
+%	\item respect des caractéristiques géométriques (sommets et arêtes vifs) $\to$ contraintes sur les n\oe uds et arêtes du maillage
+%\end{itemize}
 
-\bigskip
-
-Hypergraphe\\
-Projection d'un déplacement $xyz$ sur une surface paramétrique\\
-Projection d'un déplacement $xyz$ sur une surface \brep~ composite (traversée des arêtes \brep~ douces)
+\section{Approche avancée}
+Hypergraphe\par
+Projection d'un déplacement $xyz$ sur une surface paramétrique\par
+Projection d'un déplacement $xyz$ sur une surface \brep\ composite (traversée des arêtes \brep\ douces)\par
+Régénération des chemins contraints\par
+Pré-déformation\par
+Optimisation, pondération des triangles
 
 
 

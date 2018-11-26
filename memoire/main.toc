@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {1.1}Traitement des diff\IeC {\'e}rentes entit\IeC {\'e}s BRep}{3}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}Traitement des faces}{3}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}Traitement des ar\IeC {\^e}tes}{3}{subsection.1.1.2}
-\contentsline {subsection}{\numberline {1.1.3}Traitement des sommets}{3}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.3}Traitement des sommets}{4}{subsection.1.1.3}
 \contentsline {section}{\numberline {1.2}Construction de l'enveloppe des sph\IeC {\`e}res}{4}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}Enveloppe d'une famille de sph\IeC {\`e}res \IeC {\`a} un param\IeC {\`e}tre}{4}{subsection.1.2.1}
 \contentsline {subsection}{\numberline {1.2.2}Enveloppe d'une famille de sph\IeC {\`e}res \IeC {\`a} deux param\IeC {\`e}tres}{4}{subsection.1.2.2}
@@ -16,22 +16,22 @@
 \contentsline {subsection}{\numberline {2.1.2}Polyn\IeC {\^o}mes de Chebyshev}{6}{subsection.2.1.2}
 \contentsline {subsubsection}{\numberline {2.1.2.1}D\IeC {\'e}finition}{6}{subsubsection.2.1.2.1}
 \contentsline {subsubsection}{\numberline {2.1.2.2}D\IeC {\'e}veloppement en s\IeC {\'e}rie de Chebyshev, approximation de fonctions}{6}{subsubsection.2.1.2.2}
-\contentsline {paragraph}{Repr\IeC {\'e}sentation de courbes et de surfaces.}{6}{section*.9}
+\contentsline {paragraph}{Repr\IeC {\'e}sentation de courbes et de surfaces.}{6}{section*.8}
 \contentsline {subsubsection}{\numberline {2.1.2.3}\IeC {\'E}valuation}{6}{subsubsection.2.1.2.3}
 \contentsline {subsubsection}{\numberline {2.1.2.4}D\IeC {\'e}rivation}{6}{subsubsection.2.1.2.4}
 \contentsline {subsubsection}{\numberline {2.1.2.5}Quadrature}{6}{subsubsection.2.1.2.5}
 \contentsline {subsubsection}{\numberline {2.1.2.6}Pr\IeC {\'e}cision spectrale}{7}{subsubsection.2.1.2.6}
-\contentsline {paragraph}{Remarque.}{7}{section*.10}
+\contentsline {paragraph}{Remarque.}{7}{section*.9}
 \contentsline {section}{\numberline {2.2}Int\IeC {\'e}gration temporelle}{7}{section.2.2}
 \contentsline {section}{\numberline {2.3}Instabilit\IeC {\'e}s\ldots }{7}{section.2.3}
 \contentsline {chapter}{\chapternumberline {3}G\IeC {\'e}n\IeC {\'e}ralisation aux surfaces de topologie quelconque}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Construction des nouvelles faces}{9}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Ar\IeC {\^e}tes convexes}{9}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Sommets convexes}{9}{subsection.3.1.2}
-\contentsline {subsubsection}{\numberline {3.1.2.1}Une face trimm\IeC {\'e}e}{9}{subsubsection.3.1.2.1}
-\contentsline {subsubsection}{\numberline {3.1.2.2}Plusieurs faces non trimm\IeC {\'e}es}{9}{subsubsection.3.1.2.2}
+\contentsline {subsubsection}{\numberline {3.1.2.1}Une face polygonale}{9}{subsubsection.3.1.2.1}
+\contentsline {subsubsection}{\numberline {3.1.2.2}Plusieurs faces rectangulaires}{9}{subsubsection.3.1.2.2}
 \contentsline {section}{\numberline {3.2}R\IeC {\'e}solution des intersections entre faces}{9}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}\IeC {\'E}tat de l'art}{9}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.1}\IeC {\'E}tat de l'art}{10}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Approche retenue}{10}{subsection.3.2.2}
 \contentsline {section}{\numberline {3.3}Validation de la m\IeC {\'e}thode}{10}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Propagation suivant un champ de vitesse continu}{10}{subsection.3.3.1}
@@ -39,7 +39,11 @@
 \contentsline {subsection}{\numberline {3.3.3}Propagation \IeC {\`a} vitesse normale non uniforme}{10}{subsection.3.3.3}
 \contentsline {chapter}{\chapternumberline {4}D\IeC {\'e}formation de maillage surfacique}{11}{chapter.4}
 \contentsline {section}{\numberline {4.1}M\IeC {\'e}thodes de simulation dans des g\IeC {\'e}om\IeC {\'e}tries d\IeC {\'e}formables}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}\ldots ?}{11}{section.4.2}
+\contentsline {section}{\numberline {4.2}Objectifs et enjeux}{11}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Objectifs}{12}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Enjeux}{12}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Approche na\IeC {\"\i }ve/simple}{12}{section.4.3}
+\contentsline {section}{\numberline {4.4}Approche avanc\IeC {\'e}e}{12}{section.4.4}
 \contentsline {chapter}{\chapternumberline {5}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{13}{chapter.5}
-\contentsline {chapter}{Conclusion}{15}{chapter*.11}
-\contentsline {chapter}{Bibliographie}{17}{section*.14}
+\contentsline {chapter}{Conclusion}{15}{chapter*.10}
+\contentsline {chapter}{Bibliographie}{17}{section*.13}

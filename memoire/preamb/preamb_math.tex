@@ -64,6 +64,27 @@
 \newcommand*{\truncseries}[2]{P_{#2}{#1}}
 \newcommand*{\interpolant}[2]{I_{#2}{#1}}
 
+
+
+%% System of equations
+\newenvironment{eqsys}
+{\left\lbrace\begin{array}{@{}l@{}}}
+{\end{array}\right.}
+%ex :
+%\begin{equation}
+%	\begin{eqsys}
+%		y_1 = a_1 x + b_1 \\
+%		y_2 = a_2 x + b_2
+%	\end{eqsys}
+%\end{equation}
+
+
+
+
+
+
+
+
 % Encircled text
 \newcommand{\pgftextcircled}[1]{                                                                    
     \setbox0=\hbox{#1}%

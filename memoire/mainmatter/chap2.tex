@@ -1,13 +1,16 @@
 \chapter{Méthode d'ordre élevé pour le suivi d'un patch rectangulaire de surface}
 \label{chap:methode_ps}
 
-(méthode pseudo-spectrale : solution développée dans une base de fonctions globales et régulières, résidu annulé exactement en un nombre discret de points de collocation, donnant une EDO en temps par point de collocation)\\
+\textit{on veut mettre au point une méthode numérique (discrétisations spatiale et temporelle) pour le suivi d'un seul patch rectangulaire de surface de continuité géométrique élevée (infinie), qui servira de base pour  mettre en \oe uvre l'algorithme du \autoref{chap:algo_general}}
+\par\bigskip
+
 
 suivi lagrangien de marqueurs/points de collocation situés sur la surface
 
 \section{Discrétisation spatiale}
+méthode pseudo-spectrale : solution développée dans une base de fonctions globales et régulières, résidu annulé exactement en un nombre discret de points de collocation, donnant une EDO en temps par point de collocation\par
+Choix des fonctions de base et des marqueurs/points de collocation
 
-Choix des fonctions de base et des marqueurs/points de collocation\\
 \subsection{État de l'art}
 \begin{itemize}
 	\item harmoniques sphériques \cite{veerapaneni2011}, polynômes trigonométriques \cite{gueyffier2015} $\to$ contraintes topologiques (genre 0, sans bord ou périodique) (méthode de continuation \cite{bruno2007} pour s'affranchir de cette contrainte, mais complexe (POUs, \ldots) et jamais utilisé pour des surfaces en mouvement)
@@ -103,7 +106,7 @@ illustration convergence exponentielle pour $f$ analytique et décroissance expo
 	\item non-linéarités $\to$ aliasing, peut causer instabilité \cite{rahimian2015}, atténuation : sur-échantillonnage, filtrage
 	\item auto-intersections
 	\begin{itemize}
-		\item globales (traitées au \Cref{chap:multi_patch})
-		\item locales \cite{farouki1986} (détection, résolution??)
+		\item globales (traitées au \autoref{chap:multi_patch})
+		\item locales \cite{farouki1986} (détection, résolution?)
 	\end{itemize}
 \end{itemize}

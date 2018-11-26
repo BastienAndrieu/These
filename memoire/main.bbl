@@ -231,6 +231,13 @@
 \newblock {\itshape International Journal for Numerical Methods in
   Engineering\/}, {\bfseries 78}~(8)~:~pp. 980--1008, 2009.
 
+\bibitem{andrieu2017}
+{\scshape B.~Andrieu} et {\scshape D.~Gueyffier}.
+\newblock {High-fidelity, dynamic CAD model for propagating surfaces and moving
+  meshes}.
+\newblock {\itshape Procedia Engineering\/}, {\bfseries 203}~:~pp. 115--127,
+  2017.
+
 \bibitem{canuto2006}
 {\scshape C.~Canuto}, {\scshape M.~Y. Hussaini}, {\scshape A.~Quarteroni} et
   {\scshape T.~A. Zang}.

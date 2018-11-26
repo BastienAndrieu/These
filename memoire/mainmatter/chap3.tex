@@ -3,22 +3,22 @@
 
 \section{Construction des nouvelles faces}
 
-paramétrisation et limites du domaine paramétrique
+objectif : définir la paramétrisation des nouvelles surfaces (et les limites du domaine paramétrique pour les faces \brep\ reposant sur celles-ci)
 
 \subsection{Arêtes convexes}
-paramétrisation approchée des courbes d'intersection (choix du paramètre, fitting LS série de Chebyshev univariée), portion de \eng{canal surface} approchée 
+paramétrisation approchée des courbes d'intersection (choix du paramètre : abscisse curviligne, paramètre de Hohmeyer (cf. \autoref{sec:calcul_intersections}), \eng{least-square fitting} (ajustement de courbe par la méthode des moindres carrés) d'une série de Chebyshev univariée), portion de \eng{canal surface} approchée 
 
 \subsection{Sommets convexes}
 deux variantes :
 
-\subsubsection{Une face trimmée}
+\subsubsection{Une face polygonale}
 $(u,v) \equiv$ coordonnées sphériques\\
-+ : 1 seule face, spectre Chebyshev étroit
++ : 1 seule face, spectre Chebyshev étroit/compact
 
 
-\subsubsection{Plusieurs faces non trimmées}
-polygone sphérique découpé en quads \cite{hahn1989}\\
-+ : domaine paramétrique non trimmé
+\subsubsection{Plusieurs faces rectangulaires}
+polygone sphérique découpé en quadrilatères \cite{hahn1989}\\
++ : domaine paramétrique non restreint
 
 
 \section{Résolution des intersections entre faces}
@@ -29,6 +29,7 @@ subdivision \cite{houghton1985}, implicitisation approchée \cite{dokken2001}, s
 
 
 \subsection{Approche retenue}
+\label{sec:calcul_intersections}
 adaptation de l'approche de Hohmeyer \cite{hohmeyer1992} (full Chebyshev / Chebyshev-Bernstein)
 \begin{itemize}
 	\item changement de base \cite{rababah2003}

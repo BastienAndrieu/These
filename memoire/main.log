@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  23 NOV 2018 18:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  26 NOV 2018 14:38
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1118,12 +1118,13 @@ File: hpdftex.def 2016/06/24 v6.83q Hyperref driver for pdfTeX
 \c@bookmark@seq@number=\count155
 \Hy@SectionHShift=\skip192
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 21.
-Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 21.
+Package hyperref Info: Option `breaklinks' set `true' on input line 27.
+Package hyperref Info: Option `colorlinks' set `true' on input line 27.
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 27.
 
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 21.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 21.
-Package hyperref Info: Option `hypertexnames' set `true' on input line 21.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 27.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 27.
+Package hyperref Info: Option `hypertexnames' set `true' on input line 27.
 )
 (./preamb/preamb_graphics.tex
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/graphics/graphicx.sty
@@ -1711,21 +1712,45 @@ Loading lettrine.cfg
 \cftsubfigureindent=\skip274
 \cftsubfigurenumwidth=\skip275
 )
-(./preamb/preamb_macros.tex)
+(./preamb/preamb_macros.tex) (./preamb/preamb_warning.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/latex/silence/silence.sty
+Package: silence 2012/07/02 v1.5b Selective filtering of warnings and error mes
+sages
+\sl@Save=\count275
+\sl@StateNumber=\count276
+\sl@MessageCount=\count277
+\sl@Casualties=\count278
+\sl@Filter=\toks50
+\sl@Message=\toks51
+\sl@UnexpandedMessage=\toks52
+\sl@Mess@ge=\toks53
+\sl@WarningCount=\count279
+\sl@WarningNumber=\count280
+\sl@WarningCasualties=\count281
+\sl@TempBOW=\toks54
+\sl@BankOfWarnings=\toks55
+LaTeX Info: Redefining \GenericWarning on input line 433.
+\sl@ErrorCount=\count282
+\sl@ErrorNumber=\count283
+\sl@ErrorCasualties=\count284
+\sl@TempBOE=\toks56
+\sl@BankOfErrors=\toks57
+LaTeX Info: Redefining \GenericError on input line 601.
+))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/showlabels/showlabels.sty
 Package: showlabels 2016/06/09 v1.8
 
 Package: `showlabels' v1.8 <2016/06/09>
 with amsmath equation tags
-\SL@labelposition=\count275
+\SL@labelposition=\count285
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2016/05/14 v2.6a Micro-typographical refinements (RS)
-\MT@toks=\toks50
-\MT@count=\count276
+\MT@toks=\toks58
+\MT@count=\count286
 LaTeX Info: Redefining \textls on input line 774.
 \MT@outer@kern=\dimen311
 LaTeX Info: Redefining \textmicrotypecontext on input line 1310.
-\MT@listname@count=\count277
+\MT@listname@count=\count287
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2016/05/14 v2.6a Definitions specific to pdftex (RS)
@@ -1741,17 +1766,17 @@ File: microtype.cfg 2016/05/14 v2.6a microtype main configuration file (RS)
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/changebar/changebar.sty
 Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
-\cb@nextpoint=\count278
-\cb@topleft=\count279
-\cb@topright=\count280
-\cb@botleft=\count281
-\cb@botright=\count282
-\cb@cnta=\count283
-\cb@cntb=\count284
+\cb@nextpoint=\count288
+\cb@topleft=\count289
+\cb@topright=\count290
+\cb@botleft=\count291
+\cb@botright=\count292
+\cb@cnta=\count293
+\cb@cntb=\count294
 \cb@dima=\dimen312
 \cb@curbarwd=\dimen313
-\cb@page=\count285
-\cb@pagecount=\count286
+\cb@page=\count295
+\cb@pagecount=\count296
 \cb@odd@left=\dimen314
 \cb@odd@right=\dimen315
 \cb@even@left=\dimen316
@@ -1763,7 +1788,7 @@ Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
 \changebarwidth=\skip277
 \deletebarwidth=\skip278
 \changebarsep=\skip279
-\c@changebargrey=\count287
+\c@changebargrey=\count297
 \cb@write=\write6
 \cb@read=\read4
 \openout6 = `main.cb'.
@@ -1771,7 +1796,7 @@ Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count288
+\c@lips@count=\count298
 ) (./main.aux
 (./mainmatter/intro.aux) (./mainmatter/chap1.aux) (./mainmatter/chap2.aux)
 (./mainmatter/chap3.aux) (./mainmatter/chap4.aux) (./mainmatter/chap5.aux)
@@ -1815,21 +1840,21 @@ Package frenchb.ldf Info: Setting StandardEnumerateEnv=true for
 (frenchb.ldf)             compatibility with enumerate package,
 (frenchb.ldf)              on input line 22.
 LaTeX Info: Redefining \up on input line 22.
-\c@mv@tabular=\count289
-\c@mv@boldtabular=\count290
+\c@mv@tabular=\count299
+\c@mv@boldtabular=\count300
  (/opt/tools/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
+\scratchcounter=\count301
 \scratchdimen=\dimen318
 \scratchbox=\box45
-\nofMPsegments=\count292
-\nofMParguments=\count293
-\everyMPshowfont=\toks51
-\MPscratchCnt=\count294
+\nofMPsegments=\count302
+\nofMParguments=\count303
+\everyMPshowfont=\toks59
+\MPscratchCnt=\count304
 \MPscratchDim=\dimen319
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
-\everyMPtoPDFconversion=\toks52
+\MPnumerator=\count305
+\makeMPintoPDFobject=\count306
+\everyMPtoPDFconversion=\toks60
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1856,7 +1881,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/opt/tools/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count297
+\c@section@level=\count307
 )
 Redoing nameref's sectioning
 Redoing nameref's label
@@ -1891,9 +1916,9 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 33.
+(Font)              scaled to size 12.0pt on input line 37.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 24.88pt on input line 33.
+(Font)              scaled to size 24.88pt on input line 37.
 (./main.toc
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 2.
  (/opt/tools/texlive/2016/texmf-dist/tex/latex/lm/ot1lmr.fd
@@ -1958,91 +1983,81 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 17.28pt on input line 6.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 17.28pt on input line 6.
-
-Underfull \hbox (badness 10000) in paragraph at lines 25--26
-
- []
-
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 26.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 26.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 12.0pt on input line 31.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.42 \end{itemize}
-                   [1
 
-
-
-]
 Underfull \hbox (badness 10000) in paragraph at lines 45--48
 
  []
 
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.48 
+      [1
 
+
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 49--50
 
  []
 
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 41.
+(Font)              scaled to size 10.95pt on input line 45.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 41.
+(Font)              scaled to size 10.95pt on input line 45.
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.41 \include{mainmatter/intro}
+l.45 \include{mainmatter/intro}
                                 [2]
 \openout2 = `mainmatter/chap1.aux'.
 
  (./mainmatter/chap1.tex
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 64.92935pt on input line 1.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 10.95pt on input line 9.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 14.4pt on input line 22.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 14.4pt on input line 22.
+
+Underfull \vbox (badness 4872) has occurred while \output is active []
+
  [3
 
 
 
 ]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 78.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 67.
-) [4]
+(Font)              scaled to size 10.0pt on input line 78.
+)
+[4]
 \openout2 = `mainmatter/chap2.aux'.
 
-
-(./mainmatter/chap2.tex
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 10--11
-
- []
-
-[5
+ (./mainmatter/chap2.tex [5
 
 
 
 ]
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 55.
+(Font)              using `U/stmry/m/n' instead on input line 58.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--79
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
 
  []
 
 [6]
-Overfull \hbox (33.49661pt too wide) in paragraph at lines 103--104
+Overfull \hbox (33.49661pt too wide) in paragraph at lines 106--107
 []\T1/LinuxLibertineT-TLF/m/n/12 (-10) non-linéarités $\OMS/lmsy/m/n/12 !$ \T1/
 LinuxLibertineT-TLF/m/n/12 (-10) alia-sing, peut cau-ser in-sta-bi-lité [[]][],
  at-té-nua-tion : sur-échantillonnage,
@@ -2055,8 +2070,11 @@ LinuxLibertineT-TLF/m/n/12 (-10) alia-sing, peut cau-ser in-sta-bi-lité [[]][],
 
 
 
-] [9]
-Overfull \hbox (0.56184pt too wide) in paragraph at lines 32--33
+]
+Underfull \vbox (badness 3735) has occurred while \output is active []
+
+ [9]
+Overfull \hbox (0.56184pt too wide) in paragraph at lines 33--34
 []\T1/LinuxLibertineT-TLF/m/n/12 (-10) adaptation de l'ap-proche de Hoh-meyer [
 []][] (full Che-by-shev / Chebyshev-Bernstein) 
  []
@@ -2068,7 +2086,14 @@ Overfull \hbox (0.56184pt too wide) in paragraph at lines 32--33
 
 
 
-]) [12]
+]
+Overfull \hbox (10.78358pt too wide) in paragraph at lines 30--31
+[]\T1/LinuxLibertineT-TLF/m/n/12 (-10) maintenir une bonne qua-lité de maillage
+ ($\OMS/lmsy/m/n/12 )$ \T1/LinuxLibertineT-TLF/m/n/12 (-10) mé-trique à dé-fi-n
+ir, lis-sage/optimisation
+ []
+
+) [12]
 \openout2 = `mainmatter/chap5.aux'.
 
  (./mainmatter/chap5.tex) [13
@@ -2078,12 +2103,12 @@ Overfull \hbox (0.56184pt too wide) in paragraph at lines 32--33
 ]
 \openout2 = `mainmatter/concl.aux'.
 
-
-(./mainmatter/concl.tex [14
-
+ (./mainmatter/concl.tex [14
 
 
-]) [15] [16
+
+]) [15]
+[16
 
 
 ] (./main.bbl (./main.brf)
@@ -2101,29 +2126,29 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 70.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 70.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 78.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 78.
  (./main.aux (./mainmatter/intro.aux)
 (./mainmatter/chap1.aux) (./mainmatter/chap2.aux) (./mainmatter/chap3.aux)
 (./mainmatter/chap4.aux) (./mainmatter/chap5.aux) (./mainmatter/concl.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 70.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 70.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 78.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 78.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 33D8CCAE7A3F8FEE65B18C99C08C1A30;2905.
+(rerunfilecheck)             Checksum: EB58312F33C08EC0F4105DD361C0EFCE;3195.
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 257646F89C1CF4A03829C19A4E847AFD;2049.
+(rerunfilecheck)             Checksum: 4CF4B2ED59EDFC2F1C505FC6F3C72BE4;2102.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 70.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 78.
  ) 
 Here is how much of TeX's memory you used:
- 38661 strings out of 493013
- 871442 string characters out of 6131034
- 1308170 words of memory out of 5000000
- 41155 multiletter control sequences out of 15000+600000
- 123943 words of font info for 190 fonts, out of 8000000 for 9000
+ 38861 strings out of 493013
+ 874659 string characters out of 6131034
+ 1311401 words of memory out of 5000000
+ 41325 multiletter control sequences out of 15000+600000
+ 130842 words of font info for 200 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
  75i,13n,120p,785b,1203s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/to
@@ -2145,10 +2170,10 @@ t/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr8.pfb></opt/tools/texl
 ive/2016/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></opt/tools/texlive/2016/t
 exmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt/tools/texlive/2016/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (22 pages, 386360 bytes).
+Output written on main.pdf (22 pages, 390609 bytes).
 PDF statistics:
- 515 PDF objects out of 1000 (max. 8388607)
- 474 compressed objects within 5 object streams
- 125 named destinations out of 1000 (max. 500000)
- 37661 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 583 PDF objects out of 1000 (max. 8388607)
+ 541 compressed objects within 6 object streams
+ 133 named destinations out of 1000 (max. 500000)
+ 41789 words of extra memory for PDF output out of 42996 (max. 10000000)
 

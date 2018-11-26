@@ -20,7 +20,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
+\renewcommand*\chapterautorefname{Chapitre}
+\renewcommand*\sectionautorefname{Section}
+\renewcommand*\subsectionautorefname{Section}
+\renewcommand*\appendixautorefname{Annexe}
+    
 % AVANT-PROPOS
 %\include{frontmatter/remerciements}
 %\include{frontmatter/abstract}
@@ -55,6 +59,10 @@
 
 % APPENDICES
 \appendix
+%\chapter{Une annexe}
+%\label{annex:test}
+%\lipsum[1-5]
+
 
 \backmatter
 \cleardoublepage
@@ -65,6 +73,6 @@
 %\pagestyle{mypagestylebiblio} % workaround for correct headings
 \bibliographystyle{mybibstyle}
 %\bibliography{biblio}
-\bibliography{biblio/intersections,biblio/chebyshev,biblio/interface_propagation,biblio/spectral,biblio/moving_geometries}
+\bibliography{biblio/intersections,biblio/chebyshev,biblio/interface_propagation,biblio/spectral,biblio/moving_geometries,biblio/mesh.bib}
 
 \end{document}
