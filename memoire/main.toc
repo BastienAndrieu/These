@@ -1,49 +1,60 @@
 \select@language {french}
-\contentsline {chapter}{Introduction}{1}{chapter*.1}
-\contentsline {chapter}{\chapternumberline {1}Algorithme de propagation d'interfaces r\IeC {\'e}guli\IeC {\`e}res par morceaux}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}Traitement des diff\IeC {\'e}rentes entit\IeC {\'e}s BRep}{3}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Traitement des faces}{3}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}Traitement des ar\IeC {\^e}tes}{3}{subsection.1.1.2}
-\contentsline {subsection}{\numberline {1.1.3}Traitement des sommets}{4}{subsection.1.1.3}
-\contentsline {section}{\numberline {1.2}Construction de l'enveloppe des sph\IeC {\`e}res}{4}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Enveloppe d'une famille de sph\IeC {\`e}res \IeC {\`a} un param\IeC {\`e}tre}{4}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Enveloppe d'une famille de sph\IeC {\`e}res \IeC {\`a} deux param\IeC {\`e}tres}{4}{subsection.1.2.2}
-\contentsline {section}{\numberline {1.3}Application de la condition d'entropie}{4}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Reconstitution topologique du mod\IeC {\`e}le BRep}{4}{subsection.1.3.1}
-\contentsline {chapter}{\chapternumberline {2}M\IeC {\'e}thode d'ordre \IeC {\'e}lev\IeC {\'e} pour le suivi d'un patch rectangulaire de surface}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}Discr\IeC {\'e}tisation spatiale}{5}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}\IeC {\'E}tat de l'art}{5}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}Polyn\IeC {\^o}mes de Chebyshev}{6}{subsection.2.1.2}
-\contentsline {subsubsection}{\numberline {2.1.2.1}D\IeC {\'e}finition}{6}{subsubsection.2.1.2.1}
-\contentsline {subsubsection}{\numberline {2.1.2.2}D\IeC {\'e}veloppement en s\IeC {\'e}rie de Chebyshev, approximation de fonctions}{6}{subsubsection.2.1.2.2}
-\contentsline {paragraph}{Repr\IeC {\'e}sentation de courbes et de surfaces.}{6}{section*.8}
-\contentsline {subsubsection}{\numberline {2.1.2.3}\IeC {\'E}valuation}{6}{subsubsection.2.1.2.3}
-\contentsline {subsubsection}{\numberline {2.1.2.4}D\IeC {\'e}rivation}{6}{subsubsection.2.1.2.4}
-\contentsline {subsubsection}{\numberline {2.1.2.5}Quadrature}{6}{subsubsection.2.1.2.5}
-\contentsline {subsubsection}{\numberline {2.1.2.6}Pr\IeC {\'e}cision spectrale}{7}{subsubsection.2.1.2.6}
-\contentsline {paragraph}{Remarque.}{7}{section*.9}
-\contentsline {section}{\numberline {2.2}Int\IeC {\'e}gration temporelle}{7}{section.2.2}
-\contentsline {section}{\numberline {2.3}Instabilit\IeC {\'e}s\ldots }{7}{section.2.3}
-\contentsline {chapter}{\chapternumberline {3}G\IeC {\'e}n\IeC {\'e}ralisation aux surfaces de topologie quelconque}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Construction des nouvelles faces}{9}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Ar\IeC {\^e}tes convexes}{9}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Sommets convexes}{9}{subsection.3.1.2}
-\contentsline {subsubsection}{\numberline {3.1.2.1}Une face polygonale}{9}{subsubsection.3.1.2.1}
-\contentsline {subsubsection}{\numberline {3.1.2.2}Plusieurs faces rectangulaires}{9}{subsubsection.3.1.2.2}
-\contentsline {section}{\numberline {3.2}R\IeC {\'e}solution des intersections entre faces}{9}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}\IeC {\'E}tat de l'art}{10}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Approche retenue}{10}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Validation de la m\IeC {\'e}thode}{10}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Propagation suivant un champ de vitesse continu}{10}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Propagation \IeC {\`a} vitesse normale uniforme}{10}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Propagation \IeC {\`a} vitesse normale non uniforme}{10}{subsection.3.3.3}
-\contentsline {chapter}{\chapternumberline {4}D\IeC {\'e}formation de maillage surfacique}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}M\IeC {\'e}thodes de simulation dans des g\IeC {\'e}om\IeC {\'e}tries d\IeC {\'e}formables}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}Objectifs et enjeux}{11}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Objectifs}{12}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Enjeux}{12}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Approche na\IeC {\"\i }ve/simple}{12}{section.4.3}
-\contentsline {section}{\numberline {4.4}Approche avanc\IeC {\'e}e}{12}{section.4.4}
-\contentsline {chapter}{\chapternumberline {5}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{13}{chapter.5}
-\contentsline {chapter}{Conclusion}{15}{chapter*.10}
-\contentsline {chapter}{Bibliographie}{17}{section*.13}
+\contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Contexte}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Formulation du probl\IeC {\`e}me}{1}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Formulation lagrangienne}{1}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Principe de Huygens avec condition d'entropie}{1}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}M\IeC {\'e}thodes num\IeC {\'e}riques pour le suivi d'interfaces}{2}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Description eul\IeC {\'e}rienne}{2}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Description lagrangienne}{2}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}Cadre de la th\IeC {\`e}se}{2}{section.1.4}
+\contentsline {section}{\numberline {1.5}Repr\IeC {\'e}sentation par les fronti\IeC {\`e}res}{2}{section.1.5}
+\contentsline {section}{\numberline {1.6}Contributions}{3}{section.1.6}
+\contentsline {section}{\numberline {1.7}Organisation du manuscrit}{3}{section.1.7}
+\contentsline {chapter}{\chapternumberline {2}Algorithme de propagation d'interfaces r\IeC {\'e}guli\IeC {\`e}res par~morceaux}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Traitement des diff\IeC {\'e}rentes entit\IeC {\'e}s BRep}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Traitement des faces}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Traitement des ar\IeC {\^e}tes}{5}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}Traitement des sommets}{5}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}Construction de l'enveloppe des sph\IeC {\`e}res}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Enveloppe d'une famille de sph\IeC {\`e}res \IeC {\`a} un param\IeC {\`e}tre}{6}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Enveloppe d'une famille de sph\IeC {\`e}res \IeC {\`a} deux param\IeC {\`e}tres}{6}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Application de la condition d'entropie}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Reconstitution topologique du mod\IeC {\`e}le BRep}{6}{subsection.2.3.1}
+\contentsline {chapter}{\chapternumberline {3}M\IeC {\'e}thode d'ordre \IeC {\'e}lev\IeC {\'e} pour le suivi d'un patch rectangulaire de surface}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Discr\IeC {\'e}tisation spatiale}{7}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}\IeC {\'E}tat de l'art}{7}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Polyn\IeC {\^o}mes de Chebyshev}{7}{subsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.2.1}D\IeC {\'e}finition}{8}{subsubsection.3.1.2.1}
+\contentsline {subsubsection}{\numberline {3.1.2.2}D\IeC {\'e}veloppement en s\IeC {\'e}rie de Chebyshev, approximation de fonctions}{8}{subsubsection.3.1.2.2}
+\contentsline {paragraph}{Repr\IeC {\'e}sentation de courbes et de surfaces.}{8}{section*.1}
+\contentsline {subsubsection}{\numberline {3.1.2.3}\IeC {\'E}valuation}{8}{subsubsection.3.1.2.3}
+\contentsline {subsubsection}{\numberline {3.1.2.4}D\IeC {\'e}rivation}{8}{subsubsection.3.1.2.4}
+\contentsline {subsubsection}{\numberline {3.1.2.5}Quadrature}{8}{subsubsection.3.1.2.5}
+\contentsline {subsubsection}{\numberline {3.1.2.6}Pr\IeC {\'e}cision spectrale}{8}{subsubsection.3.1.2.6}
+\contentsline {paragraph}{Remarque.}{9}{section*.2}
+\contentsline {section}{\numberline {3.2}Int\IeC {\'e}gration temporelle}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Instabilit\IeC {\'e}s\ldots }{9}{section.3.3}
+\contentsline {chapter}{\chapternumberline {4}G\IeC {\'e}n\IeC {\'e}ralisation aux surfaces de topologie quelconque}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Construction des nouvelles faces}{11}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Ar\IeC {\^e}tes convexes}{11}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Sommets convexes}{11}{subsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.2.1}Une face polygonale}{11}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.2}Plusieurs faces rectangulaires}{11}{subsubsection.4.1.2.2}
+\contentsline {section}{\numberline {4.2}R\IeC {\'e}solution des intersections entre faces}{11}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}\IeC {\'E}tat de l'art}{11}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Approche retenue}{11}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Validation de la m\IeC {\'e}thode}{12}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Propagation suivant un champ de vitesse continu}{12}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Propagation \IeC {\`a} vitesse normale uniforme}{12}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Propagation \IeC {\`a} vitesse normale non uniforme}{12}{subsection.4.3.3}
+\contentsline {chapter}{\chapternumberline {5}D\IeC {\'e}formation de maillage surfacique}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}M\IeC {\'e}thodes de simulation dans des g\IeC {\'e}om\IeC {\'e}tries d\IeC {\'e}formables}{13}{section.5.1}
+\contentsline {section}{\numberline {5.2}Objectifs et enjeux}{13}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Objectifs}{13}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Enjeux}{14}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Approche na\IeC {\"\i }ve/simple}{14}{section.5.3}
+\contentsline {section}{\numberline {5.4}Approche avanc\IeC {\'e}e}{14}{section.5.4}
+\contentsline {chapter}{\chapternumberline {6}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{15}{chapter.6}
+\contentsline {chapter}{Conclusion}{17}{chapter*.3}
+\contentsline {chapter}{Bibliographie}{19}{section*.6}

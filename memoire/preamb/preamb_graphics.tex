@@ -1,10 +1,13 @@
 \usepackage{graphicx}
 
-\usepackage{pgfplots}
+\usepackage{pgfplots, pgfplotstable}
+\usepackage{datatool}
+%https://axiomatic.neophilus.net/using-datatool-and-tikz-to-generate-figures-from-data/
+
 \pgfplotsset{compat=newest}
 
-\usepackage{tikz}
-\usetikzlibrary{calc, external}
+\usepackage{tikz, tikzscale}
+\usetikzlibrary{calc, external, fadings, arrows}
 %\tikzexternalize[prefix=figures/pgf/]
 
 
@@ -14,11 +17,11 @@
 \usetikzlibrary{pgfplots.colorbrewer}
 
 \definecolor{s1}{HTML}{68ABD9}
-\definecolor{s2}{HTML}{FA6655}%{FAA43A}%
-\definecolor{s3}{HTML}{AADA57}%{60BD68}%
+\definecolor{s2}{HTML}{FA7566}%FA6655}%{FAA43A}%
+\definecolor{s3}{HTML}{98D45B}%AADA57}%{60BD68}%
 \definecolor{s4}{HTML}{897EDA}
 \definecolor{s5}{HTML}{FAA43A}%{FA6655}%
-\definecolor{s6}{HTML}{60BD68}%{AADA57}%
+\definecolor{s6}{HTML}{46AA5B}%60BD68}%{AADA57}%
 \definecolor{s7}{HTML}{F094C3}
 \definecolor{s8}{HTML}{A3A3A3}
 

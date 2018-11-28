@@ -1,47 +1,115 @@
 \def\chapterabstract{}
-\chapter*{Introduction}
-\chaptermark{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}
+\chapter{Introduction}
+%\chaptermark{Introduction}
+%\addcontentsline{toc}{chapter}{Introduction}
 
-\section*{Contexte}%?
+\section{Contexte}%
+
 %Les surfaces (ou interfaces) en propagation interviennent dans de nombreuses applications scientifiques et industrielles. Elles résultent de phénomènes mettant en jeu des couplages multiphysiques complexes comme la combustion, les interactions fluide-structure, les écoulements multi-phasiques ou encore la croissance dendritique de cristaux. C’est généralement au niveau de ces surfaces qu’a lieu la physique la plus intéressante, il est donc indispensable d’en déterminer avec précision l’évolution au cours du temps\ldots
 
 
-\section*{Formulation du problème}% d'interface en propagation}
+\section{Formulation du problème}% d'interface en propagation}
+\subsection{Formulation lagrangienne}
 formulation lagrangienne traditionnelle (approche EDP) : vecteur vitesse 
-%\begin{equation}
-%	\frac{\partial \bx}{\partial t} = \vrm{u}(\bx,t),
-%\end{equation}
+\begin{equation}
+	\frac{\partial \bx}{\partial t} = \vrm{u}(\bx,t),
+\end{equation}
 ou vitesse normale 
-%\begin{equation}
-%	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t).
-%\end{equation}
+\begin{equation}
+	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t).
+\end{equation}
 %(les 2 sont équivalentes)
 \\
-problème de définition de la normale dans le cas piecewise-smooth\\
-$\to$ formulation plus générale (approche ``géométrique'') : principe de Huygens (propagation de proche en proche), enveloppe de sphères (e.g. ondes) ou de boules (e.g. flamme) (condition d'entropie \cite{sethian1999}).
+problème de définition de la normale dans le cas \eng{piecewise-smooth}\\
+\subsection{Principe de Huygens avec condition d'entropie}
+$\to$ formulation plus générale (approche ``géométrique'') : principe de Huygens (propagation de proche en proche), enveloppe de sphères (e.g. ondes, cf.~\autoref{subfig:huygens_principle_eos}) ou de boules (e.g. flamme, cf.~\autoref{subfig:huygens_principle_eob}) (condition d'entropie \cite{sethian1999})
+
+\begin{figure}
+  \centering
+  \definecolor{spherecolor}{HTML}{5C98D1}
+  \definecolor{ballcolor}{HTML}{DBEDFF}
+  \definecolor{vectorcolor}{HTML}{F93802}
+  \definecolor{frontcolor}{HTML}{000000}
+  \tikzset{front/.style = {%
+  	frontcolor, %
+  	line width=0.8pt, %
+  	line join=round}}%
+  \tikzset{vector/.style = {%
+  	-latex', %
+  	line width=0.5pt, %
+  	vectorcolor, %
+  	shorten >= -2.5pt}}%
+  \tikzset{sphere/.style = {%
+  	line width=0.3pt, %
+  	dash pattern=on 2.5pt off 1pt, %
+  	spherecolor}}%
+  \tikzset{ball/.style = {%
+  	draw=none, %
+  	fill=ballcolor}}%
+  \tikzset{fade/.style = {%
+  dash pattern=on 1.33pt off 2pt on 2pt off 2pt on 3pt off 2pt on 20pt}}%
+  %
+  \DTLsetseparator{ }%
+  \DTLloaddb[noheader,keys={x,y,r}]{circdata}{figures/data/huygens_principle_circ.dat}%
+  \DTLloaddb[noheader,keys={x,y,u,v}]{nordata}{figures/data/huygens_principle_nor.dat}%
+  %
+%  \vspace{\onelineskip}
+%  \null\hfill\parbox{0.49\linewidth}{%
+%    \centering
+%    \resizebox{\linewidth}{!}{\input{figures/huygens_principle_eos.tikz}}
+%    }\hfill
+%  \parbox{0.49\linewidth}{%
+%    \centering
+%    \resizebox{\linewidth}{!}{\input{figures/huygens_principle_eob.tikz}}
+%    }\hfill\null
+%  \vspace{\onelineskip}%\hrule
+%  \null\hfill\parbox[t]{0.49\linewidth}{%
+%  	\caption{Principe de Huygens.}%
+%  	\label{fig:huygens_eos}%
+%  }\hfill
+%  \parbox[t]{0.49\linewidth}{%
+%    \caption{Avec condition d'entropie.}%
+%    \label{fig:huygens_eob}%
+%  }\hfill\null
+  %
+  \hspace*{\fill}
+  \subbottom[Enveloppe des sphères.]{
+  \resizebox{0.48\linewidth}{!}{  \label{subfig:huygens_principle_eos}\input{figures/huygens_principle_eos.tikz}}
+  }
+  \hfill
+  \subbottom[Enveloppe des boules.]{
+  \resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eob}\input{figures/huygens_principle_eob.tikz}}
+  }
+  \hspace*{\fill}
+  \caption{Principe de Huygens.} 
+  \label{fig:huygens_principle}
+  %
+\end{figure}
+
 \par
 %\section*{État de l'art}
 résolution analytique impossible $\to$ méthodes numériques
-\section*{Méthodes numériques pour le suivi d'interfaces}
+
+\section{Méthodes numériques pour le suivi d'interfaces}
 2 façons de traiter l'interface
+\subsection{Description eulérienne}
+point de vue eulérien $\to$ représentation implicite
 \begin{itemize}
-	\item point de vue eulérien $\to$ représentation implicite
-	\begin{itemize}
-		\item ex. : \eng{level-set} \cite{sethian1999}, \eng{Volume-of-fluid} \cite{gueyffier1999}, \etc
-		\item[+] : formulation simple, facilement généralisable à $n$ dimensions, supporte naturellement les changements topologiques de l'interface $\to$ bien adapté aux interfaces fluide-fluide ;
-		\item[-] : besoin de reconstruire l'interface, quantités géométriques mal résolues, mauvaise conservation de la masse et besoin de réinitialiser la fonction distance pour \eng{level-set}, besoin d'extrapoler les conditions aux limites ;
-	\end{itemize}
+	\item ex. : \eng{level-set} \cite{sethian1999}, \eng{Volume-of-fluid} \cite{gueyffier1999}, \etc
+	\item[+] : formulation simple, facilement généralisable à $n$ dimensions, supporte naturellement les changements topologiques de l'interface $\to$ bien adapté aux interfaces fluide-fluide ;
+	\item[-] : besoin de reconstruire l'interface, quantités géométriques mal résolues, mauvaise conservation de la masse et besoin de réinitialiser la fonction distance pour \eng{level-set}, besoin d'extrapoler les conditions aux limites ;
+\end{itemize}
 	
-	\item point de vue lagrangien $\to$ représentation explicite
-	\begin{itemize}
-		\item ex. : \eng{front-tracking} \cite{popinet1999, tryggvason2001}, \eng{face-offsetting} \cite{jiao2007}, \etc
-		\item[+] : fine résolution des quantités géométriques, application directe et précise des conditions aux limites ;
-		\item[-] : supporte mal les grandes déformations, besoin de redistribuer les marqueurs (voire de remailler complètement), nécessite traitement explicite des changements topologiques (complexe en 3d);
-	\end{itemize}
+\subsection{Description lagrangienne}
+point de vue lagrangien $\to$ représentation explicite
+\begin{itemize}
+	\item ex. : \eng{front-tracking} \cite{popinet1999, tryggvason2001}, \eng{face-offsetting} \cite{jiao2007}, \etc
+	\item[+] : fine résolution des quantités géométriques, application directe et précise des conditions aux limites ;
+	\item[-] : supporte mal les grandes déformations, besoin de redistribuer les marqueurs (voire de remailler complètement), nécessite traitement explicite des changements topologiques (complexe en 3d);
 \end{itemize}
 
-\bigskip
+%\bigskip
+\section{Cadre de la thèse}
 type de problèmes visés dans cette thèse : interface = frontière solide (déformable) d'un domaine fluide $\Rightarrow$ déformations modérées, peu de changements de topologie $\Rightarrow$ on adopte la description lagrangienne\\
 on s'intéresse en particulier aux cas où l'interface est \emph{piecewise smooth}% ($\Rightarrow$ champ de vitesse continu en module mais pas en direction)
 , ce qui est souvent le cas dans les applications industrielles\\
@@ -51,12 +119,12 @@ méthodes high-order intéressantes lorsque la solution est régulière car pré
 dans les applications visées, la définition de la géométrie initiale passe par une phase de CAO
 
 
-\section*{Représentation par les frontières}
+\section{Représentation par les frontières}
 formalisme \brep~ \cite[Section 2.2]{pentcheva2010}\\
-définitions précises, vocabulaire : surface, courbe, point, face, chaîne/cycle (\eng{wire/loop}), arête, sommet
+définitions précises, vocabulaire : surface, courbe, point, face, chaîne/cycle (\eng{wire/loop}), arête (vive, douce), sommet (vif, doux)
 
 
-\section*{Contributions}% aka "Description de la thèse/démarche"
+\section{Contributions}% aka "Description de la thèse/démarche"
 
 
-\section*{Organisation du manuscrit}
+\section{Organisation du manuscrit}

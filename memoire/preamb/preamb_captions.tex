@@ -4,10 +4,11 @@
 \captiontitlefont{\small\itshape}
 \hangcaption
 
-\renewcommand{\figurename}{Fig.}
+%\renewcommand{\figurename}{Fig.}
 
 %\usepackage{subfig}
-\newsubfloat{figure}
+\providecommand\subfigureautorefname{Figure}
+\newsubfloat{figure}% Allow subfloats in figure environment (subfigures)
 
 % Blank footnotes 
 %https://tex.stackexchange.com/questions/30720/footnote-without-a-marker
