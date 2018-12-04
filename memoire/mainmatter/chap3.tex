@@ -33,8 +33,8 @@ subdivision \cite{houghton1985}, implicitisation approchée \cite{dokken2001}, s
 adaptation de l'approche de Hohmeyer \cite{hohmeyer1992} (full Chebyshev / Chebyshev-Bernstein)
 \begin{itemize}
 	\item changement de base \cite{rababah2003}
-	\item subdivision : changement de variable (détail en annexe) / algorithme de Casteljau (ref?) (remarques complexité et conditionnement)
-	\item volumes englobants convexes : oriented bounding box \cite{fournier1994} (détail en annexe) / enveloppe convexe (comparer volumes)
+	\item volumes englobants convexes : oriented bounding box \cite{fournier1994} (détail en \autoref{app:obb}) / enveloppe convexe (comparer volumes)
+	\item subdivision : changement de variable (détail en \autoref{app:cdv_cheb}) / algorithme de Casteljau (ref?) 
 	\item test de séparation : théorème de séparation des convexes \cite{eberly2002} / optimisation linéaire \cite{seidel1991}
 	\item traitement des intersections tangentielles
 \end{itemize}
@@ -45,12 +45,102 @@ adaptation de l'approche de Hohmeyer \cite{hohmeyer1992} (full Chebyshev / Cheby
 
 \subsection{Propagation suivant un champ de vitesse continu}
 sphère/cube dans un écoulement tourbillonnaire incompressible analytique de période temporelle $2T$\\
-calcul (exact) de volume avec quadrature de Clenshaw-Curtis (étanchéité (continuité $G^0$ partout) garantie car les marqueurs de bord coïncident tout au long de la déformation)\\
+\begin{equation}
+	\vrm{u}(x,y,z,t) = \cos \left( \frac{\pi t}{T} \right)
+	\colvec{
+	\sin^2(\pi x) \left[ \sin(2\pi z) - \sin(2\pi y)\right] \\
+\sin^2(\pi y) \left[ \sin(2\pi x) - \sin(2\pi z)\right] \\
+\sin^2(\pi z) \left[ \sin(2\pi y) - \sin(2\pi x)\right]
+	}.
+\end{equation}
+%\begin{figure}
+%	\centering
+%	\input{figures/vortex_brep_CW.tikz}
+%	\caption{Modèle \brep\ à différents instants de la déformation ($T=4$).}
+%	\label{fig:snapshots_vortex}
+%\end{figure}
+
+\begin{figure}
+	\centering
+	\input{figures/vortex_brep_LRTB6.tikz}
+	\caption{Modèle \brep\ à différents instants de la déformation ($T=4$).}
+	\label{fig:snapshots_vortex}
+\end{figure}
+
+calcul de volume avec quadrature de Clenshaw-Curtis (exact, l'intégrande est polynomiale) (étanchéité (continuité $G^0$ partout) garantie car les marqueurs de bord coïncident tout au long de la déformation)\\
 convergence de l'erreur d'approximation sur la position, l'aire et le volume à $t = 0$ et $t = T$ pour différents niveaux de discrétisations spatiale et temporelle\\
-+ convergence de la variation de volume au cours de la déformation
+
+%%%%%%%%%%%%%%%
+% figures erreur vs dof
+%%%%%%%%%%%%%%
+\def\axw{0.48\textwidth}
+\def\axh{0.39\textwidth}
+\def\xlabl{dof}
+\def\ylabl{Erreur}
+\def\xsep{2pt}
+%%%%%%%%%%%%%%
+\plotvortexerror{position}{la~}{pos}{maximale}
+%%%%%%%%%%%%%%
+\plotvortexerror{aire}{l'}{air}{relative}
+%%%%%%%%%%%%%%
+\plotvortexerror{volume}{le~}{vol}{relative}
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+
+
++ convergence de la variation de volume au cours de la déformation\\
+\tabularnums{\liningnums{1234567890}}\\
+\proportionalnums{\liningnums{1234567890}}\\
+\tabularnums{\oldstylenums{1234567890}}\\
+\proportionalnums{\oldstylenums{1234567890}}
+%https://tex.stackexchange.com/questions/23993/use-first-row-of-a-table-as-legend-entry-in-pgfplot-graph
+\begin{figure}
+  \centering
+  \begin{tikzpicture}%
+  \begin{semilogyaxis}[%
+    axis lines*=left,%
+    width=9cm, height=7cm,%
+    xmin = 0.0, xmax = 1.0,%
+    %ymin = 1e-16, ymax = 1e1,%
+    %ytickten = {-15,-10,-5,0},%
+    ymin = 1e-15, ymax = 1e0,%
+    ytickten = {-15,-10,-5,0},%
+    grid=major,%
+    xlabel={$t/T$},%
+    ylabel={$\frac{\left|V - V_0\right|}{V_0}$},%
+    %legend style={font=\small, at={(0.5,0.0)}, anchor=south, yshift=4pt},%
+    legend style={font=\small, at={(1.025,1.0)}, anchor=north west},%
+    no marks, each nth point=1]%
+    \pgfplotstableread{figures/data/vortex_erreur_volume_vs_time_0.001.dat}   {\datatable}
+    \pgfplotstablegetcolsof{\datatable}
+    \pgfmathtruncatemacro\numberofcols{\pgfplotsretval-1}
+    \pgfplotsinvokeforeach{2,...,\numberofcols}{
+      \pgfplotstablegetcolumnnamebyindex{#1}\of{\datatable}\to{\colname}
+      \addplot+ table [y index=#1] from \datatable;%
+  	  \addlegendentryexpanded{$\mathrm{dof} = \colname$}
+    }%
+  \end{semilogyaxis}%
+  \end{tikzpicture}%
+  \caption{Évolution de l'erreur relative en volume au cours du temps, pour différents niveaux de discrétisation spatiale. Le schéma de Runge-Kutta explicite à l'ordre 4 est utilisé pour l'intégration temporelle, avec un pas de temps $\Delta t = 0.001$.}
+\end{figure}
 
 \subsection{Propagation à vitesse normale uniforme}
 cube en expansion
+\begin{figure}
+	\centering
+	%\textit{snapshots surface déformée}
+	\newdimen\imwid
+	\imwid=0.32\linewidth
+	\begin{tikzpicture}
+		\foreach [count=\i] \l in {{0}, {1}, {2}}
+		{%
+			\node (im\i) at (\i\imwid,0) {\includegraphics[width=\imwid]{figures/cube_brep_t\i}};
+			\node[inner sep=0pt] (lab\i) at (im\i.south) {$t = \l$};
+		}%
+	\end{tikzpicture}
+	\caption{\ldots}
+	\label{fig:snapshots_cube}
+\end{figure}
 
-\subsection{Propagation à vitesse normale non uniforme}
+\subsection{Propagation à vitesse normale non uniforme?}
 ?

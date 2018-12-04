@@ -5,7 +5,7 @@
 % POLICES
 \usepackage{lmodern} % lmodern pour le mode math...
 \edef\oldtt{\ttdefault} % et le mode typewriter
-\usepackage{libertine} % libertine comme police principale
+\usepackage[oldstyle, proportional]{libertine} % libertine comme police principale
 \renewcommand{\ttdefault}{\oldtt}
 \usepackage[scaled=0.875]{helvet} % helvetica comme police sans serif
 \usepackage{slantsc} % slanted small caps
@@ -42,6 +42,7 @@
 ]{microtype}
 \SetTracking{encoding={*}, shape=sc}{40} % reduce space between small cap letters
 %\microtypecontext{spacing=nonfrench} % si texte en anglais
+\frenchspacing
 
 
 %Reduce widows  (the last line of a paragraph at the start of a page) and orphans (the first line of paragraph at the end of a page)

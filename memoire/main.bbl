@@ -90,6 +90,11 @@
 \newblock {\itshape Computer Aided Geometric Design\/}, {\bfseries 5}~(3)~:~pp.
   195--208, 1988.
 
+\bibitem{mason2002}
+{\scshape J.~Mason} et {\scshape D.~Handscomb}.
+\newblock {\itshape {Chebyshev Polynomials}\/}.
+\newblock CRC Press, 2002.
+
 \bibitem{clenshaw1955}
 {\scshape C.~Clenshaw}.
 \newblock {A note on the summation of Chebyshev series}.
@@ -101,11 +106,6 @@
 \newblock Pseudospectral solution of atmospheric diffusion problems.
 \newblock {\itshape Journal of computational Physics\/}, {\bfseries
   26}~(1)~:~pp. 87--106, 1978.
-
-\bibitem{mason2002}
-{\scshape J.~Mason} et {\scshape D.~Handscomb}.
-\newblock {\itshape {Chebyshev Polynomials}\/}.
-\newblock CRC Press, 2002.
 
 \bibitem{rahimian2015}
 {\scshape A.~Rahimian}, {\scshape S.~K. Veerapaneni}, {\scshape D.~Zorin} et
@@ -237,6 +237,13 @@
   meshes}.
 \newblock {\itshape Procedia Engineering\/}, {\bfseries 203}~:~pp. 115--127,
   2017.
+
+\bibitem{foucault2008}
+{\scshape G.~Foucault}.
+\newblock {\itshape {Adaptation de Modèles CAO Paramétrés en vue d'une
+  Analyse de Comportement Mécanique par {\'E}léments Finis}\/}.
+\newblock Thèse de Doctorat, {Institut National Polytechnique de Grenoble},
+  2008.
 
 \bibitem{canuto2006}
 {\scshape C.~Canuto}, {\scshape M.~Y. Hussaini}, {\scshape A.~Quarteroni} et

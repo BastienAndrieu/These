@@ -1,0 +1,30 @@
+\newdimen\imwid
+\imwid=0.49\linewidth
+\newdimen\rad
+\rad=0.1\imwid
+\newdimen\ticklen
+\ticklen=3pt
+\newdimen\imyshift
+\imyshift=\rad
+\begin{tikzpicture}[%
+	img/.style={inner sep=0pt},%
+	txt/.style={font=\small, inner sep=2pt},%
+	axe/.style={line width=0.5pt}%
+	]%
+	%
+	\node[anchor=south east, yshift=-\imyshift] (im1) {\includegraphics[width=\imwid]{figures/snap_001}};
+	\node[anchor=north east, yshift=-\imyshift] (im2) {\includegraphics[width=\imwid]{figures/snap_002}};
+	\node[anchor=north west, yshift=-\imyshift] (im3) {\includegraphics[width=\imwid]{figures/snap_003}};
+	\node[anchor=south west, yshift=-\imyshift] (im4) {\includegraphics[width=\imwid]{figures/snap_005}};
+    %
+    \draw[-latex', axe] (0,0) + (-225:\rad) arc(-225:90:\rad) node[txt, above] {$t/T$};
+    \draw[axe, dash pattern=on 2pt off 2pt] (0,0) + (-225:\rad) arc(-225:-255:\rad);
+    \foreach \a in {135,45,-45,-135}
+    {%
+    	\draw[axe] (\a:\rad-0.5\ticklen)--(\a:\rad+0.5\ticklen);
+    }%
+    \node[anchor=south east, txt] at (135:\rad) {$0$} ;
+    \node[anchor=north east, txt] at (-135:\rad) {$1/8$} ;
+    \node[anchor=north west, txt] at (-45:\rad) {$1/4$} ;
+    \node[anchor=south west, txt] at (45:\rad) {$1/2$} ;
+\end{tikzpicture}

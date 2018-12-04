@@ -1,4 +1,4 @@
-\chapter{Méthode d'ordre élevé pour le suivi d'un patch rectangulaire de surface}
+\chapter{Méthode d'ordre élevé pour le suivi d'un carreau de surface}%patch surfacique rectangulaire}
 \label{chap:methode_ps}
 
 \textit{on veut mettre au point une méthode numérique (discrétisations spatiale et temporelle) pour le suivi d'un seul patch rectangulaire de surface de continuité géométrique élevée (infinie), qui servira de base pour  mettre en \oe uvre l'algorithme du \autoref{chap:algo_general}}
@@ -48,7 +48,8 @@ on choisit les polynômes de Chebyshev, couramment employés dans les méthodes 
 fonctions d'une variable
 \begin{itemize}
 	\item orthogonalité $\Rightarrow$ aspect multirésolution, élévation/réduction de degré directe et quasi-optimale (d'ailleurs utilisé en CAO \cite{lachance1988})
-	\item série tronquée $\truncseries{f}{N}$, erreur de troncature
+	\item série tronquée $\truncseries{f}{N}$, erreur de troncature, précision spectrale :\\
+si $f \in C^p(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002} (illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$)
 	\item interpolant $\interpolant{f}{N}$, erreur d'aliasing
 	\item CGL $\to$ DCT, transformation rapide
 \end{itemize}
@@ -70,17 +71,13 @@ algorithme de sommation de Clenshaw exploitant la relation de récurrence \eqref
 \subsubsection{Dérivation}
 \begin{itemize}
 	\item matrice de dérivation (espace physique)
-	\item formule de récurrence (espace spectral), remarque de \cite[Section 2.3, p~.94]{wengle1978}%, \cite[p.~46]{peyret2013}
+	\item formule de récurrence (espace spectral), remarque de \cite[Section~2.3, p~.94]{wengle1978}%, \cite[p.~46]{peyret2013}
 \end{itemize}
 
 \subsubsection{Quadrature}
 Clenshaw-Curtis\\
-calcul (approché) longueur de courbe/aire de surface
+calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est généralement pas polynomiale)
 
-\subsubsection{Précision spectrale}
-Si $f \in C^p(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002}.\\
-\paragraph{Remarque.}
-illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$
 
 
 

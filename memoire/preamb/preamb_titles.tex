@@ -18,10 +18,10 @@
 }
 
 % Table of contents style
-\renewcommand*{\contentsname}{Table of contents}
-\renewcommand*{\cftchapterfont}{\titlefont\bfseries}
-
-
+\renewcommand*{\cftchapterfont}{\titlefont\scshape}%\bfseries}
+%\renewcommand{\cftdot}{\ensuremath{\cdot}}
+\renewcommand*{\cftdotsep}{\cftnodots} % no dotted lines in ToC
+\renewcommand*{\cftparskip}{1pt}
 
 \maxtocdepth{subsection}
 
@@ -69,8 +69,8 @@
 \setlength{\vbartipthck}{0.15pt}
 
 \renewcommand{\chapnamefont}{\scshape\titlefont}
-\renewcommand{\chapnumfont}{\normalfont\titlefont\fontsize{\numberheight}{0mm}\selectfont}
-\renewcommand{\chaptitlefont}{\normalfont\titlefont\bfseries\huge}%
+\renewcommand{\chapnumfont}{\titlefont\normalfont\fontsize{\numberheight}{0mm}\selectfont}
+\renewcommand{\chaptitlefont}{\titlefont\scshape\huge}%
 \renewcommand{\printchaptername}{}%\chapnamefont\@chapapp}
 \renewcommand{\chapternamenum}{}
 \renewcommand{\printchapternum}{}
@@ -102,7 +102,7 @@
 				%
 				\ifNoChapNumber%
                     \node[%draw=red, dashed,%*****
-					anchor=north east,%
+					anchor= east,%
 					%yshift=\yshiftchapname,%
 					%xshift=-\foremargin,%
 					text width=\textwidth,%
@@ -112,7 +112,7 @@
 					]%
 					(chapttl)%
 					at ([xshift=-\foremargin, yshift=\yshiftchapname] current page.north east)%
-					{\chaptitlefont\color{colchapttl}##1\par};
+					{{\chaptitlefont\color{colchapttl}##1\par}};
 					%\draw[black, thick]%
 					%	([xshift=\vbarxshift, yshift= \vbaryshift] chapttl.north east)%
 					%	--%
@@ -120,7 +120,7 @@
 					%\relax%
 				\else%
                     \node[%draw=red, dashed,%*****
-					anchor=north east,%
+					anchor= east,%
 					%yshift=\yshiftchapname,%
 					%xshift=-\foremargin,%
 					text width=\textwidth-\vbarxshift,%
@@ -130,15 +130,15 @@
 					]%
 					(chapttl)%
 					at ([xshift=-\foremargin-\vbarxshift, yshift=\yshiftchapname] current page.north east)%
-					{\chaptitlefont\color{colchapttl}##1\par};%
+					{{\chaptitlefont\color{colchapttl}##1\par}};%
 					\node[%draw=blue, dashed,%*****
-						anchor=north west,%west,%
+						anchor= west,%west,%
 						align=left,%
 						xshift=2\vbarxshift,%
 						inner sep=0mm%
 						]%
 						(chapnum)% 
-						at (chapttl.north east)%(chapttl.east)%
+						at (chapttl.east)%(chapttl.east)%
 						{\color{colchapttl}\chapnumfont\thechapter};%
 					%
 					%\draw[blue, very thick, dotted] (chapnum.west) -- (chapnum.east);%*****
@@ -210,7 +210,7 @@
 
 
 %% Sections
-\setsecheadstyle{\color{colchapttl}\titlefont\Large\bfseries}%\raggedright}
+\setsecheadstyle{\color{colchapttl}\titlefont\scshape\Large}%\bfseries}%\raggedright}
 \setbeforesecskip{-2\onelineskip}
 \setaftersecskip{\onelineskip}
 \setsecindent{0pt}

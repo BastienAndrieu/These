@@ -8,7 +8,7 @@
 \makeoddfoot{mypagestylezero}{}{}{} 
 \makeevenfoot{mypagestylezero}{}{}{} 
 \makeevenhead{mypagestylezero}{\thepage}{}{\headingsfont\small\leftmark}
-\makeoddhead{mypagestylezero}{\headingsfont\small\rightmark}{}{\thepage}
+\makeoddhead{mypagestylezero}{\itshape\headingsfont\small\rightmark}{}{\thepage}
 \makepsmarks{mypagestylezero}{%
 	\nouppercaseheads
 	\createmark{chapter}{both}{nonumber}{}{ \ }%. \ }%
@@ -61,6 +61,7 @@
 
 
 \makepagestyle{myruledpagestyle} 
+%\makeevenhead{myruledpagestyle}{\liningnums{\thepage}}{}{\leftmark} \makeoddhead{myruledpagestyle}{\rightmark}{}{\liningnums{\thepage}}
 \makeevenhead{myruledpagestyle}{\thepage}{}{\leftmark} \makeoddhead{myruledpagestyle}{\rightmark}{}{\thepage}
 \makeatletter
 \makepsmarks{myruledpagestyle}{ 
@@ -75,7 +76,7 @@
     \scshape ##1}}{}%
   } 
   \def\sectionmark##1{\markright{% 
-    {\small\headingsfont%
+    {\small\headingsfont\itshape%
     \ifnum \value{secnumdepth} > 0 %
     	\thesection \ %. \ % 
     \fi %

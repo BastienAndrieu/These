@@ -48,29 +48,11 @@ $\to$ formulation plus générale (approche ``géométrique'') : principe de Huy
   	fill=ballcolor}}%
   \tikzset{fade/.style = {%
   dash pattern=on 1.33pt off 2pt on 2pt off 2pt on 3pt off 2pt on 20pt}}%
+  \tikzset{lbl/.style = {font=\footnotesize, inner sep=2pt}}%
   %
   \DTLsetseparator{ }%
   \DTLloaddb[noheader,keys={x,y,r}]{circdata}{figures/data/huygens_principle_circ.dat}%
   \DTLloaddb[noheader,keys={x,y,u,v}]{nordata}{figures/data/huygens_principle_nor.dat}%
-  %
-%  \vspace{\onelineskip}
-%  \null\hfill\parbox{0.49\linewidth}{%
-%    \centering
-%    \resizebox{\linewidth}{!}{\input{figures/huygens_principle_eos.tikz}}
-%    }\hfill
-%  \parbox{0.49\linewidth}{%
-%    \centering
-%    \resizebox{\linewidth}{!}{\input{figures/huygens_principle_eob.tikz}}
-%    }\hfill\null
-%  \vspace{\onelineskip}%\hrule
-%  \null\hfill\parbox[t]{0.49\linewidth}{%
-%  	\caption{Principe de Huygens.}%
-%  	\label{fig:huygens_eos}%
-%  }\hfill
-%  \parbox[t]{0.49\linewidth}{%
-%    \caption{Avec condition d'entropie.}%
-%    \label{fig:huygens_eob}%
-%  }\hfill\null
   %
   \hspace*{\fill}
   \subbottom[Enveloppe des sphères.]{
@@ -85,6 +67,7 @@ $\to$ formulation plus générale (approche ``géométrique'') : principe de Huy
   \label{fig:huygens_principle}
   %
 \end{figure}
+
 
 \par
 %\section*{État de l'art}
@@ -103,8 +86,9 @@ point de vue eulérien $\to$ représentation implicite
 \subsection{Description lagrangienne}
 point de vue lagrangien $\to$ représentation explicite
 \begin{itemize}
-	\item ex. : \eng{front-tracking} \cite{popinet1999, tryggvason2001}, \eng{face-offsetting} \cite{jiao2007}, \etc
-	\item[+] : fine résolution des quantités géométriques, application directe et précise des conditions aux limites ;
+	\item ex. : suivi de front (\eng{front-tracking}) \cite{popinet1999, tryggvason2001} (suivi lagrangien de marqueurs surfaciques, en 2d l'interface est interpolée par une spline cubique, en 3d elle est triangulée), \eng{face-offsetting} \cite{jiao2007} (les faces du maillage sont transportées et les position des sommets sont reconstruites), \etc
+%	\item[+] : fine résolution des quantités géométriques, application directe et précise des conditions aux limites ;
+	\item[+] : la description lagrangienne permet de résoudre finement les quantités géométriques propres à l'interface. En outre, lorsque celle-ci constitue une frontière, la représentation explicite facilite l'application de conditions aux limites particulières.
 	\item[-] : supporte mal les grandes déformations, besoin de redistribuer les marqueurs (voire de remailler complètement), nécessite traitement explicite des changements topologiques (complexe en 3d);
 \end{itemize}
 

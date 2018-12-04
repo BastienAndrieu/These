@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % preambules
-\usepackage[french]{babel}
+%\usepackage[french]{babel} % problemes avec macros pgf
 \input{preamb/preamb_main}
 
 
@@ -19,6 +19,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% templates figures
+\input{figures/vortex_erreur_vs_dof_template}
+
+\renewcommand{\bibname}{Bibliographie}
+\renewcommand{\contentsname}{Table des matières}
+
 \begin{document}
 \renewcommand*\chapterautorefname{Chapitre}
 \renewcommand*\sectionautorefname{Section}
@@ -26,6 +32,8 @@
 \renewcommand*\appendixautorefname{Annexe}
     
 % AVANT-PROPOS
+\frontmatter
+\pagenumbering{roman}
 %\include{frontmatter/remerciements}
 %\include{frontmatter/abstract}
 %\include{frontmatter/resume}
@@ -59,6 +67,10 @@
 
 % APPENDICES
 \appendix
+
+\include{appendix/cdv_affine}
+\include{appendix/obb_chebyshev}
+
 %\chapter{Une annexe}
 %\label{annex:test}
 %\lipsum[1-5]
@@ -73,6 +85,6 @@
 %\pagestyle{mypagestylebiblio} % workaround for correct headings
 \bibliographystyle{mybibstyle}
 %\bibliography{biblio}
-\bibliography{biblio/intersections,biblio/chebyshev,biblio/interface_propagation,biblio/spectral,biblio/moving_geometries,biblio/mesh.bib}
+\bibliography{biblio/intersections,biblio/chebyshev,biblio/interface_propagation,biblio/spectral,biblio/moving_geometries,biblio/mesh.bib,biblio/cad}
 
 \end{document}

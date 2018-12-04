@@ -1,0 +1,18 @@
+\newdimen\imwid
+\imwid=0.49\linewidth
+\def\imangle{0}%180}
+\begin{tikzpicture}[%
+	img/.style={inner sep=0pt},%
+	txt/.style={font=\normalsize, inner sep=2pt}%
+	]%
+	%
+	\node[anchor=south east, yshift=-\imyshift] (im1) {\includegraphics[width=\imwid, angle=\imangle]{figures/snap_001}};
+	\node[anchor=south west, yshift=-\imyshift] (im2) {\includegraphics[width=\imwid, angle=\imangle]{figures/snap_002}};
+	\node[anchor=north east, yshift=-\imyshift] (im3) {\includegraphics[width=\imwid, angle=\imangle]{figures/snap_003}};
+	\node[anchor=north west, yshift=-\imyshift] (im4) {\includegraphics[width=\imwid, angle=\imangle]{figures/snap_005}};
+    %
+    \node[anchor=south west, txt] at (im1.south west) {$t=0$} ;
+    \node[anchor=south west, txt] at (im2.south west) {$t=T/8$} ;
+    \node[anchor=south west, txt] at (im3.south west) {$t=T/4$} ;
+    \node[anchor=south west, txt] at (im4.south west) {$t=T/2$} ;
+\end{tikzpicture}
