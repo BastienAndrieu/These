@@ -1,0 +1,58 @@
+\def\Rx{20}
+\def\Ry{-5}
+\def\Rz{20}
+
+\def\cx{0.2}
+\def\cy{2}
+\def\cz{0.1}
+
+\def\lena{2.28}
+\def\lenb{1.08}
+\def\lenc{0.54}
+\def\lend{0.3}
+
+\begin{pspicture}(-1.5,-2)(2,2)
+\psset{%
+viewpoint=10 -20 15 rtp2xyz,
+Decran=30,
+lightintensity=2,
+lightsrc=21 -20 7,
+linewidth=0.6pt,unit=1cm}
+%
+\psSolid[
+	object=parallelepiped,
+	a=\lena,b=\lenb,c=\lenc,
+	fillcolor=white,
+	action=draw*,
+	RotX=\Rx,RotY=\Ry,RotZ=\Rz
+](\cx,\cy,\cz)
+%%
+\psPoint(\cx,\cy,\cz){c}
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](0.3 0 0)(\cx,\cy,\cz){e1}
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](0 0.3 0)(\cx,\cy,\cz){e2}
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](0 0 0.3)(\cx,\cy,\cz){e3}
+\psline{->}(c)(e1)
+\psline{->}(c)(e2)
+\psline{->}(c)(e3)
+\uput{3pt}[190](c){$\mathbf{c}$}
+\uput{3pt}[-10](e1){$\mathbf{e}_1$}
+\uput{3pt}[15](e2){$\mathbf{e}_2$}
+\uput{3pt}[100](e3){$\mathbf{e}_3$}
+%
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](1.14 -0.56 -0.27)(\cx,\cy,\cz){p1}
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](0 -0.56 -0.27)(\cx,\cy,\cz){p2}
+\pcline[offset=0.2]{<->}(p1)(p2)
+\naput{$a_1$}
+%
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](1.14 0.56 -0.27)(\cx,\cy,\cz){p3}
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](1.14 0 -0.27)(\cx,\cy,\cz){p4}
+\pcline[offset=0.2]{<->}(p3)(p4)
+\naput{$a_2$}
+%
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](1.14 0.56 0.27)(\cx,\cy,\cz){p5}
+\psTransformPoint[RotX=\Rx,RotY=\Ry,RotZ=\Rz](1.14 0.56 0)(\cx,\cy,\cz){p6}
+\pcline[offset=0.2]{<->}(p5)(p6)
+\naput{$a_3$}
+%
+%\axesIIID[showOrigin=false](0,0,0)(\lend,\lend,\lend)
+\end{pspicture}

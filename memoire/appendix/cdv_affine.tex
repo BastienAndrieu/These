@@ -35,7 +35,7 @@ On pose
 Il vient alors
 \begin{align*}
 	\sum_{n=0}^N \hat{q}_n T_n(x)
-	&= \sum_{n=0}^N \sum_{k=0}^{n} \lambda_{k,n} \hat{p}_n T_k(x) \\
+	&= \sum_{n=0}^N \sum_{k=0}^{n} \lambda_{k,n} \hat{p}_n T_k(x), \\
 	&= \sum_{k=0}^N \sum_{n=n}^{N} \lambda_{k,n} \hat{p}_n T_k(x),
 \end{align*}
 %\begin{align*}
@@ -68,7 +68,7 @@ D'après la relation de récurrence \eqref{eq:recurrence_chebyshev}, on a égale
 	\label{eq:recurrence_axpb}
 \end{equation}
 %
-Pour tous entiers $m$ et $n$, $2 T_m T_n = T_{m+n} + T_{\left|m - n\right|}$. On a donc%, en injectant \eqref{eq:combinaison_cdv} dans \eqref{eq:recurrence_axpb},
+Pour tous entiers $i$ et $j$, $2 T_i T_j = T_{i+j} + T_{\left|i - j\right|}$. On a donc%, en injectant \eqref{eq:combinaison_cdv} dans \eqref{eq:recurrence_axpb},
 \begin{align*}
 	2 \alpha x T_{n-1}(\axpb) &=
 	2 \alpha \sum_{k=0}^{n-1} \lambda_{k,n-1} T_1(x) T_k(x) \\
@@ -82,7 +82,7 @@ On obtient ainsi, en injectant \eqref{eq:combinaison_cdv} dans \eqref{eq:recurre
 	\sum_{l=1}^{n} \lambda_{l,n-1} T_l(x) +
 	\sum_{j=0}^{n-2} \lambda_{j,n-1} T_j(x) +
 	\lambda_{0,n-1} T_1(x)
-	\right) \\
+	\right), \\
 	&+ 2 \beta \sum_{k=0}^{n-1} \lambda_{k,n-1} T_k(x)
 	- \sum_{k=0}^{n-2} \lambda_{k,n-2} T_k(x).
 \end{align*}

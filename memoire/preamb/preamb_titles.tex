@@ -18,15 +18,17 @@
 }
 
 % Table of contents style
-\renewcommand*{\cftchapterfont}{\titlefont\scshape}%\bfseries}
+\renewcommand*{\cftchapterfont}{\titlefont\large\scshape}%\bfseries}
+\renewcommand*{\cftchapterformatpnum}{\titlefont\large\normalfont}%\bfseries}
 %\renewcommand{\cftdot}{\ensuremath{\cdot}}
 \renewcommand*{\cftdotsep}{\cftnodots} % no dotted lines in ToC
 \renewcommand*{\cftparskip}{1pt}
+\setlength{\cftbeforechapterskip}{\onelineskip}
 
 \maxtocdepth{subsection}
 
 % Titles
-\colorlet{colchapttl}{mydarkgray}%black}%DodgerBlue3}%
+\colorlet{colchapttl}{black}%mydarkgray}%DodgerBlue3}%
 
 
 

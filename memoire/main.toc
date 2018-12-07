@@ -5,8 +5,8 @@
 \contentsline {subsection}{\numberline {1.2.2}Principe de Huygens avec condition d'entropie}{1}{subsection.1.2.2}
 \contentsline {section}{\numberline {1.3}M\IeC {\'e}thodes num\IeC {\'e}riques pour le suivi d'interfaces}{2}{section.1.3}
 \contentsline {subsection}{\numberline {1.3.1}Description eul\IeC {\'e}rienne}{2}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Description lagrangienne}{2}{subsection.1.3.2}
-\contentsline {section}{\numberline {1.4}Cadre de la th\IeC {\`e}se}{2}{section.1.4}
+\contentsline {subsection}{\numberline {1.3.2}Description lagrangienne}{3}{subsection.1.3.2}
+\contentsline {section}{\numberline {1.4}Cadre de la th\IeC {\`e}se}{3}{section.1.4}
 \contentsline {section}{\numberline {1.5}Repr\IeC {\'e}sentation par les fronti\IeC {\`e}res}{3}{section.1.5}
 \contentsline {section}{\numberline {1.6}Contributions}{3}{section.1.6}
 \contentsline {section}{\numberline {1.7}Organisation du manuscrit}{3}{section.1.7}
@@ -54,9 +54,11 @@
 \contentsline {section}{\numberline {5.4}Approche avanc\IeC {\'e}e}{18}{section.5.4}
 \contentsline {chapter}{\chapternumberline {6}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{19}{chapter.6}
 \contentsline {chapter}{Conclusion}{21}{chapter*.2}
-\contentsline {appendix}{\chapternumberline {A}Reparam\IeC {\'e}trisation affine}{23}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Construction de bo\IeC {\^\i }tes englobantes orient\IeC {\'e}es}{25}{appendix.B}
-\contentsline {section}{\numberline {B.1}D\IeC {\'e}finition}{25}{section.B.1}
-\contentsline {section}{\numberline {B.2}Bo\IeC {\^\i }te englobant une courbe}{25}{section.B.2}
-\contentsline {section}{\numberline {B.3}Bo\IeC {\^\i }te englobant une surface}{25}{section.B.3}
-\contentsline {chapter}{Bibliographie}{27}{section*.5}
+\contentsline {appendix}{\chapternumberline {A}Construction de volumes englobants}{23}{appendix.A}
+\contentsline {section}{\numberline {A.1}D\IeC {\'e}finition}{23}{section.A.1}
+\contentsline {section}{\numberline {A.2}Base de Chebyshev}{23}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Bo\IeC {\^\i }te englobant une courbe}{24}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Bo\IeC {\^\i }te englobant une surface}{24}{subsection.A.2.2}
+\contentsline {section}{\numberline {A.3}Base de Bernstein}{25}{section.A.3}
+\contentsline {appendix}{\chapternumberline {B}Reparam\IeC {\'e}trisation affine}{27}{appendix.B}
+\contentsline {chapter}{Bibliographie}{29}{section*.5}

@@ -46,9 +46,11 @@
 \BOOKMARK [1][]{section.5.4}{5.4 Approche avanc\351e}{chapter.5}% 46
 \BOOKMARK [0][]{chapter.6}{6 Application \340 la simulation de la r\351gression de propergol solide}{}% 47
 \BOOKMARK [0][]{chapter*.2}{Conclusion}{}% 48
-\BOOKMARK [0][]{appendix.A}{A Reparam\351trisation affine}{}% 49
-\BOOKMARK [0][]{appendix.B}{B Construction de bo\356tes englobantes orient\351es}{}% 50
-\BOOKMARK [1][]{section.B.1}{B.1 D\351finition}{appendix.B}% 51
-\BOOKMARK [1][]{section.B.2}{B.2 Bo\356te englobant une courbe}{appendix.B}% 52
-\BOOKMARK [1][]{section.B.3}{B.3 Bo\356te englobant une surface}{appendix.B}% 53
-\BOOKMARK [0][]{section*.5}{Bibliographie}{}% 54
+\BOOKMARK [0][]{appendix.A}{A Construction de volumes englobants}{}% 49
+\BOOKMARK [1][]{section.A.1}{A.1 D\351finition}{appendix.A}% 50
+\BOOKMARK [1][]{section.A.2}{A.2 Base de Chebyshev}{appendix.A}% 51
+\BOOKMARK [2][]{subsection.A.2.1}{A.2.1 Bo\356te englobant une courbe}{section.A.2}% 52
+\BOOKMARK [2][]{subsection.A.2.2}{A.2.2 Bo\356te englobant une surface}{section.A.2}% 53
+\BOOKMARK [1][]{section.A.3}{A.3 Base de Bernstein}{appendix.A}% 54
+\BOOKMARK [0][]{appendix.B}{B Reparam\351trisation affine}{}% 55
+\BOOKMARK [0][]{section*.5}{Bibliographie}{}% 56

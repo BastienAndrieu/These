@@ -1,10 +1,13 @@
 \usepackage{graphicx}
 
 \usepackage{pgf, pgfplots, pgfplotstable}
-\usepgfplotslibrary{external}%, clickable}
+\usepgfplotslibrary{external, colormaps, patchplots}%, clickable}
 \usepackage{datatool}
 %https://axiomatic.neophilus.net/using-datatool-and-tikz-to-generate-figures-from-data/
 
+%\usepackage{auto-pst-pdf}
+\usepackage{pst-solides3d,pstricks-add}
+%\usepackage[locale=DE]{siunitx}
 
 \pgfplotsset{compat=newest}
 
@@ -52,6 +55,10 @@
 \pgfplotsset{
     /pgfplots/layers/Bowpark/.define layer set={
         axis background,axis grid,main,axis ticks,axis lines,axis tick labels,
+        axis descriptions,axis foreground
+    }{/pgfplots/layers/standard},
+    /pgfplots/layers/mylayerset/.define layer set={
+        axis background,axis grid,axis ticks,axis lines,main,axis tick labels,
         axis descriptions,axis foreground
     }{/pgfplots/layers/standard},
 }

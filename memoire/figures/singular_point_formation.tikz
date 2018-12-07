@@ -1,0 +1,55 @@
+\definecolor{vectorcolor}{HTML}{F93802}
+\definecolor{frontcolor}{HTML}{000000}
+\tikzset{
+  front/.style = {%
+    frontcolor, %
+    line width=0.8pt, %
+    line join=round},%
+  vector/.style = {%
+    -latex', %
+    line width=0.5pt, %
+    vectorcolor, %
+    shorten >= -2.5pt},%
+  fade/.style = {%
+    dash pattern=on 1.33pt off 2pt on 2pt off 2pt on 3pt off 2pt on 3.5pt off 2pt on 20pt},%
+  lbl/.style = {font=\footnotesize, inner sep=2pt}}%
+%
+\DTLsetseparator{ }%
+\DTLloaddb[noheader,keys={x,y,u,v}]{nor0}{figures/data/singularpointformation_nor_0.dat}%
+%\DTLloaddb[noheader,keys={x,y,u,v}]{nor1}{figures/data/singularpointformation_nor_1.dat}%
+%\DTLloaddb[noheader,keys={x,y,u,v}]{nor2}{figures/data/singularpointformation_nor_2.dat}%
+\DTLloaddb[noheader,keys={x,y}]{xysing}{figures/data/singularpointformation_xysing.dat}%
+\begin{tikzpicture}
+	%
+	\DTLforeach*{nor0}{\x=x, \y=y, \u=u, \v=v}%
+	  {%
+		\draw[vector] (\x,\y) -- ++ (\u,\v);
+	  }%
+	%
+%	\DTLforeach*{nor1}{\x=x, \y=y, \u=u, \v=v}%
+%	  {%
+%		\draw[vector] (\x,\y) -- ++ (\u,\v);
+%	  }%
+%	\DTLforeach*{nor2}{\x=x, \y=y, \u=u, \v=v}%
+%	  {%
+%		\draw[vector] (\x,\y) -- ++ (\u,\v);
+%	  }%
+	%
+	\draw[front, fade] plot file {figures/data/singularpointformation_front_0_1.dat};
+	\draw[front] plot file {figures/data/singularpointformation_front_0_2.dat};
+	\draw[front, fade] plot file {figures/data/singularpointformation_front_0_3.dat};
+	%
+	\draw[front, fade] plot file {figures/data/singularpointformation_front_1_1.dat};
+	\draw[front] plot file {figures/data/singularpointformation_front_1_2.dat};
+	\draw[front, fade] plot file {figures/data/singularpointformation_front_1_3.dat};
+	%
+	\draw[front, fade] plot file {figures/data/singularpointformation_front_2_1.dat};
+	\draw[front] plot file {figures/data/singularpointformation_front_2_2.dat};
+	\draw[front, fade] plot file {figures/data/singularpointformation_front_2_3.dat};
+	%
+	\DTLassign{xysing}{1}{\x=x,\y=y}%
+	\fill[black] (\x,\y) circle(1.2pt);
+	%\draw[myred, dashed, line width=0.3pt] (\x,\y) circle(5pt);
+%	\node[lbl, anchor=north west, xshift=-3pt, yshift=-2pt] at (\x,\y) {$\Gamma(t_0)$};
+%	\node[lbl, anchor=south east, xshift=-4pt, yshift=12\r] at (\x,\y) {$\Gamma(t_1)$};
+\end{tikzpicture}

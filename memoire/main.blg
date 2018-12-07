@@ -8,8 +8,8 @@ A level-1 auxiliary file: mainmatter/chap3.aux
 A level-1 auxiliary file: mainmatter/chap4.aux
 A level-1 auxiliary file: mainmatter/chap5.aux
 A level-1 auxiliary file: mainmatter/concl.aux
+A level-1 auxiliary file: appendix/obb.aux
 A level-1 auxiliary file: appendix/cdv_affine.aux
-A level-1 auxiliary file: appendix/obb_chebyshev.aux
 The style file: mybibstyle.bst
 Database file #1: biblio/intersections.bib
 Database file #2: biblio/chebyshev.bib
@@ -22,7 +22,7 @@ Warning--empty booktitle in fournier1994
 Warning--can't use both volume and number fields in fournier1994
 You've used 44 entries,
             2278 wiz_defined-function locations,
-            798 strings with 11747 characters,
+            798 strings with 11737 characters,
 and the built_in function-call counts, 17866 in all, are:
 = -- 1386
 > -- 344
