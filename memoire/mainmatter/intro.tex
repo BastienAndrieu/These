@@ -40,53 +40,53 @@ De tels points singuliers peuvent être présents sur l'interface initiale ou bi
 \subsection{Principe de Huygens avec condition d'entropie}
 $\to$ formulation plus générale (approche ``géométrique'') : principe de Huygens (propagation de proche en proche), enveloppe de sphères (e.g. ondes, cf.~\autoref{subfig:huygens_principle_eos}) ou de boules (e.g. flamme, cf.~\autoref{subfig:huygens_principle_eob}) (condition d'entropie \cite{sethian1999})
 
-\begin{figure}
-  \centering
-  \definecolor{spherecolor}{HTML}{5C98D1}
-  \definecolor{ballcolor}{HTML}{DBEDFF}
-  \definecolor{vectorcolor}{HTML}{F93802}
-  \definecolor{frontcolor}{HTML}{000000}
-  \tikzset{front/.style = {%
-  	frontcolor, %
-  	line width=0.8pt, %
-  	line join=round}}%
-  \tikzset{vector/.style = {%
-  	-latex', %
-  	line width=0.5pt, %
-  	vectorcolor, %
-  	shorten >= -2.5pt}}%
-  \tikzset{sphere/.style = {%
-  	line width=0.3pt, %
-  	dash pattern=on 2.5pt off 1pt, %
-  	spherecolor}}%
-  \tikzset{ball/.style = {%
-  	draw=none, %
-  	fill=ballcolor}}%
-  \tikzset{fade/.style = {%
-  dash pattern=on 1.33pt off 2pt on 2pt off 2pt on 3pt off 2pt on 20pt}}%
-  \tikzset{lbl/.style = {font=\footnotesize, inner sep=2pt}}%
-  %
-  \DTLsetseparator{ }%
-  \DTLloaddb[noheader,keys={x,y,r}]{circdata}{figures/data/huygens_principle_circ.dat}%
-  \DTLloaddb[noheader,keys={x,y,u,v}]{nordata}{figures/data/huygens_principle_nor.dat}%
-  %
-  \hspace*{\fill}
-  \subbottom[Enveloppe des sphères.]{
-  \resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eos}%
-  \input{figures/huygens_principle_eos.tikz}%
-  }
-  }
-  \hfill
-  \subbottom[Enveloppe des boules.]{
-  \resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eob}%
-  \input{figures/huygens_principle_eob.tikz}%
-  }
-  }
-  \hspace*{\fill}
-  \caption{Principe de Huygens.} 
-  \label{fig:huygens_principle}
-  %
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \definecolor{spherecolor}{HTML}{5C98D1}
+%  \definecolor{ballcolor}{HTML}{DBEDFF}
+%  \definecolor{vectorcolor}{HTML}{F93802}
+%  \definecolor{frontcolor}{HTML}{000000}
+%  \tikzset{front/.style = {%
+%  	frontcolor, %
+%  	line width=0.8pt, %
+%  	line join=round}}%
+%  \tikzset{vector/.style = {%
+%  	-latex', %
+%  	line width=0.5pt, %
+%  	vectorcolor, %
+%  	shorten >= -2.5pt}}%
+%  \tikzset{sphere/.style = {%
+%  	line width=0.3pt, %
+%  	dash pattern=on 2.5pt off 1pt, %
+%  	spherecolor}}%
+%  \tikzset{ball/.style = {%
+%  	draw=none, %
+%  	fill=ballcolor}}%
+%  \tikzset{fade/.style = {%
+%  dash pattern=on 1.33pt off 2pt on 2pt off 2pt on 3pt off 2pt on 20pt}}%
+%  \tikzset{lbl/.style = {font=\footnotesize, inner sep=2pt}}%
+%  %
+%  \DTLsetseparator{ }%
+%  \DTLloaddb[noheader,keys={x,y,r}]{circdata}{figures/data/huygens_principle_circ.dat}%
+%  \DTLloaddb[noheader,keys={x,y,u,v}]{nordata}{figures/data/huygens_principle_nor.dat}%
+%  %
+%  \hspace*{\fill}
+%  \subbottom[Enveloppe des sphères.]{
+%  \resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eos}%
+%  \input{figures/huygens_principle_eos.tikz}%
+%  }
+%  }
+%  \hfill
+%  \subbottom[Enveloppe des boules.]{
+%  \resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eob}%
+%  \input{figures/huygens_principle_eob.tikz}%
+%  }
+%  }
+%  \hspace*{\fill}
+%  \caption{Principe de Huygens.} 
+%  \label{fig:huygens_principle}
+%  %
+%\end{figure}
 
 
 \par

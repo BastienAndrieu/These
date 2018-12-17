@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {1.3}M\IeC {\'e}thodes num\IeC {\'e}riques pour le suivi d'interfaces}{2}{section.1.3}
 \contentsline {subsection}{\numberline {1.3.1}Description eul\IeC {\'e}rienne}{2}{subsection.1.3.1}
 \contentsline {subsection}{\numberline {1.3.2}Description lagrangienne}{2}{subsection.1.3.2}
-\contentsline {section}{\numberline {1.4}Cadre de la th\IeC {\`e}se}{3}{section.1.4}
+\contentsline {section}{\numberline {1.4}Cadre de la th\IeC {\`e}se}{2}{section.1.4}
 \contentsline {section}{\numberline {1.5}Repr\IeC {\'e}sentation par les fronti\IeC {\`e}res}{3}{section.1.5}
 \contentsline {section}{\numberline {1.6}Contributions}{3}{section.1.6}
 \contentsline {section}{\numberline {1.7}Organisation du manuscrit}{3}{section.1.7}
@@ -29,9 +29,9 @@
 \contentsline {subsubsection}{\numberline {3.1.2.3}\IeC {\'E}valuation}{12}{subsubsection.3.1.2.3}
 \contentsline {subsubsection}{\numberline {3.1.2.4}D\IeC {\'e}rivation}{12}{subsubsection.3.1.2.4}
 \contentsline {paragraph}{Repr\IeC {\'e}sentation de courbes et de surfaces.}{12}{section*.1}
-\contentsline {subsubsection}{\numberline {3.1.2.5}D\IeC {\'e}rivation}{14}{subsubsection.3.1.2.5}
-\contentsline {subsubsection}{\numberline {3.1.2.6}Quadrature}{14}{subsubsection.3.1.2.6}
-\contentsline {section}{\numberline {3.2}Int\IeC {\'e}gration temporelle}{14}{section.3.2}
+\contentsline {subsubsection}{\numberline {3.1.2.5}D\IeC {\'e}rivation}{13}{subsubsection.3.1.2.5}
+\contentsline {subsubsection}{\numberline {3.1.2.6}Quadrature}{13}{subsubsection.3.1.2.6}
+\contentsline {section}{\numberline {3.2}Int\IeC {\'e}gration temporelle}{13}{section.3.2}
 \contentsline {section}{\numberline {3.3}Instabilit\IeC {\'e}s\ldots }{14}{section.3.3}
 \contentsline {chapter}{\chapternumberline {4}G\IeC {\'e}n\IeC {\'e}ralisation aux surfaces de topologie quelconque}{15}{chapter.4}
 \contentsline {section}{\numberline {4.1}Construction des nouvelles faces}{15}{section.4.1}

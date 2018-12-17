@@ -48,15 +48,15 @@
 
 
 \pgfplotscreateplotcyclelist{setBW}{
-  	black, mark=square*,   mark options ={fill=white}, mark size=1.2pt\\
-	black, mark=*,         mark options ={fill=white}, mark size=1.5pt\\
-	black, mark=triangle*, mark options ={fill=white}, mark size=1.7pt\\
-	black, mark=diamond*,  mark options ={fill=white}, mark size=1.7pt\\
-	black, mark=square*,   mark size=1.2pt\\
-	black, mark=*,         mark size=1.5pt\\
-	black, mark=triangle*, mark size=1.7pt\\
-	black, mark=diamond*,  mark size=1.5pt\\
-	black, mark=square*,   mark size=1.2pt\\
+  	every mark/.append style={solid,fill=white}, mark=square*, mark size=1.2pt\\
+	every mark/.append style={solid,fill=white}, mark=*, mark size=1.5pt\\
+	every mark/.append style={solid,fill=white}, mark=triangle*, mark size=1.7pt\\
+	every mark/.append style={solid,fill=white}, mark=diamond*, mark size=1.7pt\\
+%	black, mark=square*,   mark size=1.2pt\\
+%	black, mark=*,         mark size=1.5pt\\
+%	black, mark=triangle*, mark size=1.7pt\\
+%	black, mark=diamond*,  mark size=1.5pt\\
+%	black, mark=square*,   mark size=1.2pt\\
 }
 
 
@@ -77,6 +77,7 @@
         axis descriptions,axis foreground
     }{/pgfplots/layers/standard},
 }
+
 
 \pgfplotsset{
     ylabel right/.style={

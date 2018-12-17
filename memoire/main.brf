@@ -1,6 +1,6 @@
 \backcite {sethian1999}{{1}{1.2.2}{subsection.1.2.2}}
-\backcite {sethian1999}{{2}{1.3.1}{figure.1.3}}
-\backcite {gueyffier1999}{{2}{1.3.1}{figure.1.3}}
+\backcite {sethian1999}{{2}{1.3.1}{figure.1.2}}
+\backcite {gueyffier1999}{{2}{1.3.1}{figure.1.2}}
 \backcite {popinet1999, tryggvason2001}{{2}{1.3.2}{subsection.1.3.2}}
 \backcite {jiao2007}{{2}{1.3.2}{subsection.1.3.2}}
 \backcite {bruno2007}{{3}{1.4}{section.1.4}}
@@ -19,8 +19,8 @@
 \backcite {bruno2007}{{7}{3.1.1}{subsection.3.1.1}}
 \backcite {mason2002, gil2007}{{8}{3.1.2}{subsection.3.1.2}}
 \backcite {boyd2001, canuto2006}{{8}{3.1.2}{subsection.3.1.2}}
-\backcite {clenshaw1955}{{12}{3.1.2.3}{equation.3.1.24}}
-\backcite {wengle1978}{{14}{3.1.2.5}{subsubsection.3.1.2.5}}
+\backcite {clenshaw1955}{{12}{3.1.2.3}{equation.3.1.26}}
+\backcite {wengle1978}{{13}{3.1.2.5}{subsubsection.3.1.2.5}}
 \backcite {rahimian2015}{{14}{3.3}{section.3.3}}
 \backcite {farouki1986}{{14}{3.3}{section.3.3}}
 \backcite {hahn1989}{{15}{4.1.2.2}{subsubsection.4.1.2.2}}
