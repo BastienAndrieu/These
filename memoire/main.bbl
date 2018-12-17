@@ -68,13 +68,6 @@
   simulations}\/}.
 \newblock Thèse de Doctorat, University of Illinois, Urbana-Champaign, 2001.
 
-\bibitem{veerapaneni2011}
-{\scshape S.~K. Veerapaneni}, {\scshape A.~Rahimian}, {\scshape G.~Biros} et
-  {\scshape D.~Zorin}.
-\newblock {A Fast Algorithm for Simulating Vesicle Flows in Three Dimensions}.
-\newblock {\itshape Journal of Computational Physics\/}, {\bfseries
-  230}~(14)~:~pp. 5610--5634, 2011.
-
 \bibitem{gueyffier2015}
 {\scshape D.~Gueyffier}, {\scshape F.~Roux}, {\scshape Y.~Fabignon}, {\scshape
   G.~Chaineray}, {\scshape N.~Lupoglazoff}, {\scshape F.~Vuillot}, {\scshape
@@ -84,16 +77,35 @@
 \newblock {\itshape Journal of Propulsion and Power\/}, {\bfseries
   31}~(6)~:~pp. 1761 -- 1776, 2015.
 
-\bibitem{lachance1988}
-{\scshape M.~A. Lachance}.
-\newblock Chebyshev economization for parametric surfaces.
-\newblock {\itshape Computer Aided Geometric Design\/}, {\bfseries 5}~(3)~:~pp.
-  195--208, 1988.
+\bibitem{veerapaneni2011}
+{\scshape S.~K. Veerapaneni}, {\scshape A.~Rahimian}, {\scshape G.~Biros} et
+  {\scshape D.~Zorin}.
+\newblock {A Fast Algorithm for Simulating Vesicle Flows in Three Dimensions}.
+\newblock {\itshape Journal of Computational Physics\/}, {\bfseries
+  230}~(14)~:~pp. 5610--5634, 2011.
 
 \bibitem{mason2002}
 {\scshape J.~Mason} et {\scshape D.~Handscomb}.
 \newblock {\itshape {Chebyshev Polynomials}\/}.
 \newblock CRC Press, 2002.
+
+\bibitem{gil2007}
+{\scshape A.~Gil}, {\scshape J.~Segura} et {\scshape N.~M. Temme}.
+\newblock {\itshape {Numerical Methods for Special Functions}\/}.
+\newblock Society for Industrial and Applied Mathematics, Philadelphia, PA,
+  USA, 2007.
+
+\bibitem{boyd2001}
+{\scshape J.~P. Boyd}.
+\newblock {\itshape {Chebyshev and Fourier Spectral Methods}\/}.
+\newblock Dover Books on Mathematics. Dover Publications, Mineola, NY, seconde
+  édition, 2001.
+
+\bibitem{canuto2006}
+{\scshape C.~Canuto}, {\scshape M.~Y. Hussaini}, {\scshape A.~Quarteroni} et
+  {\scshape T.~A. Zang}.
+\newblock {\itshape {Spectral Methods. Fundamentals in Single Domains}\/}.
+\newblock Springer-Verlag Berlin Heidelberg, 2006.
 
 \bibitem{clenshaw1955}
 {\scshape C.~Clenshaw}.
@@ -245,17 +257,11 @@
 \newblock Thèse de Doctorat, {Institut National Polytechnique de Grenoble},
   2008.
 
-\bibitem{canuto2006}
-{\scshape C.~Canuto}, {\scshape M.~Y. Hussaini}, {\scshape A.~Quarteroni} et
-  {\scshape T.~A. Zang}.
-\newblock {\itshape {Spectral Methods. Fundamentals in Single Domains}\/}.
-\newblock Springer-Verlag Berlin Heidelberg, 2006.
-
-\bibitem{gil2007}
-{\scshape A.~Gil}, {\scshape J.~Segura} et {\scshape N.~M. Temme}.
-\newblock {\itshape {Numerical Methods for Special Functions}\/}.
-\newblock Society for Industrial and Applied Mathematics, Philadelphia, PA,
-  USA, 2007.
+\bibitem{lachance1988}
+{\scshape M.~A. Lachance}.
+\newblock Chebyshev economization for parametric surfaces.
+\newblock {\itshape Computer Aided Geometric Design\/}, {\bfseries 5}~(3)~:~pp.
+  195--208, 1988.
 
 \bibitem{campagna1997}
 {\scshape S.~Campagna}, {\scshape P.~Slusallek} et {\scshape H.-P. Seidel}.

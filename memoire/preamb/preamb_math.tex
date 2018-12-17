@@ -9,6 +9,10 @@
 \usepackage{esint}
 
 
+\newtheorem{theoreme}{Théorème}
+\newtheorem{propriete}{Propriété}
+\newtheorem{definition}{Définition}
+
 % Notations
 \newcommand*{\determinant}[1]{\left\lvert {#1} \right\rvert}
 \newcommand*{\inv}[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
@@ -17,9 +21,12 @@
 \newcommand*{\dotprod}[2]{ \transpose{#1} {#2} } % dot product
 \newcommand*{\crossprod}[2]{ {#1} \times {#2} } % cross product
 \newcommand*{\normtwo}[1]{ \left\| {#1} \right\| } % Euclidean norm
+\newcommand*{\norminf}[1]{ \left\| {#1} \right\|_{\infty} } % infinity norm
 \newcommand*{\vit}[1]{\boldsymbol{#1}} % greek letter vector
 \newcommand*{\vrm}[1]{\mathbf{#1}} % latin letter vector
 \newcommand*{\unitized}[1]{ \frac{#1}{\normtwo{#1}} }
+\newcommand*{\scalprod}[2]{\left \langle {#1}, {#2} \right \rangle}
+\newcommand*{\modulo}[1]{\pmod{#1}}%{\left[ {#1} \right]}
 
 \DeclareMathOperator*{\argmin}{\arg\!\min} % argmin
 
@@ -29,7 +36,8 @@
 % sets
 \newcommand{\family}[4]{\left\{{#1}_{#2}\right\}_{{#2}={#3},\ldots,{#4}}}
 \newcommand{\ffamily}[7]{\left\{{#1}_{#2,#5}\right\}_{\substack{{#2}={#3},\ldots,{#4}\\ \substack{{#5}={#6},\ldots,{#7}}}}}
-\newcommand{\polyspace}[1]{\mathbb{R}_{#1}[x]}
+\newcommand{\polyspace}[1]{\Pi_{#1}}%\mathbb{R}_{#1}[x]}
+\newcommand{\Ltwospace}{L^2\chebinterval}%\mathcal{L}_2\chebinterval}
 
 
 \newcommand*{\bx}{\vit{x}}

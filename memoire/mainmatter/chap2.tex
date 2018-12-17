@@ -4,14 +4,28 @@
 \textit{on veut mettre au point une méthode numérique (discrétisations spatiale et temporelle) pour le suivi d'un seul patch rectangulaire de surface de continuité géométrique élevée (infinie), qui servira de base pour  mettre en \oe uvre l'algorithme du \autoref{chap:algo_general}}
 \par\bigskip
 
-
 suivi lagrangien de marqueurs/points de collocation situés sur la surface
 
-\section{Discrétisation spatiale}
+\section{Discrétisation spectrale en espace}%spatiale}
 méthode pseudo-spectrale : solution développée dans une base de fonctions globales et régulières, résidu annulé exactement en un nombre discret de points de collocation, donnant une EDO en temps par point de collocation\par
-Choix des fonctions de base et des marqueurs/points de collocation
+Choix des fonctions de base et des marqueurs/points de collocation\par
 
 \subsection{État de l'art}
+Le choix des fonction de base se pose alors. Celles-ci doivent pouvoir représenter n'importe quel type de solution avec une précision arbitraire, offrir une convergence rapide à mesure que le nombre de degrés de liberté augmente et enfin pouvoir être évaluées efficacement. A ces critères s'ajoutent également des contraintes liées à la topologie de la solution.\par
+
+Traditionnellement, les méthodes spectrales reposent sur les séries de Fourier lorsque la solution est spatialement périodique. 
+Les polynômes trigonométriques ont ainsi été utilisés comme fonctions de base pour représenter un front de flamme dans une configuration quasi-3{\scshape d} \cite{gueyffier2015} (\textbf{reformuler}).
+Lorsque la solution est une surface fermée de genre zéro (\ie\ une sphère topologique), la base des harmoniques sphériques est particulièrement adaptée \cite{veerapaneni2011}.\par
+Les travaux de Bruno \cite{bruno2007} sur une méthode de \eng{continuation} ont permis d'étendre l'usage des polynômes trigonométriques aux surfaces homéomorphes à des disques. 
+Cette approche permet de représenter des surfaces de géométrie complexe et de topologie arbitraire en raccordant des patchs locaux à l'aide de partitions de l'unité.\\
+\textbf{Permet d'éviter Gibbs dans le cas régulier par morceaux}\\
+A l'instar de la méthode proposée dans cette thèse, l'idée est alors de représenter des surfaces de géométrie complexe et de topologie arbitraire à l'aide de paramétrisations locales en construisant un atlas. 
+En revanche, cette approche nécessite la résolution de systèmes linéaires mettant en jeu des matrices de grande taille, pleines et généralement mal conditionnées. 
+En outre, cette méthode n'a à ce jour pas été appliquée pour la déformation de surface.
+%Ce type de discrétisation spectrale a notamment été utilisé pour la représentation de vésicules inextensibles en suspension dans un écoulement fortement visqueux \cite{veerapaneni2011}. 
+%Dans ces travaux, la base des harmoniques sphériques est naturellement adaptée à la topologie des vésicules (genre 0 sans bord).
+%Les polynômes trigonométriques ont également été utilisés comme fonctions de base pour représenter un front de flamme une configuration quasi-3{\scshape d} \cite{gueyffier2015}.
+
 \begin{itemize}
 	\item harmoniques sphériques \cite{veerapaneni2011}, polynômes trigonométriques \cite{gueyffier2015} $\to$ contraintes topologiques (genre 0, sans bord ou périodique) (méthode de continuation \cite{bruno2007} pour s'affranchir de cette contrainte, mais complexe (POUs, \ldots) et jamais utilisé pour des surfaces en mouvement)
 	\item CAO : courbes/surfaces polynomiales (algébriques)/rationnelles (en produit tensoriel) par morceaux (B-splines/NURBS), utilisant la base de Bernstein
@@ -19,54 +33,432 @@ Choix des fonctions de base et des marqueurs/points de collocation
 		B_n^N(x) = \binom{N}{n} \left( 1 - x \right)^{N-n} x^n.
 	\end{equation}
 	\begin{itemize}
-		\item[+] coefficients = points de contrôle dans l'espace physique
-		\item[+] partition de l'unité $\Rightarrow$ propriété d'enveloppe convexe
+		\item[+] coefficients = points de contrôle dans l'espace physique, sens géométrique intuitif
+		\item[+] partition de l'unité sur $\berninterval$ $\Rightarrow$ propriété d'enveloppe convexe
 		\item[-] algorithme d'évaluation (de Casteljau) numériquement stable mais coûteux $\bigO{N^2}$
 		\item[-] points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas exploitables comme marqueurs lagrangiens
 		\item[-] peu pratiques pour réduire/élever le degré des polynômes
 	\end{itemize}
 \end{itemize}
 \bigskip
-on choisit les polynômes de Chebyshev, couramment employés dans les méthodes spectrales dans le cas non-périodique
+on choisit les polynômes de Chebyshev\footnote{En français, le nom de ce mathématicien russe est généralement orthographié \guill{Tchebychev}. Nous utiliserons cependant l'orthographe anglo-saxone, plus couramment utilisée par la communauté scientifique.}, couramment employés dans les méthodes spectrales dans le cas non-périodique
+
+%(Mason, p.81) >>>-----
+%Orthogonal polynomials have a great variety and wealth of properties,
+%many of which are noted in this chapter. Indeed, some of these properties
+%take a very concise form in the case of the Chebyshev polynomials, making
+%Chebyshev polynomials of leading importance among orthogonal polynomi-
+%als — second perhaps to Legendre polynomials (which have a unit weight
+%function), but having the advantage over the Legendre polynomials that the
+%locations of their zeros are known analytically. Moreover, along with the Legendre polynomials, the Chebyshev polynomials belong to an exclusive band
+%of orthogonal polynomials, known as Jacobi polynomials, which correspond
+%to weight functions of the form (1 − x) α (1 + x) β and which are solutions of
+%Sturm–Liouville equations.
+%The Chebyshev polynomials have further properties, which are peculiar
+%to them and have a trigonometric origin, namely various kinds of discrete
+%orthogonality over the zeros of Chebyshev polynomials of higher degree. In
+%consequence, interpolation at Chebyshev zeros can be achieved exceptionally
+%inexpensively (Chapter 6) and Gauss quadrature methods based on Cheby-
+%shev zeros are extremely convenient (Chapter 8).
+%<<<-----
+
+
+
 \subsection{Polynômes de Chebyshev}
+Les polynômes de Chebyshev sont très largement utilisés dans de nombreux domaines tels que l'analyse numérique.
+L'objet des sections suivantes est de rappeler la définition de cette famille 
+de polynômes et d'en présenter brièvement les propriétés remarquables qui seront exploitées dans cette thèse. 
+Nombreux sont les ouvrages consacrés aux polynômes de Chebyshev \cite{mason2002, gil2007} ainsi qu'à leur usage dans les méthodes spectrales \cite{boyd2001, canuto2006}, aussi le lecteur est invité à s'y référer pour plus de détails.
+Des travaux sur une méthode dite de \emph{continuation} \ldots
 
 \subsubsection{Définition}
-	\begin{itemize}
-		\item cos, récurrence, pour $x \in \chebinterval$ 
-		\begin{equation*}
-			T_0(x) = 1, \quad T_1(x) = x,
-		\end{equation*}				
-		et pour $n \geq 2$,
-		\begin{equation}
-			T_n(x) = 2x T_{n-1}(x) - T_{n-2}(x).
-			\label{eq:recurrence_chebyshev}
-		\end{equation}
-		\item extrema (CGL) (minimise phénomène de Runge pour l'interpolation)
-	\end{itemize}
-	
-\subsubsection{Développement en série de Chebyshev, approximation de fonctions}
-fonctions d'une variable
-\begin{itemize}
-	\item orthogonalité $\Rightarrow$ aspect multirésolution, élévation/réduction de degré directe et quasi-optimale (d'ailleurs utilisé en CAO \cite{lachance1988})
-	\item série tronquée $\truncseries{f}{N}$, erreur de troncature, précision spectrale :\\
-si $f \in C^p(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002} (illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$)
-	\item interpolant $\interpolant{f}{N}$, erreur d'aliasing
-	\item CGL $\to$ DCT, transformation rapide
-\end{itemize}
-généralisation à plusieurs variables (produit-tensoriel)
+Pour $n \in \mathbb{N}$, le polynôme de Chebyshev (de première espèce) $T_n$ est défini par%un polynome de degré $n$ défini par
+\begin{equation}
+	T_n(\cos \theta) = n \cos \theta.
+	\label{eq:chebyshev_trigo}
+\end{equation}
+%De la définition \eqref{eq:chebyshev_trigo} et de l'identité trigonométrique
+De cette définition et de l'identité trigonométrique $\cos n\theta + \cos (n-2)\theta = 2\cos \theta \cos (n-1)\theta$, on peut déduire la relation de récurrence suivante, pour $x \in \chebinterval$, 
+\begin{align}
+	T_0(x) &= 1, \nonumber\\
+	T_1(x) &= x, \nonumber\\
+	T_n(x) &= 2x T_{n-1}(x) - T_{n-2}(x) \text{,\ pour\ } n \geq 2.
+	\label{eq:chebyshev_recurrence}
+\end{align}
+
+
+\begin{figure}
+	\centering
+	\input{figures/chebyshev_polynomials.tikz}
+	\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
+	\label{fig:chebyshev_polynomials}
+\end{figure}
+
+
+$T_n$ est un polynôme de degré $n$ de coefficient dominant $2^{n-1}$ qui atteint ses extrema locaux sur $\chebinterval$ aux $n+1$ n\oe uds de Chebyshev-Gauss-Lobatto (CGL)%\footnote{Seuls les $n-1$ n\oe uds intérieurs sont réellement des extrema au sens où la dérivée s'y annule. A noter également que ces n\oe uds sont rangés en ordre décroissant.}
+\begin{equation}
+	x_k = \cos \frac{k \pi}{n},
+	\label{eq:cgl_nodes}
+\end{equation}
+pour $0 \leq k \leq n$. 
+Seuls les $n-1$ n\oe uds intérieurs sont réellement des extrema au sens où la dérivée s'y annule. 
+A noter également que ces n\oe uds sont rangés en ordre décroissant.\par
+Comme illustré sur la \autoref{fig:cgl_nodes}, ces extrema sont alternativement des maxima puis des minima, tous égaux en valeur absolue
+\begin{equation}
+	T_n(x_k) = (-1)^{k}.
+	\label{eq:chebyshev_equioscillation}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\input{figures/cgl_nodes.tikz}
+%	\caption{N\oe uds de Chebyshev-Gauss-Lobatto pour $n = 6$ (extrema locaux du polynome $T_6$ sur l'intervalle $\chebinterval$).}
+	\caption{Extrema locaux du polynôme $T_6$ sur l'intervalle $\chebinterval$ (n\oe uds de Chebyshev-Gauss-Lobatto).}
+	\label{fig:cgl_nodes}
+\end{figure}
+
+Cette propriété dite d'\emph{équioscillation} a pour conséquence --- via un théorème attribué au mathématicien Émile Borel --- que la meilleure approximation uniforme (\ie\ en norme $\mathcal{L}_\infty$) polynomiale de degré $n - 1$ de la fonction $x \mapsto x^n$ sur $\chebinterval$ est la fonction $x \mapsto x^n - 2^{1 - n} T_n(x)$. \\
+$\to$ économisation\ldots
+
+
+\subsubsection{Approximation de fonctions}
+%série $\series{f}$\\
+%orthogonalité $\to$ meilleure approximation polynomiale en norme $\mathcal{L}_2$ $\to$ projeté/série tronquée $\truncseries{f}{N}$, erreur de troncature\\
+polynôme d'interpolation $\interpolant{f}{N}$, orthogonalité discrète, DCT, erreur d'aliasing \par\bigskip
+
+Notons $\Ltwospace$ l'espace de Hilbert des fonctions de carré intégrable sur $\chebinterval$, muni du produit scalaire
+\begin{equation}
+	\scalprod{f}{g} =
+	\int_{-1}^{1} \frac{f(x) g(x)}{\sqrt{1 - x^2}} dx.
+	\label{eq:chebyshev_scalar_product}
+\end{equation}
+
+La famille des polynômes de Chebyshev est une base orthogonale de cet espace, et pour tous $m,n \in \mathbb{N}$,
+\begin{equation}
+	\scalprod{T_m}{T_n} =
+	\frac{\pi}{2} \alpha_n \delta_{m,n},
+	\label{eq:chebyshev_orthogonality}
+\end{equation}
+où $\delta_{\cdot,\cdot}$ représente le symbole de Kronecker, et
+\begin{equation}
+	\alpha_n = 
+	\begin{cases}
+	 2 & \text{\ si\ } n = 0,   \\ 
+	 1 & \text{\ si\ } n > 0.\\ 
+	\end{cases}
+\end{equation}
+
+%Le développement en série de Chebyshev $\series{f}$ d'une fonction $f \in \Ltwospace$ est défini par
+Le développement en série de Chebyshev d'une fonction $f \in \Ltwospace$ est défini par
+\begin{equation}
+	f = \sum_{n=0}^{\infty} \hat{f}_n T_n,
+	\label{eq:chebyshev_series}
+\end{equation}
+
+les coefficients $\hat{f}_n$ étant obtenus en prenant le produit scalaire
+\begin{align}
+	\hat{f}_n 
+	&= \frac{\scalprod{f}{T_n}}{\scalprod{T_n}{T_n}} \nonumber \\
+	&= \frac{2}{\pi \alpha_n} \int_{-1}^{1} \frac{f(x) T_n(x)}{\sqrt{1 - x^2}} dx.
+	\label{eq:chebyshev_series_coeffs}
+\end{align}
+%le symbole $\sum{'}$ signifiant que le premier terme de la somme est divisé par 2.
+
+Le projeté orthogonal de $f$ sur le sous-espace $\polyspace{N}$ de $\Ltwospace$ des polynômes de degré au plus $N$ est la somme partielle%série tronquée
+\begin{equation}
+	\truncseries{f}{N} = \sum_{n=0}^{N} \hat{f}_n T_n.
+	\label{chebyshev_truncated_series}
+\end{equation}
+
+Il s'agit donc de l'élément de $\polyspace{N}$ le plus proche de $f$, au sens de la norme induite par le produit scalaire \eqref{eq:chebyshev_scalar_product}.
+La somme partielle $\truncseries{f}{N}$ est également proche de la meilleure approximation uniforme de $f$ par un polynôme de degré N. En effet, si $f$ est continue sur $\chebinterval$, alors
+\begin{equation}
+	\norminf{f - \truncseries{f}{N}} 
+	\leq 
+	\left(1 + \lambda_N \right) 
+	\min_{p \in \polyspace{N}} \norminf{f - p},
+	\label{eq:chebyshev_near_minimax}
+\end{equation}
+où la constante de Lebesgue $\lambda_N = 1.27\ldots + \frac{4}{\pi^2} \log N + \bigO{1/N}$ croît suffisamment lentement avec $N$ ($\lambda_{500} \approx 3.8$) pour que les séries de Chebyshev tronquées représentent un excellent choix pratique pour l'approximation de fonctions arbitraires.\par
+En outre, si $f$ possède $m$ dérivées continues sur $\chebinterval$, alors
+\begin{equation}
+	\norminf{f - \truncseries{f}{N}} = \bigO{N^{1-m}}.
+	\label{eq:chebyshev_spectral_accuracy}
+\end{equation}
+En particulier, si $f \in C^{\infty}\chebinterval$, alors l'\textit{erreur de troncature} $\norminf{f - \truncseries{f}{N}}$ décroît exponentiellement avec $N$. 
+Cette caractéristique est souvent qualifiée de \guill{précision spectrale}.\\
+Convergence vers 0 de la suite $(\hat{f}_n)$
+\par\bigskip
+
+En pratique, les  \ldots\\
+Les polynômes de Chebyshev satisfont une seconde relation d'orthogonalité, dite \guill{discrète}, pour $0 \leq n \leq N$ et $m \geq n$,
+\begin{equation}
+	\sum_{k=0}^{N}{''} T_m(x_k) T_n(x_k) = 
+	\frac{N}{2} \beta_n \delta_{m,\pm n \bmod{2N}},
+	\label{eq:chebyshev_discrete_orthogonality}
+\end{equation}
+%où $0 \leq m, n \leq N$ et $\family{x}{k}{0}{N}$ sont les n\oe uds CGL de $T_N$ définis par l'équation \eqref{eq:cgl_nodes}. 
+où $\family{x}{k}{0}{N}$ sont les n\oe uds CGL de $T_N$ définis par l'équation \eqref{eq:cgl_nodes} et
+\begin{equation}
+	\beta_n = 
+	\begin{cases}
+	 2 & \text{\ si\ } n = 0 \text{\ ou\ } N,   \\ 
+	 1 & \text{\ si\ } 0 < n < N.\\ 
+	\end{cases}
+\end{equation}
+
+Le double prime dans l'équation \eqref{eq:chebyshev_discrete_orthogonality} signifie que les premier et dernier termes de la somme sont divisés par 2.
+\par
+
+
+Soit $\interpolant{f}{N}$ l'unique polynôme de $\polyspace{N}$ qui interpole $f$ aux $N+1$ n\oe uds CGL de $T_N$
+\begin{equation}
+	\interpolant{f}{N}(x_k) = f(x_k).
+	\label{eq:chebyshev_interpolation_cgl}
+\end{equation}
+
+Ce polynôme peut s'exprimer dans la base de Chebyshev
+\begin{equation}
+	\interpolant{f}{N} = \sum_{n=0}^{N} \tilde{f}_n T_n.
+	\label{eq:chebyshev_interpolant}
+\end{equation}
+
+En utilisant les relations \eqref{eq:chebyshev_interpolant}, \eqref{eq:chebyshev_interpolation_cgl} et \eqref{eq:chebyshev_discrete_orthogonality}, on peut alors déduire les coefficients $\tilde{f}_n$ à partir des valeurs de $f$ en ces n\oe uds%aux $N+1$ n\oe uds CGL de $T_N$
+\begin{equation}
+	\tilde{f}_n = \frac{2}{\beta_n N} \sum_{k=0}^{N} {''} f(x_k) \cos \frac{n k \pi}{N}.
+	\label{eq:chebyshev_dct}
+\end{equation}
+
+L'équation \eqref{eq:chebyshev_dct} définit ainsi une transformation discrète de l'espace \guill{physique} vers l'espace \guill{spectral}. 
+Par ailleurs, des relations \eqref{eq:chebyshev_interpolation_cgl}, \eqref{eq:chebyshev_interpolant} et \eqref{eq:chebyshev_trigo}, on peut déduire la transformation inverse
+\begin{equation}
+	f(x_k) = \sum_{n=0}^{N} \tilde{f}_n \cos \frac{n k \pi}{N}.
+	\label{eq:chebyshev_idct}
+\end{equation}
+
+Les équations \eqref{eq:chebyshev_dct} et \eqref{eq:chebyshev_idct} décrivent des transformations en cosinus discrètes (DCT), qui peuvent être effectuées efficacement à l'aide d'un algorithme de transformation de Fourier rapide (FFT) pour un coût asymptotique de $\bigO{N \log N}$ opérations.
+\par
+Les coefficients $\tilde{f}_n$ peuvent être reliés aux coefficients $\hat{f}_n$ par la relation
+\begin{equation}
+	\tilde{f}_n = \hat{f}_n + 
+	%\quad\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
+	\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
+	%\sum_{\substack{m = \pm n \bmod{2N} \\ m > N}} \hat{f}_m.
+	\label{eq:chebyshev_aliasing}
+\end{equation}
+
+Cette relation met en évidence le phénomène d'\eng{aliasing}, qui traduit le fait que les polynômes $T_n$ et $T_{\pm n \bmod{2N}}$ prennent les mêmes valeurs aux n\oe uds $\family{x}{k}{0}{N}$, comme illustré sur la \autoref{fig:aliasing_cgl}.
+La différence entre le polynôme d'interpolation $\interpolant{f}{N}$ et la somme partielle $\truncseries{f}{N}$ est l'\textit{erreur d'aliasing}, qui est orthogonale à l'erreur de troncature\footnote{$\normtwo{\cdot}$ désigne ici la norme induite par le produit scalaire \eqref{eq:chebyshev_scalar_product}.}
+\begin{equation}
+	\normtwo{f - \interpolant{f}{N}}^2 = 
+	\normtwo{f - \truncseries{f}{N}}^2 + 
+	\normtwo{\interpolant{f}{N} - \truncseries{f}{N}}^2.
+	\label{eq:chebyshev_aliasin_esrror}
+\end{equation}
+
+L'erreur d'approximation due à l'interpolation est donc toujours supérieure à l'erreur liée à la troncature de la série de Chebyshev.
+Si $f$ est régulière, la suite des coefficients $\hat{f}_n$ converge rapidement vers zéro, si bien que l'erreur d'aliasing reste faible, à condition que le degré de troncature $N$ soit choisi suffisamment grand.
+L'erreur d'aliasing peut cependant devenir problématique lorsqu'elle est amplifiée par les non-linéarités présentes dans les équations que l'on sera amené à résoudre. 
+Nous reviendrons sur ce point dans la \autoref{sec:instabilites} lorsque nous aborderons \ldots
+
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[%
+			width=8cm, height=6cm,
+			axis lines*=left,
+			xmin=-1.0, xmax=1.0, ymin=-1.0, ymax=1.0,
+			grid=major,
+			clip marker paths=false,
+			enlargelimits={abs=0.05},
+			samples=200,
+			]%
+			\addplot+[domain=-1:1, no marks] {4*x^3 - 3*x};% T_3
+			\addplot+[domain=-1:1, no marks] {64*x^7 - 112*x^5 + 56*x^3 - 7*x};% T_7
+			\addplot+[samples=6, domain=0:pi, ycomb, dashed, mark=*, black] ({cos(deg(x))}, {cos(3*deg(x))});% noeuds CGL de T_5
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Les polynômes $T_3$ (\protect\legenddash{s1}) et $T_7$ (\protect\legenddash{s2}) sont indiscernables aux n\oe uds CGL de $T_5$.}
+	\label{fig:aliasing_cgl}
+\end{figure}
+
+
+\subsubsection{Évaluation}
+Par la suite, nous serons amenés à évaluer à maintes reprises des sommes de la forme
+\begin{equation}
+	s_N = \sum_{n=0}^N \hat{s}_n T_n.
+	\label{eq:chebyshev_sum}
+\end{equation}
+Plutôt que de réécrire cette somme dans la base canonique de $\polyspace{N}$, il est intéressant de tirer parti de la relation \eqref{eq:chebyshev_recurrence}. 
+En introduisant la suite récurrente
+\begin{equation}
+	b_n(x) = 
+	\begin{cases}
+	 0 & \text{\ si\ } n > N,   \\ 
+	 \hat{s}_n - b_{n+2}(x) + 2x b_{n+1}(x) & \text{\ si\ } 0 \leq n \leq N,
+	\end{cases}
+\end{equation}
+on obtient, pour $-1 \leq x \leq 1$,%
+\def\px{}%{(x)}%
+\begin{align*}
+	s_N\px 
+	&= \hat{s}_0 T_0\px + \hat{s}_1 T_1\px + \ldots + \hat{s}_{N-2} T_{N-2}\px + \hat{s}_{N-1} T_{N-1}\px + \hat{s}_N T_N\px, \\
+	&= \hat{s}_0 T_0 \px
+	+ \hat{s}_1 T_1 \px
+	+ \ldots 
+	+ \left(\hat{s}_{N-2} - b_{N}\px\right) T_{N-2} \px
+	+ \left(\hat{s}_{N-1} - b_{N+1}\px + 2x b_{N}\px \right) T_{N-1}\px, \\
+	&= \hat{s}_0 T_0 \px
+	+ \hat{s}_1 T_1 \px
+	+ \ldots 
+	+ \left(\hat{s}_{N-3} - b_{N-1}\px\right) T_{N-3} \px
+	+ b_{N-2}\px T_{N-2}\px, \\
+	& \ldots\\
+	&= \left( \hat{s}_0 - b_2\px \right) T_0\px + b_1\px T_1\px, \\
+	&= \hat{s}_0 - b_2\px + b_1\px x,
+\end{align*}
+et enfin
+\begin{equation}
+	s_N(x) = b_0(x) - x b_1(x).
+\end{equation}
+
+L'exécution de cet algorithme de sommation --- dû à Clenshaw \cite{clenshaw1955} --- requiert seulement $\bigO{N}$ opérations. %, ce qui le rend plus efficace que l'algorithme de Casteljau (dont la complexité est asymptotiquement quadratique). 
+La sommation de Clenshaw est donc un moyen efficace et numériquement stable pour évaluer des séries de Chebyshev.
+
+
+\subsubsection{Dérivation}
+
+
+\par\bigskip
+
+%L'étude menée jusqu'ici concerne l'approximation de fonctions d'une variable par des séries de Chebyshev. 
+%Les résultats présentés se généralisent aux fonctions de plusieurs variables en utilisant les polynômes de Chebyshev en produit tensoriel. 
+%On se limitera ici aux fonctions de deux variables, utiles pour représenter des surfaces. 
+%Ainsi, une fonction $f$ continue sur $\chebinterval^2$ admet un développement en série de Chebyshev
+%\begin{equation}
+%	f(u,v) = \sum_{m=0}^{\infty} \sum_{n=0}^{\infty} \hat{f}_{m,n} T_m(u) T_n(v),
+%\end{equation}
+%dont la somme partielle
+%\begin{equation}
+%	\truncseries{f}{MN} (u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \hat{f}_{m,n} T_m(u) T_n(v)
+%\end{equation}
+%converge uniformément vers $f$ sur $\chebinterval^2$.
+
+%fonctions d'une variable
+%\begin{itemize}
+%	\item orthogonalité $\Rightarrow$ aspect multirésolution, élévation/réduction de degré directe et quasi-optimale (d'ailleurs utilisé en CAO \cite{lachance1988})
+%	\item série tronquée $\truncseries{f}{N}$, erreur de troncature, précision spectrale :\\
+%si $f \in C^p(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002} (illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$)
+%	\item interpolant $\interpolant{f}{N}$, erreur d'aliasing
+%	\item CGL $\to$ DCT, transformation rapide
+%\end{itemize}
+%généralisation à plusieurs variables (produit-tensoriel)
+
+
+\begin{figure}[!htp]
+\centering%
+%\input{figures/spectral_convergence.tikz}
+\hspace*{\fill}%
+\subbottom[\ldots]{%
+\begin{tikzpicture}%
+\begin{semilogyaxis}[
+cycle multiindex* list={
+		setBW
+		\nextlist
+		thick
+		\nextlist
+		mark options={scale=.85}%
+	},
+	width=7cm, height=6cm,
+	xmin=0, xmax=80,
+	ymin=1.0e-16, ymax=1.0e2,
+	grid=both,
+	%axis lines*=left,
+	axis x line*=bottom,
+	axis y line*=left,
+	xlabel={$N\vphantom{n}$},
+	ylabel={$\left \| \interpolant{f}{N} - f \right \|_{\infty} / \left \| f \right \|_{\infty}$},
+	xtick distance=20,
+	legend pos=south west,
+	legend style={font=\small},
+	]%
+	\addplot+ table[x index=0, y index=1] {figures/data/convergence_f.dat};%
+	\addplot+ table[x index=0, y index=2] {figures/data/convergence_f.dat};%
+	\addplot+ table[x index=0, y index=3] {figures/data/convergence_f.dat};%
+	%\addplot+[dashed, color=black, no marks, very thick][domain=25.5:54.5] 	{1e4*exp(-0.5*x)};%
+	\addplot+[dashed, color=black, no marks, very thick][domain=30.5:59.5] {1e6*exp(-0.5*x)};%
+	\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5N}$}}%
+\end{semilogyaxis}%
+\end{tikzpicture}%
+\label{subfig:spectral_convergence_Linf}%
+}%
+\hfill%
+\subbottom[\ldots]{%
+\begin{tikzpicture}%
+\begin{semilogyaxis}[%
+cycle multiindex* list={
+		setBW
+		\nextlist
+		thick
+		\nextlist
+		mark options={scale=.85}%
+	},
+	width=7cm, height=6cm,
+	xmin=0, xmax=80,
+	ymin=1.0e-16, ymax=1.0e2,
+	grid=major,
+	axis y line*=right,
+	axis x line*=bottom,
+	xlabel={$n\vphantom{N}$},
+	ylabel={},
+	ylabelv right={$\left | \tilde{f}_n \right |$},
+	ylabel near ticks, 
+	yticklabel pos=right,
+	yticklabels={\empty},
+	xtick distance=20,
+	legend pos=south west,
+	legend style={font=\small},
+	]%
+	\addplot+[only marks] table[x expr=\coordindex, y index=0] {figures/data/coeffs.dat};%
+	\addplot+[only marks] table[x expr=\coordindex, y index=1] {figures/data/coeffs.dat};%
+	\addplot+[only marks] table[x expr=\coordindex, y index=2] {figures/data/coeffs.dat};%
+	\addplot+[dashed, color=black, no marks, very thick][domain=30.5:59.5] {1e6*exp(-0.5*x)};%
+	\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5n}$}}%
+\end{semilogyaxis}%
+\end{tikzpicture}%
+\label{subfig:spectral_convergence_coef}%
+}
+\hspace*{\fill}%
+\caption{\ldots}%
+%\label{fig:spectral_convergence}%
+\end{figure}
+
+\begin{figure}[!htp]
+\centering%
+\input{figures/spectral_convergence2.tikz}%
+\caption{\ldots}%
+\end{figure}
+
+\begin{figure}[!htp]
+\centering%
+\input{figures/spectral_convergence3.tikz}%
+\caption{\ldots}%
+\end{figure}
 
 \paragraph{Représentation de courbes et de surfaces.}
-courbe $\bg : \chebinterval \to \mathbb{R}^3$
+Afin de représenter des courbes et surfaces plongées dans l'espace euclidien $\mathbb{R}^3$ on développe chaque composante de la paramétrisation à l'aide d'une série de Chebyshev.
+Soit une courbe décrite par la paramétrisation $\bg : \chebinterval \to \mathbb{R}^3$. On notera alors
 \begin{equation}
-	\truncseries{\bg}{N}(t) = \sum_{n=0}^{N} \hat{\bg}_{n} T_n(t).
+	\bg(t) = \sum_{n=0}^{\infty} \hat{\bg}_{n} T_n(t).
 \end{equation}
 surface $\bs : \chebinterval^2 \to \mathbb{R}^3$
 \begin{equation}
 	\truncseries{\bs}{MN}(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \hat{\bs}_{mn} T_m(u) T_n(v).
 \end{equation}
 
-\subsubsection{Évaluation}
-algorithme de sommation de Clenshaw exploitant la relation de récurrence \eqref{eq:recurrence_chebyshev} \cite{clenshaw1955}, numériquement stable et efficace ($\bigO{N}$)
+%\subsubsection{Évaluation}
+%algorithme de sommation de Clenshaw exploitant la relation de récurrence \eqref{eq:chebyshev_recurrence} \cite{clenshaw1955}, numériquement stable et efficace ($\bigO{N}$)
 
 \subsubsection{Dérivation}
 \begin{itemize}
@@ -99,6 +491,7 @@ calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est g�
 
 
 \section{Instabilités\ldots}
+\label{sec:instabilites}
 \begin{itemize}
 	\item non-linéarités $\to$ aliasing, peut causer instabilité \cite{rahimian2015}, atténuation : sur-échantillonnage, filtrage
 	\item auto-intersections

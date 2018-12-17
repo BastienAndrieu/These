@@ -1,21 +1,9 @@
-\newboolean{titlerectangle}
-\setboolean{titlerectangle}{true}
-
 \newboolean{titlevbar}
 \setboolean{titlevbar}{true}
 
-\newboolean{titlehelpers}
-\setboolean{titlehelpers}{true}
 
-\newboolean{sansseriftitles}
-\setboolean{sansseriftitles}{false}
+\def\titlefont{\rmfamily}%
 
-\ifthenelse{\boolean{sansseriftitles}}{
-	\def\titlefont{\sffamily}%
-}
-{
-	\def\titlefont{\rmfamily}%
-}
 
 % Table of contents style
 \renewcommand*{\cftchapterfont}{\titlefont\large\scshape}%\bfseries}
@@ -49,12 +37,8 @@
 \setlength{\barheight}{14mm}
 
 \newlength{\numberheight}
-\ifthenelse{\boolean{sansseriftitles}}{
-	\setlength{\numberheight}{1.6\barheight}
-}
-{
-	\setlength{\numberheight}{1.63\barheight}
-}
+\setlength{\numberheight}{1.63\barheight}
+
 
 \newlength{\yshiftchapname}
 \newlength{\yshiftchapnum}
@@ -82,31 +66,9 @@
 	\begin{tikzpicture}[remember picture,overlay]
 		\node[yshift=-\ttltopskip] at (current page.north east) {%
 			\begin{tikzpicture}[remember picture, overlay]%
-				%\node[%draw=red, dashed,%*****
-				%	anchor=north east,%
-				%	%yshift=\yshiftchapname,%
-				%	%xshift=-\foremargin,%
-				%	text width=\textwidth-\vbarxshift,%
-				%	minimum height=\barheight,%
-				%	align=flush right,%justify,%
-				%	inner sep=0mm%
-				%	]%
-				%	(chapttl)%
-				%	at ([xshift=-\foremargin-\vbarxshift, yshift=\yshiftchapname] current page.north east)%
-				%	{\chaptitlefont\color{colchapttl}##1\par};%
-				%
-				%\draw[red, very thick, dotted] (chapttl.west) -- (chapttl.east);%*****
-				%
-				%\gettikzxy{(chapttl.south west)}{\bx}{\by}%
-				%\global\afterchapskipxtra=-\by%
-				%\pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
-				%\global\afterchapskip=\afterchapskip%
-				%
 				\ifNoChapNumber%
-                    \node[%draw=red, dashed,%*****
+                    \node[%
 					anchor= east,%
-					%yshift=\yshiftchapname,%
-					%xshift=-\foremargin,%
 					text width=\textwidth,%
 					minimum height=\barheight,%
 					align=flush right,%justify,%
@@ -115,16 +77,9 @@
 					(chapttl)%
 					at ([xshift=-\foremargin, yshift=\yshiftchapname] current page.north east)%
 					{{\chaptitlefont\color{colchapttl}##1\par}};
-					%\draw[black, thick]%
-					%	([xshift=\vbarxshift, yshift= \vbaryshift] chapttl.north east)%
-					%	--%
-					%	([xshift=\vbarxshift, yshift=-\vbaryshift] chapttl.south east);%
-					%\relax%
 				\else%
-                    \node[%draw=red, dashed,%*****
+                    \node[%
 					anchor= east,%
-					%yshift=\yshiftchapname,%
-					%xshift=-\foremargin,%
 					text width=\textwidth-\vbarxshift,%
 					minimum height=\barheight,%
 					align=flush right,%justify,%
@@ -133,7 +88,7 @@
 					(chapttl)%
 					at ([xshift=-\foremargin-\vbarxshift, yshift=\yshiftchapname] current page.north east)%
 					{{\chaptitlefont\color{colchapttl}##1\par}};%
-					\node[%draw=blue, dashed,%*****
+					\node[%
 						anchor= west,%west,%
 						align=left,%
 						xshift=2\vbarxshift,%
@@ -143,13 +98,6 @@
 						at (chapttl.east)%(chapttl.east)%
 						{\color{colchapttl}\chapnumfont\thechapter};%
 					%
-					%\draw[blue, very thick, dotted] (chapnum.west) -- (chapnum.east);%*****
-					%
-%\draw[colchapttl, line width=2\vbarthck]%thick]%
-%([xshift=\vbarxshift, yshift= \vbaryshift] chapttl.north east)%
-%--%
-%([xshift=\vbarxshift, yshift=-\vbaryshift] chapttl.south east);%
-%
 \coordinate (a) at ([xshift=\vbarxshift+\vbartipthck,yshift=-\vbaryshift] chapttl.south east);
 \coordinate (b) at ([xshift=\vbarxshift+\vbarthck]chapttl.east);
 \coordinate (c) at ([xshift=\vbarxshift+\vbartipthck,yshift=+\vbaryshift] chapttl.north east);
@@ -165,7 +113,7 @@
 [in=90, out=270] (e) to [in=90, out=270] %
 (f) -- cycle;
 				\fi
-                                \gettikzxy{(chapttl.south west)}{\bx}{\by}%
+                \gettikzxy{(chapttl.south west)}{\bx}{\by}%
 				\global\afterchapskipxtra=-\by%
 				\pgfmathsetlength{\afterchapskip}{\afterchapskipdef + \afterchapskipxtra}%
 				\global\afterchapskip=\afterchapskip%
@@ -202,12 +150,6 @@
 %% Format chapter abstracts
 \def\abstractname{}
 \def\abstitleskip{0pt}
-
-\usepackage{lettrine}  % dropped capitals
-\renewcommand{\LettrineTextFont}{\scshape}
-\renewcommand{\DefaultLhang}{0.1}
-\renewcommand{\DefaultNindent}{0pt}
-% \renewcommand{\DefaultOptionsFile}{\lettrineconffile}
 
 
 

@@ -13,7 +13,7 @@ On se limite à des boîtes (parallélépipèdes rectangles) dont l'orientation 
 
 
 \section{Définition}
-On définit une boîte orientée de centre $\vrm{c}$, de demi-côtés $\family{a}{i}{1}{3}$ et d'axes (orthonormés) $\family{\vrm{e}}{i}{1}{3}$ comme l'ensemble des points $\bx \in \mathbb{R}^3$ qui vérifient, pour $i=1,2,3$,
+On définit une boîte orientée de centre $\vrm{c}$, de demi-côtés $\family{a}{i}{1}{3}$ et d'axes orthonormés $\family{\vrm{e}}{i}{1}{3}$ comme l'ensemble des points $\bx \in \mathbb{R}^3$ qui vérifient, pour $i=1,2,3$,
 \begin{equation}
 	\left| \dotprod{\vrm{e}_i}{\left(\bx - \vrm{c}\right)} \right| \leq a_i.
 	\label{eq:def_obb}
@@ -38,7 +38,7 @@ Les méthodes présentées dans cette section reposent sur une propriété fonda
 \subsection{Boîte englobant une courbe}
 Soit $\Gamma$ un segment de courbe décrit par la paramétrisation 
 \begin{align}
-  \bg \colon \chebinterval &\longrightarrow \mathbb{R}^3 \nonumber \\
+  \bg \colon \chebinterval &\longrightarrow \Gamma \subset \mathbb{R}^3 \nonumber \\
   t\; &\longmapsto \sum_{n=0}^{N} \hat{\bg}_n T_n(t).
 \end{align}
 %
@@ -52,7 +52,7 @@ On choisit donc $\vrm{c} = \hat{\bg}_0$ comme centre de la boîte, et on défini
 \begin{equation}
 	\vrm{e}_1 = \unitized{\hat{\bg}_1}.
 \end{equation}
-On construit ensuite les axes $\vrm{e}_2$ et $\vrm{e}_3$ en suivant le procédé d'orthonormalisation de Gram-Schmidt. Si $\normtwo{\vrm{e}_1} \ll 1$, on construit une boîte alignée avec les axes du repère cartésien.
+On construit ensuite les axes $\vrm{e}_2$ et $\vrm{e}_3$ en suivant le procédé d'orthonormalisation de Gram-Schmidt. Si $\normtwo{\hat{\bg}_1} \ll 1$, on construit une boîte alignée avec les axes du repère cartésien.
 \par
 %On calcule ensuite les demi-côtés de la boîte. 
 Pour $-1 \leq t \leq 1$ et $i=1,2,3$,
@@ -62,12 +62,17 @@ Pour $-1 \leq t \leq 1$ et $i=1,2,3$,
 	&= \sum_{n=1}^{N}\dotprod{\vrm{e}_i}{\hat{\bg}_n} T_n(t),
 \end{align*}
 donc
-\begin{align*}
+\begin{equation*}
 	\left| \dotprod{\vrm{e}_i}{\left( \bg(t) - \vrm{c} \right)} \right| 
-	\leq& \sum_{n=1}^{N} \left|\dotprod{\vrm{e}_i}{\hat{\bg}_n}\right| \left| T_n(t) \right|,\\
-	\leq& \sum_{n=1}^{N} \left|\dotprod{\vrm{e}_i}{\hat{\bg}_n}\right|.
-\end{align*}
-En choisissant
+	\leq \sum_{n=1}^{N} \left|\dotprod{\vrm{e}_i}{\hat{\bg}_n}\right| \left| T_n(t) \right|.
+\end{equation*}
+Or, pour tous $n \in \mathbb{N}$ et $t \in \chebinterval$, $\left| T_n(t) \right| \leq 1$, 
+%\begin{align*}
+%	\left| \dotprod{\vrm{e}_i}{\left( \bg(t) - \vrm{c} \right)} \right| 
+%	\leq& \sum_{n=1}^{N} \left|\dotprod{\vrm{e}_i}{\hat{\bg}_n}\right| \left| T_n(t) \right|,\\
+%	\leq& \sum_{n=1}^{N} \left|\dotprod{\vrm{e}_i}{\hat{\bg}_n}\right|.
+%\end{align*}
+donc en choisissant
 \begin{equation}
 	a_i = \sum_{n=1}^{N} \left|\dotprod{\vrm{e}_i}{\hat{\bg}_n}\right|,
 \end{equation}
@@ -77,7 +82,7 @@ la boîte orientée contient bien $\Gamma$.
 \subsection{Boîte englobant une surface}
 Soit $\Sigma$ un carreau de surface décrit par la paramétrisation 
 \begin{align}
-  \bs \colon \chebinterval^2 &\longrightarrow \mathbb{R}^3 \nonumber \\
+  \bs \colon \chebinterval^2 &\longrightarrow \Sigma \subset \mathbb{R}^3 \nonumber \\
   (u,v)\; &\longmapsto \sum_{m=0}^{M} \sum_{n=0}^{N} \hat{\bs}_{m,n} T_m(u) T_n(v).
 \end{align}
 %

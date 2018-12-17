@@ -1,7 +1,9 @@
 \usepackage{graphicx}
 
+%\usepackage{pythontex}
+
 \usepackage{pgf, pgfplots, pgfplotstable}
-\usepgfplotslibrary{external, colormaps, patchplots}%, clickable}
+\usepgfplotslibrary{external, colormaps, patchplots, groupplots}%, clickable}
 \usepackage{datatool}
 %https://axiomatic.neophilus.net/using-datatool-and-tikz-to-generate-figures-from-data/
 
@@ -12,7 +14,7 @@
 \pgfplotsset{compat=newest}
 
 \usepackage{tikz, tikzscale}
-\usetikzlibrary{fit, calc, external, fadings, arrows, positioning, angles, quotes, patterns, backgrounds}
+\usetikzlibrary{fit, calc, external, fadings, arrows, positioning, angles, quotes, patterns, backgrounds, shapes.geometric, shapes.misc}
 
 %\tikzexternalize[prefix=figures/pgf/]
 
@@ -45,6 +47,19 @@
 }
 
 
+\pgfplotscreateplotcyclelist{setBW}{
+  	black, mark=square*,   mark options ={fill=white}, mark size=1.2pt\\
+	black, mark=*,         mark options ={fill=white}, mark size=1.5pt\\
+	black, mark=triangle*, mark options ={fill=white}, mark size=1.7pt\\
+	black, mark=diamond*,  mark options ={fill=white}, mark size=1.7pt\\
+	black, mark=square*,   mark size=1.2pt\\
+	black, mark=*,         mark size=1.5pt\\
+	black, mark=triangle*, mark size=1.7pt\\
+	black, mark=diamond*,  mark size=1.5pt\\
+	black, mark=square*,   mark size=1.2pt\\
+}
+
+
 \pgfmathsetlengthmacro\MajorTickLength{
 	\pgfkeysvalueof{/pgfplots/major tick length} * 0.75
 }
@@ -63,6 +78,18 @@
     }{/pgfplots/layers/standard},
 }
 
+\pgfplotsset{
+    ylabel right/.style={
+        after end axis/.append code={
+            \node [rotate=90, anchor=north] at (rel axis cs:1,0.5) {#1};
+        }   
+    },
+    ylabelv right/.style={
+        after end axis/.append code={
+            \node [rotate=0, anchor=west] at (rel axis cs:1,0.5) {#1};
+        }   
+    }
+}
 
 \pgfplotsset{
 	clip marker paths=true,%
@@ -92,6 +119,12 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% légendes
+\newcommand{\legenddash}[1]{%
+	\raisebox{2pt}{\tikz{\draw[#1,solid,thick](0,0) -- (4mm,0);}}%
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
