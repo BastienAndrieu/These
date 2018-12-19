@@ -53,6 +53,8 @@
 \newcommand{\rowvec}[1]{ \transpose{\begin{pmatrix} #1 \end{pmatrix}} } % vector printed in row (transposed column)
 
 % Differential operators
+\newcommand*{\dfdx}[2]{\frac{\mathrm{d}}{\mathrm{d}{#2}}{#1}}
+\newcommand*{\deriv}[2]{{#1}^{({#2})}}
 \newcommand*{\jacobian}[1]{\mathbf{J}_{#1}}
 \newcommand*{\gradient}[1]{\nabla \! {#1}}
 \newcommand*{\hessian}[1]{\mathbf{H}_{#1}}
@@ -76,6 +78,7 @@
 \newcommand*{\series}[1]{S{#1}}
 \newcommand*{\truncseries}[2]{P_{#2}{#1}}
 \newcommand*{\interpolant}[2]{I_{#2}{#1}}
+\newcommand*{\interpderiv}[3]{\mathcal{D}_{#2}^{(#3)}{#1}}
 
 % Reference interval for Bernstein polynomials
 \newcommand*{\berninterval}{\left[ 0, 1 \right]}

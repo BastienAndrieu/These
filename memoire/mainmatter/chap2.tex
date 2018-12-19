@@ -336,9 +336,67 @@ La sommation de Clenshaw est donc un moyen efficace et numériquement stable pou
 
 
 \subsubsection{Dérivation}
+%La dérivée de la somme \eqref{eq:chebyshev_sum} est un polynôme de degré au plus $N-1$, que l'on peut exprimer dans la base de Chebyshev
+%\begin{equation}
+%	s_{N}^{(1)}(x) = \frac{\mathrm{d} s_N}{\mathrm{d} x}(x) = \sum_{n=0}^{N-1} \hat{s}_n^{(1)} T_n(x).
+%\end{equation}
+La dérivée $\deriv{f}{1}$ d'une fonction $f \in C^1\chebinterval$ peut également être représentée par sa série de Chebyshev
+\begin{equation}
+	\deriv{f}{1} 
+	= \sum_{n=1}^{\infty} \hat{f}_n T'_n
+	= \sum_{n=0}^{\infty} \deriv{\hat{f}}{1}_n T_n.
+	\label{eq:chebyshev_series_derivative}
+\end{equation}
 
+En posant $x = \cos\theta$, il vient, d'après \eqref{eq:chebyshev_trigo},
+\begin{equation}
+	T'_n(x) \equiv \dfdx{T_n(x)}{x} = \frac{n \sin n\theta}{\sin \theta}.
+\end{equation}
+Ainsi, de l'identité $2 \cos n \theta \sin \theta = \sin(n+1)\theta - \sin(n-1)\theta$, on peut déduire la relation 
+\begin{equation}
+	%T_n = \frac{1}{2} \left( \frac{1}{n+1}\dfdx{T_{n+1}}{x} - \frac{1}{n-1}\dfdx{T_{n-1}}{x} \right).
+	T_n = \frac{1}{2} \left( \frac{T'_{n+1}}{n+1} - \frac{T'_{n-1}}{n-1} \right),
+\end{equation}
+pour $n \geq 2$. Il vient alors, pour tout $n \in \mathbb{N}$,
+\begin{equation}
+	2 \left( n + 1 \right) \hat{f}_{n+1} = \alpha_n \deriv{\hat{f}}{1}_n - \deriv{\hat{f}}{1}_{n+2}.
+\end{equation}
+%En supposant $f = \truncseries{f}{N}$ (\ie~$\hat{f}_n = 0$ pour tout $n > N$), alors %$\deriv{\hat{f}}{1}_n = 0$ pour tout $n \geq N$ et les coefficients $\deriv{\hat{f}}{1}_n$ pour $n < N$ peuvent être calculés grâce à la relation de récurrence
+%les coefficients $\deriv{\hat{f}}{1}_n$ peuvent être calculés suivant la relation de récurrence
+%\begin{equation}
+%	\deriv{\hat{f}}{1}_n = 
+%	\begin{cases}
+%	 0 & \text{\ si\ } n \geq N,   \\ 
+%	 \dfrac{1}{\alpha_n} \left( 2 (n + 1) \hat{f}_{n+1} + \deriv{\hat{f}}{1}_{n+2} \right) & \text{\ si\ } 0 \leq n < N.\\ 
+%	\end{cases}
+%	\label{eq:chebyshev_diff_recurrence}
+%\end{equation}
 
+Les coefficients $\deriv{\hat{f}}{1}_n$ peuvent ainsi être calculés suivant la relation de récurrence
+\begin{equation}
+	\deriv{\hat{f}}{1}_n = 
+	\frac{1}{\alpha_n} \left( 2 (n + 1) \hat{f}_{n+1} + \deriv{\hat{f}}{1}_{n+2} \right).
+	\label{eq:chebyshev_diff_recurrence}
+\end{equation}
+Plus généralement, les coefficients de Chebyshev de la dérivée $k$-ième de $f$ vérifient
+\begin{equation}
+	\deriv{\hat{f}}{k}_n = 
+	\frac{1}{\alpha_n} \left( 2 (n + 1) \deriv{\hat{f}}{k-1}_{n+1} + \deriv{\hat{f}}{k}_{n+2} \right).
+	\label{eq:chebyshev_diffp_recurrence}
+\end{equation}
+
+%\par\bigskip
+%La relation \eqref{eq:chebyshev_diffp_recurrence} fournit un algorithme pour calculer \ldots 
+Wengle et Seinfeld \cite{wengle1978} ont remarqué que l' algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} pouvait amplifier les erreurs d'arrondis commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$, jusqu'à compromettre la précision de tous les coefficients $\deriv{\hat{f}}{k}_{n}$ .
+Un moyen simple de remédier à ce problème consiste à mettre à zéro les coefficients $\deriv{\hat{f}}{k-1}_{n}$ inférieurs en valeur absolue à un seuil donné, que l'on choisit ici supérieur d'un ordre de grandeur à la précision machine.
+%Remarque de \cite[Section~2.3, p~.94]{wengle1978}
 \par\bigskip
+Non-commutativité entre dérivation et troncature/interpolation, introduction de 
+\begin{equation}
+	\interpderiv{f}{N}{k} \equiv \deriv{ \left( \interpolant{f}{N} \right) }{k}.
+	\label{eq:chebyshev_interpderiv}
+\end{equation}
+argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe uds (méthode collocation)
 
 %L'étude menée jusqu'ici concerne l'approximation de fonctions d'une variable par des séries de Chebyshev. 
 %Les résultats présentés se généralisent aux fonctions de plusieurs variables en utilisant les polynômes de Chebyshev en produit tensoriel. 
@@ -368,17 +426,18 @@ La sommation de Clenshaw est donc un moyen efficace et numériquement stable pou
 \centering%
 %\input{figures/spectral_convergence.tikz}
 \hspace*{\fill}%
-\subbottom[Convergence de l'erreur maximale d'approximation due à l'interpolation par le polynôme $\interpolant{f^{(k)}}{N}$.]{%
+\subbottom[Convergence de l'erreur maximale d'approximation due à l'interpolation par le polynôme $\interpderiv{f}{N}{k}$.]{%
 \begin{tikzpicture}%
 \begin{semilogyaxis}[
-	width=6.85cm, height=6cm,
+	width=6.7cm, height=6cm,
 	xmin=0, xmax=80,
 	ymin=1.0e-16, ymax=1.0e2,
 	grid=both,
 	axis x line*=bottom,
 	axis y line*=left,
 	xlabel={$N\vphantom{n}$},
-	ylabel={\small $\left \| \interpolant{f^{(k)}}{N} - f^{(k)} \right \|_{\infty} / \left \| f^{(k)} \right \|_{\infty}$},
+	%ylabel={\small $\left \| \interpolant{f^{(k)}}{N} - f^{(k)} \right \|_{\infty} / \left \| f^{(k)} \right \|_{\infty}$},
+	ylabel={\small $\norminf{\interpderiv{f}{N}{k} - \deriv{f}{k}} / \norminf{\deriv{f}{k}}$},
 	xtick distance=20,
 	legend pos=south west,
 	legend style={font=\small},
@@ -397,10 +456,10 @@ La sommation de Clenshaw est donc un moyen efficace et numériquement stable pou
 }%
 \hspace{4mm}%
 %\hfill%
-\subbottom[Spectre des coefficients de Chebyshev du polynôme d'interpolation $\interpolant{f^{(k)}}{80}$.]{%
+\subbottom[Spectre des coefficients de Chebyshev du polynôme $\interpderiv{f}{80}{k}$.]{%
 \begin{tikzpicture}%
 \begin{semilogyaxis}[%
-	width=6.85cm, height=6cm,
+	width=6.7cm, height=6cm,
 	xmin=0, xmax=80,
 	ymin=1.0e-16, ymax=1.0e2,
 	grid=major,
