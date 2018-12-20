@@ -28,38 +28,38 @@
 \contentsline {subsubsection}{\numberline {3.1.2.2}Approximation de fonctions}{9}{subsubsection.3.1.2.2}
 \contentsline {subsubsection}{\numberline {3.1.2.3}\IeC {\'E}valuation}{12}{subsubsection.3.1.2.3}
 \contentsline {subsubsection}{\numberline {3.1.2.4}D\IeC {\'e}rivation}{12}{subsubsection.3.1.2.4}
-\contentsline {paragraph}{Repr\IeC {\'e}sentation de courbes et de surfaces.}{13}{section*.1}
-\contentsline {subsubsection}{\numberline {3.1.2.5}D\IeC {\'e}rivation}{13}{subsubsection.3.1.2.5}
+\contentsline {paragraph}{Repr\IeC {\'e}sentation de courbes et de surfaces.}{14}{section*.1}
+\contentsline {subsubsection}{\numberline {3.1.2.5}D\IeC {\'e}rivation}{14}{subsubsection.3.1.2.5}
 \contentsline {subsubsection}{\numberline {3.1.2.6}Quadrature}{14}{subsubsection.3.1.2.6}
 \contentsline {section}{\numberline {3.2}Int\IeC {\'e}gration temporelle}{14}{section.3.2}
-\contentsline {section}{\numberline {3.3}Instabilit\IeC {\'e}s\ldots }{14}{section.3.3}
-\contentsline {chapter}{\chapternumberline {4}G\IeC {\'e}n\IeC {\'e}ralisation aux surfaces de topologie quelconque}{15}{chapter.4}
-\contentsline {section}{\numberline {4.1}Construction des nouvelles faces}{15}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Ar\IeC {\^e}tes convexes}{15}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Sommets convexes}{15}{subsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.2.1}Une face polygonale}{15}{subsubsection.4.1.2.1}
-\contentsline {subsubsection}{\numberline {4.1.2.2}Plusieurs faces rectangulaires}{15}{subsubsection.4.1.2.2}
-\contentsline {section}{\numberline {4.2}R\IeC {\'e}solution des intersections entre faces}{15}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}\IeC {\'E}tat de l'art}{15}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Approche retenue}{15}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Validation de la m\IeC {\'e}thode}{16}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Propagation suivant un champ de vitesse continu}{16}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Propagation \IeC {\`a} vitesse normale uniforme}{16}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Propagation \IeC {\`a} vitesse normale non uniforme?}{16}{subsection.4.3.3}
-\contentsline {chapter}{\chapternumberline {5}D\IeC {\'e}formation de maillage surfacique}{21}{chapter.5}
-\contentsline {section}{\numberline {5.1}M\IeC {\'e}thodes de simulation dans des g\IeC {\'e}om\IeC {\'e}tries d\IeC {\'e}formables}{21}{section.5.1}
-\contentsline {section}{\numberline {5.2}Objectifs et enjeux}{21}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Objectifs}{21}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Enjeux}{22}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Approche na\IeC {\"\i }ve/simple}{22}{section.5.3}
-\contentsline {section}{\numberline {5.4}Approche avanc\IeC {\'e}e}{22}{section.5.4}
-\contentsline {chapter}{\chapternumberline {6}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{23}{chapter.6}
-\contentsline {chapter}{Conclusion}{25}{chapter*.2}
-\contentsline {appendix}{\chapternumberline {A}Construction de volumes englobants}{27}{appendix.A}
-\contentsline {section}{\numberline {A.1}D\IeC {\'e}finition}{27}{section.A.1}
-\contentsline {section}{\numberline {A.2}Base de Chebyshev}{27}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Bo\IeC {\^\i }te englobant une courbe}{28}{subsection.A.2.1}
-\contentsline {subsection}{\numberline {A.2.2}Bo\IeC {\^\i }te englobant une surface}{28}{subsection.A.2.2}
-\contentsline {section}{\numberline {A.3}Base de Bernstein}{29}{section.A.3}
-\contentsline {appendix}{\chapternumberline {B}Reparam\IeC {\'e}trisation affine}{31}{appendix.B}
-\contentsline {chapter}{Bibliographie}{33}{section*.5}
+\contentsline {section}{\numberline {3.3}Instabilit\IeC {\'e}s\ldots }{15}{section.3.3}
+\contentsline {chapter}{\chapternumberline {4}G\IeC {\'e}n\IeC {\'e}ralisation aux surfaces de topologie quelconque}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}Construction des nouvelles faces}{17}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Ar\IeC {\^e}tes convexes}{17}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Sommets convexes}{17}{subsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.2.1}Une face polygonale}{17}{subsubsection.4.1.2.1}
+\contentsline {subsubsection}{\numberline {4.1.2.2}Plusieurs faces rectangulaires}{17}{subsubsection.4.1.2.2}
+\contentsline {section}{\numberline {4.2}R\IeC {\'e}solution des intersections entre faces}{17}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}\IeC {\'E}tat de l'art}{17}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Approche retenue}{17}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Validation de la m\IeC {\'e}thode}{18}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Propagation suivant un champ de vitesse continu}{18}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Propagation \IeC {\`a} vitesse normale uniforme}{18}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Propagation \IeC {\`a} vitesse normale non uniforme?}{18}{subsection.4.3.3}
+\contentsline {chapter}{\chapternumberline {5}D\IeC {\'e}formation de maillage surfacique}{23}{chapter.5}
+\contentsline {section}{\numberline {5.1}M\IeC {\'e}thodes de simulation dans des g\IeC {\'e}om\IeC {\'e}tries d\IeC {\'e}formables}{23}{section.5.1}
+\contentsline {section}{\numberline {5.2}Objectifs et enjeux}{23}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Objectifs}{23}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Enjeux}{24}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Approche na\IeC {\"\i }ve/simple}{24}{section.5.3}
+\contentsline {section}{\numberline {5.4}Approche avanc\IeC {\'e}e}{24}{section.5.4}
+\contentsline {chapter}{\chapternumberline {6}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{25}{chapter.6}
+\contentsline {chapter}{Conclusion}{27}{chapter*.2}
+\contentsline {appendix}{\chapternumberline {A}Construction de volumes englobants}{29}{appendix.A}
+\contentsline {section}{\numberline {A.1}D\IeC {\'e}finition}{29}{section.A.1}
+\contentsline {section}{\numberline {A.2}Base de Chebyshev}{29}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Bo\IeC {\^\i }te englobant une courbe}{30}{subsection.A.2.1}
+\contentsline {subsection}{\numberline {A.2.2}Bo\IeC {\^\i }te englobant une surface}{30}{subsection.A.2.2}
+\contentsline {section}{\numberline {A.3}Base de Bernstein}{31}{section.A.3}
+\contentsline {appendix}{\chapternumberline {B}Reparam\IeC {\'e}trisation affine}{33}{appendix.B}
+\contentsline {chapter}{Bibliographie}{35}{section*.5}

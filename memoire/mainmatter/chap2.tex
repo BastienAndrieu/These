@@ -11,7 +11,7 @@ méthode pseudo-spectrale : solution développée dans une base de fonctions glo
 Choix des fonctions de base et des marqueurs/points de collocation\par
 
 \subsection{État de l'art}
-Le choix des fonction de base se pose alors. Celles-ci doivent pouvoir représenter n'importe quel type de solution avec une précision arbitraire, offrir une convergence rapide à mesure que le nombre de degrés de liberté augmente et enfin pouvoir être évaluées efficacement. A ces critères s'ajoutent également des contraintes liées à la topologie de la solution.\par
+Le choix des fonction de base se pose alors. Celles-ci doivent pouvoir représenter n'importe quel type de solution avec une précision arbitraire, offrir une convergence rapide à mesure que le nombre de degrés de liberté augmente et enfin pouvoir être évaluées efficacement. A ces critères s'ajoutent également des contraintes liées à la topologie de la solution (i.e. l'interface en propagation).\par
 
 Traditionnellement, les méthodes spectrales reposent sur les séries de Fourier lorsque la solution est spatialement périodique. 
 Les polynômes trigonométriques ont ainsi été utilisés comme fonctions de base pour représenter un front de flamme dans une configuration quasi-3{\scshape d} \cite{gueyffier2015} (\textbf{reformuler}).
@@ -85,7 +85,7 @@ De cette définition et de l'identité trigonométrique $\cos n\theta + \cos (n-
 	T_n(x) &= 2x T_{n-1}(x) - T_{n-2}(x) \text{,\ pour\ } n \geq 2.
 	\label{eq:chebyshev_recurrence}
 \end{align}
-
+Le graphe des six premiers polynômes de Chebyshev est tracé sur la \autoref{fig:chebyshev_polynomials}.\par
 
 \begin{figure}
 	\centering
@@ -93,7 +93,6 @@ De cette définition et de l'identité trigonométrique $\cos n\theta + \cos (n-
 	\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
 	\label{fig:chebyshev_polynomials}
 \end{figure}
-
 
 $T_n$ est un polynôme de degré $n$ %de coefficient dominant $2^{n-1}$ 
 qui atteint ses extrema locaux sur $\chebinterval$ aux $n+1$ n\oe uds de Chebyshev-Gauss-Lobatto (CGL)%\footnote{Seuls les $n-1$ n\oe uds intérieurs sont réellement des extrema au sens où la dérivée s'y annule. A noter également que ces n\oe uds sont rangés en ordre décroissant.}
@@ -114,7 +113,7 @@ Comme illustré sur la \autoref{fig:cgl_nodes}, ces extrema sont alternativement
 	\centering
 	\input{figures/cgl_nodes.tikz}
 %	\caption{N\oe uds de Chebyshev-Gauss-Lobatto pour $n = 6$ (extrema locaux du polynome $T_6$ sur l'intervalle $\chebinterval$).}
-	\caption{Extrema locaux du polynôme $T_6$ sur l'intervalle $\chebinterval$ (n\oe uds de Chebyshev-Gauss-Lobatto).}
+	\caption{N\oe uds de Chebyshev-Gauss-Lobatto (extrema locaux) du polynôme $T_6$.}% sur l'intervalle $\chebinterval$.}
 	\label{fig:cgl_nodes}
 \end{figure}
 
@@ -185,15 +184,17 @@ En outre, si $f$ possède $m$ dérivées continues sur $\chebinterval$, alors
 	\norminf{f - \truncseries{f}{N}} = \bigO{N^{1-m}}.
 	\label{eq:chebyshev_spectral_accuracy}
 \end{equation}
-En particulier, si $f \in C^{\infty}\chebinterval$, alors l'\textit{erreur de troncature} $\norminf{f - \truncseries{f}{N}}$ décroît exponentiellement avec $N$. 
-Cette caractéristique est souvent qualifiée de \guill{précision spectrale}.\\
+En particulier, si $f \in C^{\infty}\chebinterval$, alors l'\textit{erreur de troncature} $\norminf{f - \truncseries{f}{N}}$ décroît exponentiellement avec $N$ -- 
+cette caractéristique est qualifiée de \guill{précision spectrale}.\\
+Ainsi, si $f$ est suffisamment régulière, sa somme partielle $\truncseries{f}{N}$ en est une excellente approximation pour un faible nombre de degrés de liberté.\\
 Convergence vers 0 de la suite $(\hat{f}_n)$
 \par\bigskip
 
-En pratique, les  \ldots\\
+En pratique, l'intégrale \eqref{eq:chebyshev_series_coeffs} ne peut pas être calculée analytiquement  \ldots\\
 Les polynômes de Chebyshev satisfont une seconde relation d'orthogonalité, dite \guill{discrète}, pour $0 \leq n \leq N$ et $m \geq n$,
 \begin{equation}
-	\sum_{k=0}^{N}{''} T_m(x_k) T_n(x_k) = 
+	%\sum_{k=0}^{N}{''} T_m(x_k) T_n(x_k) = 
+	\sum_{k=0}^{N} \frac{1}{\beta_k} T_m(x_k) T_n(x_k) = 
 	\frac{N}{2} \beta_n \delta_{m,\pm n \bmod{2N}},
 	\label{eq:chebyshev_discrete_orthogonality}
 \end{equation}
@@ -207,7 +208,7 @@ où $\family{x}{k}{0}{N}$ sont les n\oe uds CGL de $T_N$ définis par l'équatio
 	\end{cases}
 \end{equation}
 
-Le double prime dans l'équation \eqref{eq:chebyshev_discrete_orthogonality} signifie que les premier et dernier termes de la somme sont divisés par 2.
+%Le double prime dans l'équation \eqref{eq:chebyshev_discrete_orthogonality} signifie que les premier et dernier termes de la somme sont divisés par 2.
 \par
 
 
@@ -225,7 +226,8 @@ Ce polynôme peut s'exprimer dans la base de Chebyshev
 
 En utilisant les relations \eqref{eq:chebyshev_interpolant}, \eqref{eq:chebyshev_interpolation_cgl} et \eqref{eq:chebyshev_discrete_orthogonality}, on peut alors déduire les coefficients $\tilde{f}_n$ à partir des valeurs de $f$ en ces n\oe uds%aux $N+1$ n\oe uds CGL de $T_N$
 \begin{equation}
-	\tilde{f}_n = \frac{2}{\beta_n N} \sum_{k=0}^{N} {''} f(x_k) \cos \frac{n k \pi}{N}.
+	%\tilde{f}_n = \frac{2}{\beta_n N} \sum_{k=0}^{N} {''} f(x_k) \cos \frac{n k \pi}{N}.
+	\tilde{f}_n = \frac{2}{\beta_n N} \sum_{k=0}^{N} \frac{1}{\beta_k} f(x_k) \cos \frac{n k \pi}{N}.
 	\label{eq:chebyshev_dct}
 \end{equation}
 
@@ -239,20 +241,21 @@ Par ailleurs, des relations \eqref{eq:chebyshev_interpolation_cgl}, \eqref{eq:ch
 Les équations \eqref{eq:chebyshev_dct} et \eqref{eq:chebyshev_idct} décrivent des transformations en cosinus discrètes (DCT), qui peuvent être effectuées efficacement à l'aide d'un algorithme de transformation de Fourier rapide (FFT) pour un coût asymptotique de $\bigO{N \log N}$ opérations.
 \par
 Les coefficients $\tilde{f}_n$ peuvent être reliés aux coefficients $\hat{f}_n$ par la relation
-\begin{equation}
-	\tilde{f}_n = \hat{f}_n + 
-	\quad\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
-	%\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
-	%\sum_{\substack{m = \pm n \bmod{2N} \\ m > N}} \hat{f}_m.
-	\label{eq:chebyshev_aliasing}
-\end{equation}
-\begin{equation}
-	\tilde{f}_n = \hat{f}_n + 
-	\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
-\end{equation}
+%\begin{equation}
+%	\tilde{f}_n = \hat{f}_n + 
+%	\quad\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
+%	%\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
+%	%\sum_{\substack{m = \pm n \bmod{2N} \\ m > N}} \hat{f}_m.
+%	\label{eq:chebyshev_aliasing}
+%\end{equation}
+%\begin{equation}
+%	\tilde{f}_n = \hat{f}_n + 
+%	\sum_{\mathclap{\substack{m = \pm n \bmod{2N} \\ m > N}}} \hat{f}_m.
+%\end{equation}
 \begin{equation}
 	\tilde{f}_n = \hat{f}_n + 
 	\sum_{\substack{m = \pm n \bmod{2N} \\ m > N}} \hat{f}_m.
+	\label{eq:chebyshev_aliasing}
 \end{equation}
 
 Cette relation met en évidence le phénomène d'\eng{aliasing}, qui traduit le fait que les polynômes $T_n$ et $T_{\pm n \bmod{2N}}$ prennent les mêmes valeurs aux n\oe uds $\family{x}{k}{0}{N}$, comme illustré sur la \autoref{fig:aliasing_cgl}.
@@ -261,7 +264,7 @@ La différence entre le polynôme d'interpolation $\interpolant{f}{N}$ et la som
 	\normtwo{f - \interpolant{f}{N}}^2 = 
 	\normtwo{f - \truncseries{f}{N}}^2 + 
 	\normtwo{\interpolant{f}{N} - \truncseries{f}{N}}^2.
-	\label{eq:chebyshev_aliasin_esrror}
+	\label{eq:chebyshev_aliasing_esrror}
 \end{equation}
 
 L'erreur d'approximation due à l'interpolation est donc toujours supérieure à l'erreur liée à la troncature de la série de Chebyshev.
@@ -336,6 +339,36 @@ La sommation de Clenshaw est donc un moyen efficace et numériquement stable pou
 
 
 \subsubsection{Dérivation}
+On note $\interpderiv{f}{N}{k}$ la dérivée $k$-ième du polynôme d'interpolation $\interpolant{f}{N}$.
+Les valeurs aux n\oe uds CGL de cette dérivée peuvent être %obtenues grâce au produit
+exprimées comme une combinaison linéaire des valeurs de $f$ en ces mêmes n\oe uds
+\begin{equation}
+	\colvec{ 
+		\interpderiv{f}{N}{k}(x_0) \\ 
+		\vdots \\
+		\interpderiv{f}{N}{k}(x_N)
+		}
+	=
+	{\left( D_N \right)}^k
+	\colvec{ 
+		f(x_0) \\ 
+		\vdots \\
+		f(x_N)
+		},
+	\label{eq:chebyshev_diff_at_cgl}
+\end{equation}
+où la matrice de différentiation $D_N$ est définie par%
+\def\cvsp{2.5ex}
+\begin{equation}
+	\left( D_N \right)_{i,j} =
+	\begin{cases}
+	 \dfrac{2N^2 + 1}{6} & \text{\ si\ } i = j = 0,   \\[\cvsp]
+	 -\dfrac{2N^2 + 1}{6} & \text{\ si\ } i = j = N,   \\[\cvsp]
+	 -\dfrac{x_i}{2 \sin^2 \frac{i \pi}{N}} & \text{\ si\ } 0 < i = j < N, \\[\cvsp]
+	 -\dfrac{(-1)^{i+j} \beta_i}{2 \beta_j \sin\frac{(i+j)\pi}{2N} \sin\frac{(i-j)\pi}{2N}} & \text{\ si\ } i \neq j.
+	\end{cases}
+	\label{eq:chebyshev_diff_matrix}
+\end{equation}
 %La dérivée de la somme \eqref{eq:chebyshev_sum} est un polynôme de degré au plus $N-1$, que l'on peut exprimer dans la base de Chebyshev
 %\begin{equation}
 %	s_{N}^{(1)}(x) = \frac{\mathrm{d} s_N}{\mathrm{d} x}(x) = \sum_{n=0}^{N-1} \hat{s}_n^{(1)} T_n(x).
@@ -387,9 +420,11 @@ Plus généralement, les coefficients de Chebyshev de la dérivée $k$-ième de 
 
 %\par\bigskip
 %La relation \eqref{eq:chebyshev_diffp_recurrence} fournit un algorithme pour calculer \ldots 
-Wengle et Seinfeld \cite{wengle1978} ont remarqué que l' algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} pouvait amplifier les erreurs d'arrondis commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$, jusqu'à compromettre la précision de tous les coefficients $\deriv{\hat{f}}{k}_{n}$ .
-Un moyen simple de remédier à ce problème consiste à mettre à zéro les coefficients $\deriv{\hat{f}}{k-1}_{n}$ inférieurs en valeur absolue à un seuil donné, que l'on choisit ici supérieur d'un ordre de grandeur à la précision machine.
+Comme l'ont fait remarquer Wengle et Seinfeld \cite{wengle1978}, l'algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} peut amplifier les erreurs d'arrondi commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$ et ainsi compromettre la précision de \emph{tous} les coefficients $\deriv{\hat{f}}{k}_{n}$. % (même les plus grands).
+%Wengle et Seinfeld \cite{wengle1978} ont remarqué que l' algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} pouvait amplifier les erreurs d'arrondis commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$, jusqu'à compromettre la précision de tous les coefficients $\deriv{\hat{f}}{k}_{n}$ .
+Un moyen simple de remédier à ce problème consiste à mettre à zéro les coefficients $\deriv{\hat{f}}{k-1}_{n}$ inférieurs en valeur absolue à un seuil donné, choisi en fonction de la précision machine $\epsilon_M$.%que l'on choisit ici supérieur d'un ordre de grandeur à la précision machine.
 %Remarque de \cite[Section~2.3, p~.94]{wengle1978}
+(Un seuil égal à $10 \epsilon_M$ semble être un bon choix.)
 \par\bigskip
 Non-commutativité entre dérivation et troncature/interpolation, introduction de 
 \begin{equation}

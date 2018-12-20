@@ -10,7 +10,9 @@
 		ylabel={$T_n(x)$},
 		legend style={at={(1.025,0.5)}, anchor=west},
 		no marks,
-		samples=200
+		samples=200,
+%		cycle list/RdYlBu-6,%Spectral-6,
+%		cycle multiindex* list={RdYlBu-6}%Spectral-6}
 		]%
 		\addplot+[domain=-1:1] {1.0};%
 		\addplot+[domain=-1:1] {x};%

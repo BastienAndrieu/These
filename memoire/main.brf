@@ -19,27 +19,27 @@
 \backcite {bruno2007}{{7}{3.1.1}{subsection.3.1.1}}
 \backcite {mason2002, gil2007}{{8}{3.1.2}{subsection.3.1.2}}
 \backcite {boyd2001, canuto2006}{{8}{3.1.2}{subsection.3.1.2}}
-\backcite {clenshaw1955}{{12}{3.1.2.3}{equation.3.1.26}}
+\backcite {clenshaw1955}{{12}{3.1.2.3}{equation.3.1.24}}
 \backcite {wengle1978}{{13}{3.1.2.4}{equation.3.1.32}}
-\backcite {wengle1978}{{13}{3.1.2.5}{subsubsection.3.1.2.5}}
-\backcite {rahimian2015}{{14}{3.3}{section.3.3}}
-\backcite {farouki1986}{{14}{3.3}{section.3.3}}
-\backcite {hahn1989}{{15}{4.1.2.2}{subsubsection.4.1.2.2}}
-\backcite {patrikalakis2009}{{15}{4.2.1}{subsection.4.2.1}}
-\backcite {houghton1985}{{15}{4.2.1}{subsection.4.2.1}}
-\backcite {dokken2001}{{15}{4.2.1}{subsection.4.2.1}}
-\backcite {barnhill1990}{{15}{4.2.1}{subsection.4.2.1}}
-\backcite {hohmeyer1992}{{15}{4.2.1}{subsection.4.2.1}}
-\backcite {hohmeyer1992}{{15}{4.2.2}{subsection.4.2.2}}
-\backcite {rababah2003}{{15}{4.2.2}{subsection.4.2.2}}
-\backcite {fournier1994}{{16}{4.2.2}{subsection.4.2.2}}
-\backcite {eberly2002}{{16}{4.2.2}{subsection.4.2.2}}
-\backcite {seidel1991}{{16}{4.2.2}{subsection.4.2.2}}
-\backcite {meakin1989, wang2000}{{21}{1b}{Item.3}}
-\backcite {brenner1991}{{21}{1b}{Item.3}}
-\backcite {peskin2002}{{21}{2}{Item.4}}
-\backcite {wang2012, hovnanian2012}{{21}{2}{Item.4}}
-\backcite {bruchon2009}{{21}{2}{Item.4}}
-\backcite {andrieu2017}{{22}{5.3}{section.5.3}}
-\backcite {foucault2008}{{22}{5.4}{section.5.4}}
-\backcite {foucault2008}{{22}{5.4}{section.5.4}}
+\backcite {wengle1978}{{14}{3.1.2.5}{subsubsection.3.1.2.5}}
+\backcite {rahimian2015}{{15}{3.3}{section.3.3}}
+\backcite {farouki1986}{{15}{3.3}{section.3.3}}
+\backcite {hahn1989}{{17}{4.1.2.2}{subsubsection.4.1.2.2}}
+\backcite {patrikalakis2009}{{17}{4.2.1}{subsection.4.2.1}}
+\backcite {houghton1985}{{17}{4.2.1}{subsection.4.2.1}}
+\backcite {dokken2001}{{17}{4.2.1}{subsection.4.2.1}}
+\backcite {barnhill1990}{{17}{4.2.1}{subsection.4.2.1}}
+\backcite {hohmeyer1992}{{17}{4.2.1}{subsection.4.2.1}}
+\backcite {hohmeyer1992}{{17}{4.2.2}{subsection.4.2.2}}
+\backcite {rababah2003}{{17}{4.2.2}{subsection.4.2.2}}
+\backcite {fournier1994}{{18}{4.2.2}{subsection.4.2.2}}
+\backcite {eberly2002}{{18}{4.2.2}{subsection.4.2.2}}
+\backcite {seidel1991}{{18}{4.2.2}{subsection.4.2.2}}
+\backcite {meakin1989, wang2000}{{23}{1b}{Item.3}}
+\backcite {brenner1991}{{23}{1b}{Item.3}}
+\backcite {peskin2002}{{23}{2}{Item.4}}
+\backcite {wang2012, hovnanian2012}{{23}{2}{Item.4}}
+\backcite {bruchon2009}{{23}{2}{Item.4}}
+\backcite {andrieu2017}{{24}{5.3}{section.5.3}}
+\backcite {foucault2008}{{24}{5.4}{section.5.4}}
+\backcite {foucault2008}{{24}{5.4}{section.5.4}}
