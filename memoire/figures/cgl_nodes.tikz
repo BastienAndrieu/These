@@ -7,11 +7,11 @@
 		clip marker paths=false,
 		enlargelimits={abs=0.05},
 		]%
-		%\addplot+[no marks,domain=-1:1,samples=200] {16.0*x^5 - 20.0*x^3 + 5.0*x};
-		\addplot+[no marks,domain=-1:1,samples=200] {32*x^6 - 48*x^4 + 18*x^2 - 1};%
+		\addplot+[no marks,domain=-1:1,samples=200] {16.0*x^5 - 20.0*x^3 + 5.0*x};
+%		\addplot+[no marks,domain=-1:1,samples=200] {32*x^6 - 48*x^4 + 18*x^2 - 1};%
 %		\addplot+[no marks,domain=-1:1,samples=200] {64*x^7 - 112*x^5 + 56*x^3 - 7*x};%
-		\addplot+[samples=7, domain=0:pi, ycomb, dashed, mark=none, black] ({cos(deg(x))}, {cos(6*deg(x))});%
-		\addplot+[samples=7, domain=0:pi, only marks, mark=*, black] ({cos(deg(x))}, {0});%
+		\addplot+[samples=6, domain=0:pi, ycomb, dashed, mark=none, black] ({cos(deg(x))}, {cos(5*deg(x))});%
+		\addplot+[samples=6, domain=0:pi, only marks, mark=*, black] ({cos(deg(x))}, {0});%
 %		\node[anchor=north west, inner sep=0, fill=white, rounded corners=0, draw=none] at (axis cs:1,-0.05) {$x_0$};
 %		\node[anchor=south, inner sep=0, fill=white, rounded corners=0, draw=none] at (axis cs:0.866025404,0.05) {$x_1$};
 %		\node[anchor=north, inner sep=0, fill=white, rounded corners=0, draw=none] at (axis cs:0.5,-0.05) {$x_2$};
