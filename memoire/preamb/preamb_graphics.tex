@@ -164,6 +164,32 @@
 
 
 
+
+
+
+%https://tex.stackexchange.com/questions/141181/inverting-a-colormap-in-pgfplots
+\makeatletter
+\def\invertcolormap#1{%
+    \pgfplotsarraycopy{pgfpl@cm@#1}\to{custom@COPY}%
+    \c@pgf@counta=0
+    \c@pgf@countb=\pgfplotsarraysizeof{custom@COPY}\relax
+    \c@pgf@countd=\c@pgf@countb
+    \advance\c@pgf@countd by-1 %
+    \pgfutil@loop
+    \ifnum\c@pgf@counta<\c@pgf@countb
+        \pgfplotsarrayselect{\c@pgf@counta}\of{custom@COPY}\to\pgfplots@loc@TMPa
+        \pgfplotsarrayletentry\c@pgf@countd\of{pgfpl@cm@#1}=\pgfplots@loc@TMPa
+        \advance\c@pgf@counta by1 %
+        \advance\c@pgf@countd by-1 %
+    \pgfutil@repeat
+%\pgfplots@colormap@showdebuginfofor{#1}%
+}%
+\makeatother
+
+
+
+
+
 % chemin(s) des figures
 \graphicspath{{./figures/}}%,{../fig2/}}
 

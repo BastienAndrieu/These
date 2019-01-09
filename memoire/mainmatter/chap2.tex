@@ -90,37 +90,37 @@ Le graphe des six premiers polynômes de Chebyshev est tracé sur la \autoref{fi
 \begin{figure}
 	\centering
 	\input{figures/chebyshev_polynomials.tikz}
-	\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
+	\caption{Graphe des premiers polynômes de Chebyshev.}% $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
 	\label{fig:chebyshev_polynomials}
 \end{figure}
 
-\begin{figure}
-	\centering
-\begin{tikzpicture} 
-	\begin{axis}[%
-		width=8cm, height=6cm,
-		axis lines*=left,
-		xmin=-1.0, xmax=1.0, ymin=-1.0, ymax=1.0,
-		grid=major,
-		clip marker paths=false,
-		enlargelimits={abs=0.05},
-		xlabel={$x$},
-		ylabel={$T_n(x)$},
-		legend style={at={(1.025,0.5)}, anchor=west},
-		no marks,
-		samples=201,
-		%cycle list/GnBu-9,%RdYlBu-6,%Spectral-6,
-		%cycle multiindex* list={GnBu-9}%RdYlBu-6}%Spectral-6}
-		]%
-		\pgfplotsinvokeforeach{0,1,...,5}{%
-      		\addplot+[domain=-1:1] { cos(#1*acos(x)) };
-        	\addlegendentry{$T_{#1}$}
-        }%
-	\end{axis} 
-\end{tikzpicture}
-\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
-%	\label{fig:chebyshev_polynomials}
-\end{figure}
+%\begin{figure}
+%	\centering
+%\begin{tikzpicture} 
+%	\begin{axis}[%
+%		width=8cm, height=6cm,
+%		axis lines*=left,
+%		xmin=-1.0, xmax=1.0, ymin=-1.0, ymax=1.0,
+%		grid=major,
+%		clip marker paths=false,
+%		enlargelimits={abs=0.05},
+%		xlabel={$x$},
+%		ylabel={$T_n(x)$},
+%		legend style={at={(1.025,0.5)}, anchor=west},
+%		no marks,
+%		samples=201,
+%		%cycle list/GnBu-9,%RdYlBu-6,%Spectral-6,
+%		%cycle multiindex* list={GnBu-9}%RdYlBu-6}%Spectral-6}
+%		]%
+%		\pgfplotsinvokeforeach{0,1,...,5}{%
+%      		\addplot+[domain=-1:1] { cos(#1*acos(x)) };
+%        	\addlegendentry{$T_{#1}$}
+%        }%
+%	\end{axis} 
+%\end{tikzpicture}
+%\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
+%%	\label{fig:chebyshev_polynomials}
+%\end{figure}
 
 $T_n$ est un polynôme de degré $n$ %de coefficient dominant $2^{n-1}$ 
 qui atteint ses extrema locaux sur $\chebinterval$ aux $n+1$ n\oe uds de Chebyshev-Gauss-Lobatto (CGL)%\footnote{Seuls les $n-1$ n\oe uds intérieurs sont réellement des extrema au sens où la dérivée s'y annule. A noter également que ces n\oe uds sont rangés en ordre décroissant.}
@@ -189,6 +189,10 @@ où les coefficients $\hat{f}_n$ sont obtenus en prenant le produit scalaire
 	&= \frac{2}{\pi \alpha_n} \int_{-1}^{1} \frac{f(x) T_n(x)}{\sqrt{1 - x^2}} dx.
 	\label{eq:chebyshev_series_coeffs}
 \end{align}
+En effectuant le changement de variable $x = \cos \theta$, on obtient également
+\begin{equation}
+	\hat{f}_n = \frac{2}{\pi \alpha_n} \int_{0}^{\pi} f(\cos \theta) \cos n \theta d \theta. 
+\end{equation}
 %le symbole $\sum{'}$ signifiant que le premier terme de la somme est divisé par 2.
 
 Le projeté orthogonal de $f$ sur le sous-espace $\polyspace{N}$ de $\Ltwospace$ des polynômes de degré au plus $N$ est la somme partielle%série tronquée
@@ -328,15 +332,14 @@ Nous reviendrons sur ce point dans la \autoref{sec:instabilites} lorsque nous ab
 			clip marker paths=false,
 			enlargelimits={abs=0.05},
 			]%
-			\addplot+[domain=-1:1, no marks, samples=100] {4*x^3 - 3*x};% T_3
-			\addplot+[domain=-1:1, no marks, samples=200] {64*x^7 - 112*x^5 + 56*x^3 - 7*x};% T_7
-			\addplot+[domain=-1:1, no marks, samples=500] {
-			4096*x^13 - 13312*x^11 + 16640*x^9 - 9984*x^7 + 2912*x^5 - 364*x^3 + 13*x};% T_13
+			\addplot+[samples=200, domain=0:pi, no marks] ({cos(deg(x))}, {cos(3*deg(x))});% T_3
+			\addplot+[samples=200, domain=0:pi, no marks] ({cos(deg(x))}, {cos(7*deg(x))});% T_7
+			\addplot+[samples=500, domain=0:pi, no marks] ({cos(deg(x))}, {cos(13*deg(x))});% T_13
 %			\addplot+[domain=-1:1, no marks, samples=200, black, dotted] {16*x^5 - 20*x^3 + 5*x};% T_5
 			\addplot+[samples=6, domain=0:pi, ycomb, dashed, mark=*, black] ({cos(deg(x))}, {cos(3*deg(x))});% noeuds CGL de T_5
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Les polynômes $T_n$ (\protect\legenddash{s1}), $T_{2N - n}$ (\protect\legenddash{s2}) et $T_{2N + n}$ (\protect\legenddash{s3}) sont indiscernables aux n\oe uds CGL de $T_N$ ($n = 3$, $N = 5$).}
+	\caption{Les polynômes $T_n$ (\protect\legenddash{s1}), $T_{2N - n}$ (\protect\legenddash{s2}) et $T_{2N + n}$ (\protect\legenddash{s3}) sont indiscernables aux n\oe uds CGL de $T_N$ (ici $n = 3$ et $N = 5$).}
 	\label{fig:aliasing_cgl}
 \end{figure}
 
@@ -395,7 +398,7 @@ exprimées comme une combinaison linéaire des valeurs de $f$ en ces mêmes n\oe
 		\interpderiv{f}{N}{k}(x_N)
 		}
 	=
-	{\left( D_N \right)}^k
+	{\left( \mathbf{D}_N \right)}^k
 	\colvec{ 
 		f(x_0) \\ 
 		\vdots \\
@@ -403,10 +406,10 @@ exprimées comme une combinaison linéaire des valeurs de $f$ en ces mêmes n\oe
 		},
 	\label{eq:chebyshev_diff_at_cgl}
 \end{equation}
-où la matrice de différentiation $D_N$ est définie par%
+où $\mathbf{D}_N$ est la matrice de différentiation \cite{canuto2006}%est définie par%
 \def\cvsp{2.5ex}
 \begin{equation}
-	\left( D_N \right)_{i,j} =
+	\left( \mathbf{D}_N \right)_{i,j} =
 	\begin{cases}
 	 \dfrac{2N^2 + 1}{6} & \text{\ si\ } i = j = 0,   \\[\cvsp]
 	 -\dfrac{2N^2 + 1}{6} & \text{\ si\ } i = j = N,   \\[\cvsp]
@@ -432,9 +435,12 @@ En posant $x = \cos\theta$, il vient, d'après \eqref{eq:chebyshev_trigo},
 	T'_n(x) \equiv \dfdx{T_n(x)}{x} = \frac{n \sin n\theta}{\sin \theta}.
 \end{equation}
 Ainsi, de l'identité $2 \cos n \theta \sin \theta = \sin(n+1)\theta - \sin(n-1)\theta$, on peut déduire la relation 
+%\begin{equation}
+%	%T_n = \frac{1}{2} \left( \frac{1}{n+1}\dfdx{T_{n+1}}{x} - \frac{1}{n-1}\dfdx{T_{n-1}}{x} \right).
+%	T_n = \frac{1}{2} \left( \frac{T'_{n+1}}{n+1} - \frac{T'_{n-1}}{n-1} \right),
+%\end{equation}
 \begin{equation}
-	%T_n = \frac{1}{2} \left( \frac{1}{n+1}\dfdx{T_{n+1}}{x} - \frac{1}{n-1}\dfdx{T_{n-1}}{x} \right).
-	T_n = \frac{1}{2} \left( \frac{T'_{n+1}}{n+1} - \frac{T'_{n-1}}{n-1} \right),
+	2 T_n = \frac{T'_{n+1}}{n+1} - \frac{T'_{n-1}}{n-1} ,
 \end{equation}
 pour $n \geq 2$. Il vient alors, pour tout $n \in \mathbb{N}$,
 \begin{equation}
@@ -607,6 +613,85 @@ surface $\bs : \chebinterval^2 \to \mathbb{R}^3$
 \subsubsection{Quadrature}
 Clenshaw-Curtis\\
 calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est généralement pas polynomiale)
+
+
+\makeatletter
+\newcommand{\currentrow}{\the\pgfplots@group@current@row}
+\newcommand{\currentcolumn}{\the\pgfplots@group@current@column}
+\newcommand{\totalplots}{\pgfplots@group@totalplots}
+\makeatother
+
+\pgfplotsset{
+    %colormap={X}{ gray(0cm)=(1); gray(1cm)=(0);},
+    colormap/RdBu,
+}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\invertcolormap{RdBu}
+\begin{groupplot}[
+	group style={group size=5 by 3},
+	height=3.6cm,
+	width=3.6cm,
+	unit vector ratio*=1 1 1,
+	domain=0:pi,
+	y domain=0:pi, 
+	xmin=-1, xmax=1,
+	ymin=-1, ymax=1,
+	zmin=-1, zmax=1,
+	axis lines*=left,
+	xtick={-1,0,1}, 
+	ytick={-1,0,1}, 
+	ztick={-1,0,1}, 
+	view={-37.5}{30},
+	%colormap/RdBu,
+	grid=major]
+%	\nextgroupplot[
+%		every tick label/.append style={font=\footnotesize},
+%		xlabel={$x$},
+%		ylabel={$y$},
+%		zlabel={$T_m(x)T_n(y)$}]
+%	\addplot3[surf, samples=3] 
+%		({cos(deg(x))}, {cos(deg(y))}, {1.0});
+	\pgfmathsetmacro\mmax{3}
+	\pgfmathsetmacro\nmax{4}
+	\pgfmathsetmacro\mn{(\mmax+1)*(\nmax+1)}
+	\pgfplotsinvokeforeach{1,...,\mn}{
+		\nextgroupplot[
+			xticklabels=\empty,
+			yticklabels=\empty,
+			zticklabels=\empty
+			]
+		\pgfmathtruncatemacro\nn{\currentcolumn-1}
+    	\pgfmathtruncatemacro\mm{\currentrow-1}
+%    	\node[anchor = center] at (axis cs:0,0,0) {\includegraphics[width=2.3cm]{figures/T_\mm_\nn}};
+    	%{$(\mm,\nn)$};
+    	\addplot3 graphics [
+			points={
+			(0,0,0) => (116.5,225-108.5)
+			(1,0,0) => (165.5,225- 90.5)
+			(0,1,0) => ( 78.5,225- 85.5)
+			(0,0,1) => (116.5,225- 58.0)
+%			(-1,1,1) => (34.6294,171.6412)
+%			(1,1,1) => (128.7309,207.0234)
+%			(1,-1,1) => (197.9897,160.3491)
+%			(-1,-1,-1) => (104.6409,24.8428)
+%			(-1,1,-1) => (34.6294,70.7644)
+%			(1,-1,-1) => (197.9897,59.4722)
+%			(0,0,0) => (114.4275,113.6747)
+			%(0,0,1) => (118.9444,166.3716)
+			%(0,1,0) => (83.5622,138.5175)
+			%(1,0,0) => (162.6075,133.2478)
+%			(0,0,-1) => (116.6859,65.4947)
+%			(-1,0,0) => (69.2587,98.6184)
+%			(0,-1,0) => (152.0681,93.3487)
+			}] {figures/T_\mm_\nn.png};
+		%\addplot3[surf, shader=faceted interp, samples=21] 
+		%({cos(deg(x))}, {cos(deg(y))}, {cos(\mm*deg(x))*cos(\nn*deg(y))});
+	}
+\end{groupplot}
+\end{tikzpicture}
+\end{figure}
 
 
 
