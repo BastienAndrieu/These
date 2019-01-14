@@ -169,8 +169,12 @@
 \makeatother
 
 
-
-
+% get row/column index in groupplot
+\makeatletter
+\newcommand{\currentrow}{\the\pgfplots@group@current@row}
+\newcommand{\currentcolumn}{\the\pgfplots@group@current@column}
+\newcommand{\totalplots}{\pgfplots@group@totalplots}
+\makeatother
 
 
 

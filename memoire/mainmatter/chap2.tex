@@ -605,29 +605,7 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 
 \begin{figure}[!htp]
 \centering%
-%\input{figures/spectral_convergence.tikz}
 \hspace*{\fill}%
-%
-%\begin{tikzpicture}
-%\begin{axis}[%
-%	hide axis, 
-%	xmin=0, xmax=90,
-%	ymin=1.0e-16, ymax=1.0e2,
-%	legend columns=-1, 
-%	legend style={
-%				font=\small,
-%				/tikz/every even column/.append style={column sep=8mm}
-%                },
-%	legend entries={$\; k=0$,$ \; k=1$, $\; k=2$}]
-%	\addlegendimage{only marks, mark=square*,   mark size=1.2pt, s1}
-%	\addlegendimage{only marks, mark=*,         mark size=1.5pt, s2}
-%	\addlegendimage{only marks, mark=triangle*, mark size=1.7pt, s3}
-%\end{axis}
-%%\node (k0)  {\protect\legendsquare{s1}\ $k = 0$};
-%%\node[right of=k0] (k1) {\protect\legenddot{s2}\ $k = 1$};
-%%\node[right of=k1] (k2) {\protect\legendtriangle{s3}\ $k = 2$};
-%\end{tikzpicture}
-%
 \subbottom[Erreur d'approximation par le polynôme $\interpderiv{f}{N}{k}$.]{%
 \begin{tikzpicture}%
 \begin{semilogyaxis}[
@@ -638,7 +616,6 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 	axis x line*=bottom,
 	axis y line*=left,
 	xlabel={$N\vphantom{n}$},
-	%ylabel={\small $\left \| \interpolant{f^{(k)}}{N} - f^{(k)} \right \|_{\infty} / \left \| f^{(k)} \right \|_{\infty}$},
 	ylabel={\small $\norminf{\interpderiv{f}{N}{k} - \deriv{f}{k}} \norminf{\deriv{f}{k}}^{-1}$},
 	xtick distance=30,
 	legend pos=north east,
@@ -646,20 +623,9 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 	cycle list shift=-1
 	]%
 	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-N}$};%
-	%\addlegendentry{$1.8^{-N}$}%{$e^{-0.57N}$}
 	\pgfplotsinvokeforeach{1,...,3}{
 		\addplot+ table[x index=0, y index=#1] {figures/data/convergence_DNkf.dat};%
 	}
-%	\node at (axis cs:5,2.24e-2) {\protect\legendsquare{s1}};
-%	\node at (axis cs:5,1.05e-1) {\protect\legenddot{s2}};
-%	\node at (axis cs:5,9.1e-1) {\protect\legendtriangle{s3}};
-	%\addplot+ table[x index=0, y index=1] {figures/data/convergence_f.dat};%
-	%\addplot+ table[x index=0, y index=2] {figures/data/convergence_f.dat};%
-	%\addplot+ table[x index=0, y index=3] {figures/data/convergence_f.dat};%
-	%\addplot+[dashed, color=black, no marks, very thick][domain=25.5:54.5] 	{1e4*exp(-0.5*x)};%
-	%\addplot+[dashed, color=black, no marks, very thick][domain=30:50.5] {1e6*exp(-0.53*x)};%
-	%\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5N}$}}%
-	%\legend{{$k=0$},{$k=1$},{$k=2$}}%,{$e^{-0.53N}$}}%
 \end{semilogyaxis}%
 \end{tikzpicture}%
 \label{subfig:spectral_convergence_Linf}%
@@ -686,40 +652,19 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 	legend style={font=\small},
 	cycle list shift=-1
 	]%
-	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-n}$};%
-	%\addlegendentry{$1.8^{-n}$}
+	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-n}$};
 	\pgfplotsinvokeforeach{0,...,2}{
 		\addplot+[only marks] table[x expr=\coordindex, y index=#1] {figures/data/coef_DNkf.dat};%
 	}
-%	\addplot+[only marks] table[x expr=\coordindex, y index=0] {figures/data/coeffs2.dat};%
-%	\addplot+[only marks] table[x expr=\coordindex, y index=1] {figures/data/coeffs2.dat};%
-%	\addplot+[only marks] table[x expr=\coordindex, y index=2] {figures/data/coeffs2.dat};%
-	%\addplot+[dashed, color=black, no marks, very thick][domain=30:50.5] 	 {1e6*exp(-0.53*x)};%
-	%\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5n}$}}%
-	%\legend{{$k=0$},{$k=1$},{$k=2$}}%,{$e^{-0.53n}$}}%
 \end{semilogyaxis}%
 \end{tikzpicture}%
 \label{subfig:spectral_convergence_coef}%
 }
 \hspace*{\fill}%
-%\caption{Précision spectrale \ldots $f : x \mapsto e^{\sin 3 x^3}$. $k = 0 (\protect\legendsquare{s1}), 1 (\protect\legenddot{s2}), 2 (\protect\legendtriangle{s3})$.}%
 \caption{Convergence exponentielle de l'erreur d'approximation et des coefficients de Chebyshev pour la fonction analytique $f : x \mapsto e^{\sin 3 x^3}$ et ses dérivées $\deriv{f}{k}$ ($k = 0 (\protect\legendsquare{s1}), 1 (\protect\legenddot{s2}), 2 (\protect\legendtriangle{s3})$).}%
 \label{fig:spectral_convergence}%
 \end{figure}
 
-%\input{figures/convergence.tex}
-
-%\begin{figure}[!htp]
-%\centering%
-%\input{figures/spectral_convergence2.tikz}%
-%\caption{\ldots}%
-%\end{figure}
-%
-%\begin{figure}[!htp]
-%\centering%
-%\input{figures/spectral_convergence3.tikz}%
-%\caption{\ldots}%
-%\end{figure}
 
 \paragraph{Représentation de courbes et de surfaces.}
 Afin de représenter des courbes et surfaces plongées dans l'espace euclidien $\mathbb{R}^3$ on développe chaque composante de la paramétrisation à l'aide d'une série de Chebyshev.
@@ -732,8 +677,6 @@ surface $\bs : \chebinterval^2 \to \mathbb{R}^3$
 	\truncseries{\bs}{MN}(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \hat{\bs}_{mn} T_m(u) T_n(v).
 \end{equation}
 
-%\subsubsection{Évaluation}
-%algorithme de sommation de Clenshaw exploitant la relation de récurrence \eqref{eq:chebyshev_recurrence} \cite{clenshaw1955}, numériquement stable et efficace ($\bigO{N}$)
 
 \subsubsection{Dérivation}
 \begin{itemize}
@@ -746,84 +689,50 @@ Clenshaw-Curtis\\
 calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est généralement pas polynomiale)
 
 
-\makeatletter
-\newcommand{\currentrow}{\the\pgfplots@group@current@row}
-\newcommand{\currentcolumn}{\the\pgfplots@group@current@column}
-\newcommand{\totalplots}{\pgfplots@group@totalplots}
-\makeatother
 
-\pgfplotsset{
-    %colormap={X}{ gray(0cm)=(1); gray(1cm)=(0);},
-    colormap/RdBu,
-}
-\begin{figure}
-\centering
-\begin{tikzpicture}
-\invertcolormap{RdBu}
-\begin{groupplot}[
-	group style={group size=5 by 3},
-	height=3.6cm,
-	width=3.6cm,
-	unit vector ratio*=1 1 1,
-	domain=0:pi,
-	y domain=0:pi, 
-	xmin=-1, xmax=1,
-	ymin=-1, ymax=1,
-	zmin=-1, zmax=1,
-	axis lines*=left,
-	xtick={-1,0,1}, 
-	ytick={-1,0,1}, 
-	ztick={-1,0,1}, 
-	view={-37.5}{30},
-	%colormap/RdBu,
-	grid=major]
-%	\nextgroupplot[
-%		every tick label/.append style={font=\footnotesize},
-%		xlabel={$x$},
-%		ylabel={$y$},
-%		zlabel={$T_m(x)T_n(y)$}]
-%	\addplot3[surf, samples=3] 
-%		({cos(deg(x))}, {cos(deg(y))}, {1.0});
-	\pgfmathsetmacro\mmax{3}
-	\pgfmathsetmacro\nmax{4}
-	\pgfmathsetmacro\mn{(\mmax+1)*(\nmax+1)}
-	\pgfplotsinvokeforeach{1,...,\mn}{
-		\nextgroupplot[
-			xticklabels=\empty,
-			yticklabels=\empty,
-			zticklabels=\empty
-			]
-		\pgfmathtruncatemacro\nn{\currentcolumn-1}
-    	\pgfmathtruncatemacro\mm{\currentrow-1}
-%    	\node[anchor = center] at (axis cs:0,0,0) {\includegraphics[width=2.3cm]{figures/T_\mm_\nn}};
-    	%{$(\mm,\nn)$};
-    	\addplot3 graphics [
-			points={
-			(0,0,0) => (116.5,225-108.5)
-			(1,0,0) => (165.5,225- 90.5)
-			(0,1,0) => ( 78.5,225- 85.5)
-			(0,0,1) => (116.5,225- 58.0)
-%			(-1,1,1) => (34.6294,171.6412)
-%			(1,1,1) => (128.7309,207.0234)
-%			(1,-1,1) => (197.9897,160.3491)
-%			(-1,-1,-1) => (104.6409,24.8428)
-%			(-1,1,-1) => (34.6294,70.7644)
-%			(1,-1,-1) => (197.9897,59.4722)
-%			(0,0,0) => (114.4275,113.6747)
-			%(0,0,1) => (118.9444,166.3716)
-			%(0,1,0) => (83.5622,138.5175)
-			%(1,0,0) => (162.6075,133.2478)
-%			(0,0,-1) => (116.6859,65.4947)
-%			(-1,0,0) => (69.2587,98.6184)
-%			(0,-1,0) => (152.0681,93.3487)
-			}] {figures/T_\mm_\nn.png};
-		%\addplot3[surf, shader=faceted interp, samples=21] 
-		%({cos(deg(x))}, {cos(deg(y))}, {cos(\mm*deg(x))*cos(\nn*deg(y))});
-	}
-\end{groupplot}
-\end{tikzpicture}
-\end{figure}
 
+%\begin{figure}
+%\centering
+%\begin{tikzpicture}
+%\invertcolormap{RdBu}
+%\begin{groupplot}[
+%	group style={group size=5 by 3},
+%	height=3.6cm,
+%	width=3.6cm,
+%	unit vector ratio*=1 1 1,
+%	domain=0:pi,
+%	y domain=0:pi, 
+%	xmin=-1, xmax=1,
+%	ymin=-1, ymax=1,
+%	zmin=-1, zmax=1,
+%	axis lines*=left,
+%	xtick={-1,0,1}, 
+%	ytick={-1,0,1}, 
+%	ztick={-1,0,1}, 
+%	view={-37.5}{30},
+%	grid=major]
+%	\pgfmathsetmacro\mmax{3}
+%	\pgfmathsetmacro\nmax{4}
+%	\pgfmathsetmacro\mn{(\mmax+1)*(\nmax+1)}
+%	\pgfplotsinvokeforeach{1,...,\mn}{
+%		\nextgroupplot[
+%			xticklabels=\empty,
+%			yticklabels=\empty,
+%			zticklabels=\empty
+%			]
+%		\pgfmathtruncatemacro\nn{\currentcolumn-1}
+%    	\pgfmathtruncatemacro\mm{\currentrow-1}
+%    	\addplot3 graphics [
+%			points={
+%			(0,0,0) => (116.5,225-108.5)
+%			(1,0,0) => (165.5,225- 90.5)
+%			(0,1,0) => ( 78.5,225- 85.5)
+%			(0,0,1) => (116.5,225- 58.0)
+%			}] {figures/T_\mm_\nn.png};
+%	}
+%\end{groupplot}
+%\end{tikzpicture}
+%\end{figure}
 
 
 
