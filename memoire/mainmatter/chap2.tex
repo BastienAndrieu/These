@@ -15,7 +15,7 @@ Le choix des fonction de base se pose alors. Celles-ci doivent pouvoir représen
 
 Traditionnellement, les méthodes spectrales reposent sur les séries de Fourier lorsque la solution est spatialement périodique. 
 Les polynômes trigonométriques ont ainsi été utilisés comme fonctions de base pour représenter un front de flamme dans une configuration quasi-3{\scshape d} \cite{gueyffier2015} (\textbf{reformuler}).
-Lorsque la solution est une surface fermée de genre zéro (\ie\ une sphère topologique), la base des harmoniques sphériques est particulièrement adaptée \cite{veerapaneni2011}.\par
+Lorsque la solution est une surface fermée de genre zéro (\ie une sphère topologique), la base des harmoniques sphériques est particulièrement adaptée \cite{veerapaneni2011}.\par
 Les travaux de Bruno \cite{bruno2007} sur une méthode de \eng{continuation} ont permis d'étendre l'usage des polynômes trigonométriques aux surfaces homéomorphes à des disques. 
 Cette approche permet de représenter des surfaces de géométrie complexe et de topologie arbitraire en raccordant des patchs locaux à l'aide de partitions de l'unité.\\
 \textbf{Permet d'éviter Gibbs dans le cas régulier par morceaux}\\
@@ -71,15 +71,17 @@ de polynômes et d'en présenter brièvement les propriétés remarquables qui s
 Nombreux sont les ouvrages consacrés aux polynômes de Chebyshev \cite{mason2002, gil2007} ainsi qu'à leur usage dans les méthodes spectrales \cite{boyd2001, canuto2006}, aussi le lecteur est invité à s'y référer pour plus de détails.
 
 
-\subsubsection{Définition}
-Pour $n \in \mathbb{N}$, le polynôme de Chebyshev (de première espèce) $T_n$ est défini par%un polynome de degré $n$ défini par
-\begin{equation}
-	T_n(\cos \theta) = n \cos \theta.
-	\label{eq:chebyshev_trigo}
-\end{equation}
+\subsubsection{Définition et propriétés}
+\begin{definition}
+	Pour $n \in \mathbb{N}$, le polynôme de Chebyshev (de première espèce) $T_n$ est défini par%un polynome de degré $n$ défini par
+	\begin{equation}
+		T_n(\cos \theta) = n \cos \theta.
+		\label{eq:chebyshev_trigo}
+	\end{equation}
+\end{definition}
 %De la définition \eqref{eq:chebyshev_trigo} et de l'identité trigonométrique
 De cette définition et de l'identité trigonométrique $\cos n\theta + \cos (n-2)\theta = 2\cos \theta \cos (n-1)\theta$, on peut déduire la relation de récurrence suivante, pour $x \in \chebinterval$, 
-\begin{align}
+\begin{align}[left = \empheqlbrace\,]
 	T_0(x) &= 1, \nonumber\\
 	T_1(x) &= x, \nonumber\\
 	T_n(x) &= 2x T_{n-1}(x) - T_{n-2}(x) \text{,\ pour\ } n \geq 2.
@@ -96,31 +98,84 @@ Le graphe des six premiers polynômes de Chebyshev est tracé sur la \autoref{fi
 
 %\begin{figure}
 %	\centering
-%\begin{tikzpicture} 
-%	\begin{axis}[%
-%		width=8cm, height=6cm,
-%		axis lines*=left,
-%		xmin=-1.0, xmax=1.0, ymin=-1.0, ymax=1.0,
-%		grid=major,
-%		clip marker paths=false,
-%		enlargelimits={abs=0.05},
-%		xlabel={$x$},
-%		ylabel={$T_n(x)$},
-%		legend style={at={(1.025,0.5)}, anchor=west},
-%		no marks,
-%		samples=201,
-%		%cycle list/GnBu-9,%RdYlBu-6,%Spectral-6,
-%		%cycle multiindex* list={GnBu-9}%RdYlBu-6}%Spectral-6}
-%		]%
-%		\pgfplotsinvokeforeach{0,1,...,5}{%
-%      		\addplot+[domain=-1:1] { cos(#1*acos(x)) };
-%        	\addlegendentry{$T_{#1}$}
-%        }%
-%	\end{axis} 
-%\end{tikzpicture}
-%\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
+%	\begin{tikzpicture}
+%		\begin{axis}[
+%			width=12cm, height=9cm,
+%		    set layers=standard,
+%		    domain=-1:1,
+%		    xmin=-1, xmax=1,
+%		    zmin=-1, zmax=1,
+%		    samples y=1,
+%		    view={40}{30},
+%		    grid = major,
+%		    axis lines* = left,
+%		    unit vector ratio*=4 3 1,
+%		    xtick={-1,-0.5,0,0.5,1},
+%		    ytick={0,1,2,3,4,5},
+%		    ztick={-1,0,1},
+%		    xlabel={$x$},
+%		    ylabel={$n$},
+%		    zlabel={$T_n(x)$},
+%		    no marks,
+%		    samples=201,
+%		    every tick label/.append style={font=\small},
+%		    %tick align=outside,
+%		%    cycle list/GnBu-9,%RdYlBu-6,%Spectral-6,
+%		%	cycle multiindex* list={GnBu-9},%RdYlBu-6}%Spectral-6}
+%		    clip=false]
+%			\pgfplotsinvokeforeach{0,1,...,5}{%
+%				\addplot3+[domain=-1:1]	({x},#1,{ cos(#1*acos(x)) });
+%			}%
+%		\end{axis}
+%	\end{tikzpicture}
+%	\caption{Graphe des premiers polynômes de Chebyshev.}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\begin{tikzpicture} 
+%		\begin{axis}[%
+%			width=8cm, height=6cm,
+%			axis lines*=left,
+%			xmin=-1.0, xmax=1.0, ymin=-1.0, ymax=1.0,
+%			grid=major,
+%			clip marker paths=false,
+%			enlargelimits={abs=0.05},
+%			xlabel={$x$},
+%			ylabel={$T_n(x)$},
+%			legend style={at={(1.025,0.5)}, anchor=west},
+%			no marks,
+%			samples=201,
+%			%cycle list/GnBu-9,%RdYlBu-6,%Spectral-6,
+%			%cycle multiindex* list={GnBu-9}%RdYlBu-6}%Spectral-6}
+%			]%
+%			\pgfplotsinvokeforeach{0,1,...,5}{%
+%	      		\addplot+[domain=-1:1] { cos(#1*acos(x)) } coordinate[pos=0.8+#1*0.011] (x#1);
+%%	      		\pgfmathparse{0.75}\let\xa\pgfmathresult
+%%	      		\pgfmathparse{cos(#1*acos(0.75))}\let\ya\pgfmathresult
+%%	      		\pgfmathparse{0.75-#1*0.25}\let\yb\pgfmathresult
+%	      		%\def\xa{\pgfmathparse{0.75}\pgfmathresult}
+%	      		%\def\ya{\pgfmathparse{cos(#1*acos(\xa))}\pgfmathresult}
+%	      		%\xdef\ya{1.0 - #1*0.15}
+%	      		%\xdef\xa{cos(acos(\ya)/#1)}
+%	      		%\def\yb{\pgfmathparse{0.75-#1*0.25}\pgfmathresult}
+%	        	%\addlegendentry{$T_{#1}$}
+%	        	\draw[latex-, black, thin] 
+%	        		(x#1)
+%	        		to [bend right=20] 
+%	        		(axis cs:1.1,1-2*#1/5) 
+%	        		node [anchor=west] {$n=#1$};
+%	        }%
+%		\end{axis} 
+%	\end{tikzpicture}
+%	\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
 %%	\label{fig:chebyshev_polynomials}
 %\end{figure}
+
+%En posant $x = \cos \theta$, il vient
+%\begin{equation}
+%	\dfdx{T_n(x)}{x} = \frac{n \sin n\theta}{\sin \theta}.
+%\end{equation}
 
 $T_n$ est un polynôme de degré $n$ %de coefficient dominant $2^{n-1}$ 
 qui atteint ses extrema locaux sur $\chebinterval$ aux $n+1$ n\oe uds de Chebyshev-Gauss-Lobatto (CGL)%\footnote{Seuls les $n-1$ n\oe uds intérieurs sont réellement des extrema au sens où la dérivée s'y annule. A noter également que ces n\oe uds sont rangés en ordre décroissant.}
@@ -145,9 +200,26 @@ Comme illustré sur la \autoref{fig:cgl_nodes}, ces extrema sont alternativement
 	\label{fig:cgl_nodes}
 \end{figure}
 
-Cette propriété dite d'\emph{équioscillation} a pour conséquence --- via un théorème attribué au mathématicien Émile Borel --- que la meilleure approximation uniforme (\ie\ en norme $L_\infty$) polynomiale de degré $n - 1$ de la fonction $x \mapsto x^n$ sur $\chebinterval$ est la fonction $x \mapsto x^n - 2^{1 - n} T_n(x)$. \\
-$\to$ économisation\ldots
-
+%Cette propriété dite d'\emph{équioscillation} a pour conséquence --- via un théorème attribué au mathématicien Émile Borel --- que la meilleure approximation uniforme (\ie en norme $L_\infty$) polynomiale de degré $n - 1$ de la fonction $x \mapsto x^n$ sur $\chebinterval$ est la fonction $x \mapsto x^n - 2^{1 - n} T_n(x)$. \\
+%$\to$ économisation\ldots
+Cette propriété d'\emph{équioscillation} a pour conséquence le théorème suivant.
+\begin{theoreme}
+	Le polynôme %$p_{N-1}$ 
+	de degré $N-1$ qui donne la meilleure approximation uniforme (\ie en norme $L_\infty$) %de la fonction $x \mapsto x^N$ est $p_{N-1} : x \mapsto x^N - 2^{1 - N} T_n(x)$. 
+du polynôme $q : x \mapsto \sum_{n=0}^{N} a_n x^n$ sur l'intervalle $\chebinterval$ est
+	\begin{equation}
+		p_{N-1} = q - 2^{1-N} a_N T_N,
+	\end{equation}
+	et, pour tout $x \in \chebinterval$,
+	%La meilleure approximation %uniforme (\ie en norme $L_\infty$) 
+	%polynomiale de degré $N - 1$ en norme $L_\infty$ de la fonction $x \mapsto x^N$ sur $\chebinterval$ est la fonction $p_N : x \mapsto x^N - 2^{1 - N} T_n(x)$ et
+	\begin{equation}
+		%\norminf{q - p_{N-1}} = 2^{1-N} \left| a_N \right|.
+		\left| q(x)-  p_{N-1}(x)\right| \leq 2^{1-N} \left| a_N \right|,
+	\end{equation}
+	l'égalité étant atteinte aux $N+1$ n\oe uds CGL de $T_N$.
+\end{theoreme}
+Ce théorème trouve une application immédiate dans l'économisation des séries \textit{(à développer\ldots)}.
 
 \subsubsection{Approximation de fonctions}
 %série $\series{f}$\\
@@ -160,7 +232,7 @@ Notons $\Ltwospace$ l'espace de Hilbert des fonctions de carré intégrable sur 
 	\label{eq:chebyshev_scalar_product}
 \end{equation}
 
-La famille des polynômes de Chebyshev est une base orthogonale de cet espace, et pour tous $m,n \in \mathbb{N}$,
+La famille des polynômes de Chebyshev est une base orthogonale et maximale de cet espace, et pour tous $m,n \in \mathbb{N}$,
 \begin{equation}
 	\scalprod{T_m}{T_n} =
 	\frac{\pi}{2} \alpha_n \delta_{m,n},
@@ -175,34 +247,35 @@ où $\delta_{\cdot,\cdot}$ représente le symbole de Kronecker, et
 	\end{cases}
 \end{equation}
 
-%Le développement en série de Chebyshev $\series{f}$ d'une fonction $f \in \Ltwospace$ est défini par
-Le développement en série de Chebyshev d'une fonction $f \in \Ltwospace$ est défini par
+%Le développement en série de Chebyshev d'une fonction $f \in \Ltwospace$ est défini par
+Toute fonction $f \in \Ltwospace$ peut alors être représentée par sa série de Chebyshev
 \begin{equation}
 	f = \sum_{n=0}^{\infty} \hat{f}_n T_n,
 	\label{eq:chebyshev_series}
 \end{equation}
 
-où les coefficients $\hat{f}_n$ sont obtenus en prenant le produit scalaire
+dont les coefficients $\hat{f}_n$ sont obtenus en prenant le produit scalaire
 \begin{align}
 	\hat{f}_n 
 	&= \frac{\scalprod{f}{T_n}}{\scalprod{T_n}{T_n}}, \nonumber \\
 	&= \frac{2}{\pi \alpha_n} \int_{-1}^{1} \frac{f(x) T_n(x)}{\sqrt{1 - x^2}} dx.
 	\label{eq:chebyshev_series_coeffs}
 \end{align}
-En effectuant le changement de variable $x = \cos \theta$, on obtient également
-\begin{equation}
-	\hat{f}_n = \frac{2}{\pi \alpha_n} \int_{0}^{\pi} f(\cos \theta) \cos n \theta d \theta. 
-\end{equation}
-%le symbole $\sum{'}$ signifiant que le premier terme de la somme est divisé par 2.
+%En effectuant le changement de variable $x = \cos \theta$, on obtient également
+%\begin{equation}
+%	\hat{f}_n = \frac{2}{\pi \alpha_n} \int_{0}^{\pi} f(\cos \theta) \cos n \theta d \theta. 
+%\end{equation}
 
-Le projeté orthogonal de $f$ sur le sous-espace $\polyspace{N}$ de $\Ltwospace$ des polynômes de degré au plus $N$ est la somme partielle%série tronquée
+%Le projeté orthogonal de $f$ sur le sous-espace $\polyspace{N}$ de $\Ltwospace$ des polynômes de degré au plus $N$ est la somme partielle%série tronquée
+La somme partielle
 \begin{equation}
-	\truncseries{f}{N} = \sum_{n=0}^{N} \hat{f}_n T_n.
+	\truncseries{f}{N} = \sum_{n=0}^{N} \hat{f}_n T_n
 	\label{chebyshev_truncated_series}
 \end{equation}
-
-Il s'agit donc de l'élément de $\polyspace{N}$ le plus proche de $f$, au sens de la norme induite par le produit scalaire \eqref{eq:chebyshev_scalar_product}.
-La somme partielle $\truncseries{f}{N}$ est également proche de la meilleure approximation uniforme de $f$ par un polynôme de degré N. En effet, si $f$ est continue sur $\chebinterval$, alors
+est le projeté orthogonal de $f$ sur le sous-espace $\polyspace{N}$ de $\Ltwospace$ des polynômes de degré au plus $N$.
+Il s'agit donc de l'élément de $\polyspace{N}$ le plus proche de $f$, au sens de la norme induite par le produit scalaire \eqref{eq:chebyshev_scalar_product}.\par
+La somme partielle $\truncseries{f}{N}$ est également proche de la meilleure approximation uniforme de $f$ par un polynôme de degré N. 
+En effet, si $f$ est continue sur $\chebinterval$, alors
 \begin{equation}
 	\norminf{f - \truncseries{f}{N}} 
 	\leq 
@@ -212,18 +285,38 @@ La somme partielle $\truncseries{f}{N}$ est également proche de la meilleure ap
 \end{equation}
 où la constante de Lebesgue $\lambda_N = 1.27\ldots + \frac{4}{\pi^2} \log N + \bigO{1/N}$ croît %suffisamment lentement avec $N$ ($\lambda_{500} \approx 3.8$) pour que les séries de Chebyshev tronquées représentent un excellent choix pratique pour l'approximation de fonctions arbitraires.\par
 lentement avec $N$ ($\lambda_{500} \approx 3.8$).\par
-En outre, si $f$ possède $m$ dérivées continues sur $\chebinterval$, alors
-\begin{equation}
-	\norminf{f - \truncseries{f}{N}} = \bigO{N^{1-m}}.
-	\label{eq:chebyshev_spectral_accuracy}
-\end{equation}
-En particulier, si $f \in C^{\infty}\chebinterval$, alors l'\textit{erreur de troncature} $\norminf{f - \truncseries{f}{N}}$ décroît exponentiellement avec $N$ -- 
-cette caractéristique est qualifiée de \guill{précision spectrale}.
-Si $f$ est suffisamment régulière, sa somme partielle $\truncseries{f}{N}$ en est donc une excellente approximation pour un faible nombre de degrés de liberté.\\
-Convergence vers 0 de la suite $(\hat{f}_n)$
+Dans le contexte de la résolution numérique d'équations aux dérivées partielles, les séries de Chebyshev représentent un puissant outil pour l'approximation de fonctions possédant des dérivées continues, pour lesquelles la somme partielle $\truncseries{f}{N}$ converge très rapidement.
+\begin{theoreme}
+	Si $f \in C^{m+1}\chebinterval$, avec $m \in \mathbb{R}$, alors pour tout $-1\leq x \leq 1$,
+	\begin{equation}
+		%\norminf{f - \truncseries{f}{N}} = \bigO{N^{-m}}.
+		\left| f(x) - \truncseries{f}{N}(x) \right| = \bigO{N^{-m}}.
+		\label{eq:chebyshev_convergence}
+	\end{equation}
+\end{theoreme}
+%\begin{theoreme}
+%	Soit $\mathcal{E}_r = \left\{ z \in \mathbb{C} : \left| z - \sqrt{z^2 - 1}\right| < r\right\}$, délimité par l'ellipse de demi-axes $\frac{r + 1/r}{2}$ sur l'axe réel et $\frac{r - 1/r}{2}$ sur l'axe imaginaire.
+%	Si $f$ est analytique dans $\mathcal{E}_r$ pour $r > 1$, alors pour tout $-1\leq x \leq 1$,
+%	\begin{equation}
+%		%\norminf{f - \truncseries{f}{N}} = \bigO{r^{-N}}.
+%		\left| f(x) - \truncseries{f}{N}(x) \right| = \bigO{r^{-N}}.
+%		\label{eq:chebyshev_spectral_accuracy}
+%	\end{equation}
+%\end{theoreme}
+%En outre, si $f$ possède $m + 1$ dérivées continues sur $\chebinterval$, alors
+%\begin{equation}
+%	\norminf{f - \truncseries{f}{N}} = \bigO{N^{-m}}.
+%	\label{eq:chebyshev_spectral_accuracy}
+%\end{equation}
+%En particulier, si $f \in C^{\infty}\chebinterval$, 
+En outre, si $f$ est analytique, alors l'\textit{erreur de troncature} $\norminf{f - \truncseries{f}{N}}$ décroît exponentiellement avec $N$. %-- cette caractéristique est qualifiée de \guill{précision spectrale}.
+%Si $f$ est suffisamment régulière, sa somme partielle $\truncseries{f}{N}$ en est donc une excellente approximation pour un faible nombre de degrés de liberté.
+\\
+$\to$ convergence vers 0 de la suite $(\hat{f}_n)$ \ldots
 \par\bigskip
+\textit{Motivation pour interpolation}
 
-En pratique, l'intégrale \eqref{eq:chebyshev_series_coeffs} ne peut pas être calculée analytiquement  \ldots\\
+%En pratique, l'intégrale \eqref{eq:chebyshev_series_coeffs} ne peut pas être calculée analytiquement  \ldots\\
 Les polynômes de Chebyshev satisfont une seconde relation d'orthogonalité, dite \guill{discrète}, pour $0 \leq n \leq N$ et $m \geq n$,
 \begin{equation}
 	%\sum_{k=0}^{N}{''} T_m(x_k) T_n(x_k) = 
@@ -347,9 +440,10 @@ Nous reviendrons sur ce point dans la \autoref{sec:instabilites} lorsque nous ab
 \subsubsection{Évaluation}
 Par la suite, nous serons amenés à évaluer à maintes reprises des sommes de la forme
 \begin{equation}
-	s_N = \sum_{n=0}^N \hat{s}_n T_n.
+	s_N = \sum_{n=0}^N \hat{s}_n T_n
 	\label{eq:chebyshev_sum}
 \end{equation}
+en des points autres que les n\oe uds CGL.
 Plutôt que de réécrire cette somme dans la base canonique de $\polyspace{N}$, il est intéressant de tirer parti de la relation \eqref{eq:chebyshev_recurrence}. 
 En introduisant la suite récurrente
 \begin{equation}
@@ -446,7 +540,7 @@ pour $n \geq 2$. Il vient alors, pour tout $n \in \mathbb{N}$,
 \begin{equation}
 	2 \left( n + 1 \right) \hat{f}_{n+1} = \alpha_n \deriv{\hat{f}}{1}_n - \deriv{\hat{f}}{1}_{n+2}.
 \end{equation}
-%En supposant $f = \truncseries{f}{N}$ (\ie~$\hat{f}_n = 0$ pour tout $n > N$), alors %$\deriv{\hat{f}}{1}_n = 0$ pour tout $n \geq N$ et les coefficients $\deriv{\hat{f}}{1}_n$ pour $n < N$ peuvent être calculés grâce à la relation de récurrence
+%En supposant $f = \truncseries{f}{N}$ (\ie $\hat{f}_n = 0$ pour tout $n > N$), alors %$\deriv{\hat{f}}{1}_n = 0$ pour tout $n \geq N$ et les coefficients $\deriv{\hat{f}}{1}_n$ pour $n < N$ peuvent être calculés grâce à la relation de récurrence
 %les coefficients $\deriv{\hat{f}}{1}_n$ peuvent être calculés suivant la relation de récurrence
 %\begin{equation}
 %	\deriv{\hat{f}}{1}_n = 
@@ -513,41 +607,70 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 \centering%
 %\input{figures/spectral_convergence.tikz}
 \hspace*{\fill}%
-\subbottom[Convergence de l'erreur maximale d'approximation due à l'interpolation par le polynôme $\interpderiv{f}{N}{k}$.]{%
+%
+%\begin{tikzpicture}
+%\begin{axis}[%
+%	hide axis, 
+%	xmin=0, xmax=90,
+%	ymin=1.0e-16, ymax=1.0e2,
+%	legend columns=-1, 
+%	legend style={
+%				font=\small,
+%				/tikz/every even column/.append style={column sep=8mm}
+%                },
+%	legend entries={$\; k=0$,$ \; k=1$, $\; k=2$}]
+%	\addlegendimage{only marks, mark=square*,   mark size=1.2pt, s1}
+%	\addlegendimage{only marks, mark=*,         mark size=1.5pt, s2}
+%	\addlegendimage{only marks, mark=triangle*, mark size=1.7pt, s3}
+%\end{axis}
+%%\node (k0)  {\protect\legendsquare{s1}\ $k = 0$};
+%%\node[right of=k0] (k1) {\protect\legenddot{s2}\ $k = 1$};
+%%\node[right of=k1] (k2) {\protect\legendtriangle{s3}\ $k = 2$};
+%\end{tikzpicture}
+%
+\subbottom[Erreur d'approximation par le polynôme $\interpderiv{f}{N}{k}$.]{%
 \begin{tikzpicture}%
 \begin{semilogyaxis}[
 	width=6.7cm, height=6cm,
-	xmin=0, xmax=80,
+	xmin=0, xmax=90,
 	ymin=1.0e-16, ymax=1.0e2,
 	grid=both,
 	axis x line*=bottom,
 	axis y line*=left,
 	xlabel={$N\vphantom{n}$},
 	%ylabel={\small $\left \| \interpolant{f^{(k)}}{N} - f^{(k)} \right \|_{\infty} / \left \| f^{(k)} \right \|_{\infty}$},
-	ylabel={\small $\norminf{\interpderiv{f}{N}{k} - \deriv{f}{k}} / \norminf{\deriv{f}{k}}$},
-	xtick distance=20,
-	legend pos=south west,
+	ylabel={\small $\norminf{\interpderiv{f}{N}{k} - \deriv{f}{k}} \norminf{\deriv{f}{k}}^{-1}$},
+	xtick distance=30,
+	legend pos=north east,
 	legend style={font=\small},
+	cycle list shift=-1
 	]%
-	\addplot+ table[x index=0, y index=1] {figures/data/convergence_f.dat};%
-	\addplot+ table[x index=0, y index=2] {figures/data/convergence_f.dat};%
-	\addplot+ table[x index=0, y index=3] {figures/data/convergence_f.dat};%
+	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-N}$};%
+	%\addlegendentry{$1.8^{-N}$}%{$e^{-0.57N}$}
+	\pgfplotsinvokeforeach{1,...,3}{
+		\addplot+ table[x index=0, y index=#1] {figures/data/convergence_DNkf.dat};%
+	}
+%	\node at (axis cs:5,2.24e-2) {\protect\legendsquare{s1}};
+%	\node at (axis cs:5,1.05e-1) {\protect\legenddot{s2}};
+%	\node at (axis cs:5,9.1e-1) {\protect\legendtriangle{s3}};
+	%\addplot+ table[x index=0, y index=1] {figures/data/convergence_f.dat};%
+	%\addplot+ table[x index=0, y index=2] {figures/data/convergence_f.dat};%
+	%\addplot+ table[x index=0, y index=3] {figures/data/convergence_f.dat};%
 	%\addplot+[dashed, color=black, no marks, very thick][domain=25.5:54.5] 	{1e4*exp(-0.5*x)};%
-	\addplot+[dashed, color=black, no marks, very thick][domain=30:50.5]%[domain=30.5:59.5]
-	 {1e6*exp(-0.53*x)};%
+	%\addplot+[dashed, color=black, no marks, very thick][domain=30:50.5] {1e6*exp(-0.53*x)};%
 	%\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5N}$}}%
-	\legend{{$k=0$},{$k=1$},{$k=2$},{$e^{-0.53N}$}}%
+	%\legend{{$k=0$},{$k=1$},{$k=2$}}%,{$e^{-0.53N}$}}%
 \end{semilogyaxis}%
 \end{tikzpicture}%
 \label{subfig:spectral_convergence_Linf}%
 }%
 \hspace{4mm}%
 %\hfill%
-\subbottom[Spectre des coefficients de Chebyshev du polynôme $\interpderiv{f}{80}{k}$.]{%
+\subbottom[Spectre des coefficients de Chebyshev.]{% du polynôme $\interpderiv{f}{80}{k}$.]{%
 \begin{tikzpicture}%
 \begin{semilogyaxis}[%
 	width=6.7cm, height=6cm,
-	xmin=0, xmax=80,
+	xmin=0, xmax=90,
 	ymin=1.0e-16, ymax=1.0e2,
 	grid=major,
 	axis y line*=right,
@@ -558,25 +681,33 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 	ylabel near ticks, 
 	yticklabel pos=right,
 	yticklabels={\empty},
-	xtick distance=20,
-	legend pos=south west,
+	xtick distance=30,
+	legend pos=north east,
 	legend style={font=\small},
+	cycle list shift=-1
 	]%
-	\addplot+[only marks] table[x expr=\coordindex, y index=0] {figures/data/coeffs.dat};%
-	\addplot+[only marks] table[x expr=\coordindex, y index=1] {figures/data/coeffs.dat};%
-	\addplot+[only marks] table[x expr=\coordindex, y index=2] {figures/data/coeffs.dat};%
-	\addplot+[dashed, color=black, no marks, very thick][domain=30:50.5]%[domain=30.5:59.5]
-	 {1e6*exp(-0.53*x)};%
+	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-n}$};%
+	%\addlegendentry{$1.8^{-n}$}
+	\pgfplotsinvokeforeach{0,...,2}{
+		\addplot+[only marks] table[x expr=\coordindex, y index=#1] {figures/data/coef_DNkf.dat};%
+	}
+%	\addplot+[only marks] table[x expr=\coordindex, y index=0] {figures/data/coeffs2.dat};%
+%	\addplot+[only marks] table[x expr=\coordindex, y index=1] {figures/data/coeffs2.dat};%
+%	\addplot+[only marks] table[x expr=\coordindex, y index=2] {figures/data/coeffs2.dat};%
+	%\addplot+[dashed, color=black, no marks, very thick][domain=30:50.5] 	 {1e6*exp(-0.53*x)};%
 	%\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5n}$}}%
-	\legend{{$k=0$},{$k=1$},{$k=2$},{$e^{-0.53n}$}}%
+	%\legend{{$k=0$},{$k=1$},{$k=2$}}%,{$e^{-0.53n}$}}%
 \end{semilogyaxis}%
 \end{tikzpicture}%
 \label{subfig:spectral_convergence_coef}%
 }
 \hspace*{\fill}%
-\caption{Précision spectrale \ldots $f : x \mapsto e^{\sin 3 x^3}$}%
+%\caption{Précision spectrale \ldots $f : x \mapsto e^{\sin 3 x^3}$. $k = 0 (\protect\legendsquare{s1}), 1 (\protect\legenddot{s2}), 2 (\protect\legendtriangle{s3})$.}%
+\caption{Convergence exponentielle de l'erreur d'approximation et des coefficients de Chebyshev pour la fonction analytique $f : x \mapsto e^{\sin 3 x^3}$ et ses dérivées $\deriv{f}{k}$ ($k = 0 (\protect\legendsquare{s1}), 1 (\protect\legenddot{s2}), 2 (\protect\legendtriangle{s3})$).}%
 \label{fig:spectral_convergence}%
 \end{figure}
+
+%\input{figures/convergence.tex}
 
 %\begin{figure}[!htp]
 %\centering%

@@ -34,8 +34,12 @@
 %	\end{axis} 
 %\end{tikzpicture}
 %
+%https://tex.stackexchange.com/questions/127375/replicate-the-fourier-transform-time-frequency-domains-correspondence-illustrati
 \begin{tikzpicture}[%
-		ax/.style={on layer=background, black, line width=0.5pt}
+		ax/.style={on layer=background, black, line width=0.5pt},
+		grid/.style={on layer=background, black!25, line width=0.4pt},
+		tickl/.style={font=\small},
+		myax/.style={}
 	]%
 	\begin{axis}[
 	width=12cm, height=9cm,
@@ -45,18 +49,21 @@
     zmin=-1, zmax=1,
     samples y=1,
     view={40}{30},
-    hide axis,
-    grid = major,
+    %hide axis,
+    axis line style={draw=none},
+    tick style={draw=none},
+    grid = none,
     axis lines* = left,
     unit vector ratio*=4 3 1,
     %xtick=\empty, ytick=\empty, ztick=\empty,
     xtick={-1,-0.5,0,0.5,1},
     ytick={0,1,2,3,4,5},
     ztick={-1,0,1},
-    xlabel={$x$},
+    %xlabel={$x$},
     %ylabel={$n$},
-    zlabel={$T_n(x)$},
+    %zlabel={$T_n(x)$},
     yticklabels=\empty,
+    %zticklabels=\empty,
     no marks,
     samples=201,
     every tick label/.append style={font=\small},
@@ -65,6 +72,15 @@
 %	cycle multiindex* list={GnBu-9},%RdYlBu-6}%Spectral-6}
     clip=false
 ]
+% x,z grid lines (at y=cst)
+\foreach \y in {0,1,...,5}{%
+	\foreach \x in {{-0.5},{0},{0.5},{1}}{
+		\begingroup\edef\temp{\endgroup\noexpand\draw [grid] (axis cs:\x,\y,-1) -- ++ (axis direction cs:0,0,2);}\temp
+	}
+	\foreach \z in {{0},{1}}{
+		\begingroup\edef\temp{\endgroup\noexpand\draw [grid] (axis cs:-1,\y,\z) -- ++ (axis direction cs:2,0,0,0);}\temp
+	}
+}
 \pgfplotsinvokeforeach{0,1,...,5}{%
 	\addplot3+[domain=-1:1]	({x},#1,{ cos(#1*acos(x)) });
 %	\node[font=\footnotesize, anchor=west, inner sep=0] 
@@ -81,22 +97,24 @@
 		\begingroup\edef\temp{\endgroup\noexpand\draw [ax] (axis cs:-1,\y,\z) -- ++ (axis direction cs:0.05,0,0,0);}\temp
 	}
 }
-% x, z tick labels
-\pgfplotsinvokeforeach{-1,-0.5,0,0.5,1}{
-	\node[anchor=north, font=\footnotesize, xshift=-2.5pt] at (axis cs:#1,0,-1.1) {$#1$};
-}
-\pgfplotsinvokeforeach{-1,0,1}{
-	\node[anchor=east, font=\footnotesize] at (axis cs:-1,0,#1) {$#1$};
-}
+% x, z tick labels and grid lines
+%\pgfplotsinvokeforeach{-1,-0.5,0,0.5,1}{
+%	\node[anchor=north, myax, tickl, xshift=-4pt] at (axis cs:#1,0,-1.1) {$#1$};
+%%	\draw [grid] (axis cs:#1,0,-1) -- ++ (axis direction cs:0,5,0);
+%}
+%\pgfplotsinvokeforeach{-1,0,1}{
+%	\node[anchor=east, myax, tickl] at (axis cs:-1,0,#1) {$#1$};
+%%	\draw [grid] (axis cs:-1,0,#1) -- ++ (axis direction cs:0,5,0);
+%}
 % x,z labels
-\node[anchor=center] at (axis cs:0,-0.7,-1) {$x$};
-\node[anchor=center, rotate=90] at (axis cs:-1.5,0,0) {$T_n(x)$};
+\node[anchor=north west, myax] at (axis cs:0,-1.1,-1) {$x$};
+\node[anchor=south, rotate=90, myax, inner sep=7mm] at (axis cs:-1,0,0) {$T_n(x)$};
 %
 % y axis
-\draw[ax, -latex] (axis cs:1.3,0,-1) -- ++ (axis direction cs:0,5.5,0) node[anchor=south west] {$n$};
+\draw[ax, -latex] (axis cs:1.25,0,-1) -- ++ (axis direction cs:0,5.5,0) node[anchor=south west] {$n$};
 \pgfplotsinvokeforeach{0,1,...,5}{%
-	\draw[ax] (axis cs:1.3,#1,-1) -- ++ (axis direction cs:-0.05,0,0);
-	\node[anchor=north west, font=\footnotesize] at (axis cs:1.3,#1,-1) {$#1$};
+	\draw[ax] (axis cs:1.25,#1,-1) -- ++ (axis direction cs:-0.05,0,0);
+	\node[anchor=north west, myax, tickl] at (axis cs:1.25,#1,-1) {$#1$};
 }
 %\foreach \n in {0,1,...,5}{%
 %	\node[font=\footnotesize, anchor=west, inner sep=0] 
@@ -112,7 +130,8 @@
 %}%
 \end{axis}
 \end{tikzpicture}
-%https://tex.stackexchange.com/questions/127375/replicate-the-fourier-transform-time-frequency-domains-correspondence-illustrati
+%\begin{figure}
+%	\centering
 %\begin{tikzpicture} 
 %	\begin{axis}[%
 %		width=8cm, height=6cm,
@@ -129,8 +148,12 @@
 %		%cycle list/GnBu-9,%RdYlBu-6,%Spectral-6,
 %		%cycle multiindex* list={GnBu-9}%RdYlBu-6}%Spectral-6}
 %		]%
-%		\foreach \n in {0,...,5}
-%      		\addplot+[domain=-1:1]
-%        	{ cos(\n*acos(x)) };
+%		\pgfplotsinvokeforeach{0,1,...,5}{%
+%      		\addplot+[domain=-1:1] { cos(#1*acos(x)) };
+%        	\addlegendentry{$T_{#1}$}
+%        }%
 %	\end{axis} 
 %\end{tikzpicture}
+%\caption{Graphe des premiers polynômes de Chebyshev $(n=0,\ldots,5)$ sur l'intervalle $\chebinterval$.}
+%%	\label{fig:chebyshev_polynomials}
+%\end{figure}

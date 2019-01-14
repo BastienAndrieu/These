@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  8 JAN 2019 17:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  14 JAN 2019 14:04
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2313,9 +2313,27 @@ Package: cases 2002/05/02 ver 2.5
 Package: esint 
 \symlargesymbolsA=\mathgroup7
 )
-\c@theoreme=\count367
-\c@propriete=\count368
-\c@definition=\count369
+(/opt/tools/texlive/2016/texmf-dist/tex/latex/mathtools/empheq.sty
+Package: empheq 2014/07/16 v2.14 Emphasizing equations
+\l_EQ_equationtype_int=\count367
+\l_EQ_alignmentmode_int=\count368
+\l_EQ_totalwidth_dim=\dimen379
+\l_EQ_displaywidth_dim=\dimen380
+\l_EQ_temp_linewidth_dim=\dimen381
+\EmphEqdelimitershortfall=\dimen382
+\EmphEqdelimiterfactor=\count369
+\g_EQ_toptag_height_dim=\dimen383
+\g_EQ_bottomtag_depth_dim=\dimen384
+\g_EQ_toprow_height_dim=\dimen385
+\g_EQ_bottomrow_depth_dim=\dimen386
+\g_EQ_widesttag_dim=\dimen387
+\EQ_mathdisplay_box=\box80
+\EQ_tag_box=\box81
+\g_EQ_temprow_int=\count370
+)
+\c@theoreme=\count371
+\c@propriete=\count372
+\c@definition=\count373
 )
 (./preamb/preamb_titles.tex
 \afterchapskipdef=\skip263
@@ -2330,34 +2348,37 @@ Package: esint
 \vbarxshift=\skip272
 \vbarthck=\skip273
 \vbartipthck=\skip274
-) (./preamb/preamb_pagestyle.tex)
-(./preamb/preamb_captions.tex
-\c@subfigure=\count370
+)
+(/opt/tools/texlive/2016/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
+(./preamb/preamb_pagestyle.tex) (./preamb/preamb_captions.tex
+\c@subfigure=\count374
 \cftbeforesubfigureskip=\skip275
 \cftsubfigureindent=\skip276
 \cftsubfigurenumwidth=\skip277
-) (./preamb/preamb_macros.tex)
-(./preamb/preamb_warning.tex
+)
+(./preamb/preamb_macros.tex) (./preamb/preamb_warning.tex
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/silence/silence.sty
 Package: silence 2012/07/02 v1.5b Selective filtering of warnings and error mes
 sages
-\sl@Save=\count371
-\sl@StateNumber=\count372
-\sl@MessageCount=\count373
-\sl@Casualties=\count374
+\sl@Save=\count375
+\sl@StateNumber=\count376
+\sl@MessageCount=\count377
+\sl@Casualties=\count378
 \sl@Filter=\toks76
 \sl@Message=\toks77
 \sl@UnexpandedMessage=\toks78
 \sl@Mess@ge=\toks79
-\sl@WarningCount=\count375
-\sl@WarningNumber=\count376
-\sl@WarningCasualties=\count377
+\sl@WarningCount=\count379
+\sl@WarningNumber=\count380
+\sl@WarningCasualties=\count381
 \sl@TempBOW=\toks80
 \sl@BankOfWarnings=\toks81
 LaTeX Info: Redefining \GenericWarning on input line 433.
-\sl@ErrorCount=\count378
-\sl@ErrorNumber=\count379
-\sl@ErrorCasualties=\count380
+\sl@ErrorCount=\count382
+\sl@ErrorNumber=\count383
+\sl@ErrorCasualties=\count384
 \sl@TempBOE=\toks82
 \sl@BankOfErrors=\toks83
 LaTeX Info: Redefining \GenericError on input line 601.
@@ -2367,15 +2388,15 @@ Package: showlabels 2016/06/09 v1.8
 
 Package: `showlabels' v1.8 <2016/06/09>
 with amsmath equation tags
-\SL@labelposition=\count381
+\SL@labelposition=\count385
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2016/05/14 v2.6a Micro-typographical refinements (RS)
 \MT@toks=\toks84
-\MT@count=\count382
+\MT@count=\count386
 LaTeX Info: Redefining \textls on input line 774.
-\MT@outer@kern=\dimen379
+\MT@outer@kern=\dimen388
 LaTeX Info: Redefining \textmicrotypecontext on input line 1310.
-\MT@listname@count=\count383
+\MT@listname@count=\count387
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2016/05/14 v2.6a Definitions specific to pdftex (RS)
@@ -2391,21 +2412,21 @@ File: microtype.cfg 2016/05/14 v2.6a microtype main configuration file (RS)
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/changebar/changebar.sty
 Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
-\cb@nextpoint=\count384
-\cb@topleft=\count385
-\cb@topright=\count386
-\cb@botleft=\count387
-\cb@botright=\count388
-\cb@cnta=\count389
-\cb@cntb=\count390
-\cb@dima=\dimen380
-\cb@curbarwd=\dimen381
-\cb@page=\count391
-\cb@pagecount=\count392
-\cb@odd@left=\dimen382
-\cb@odd@right=\dimen383
-\cb@even@left=\dimen384
-\cb@even@right=\dimen385
+\cb@nextpoint=\count388
+\cb@topleft=\count389
+\cb@topright=\count390
+\cb@botleft=\count391
+\cb@botright=\count392
+\cb@cnta=\count393
+\cb@cntb=\count394
+\cb@dima=\dimen389
+\cb@curbarwd=\dimen390
+\cb@page=\count395
+\cb@pagecount=\count396
+\cb@odd@left=\dimen391
+\cb@odd@right=\dimen392
+\cb@even@left=\dimen393
+\cb@even@right=\dimen394
 \cb@writexy=\write7
 \cb@readxy=\read5
 \openout7 = `main.cb2'.
@@ -2413,7 +2434,7 @@ Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
 \changebarwidth=\skip279
 \deletebarwidth=\skip280
 \changebarsep=\skip281
-\c@changebargrey=\count393
+\c@changebargrey=\count397
 \cb@write=\write8
 \cb@read=\read6
 \openout8 = `main.cb'.
@@ -2421,7 +2442,7 @@ Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count394
+\c@lips@count=\count398
 )
 (./figures/vortex_erreur_vs_dof_template.tex)
 \tikzscale@accuracy=\skip282
@@ -2462,20 +2483,20 @@ nuxLibertineT-OsF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 10.95pt on input line 22.
-\c@mv@tabular=\count395
-\c@mv@boldtabular=\count396
+\c@mv@tabular=\count399
+\c@mv@boldtabular=\count400
  (/opt/tools/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count397
-\scratchdimen=\dimen386
-\scratchbox=\box80
-\nofMPsegments=\count398
-\nofMParguments=\count399
+\scratchcounter=\count401
+\scratchdimen=\dimen395
+\scratchbox=\box82
+\nofMPsegments=\count402
+\nofMParguments=\count403
 \everyMPshowfont=\toks85
-\MPscratchCnt=\count400
-\MPscratchDim=\dimen387
-\MPnumerator=\count401
-\makeMPintoPDFobject=\count402
+\MPscratchCnt=\count404
+\MPscratchDim=\dimen396
+\MPnumerator=\count405
+\makeMPintoPDFobject=\count406
 \everyMPtoPDFconversion=\toks86
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -2494,7 +2515,7 @@ ig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box81
+\AtBeginShipoutBox=\box83
 Package hyperref Info: Link coloring ON on input line 22.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -2503,7 +2524,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/opt/tools/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count403
+\c@section@level=\count407
 )
 Redoing nameref's sectioning
 Redoing nameref's label
@@ -2519,6 +2540,8 @@ LaTeX Info: Redefining \nameref on input line 22.
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.14}).
 
+LaTeX Info: Redefining \[ on input line 22.
+LaTeX Info: Redefining \] on input line 22.
 LaTeX Info: Redefining \microtypecontext on input line 22.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2),
@@ -2640,12 +2663,6 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 64.92935pt on input line 2.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/sc' will be
 (Font)              scaled to size 14.4pt on input line 6.
-
-Overfull \hbox (13.45525pt too wide) in paragraph at lines 9--10
-\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) applications : sim-u-la-tions multi-phy
-siques (flammes, fluide-structure, écoule-ments mul-ti-phasiques,
- []
-
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 14.
 
@@ -2655,12 +2672,12 @@ LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 (./figures/singular_point_formation.tikz
 \dtldb@nor0=\toks87
 \dtlkeys@nor0=\toks88
-\dtlrows@nor0=\count404
-\dtlcols@nor0=\count405
+\dtlrows@nor0=\count408
+\dtlcols@nor0=\count409
 \dtldb@xysing=\toks89
 \dtlkeys@xysing=\toks90
-\dtlrows@xysing=\count406
-\dtlcols@xysing=\count407
+\dtlrows@xysing=\count410
+\dtlcols@xysing=\count411
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
 (Font)              scaled to size 10.0pt on input line 34.
@@ -2673,25 +2690,13 @@ input line 41.
 LaTeX Warning: Reference `subfig:huygens_principle_eob' on page 1 undefined on 
 input line 41.
 
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 96.
 [1
 
 
 
 ]
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 99.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 99.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 99.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 99.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 99.
 LaTeX Font Info:    Try loading font information for TS1+LinuxLibertineT-OsF on
- input line 109.
+ input line 108.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-OsF.
 fd
@@ -2699,20 +2704,20 @@ File: TS1LinuxLibertineT-OsF.fd 2012/11/26 (autoinst) Font definitions for TS1/
 LinuxLibertineT-OsF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 109.
+(Font)              scaled to size 10.95pt on input line 108.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-OsF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 10.95pt on input line 109.
+(Font)              scaled to size 10.95pt on input line 108.
 
-Underfull \hbox (badness 10000) in paragraph at lines 126--129
+Underfull \hbox (badness 10000) in paragraph at lines 125--128
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
@@ -2723,7 +2728,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 130--131
 
 
 
-] [5]) [6]
+] [5]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 73.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 73.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 73.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 73.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 73.
+) [6]
 \openout2 = `mainmatter/chap2.aux'.
 
  (./mainmatter/chap2.tex
@@ -2738,12 +2754,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--1
  []
 
 
-Overfull \hbox (5.50693pt too wide) in paragraph at lines 10--10
-\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) méthode pseudo-spectrale : so-lu-tion d
-évelop-pée dans une base de fonc-tions glob-ales et régulières,
- []
-
-
 Overfull \hbox (9.19925pt too wide) in paragraph at lines 30--31
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) harmoniques sphériques [[]][], polynô
 mes trigonométriques [[]][] $\OMS/lmsy/m/n/10.95 !$ \T1/LinuxLibertineT-OsF/m/n
@@ -2755,491 +2765,268 @@ mes trigonométriques [[]][] $\OMS/lmsy/m/n/10.95 !$ \T1/LinuxLibertineT-OsF/m/n
 
 
 ] (./figures/chebyshev_polynomials.tikz
-\pgf@layerbox@pre main=\box82
-\pgf@layerboxsaved@pre main=\box83
-Package pgfplots info on input line 67: Setting layers 'axis background,axis gr
+\pgf@layerbox@pre main=\box84
+\pgf@layerboxsaved@pre main=\box85
+Package pgfplots info on input line 74: Setting layers 'axis background,axis gr
 id,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis 
 foreground'...
-) (./figures/cgl_nodes.tikz)
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 144.
+(Font)              <10> on input line 131.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 144.
- [8]
+(Font)              <7> on input line 131.
+) (./figures/cgl_nodes.tikz) [8]
 [9] [10] [11] [12] [13]
-Package pgfplots info on input line 543: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 666: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
-PGFPlots: reading {figures/data/convergence_f.dat}
-PGFPlots: reading {figures/data/convergence_f.dat}
-PGFPlots: reading {figures/data/convergence_f.dat}
+PGFPlots: reading {figures/data/convergence_DNkf.dat}
+PGFPlots: reading {figures/data/convergence_DNkf.dat}
+PGFPlots: reading {figures/data/convergence_DNkf.dat}
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 543.
-Package pgfplots info on input line 575: Using 'lua backend=false' for axis: ym
+(Font)              scaled to size 9.0pt on input line 666.
+Package pgfplots info on input line 703: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
-PGFPlots: reading {figures/data/coeffs.dat}
+PGFPlots: reading {figures/data/coef_DNkf.dat}
+PGFPlots: reading {figures/data/coef_DNkf.dat}
 
-NOTE: coordinate (1Y3.0e0],-0.243582754500569E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.0e0],-0.207158883616203E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.0e0],-0.401592437960232E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.0e0],-0.130636825981622E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.0e0],-0.435871462406497E-01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.3e1],-0.324771454401673E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.4e1],-0.600794885162627E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.5e1],-0.462541047224329E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.6e1],-0.254369970705944E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.7e1],-0.684430933098856E-03) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.3e1],-0.157684017917016E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.4e1],-0.445307240957357E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.5e1],-0.376049226261565E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.6e1],-0.210665413987940E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.7e1],-0.701747284914208E-05) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.3e1],-0.537750278615129E-08) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.4e1],-0.206773710188790E-06) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.5e1],-0.200174003322483E-06) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.6e1],-0.119705173023954E-06) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.7e1],-0.464929674758899E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.8e1],-0.367884839258537E-08) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.4e1],-0.661331350793049E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.5e1],-0.775769277862318E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.6e1],-0.513812041524897E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.7e1],-0.227062573818373E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.8e1],-0.450360825021701E-10) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.4e1],-0.129172714191661E-11) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.5e1],-0.233380590260814E-11) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.6e1],-0.174070827196893E-11) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.7e1],-0.867904985957257E-12) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.8e1],-0.252003279355151E-12) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.4e1],-0.235922392732846E-15) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.5e1],-0.497279871970670E-14) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.6e1],-0.486416462663897E-14) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.7e1],-0.206718136667528E-14) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.8e1],-0.794503351997378E-15) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.4e1],-0.529090660172926E-16) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.8e1],-0.184748050191530E-15) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-PGFPlots: reading {figures/data/coeffs.dat}
-NOTE: coordinate (0Y0.0e0],-0.175067209863452E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.0e0],-0.139964561481417E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.0e0],-0.504674491427066E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.0e0],-0.177403079341691E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.0e0],-0.358524838726725E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.0e0],-0.116759724487282E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.1e1],-0.690560601966044E-01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.2e1],-0.216865453906033E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.3e1],-0.223509690555328E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.4e1],-0.132424875761598E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.5e1],-0.552871227097925E-01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.2e1],-0.271740366927033E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.3e1],-0.299912407246671E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.4e1],-0.199205718685206E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.5e1],-0.861649315871391E-03) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.6e1],-0.111811055544233E-03) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.2e1],-0.162157104350334E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.3e1],-0.217574096701839E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.4e1],-0.158607952511475E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.5e1],-0.769679737734619E-05) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.6e1],-0.184861501857364E-05) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.2e1],-0.426801363564950E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.3e1],-0.104226916278205E-06) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.4e1],-0.849320836172637E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.5e1],-0.460297574084167E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.6e1],-0.151128486096550E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.3e1],-0.344295841836484E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.4e1],-0.337554905264645E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.5e1],-0.204789310509490E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.6e1],-0.808362559777505E-10) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.7e1],-0.982998404897018E-11) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.3e1],-0.724059701084911E-12) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.4e1],-0.513483665191204E-12) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.5e1],-0.693861634815107E-12) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.7e1],-0.517919040987636E-13) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.3e1],-0.659194920871187E-15) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.7e1],-0.288206958298787E-13) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.9e1],0.000000000000000E+00) has been dropped because it i
-s unbounded (in y). (see also unbounded coords=jump). 
-PGFPlots: reading {figures/data/coeffs.dat}
-NOTE: coordinate (1Y1.0e0],-0.301328443526225E+02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.0e0],-0.994586469553990E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y9.0e0],-0.308632614068957E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.0e1],-0.759525456198887E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.1e1],-0.753121551296612E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.2e1],-0.607602123766357E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.3e1],-0.232644461922134E+01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y1.4e1],-0.264769283225041E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.0e1],-0.152931020756197E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.1e1],-0.203037173024332E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.2e1],-0.158073536629545E+00) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.3e1],-0.834714115764372E-01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y2.4e1],-0.201138292960768E-01) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.0e1],-0.754511704754116E-03) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.1e1],-0.209001209562971E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.2e1],-0.181075422822012E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.3e1],-0.105220662778757E-02) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y3.4e1],-0.374765189987983E-03) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.1e1],-0.115724991771886E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.2e1],-0.123831548895642E-04) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.3e1],-0.798736772324306E-05) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.4e1],-0.341964008963858E-05) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y4.5e1],-0.513344364923853E-06) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.1e1],-0.374838813306151E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.2e1],-0.573732104741653E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.3e1],-0.414948173956488E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.4e1],-0.208778512394980E-07) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y5.5e1],-0.503888762706705E-08) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.2e1],-0.178114314963729E-09) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y6.4e1],-0.868827926270299E-10) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.2e1],-0.345892758879529E-11) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.4e1],-0.336268513034810E-11) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.6e1],-0.443838715780132E-11) has been dropped because it 
-is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.8e1],0.000000000000000E+00) has been dropped because it i
-s unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y7.9e1],0.000000000000000E+00) has been dropped because it i
-s unbounded (in y). (see also unbounded coords=jump). 
-
-Underfull \hbox (badness 10000) in paragraph at lines 575--575
-[]\T1/LinuxLibertineT-OsF/m/n/9 (+10) (b) \T1/LinuxLibertineT-OsF/m/it/9 (+10) 
-Spec-tre des co-ef-fi-cients de Cheby-shev du
- []
-
+NOTE: coordinate (1Y9.0e1],0.000000000000000000e+00) has been dropped because i
+t is unbounded (in y). (see also unbounded coords=jump). 
+PGFPlots: reading {figures/data/coef_DNkf.dat}
+NOTE: coordinate (1Y8.9e1],0.000000000000000000e+00) has been dropped because i
+t is unbounded (in y). (see also unbounded coords=jump). 
+NOTE: coordinate (1Y9.0e1],0.000000000000000000e+00) has been dropped because i
+t is unbounded (in y). (see also unbounded coords=jump). 
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
-<figures/T_0_0.png, id=592, 225.9642pt x 225.9642pt>
+<figures/T_0_0.png, id=591, 225.9642pt x 225.9642pt>
 File: figures/T_0_0.png Graphic file (type png)
  <use figures/T_0_0.png>
-Package pdftex.def Info: figures/T_0_0.png used on input line 691.
+Package pdftex.def Info: figures/T_0_0.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_0_0.png Graphic file (type png)
 
 <use figures/T_0_0.png>
-Package pdftex.def Info: figures/T_0_0.png used on input line 691.
+Package pdftex.def Info: figures/T_0_0.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
- <figures/T_0_1.png, id=594, 225.9642pt x 225.9642pt>
+ <figures/T_0_1.png, id=593, 225.9642pt x 225.9642pt>
 File: figures/T_0_1.png Graphic file (type png)
 
 <use figures/T_0_1.png>
-Package pdftex.def Info: figures/T_0_1.png used on input line 691.
+Package pdftex.def Info: figures/T_0_1.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_0_1.png Graphic file (type png)
  <use figures/T_0_1.png>
-Package pdftex.def Info: figures/T_0_1.png used on input line 691.
+Package pdftex.def Info: figures/T_0_1.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
-<figures/T_0_2.png, id=595, 225.9642pt x 225.9642pt>
+<figures/T_0_2.png, id=594, 225.9642pt x 225.9642pt>
 File: figures/T_0_2.png Graphic file (type png)
  <use figures/T_0_2.png>
-Package pdftex.def Info: figures/T_0_2.png used on input line 691.
+Package pdftex.def Info: figures/T_0_2.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_0_2.png Graphic file (type png)
 
 <use figures/T_0_2.png>
-Package pdftex.def Info: figures/T_0_2.png used on input line 691.
+Package pdftex.def Info: figures/T_0_2.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
- <figures/T_0_3.png, id=596, 225.9642pt x 225.9642pt>
+ <figures/T_0_3.png, id=595, 225.9642pt x 225.9642pt>
 File: figures/T_0_3.png Graphic file (type png)
 
 <use figures/T_0_3.png>
-Package pdftex.def Info: figures/T_0_3.png used on input line 691.
+Package pdftex.def Info: figures/T_0_3.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_0_3.png Graphic file (type png)
  <use figures/T_0_3.png>
-Package pdftex.def Info: figures/T_0_3.png used on input line 691.
+Package pdftex.def Info: figures/T_0_3.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
-<figures/T_0_4.png, id=597, 225.9642pt x 225.9642pt>
+<figures/T_0_4.png, id=596, 225.9642pt x 225.9642pt>
 File: figures/T_0_4.png Graphic file (type png)
  <use figures/T_0_4.png>
-Package pdftex.def Info: figures/T_0_4.png used on input line 691.
+Package pdftex.def Info: figures/T_0_4.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_0_4.png Graphic file (type png)
 
 <use figures/T_0_4.png>
-Package pdftex.def Info: figures/T_0_4.png used on input line 691.
+Package pdftex.def Info: figures/T_0_4.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
- <figures/T_1_0.png, id=598, 225.9642pt x 225.9642pt>
+ <figures/T_1_0.png, id=597, 225.9642pt x 225.9642pt>
 File: figures/T_1_0.png Graphic file (type png)
 
 <use figures/T_1_0.png>
-Package pdftex.def Info: figures/T_1_0.png used on input line 691.
+Package pdftex.def Info: figures/T_1_0.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_1_0.png Graphic file (type png)
  <use figures/T_1_0.png>
-Package pdftex.def Info: figures/T_1_0.png used on input line 691.
+Package pdftex.def Info: figures/T_1_0.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
-<figures/T_1_1.png, id=599, 225.9642pt x 225.9642pt>
+<figures/T_1_1.png, id=598, 225.9642pt x 225.9642pt>
 File: figures/T_1_1.png Graphic file (type png)
  <use figures/T_1_1.png>
-Package pdftex.def Info: figures/T_1_1.png used on input line 691.
+Package pdftex.def Info: figures/T_1_1.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_1_1.png Graphic file (type png)
 
 <use figures/T_1_1.png>
-Package pdftex.def Info: figures/T_1_1.png used on input line 691.
+Package pdftex.def Info: figures/T_1_1.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
- <figures/T_1_2.png, id=600, 225.9642pt x 225.9642pt>
+ <figures/T_1_2.png, id=599, 225.9642pt x 225.9642pt>
 File: figures/T_1_2.png Graphic file (type png)
 
 <use figures/T_1_2.png>
-Package pdftex.def Info: figures/T_1_2.png used on input line 691.
+Package pdftex.def Info: figures/T_1_2.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_1_2.png Graphic file (type png)
  <use figures/T_1_2.png>
-Package pdftex.def Info: figures/T_1_2.png used on input line 691.
+Package pdftex.def Info: figures/T_1_2.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
-<figures/T_1_3.png, id=601, 225.9642pt x 225.9642pt>
+<figures/T_1_3.png, id=600, 225.9642pt x 225.9642pt>
 File: figures/T_1_3.png Graphic file (type png)
  <use figures/T_1_3.png>
-Package pdftex.def Info: figures/T_1_3.png used on input line 691.
+Package pdftex.def Info: figures/T_1_3.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_1_3.png Graphic file (type png)
 
 <use figures/T_1_3.png>
-Package pdftex.def Info: figures/T_1_3.png used on input line 691.
+Package pdftex.def Info: figures/T_1_3.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
- <figures/T_1_4.png, id=602, 225.9642pt x 225.9642pt>
+ <figures/T_1_4.png, id=601, 225.9642pt x 225.9642pt>
 File: figures/T_1_4.png Graphic file (type png)
 
 <use figures/T_1_4.png>
-Package pdftex.def Info: figures/T_1_4.png used on input line 691.
+Package pdftex.def Info: figures/T_1_4.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_1_4.png Graphic file (type png)
  <use figures/T_1_4.png>
-Package pdftex.def Info: figures/T_1_4.png used on input line 691.
+Package pdftex.def Info: figures/T_1_4.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
-<figures/T_2_0.png, id=603, 225.9642pt x 225.9642pt>
+<figures/T_2_0.png, id=602, 225.9642pt x 225.9642pt>
 File: figures/T_2_0.png Graphic file (type png)
  <use figures/T_2_0.png>
-Package pdftex.def Info: figures/T_2_0.png used on input line 691.
+Package pdftex.def Info: figures/T_2_0.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_0.png Graphic file (type png)
 
 <use figures/T_2_0.png>
-Package pdftex.def Info: figures/T_2_0.png used on input line 691.
+Package pdftex.def Info: figures/T_2_0.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
- <figures/T_2_1.png, id=604, 225.9642pt x 225.9642pt>
+ <figures/T_2_1.png, id=603, 225.9642pt x 225.9642pt>
 File: figures/T_2_1.png Graphic file (type png)
 
 <use figures/T_2_1.png>
-Package pdftex.def Info: figures/T_2_1.png used on input line 691.
+Package pdftex.def Info: figures/T_2_1.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_1.png Graphic file (type png)
  <use figures/T_2_1.png>
-Package pdftex.def Info: figures/T_2_1.png used on input line 691.
+Package pdftex.def Info: figures/T_2_1.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
-<figures/T_2_2.png, id=605, 225.9642pt x 225.9642pt>
+<figures/T_2_2.png, id=604, 225.9642pt x 225.9642pt>
 File: figures/T_2_2.png Graphic file (type png)
  <use figures/T_2_2.png>
-Package pdftex.def Info: figures/T_2_2.png used on input line 691.
+Package pdftex.def Info: figures/T_2_2.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_2.png Graphic file (type png)
 
 <use figures/T_2_2.png>
-Package pdftex.def Info: figures/T_2_2.png used on input line 691.
+Package pdftex.def Info: figures/T_2_2.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
- <figures/T_2_3.png, id=606, 225.9642pt x 225.9642pt>
+ <figures/T_2_3.png, id=605, 225.9642pt x 225.9642pt>
 File: figures/T_2_3.png Graphic file (type png)
 
 <use figures/T_2_3.png>
-Package pdftex.def Info: figures/T_2_3.png used on input line 691.
+Package pdftex.def Info: figures/T_2_3.png used on input line 822.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_3.png Graphic file (type png)
  <use figures/T_2_3.png>
-Package pdftex.def Info: figures/T_2_3.png used on input line 691.
+Package pdftex.def Info: figures/T_2_3.png used on input line 822.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
@@ -3247,112 +3034,114 @@ put files.
 
 
 Package pgfplots Warning: You are adding more plots than you specified, current
- plots=15 vs. total allowed plots=15. on input line 691.
+ plots=15 vs. total allowed plots=15. on input line 822.
 
  [warning /pgfplots/warning/groupplots/too many plots]
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
 Package pgfplots Warning: You are adding more plots than you specified, current
- plots=15 vs. total allowed plots=15. on input line 691.
+ plots=15 vs. total allowed plots=15. on input line 822.
 
  [warning /pgfplots/warning/groupplots/too many plots]
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
 Package pgfplots Warning: You are adding more plots than you specified, current
- plots=15 vs. total allowed plots=15. on input line 691.
+ plots=15 vs. total allowed plots=15. on input line 822.
 
  [warning /pgfplots/warning/groupplots/too many plots]
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
 Package pgfplots Warning: You are adding more plots than you specified, current
- plots=15 vs. total allowed plots=15. on input line 691.
+ plots=15 vs. total allowed plots=15. on input line 822.
 
  [warning /pgfplots/warning/groupplots/too many plots]
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
 
 Package pgfplots Warning: You are adding more plots than you specified, current
- plots=15 vs. total allowed plots=15. on input line 691.
+ plots=15 vs. total allowed plots=15. on input line 822.
 
  [warning /pgfplots/warning/groupplots/too many plots]
 PGFPlots plot graphics[auto adjust axis=true] {figures/T_\mm _\nn .png}  on inp
-ut line 691: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
+ut line 822: determined options 'x={(49.000000000,18.000000000)},y={(-37.999900
 0000000,23.000000000)},z={(0.0,50.5000000000)},scale mode=scale uniformly,'. Us
 e 'plot graphics[debug]' or 'plot graphics[debug=visual]' to generate debug out
 put files. 
 
-<figures/T_2_4.png, id=607, 225.9642pt x 225.9642pt>
+<figures/T_2_4.png, id=606, 225.9642pt x 225.9642pt>
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_4.png Graphic file (type png)
 
 <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 File: figures/T_2_4.png Graphic file (type png)
 
 <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_4.png Graphic file (type png)
 
 <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
 File: figures/T_2_4.png Graphic file (type png)
 
 <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 225.96364pt x 225.96364pt.
 File: figures/T_2_4.png Graphic file (type png)
  <use figures/T_2_4.png>
-Package pdftex.def Info: figures/T_2_4.png used on input line 692.
+Package pdftex.def Info: figures/T_2_4.png used on input line 823.
 (pdftex.def)             Requested size: 67.94493pt x 67.92424pt.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
+(Font)              scaled to size 14.4pt on input line 830.
  [14]) [15 <./figures/T_0_0.png> <./figures/T_0_1.png> <./figures/T_0_2.png> <.
 /figures/T_0_3.png> <./figures/T_0_4.png> <./figures/T_1_0.png> <./figures/T_1_
 1.png> <./figures/T_1_2.png> <./figures/T_1_3.png> <./figures/T_1_4.png> <./fig
@@ -3366,51 +3155,57 @@ g> <./figures/T_2_4.png>]
 
 
 ]
-Overfull \hbox (5.76694pt too wide) in paragraph at lines 6--7
-\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) objectif : définir la paramétri-sa-tion
- des nou-velles sur-faces (et les lim-ites du do-maine paramétrique
+Overfull \hbox (22.76694pt too wide) in paragraph at lines 6--7
+[]\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) objectif : définir la paramétri-sa-ti
+on des nou-velles sur-faces (et les lim-ites du do-maine paramétrique
+ []
+
+
+Overfull \hbox (14.0881pt too wide) in paragraph at lines 9--10
+[]\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) paramétrisation ap-prochée des courbe
+s d'intersection (choix du paramètre : ab-scisse curviligne,
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
+Underfull \hbox (badness 10000) in paragraph at lines 47--55
 
  []
 
 (./figures/vortex_brep_LRTB6.tikz
-\imwid=\dimen388
-\imypos=\dimen389
+\imwid=\dimen397
+\imypos=\dimen398
 
-<figures/snap_001.png, id=678, 803.0pt x 803.0pt>
+<figures/snap_001.png, id=680, 803.0pt x 803.0pt>
 File: figures/snap_001.png Graphic file (type png)
  <use figures/snap_001.png>
 Package pdftex.def Info: figures/snap_001.png used on input line 11.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_002.png, id=679, 803.0pt x 803.0pt>
+<figures/snap_002.png, id=681, 803.0pt x 803.0pt>
 File: figures/snap_002.png Graphic file (type png)
  <use figures/snap_002.png>
 Package pdftex.def Info: figures/snap_002.png used on input line 12.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_003.png, id=680, 803.0pt x 803.0pt>
+<figures/snap_003.png, id=682, 803.0pt x 803.0pt>
 File: figures/snap_003.png Graphic file (type png)
  <use figures/snap_003.png>
 Package pdftex.def Info: figures/snap_003.png used on input line 13.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_004.png, id=681, 803.0pt x 803.0pt>
+<figures/snap_004.png, id=683, 803.0pt x 803.0pt>
 File: figures/snap_004.png Graphic file (type png)
  <use figures/snap_004.png>
 Package pdftex.def Info: figures/snap_004.png used on input line 14.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_005.png, id=682, 803.0pt x 803.0pt>
+<figures/snap_005.png, id=684, 803.0pt x 803.0pt>
 File: figures/snap_005.png Graphic file (type png)
  <use figures/snap_005.png>
 Package pdftex.def Info: figures/snap_005.png used on input line 15.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_006.png, id=683, 803.0pt x 803.0pt>
+<figures/snap_006.png, id=685, 803.0pt x 803.0pt>
 File: figures/snap_006.png Graphic file (type png)
  <use figures/snap_006.png>
 Package pdftex.def Info: figures/snap_006.png used on input line 16.
@@ -3457,22 +3252,22 @@ PGFPlots: reading {figures/data/vortex_erreur_volume_vs_dof_RK4.dat}
 Package pgfplots info on input line 109: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/vortex_erreur_volume_vs_time_0.001.dat}
-\imwid=\dimen390
-<figures/cube_brep_t1.png, id=684, 181.3977pt x 185.2521pt>
+\imwid=\dimen399
+<figures/cube_brep_t1.png, id=686, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t1.png Graphic file (type png)
 
 <use figures/cube_brep_t1.png>
 Package pdftex.def Info: figures/cube_brep_t1.png used on input line 135.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t2.png, id=685, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t2.png, id=687, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t2.png Graphic file (type png)
 
 <use figures/cube_brep_t2.png>
 Package pdftex.def Info: figures/cube_brep_t2.png used on input line 135.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t3.png, id=686, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t3.png, id=688, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t3.png Graphic file (type png)
 
 <use figures/cube_brep_t3.png>
@@ -3555,7 +3350,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<figures/obb.pdf, id=785, 226.8475pt x 113.42375pt>
+<figures/obb.pdf, id=787, 226.8475pt x 113.42375pt>
 File: figures/obb.pdf Graphic file (type pdf)
  <use figures/obb.pdf>
 Package pdftex.def Info: figures/obb.pdf used on input line 24.
@@ -3605,7 +3400,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 85.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: CE9AF15BC551E191FA5C030007A57D74;4595.
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 74BBE0953AB434FC0086ADA17909E1E0;2466.
+(rerunfilecheck)             Checksum: 95B1AAC92FE671FB9DF4523570DE0E20;2466.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -3616,13 +3411,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 85.
  ) 
 Here is how much of TeX's memory you used:
- 55678 strings out of 493013
- 1235144 string characters out of 6131034
- 2030961 words of memory out of 5000000
- 57607 multiletter control sequences out of 15000+600000
- 198131 words of font info for 273 fonts, out of 8000000 for 9000
+ 55997 strings out of 493013
+ 1241249 string characters out of 6131034
+ 2049997 words of memory out of 5000000
+ 57914 multiletter control sequences out of 15000+600000
+ 198443 words of font info for 274 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
- 77i,19n,120p,10584b,3107s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 77i,20n,120p,10584b,3109s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/opt/tools/
 texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/tools/texlive/20
 16/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/tools/texlive/2016/texmf-d
@@ -3650,14 +3445,14 @@ r6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr7.pfb></opt
 ve/2016/texmf-dist/fonts/type1/public/lm/lmr9.pfb></opt/tools/texlive/2016/texm
 f-dist/fonts/type1/public/lm/lmss8.pfb></opt/tools/texlive/2016/texmf-dist/font
 s/type1/public/lm/lmsy10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/pu
-blic/lm/lmsy7.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lms
-y8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></op
-t/tools/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-
-Output written on main.pdf (39 pages, 3459186 bytes).
+blic/lm/lmsy6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lms
+y7.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></op
+t/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (39 pages, 3461488 bytes).
 PDF statistics:
- 1059 PDF objects out of 1200 (max. 8388607)
- 912 compressed objects within 10 object streams
- 250 named destinations out of 1000 (max. 500000)
+ 1065 PDF objects out of 1200 (max. 8388607)
+ 917 compressed objects within 10 object streams
+ 253 named destinations out of 1000 (max. 500000)
  59038 words of extra memory for PDF output out of 61914 (max. 10000000)
 

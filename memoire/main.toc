@@ -6,7 +6,7 @@
 \contentsline {section}{\numberline {1.3}M\IeC {\'e}thodes num\IeC {\'e}riques pour le suivi d'interfaces}{2}{section.1.3}
 \contentsline {subsection}{\numberline {1.3.1}Description eul\IeC {\'e}rienne}{2}{subsection.1.3.1}
 \contentsline {subsection}{\numberline {1.3.2}Description lagrangienne}{2}{subsection.1.3.2}
-\contentsline {section}{\numberline {1.4}Cadre de la th\IeC {\`e}se}{3}{section.1.4}
+\contentsline {section}{\numberline {1.4}Cadre de la th\IeC {\`e}se}{2}{section.1.4}
 \contentsline {section}{\numberline {1.5}Repr\IeC {\'e}sentation par les fronti\IeC {\`e}res}{3}{section.1.5}
 \contentsline {section}{\numberline {1.6}Contributions}{3}{section.1.6}
 \contentsline {section}{\numberline {1.7}Organisation du manuscrit}{3}{section.1.7}
@@ -24,7 +24,7 @@
 \contentsline {section}{\numberline {3.1}Discr\IeC {\'e}tisation spectrale en espace}{7}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}\IeC {\'E}tat de l'art}{7}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Polyn\IeC {\^o}mes de Chebyshev}{8}{subsection.3.1.2}
-\contentsline {subsubsection}{\numberline {3.1.2.1}D\IeC {\'e}finition}{8}{subsubsection.3.1.2.1}
+\contentsline {subsubsection}{\numberline {3.1.2.1}D\IeC {\'e}finition et propri\IeC {\'e}t\IeC {\'e}s}{8}{subsubsection.3.1.2.1}
 \contentsline {subsubsection}{\numberline {3.1.2.2}Approximation de fonctions}{9}{subsubsection.3.1.2.2}
 \contentsline {subsubsection}{\numberline {3.1.2.3}\IeC {\'E}valuation}{12}{subsubsection.3.1.2.3}
 \contentsline {subsubsection}{\numberline {3.1.2.4}D\IeC {\'e}rivation}{13}{subsubsection.3.1.2.4}

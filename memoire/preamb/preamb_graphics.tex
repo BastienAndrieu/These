@@ -125,6 +125,13 @@
 	\raisebox{2pt}{\tikz{\draw[#1,solid,thick](0,0) -- (4mm,0);}}%
 }
 
+\def\lgdsqrsiz{1.442pt}
+\newcommand{\legendsquare}[1]{\raisebox{1.2pt}{\tikz{\fill[#1] (-\lgdsqrsiz , -\lgdsqrsiz) rectangle (\lgdsqrsiz , \lgdsqrsiz);}}}
+
+\newcommand{\legenddot}[1]{\raisebox{0.93pt}{\tikz{\fill[#1] (0.0mm,0.0mm) circle [radius=1.7pt];}}}
+
+\newcommand{\legendtriangle}[1]{\raisebox{1.5pt}{\tikz{\fill[#1] (0.0pt,2.2pt) -- (-1.9pt,-1.1pt) -- (1.9pt,-1.1pt);}}}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
