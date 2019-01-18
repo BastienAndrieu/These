@@ -66,7 +66,7 @@ sphère/cube dans un écoulement tourbillonnaire incompressible analytique de p�
 	\caption{Modèle \brep\ à différents instants de la déformation ($T=4$).}
 	\label{fig:snapshots_vortex}
 \end{figure}
-
+paramétrisation : cube projeté sur sphère\\
 calcul de volume avec quadrature de Clenshaw-Curtis (exact, l'intégrande est polynomiale) (étanchéité (continuité $G^0$ partout) garantie car les marqueurs de bord coïncident tout au long de la déformation)\\
 convergence de l'erreur d'approximation sur la position, l'aire et le volume à $t = 0$ et $t = T$ pour différents niveaux de discrétisations spatiale et temporelle\\
 
@@ -101,6 +101,7 @@ convergence de l'erreur d'approximation sur la position, l'aire et le volume à 
     %ytickten = {-15,-10,-5,0},%
     ymin = 1e-15, ymax = 1e0,%
     ytickten = {-15,-10,-5,0},%
+    xtick distance=.25,
     grid=major,%
     xlabel={$t/T$},%
     ylabel={$\frac{\left|V - V_0\right|}{V_0}$},%
