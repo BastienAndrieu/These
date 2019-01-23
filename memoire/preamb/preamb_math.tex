@@ -38,7 +38,7 @@
 \newcommand{\ffamily}[7]{\left\{{#1}_{#2,#5}\right\}_{\substack{{#2}={#3},\ldots,{#4}\\ \substack{{#5}={#6},\ldots,{#7}}}}}
 \newcommand{\polyspace}[1]{\Pi_{#1}}%\mathbb{R}_{#1}[x]}
 \newcommand{\Ltwospace}{L^2\chebinterval}%\mathcal{L}_2\chebinterval}
-
+\newcommand*{\contdiff}[1]{\mathcal{C}^{#1}\!}
 
 \newcommand*{\bx}{\vit{x}}
 \newcommand*{\bd}{\vit{\delta}}
@@ -54,7 +54,9 @@
 
 % Differential operators
 \newcommand*{\dfdx}[2]{\frac{\mathrm{d}}{\mathrm{d}{#2}}{#1}}
+\newcommand*{\dkfdxk}[3]{\frac{\mathrm{d}^{#3}}{\mathrm{d}{#2}^{#3}}{#1}}
 \newcommand*{\deriv}[2]{{#1}^{({#2})}}
+\newcommand*{\prim}[2]{{#1}^{(\raisebox{0.2ex}{$\scriptscriptstyle-\!$}{#2})}}
 \newcommand*{\jacobian}[1]{\mathbf{J}_{#1}}
 \newcommand*{\gradient}[1]{\nabla \! {#1}}
 \newcommand*{\hessian}[1]{\mathbf{H}_{#1}}
@@ -80,6 +82,8 @@
 \newcommand*{\truncseries}[2]{P_{#2}{#1}}
 \newcommand*{\interpolant}[2]{I_{#2}{#1}}
 \newcommand*{\interpderiv}[3]{D_{#2}^{(#3)}{\!#1}}%\mathcal{D}
+%\newcommand*{\interpprim}[2]{J_{#2}{#1}}
+\newcommand*{\interpprim}[2]{D_{#2}^{(\raisebox{0.2ex}{$\scriptscriptstyle-\!$}1)}{\!#1}}
 
 % Reference interval for Bernstein polynomials
 \newcommand*{\berninterval}{\left[ 0, 1 \right]}

@@ -289,7 +289,7 @@ Dans le contexte particulier de la résolution numérique d'équations aux déri
 on s'intéresse à l'approximation de fonctions qui possèdent des dérivées continues.
 Pour de telles fonctions, les séries de Chebyshev convergent très rapidement.%, comme le montre le théorème suivant.
 \begin{theoreme}
-	Si $f \in C^{m+1}\chebinterval$, %avec $m \in \mathbb{N}$, 
+	Si $f \in \contdiff{m+1}\chebinterval$, %avec $m \in \mathbb{N}$, 
 	alors pour tout $-1\leq x \leq 1$,
 	\begin{equation}
 		%\norminf{f - \truncseries{f}{N}} = \bigO{N^{-m}}.
@@ -316,7 +316,7 @@ analytique à l'intérieur de l'ellipse de foyers $\pm 1$ et dont la somme des d
 	\norminf{f - \truncseries{f}{N}} = \bigO{r^{-N}}.
 	\label{eq:chebyshev_exponential_convergence}
 \end{equation}
-%En particulier, si $f \in C^{\infty}\chebinterval$, 
+%En particulier, si $f \in \contdiff{\infty}\chebinterval$, 
 %En outre, si $f$ est analytique, alors l'erreur de troncature $\norminf{f - \truncseries{f}{N}}$ décroît exponentiellement avec $N$. %-- cette caractéristique est qualifiée de \guill{précision spectrale}.
 %Si $f$ est suffisamment régulière, sa somme partielle $\truncseries{f}{N}$ en est donc une excellente approximation pour un faible nombre de degrés de liberté.
 On parle respectivement de convergence \emph{algébrique}, \emph{subgéométrique} et \emph{géométrique} (ou exponentielle).
@@ -502,9 +502,29 @@ La sommation de Clenshaw est donc un moyen efficace et numériquement stable pou
 
 
 \subsubsection{Dérivation}
-On note $\interpderiv{f}{N}{k}$ la dérivée $k$-ième du polynôme d'interpolation $\interpolant{f}{N}$.
-Les valeurs aux n\oe uds CGL de cette dérivée peuvent être %obtenues grâce au produit
-exprimées comme une combinaison linéaire des valeurs de $f$ en ces mêmes n\oe uds
+En posant $x = \cos\theta$, il vient, d'après \eqref{eq:chebyshev_trigo},
+\begin{equation}
+	T_n'(x) := \dfdx{T_n(x)}{x} = \frac{n \sin n\theta}{\sin \theta}.
+\end{equation}
+Ainsi, de l'identité $2 \cos n \theta \sin \theta = \sin(n+1)\theta - \sin(n-1)\theta$, on peut déduire la relation 
+\begin{equation}
+	2 T_n = \frac{T'_{n+1}}{n+1} - \frac{T'_{n-1}}{n-1} ,
+	\label{eq:chebyshev_relation_deriv_3termes}
+\end{equation}
+pour $n \geq 2$.
+\\
+Soit $f \in \contdiff{k}\chebinterval$.
+On approche la dérivée $k$-ième $\deriv{f}{k}$ de $f$ par la dérivée $k$-ième du polynôme d'interpolation $\interpolant{f}{N}$
+\begin{equation}
+	\interpderiv{f}{N}{k} := \deriv{ \left( \interpolant{f}{N} \right) }{k}.
+	\label{eq:chebyshev_def_interpderiv}
+\end{equation}
+En général, les opérations de dérivation et d'interpolation ne commutent pas, \ie
+\begin{equation}
+	\interpderiv{f}{N}{k} \neq \interpolant{ \left( \deriv{f}{k} \right) }{N}.
+\end{equation}
+
+Les valeurs aux n\oe uds CGL de cette dérivée peuvent être exprimées comme une combinaison linéaire des valeurs de $f$ en ces mêmes n\oe uds
 \begin{equation}
 	\colvec{ 
 		\interpderiv{f}{N}{k}(x_0) \\ 
@@ -520,7 +540,7 @@ exprimées comme une combinaison linéaire des valeurs de $f$ en ces mêmes n\oe
 		},
 	\label{eq:chebyshev_diff_at_cgl}
 \end{equation}
-où $\mathbf{D}_N$ est la matrice de différentiation \cite{canuto2006}%est définie par%
+où $\mathbf{D}_N$ est la matrice de différentiation \cite{canuto2006}
 \def\cvsp{2.5ex}
 \begin{equation}
 	\left( \mathbf{D}_N \right)_{i,j} =
@@ -532,73 +552,37 @@ où $\mathbf{D}_N$ est la matrice de différentiation \cite{canuto2006}%est déf
 	\end{cases}
 	\label{eq:chebyshev_diff_matrix}
 \end{equation}
-%La dérivée de la somme \eqref{eq:chebyshev_sum} est un polynôme de degré au plus $N-1$, que l'on peut exprimer dans la base de Chebyshev
-%\begin{equation}
-%	s_{N}^{(1)}(x) = \frac{\mathrm{d} s_N}{\mathrm{d} x}(x) = \sum_{n=0}^{N-1} \hat{s}_n^{(1)} T_n(x).
-%\end{equation}
-La dérivée $\deriv{f}{1}$ d'une fonction $f \in C^1\chebinterval$ peut également être représentée par sa série de Chebyshev
-\begin{equation}
-	\deriv{f}{1} 
-	= \sum_{n=1}^{\infty} \hat{f}_n T'_n
-	= \sum_{n=0}^{\infty} \deriv{\hat{f}}{1}_n T_n.
-	\label{eq:chebyshev_series_derivative}
-\end{equation}
 
-En posant $x = \cos\theta$, il vient, d'après \eqref{eq:chebyshev_trigo},
+Alternativement, il est intéressant de construire explicitement le polynôme dérivé $\interpderiv{f}{N}{k}$ comme une somme de la forme 
 \begin{equation}
-	T'_n(x) \equiv \dfdx{T_n(x)}{x} = \frac{n \sin n\theta}{\sin \theta}.
+	\interpderiv{f}{N}{k} = \sum_{n=0}^{N-k} \deriv{\tilde{f}}{k}_n T_n.
+\end{equation} 
+Développer motivation\ldots
+\par
+La relation \eqref{eq:chebyshev_relation_deriv_3termes} implique que, pour tout $n \in \mathbb{N}$,
+\begin{equation}
+	2 (n + 1) \tilde{f}_{n+1} = \alpha_n \deriv{\tilde{f}}{1}_n - \deriv{\tilde{f}}{1}_{n+2}.
+	\label{eq:chebyshev_prim_recurrence}
 \end{equation}
-Ainsi, de l'identité $2 \cos n \theta \sin \theta = \sin(n+1)\theta - \sin(n-1)\theta$, on peut déduire la relation 
-%\begin{equation}
-%	%T_n = \frac{1}{2} \left( \frac{1}{n+1}\dfdx{T_{n+1}}{x} - \frac{1}{n-1}\dfdx{T_{n-1}}{x} \right).
-%	T_n = \frac{1}{2} \left( \frac{T'_{n+1}}{n+1} - \frac{T'_{n-1}}{n-1} \right),
-%\end{equation}
+Les coefficients $\deriv{\tilde{f}}{1}_n$ peuvent ainsi être calculés suivant la relation de récurrence
 \begin{equation}
-	2 T_n = \frac{T'_{n+1}}{n+1} - \frac{T'_{n-1}}{n-1} ,
-	\label{eq:chebyshev_relation_deriv_3termes}
-\end{equation}
-pour $n \geq 2$. Il vient alors, pour tout $n \in \mathbb{N}$,
-\begin{equation}
-	2 \left( n + 1 \right) \hat{f}_{n+1} = \alpha_n \deriv{\hat{f}}{1}_n - \deriv{\hat{f}}{1}_{n+2}.
-\end{equation}
-%En supposant $f = \truncseries{f}{N}$ (\ie $\hat{f}_n = 0$ pour tout $n > N$), alors %$\deriv{\hat{f}}{1}_n = 0$ pour tout $n \geq N$ et les coefficients $\deriv{\hat{f}}{1}_n$ pour $n < N$ peuvent être calculés grâce à la relation de récurrence
-%les coefficients $\deriv{\hat{f}}{1}_n$ peuvent être calculés suivant la relation de récurrence
-%\begin{equation}
-%	\deriv{\hat{f}}{1}_n = 
-%	\begin{cases}
-%	 0 & \text{\ si\ } n \geq N,   \\ 
-%	 \dfrac{1}{\alpha_n} \left( 2 (n + 1) \hat{f}_{n+1} + \deriv{\hat{f}}{1}_{n+2} \right) & \text{\ si\ } 0 \leq n < N.\\ 
-%	\end{cases}
-%	\label{eq:chebyshev_diff_recurrence}
-%\end{equation}
-
-Les coefficients $\deriv{\hat{f}}{1}_n$ peuvent ainsi être calculés suivant la relation de récurrence
-\begin{equation}
-	\deriv{\hat{f}}{1}_n = 
-	\frac{1}{\alpha_n} \left( 2 (n + 1) \hat{f}_{n+1} + \deriv{\hat{f}}{1}_{n+2} \right).
+	\deriv{\tilde{f}}{1}_n = 
+	\frac{1}{\alpha_n} \left( 2 (n + 1) \tilde{f}_{n+1} + \deriv{\tilde{f}}{1}_{n+2} \right).
 	\label{eq:chebyshev_diff_recurrence}
 \end{equation}
-Plus généralement, les coefficients de Chebyshev de la dérivée $k$-ième de $f$ vérifient
+Plus généralement, les coefficients de Chebyshev de la dérivée $k$-ième vérifient
 \begin{equation}
-	\deriv{\hat{f}}{k}_n = 
-	\frac{1}{\alpha_n} \left( 2 (n + 1) \deriv{\hat{f}}{k-1}_{n+1} + \deriv{\hat{f}}{k}_{n+2} \right).
+	\deriv{\tilde{f}}{k}_n = 
+	\frac{1}{\alpha_n} \left( 2 (n + 1) \deriv{\tilde{f}}{k-1}_{n+1} + \deriv{\tilde{f}}{k}_{n+2} \right).
 	\label{eq:chebyshev_diffp_recurrence}
 \end{equation}
 
-%\par\bigskip
-%La relation \eqref{eq:chebyshev_diffp_recurrence} fournit un algorithme pour calculer \ldots 
-Comme l'ont fait remarquer Wengle et Seinfeld \cite{wengle1978}, l'algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} peut amplifier les erreurs d'arrondi commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$ et ainsi compromettre la précision de \emph{tous} les coefficients $\deriv{\hat{f}}{k}_{n}$. % (même les plus grands).
-%Wengle et Seinfeld \cite{wengle1978} ont remarqué que l' algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} pouvait amplifier les erreurs d'arrondis commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$, jusqu'à compromettre la précision de tous les coefficients $\deriv{\hat{f}}{k}_{n}$ .
-Un moyen simple de remédier à ce problème consiste à mettre à zéro les coefficients $\deriv{\hat{f}}{k-1}_{n}$ inférieurs en valeur absolue à un seuil donné, choisi en fonction de la précision machine $\epsilon_M$.%que l'on choisit ici supérieur d'un ordre de grandeur à la précision machine.
-%Remarque de \cite[Section~2.3, p~.94]{wengle1978}
-(Un seuil égal à $10 \epsilon_M$ semble être un bon choix.)
-\par\bigskip
-Non-commutativité entre dérivation et troncature/interpolation, introduction de 
-\begin{equation}
-	\interpderiv{f}{N}{k} \equiv \deriv{ \left( \interpolant{f}{N} \right) }{k}.
-	\label{eq:chebyshev_interpderiv}
-\end{equation}
-argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe uds (méthode collocation)
+%On dispose ainsi d'un algorithme récursif pour construire les dérivées successives du polynôme $\interpolant{f}$. 
+Cette méthode + FFT permet d'évaluer les dérivées aux n\oe uds CGL pour $\bigO{N + N \log N} = \bigO{N \log N}$, qui est asymptotiquement (au-delà de $N \approx 16$) plus efficace que le produit matrice-vecteur \eqref{eq:chebyshev_diff_at_cgl} ($\bigO{N^2}$).
+\par
+Toutefois, comme l'ont fait remarquer Wengle et Seinfeld \cite{wengle1978}, l'algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} peut amplifier les erreurs d'arrondi commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$ et ainsi compromettre la précision de \emph{tous} les coefficients $\deriv{\hat{f}}{k}_{n}$. 
+Un moyen simple de remédier à ce problème consiste à mettre à zéro les coefficients $\deriv{\hat{f}}{k-1}_{n}$ inférieurs en valeur absolue à un seuil donné, choisi en fonction de la précision machine $\epsilon_M$. 
+(Un seuil égal à $10 \epsilon_M$ semble être un bon choix \textit{(détailler\ldots)}.)
 
 %L'étude menée jusqu'ici concerne l'approximation de fonctions d'une variable par des séries de Chebyshev. 
 %Les résultats présentés se généralisent aux fonctions de plusieurs variables en utilisant les polynômes de Chebyshev en produit tensoriel. 
@@ -617,7 +601,7 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 %\begin{itemize}
 %	\item orthogonalité $\Rightarrow$ aspect multirésolution, élévation/réduction de degré directe et quasi-optimale (d'ailleurs utilisé en CAO \cite{lachance1988})
 %	\item série tronquée $\truncseries{f}{N}$, erreur de troncature, précision spectrale :\\
-%si $f \in C^p(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002} (illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$)
+%si $f \in \contdiffp(\chebinterval)$, alors $\max_{\chebinterval} \left| \truncseries{f}{N} - f \right| = \bigO{N^{1-p}}$ lorsque $N \to \infty$ \cite[Théorème 5.14]{mason2002} (illustration convergence exponentielle pour $f$ analytique et décroissance exponentielle des $\hat{f}_n$)
 %	\item interpolant $\interpolant{f}{N}$, erreur d'aliasing
 %	\item CGL $\to$ DCT, transformation rapide
 %\end{itemize}
@@ -631,19 +615,21 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 \begin{tikzpicture}%
 \begin{semilogyaxis}[
 	width=6.7cm, height=6cm,
-	xmin=0, xmax=90,
+	xmin=0, xmax=100,
 	ymin=1.0e-16, ymax=1.0e2,
 	grid=both,
 	axis x line*=bottom,
 	axis y line*=left,
 	xlabel={$N\vphantom{n}$},
 	ylabel={\small $\norminf{\interpderiv{f}{N}{k} - \deriv{f}{k}} \norminf{\deriv{f}{k}}^{-1}$},
-	xtick distance=30,
+	xtick distance=25,
 	legend pos=north east,
 	legend style={font=\small},
 	cycle list shift=-1
 	]%
-	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-N}$};%
+	%\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-N}$};%
+	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)};%
+	\addlegendentry{$1.8^{-N}$}
 	\pgfplotsinvokeforeach{1,...,3}{
 		\addplot+ table[x index=0, y index=#1] {figures/data/convergence_DNkf.dat};%
 	}
@@ -657,7 +643,7 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 \begin{tikzpicture}%
 \begin{semilogyaxis}[%
 	width=6.7cm, height=6cm,
-	xmin=0, xmax=90,
+	xmin=0, xmax=100,
 	ymin=1.0e-16, ymax=1.0e2,
 	grid=major,
 	axis y line*=right,
@@ -668,12 +654,14 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 	ylabel near ticks, 
 	yticklabel pos=right,
 	yticklabels={\empty},
-	xtick distance=30,
+	xtick distance=25,
 	legend pos=north east,
 	legend style={font=\small},
 	cycle list shift=-1
 	]%
-	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-n}$};
+%	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-n}$};
+	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)};
+	\addlegendentry{$1.8^{-n}$}
 	\pgfplotsinvokeforeach{0,...,2}{
 		\addplot+[only marks] table[x expr=\coordindex, y index=#1] {figures/data/coef_DNkf.dat};%
 	}
@@ -686,53 +674,97 @@ argument : on a besoin des valeurs de $\deriv{f}{k}$ et de $f$ aux mêmes n\oe u
 \label{fig:spectral_convergence}%
 \end{figure}
 
+%\paragraph{Représentation de courbes et de surfaces.}
+%Afin de représenter des courbes et surfaces plongées dans l'espace euclidien $\mathbb{R}^3$ on développe chaque composante de la paramétrisation à l'aide d'une série de Chebyshev.
+%Soit une courbe décrite par la paramétrisation $\bg : \chebinterval \to \mathbb{R}^3$. On notera alors
+%\begin{equation}
+%	\bg(t) = \sum_{n=0}^{\infty} \hat{\bg}_{n} T_n(t).
+%\end{equation}
+%surface $\bs : \chebinterval^2 \to \mathbb{R}^3$
+%\begin{equation}
+%	\truncseries{\bs}{MN}(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \hat{\bs}_{mn} T_m(u) T_n(v).
+%\end{equation}
 
-\paragraph{Représentation de courbes et de surfaces.}
-Afin de représenter des courbes et surfaces plongées dans l'espace euclidien $\mathbb{R}^3$ on développe chaque composante de la paramétrisation à l'aide d'une série de Chebyshev.
-Soit une courbe décrite par la paramétrisation $\bg : \chebinterval \to \mathbb{R}^3$. On notera alors
+\subsubsection{Intégration}
+Intégrale indéfinie/Primitive de $\interpolant{f}{N}$ qui s'annule en $-1$
 \begin{equation}
-	\bg(t) = \sum_{n=0}^{\infty} \hat{\bg}_{n} T_n(t).
+	\interpprim{f}{N} := x \mapsto \int_{-1}^{x} \interpolant{f}{N}(t) \dx{t}
 \end{equation}
-surface $\bs : \chebinterval^2 \to \mathbb{R}^3$
+c'est un polynome de degré $N+1$
 \begin{equation}
-	\truncseries{\bs}{MN}(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \hat{\bs}_{mn} T_m(u) T_n(v).
+	\interpprim{f}{N} = \sum_{n=0}^{N+1} \prim{\tilde{f}}{1}_n T_n.
 \end{equation}
 
-
-\subsubsection{Dérivation}
-\begin{itemize}
-	\item matrice de dérivation (espace physique)
-	\item formule de récurrence (espace spectral), remarque de \cite[Section~2.3, p~.94]{wengle1978}%, \cite[p.~46]{peyret2013}
-\end{itemize}
-
-\subsubsection{Quadrature}
-\eqref{eq:chebyshev_relation_deriv_3termes} implique
+\eqref{eq:chebyshev_prim_recurrence} implique 
 \begin{equation}
-\int_{-1}^{1} T_n(x) \dx{x} = 
-\begin{cases}
-		0 \text{\ si\ } n \text{\ est impair,} \\
-		%\frac{1}{n+1} - \frac{1}{n-1} = \frac{2}{1 - n^2} \text{\ si\ } n \text{\ est pair.}
-		\frac{1}{n+1} - \frac{1}{n-1} \text{\ si\ } n \text{\ est pair.}
-	\end{cases}
+	\prim{\tilde{f}}{1}_n = \frac{\alpha_n \tilde{f}_{n-1} - \tilde{f}_{n+1}}{2n},
 \end{equation}
-Et donc
+pour $n \geq 1$ et, puisque $\interpprim{f}{N}(-1) = 0$, on a
 \begin{equation}
-	\int_{-1}^{1} f(x) \dx{x} 
-	\approx \int_{-1}^{1} \interpolant{f}{2N}(x) \dx{x}  
-	= \sum_{n=0}^{N}\frac{2 \tilde{f}_{2n}}{1 - 4n^2}.
+	\prim{\tilde{f}}{1}_0 = - \sum_{n=1}^{N+1} (-1)^n \prim{\tilde{f}}{1}_n.
+\end{equation}
+
+\begin{equation}
+	\int_{-1}^{x} f(t) \dx{t} 
+	\approx \interpprim{f}{N}(x).
+\end{equation}
+En particulier,
+\begin{equation}
+	\int_{-1}^{1} f(t) \dx{t} 
+	\approx 
+	\interpprim{f}{N}(1)
+	=
+	\sum_{\mathclap{\substack{n = 0\\n \text{ pair}}}}^{N} \frac{2 \tilde{f}_n}{1 - n^2},
 \end{equation}
 et
 \begin{equation}
-	\left| \int_{-1}^{1} f(x) \dx{x} - \int_{-1}^{1} \interpolant{f}{2N}(x) \dx{x} \right|
+	\left| \int_{-1}^{1} f(x) \dx{x} - \interpprim{f}{N}(1) \right|
 	\approx
-	\left|\frac{2 \tilde{f}_{2n}}{1 - 4N^2}\right|.
+	\left|\frac{2 \tilde{f}_{N}}{1 - N^2}\right|.
 \end{equation}
+%La \eqref{eq:chebyshev_relation_deriv_3termes} implique
+%\begin{equation}
+%\int_{-1}^{1} T_n(x) \dx{x} = 
+%\begin{cases}
+%		0 \text{\ si\ } n \text{\ est impair,} \\
+%		%\frac{1}{n+1} - \frac{1}{n-1} = \frac{2}{1 - n^2} \text{\ si\ } n \text{\ est pair.}
+%		\frac{1}{n+1} - \frac{1}{n-1} \text{\ si\ } n \text{\ est pair.}
+%	\end{cases}
+%\end{equation}
+%Et donc
+%\begin{equation}
+%	\int_{-1}^{1} f(x) \dx{x} 
+%	\approx \int_{-1}^{1} \interpolant{f}{2N}(x) \dx{x}  
+%	= \sum_{n=0}^{N}\frac{2 \tilde{f}_{2n}}{1 - 4n^2}.
+%\end{equation}
+%et
+%\begin{equation}
+%	\left| \int_{-1}^{1} f(x) \dx{x} - \int_{-1}^{1} \interpolant{f}{2N}(x) \dx{x} \right|
+%	\approx
+%	\left|\frac{2 \tilde{f}_{2N}}{1 - 4N^2}\right|.
+%\end{equation}
 
-Clenshaw-Curtis\\
+Clenshaw-Curtis (quadrature imbriquée/adaptative)?\\
 calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est généralement pas polynomiale)
 
+\begin{equation}
+	\int_{-1}^{1} \int_{-1}^{1} g(u,v) \dx{u} \dx{v}
+	\approx 
+	\interpprim{\,g}{M,N}(1,1)
+	=
+	\sum_{\mathclap{\substack{m = 0\\m \text{ pair}}}}^{M}
+	\;\;
+	\sum_{\mathclap{\substack{n = 0\\n \text{ pair}}}}^{N} 
+	\frac{4 \tilde{g}_{m,n}}{(1 - m^2)(1 - n^2)},
+\end{equation}
 
-
+\begin{align}
+	\left| \int_{-1}^{1} \int_{-1}^{1} g(u,v) \dx{u}\dx{v} - \interpprim{\,g}{M,N}(1,1) \right|
+	\approx
+	\sum_{\mathclap{\substack{m = 0\\m \text{ pair}}}}^{M} \left| \frac{4 \tilde{g}_{m,N}}{(1 - m^2)(1 - N^2)} \right| \nonumber\\ + 
+	\sum_{\mathclap{\substack{n = 0\\n \text{ pair}}}}^{N} \left| \frac{4 \tilde{g}_{M,n}}{(1 - M^2)(1 - n^2)} \right| \nonumber\\ +
+	\left| \frac{4 \tilde{g}_{M,N}}{(1 - M^2)(1 - N^2)} \right|.
+\end{align}
 
 %\begin{figure}
 %\centering

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  18 JAN 2019 18:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  23 JAN 2019 18:23
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2776,33 +2776,36 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 131.
 ) (./figures/cgl_nodes.tikz) [8]
 [9] [10] [11] [12] [13]
-Package pgfplots info on input line 653: Using 'lua backend=false' for axis: ym
+Overfull \hbox (5.93239pt too wide) in paragraph at lines 581--582
+[]\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) Cette méth-ode + FFT per-met d'évalue
+r les dérivées aux n÷uds CGL pour $\OML/lmm/m/it/10.95 O  [] \OT1/lmr/m/n/10.95
+ =
+ []
+
+Package pgfplots info on input line 639: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 653.
-Package pgfplots info on input line 683: Using 'lua backend=false' for axis: ym
+(Font)              scaled to size 9.0pt on input line 639.
+Package pgfplots info on input line 671: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/coef_DNkf.dat}
-PGFPlots: reading {figures/data/coef_DNkf.dat}
-
-NOTE: coordinate (1Y9.0e1],0.000000000000000000e+00) has been dropped because i
+NOTE: coordinate (1Y8.0e1],0.000000000000000000e+00) has been dropped because i
 t is unbounded (in y). (see also unbounded coords=jump). 
 PGFPlots: reading {figures/data/coef_DNkf.dat}
-NOTE: coordinate (1Y8.9e1],0.000000000000000000e+00) has been dropped because i
+NOTE: coordinate (1Y1.0e2],0.000000000000000000e+00) has been dropped because i
 t is unbounded (in y). (see also unbounded coords=jump). 
-NOTE: coordinate (1Y9.0e1],0.000000000000000000e+00) has been dropped because i
+PGFPlots: reading {figures/data/coef_DNkf.dat}
+NOTE: coordinate (1Y9.9e1],0.000000000000000000e+00) has been dropped because i
 t is unbounded (in y). (see also unbounded coords=jump). 
-[14]) [15]
+NOTE: coordinate (1Y1.0e2],0.000000000000000000e+00) has been dropped because i
+t is unbounded (in y). (see also unbounded coords=jump). 
+[14] [15]) [16]
 \openout2 = `mainmatter/chap3.aux'.
 
- (./mainmatter/chap3.tex [16
-
-
-
-]
+ (./mainmatter/chap3.tex
 Overfull \hbox (22.76694pt too wide) in paragraph at lines 6--7
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) objectif : définir la paramétri-sa-ti
 on des nou-velles sur-faces (et les lim-ites du do-maine paramétrique
@@ -2814,7 +2817,11 @@ Overfull \hbox (14.0881pt too wide) in paragraph at lines 9--10
 s d'intersection (choix du paramètre : ab-scisse curviligne,
  []
 
-[17]
+[17
+
+
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 47--55
 
  []
@@ -2823,37 +2830,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--55
 \imwid=\dimen397
 \imypos=\dimen398
 
-<figures/snap_001.png, id=656, 803.0pt x 803.0pt>
+<figures/snap_001.png, id=659, 803.0pt x 803.0pt>
 File: figures/snap_001.png Graphic file (type png)
  <use figures/snap_001.png>
 Package pdftex.def Info: figures/snap_001.png used on input line 11.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_002.png, id=658, 803.0pt x 803.0pt>
+<figures/snap_002.png, id=661, 803.0pt x 803.0pt>
 File: figures/snap_002.png Graphic file (type png)
  <use figures/snap_002.png>
 Package pdftex.def Info: figures/snap_002.png used on input line 12.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_003.png, id=659, 803.0pt x 803.0pt>
+<figures/snap_003.png, id=662, 803.0pt x 803.0pt>
 File: figures/snap_003.png Graphic file (type png)
  <use figures/snap_003.png>
 Package pdftex.def Info: figures/snap_003.png used on input line 13.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_004.png, id=660, 803.0pt x 803.0pt>
+<figures/snap_004.png, id=663, 803.0pt x 803.0pt>
 File: figures/snap_004.png Graphic file (type png)
  <use figures/snap_004.png>
 Package pdftex.def Info: figures/snap_004.png used on input line 14.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_005.png, id=661, 803.0pt x 803.0pt>
+<figures/snap_005.png, id=664, 803.0pt x 803.0pt>
 File: figures/snap_005.png Graphic file (type png)
  <use figures/snap_005.png>
 Package pdftex.def Info: figures/snap_005.png used on input line 15.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_006.png, id=662, 803.0pt x 803.0pt>
+<figures/snap_006.png, id=665, 803.0pt x 803.0pt>
 File: figures/snap_006.png Graphic file (type png)
  <use figures/snap_006.png>
 Package pdftex.def Info: figures/snap_006.png used on input line 16.
@@ -2901,21 +2908,21 @@ Package pgfplots info on input line 110: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/vortex_erreur_volume_vs_time_0.001.dat}
 \imwid=\dimen399
-<figures/cube_brep_t1.png, id=663, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t1.png, id=666, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t1.png Graphic file (type png)
 
 <use figures/cube_brep_t1.png>
 Package pdftex.def Info: figures/cube_brep_t1.png used on input line 136.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t2.png, id=664, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t2.png, id=667, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t2.png Graphic file (type png)
 
 <use figures/cube_brep_t2.png>
 Package pdftex.def Info: figures/cube_brep_t2.png used on input line 136.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t3.png, id=665, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t3.png, id=668, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t3.png Graphic file (type png)
 
 <use figures/cube_brep_t3.png>
@@ -2998,7 +3005,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<figures/obb.pdf, id=764, 226.8475pt x 113.42375pt>
+<figures/obb.pdf, id=768, 226.8475pt x 113.42375pt>
 File: figures/obb.pdf Graphic file (type pdf)
  <use figures/obb.pdf>
 Package pdftex.def Info: figures/obb.pdf used on input line 24.
@@ -3046,9 +3053,9 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 85.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 85.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 85.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CE9AF15BC551E191FA5C030007A57D74;4595.
+(rerunfilecheck)             Checksum: 5C908A58A1025BD9CEC0032697F7C3C6;4595.
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 2C5E56776752EB707117B99063E9F72B;2466.
+(rerunfilecheck)             Checksum: A7154AD7E6705CED43FFAE7BA95AC336;2405.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -3059,13 +3066,13 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 85.
  ) 
 Here is how much of TeX's memory you used:
- 55639 strings out of 493013
- 1233570 string characters out of 6131034
- 2014190 words of memory out of 5000000
- 57565 multiletter control sequences out of 15000+600000
+ 55657 strings out of 493013
+ 1233858 string characters out of 6131034
+ 2014298 words of memory out of 5000000
+ 57580 multiletter control sequences out of 15000+600000
  193586 words of font info for 273 fonts, out of 8000000 for 9000
  1147 hyphenation exceptions out of 8191
- 75i,20n,120p,10584b,2401s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 75i,23n,120p,10584b,2404s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/opt/tools/
 texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/tools/texlive/20
 16/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/tools/texlive/2016/texmf-d
@@ -3097,10 +3104,10 @@ blic/lm/lmsy6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lms
 y7.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></op
 t/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (39 pages, 2195378 bytes).
+Output written on main.pdf (39 pages, 2198232 bytes).
 PDF statistics:
- 1042 PDF objects out of 1200 (max. 8388607)
- 924 compressed objects within 10 object streams
- 258 named destinations out of 1000 (max. 500000)
+ 1046 PDF objects out of 1200 (max. 8388607)
+ 928 compressed objects within 10 object streams
+ 261 named destinations out of 1000 (max. 500000)
  58451 words of extra memory for PDF output out of 61914 (max. 10000000)
 
