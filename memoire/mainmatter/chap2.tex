@@ -41,8 +41,9 @@ En outre, cette méthode n'a à ce jour pas été appliquée pour la déformatio
 	\end{itemize}
 \end{itemize}
 \bigskip
-on choisit les polynômes de Chebyshev\footnotemark, couramment employés dans les méthodes spectrales dans le cas non-périodique
-\footnotetext{En français, le nom de ce mathématicien russe est généralement orthographié \guill{Tchebychev}. Nous utiliserons cependant l'orthographe anglo-saxone, plus couramment utilisée par la communauté scientifique.}
+on choisit les polynômes de Chebyshev, couramment employés dans les méthodes spectrales dans le cas non-périodique
+%on choisit les polynômes de Chebyshev\footnotemark, couramment employés dans les méthodes spectrales dans le cas non-périodique
+%\footnotetext{En français, le nom de ce mathématicien russe est généralement orthographié \guill{Tchebychev}. Nous utiliserons cependant l'orthographe anglo-saxone, plus couramment utilisée par la communauté scientifique.}
 %(Mason, p.81) >>>-----
 %Orthogonal polynomials have a great variety and wealth of properties,
 %many of which are noted in this chapter. Indeed, some of these properties
@@ -206,7 +207,9 @@ Cette propriété d'\emph{équioscillation} a pour conséquence le théorème su
 \begin{theoreme}
 	Le polynôme %$p_{N-1}$ 
 	de degré $N-1$ qui donne la meilleure approximation uniforme (\ie en norme $L_\infty$) %de la fonction $x \mapsto x^N$ est $p_{N-1} : x \mapsto x^N - 2^{1 - N} T_n(x)$. 
-du polynôme $q : x \mapsto \sum_{n=0}^{N} a_n x^n$ sur l'intervalle $\chebinterval$ est
+du polynôme %$q : x \mapsto \sum_{n=0}^{N} a_n x^n$
+$q = \sum_{n=0}^{N} a_n X^n$ 
+sur l'intervalle $\chebinterval$ est
 	\begin{equation}
 		p_{N-1} = q - 2^{1-N} a_N T_N,
 	\end{equation}

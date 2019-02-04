@@ -46,7 +46,9 @@ adaptation de l'approche de Hohmeyer \cite{hohmeyer1992} (full Chebyshev / Cheby
 \subsection{Propagation suivant un champ de vitesse continu}
 sphère/cube dans un écoulement tourbillonnaire incompressible analytique de période temporelle $2T$\\
 \begin{equation}
-	\vrm{u}(x,y,z,t) = \cos \left( \frac{\pi t}{T} \right)
+	\vrm{u}(x,y,z,t) = 
+	%\cos \left( \frac{\pi t}{T} \right)
+	\cos( \pi t/T )
 	\colvec{
 	\sin^2(\pi x) \left[ \sin(2\pi z) - \sin(2\pi y)\right] \\
 \sin^2(\pi y) \left[ \sin(2\pi x) - \sin(2\pi z)\right] \\
@@ -75,21 +77,61 @@ convergence de l'erreur d'approximation sur la position, l'aire et le volume à 
 %%%%%%%%%%%%%%
 \def\axw{0.48\textwidth}
 \def\axh{0.39\textwidth}
-\def\xlabl{dof}
+\def\xlabl{$N$}%{$\mathrm{dof}$}
 \def\ylabl{Erreur}
 \def\xsep{2pt}
 %%%%%%%%%%%%%%
-\plotvortexerror{position}{la~}{pos}{maximale}
+\plotvortexerrorc{position}{la~}{pos}{maximale}
 %%%%%%%%%%%%%%
-\plotvortexerror{aire}{l'}{air}{relative}
+\plotvortexerrorc{aire}{l'}{air}{relative}
 %%%%%%%%%%%%%%
-\plotvortexerror{volume}{le~}{vol}{relative}
+\plotvortexerrorc{volume}{le~}{vol}{relative}
 %%%%%%%%%%%%%%
-%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%
+%\def\xlabl{$N$}%\mathrm{dof}^{0.4}$}
+%%%%%%%%%%%%%%%
+%\plotvortexerrorb{position}{la~}{pos}{maximale}
+%%%%%%%%%%%%%%%
+%\plotvortexerrorb{aire}{l'}{air}{relative}
+%%%%%%%%%%%%%%%
+%\plotvortexerrorb{volume}{le~}{vol}{relative}
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%
 
 + convergence de la variation de volume au cours de la déformation\\
 %https://tex.stackexchange.com/questions/23993/use-first-row-of-a-table-as-legend-entry-in-pgfplot-graph
+%\begin{figure}
+%  \centering
+%  \begin{tikzpicture}%
+%  \begin{semilogyaxis}[%
+%    axis lines*=left,%
+%    width=9cm, height=7cm,%
+%    xmin = 0.0, xmax = 1.0,%
+%    %ymin = 1e-16, ymax = 1e1,%
+%    %ytickten = {-15,-10,-5,0},%
+%    ymin = 1e-15, ymax = 1e0,%
+%    ytickten = {-15,-10,-5,0},%
+%    xtick distance=.25,
+%    grid=major,%
+%    xlabel={$t/T$},%
+%    ylabel={$\frac{\left|V - V_0\right|}{V_0}$},%
+%    %legend style={font=\small, at={(0.5,0.0)}, anchor=south, yshift=4pt},%
+%    legend style={font=\small, at={(1.025,1.0)}, anchor=north west},%
+%    no marks, each nth point=1]%
+%    \pgfplotstableread{figures/data/vortex_erreur_volume_vs_time_0.001_bak.dat}   {\datatable}
+%    \pgfplotstablegetcolsof{\datatable}
+%    \pgfmathtruncatemacro\numberofcols{\pgfplotsretval-1}
+%    \pgfplotsinvokeforeach{2,...,\numberofcols}{
+%      \pgfplotstablegetcolumnnamebyindex{#1}\of{\datatable}\to{\colname}
+%      \addplot+ table [y index=#1] from \datatable;%
+%  	  \addlegendentryexpanded{$\mathrm{dof} = \colname$}
+%    }%
+%  \end{semilogyaxis}%
+%  \end{tikzpicture}%
+%  \caption{Évolution de l'erreur relative en volume au cours du temps, pour différents niveaux de discrétisation spatiale. Le schéma de Runge-Kutta explicite à l'ordre 4 est utilisé pour l'intégration temporelle, avec un pas de temps $\Delta t = 0.001$.}
+%\end{figure}
+
+
 \begin{figure}
   \centering
   \begin{tikzpicture}%
@@ -99,22 +141,34 @@ convergence de l'erreur d'approximation sur la position, l'aire et le volume à 
     xmin = 0.0, xmax = 1.0,%
     %ymin = 1e-16, ymax = 1e1,%
     %ytickten = {-15,-10,-5,0},%
-    ymin = 1e-15, ymax = 1e0,%
-    ytickten = {-15,-10,-5,0},%
+    ymin = 1e-16, ymax = 1e0,%
+    ytickten = {-16,-12,-8,-4,0},%
     xtick distance=.25,
     grid=major,%
     xlabel={$t/T$},%
     ylabel={$\frac{\left|V - V_0\right|}{V_0}$},%
     %legend style={font=\small, at={(0.5,0.0)}, anchor=south, yshift=4pt},%
-    legend style={font=\small, at={(1.025,1.0)}, anchor=north west},%
+    %legend style={font=\small, at={(1.025,1.0)}, anchor=north west},%
+    legend style={font=\small, at={(0.5,0.033)}, anchor=south},%
     no marks, each nth point=1]%
     \pgfplotstableread{figures/data/vortex_erreur_volume_vs_time_0.001.dat}   {\datatable}
     \pgfplotstablegetcolsof{\datatable}
     \pgfmathtruncatemacro\numberofcols{\pgfplotsretval-1}
-    \pgfplotsinvokeforeach{2,...,\numberofcols}{
+    \pgfplotsinvokeforeach{1,...,\numberofcols}{
       \pgfplotstablegetcolumnnamebyindex{#1}\of{\datatable}\to{\colname}
       \addplot+ table [y index=#1] from \datatable;%
-  	  \addlegendentryexpanded{$\mathrm{dof} = \colname$}
+  	  \addlegendentryexpanded{$N = \colname$}
+%  	  \edef\letsdraw{\noexpand\addplot table [y index=#1]
+%        {\noexpand\datatable} 
+%        node[pos=0.5, 
+%        anchor=north, 
+%        inner sep=1.2pt, 
+%        fill=white, 
+%        rectangle, rounded corners=2pt, 
+%        %yshift=2pt, xshift=4pt
+%        ] 
+%        {\noexpand\footnotesize$N = \colname$};}
+%        \letsdraw
     }%
   \end{semilogyaxis}%
   \end{tikzpicture}%

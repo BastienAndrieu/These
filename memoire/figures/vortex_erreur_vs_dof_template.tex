@@ -14,7 +14,7 @@
       ytickten = {-16,-12,-8,-4,0},%
       grid=major,%both,%
       xlabel={\xlabl}, ylabel={\ylabl},%
-      cycle list shift=3]%
+      cycle list shift=8]%cycle list shift=3]%
 	  \pgfplotstableread{figures/data/vortex_erreur_#1_vs_dof_RK4.dat}   {\datatable}%
 	  \addplot+ table [x index=1, y index=2] from \datatable;%
       \end{loglogaxis}%
