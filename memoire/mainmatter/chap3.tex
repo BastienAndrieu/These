@@ -193,5 +193,37 @@ cube en expansion
 	\label{fig:snapshots_cube}
 \end{figure}
 
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[inner frame sep=0]%
+      \begin{semilogyaxis}[%
+      %scale only axis,%
+      axis lines*=left,%
+      width=8cm, height=6cm,%
+      xmin = 0, xmax = 20,% 
+      ymin = 1e-16, ymax = 1,%
+      xtick={0,5,10,15,20},%
+      ytickten = {-16,-12,-8,-4,0},%
+      grid=major,%both,%
+      xlabel={$N_{\mathrm{max}}$}, ylabel={Erreur},%\ylabl},%
+      legend style={font=\small},%
+      legend pos=north east,%south west,%
+      cycle list shift=0]%
+	  \pgfplotstableread{figures/data/convergence_expanding_cube.dat}  {\datatable}%
+	  \pgfplotstablegetcolsof{\datatable}%
+      \pgfmathtruncatemacro\numberofcols{\pgfplotsretval-1}%
+      \pgfplotsinvokeforeach{3,...,\numberofcols}{%
+        \pgfplotstablegetcolumnnamebyindex{#1}\of{\datatable}\to{\colname}%
+        %https://tex.stackexchange.com/questions/317225/automatic-labelling-of-isolines-based-on-tables-column-name
+		\addplot table [x index=0, y index=#1] from \datatable;
+  	    \addlegendentryexpanded{\colname}%
+      }%
+      \end{semilogyaxis}%
+    \end{tikzpicture}%
+	\caption{\ldots}
+	\label{fig:convergence_cube}
+\end{figure}
+
 \subsection{Propagation à vitesse normale non uniforme?}
 ?

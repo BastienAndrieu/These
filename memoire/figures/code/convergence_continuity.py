@@ -25,10 +25,18 @@ def fun(x, j):
         f = np.sign(x)
     elif j == 1:
         f = np.absolute(x)
+        #f = np.zeros(len(x))
+        #l = np.where(x > 0)
+        #f[l] = np.sqrt(x[l])
+        #f = np.sqrt(0.5*(x + 1.0))
     elif j == 2:
-        f = np.zeros(len(x))
-        l = np.where(x > 0)
-        f[l] = np.power(x[l],2)#3)
+        #f = np.zeros(len(x))
+        #l = np.where(x > 0)
+        #f[l] = np.power(x[l],1.5)
+        #f[l] = np.power(x[l],2)#3)
+        f = np.sign(x)*np.power(x,3)
+        #f = 0.25*(1.0 + np.sign(x))*(1.0 - np.cos(np.pi*x))
+        #f = np.power(x + 1.0,1.5)
     elif j == 3:
         f = np.zeros(len(x))
         l = np.where(x > 0)
@@ -85,6 +93,9 @@ for i, N in enumerate(Nvec):
     for j in range(5):
         fN = fun(xN, j)
         c = fcht(fN)
+        #if j == 2 and N < 40 and N > 20:
+        #    for l,v in enumerate(c):
+        #        print l, v
         #if j < 2:
         #    c = spectral_filter(c, 1)
         z = chebval(x, c)
@@ -153,6 +164,7 @@ fig, ax = plt.subplots(nrows=1, ncols=2)
 for j in range(5):
     ax[0].loglog(coef[j], '.', label=lbl[j])
 
+
 ax[0].loglog(Nvec,np.power(Nvec,-1.),'k:', label='N^-1', lw=lwd)
 ax[0].loglog(Nvec,np.power(Nvec,-2.),'k--', label='N^-2', lw=lwd)
 ax[0].loglog(Nvec,np.power(Nvec,-3.), 'k-.', label='N^-3', lw=lwd)
@@ -207,4 +219,30 @@ plt.grid()
 plt.show()
 """
 
-
+"""
+mrk = ['.','+','x']
+fig, ax = plt.subplots()
+Nvec = 10.*np.power(2,np.arange(14))
+for i, N in enumerate(Nvec):
+    xN = cgl_nodes(N)
+    fN = fun(xN, 2)
+    c = fcht(fN)
+    ax.loglog(np.absolute(c), '.', marker=mrk[i%len(mrk)])
+ax.loglog(Nvec, 10.*np.power(Nvec,-3.), 'k--')
+ax.loglog(Nvec, np.power(Nvec,-4.), 'k:')
+#ax.loglog(np.array([11,33,99,297]),
+#          np.array([0.001554001554, 0.0000558581204, 0.0000020620619, 0.000000076345]),
+#          'ro-')
+hpi = np.pi/2.0
+x = np.arange(11,Nvec[-1],2)
+w = ( np.sin(x*hpi)/x +
+    0.5*np.sin((x+2)*hpi)/(x+2) +
+    0.5*np.sin((x-2)*hpi)/(x-2) )/np.pi
+q = 4.0/(np.pi*(np.power(x,3) + 4.0*x))
+#ax.loglog(x, np.absolute(w), 'r.-')
+ax.loglog(x, q, 'r.-')
+                        
+ax.set_ylim([1e-16,1e1])
+ax.grid()
+plt.show()
+"""
