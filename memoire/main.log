@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  5 FEB 2019 13:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  7 FEB 2019 11:33
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2257,6 +2257,18 @@ Package pgfplots info on input line 118: Setting layers 'axis background,axis g
 rid,main,axis ticks,axis lines,axis tick labels,axis descriptions,axis foregrou
 nd'...
 ) (./preamb/preamb_math.tex
+(/opt/tools/texlive/2016/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2015/03/04 v2.20.2
+\thm@style=\toks76
+\thm@bodyfont=\toks77
+\thm@headfont=\toks78
+\thm@notefont=\toks79
+\thm@headpunct=\toks80
+\thm@preskip=\skip259
+\thm@postskip=\skip260
+\thm@headsep=\skip261
+\dth@everypar=\toks81
+)
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
@@ -2276,12 +2288,12 @@ Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Bcount=\count364
 \calc@Adimen=\dimen370
 \calc@Bdimen=\dimen371
-\calc@Askip=\skip259
-\calc@Bskip=\skip260
+\calc@Askip=\skip262
+\calc@Bskip=\skip263
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count365
-\calc@Cskip=\skip261
+\calc@Cskip=\skip264
 )
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/mathtools/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
@@ -2292,7 +2304,7 @@ LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_MT_multlinerow_int=\count366
 \l_MT_multwidth_dim=\dimen372
-\origjot=\skip262
+\origjot=\skip265
 \l_MT_shortvdotswithinadjustabove_dim=\dimen373
 \l_MT_shortvdotswithinadjustbelow_dim=\dimen374
 \l_MT_above_intertext_sep=\dimen375
@@ -2336,27 +2348,27 @@ Package: empheq 2014/07/16 v2.14 Emphasizing equations
 \c@definition=\count373
 )
 (./preamb/preamb_titles.tex
-\afterchapskipdef=\skip263
-\afterchapskipxtra=\skip264
-\barheight=\skip265
-\barlength=\skip266
-\ttltopskip=\skip267
-\numberheight=\skip268
-\yshiftchapname=\skip269
-\yshiftchapnum=\skip270
-\vbaryshift=\skip271
-\vbarxshift=\skip272
-\vbarthck=\skip273
-\vbartipthck=\skip274
+\afterchapskipdef=\skip266
+\afterchapskipxtra=\skip267
+\barheight=\skip268
+\barlength=\skip269
+\ttltopskip=\skip270
+\numberheight=\skip271
+\yshiftchapname=\skip272
+\yshiftchapnum=\skip273
+\vbaryshift=\skip274
+\vbarxshift=\skip275
+\vbarthck=\skip276
+\vbartipthck=\skip277
 )
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
 (./preamb/preamb_pagestyle.tex) (./preamb/preamb_captions.tex
 \c@subfigure=\count374
-\cftbeforesubfigureskip=\skip275
-\cftsubfigureindent=\skip276
-\cftsubfigurenumwidth=\skip277
+\cftbeforesubfigureskip=\skip278
+\cftsubfigureindent=\skip279
+\cftsubfigurenumwidth=\skip280
 )
 (./preamb/preamb_macros.tex) (./preamb/preamb_warning.tex
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/silence/silence.sty
@@ -2366,21 +2378,21 @@ sages
 \sl@StateNumber=\count376
 \sl@MessageCount=\count377
 \sl@Casualties=\count378
-\sl@Filter=\toks76
-\sl@Message=\toks77
-\sl@UnexpandedMessage=\toks78
-\sl@Mess@ge=\toks79
+\sl@Filter=\toks82
+\sl@Message=\toks83
+\sl@UnexpandedMessage=\toks84
+\sl@Mess@ge=\toks85
 \sl@WarningCount=\count379
 \sl@WarningNumber=\count380
 \sl@WarningCasualties=\count381
-\sl@TempBOW=\toks80
-\sl@BankOfWarnings=\toks81
+\sl@TempBOW=\toks86
+\sl@BankOfWarnings=\toks87
 LaTeX Info: Redefining \GenericWarning on input line 433.
 \sl@ErrorCount=\count382
 \sl@ErrorNumber=\count383
 \sl@ErrorCasualties=\count384
-\sl@TempBOE=\toks82
-\sl@BankOfErrors=\toks83
+\sl@TempBOE=\toks88
+\sl@BankOfErrors=\toks89
 LaTeX Info: Redefining \GenericError on input line 601.
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/showlabels/showlabels.sty
@@ -2391,7 +2403,7 @@ with amsmath equation tags
 \SL@labelposition=\count385
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2016/05/14 v2.6a Micro-typographical refinements (RS)
-\MT@toks=\toks84
+\MT@toks=\toks90
 \MT@count=\count386
 LaTeX Info: Redefining \textls on input line 774.
 \MT@outer@kern=\dimen388
@@ -2403,7 +2415,7 @@ File: microtype-pdftex.def 2016/05/14 v2.6a Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 916.
 LaTeX Info: Redefining \lslig on input line 916.
-\MT@outer@space=\skip278
+\MT@outer@space=\skip281
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
@@ -2431,9 +2443,9 @@ Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
 \cb@readxy=\read5
 \openout7 = `main.cb2'.
 
-\changebarwidth=\skip279
-\deletebarwidth=\skip280
-\changebarsep=\skip281
+\changebarwidth=\skip282
+\deletebarwidth=\skip283
+\changebarsep=\skip284
 \c@changebargrey=\count397
 \cb@write=\write8
 \cb@read=\read6
@@ -2447,7 +2459,7 @@ Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
 (./figures/vortex_erreur_vs_dof_template.tex)
 (./figures/vortex_erreur_vs_dofb_template.tex)
 (./figures/vortex_erreur_vs_dofc_template.tex)
-\tikzscale@accuracy=\skip282
+\tikzscale@accuracy=\skip285
  (./main.aux
 (./mainmatter/intro.aux) (./mainmatter/chap1.aux) (./mainmatter/chap2.aux)
 (./mainmatter/chap3.aux) (./mainmatter/chap4.aux) (./mainmatter/chap5.aux)
@@ -2494,12 +2506,12 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 \scratchbox=\box82
 \nofMPsegments=\count402
 \nofMParguments=\count403
-\everyMPshowfont=\toks85
+\everyMPshowfont=\toks91
 \MPscratchCnt=\count404
 \MPscratchDim=\dimen396
 \MPnumerator=\count405
 \makeMPintoPDFobject=\count406
-\everyMPtoPDFconversion=\toks86
+\everyMPtoPDFconversion=\toks92
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -2672,12 +2684,12 @@ LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 (Font)              using `U/stmry/m/n' instead on input line 17.
 
 (./figures/singular_point_formation.tikz
-\dtldb@nor0=\toks87
-\dtlkeys@nor0=\toks88
+\dtldb@nor0=\toks93
+\dtlkeys@nor0=\toks94
 \dtlrows@nor0=\count408
 \dtlcols@nor0=\count409
-\dtldb@xysing=\toks89
-\dtlkeys@xysing=\toks90
+\dtldb@xysing=\toks95
+\dtlkeys@xysing=\toks96
 \dtlrows@xysing=\count410
 \dtlcols@xysing=\count411
 )
@@ -2766,7 +2778,10 @@ mes trigonométriques [[]][] $\OMS/lmsy/m/n/10.95 !$ \T1/LinuxLibertineT-OsF/m/n
 
 
 
-] (./figures/chebyshev_polynomials.tikz
+]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/b/sc' will be
+(Font)              scaled to size 10.95pt on input line 77.
+ (./figures/chebyshev_polynomials.tikz
 \pgf@layerbox@pre main=\box84
 \pgf@layerboxsaved@pre main=\box85
 Package pgfplots info on input line 74: Setting layers 'axis background,axis gr
@@ -2778,20 +2793,20 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 131.
 ) (./figures/cgl_nodes.tikz) [8]
 [9] [10] [11] [12] [13]
-Overfull \hbox (5.93239pt too wide) in paragraph at lines 584--585
+Overfull \hbox (5.93239pt too wide) in paragraph at lines 590--591
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) Cette méth-ode + FFT per-met d'évalue
 r les dérivées aux n÷uds CGL pour $\OML/lmm/m/it/10.95 O  [] \OT1/lmr/m/n/10.95
  =
  []
 
-Package pgfplots info on input line 642: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 648: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 642.
-Package pgfplots info on input line 674: Using 'lua backend=false' for axis: ym
+(Font)              scaled to size 9.0pt on input line 648.
+Package pgfplots info on input line 680: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/coef_DNkf.dat}
 NOTE: coordinate (1Y8.0e1],0.000000000000000000e+00) has been dropped because i
@@ -2832,37 +2847,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--57
 \imwid=\dimen397
 \imypos=\dimen398
 
-<figures/snap_001.png, id=657, 803.0pt x 803.0pt>
+<figures/snap_001.png, id=664, 803.0pt x 803.0pt>
 File: figures/snap_001.png Graphic file (type png)
  <use figures/snap_001.png>
 Package pdftex.def Info: figures/snap_001.png used on input line 11.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_002.png, id=659, 803.0pt x 803.0pt>
+<figures/snap_002.png, id=666, 803.0pt x 803.0pt>
 File: figures/snap_002.png Graphic file (type png)
  <use figures/snap_002.png>
 Package pdftex.def Info: figures/snap_002.png used on input line 12.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_003.png, id=660, 803.0pt x 803.0pt>
+<figures/snap_003.png, id=667, 803.0pt x 803.0pt>
 File: figures/snap_003.png Graphic file (type png)
  <use figures/snap_003.png>
 Package pdftex.def Info: figures/snap_003.png used on input line 13.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_004.png, id=661, 803.0pt x 803.0pt>
+<figures/snap_004.png, id=668, 803.0pt x 803.0pt>
 File: figures/snap_004.png Graphic file (type png)
  <use figures/snap_004.png>
 Package pdftex.def Info: figures/snap_004.png used on input line 14.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_005.png, id=662, 803.0pt x 803.0pt>
+<figures/snap_005.png, id=669, 803.0pt x 803.0pt>
 File: figures/snap_005.png Graphic file (type png)
  <use figures/snap_005.png>
 Package pdftex.def Info: figures/snap_005.png used on input line 15.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_006.png, id=663, 803.0pt x 803.0pt>
+<figures/snap_006.png, id=670, 803.0pt x 803.0pt>
 File: figures/snap_006.png Graphic file (type png)
  <use figures/snap_006.png>
 Package pdftex.def Info: figures/snap_006.png used on input line 16.
@@ -2903,21 +2918,21 @@ Package pgfplots info on input line 153: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/vortex_erreur_volume_vs_time_0.001.dat}
 \imwid=\dimen399
-<figures/cube_brep_t1.png, id=664, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t1.png, id=671, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t1.png Graphic file (type png)
 
 <use figures/cube_brep_t1.png>
 Package pdftex.def Info: figures/cube_brep_t1.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t2.png, id=665, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t2.png, id=672, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t2.png Graphic file (type png)
 
 <use figures/cube_brep_t2.png>
 Package pdftex.def Info: figures/cube_brep_t2.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t3.png, id=666, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t3.png, id=673, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t3.png Graphic file (type png)
 
 <use figures/cube_brep_t3.png>
@@ -3003,7 +3018,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<figures/obb.pdf, id=767, 226.8475pt x 113.42375pt>
+<figures/obb.pdf, id=774, 226.8475pt x 113.42375pt>
 File: figures/obb.pdf Graphic file (type pdf)
  <use figures/obb.pdf>
 Package pdftex.def Info: figures/obb.pdf used on input line 24.
@@ -3053,7 +3068,7 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 5C908A58A1025BD9CEC0032697F7C3C6;4595.
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: A7154AD7E6705CED43FFAE7BA95AC336;2405.
+(rerunfilecheck)             Checksum: D9564A12FAE60F924B113B2A82E4EF8D;2405.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -3064,48 +3079,49 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
  ) 
 Here is how much of TeX's memory you used:
- 55683 strings out of 493013
- 1234703 string characters out of 6131034
- 2021423 words of memory out of 5000000
- 57594 multiletter control sequences out of 15000+600000
- 194122 words of font info for 275 fonts, out of 8000000 for 9000
+ 55756 strings out of 493013
+ 1235906 string characters out of 6131034
+ 2022200 words of memory out of 5000000
+ 57661 multiletter control sequences out of 15000+600000
+ 201535 words of font info for 276 fonts, out of 8000000 for 9000
  1147 hyphenation exceptions out of 8191
  75i,23n,120p,10584b,2353s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/opt/tools/
 texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/tools/texlive/20
 16/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/tools/texlive/2016/texmf-d
-ist/fonts/enc/dvips/lm/lm-mathex.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/
-enc/dvips/libertine/lbtn_75c3wo.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/e
-nc/dvips/libertine/lbtn_6mhf45.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/en
-c/dvips/libertine/lbtn_urpt4g.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc
-/dvips/libertine/lbtn_ulngvd.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/
-dvips/libertine/lbtn_vpeqwl.enc}</opt/tools/texlive/2016/texmf-dist/fonts/type1
-/public/libertine/LinLibertineT.pfb></opt/tools/texlive/2016/texmf-dist/fonts/t
-ype1/public/libertine/LinLibertineTB.pfb></opt/tools/texlive/2016/texmf-dist/fo
-nts/type1/public/libertine/LinLibertineTI.pfb></opt/tools/texlive/2016/texmf-di
-st/fonts/type1/public/esint-type1/esint10.pfb></opt/tools/texlive/2016/texmf-di
-st/fonts/type1/public/lm/lmbx10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/t
-ype1/public/lm/lmex10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/publi
-c/lm/lmmi10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi6
-.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></opt/
-tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></opt/tools/texli
-ve/2016/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></opt/tools/texlive/2016/tex
-mf-dist/fonts/type1/public/lm/lmmib10.pfb></opt/tools/texlive/2016/texmf-dist/f
-onts/type1/public/lm/lmr10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/
-public/lm/lmr5.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lm
-r6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr7.pfb></opt
-/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr8.pfb></opt/tools/texli
-ve/2016/texmf-dist/fonts/type1/public/lm/lmr9.pfb></opt/tools/texlive/2016/texm
-f-dist/fonts/type1/public/lm/lmss8.pfb></opt/tools/texlive/2016/texmf-dist/font
-s/type1/public/lm/lmsy10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/pu
-blic/lm/lmsy6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lms
-y7.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></op
-t/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/tex
-live/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (39 pages, 2203164 bytes).
+ist/fonts/enc/dvips/libertine/lbtn_l5ekfx.enc}{/opt/tools/texlive/2016/texmf-di
+st/fonts/enc/dvips/lm/lm-mathex.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/e
+nc/dvips/libertine/lbtn_75c3wo.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/en
+c/dvips/libertine/lbtn_6mhf45.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc
+/dvips/libertine/lbtn_urpt4g.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/
+dvips/libertine/lbtn_ulngvd.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/d
+vips/libertine/lbtn_vpeqwl.enc}</opt/tools/texlive/2016/texmf-dist/fonts/type1/
+public/libertine/LinLibertineT.pfb></opt/tools/texlive/2016/texmf-dist/fonts/ty
+pe1/public/libertine/LinLibertineTB.pfb></opt/tools/texlive/2016/texmf-dist/fon
+ts/type1/public/libertine/LinLibertineTI.pfb></opt/tools/texlive/2016/texmf-dis
+t/fonts/type1/public/esint-type1/esint10.pfb></opt/tools/texlive/2016/texmf-dis
+t/fonts/type1/public/lm/lmbx10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/ty
+pe1/public/lm/lmex10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public
+/lm/lmmi10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi6.
+pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></opt/t
+ools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></opt/tools/texliv
+e/2016/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></opt/tools/texlive/2016/texm
+f-dist/fonts/type1/public/lm/lmmib10.pfb></opt/tools/texlive/2016/texmf-dist/fo
+nts/type1/public/lm/lmr10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/p
+ublic/lm/lmr5.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr
+6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr7.pfb></opt/
+tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr8.pfb></opt/tools/texliv
+e/2016/texmf-dist/fonts/type1/public/lm/lmr9.pfb></opt/tools/texlive/2016/texmf
+-dist/fonts/type1/public/lm/lmss8.pfb></opt/tools/texlive/2016/texmf-dist/fonts
+/type1/public/lm/lmsy10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/pub
+lic/lm/lmsy6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy
+7.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt
+/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (39 pages, 2207123 bytes).
 PDF statistics:
- 1045 PDF objects out of 1200 (max. 8388607)
- 927 compressed objects within 10 object streams
- 261 named destinations out of 1000 (max. 500000)
- 60499 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1054 PDF objects out of 1200 (max. 8388607)
+ 936 compressed objects within 10 object streams
+ 263 named destinations out of 1000 (max. 500000)
+ 61011 words of extra memory for PDF output out of 61914 (max. 10000000)
 

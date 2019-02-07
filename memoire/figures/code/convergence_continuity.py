@@ -34,13 +34,16 @@ def fun(x, j):
         #l = np.where(x > 0)
         #f[l] = np.power(x[l],1.5)
         #f[l] = np.power(x[l],2)#3)
-        f = np.sign(x)*np.power(x,3)
+        f = np.sign(x)*np.power(x,2)
         #f = 0.25*(1.0 + np.sign(x))*(1.0 - np.cos(np.pi*x))
         #f = np.power(x + 1.0,1.5)
     elif j == 3:
         f = np.zeros(len(x))
         l = np.where(x > 0)
         f[l] = np.exp(1.-1./x[l])
+        #a = -0.99
+        #l = np.where(x > a)
+        #f[l] = np.exp(-1./(x[l]-a))
         """
         a = 1.212
         f = np.sqrt(1 - np.power(x/a, 2))
