@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  7 FEB 2019 11:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  8 FEB 2019 11:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2793,20 +2793,20 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 131.
 ) (./figures/cgl_nodes.tikz) [8]
 [9] [10] [11] [12] [13]
-Overfull \hbox (5.93239pt too wide) in paragraph at lines 590--591
+Overfull \hbox (5.93239pt too wide) in paragraph at lines 593--594
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) Cette méth-ode + FFT per-met d'évalue
 r les dérivées aux n÷uds CGL pour $\OML/lmm/m/it/10.95 O  [] \OT1/lmr/m/n/10.95
  =
  []
 
-Package pgfplots info on input line 648: Using 'lua backend=false' for axis: ym
+Package pgfplots info on input line 651: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 PGFPlots: reading {figures/data/convergence_DNkf.dat}
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 648.
-Package pgfplots info on input line 680: Using 'lua backend=false' for axis: ym
+(Font)              scaled to size 9.0pt on input line 651.
+Package pgfplots info on input line 683: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/coef_DNkf.dat}
 NOTE: coordinate (1Y8.0e1],0.000000000000000000e+00) has been dropped because i
@@ -3118,7 +3118,7 @@ lic/lm/lmsy6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy
 7.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt
 /tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/texl
 ive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (39 pages, 2207123 bytes).
+Output written on main.pdf (39 pages, 2207153 bytes).
 PDF statistics:
  1054 PDF objects out of 1200 (max. 8388607)
  936 compressed objects within 10 object streams

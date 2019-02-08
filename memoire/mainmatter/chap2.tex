@@ -286,7 +286,7 @@ En effet, si $f$ est continue sur $\chebinterval$, alors
 	\min_{p \in \polyspace{N}} \norminf{f - p},
 	\label{eq:chebyshev_near_minimax}
 \end{equation}
-où la constante de Lebesgue $\lambda_N = 1.27\ldots + \frac{4}{\pi^2} \log N + \bigO{N^-1}$ croît %suffisamment lentement avec $N$ ($\lambda_{500} \approx 3.8$) pour que les séries de Chebyshev tronquées représentent un excellent choix pratique pour l'approximation de fonctions arbitraires.\par
+où la constante de Lebesgue $\lambda_N = 1.27\ldots + \frac{4}{\pi^2} \log N + \bigO{N^{-1}}$ croît %suffisamment lentement avec $N$ ($\lambda_{500} \approx 3.8$) pour que les séries de Chebyshev tronquées représentent un excellent choix pratique pour l'approximation de fonctions arbitraires.\par
 lentement avec $N$ ($\lambda_{500} \approx 3.8$).\par
 Dans le contexte particulier de la résolution numérique d'équations aux dérivées partielles, %les séries de Chebyshev représentent un puissant outil pour l'approximation de fonctions possédant des dérivées continues, pour lesquelles la somme partielle $\truncseries{f}{N}$ converge très rapidement.
 on s'intéresse à l'approximation de fonctions qui possèdent des dérivées continues.
@@ -322,14 +322,17 @@ Puisque $\left|T_n \right| \leq 1$ sur \chebinterval\ pour tout entier $n$, il s
 	\label{eq:chebyshev_truncation_error_bound}
 \end{equation}
 
-Or, si la convergence des coefficients $\hat{f}_n$ est algébrique \eqref{eq:chebyshev_convergence_coef_algebraic}, alors
+%Or, si la convergence des coefficients $\hat{f}_n$ est algébrique (\ie de la forme \eqref{eq:chebyshev_convergence_coef_algebraic}), alors\par
+%Or, si les coefficients $\hat{f}_n$ suivent une convergence algébrique de la forme \eqref{eq:chebyshev_convergence_coef_algebraic}, alors\par
+Or, si les coefficients $\hat{f}_n$ convergent avec une rapidité algébrique de la forme \eqref{eq:chebyshev_convergence_coef_algebraic}, alors\par
 \begin{equation}
 	\norminf{f - \truncseries{f}{N}} 
 	= \bigO{N^{1-p}} 
 	= \bigO{N \left| \hat{f}_N \right|}.
 	\label{eq:chebyshev_truncation_error_estimator_algebraic}
 \end{equation}
-Si, en revanche, la convergence est géométrique \eqref{eq:chebyshev_convergence_coef_geometric}, alors 
+
+Si, en revanche, la convergence est géométrique (\ie de la forme \eqref{eq:chebyshev_convergence_coef_geometric}), alors 
 \begin{equation}
 	\norminf{f - \truncseries{f}{N}} 
 	= \bigO{r^{-N}}
@@ -342,7 +345,7 @@ Les règles empiriques \eqref{eq:chebyshev_truncation_error_estimator_algebraic}
 %Si, en revanche, le dernier coefficient retenu n'est pas faible par rapport à l'erreur prescrite, alors le niveau de discrétisation choisi n'est pas suffisant.
 
 \par\bigskip
-\textit{Motivation pour interpolation}
+\textit{Motivation pour interpolation\ldots}
 
 %En pratique, l'intégrale \eqref{eq:chebyshev_series_coeffs} ne peut pas être calculée analytiquement  \ldots\\
 Les polynômes de Chebyshev satisfont une seconde relation d'orthogonalité, dite \guill{discrète}, pour $0 \leq n \leq N$ et $m \geq n$,
