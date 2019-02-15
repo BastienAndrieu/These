@@ -135,6 +135,20 @@ dans les applications visées, la définition de la géométrie initiale passe p
 formalisme \brep~ \cite[Section 2.2]{pentcheva2010}\\
 définitions précises, vocabulaire : surface, courbe, point, face, chaîne/cycle (\eng{wire/loop}), arête (vive, douce), sommet (vif, doux)
 
+\def\parampatchimagewidth{80mm}
+\def\parampatchimageheight{60mm}
+\def\parampatchshadowtransparency{0.4}
+\begin{figure}
+\centering
+\begin{tikzpicture}
+	{\transparent{\parampatchshadowtransparency}\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_shadow}};}
+	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_surface}};
+	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isou}};
+	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isov}};
+\end{tikzpicture}
+\caption{Patch de surface paramétrique.}
+\end{figure}
+
 
 \section{Contributions}% aka "Description de la thèse/démarche"
 

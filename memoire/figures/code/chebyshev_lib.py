@@ -17,7 +17,7 @@ def fcht(f):
         c[0] *= 0.5
         c[N] *= 0.5
     else:
-          N = f.shape[1] - 1
+          N = shp[1] - 1
           v = np.hstack((f, f[:,N-1:0:-1]))
           F = fft(v)
           F = F.real / float(N)
@@ -26,7 +26,7 @@ def fcht(f):
           c[:,N] = 0.5*c[:,N]  
     return c
 ##########################################
-def ifcht(F):
+def ifcht(F): #?!
     shp = F.shape
     if len(shp) == 1:
         N = len(F) - 1
@@ -43,6 +43,9 @@ def ifcht(F):
         y = ifft(np.hstack((Y, Y[:,N-1:0:-1])))
         f = y[:,0:N+1].real
     return f
+##########################################
+def ifcht2(F):
+    return ifcht(ifcht(F.T)).T
 ##########################################
 def diff( c ):
     shp = c.shape
@@ -73,16 +76,16 @@ def diff2( c )	:
         dv = np.zeros( (degr[0]+1,degr[1]+1) )
 	
         for j in range(degr[1]+1):
-            du[:,j] = diff1( c[:,j] )
+            du[:,j] = diff( c[:,j] )
         for i in range(degr[0]+1):
-            dv[i,:] = diff1( c[i,:] )
+            dv[i,:] = diff( c[i,:] )
     else:
         du = np.zeros( (degr[0]+1,degr[1]+1,shp[2]) )
         dv = np.zeros( (degr[0]+1,degr[1]+1,shp[2]) )
         for j in range(degr[1]+1):
-            du[:,j,:] = diff1( c[:,j,:] )
+            du[:,j,:] = diff( c[:,j,:] )
         for i in range(degr[0]+1):
-            dv[i,:,:] = diff1( c[i,:,:] )
+            dv[i,:,:] = diff( c[i,:,:] )
     return du, dv
 ##########################################
 
