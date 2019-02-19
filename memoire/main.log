@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  15 FEB 2019 15:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  15 FEB 2019 16:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2871,13 +2871,13 @@ t is unbounded (in y). (see also unbounded coords=jump).
 File: figures/parametric_patch_shadow.png Graphic file (type png)
  <use figures/parametric_patch_shadow.png>
 Package pdftex.def Info: figures/parametric_patch_shadow.png used on input line
- 106.
+ 144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 File: figures/parametric_patch_surface.png Graphic file (type png)
 
 <use figures/parametric_patch_surface.png>
 Package pdftex.def Info: figures/parametric_patch_surface.png used on input lin
-e 106.
+e 144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
 <figures/parametric_patch_cgl_grid.png, id=634, 803.0pt x 602.25pt>
@@ -2885,7 +2885,7 @@ File: figures/parametric_patch_cgl_grid.png Graphic file (type png)
 
 <use figures/parametric_patch_cgl_grid.png>
 Package pdftex.def Info: figures/parametric_patch_cgl_grid.png used on input li
-ne 106.
+ne 144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
 <figures/parametric_patch_border.png, id=635, 803.0pt x 602.25pt>
@@ -2893,7 +2893,7 @@ File: figures/parametric_patch_border.png Graphic file (type png)
 
 <use figures/parametric_patch_border.png>
 Package pdftex.def Info: figures/parametric_patch_border.png used on input line
- 106.
+ 144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 ) [17]) [18 <./figures/parametric_patch_cgl_grid.png> <./figures/parametric_pat
 ch_border.png>]
@@ -2925,37 +2925,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--57
 \imwid=\dimen397
 \imypos=\dimen398
 
-<figures/snap_001.png, id=693, 803.0pt x 803.0pt>
+<figures/snap_001.png, id=692, 803.0pt x 803.0pt>
 File: figures/snap_001.png Graphic file (type png)
  <use figures/snap_001.png>
 Package pdftex.def Info: figures/snap_001.png used on input line 11.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_002.png, id=694, 803.0pt x 803.0pt>
+<figures/snap_002.png, id=693, 803.0pt x 803.0pt>
 File: figures/snap_002.png Graphic file (type png)
  <use figures/snap_002.png>
 Package pdftex.def Info: figures/snap_002.png used on input line 12.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_003.png, id=695, 803.0pt x 803.0pt>
+<figures/snap_003.png, id=694, 803.0pt x 803.0pt>
 File: figures/snap_003.png Graphic file (type png)
  <use figures/snap_003.png>
 Package pdftex.def Info: figures/snap_003.png used on input line 13.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_004.png, id=696, 803.0pt x 803.0pt>
+<figures/snap_004.png, id=695, 803.0pt x 803.0pt>
 File: figures/snap_004.png Graphic file (type png)
  <use figures/snap_004.png>
 Package pdftex.def Info: figures/snap_004.png used on input line 14.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_005.png, id=697, 803.0pt x 803.0pt>
+<figures/snap_005.png, id=696, 803.0pt x 803.0pt>
 File: figures/snap_005.png Graphic file (type png)
  <use figures/snap_005.png>
 Package pdftex.def Info: figures/snap_005.png used on input line 15.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_006.png, id=698, 803.0pt x 803.0pt>
+<figures/snap_006.png, id=697, 803.0pt x 803.0pt>
 File: figures/snap_006.png Graphic file (type png)
  <use figures/snap_006.png>
 Package pdftex.def Info: figures/snap_006.png used on input line 16.
@@ -2996,21 +2996,21 @@ Package pgfplots info on input line 153: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/vortex_erreur_volume_vs_time_0.001.dat}
 \imwid=\dimen399
-<figures/cube_brep_t1.png, id=699, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t1.png, id=698, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t1.png Graphic file (type png)
 
 <use figures/cube_brep_t1.png>
 Package pdftex.def Info: figures/cube_brep_t1.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t2.png, id=700, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t2.png, id=699, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t2.png Graphic file (type png)
 
 <use figures/cube_brep_t2.png>
 Package pdftex.def Info: figures/cube_brep_t2.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t3.png, id=701, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t3.png, id=700, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t3.png Graphic file (type png)
 
 <use figures/cube_brep_t3.png>
@@ -3102,9 +3102,7 @@ File: figures/obb.pdf Graphic file (type pdf)
 Package pdftex.def Info: figures/obb.pdf used on input line 24.
 (pdftex.def)             Requested size: 226.84694pt x 113.42346pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [31 <./figures/obb.pdf>] [32]) [33]
+[31 <./figures/obb.pdf>] [32]) [33]
 \openout2 = `appendix/cdv_affine.aux'.
 
  (./appendix/cdv_affine.tex [34
@@ -3131,36 +3129,44 @@ bibitemlist
 
 
 
-] [38]) [39]
+] [38]) [39] [40]
 \tf@toc=\write11
 \openout11 = `main.toc'.
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
- (./main.aux (./mainmatter/intro.aux) (./mainmatter/chap1.aux)
-(./mainmatter/chap2.aux) (./mainmatter/chap3.aux) (./mainmatter/chap4.aux)
-(./mainmatter/chap5.aux) (./mainmatter/concl.aux) (./appendix/obb.aux)
-(./appendix/cdv_affine.aux))
+ (./main.aux (./mainmatter/intro.aux)
+(./mainmatter/chap1.aux) (./mainmatter/chap2.aux) (./mainmatter/chap3.aux)
+(./mainmatter/chap4.aux) (./mainmatter/chap5.aux) (./mainmatter/concl.aux)
+(./appendix/obb.aux) (./appendix/cdv_affine.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 90.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 5C908A58A1025BD9CEC0032697F7C3C6;4595.
-Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 6F19CB7E1BD2EAECE6B5BFD8D96ADFE6;2407.
 
+
+Package rerunfilecheck Warning: File `main.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `main.brf':
+(rerunfilecheck)             Before: 6F19CB7E1BD2EAECE6B5BFD8D96ADFE6;2407
+(rerunfilecheck)             After:  D46E270199C870F6402BE7ADBA2F76AB;2407.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
  ) 
 Here is how much of TeX's memory you used:
- 56321 strings out of 493013
- 1245381 string characters out of 6131034
+ 56337 strings out of 493013
+ 1245821 string characters out of 6131034
  2025002 words of memory out of 5000000
- 58212 multiletter control sequences out of 15000+600000
+ 58227 multiletter control sequences out of 15000+600000
  203080 words of font info for 279 fonts, out of 8000000 for 9000
  1147 hyphenation exceptions out of 8191
  75i,23n,120p,10584b,2353s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -3196,10 +3202,10 @@ lic/lm/lmsy6.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy
 7.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt
 /tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/texl
 ive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (41 pages, 2924941 bytes).
+Output written on main.pdf (42 pages, 2925416 bytes).
 PDF statistics:
- 1083 PDF objects out of 1200 (max. 8388607)
- 947 compressed objects within 10 object streams
- 269 named destinations out of 1000 (max. 500000)
+ 1087 PDF objects out of 1200 (max. 8388607)
+ 950 compressed objects within 10 object streams
+ 270 named destinations out of 1000 (max. 500000)
  61051 words of extra memory for PDF output out of 61914 (max. 10000000)
 

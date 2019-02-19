@@ -142,9 +142,7 @@ j = 3
 su = np.polynomial.chebyshev.chebval2d(uc[i], vc[j], duC)
 sv = -np.polynomial.chebyshev.chebval2d(uc[i], vc[j], dvC)
 sw = np.cross(su,sv)
-print(su,sv,sw)
 vec = np.vstack((su,sv,sw))
-print(vec)
 s = np.array([xc[i,j], yc[i,j], zc[i,j]])
 
 sclvec = 0.4
@@ -153,6 +151,23 @@ thck = 1.e-2
 I3 = np.eye(3)
 for i in range(3):
         myl.addPolyline(np.vstack([s, s+sclvec*vec[i]]), I3[i], thck, 0)
+
+
+xij = bpy.data.objects.new("xij", None)
+xij.location = s
+bpy.context.scene.objects.link(xij)
+
+xu = bpy.data.objects.new("xu", None)
+xu.location = s + sclvec*su
+bpy.context.scene.objects.link(xu)
+
+xv = bpy.data.objects.new("xv", None)
+xv.location = s + sclvec*sv
+bpy.context.scene.objects.link(xv)
+
+xw = bpy.data.objects.new("n", None)
+xw.location = s + sclvec*sw
+bpy.context.scene.objects.link(xw)
 ################################################
 
 # Groups

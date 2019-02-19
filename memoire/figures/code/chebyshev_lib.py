@@ -132,3 +132,30 @@ def B2Cmatrix( N ):
                 A[j,k] += np.power(-1.0,j-i)*nchoosek(j,i)*float(factorial2(2*(k+i)-1)*factorial2(2*(n+j-k-i)-1))/float(factorial2(2*i-1)*factorial2(2*(j-i)-1))
             A[j,k] *= float((2-dj0)*factorial2(2*j-1)*nchoosek(n,k))/float(2**(n+j)*factorial(n+j))
     return A
+##########################################
+def chebfit(x, y, M):
+    n = len(x)
+    F = np.zeros((M,n))
+    F[0,:] = 1.0
+    F[1,:] = x
+    for i in range(2,M):
+        F[i,:] = 2.0*x*F[i-1,:] - F[i-2,:]
+    A = np.zeros((M,M))
+    b = np.zeros((M,1))
+    for j in range(M):
+        for i in range(M):
+            A[i,j] = np.dot(F[i,:], F[j,:])
+    if len(y.shape) == 1:
+        b = np.zeros(M)
+        for i in range(M):
+            b[i] = np.dot(F[i,:],y)
+    else:
+        b = np.zeros((M,y.shape[1]))
+        for j in range(y.shape[1]):
+            for i in range(M):
+                b[i,j] = np.dot(F[i,:],y[:,j])   
+    #A = mymatmul( F, np.transpose(F) )
+    #b = mymatmul( F, y )
+    c = np.linalg.solve(A, b)
+    print('cond(A) = ',np.linalg.cond(A))
+    return c

@@ -823,6 +823,45 @@ calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est g�
 
 \input{figures/fig_cgl_grid.tex}
 
+%\def\parampatchimagewidth{80mm}
+%\def\parampatchimageheight{0.75*\parampatchimagewidth}
+%\begin{figure}
+%\begin{tikzpicture}[
+%	x=\parampatchimagewidth,
+%	y=\parampatchimageheight,
+%	im/.style={anchor=south west, inner sep=0pt},
+%	bigpoint/.style={circle, fill=black, scale=0.33},
+%	axe/.style={-stealth, line width=0.5pt},
+%	label/.style={font=\small, inner sep=1.5pt},
+%	vector/.style={-latex', very thick}]
+%\coordinate (a) at (0,0);
+%{\transparent{\parampatchshadowtransparency}\node[im] (shadow) at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_shadow}};}
+%% trièdre
+%\def\scaletriedre{0.85}
+%\coordinate (o) at (0.20309802889823914 ,  0.26374515891075134);
+%\coordinate (x) at (0.30103224515914917 ,  0.14841561019420624);
+%\coordinate (y) at (0.3310101628303528 ,  0.3642595410346985);
+%\coordinate (z) at (0.17395645380020142 ,  0.43496546149253845);
+%\draw[axe] (o) -- ($(o)!\scaletriedre!(x)$) node[label, anchor=west] {$x$};
+%\draw[axe] (o) -- ($(o)!\scaletriedre!(y)$) node[label, anchor=west] {$y$};
+%\draw[axe] (o) -- ($(o)!\scaletriedre!(z)$) node[label, anchor=south] {$z$};
+%%
+%\node[im] at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_surface}};
+%\node[im] at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_cgl_grid}};
+%\node[im] at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_border}};
+%% vecteurs
+%\def\scalevectors{0.99}
+%\coordinate (s) at (0.5657749772071838, 0.4292657971382141);
+%\coordinate (u) at (0.6539148092269897, 0.5149791240692139);
+%\coordinate (v) at (0.506170392036438, 0.5304208993911743);
+%\coordinate (n) at (0.5878586769104004, 0.5399532318115234);
+%\draw[vector, red] (s) -- ($(s)!\scalevectors!(u)$) node[label, anchor=north west, xshift=-2pt] {$\bx_u$};
+%\draw[vector, blue] (s) -- ($(s)!\scalevectors!(v)$) node[label, anchor=east, yshift=-1pt] {$\bx_v$};
+%\draw[vector, black] (s) -- ($(s)!\scalevectors!(n)$) node[label, anchor=south] {$\unv$};
+%\node [bigpoint] at (s) {};
+%\node [label, anchor=north, inner sep=7pt] at (s) {$\bx_{i,j}$};
+%\end{tikzpicture}%
+%\end{figure}
 
 
 \section{Intégration temporelle}%{Discrétisation temporelle}

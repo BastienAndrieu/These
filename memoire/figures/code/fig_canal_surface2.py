@@ -5,14 +5,16 @@ import sys
 sys.path.append('/stck/bandrieu/Bureau/Python/mylibs/')
 sys.path.append('/d/bandrieu/GitHub/These/memoire/figures/code/')
 import chebyshev_lib as cheblib
+import lib_EoS as eos
+import lib_fig as fig
 import my_lib as myl
 
-
-
+###############################
 def fr(x):
     return 0.2*(1.0 + 1.2*x[0] + 0.2*x[1] - 0.6*x[2])
-    
+###############################
 
+# spine's Bezier control points
 b = np.array([
     [0., -0.2570,  0.0],
     [1.,  0.3086, -0.6],
@@ -20,6 +22,7 @@ b = np.array([
     [3., -0.1435,  0.4],
     [4.,  0.0814,  0.6]])
 
+# convert to Chebyshev polynomial
 N = len(b)-1
 B2C = cheblib.B2Cmatrix(N+1)
 pg = np.zeros(b.shape)
@@ -27,16 +30,17 @@ for j in range(3):
     for i in range(N+1):
         for k in range(N+1):
             pg[i,j] += B2C[i,k]*b[k,j]
+# 1st and 2nd polynomial derivatives
 dpg = cheblib.diff(pg)
 d2pg = cheblib.diff(dpg)
 
+# sampling
 m = 200
 n = m
 m1 = 20
 m2 = 120
 dm = 12
 u = np.linspace(-1,1,m)
-#u = np.linspace(-0.8,0.2,m)
 v = np.pi*np.linspace(-1,1,n+1)
 
 u0 = -0.5
@@ -53,20 +57,8 @@ r = chebval(u, pr)
 dr = chebval(u, dpr)
 
 # envelope
-e = np.zeros((m2-m1+1,n,3)) #np.zeros((m,n,3))
-bu0 = np.array([-1.,0.,0.15])
-for i in range(m1,m2+1):
-    normdg = np.sqrt(np.sum(np.power(dg[:,i],2)))
-    sina = dr[i]/normdg
-    occ = g[:,i] - r[i]*sina*dg[:,i]/normdg
-    rcc = r[i]*np.sqrt(1. - sina**2)
-    bw = dg[:,i]/normdg
-    #bu = bu0 - np.dot(bu0,bw)*bw
-    bu = d2g[:,i] - np.dot(d2g[:,i],bw)*bw
-    bu = bu / np.sqrt(np.sum(np.power(bu,2)))
-    bv = np.cross(bw,bu)
-    for j in range(n):
-        e[i-m1,j] = occ + rcc*(np.cos(v[j])*bu + np.sin(v[j])*bv)
+e = eos.one_parameter_EoS(g, dg, d2g, r, dr, v)
+e = e[m1:m2+1,:,:]
 
 ##############################
 # clear blender scene
@@ -133,53 +125,31 @@ else:
     bpy.data.materials["Mat_line"].alpha = 0
 
 # add envelope ############
-verts = []
-faces = []
-for i in range(e.shape[0]):
-    for j in range(n):
-        verts.append([e[i,j,0], e[i,j,1], e[i,j,2]])
-        if i < e.shape[0]-1:
-            faces.append([i*n + j, i*n + (j+1)%n, (i+1)*n + (j+1)%n, (i+1)*n + j])
-#create mesh and object
-mesh = bpy.data.meshes.new("envelope")
-object = bpy.data.objects.new("envelope",mesh)
-
-#set mesh location
-object.location = [0,0,0]
-bpy.context.scene.objects.link(object)
-
-#create mesh from python data
-mesh.from_pydata(verts,[],faces)
-mesh.update(calc_edges=True)
-
-# show mesh as smooth
-object.data.use_auto_smooth = 1
-#bpy.ops.object.shade_smooth()
-mypolys = mesh.polygons
-for q in mypolys:
-    q.use_smooth = True
-
-mat = bpy.data.materials.new("mat_enve")
-mat.diffuse_color = [0.527, 0.800, 0.213]
-mat.diffuse_intensity = 1
+myl.addTensorProductPatch(e[:,:,0], e[:,:,1], e[:,:,2],
+                          name="envelope",
+                          periodu=False, periodv=True,
+                          location=[0,0,0],
+                          smooth=True,
+                          color=[0.527, 0.800, 0.213], alpha=0.68, emit=1.0)
+mat = bpy.data.materials["mat_envelope"]
 mat.specular_intensity = 0.5
 mat.specular_hardness = 30
-mat.use_transparency = True
 mat.raytrace_transparency.fresnel = 2.7
-mat.alpha = 0.68
-mat.emit = 1.0
 mat.use_shadows = False
 mat.use_cast_buffer_shadows = False
-myl.setMaterial(object, mat)
 ###########################
 
 
 # add sphere ##############
 g0 = chebval(u0, pg)
 r0 = chebval(u0, pr)
-bpy.ops.mesh.primitive_uv_sphere_add(location=g0, segments=100, ring_count=100, size=0.995*r0)
-#bpy.context.object.scale = (r0,r0,r0)
-myl.setSmooth(bpy.context.object)
+bpy.ops.mesh.primitive_uv_sphere_add(
+    location=g0,
+    segments=100,
+    ring_count=100,
+    size=0.995*r0)
+obj = bpy.data.objects["Sphere"]
+myl.setSmooth(obj)
 mat = bpy.data.materials.new("mat_sph")
 mat.diffuse_color = [0.800, 0.494, 0.317]
 mat.diffuse_intensity = 1
@@ -191,18 +161,13 @@ mat.alpha = 1
 mat.emit = 1.2
 mat.use_shadows = False
 mat.use_cast_buffer_shadows = False
-myl.setMaterial(bpy.context.object, mat)
+myl.setMaterial(obj, mat)
 ###########################
 
 
 # add point ##############
-g0 = chebval(u0, pg)
-r0 = chebval(u0, pr)
-bpy.ops.mesh.primitive_uv_sphere_add(location=g0, segments=50, ring_count=50, size=1.e-2)
-#bpy.context.object.scale = (r0,r0,r0)
-myl.setSmooth(bpy.context.object)
-mat = myl.lineMaterial("mat_point",[0,0,0])
-myl.setMaterial(bpy.context.object, mat)
+obj = myl.addEmpty(name="g0", location=g0)
+fig.get_2d_coordinates(obj)
 ###########################
 
 
@@ -215,14 +180,16 @@ sina = dr0/normdg
 occ = g0 - r0*sina*dg0/normdg
 rcc = r0*np.sqrt(1. - sina**2)
 bw = dg0/normdg
-#bu = np.array([0,1,0]) - bw[1]*bw
+bu0 = np.array([-1.,0.,0.15])
 bu = bu0 - np.dot(bu0,bw)*bw
 bu = bu / np.sqrt(np.sum(np.power(bu,2)))
 bv = np.cross(bw,bu)
 
 # tangent to spine (normal to plane)
-tng = np.vstack([g0, g0+dg0])
-myl.addPolyline(tng, [1,0,0], 1.5e-3, 0)
+#tng = np.vstack([g0, g0+dg0])
+#myl.addPolyline(tng, [1,0,0], 1.5e-3, 0)
+obj = myl.addEmpty(name="dg0", location=g0+0.6*dg0)
+fig.get_2d_coordinates(obj)
 
 verts = []
 faces = [[0,2,3],[0,3,1]]
@@ -286,45 +253,25 @@ mat.use_cast_buffer_shadows = False
 myl.setMaterial(object, mat)
 ###########################
 
-
-###########################
-"""
-t = np.linspace(-1,1,20)
-v = chebval(t, pg)
-#r = chebval(t, pr)
-r = fr(v)
-print(r.shape)
-for i in range(len(t)):
-    bpy.ops.mesh.primitive_uv_sphere_add(location=v[:,i], segments=32, size=r[i])
-"""
 ###########################
 
 scene = bpy.context.scene
 
-az = (20.0 - 90.0)*np.pi/180.0
-el = 0.0#-5.0*np.pi/180.0
-xcam = np.array([1.0000, 0.1067, -0.3586])#g0
-rcam = 18.959#34.6*r0
-#scene.camera.location = xcam + rcam*np.array([np.cos(az)*np.cos(el), np.sin(az)*np.cos(el), np.sin(el)])
 scene.camera.location = [14.6387, -19.52351, 0.52857]
-#scene.camera.rotation_euler = np.array([89.98, 0.62, 379.9])*np.pi/180.0
 scene.camera.rotation_euler = np.array([87.975, 0.62, 393.916])*np.pi/180.0
 bpy.data.cameras["Camera"].lens_unit = "FOV"
-bpy.data.cameras["Camera"].angle = 6.1*np.pi/180.0#6.609*np.pi/180.0
+bpy.data.cameras["Camera"].angle = 6.1*np.pi/180.0
 bpy.data.cameras["Camera"].shift_x = 0.018
 bpy.data.cameras["Camera"].shift_y = 0.03
 
 scene.render.resolution_x = 1400
-scene.render.resolution_y = 960#0.75*scene.render.resolution_x
+scene.render.resolution_y = 960
 scene.render.resolution_percentage = 100
 
 bpy.data.worlds["World"].horizon_color = [1,1,1]
 scene.render.use_border = False
 scene.render.use_freestyle = True
 #scene.render.alpha_mode = 'TRANSPARENT'
-
-bpy.data.objects["Sphere.001"].hide_render = True
-bpy.data.objects["ObjCurve.001"].hide_render = True
 
 
 ############################################################
