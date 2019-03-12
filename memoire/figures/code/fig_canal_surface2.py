@@ -8,6 +8,7 @@ import chebyshev_lib as cheblib
 import lib_EoS as eos
 import lib_fig as fig
 import my_lib as myl
+import bpy_extras
 
 ###############################
 def fr(x):
@@ -63,6 +64,27 @@ e = e[m1:m2+1,:,:]
 ##############################
 # clear blender scene
 myl.blankScene()
+
+
+############################################################
+scene = bpy.context.scene
+
+scene.camera.location = [14.6387, -19.52351, 0.52857]
+scene.camera.rotation_euler = np.array([87.975, 0.62, 393.916])*np.pi/180.0
+bpy.data.cameras["Camera"].lens_unit = "FOV"
+bpy.data.cameras["Camera"].angle = 6.1*np.pi/180.0
+bpy.data.cameras["Camera"].shift_x = 0.018
+bpy.data.cameras["Camera"].shift_y = 0.03
+
+scene.render.resolution_x = 1400
+scene.render.resolution_y = 960
+scene.render.resolution_percentage = 100
+
+bpy.data.worlds["World"].horizon_color = [1,1,1]
+scene.render.use_border = False
+scene.render.use_freestyle = True
+#scene.render.alpha_mode = 'TRANSPARENT'
+############################################################
 
 # add spine curve
 if True:
@@ -178,6 +200,17 @@ dr0 = chebval(u0, dpr)
 normdg = np.sqrt(np.sum(np.power(dg0,2)))
 sina = dr0/normdg
 occ = g0 - r0*sina*dg0/normdg
+obj = myl.addEmpty(name="o", location=occ)
+fig.get_2d_coordinates(obj)
+"""
+co_2d = bpy_extras.object_utils.world_to_camera_view(scene,
+                                                     scene.camera,
+                                                     obj.location)
+print(obj.name)
+print("   2D Coords:   ",
+      co_2d.x - bpy.data.cameras["Camera"].shift_x, ', ',
+      co_2d.y - bpy.data.cameras["Camera"].shift_y)
+"""
 rcc = r0*np.sqrt(1. - sina**2)
 bw = dg0/normdg
 bu0 = np.array([-1.,0.,0.15])
@@ -190,6 +223,7 @@ bv = np.cross(bw,bu)
 #myl.addPolyline(tng, [1,0,0], 1.5e-3, 0)
 obj = myl.addEmpty(name="dg0", location=g0+0.6*dg0)
 fig.get_2d_coordinates(obj)
+
 
 verts = []
 faces = [[0,2,3],[0,3,1]]
@@ -252,27 +286,6 @@ mat.use_shadows = False
 mat.use_cast_buffer_shadows = False
 myl.setMaterial(object, mat)
 ###########################
-
-###########################
-
-scene = bpy.context.scene
-
-scene.camera.location = [14.6387, -19.52351, 0.52857]
-scene.camera.rotation_euler = np.array([87.975, 0.62, 393.916])*np.pi/180.0
-bpy.data.cameras["Camera"].lens_unit = "FOV"
-bpy.data.cameras["Camera"].angle = 6.1*np.pi/180.0
-bpy.data.cameras["Camera"].shift_x = 0.018
-bpy.data.cameras["Camera"].shift_y = 0.03
-
-scene.render.resolution_x = 1400
-scene.render.resolution_y = 960
-scene.render.resolution_percentage = 100
-
-bpy.data.worlds["World"].horizon_color = [1,1,1]
-scene.render.use_border = False
-scene.render.use_freestyle = True
-#scene.render.alpha_mode = 'TRANSPARENT'
-
 
 ############################################################
 # GROUPS

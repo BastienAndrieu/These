@@ -14,10 +14,17 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%% templates figures %%%%%%%%%%%%%%%%%%%%%%
+\input{figures/fig_brep_face_template}
+
 \input{figures/vortex_erreur_vs_dof_template}
 \input{figures/vortex_erreur_vs_dofb_template}
 \input{figures/vortex_erreur_vs_dofc_template}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% macro for removing leading zeros
+%https://tex.stackexchange.com/questions/250804/remove-leading-zeroes-from-an-integer
+\def\stripzero#1{\expandafter\stripzerohelp#1}
+\def\stripzerohelp#1{\ifx 0#1\expandafter\stripzerohelp\else#1\fi}
 
 
 
@@ -45,6 +52,10 @@
   \microtypesetup{protrusion=true} % disables protrusion locally in the document
 }
 %
+
+%\printnoidxglossary%\printglossaries
+%\printnomenclature
+\include{notations}
 
 % CHAPITRES
 \mainmatter

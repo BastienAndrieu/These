@@ -1,0 +1,128 @@
+\chapter*{Notations}
+
+\begin{tabular}{ll}
+temps                               & $t$                        \\
+intervalle/pas de temps             & $\tau$/$\Delta t$          \\
+scalaire                            & $abcdefghopqrwxyz \alpha \beta \gamma \delta \epsilon \varepsilon \zeta \eta \theta \vartheta \iota \lambda \mu \xi \varpi \rho \varrho \sigma \varsigma \tau \varphi \chi \psi \omega$\\
+indice                              & $ijklmn$\\ \hline
+\textbf{Géométrie} & \\
+courbe dans $\reals^3$ (variété)    & $\Gamma$                   \\
+courbe dans $\reals^2$ (variété)    & $\Psi$                     \\
+surface (variété)                   & $\Sigma$                   \\
+normale unitaire                    & $\unv$                     \\
+point de $\reals^d$                 & $\vit{abcdefghijklmnopqrstuvwxyz}$\\
+vecteur de $\reals^d$               & $\vrm{abcdefghijklmnopqrstuvwxyz}$\\ \hline
+\textbf{Enveloppes de sphères} & \\
+vitesse normale                     & $\nu$                      \\ \hline
+enveloppe de sphères (variété)      & $\Phi$ \\
+enveloppe de sphères (paramétrisation) & $\vit{\phi}(u,v)$ \\
+rayon des sphères                   & $\rho(w), \rho(u,v)$ \\
+sphère                              & $\mathscr{S}$ \\
+boule                               & $\mathscr{B}$ \\ 
+cercle                              & $\mathscr{C}$ \\ 
+plan                                & $\mathscr{P}$ \\ \hline
+\textbf{Entités \brep} & \\
+coquille (\eng{shell})              & \brepshell, ensemble : $\mathcal{S}$ \\
+face                                & \brepface, ensemble : $\mathcal{F}$ \\
+arête (\eng{edge})                  & \brepedge, ensemble : $\mathcal{E}$ \\
+co-arête (\eng{half-edge})          & $\mathrm{H}$, ensemble : $\mathcal{H}$, ou $\brepedge^{1,2}$ \\
+sommet (\eng{vertex})               & \brepvertex, ensemble : $\mathcal{V}$ \\
+contour (\eng{wire})                & \brepwire, ensemble : $\mathcal{W}$ ($\brepwire^{\mathrm{ext}}, \brepwire^{\mathrm{int},i}$) \\ \hline
+\textbf{Éléments de maillage} & \\
+triangle                            & $K$ ou $\tau$\\
+face                                & $F$\\
+arête (\eng{edge})                  & $?$\\
+demi-arête (\eng{half-edge})        & $?$\\
+sommet/n\oe ud                      & $S$\\ \hline
+\textbf{Polynômes} & \\
+espace des polynômes de degré $\leq N$ & $\mathcal{P}_N$ ou $\reals_N[X]$, $\reals_N[x_1, \ldots, x_d]$\\
+polynômes de Chebyshev              & $T_n$                      \\
+polynômes de Bernstein              & $B_n^{N}$                  \\
+\end{tabular}
+
+\begin{tabular}{ll}
+\textbf{Méthode (pseudo-)spectrale} & \\
+degré                               & $L,M,N,P,Q$                \\
+somme partielle de Chebyshev        & $\truncseries{f}{N}$       \\
+polynôme d'interpolation            & $\interpolant{f}{N}$       \\
+dérivées du polynôme d'interpolation & $\interpderiv{f}{N}{k}$   \\
+coefficients de $\truncseries{f}{N}$ & $\hat{f}_n$               \\
+coefficients de $\interpolant{f}{N}$ & $\tilde{f}_n$             \\
+coefficients de $\interpderiv{f}{N}{k}$ & $\deriv{\tilde{f}}{k}_n$ \\
+matrice de différentiation          & $\mathbf{D}_N$             \\ \hline
+\textbf{Algèbre, calcul différentiel} & \\
+fonctions continues sur $[a,b]$     & $\matholdcal{C}[a,b]$ \\
+fonctions régulières sur $[a,b]$    & $\matholdcal{C}^k[a,b]$, $k \in \integers$ ou $k= \infty$ \\
+matrice                             & $\mathbf{ABCDEFGKLMNOPQRSTUVWXYZ \Theta \Lambda}$\\
+matrice identité                    & $\mathbf{I_d}$\\
+matrice Jacobienne                  & $\jacobian{\!f}$, $\jacobian{\bs}$, $\jacobian{\bg}$\\
+matrice Hessienne                   & $\hessian{f}$              \\ \hline
+\textbf{Géométrie différentielle} & \\
+paramètre de courbe                 & $w$                        \\
+paramètres de surface               & $u,v$                      \\
+courbe paramétrique dans $\reals^3$ & $\bg(w)$                   \\
+courbe paramétrique dans $\reals^2$ & $\vit{\psi}(w)$            \\
+surface paramétrique                & $\bs(u,v)$                 \\
+tenseur métrique                    & $\fff
+= \begin{pmatrix}E & F\\ F & G\end{pmatrix}
+= \begin{pmatrix}I_{1,1} & I_{1,2}\\ I_{1,2} & I_{2,2}\end{pmatrix}$\\
+matrice de la 2nde forme fondamentale & $\sff
+= \begin{pmatrix}L & M\\ M & N\end{pmatrix}
+= \begin{pmatrix}\sffc_{1,1} & \sffc_{1,2}\\ \sffc_{1,2} & \sffc_{2,2}\end{pmatrix}$\\
+courbures principales               & $\kappa_{1,2}$             \\
+courbure moyenne                    & $H = (\kappa_1 + \kappa_2)/2$\\
+courbure de Gauss                   & $K = \kappa_1 \kappa_2$    \\
+domaine paramétrique                & $\Omega$, \ie $\Sigma = \bs(\Omega)$\\
+\end{tabular}
+
+%\bigskip
+\vfill
+\pagebreak
+
+%\textsf{abcdefghijklmnopqrstuvwxyz}\par
+%abcdefghijklmnopqrstuvwxyz\par
+%$\mathrm{abcdefghijklmnopqrstuvwxyz}$\par
+%$abcdefghijklmnopqrstuvwxyz$\par
+%$\mathbf{abcdefghijklmnopqrstuvwxyz}$\par
+%$\boldsymbol{abcdefghijklmnopqrstuvwxyz}$\par
+%$\mathscr{abcdefghijklmnopqrstuvwxyz}$\par
+
+\begin{tabular}{ll}
+abcdefghijklmnopqrstuvwxyz & text \\
+$abcdefghijklmnopqrstuvwxyz$ & math \\
+$\mathrm{abcdefghijklmnopqrstuvwxyz}$ & mathrm \\
+$\mathbf{abcdefghijklmnopqrstuvwxyz}$ & mathbf \\
+$\boldsymbol{abcdefghijklmnopqrstuvwxyz}$ & boldsymbol \\
+$\mathcal{abcdefghijklmnopqrstuvwxyz}$ & mathcal \\
+$\matholdcal{abcdefghijklmnopqrstuvwxyz}$ & matholdcal \\
+$\mathscr{abcdefghijklmnopqrstuvwxyz}$ & mathscr
+\end{tabular}
+
+
+\bigskip
+
+\begin{tabular}{ll}
+ABCDEFGHIJKLMNOPQRSTUVWXYZ & text \\
+$ABCDEFGHIJKLMNOPQRSTUVWXYZ$ & math \\
+$\mathrm{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ & mathrm \\
+$\mathbf{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ & mathbf \\
+$\boldsymbol{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ & boldsymbol \\
+$\mathcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ & mathcal \\
+$\matholdcal{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ & matholdcal \\
+$\mathscr{ABCDEFGHIJKLMNOPQRSTUVWXYZ}$ & mathscr
+\end{tabular}
+\bigskip
+
+$\alpha \beta \gamma \delta \epsilon \varepsilon \zeta \eta \theta \vartheta \iota \kappa \lambda \mu \nu \xi \pi \varpi \rho \varrho \sigma \varsigma \tau \upsilon \phi \varphi \chi \psi \omega$\par
+$\boldsymbol{\alpha \beta \gamma \delta \epsilon \varepsilon \zeta \eta \theta \vartheta \iota \kappa \lambda \mu \nu \xi \pi \varpi \rho \varrho \sigma \varsigma \tau \upsilon \phi \varphi \chi \psi \omega}$\par
+$\Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega$\par
+
+%$\boldsymbol{\Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega}$\par
+\bigskip
+\begin{tabular}{ccccccccccc}
+$\gamma$ & $\delta$ & $\theta$ & $\lambda$ & $\xi$ & $\pi$ & $\sigma$ & $\upsilon$ & $\phi$ & $\psi$ & $\omega$\\
+$\vit{\gamma}$ & $\vit{\delta}$ & $\vit{\theta}$ & $\vit{\lambda}$ & $\vit{\xi}$ & $\vit{\pi}$ & $\vit{\sigma}$ & $\vit{\upsilon}$ & $\vit{\phi}$ & $\vit{\psi}$ & $\vit{\omega}$\\
+$\Gamma$ & $\Delta$ & $\Theta$ & $\Lambda$ & $\Xi$ & $\Pi$ & $\Sigma$ & $\Upsilon$ & $\Phi$ & $\Psi$ & $\Omega$
+\end{tabular}
+
+\par\bigskip

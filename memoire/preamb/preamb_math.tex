@@ -10,6 +10,23 @@
 \usepackage{esint}
 \usepackage[overload]{empheq}%https://tex.stackexchange.com/questions/165685/subequations-and-array-in-braces
 
+\usepackage{mathrsfs}% script (mathscr}
+
+% *** TWEAK (NEGATIVE) SPACES *** 
+%https://tex.stackexchange.com/questions/67912/large-negative-spaces
+%https://tex.stackexchange.com/questions/9091/what-is-the-right-way-to-use-the-spacing-command/9092
+
+%https://tex.stackexchange.com/questions/2783/bold-calligraphic-typeface
+\DeclareMathAlphabet\matholdcal{OMS}{cmsy}{m}{n}
+
+%https://tex.stackexchange.com/questions/247531/how-to-use-boondox-calligraphic-font-in-latex-without-replacing-mathcal-command/247819
+%https://ctan.org/pkg/mathalfa
+\usepackage[
+scr=boondoxo, scrscaled=1.05, 
+cal=zapfc, calscaled=1.18%,
+%frak=mma, frakscaled=1.,
+]{mathalfa}
+
 %https://tex.stackexchange.com/questions/234676/new-theorem-style
 %https://en.wikibooks.org/wiki/LaTeX/Theorems
 \newtheoremstyle%
@@ -50,11 +67,13 @@
 \newcommand*{\littleo}[1]{o\!\left( {#1} \right)} % little-o
 
 % sets
+\newcommand*{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand*{\integers}{\ensuremath{\mathbb{N}}}
 \newcommand{\family}[4]{\left\{{#1}_{#2}\right\}_{{#2}={#3},\ldots,{#4}}}
 \newcommand{\ffamily}[7]{\left\{{#1}_{#2,#5}\right\}_{\substack{{#2}={#3},\ldots,{#4}\\ \substack{{#5}={#6},\ldots,{#7}}}}}
 \newcommand{\polyspace}[1]{\Pi_{#1}}%\mathbb{R}_{#1}[x]}
 \newcommand{\Ltwospace}{L^2\chebinterval}%\mathcal{L}_2\chebinterval}
-\newcommand*{\contdiff}[1]{\mathcal{C}^{#1}\!}
+\newcommand*{\contdiff}[1]{\matholdcal{C}^{#1}\!}
 
 \newcommand*{\bx}{\vit{x}}
 \newcommand*{\bd}{\vit{\delta}}
@@ -64,6 +83,8 @@
 
 \newcommand*{\unv}{\vrm{n}} % unit normal vector
 \newcommand*{\nv}{\hat{\unv}} % normal vector
+
+\newcommand*{\eos}{\vit{\phi}} % envelope of spheres
 
 \newcommand{\colvec}[1]{\begin{pmatrix} #1 \end{pmatrix}} % vector printed in column
 \newcommand{\rowvec}[1]{ \transpose{\begin{pmatrix} #1 \end{pmatrix}} } % vector printed in row (transposed column)
@@ -85,7 +106,8 @@
 \newcommand*{\cond}[1]{\mathrm{cond} \! \left( {#1} \right)}
 
 % Differential geometry
-\newcommand{\fff}{\mathbf{I}}    % first fundamental form
+\newcommand{\fff}{\mathbf{I}}     % first fundamental form
+\newcommand{\sffc}{I\mkern-4.8muI}          % second fundamental form coefs
 \newcommand{\sff}{\mathbf{I\!I}} % second fundamental form
 
 
@@ -118,6 +140,18 @@
 %\end{equation}
 
 
+% Topological entities
+\newcommand*{\face}{\ensuremath{f}}
+\newcommand*{\wire}{\ensuremath{w}}
+\newcommand*{\edge}{\ensuremath{e}}
+\newcommand*{\halfedge}{\ensuremath{h}}
+\newcommand*{\vertex}{\ensuremath{v}}
+
+\newcommand*{\faceset}{\ensuremath{\mathcal{F}}}
+\newcommand*{\wireset}{\ensuremath{\mathcal{W}}}
+\newcommand*{\edgeset}{\ensuremath{\mathcal{E}}}
+\newcommand*{\halfedgeset}{\ensuremath{\mathcal{H}}}
+\newcommand*{\vertexset}{\ensuremath{\mathcal{V}}}
 
 
 

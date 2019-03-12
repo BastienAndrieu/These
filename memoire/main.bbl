@@ -298,4 +298,9 @@
 \newblock {\itshape Computer Methods in Applied Mechanics and Engineering\/},
   {\bfseries 301}~:~pp. 300--335, 2016.
 
+\bibitem{stroud2006}
+{\scshape I.~Stroud}.
+\newblock {\itshape {Boundary Representation Modelling Techniques}\/}.
+\newblock Springer Science \& Business Media, 2006.
+
 \end{thebibliography}

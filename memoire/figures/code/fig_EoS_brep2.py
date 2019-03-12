@@ -9,6 +9,9 @@ import lib_EoS as eos
 import lib_fig as fig
 import my_lib as myl
 import my_lib1 as mylb
+#import mycolors as myc
+#from mycolors import *
+import lib_color as mycolors
 
 #########################################################
 class Face:
@@ -66,7 +69,8 @@ u = np.linspace(-1.0,1.0,m)
 v = np.linspace(-1.0,1.0,n)
 
 
-clf = [1,1,1]
+#clf = [1,1,1]
+clf = mycolors.sample_colormap('I2',6+12+8)
 cle = [0.527, 0.800, 0.213]#[1.0000, 0.9648, 0.6695]#
 
 
@@ -81,11 +85,11 @@ for i in range(6):
                           periodu=False, periodv=False,
                           location=[0,0,0],
                           smooth=True,
-                          color=clf, alpha=1, emit=0)
-    if i > 0:
-        scene.objects.active = obj
-        bpy.ops.object.material_slot_remove()
-        myl.setMaterial(obj, bpy.data.materials["mat_face_1"])
+                          color=clf[i], alpha=1, emit=0)
+    #if i > 0:
+    #    scene.objects.active = obj
+    #    bpy.ops.object.material_slot_remove()
+    #    myl.setMaterial(obj, bpy.data.materials["mat_face_1"])
     #----------------------------------------
     dups, dvps = cheblib.diff2(ps)
     M = ps.shape[0]
@@ -110,10 +114,10 @@ for i in range(6):
                                     location=[0,0,0],
                                     smooth=True,
                                     color=cle, alpha=1, emit=0.2)
-    if i > 0:
-        scene.objects.active = obj
-        bpy.ops.object.material_slot_remove()
-        myl.setMaterial(obj, bpy.data.materials["mat_enve_1"])
+    #if i > 0:
+    #    scene.objects.active = obj
+    #    bpy.ops.object.material_slot_remove()
+    #    myl.setMaterial(obj, bpy.data.materials["mat_enve_1"])
     obj.layers[1] = True
     obj.layers[0] = False
 
@@ -202,10 +206,10 @@ for ied, ed, in enumerate(Edges):
                                     periodu=False, periodv=False,
                                     location=[0,0,0],
                                     smooth=True,
-                                    color=cle, alpha=1, emit=0)
-    scene.objects.active = obj
-    bpy.ops.object.material_slot_remove()
-    myl.setMaterial(obj, bpy.data.materials["mat_enve_1"])
+                                    color=clf[6+ied], alpha=1, emit=0)
+    #scene.objects.active = obj
+    #bpy.ops.object.material_slot_remove()
+    #myl.setMaterial(obj, bpy.data.materials["mat_enve_1"])
     obj.layers[1] = True
     obj.layers[0] = False
     
@@ -235,7 +239,7 @@ for ive, ve in enumerate(Verts):
     obj.layers[1] = True
     obj.layers[0] = False
     myl.setSmooth(obj)
-    myl.setMaterial(obj, bpy.data.materials["mat_enve_1"])
+    #myl.setMaterial(obj, bpy.data.materials["mat_enve_1"])
 
 # trace Edges
 if False:

@@ -12,10 +12,13 @@ def get_2d_coordinates(obj):
 
     co = obj.location
     co_2d = bpy_extras.object_utils.world_to_camera_view(scene, cam, co)
+    x = co_2d.x - 2.*bpy.data.cameras["Camera"].shift_x
+    y = co_2d.y - 2.*float(render_w)/float(render_h)*bpy.data.cameras["Camera"].shift_y
     print(obj.name)
-    print("   2D Coords:   ", co_2d.x, ', ', co_2d.y)
-    print("   Pixel Coords:", co_2d.x*render_w, ', ', co_2d.y*render_h)
+    print("   2D Coords:   ", x, ', ', y)
+    print("   Pixel Coords:", x*render_w, ', ', y*render_h)
     print("")
+    return x, y
 ##############################################
 def get_all_visible_2d_coordinates():
     scene = bpy.context.scene

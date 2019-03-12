@@ -5,6 +5,19 @@
 
 \section{Contexte}%
 
+\gls{Cab}, \gls{Ckab}, \gls{toto}
+%\begin{equation}
+%a=\frac{N}{A}
+%\end{equation}%
+%\nomenclature{$a$}{The number of angels per unit area\nomrefeq}%
+%\nomenclature{$N$}{The number of angels per needle point\nomrefpage}%
+%\nomenclature{$A$}{The area of the needle point}%
+%The equation $\sigma = m a$%
+%\nomenclature{$\sigma$}{The total mass of angels per unit area\nomrefeqpage}%
+%\nomenclature{$m$}{The mass of one angel}
+%follows easily.
+%\eqdeclaration{32}
+
 %Les surfaces (ou interfaces) en propagation interviennent dans de nombreuses applications scientifiques et industrielles. Elles résultent de phénomènes mettant en jeu des couplages multiphysiques complexes comme la combustion, les interactions fluide-structure, les écoulements multi-phasiques ou encore la croissance dendritique de cristaux. C’est généralement au niveau de ces surfaces qu’a lieu la physique la plus intéressante, il est donc indispensable d’en déterminer avec précision l’évolution au cours du temps\ldots
 applications : simulations multi-physiques (flammes, fluide-structure, écoulements multiphasiques, multimateriaux, croissance de cristaux\ldots) CAO (usinage, planification de trajectoire de robots mobiles), infographie \ldots
 
@@ -133,21 +146,55 @@ dans les applications visées, la définition de la géométrie initiale passe p
 
 \section{Représentation par les frontières}
 formalisme \brep~ \cite[Section 2.2]{pentcheva2010}\\
-définitions précises, vocabulaire : surface, courbe, point, face, chaîne/cycle (\eng{wire/loop}), arête (vive, douce), sommet (vif, doux)
+définitions précises, vocabulaire : surface, courbe, point, face, contour/chaîne/cycle (\eng{wire/loop}), arête (vive, douce), sommet (vif, doux)
+\par\bigskip
+Une face \brepface\ est délimitée par un contour extérieur $\brepwire^{\mathrm{ext}}$ et, éventuellement, par un ou plusieurs contours intérieurs $\brepwire^{\mathrm{int},i}$.\\
+Un contour est un cycle de co-arêtes.\\
+Une arête \brepedge\ est délimitée par deux sommets et est composée de deux co-arêtes jumelles.\\
+
+
+\begin{figure}
+\centering
+\input{figures/brep_hierarchy2.tikz}
+\caption{Hiérarchie des éléments constituant un modèle \brep.}
+\end{figure}
+
+\DTLsetseparator{ }%
+\DTLloaddb[noheader,keys={r,g,b}]{brepcolors}{figures/code/demo_EoS_brep_palette_modif.dat}%
+\begin{figure}
+\centering
+\def\imw{42mm}
+%\hfill
+\figbrepface{007}{\imw}{0}{0}%\hfill
+\figbrepface{008}{\imw}{0}{0}%\hfill
+\figbrepface{002}{\imw}{0}{0}%\hfill
+\par
+\figbrepface{004}{\imw}{0}{0}%\hfill
+\figbrepface{006}{\imw}{0}{0}%\hfill
+%\begin{tikzpicture}[%
+%	x = \imw, y = \imw,
+%	img/.style={anchor=south west}]
+%	\node[img] (surface) at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_faces/surface_007}};
+%	\node[img] (face) at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_faces/face_007}};
+%\end{tikzpicture}
+\end{figure}
+
+
+
 
 \def\parampatchimagewidth{80mm}
 \def\parampatchimageheight{60mm}
 \def\parampatchshadowtransparency{0.4}
-\begin{figure}
-\centering
-\begin{tikzpicture}
-	{\transparent{\parampatchshadowtransparency}\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_shadow}};}
-	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_surface}};
-	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isou}};
-	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isov}};
-\end{tikzpicture}
-\caption{Patch de surface paramétrique.}
-\end{figure}
+%\begin{figure}
+%\centering
+%\begin{tikzpicture}
+%	{\transparent{\parampatchshadowtransparency}\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_shadow}};}
+%	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_surface}};
+%	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isou}};
+%	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isov}};
+%\end{tikzpicture}
+%\caption{Patch de surface paramétrique.}
+%\end{figure}
 
 
 \section{Contributions}% aka "Description de la thèse/démarche"

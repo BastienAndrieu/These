@@ -1,5 +1,15 @@
 \usepackage{graphicx}
 
+% Conversion pt -> mm
+%https://tex.stackexchange.com/questions/8260/what-are-the-various-units-ex-em-in-pt-bp-dd-pc-expressed-in-mm
+%(The syntax is \convertto{mm}{1pt} to convert 1pt in mm)
+\makeatletter
+\def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
 %\usepackage{pythontex}
 
 \usepackage{pgf, pgfplots, pgfplotstable}
@@ -14,7 +24,8 @@
 \pgfplotsset{compat=newest}
 
 \usepackage{tikz, tikzscale}
-\usetikzlibrary{math, fit, calc, external, fadings, arrows, positioning, angles, quotes, patterns, backgrounds, shapes.geometric, shapes.misc}
+\usetikzlibrary{math, fit, calc, external, fadings, angles, arrows, arrows.meta, positioning, angles, quotes, patterns, backgrounds, shapes, shapes.geometric, shapes.misc, decorations.markings}
+
 
 %\tikzexternalize[prefix=figures/pgf/]
 

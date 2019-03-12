@@ -1,0 +1,126 @@
+\newcommand{\helpergrid}[1]{
+	\pgfmathsetmacro\gridstep{1.0/\ngrid}%
+	\draw[step=\gridstep,dotted,red,thin] (0,0) grid (1,1);
+	\foreach \j in {0,...,#1}{
+		\foreach \x in {0,1}{
+			\node[gridtick] at (\x,{\j/10.}) {$\j$};
+		}
+	}
+	\foreach \i in {1,...,#1}{
+		\foreach \y in {0,1}{
+			\node[gridtick] at ({\i/10.},\y) {$\i$};
+		}
+	}
+}
+
+
+
+\newcommand{\figbrepface}[4]{%#1 : indice de face, #2 taille figure, #3 x ancrage, #4 y ancrage
+\def\alp{0.35}%{0.2}
+\DTLsetseparator{,}%
+\DTLloaddb[noheader,keys={i,x,y,a}]{mytab}{figures/data/fig_brep_faces/verts_#1.dat}%
+%
+%\DTLassign{brepcolors}{\stripzero{#1}}{\rfa=r,\gfa=g,\bfa=b}% 
+%\pgfmathsetmacro\rfai{int(round(\rfa*255))}
+%\pgfmathsetmacro\gfai{int(round(\gfa*255))}
+%\pgfmathsetmacro\bfai{int(round(\bfa*255))}
+\DTLloaddb[noheader,keys={r,g,b}]{fclr}{figures/data/fig_brep_faces/facecolor_#1.dat}%
+\DTLassign{fclr}{1}{\rfai=r,\gfai=g,\bfai=b}% 
+\definecolor{facecolor}{RGB}{\rfai,\gfai,\bfai}
+%
+\DTLloaddb[noheader,keys={ncv,nch,nav,nah}]{npolys}{figures/data/fig_brep_faces/npolylines_#1.dat}%
+\DTLassign{npolys}{1}{\ncv=ncv,\nch=nch,\nav=nav,\nah=nah}% 
+%
+\def\ngrid{10}
+%
+\begin{tikzpicture}[%
+	x = #2, y = #2,
+	gridtick/.style={red, fill=white, font=\tiny, inner sep=0.5pt},
+	img/.style={anchor=south west, inner sep=0},
+	label/.style={inner sep=1pt, font=\scriptsize},
+	curv/.style={line width=0.6pt, line cap=round},
+	curvhid/.style={curv, dash pattern=on 2pt off 2pt},
+	arrow/.style={shorten >= 0pt}]%, -latex}]
+	%\node[img] (surface) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/surface_#1}};
+	\node[img] (face) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/face_#1}};
+	{\transparent{0.1}%
+		\node[img] (surface) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/surface_#1}};}
+	\DTLforeach*{mytab}{\i=i, \x=x, \y=y, \a=a}%
+	{%
+		\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
+		{\transparent{\alpi}%
+			\fill[black] (\x,\y) circle (1pt);
+			\node[label, anchor=south west] at (\x,\y) {$\mathrm{V}_{\mkern-2mu\i}$};%
+		}%
+	}%
+	%
+	\node[img] (face) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/edges_vis_#1}};
+	{\transparent{\alp}%
+		\node[img] (face) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/edges_hid_#1}};
+	}
+%	\foreach \i in {1,...,\ncv}{
+%		\draw[curv] plot file {figures/data/fig_brep_faces/curve_vis_#1_\i.dat};
+%	}
+%	\foreach \i in {1,...,\nav}{
+%		\draw[curv, arrow] plot file {figures/data/fig_brep_faces/arrow_vis_#1_\i.dat};
+%	}
+%	{\transparent{\alp}%
+%		\foreach \i in {1,...,\nch}{
+%			\draw[curvhid] plot file {figures/data/fig_brep_faces/curve_hid_#1_\i.dat};
+%		}
+%		\foreach \i in {1,...,\nah}{
+%			\draw[curvhid, arrow] plot file {figures/data/fig_brep_faces/arrow_hid_#1_\i.dat};
+%		}
+%	}%
+	%\helpergrid{\ngrid}
+	% UV-SPACE ##################
+	\def\ngriduv{6}
+	\DTLloaddb[noheader,keys={ncuv,ncint}]{nuv}{figures/data/fig_brep_faces/nuv_#1.dat}%
+	\DTLassign{nuv}{1}{\ncuv=ncuv, \ncint=ncint}% 
+	\node[anchor=north, inner sep=0] (uvspace) at ([yshift=-4mm]surface.south)
+	{%
+		\begin{tikzpicture}[
+		uvgrid/.style={black!10!white},
+		insert node/.style args={#1 at #2}{
+	    	postaction=decorate,
+	    	decoration={
+	      		markings,
+	      		mark= at position #2 with {#1}
+	      		}
+			}
+		]
+			\begin{axis}[
+				width=#2, height=#2,%scale only axis,
+				xmin=-1,xmax=1,ymin=-1,ymax=1,
+				axis lines=left, %xtick=\empty, ytick=\empty,
+				xticklabels=\empty,yticklabels=\empty,
+				grid=major, try min ticks={9},
+				hide axis,
+				axis line style={draw=none}, tick style={draw=none}
+				]
+				\pgfplotsinvokeforeach{0,...,\ngriduv}{%
+					\draw[uvgrid] (axis cs:-1,{-1 + 2*##1/\ngriduv}) -- ++ (axis direction cs:2,0);
+					\draw[uvgrid] (axis cs:{-1 + 2*##1/\ngriduv},-1) -- ++ (axis direction cs:0,2);
+				}
+				\ifnum \ncint > 0
+					\fill[facecolor, even odd rule] 
+					plot file {figures/data/fig_brep_faces/contour_ext_#1.dat}
+					plot file {figures/data/fig_brep_faces/contour_int_#1_1.dat} ;
+				\else
+					\fill[facecolor] plot file {figures/data/fig_brep_faces/contour_ext_#1.dat};
+				\fi
+%				\addplot graphics [xmin=-1,xmax=1,ymin=-1,ymax=1] {figures/fig_brep_faces/faceuv_#1};
+				\pgfplotsinvokeforeach{1,...,\ncuv}{%
+					\draw[
+					%insert node={\node[left]{$E$};} at 0.5,
+					curv, -{Triangle[left]}] plot file {figures/data/fig_brep_faces/curve_uv_#1_##1.dat};
+				}
+			\end{axis}		
+		\end{tikzpicture}
+	};
+\end{tikzpicture}
+\DTLgdeletedb{fclr}
+\DTLgdeletedb{mytab}
+\DTLgdeletedb{npolys}
+\DTLgdeletedb{nuv}
+}

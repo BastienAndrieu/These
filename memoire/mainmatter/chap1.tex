@@ -69,9 +69,9 @@ chaque face repose sur une surface orientée de continuité géométrique élev�
 		\node[anchor=north west, inner sep=0] at (0,0) {\includegraphics[width=112mm]%width=scale*80mm
 		{figures/canal_surface4}};
 		\coordinate (g) at (27.4114285714mm,-31.2685714286mm);
-
 		\node [point] at (g) {};
-		\node [anchor=north east, label, txt] at (g) {$\bg(u)$};
+		%\node [anchor=north east, label, txt] at (g) {$\bg(u)$};
+		\node [anchor=south west, label, txt] at (g) {$\bg$};
 		\coordinate (p) at (19.8628571429mm,-21.68mm);
 		\node [anchor=west, txt] at (p) {$\boldsymbol{\phi}(u,v)$};
 		\node [point] at (p) {};
@@ -83,19 +83,24 @@ chaque face repose sur une surface orientée de continuité géométrique élev�
 		\coordinate (dgmax) at (80mm,-37.8114285714mm);
 		\coordinate (dg) at ($(g)!0.5!(dgmax)$);
 		\draw [vector] (g) -- (dg) node [above right, label, txt, xshift=-2pt] {$\bg_u(u)$};
-		\draw [stealth-stealth, shorten <= 2.2pt, shorten >= 1.5pt] (g) -- node[pos=0.45, right, txt] {$r(u)$} (36.1771428571mm,-43.7257142857mm);
+		\draw [stealth-stealth, shorten <= 2.2pt, shorten >= 1.5pt] (g) -- node[pos=0.45, right, txt] {$\rho(u)$} (36.1771428571mm,-43.7257142857mm);
 		\node [txt, label, anchor=south east] at (71.0857142857mm,-19.2mm) {$\Gamma$};
 		\definecolor{charcirc_clr}{HTML}{105DFF}
 		\node [txt, label, anchor=south west, charcirc_clr] at 
 		(18.3714285714mm,-41.2mm) %(17.7428571429mm,-38.5142857143mm) 
-		{$C(u)$};
+		{$\mathscr{C}(u)$};
 		\node [txt, label, anchor=south, charcirc_clr] at 
 		(31.3142857143mm,-8.6mm)%(16.2857142857mm,-53.7142857143mm) 
-		{$P(u)$};
+		{$\mathscr{P}(u)$};
 		\definecolor{envelope_clr}{HTML}{40C516}
 		\node [txt, label, anchor=south east, envelope_clr] at (47.6571428571mm,-3.7714285714mm) {$\Phi$};
 		\definecolor{sphere_clr}{rgb}{0.799,0.396,0.159}
-		\node [txt, label, sphere_clr] at (36.7mm,-23.8mm) {$S(u)$};
+		\node [txt, label, sphere_clr] at (36.7mm,-23.8mm) {$\mathscr{S}(u)$};
+		\coordinate (o) at (23.8893473148mm,-30.8355408822mm);
+		\draw [dashed] (o) -- (g);
+		\node [point] at (o) {};
+		\node [txt, label, below left] at (o) {$\vrm{o}$};
+		\draw [stealth-stealth, shorten <= 2.2pt, shorten >= 2.2pt] (o) -- node[pos=0.5, left, txt] {$r$} (p);
 	\end{tikzpicture}
 \end{figure}
 
@@ -146,11 +151,11 @@ différence avec le simple transport suivant la normale \cite{jiao2001}
 		\coordinate (s) at (40.632mm,-21.936mm);
 		%
 		\coordinate (pp) at (38.4mm,-9.56mm);
-		%\node [anchor=west, txt] at (pp) {$\boldsymbol{\phi}_+$};
-		\node [anchor=north, txt, xshift=3pt, label] at (pp) {$\boldsymbol{\phi}_+$};
+		%\node [anchor=west, txt] at (pp) {$\eos_+$};
+		\node [anchor=north, txt, xshift=3pt, label] at (pp) {$\eos_+$};
 		\coordinate (pm) at (38.76mm,-32.4mm);
-		%\node [anchor=west, txt] at (pm) {$\boldsymbol{\phi}_-$};
-		\node [anchor=south, txt, xshift=3pt, label] at (pm) {$\boldsymbol{\phi}_-$};
+		%\node [anchor=west, txt] at (pm) {$\eos_-$};
+		\node [anchor=south, txt, xshift=3pt, label] at (pm) {$\eos_-$};
 		%
 		\coordinate (svmax) at (8.416mm,-34.856mm);
 		\coordinate (sv) at ($(s)!-0.55!(svmax)$);
@@ -197,7 +202,64 @@ graphe d'adjacence des surfaces, courbes, points \cite[Chap. 4]{pentcheva2010}\\
 formation des faces (\eng{wires} $\to$ chaînes?) \cite[Chap. 7]{pentcheva2010}, arêtes et sommets \cite[Chap. 5]{pentcheva2010}
 
 \ldots
+\convertto{mm}{\textwidth}
 
+\def\numim{2}%{}
+\def\imw{80mm}
+\def\imh{\imw}
+\def\alp{0.2}
+\def\heoffset{0.013}
+\DTLsetseparator{ }%
+\DTLloaddb[noheader,keys={x,y,a}]{vertdata}{figures/data/demo_EoS_brep_verts.dat}%
+\DTLloaddb[noheader,keys={xa,ya,xb,yb,r,g,b}]{hedgdata}{figures/data/demo_EoS_brep_hedg.dat}%
+\begin{figure}%
+	\centering%
+	\begin{tikzpicture}[
+		x=\imw, y=\imh,
+		img/.style={anchor=south west, inner sep=0},
+		halfedge/.style={thick, -{Triangle[left]}}]
+		%\begin{scope}
+		%	\clip (0.11,0) rectangle (0.928,1);
+			\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep\numim}};%
+			\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep_edges_visible\numim}};%
+			{\transparent{\alp}\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep_edges_hidden\numim}};}%
+			\DTLforeach*{vertdata}{\x=x, \y=y, \a=a}%
+			{%
+				\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
+				{\transparent{\alpi}\fill[black] (\x,\y) circle (1pt);}%
+			}%
+			%
+			\DTLforeach*{hedgdata}{\xa=xa,\ya=ya, \xb=xb,\yb=yb, \r=r, \g=g, \b=b}%
+			{%
+				\definecolor{tmpcolor}{rgb}{\r,\g\b}%
+				\draw[tmpcolor, halfedge] (\xa,\ya) -- (\xb,\yb);
+			}%
+%			\draw[blue, halfedge, line cap=round] 
+%			(0.199, {0.2506+0.02}) to[out=340, in=340]
+%			(0.1689, {0.525-0.02});
+		%\end{scope}
+	\end{tikzpicture}%
+\end{figure}%
+\DTLcleardb{vertdata}
+
+\def\alp{0}
+\DTLloaddb[noheader,keys={x,y,a}]{vertdata_eos}{figures/data/demo_EoS_brep_verts_new.dat}%
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[
+		x=\imw, y=\imh,
+		img/.style={anchor=south west, inner sep=0}]
+		\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep\numim}};%
+		\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep_edges_visible\numim}};%
+		{\transparent{\alp}\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep_edges_hidden\numim}};}%
+		\DTLforeach*{vertdata_eos}{\x=x, \y=y, \a=a}%
+		{%
+			\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
+			{\transparent{\alpi}\fill[black] (\x,\y) circle (1pt);}%
+		}%
+	\end{tikzpicture}
+\end{figure}
+\DTLcleardb{vertdata_eos}
 
 
 \bigskip
