@@ -202,64 +202,64 @@ graphe d'adjacence des surfaces, courbes, points \cite[Chap. 4]{pentcheva2010}\\
 formation des faces (\eng{wires} $\to$ chaînes?) \cite[Chap. 7]{pentcheva2010}, arêtes et sommets \cite[Chap. 5]{pentcheva2010}
 
 \ldots
-\convertto{mm}{\textwidth}
+%\convertto{mm}{\textwidth}
 
-\def\numim{2}%{}
-\def\imw{80mm}
-\def\imh{\imw}
-\def\alp{0.2}
-\def\heoffset{0.013}
-\DTLsetseparator{ }%
-\DTLloaddb[noheader,keys={x,y,a}]{vertdata}{figures/data/demo_EoS_brep_verts.dat}%
-\DTLloaddb[noheader,keys={xa,ya,xb,yb,r,g,b}]{hedgdata}{figures/data/demo_EoS_brep_hedg.dat}%
-\begin{figure}%
-	\centering%
-	\begin{tikzpicture}[
-		x=\imw, y=\imh,
-		img/.style={anchor=south west, inner sep=0},
-		halfedge/.style={thick, -{Triangle[left]}}]
-		%\begin{scope}
-		%	\clip (0.11,0) rectangle (0.928,1);
-			\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep\numim}};%
-			\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep_edges_visible\numim}};%
-			{\transparent{\alp}\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep_edges_hidden\numim}};}%
-			\DTLforeach*{vertdata}{\x=x, \y=y, \a=a}%
-			{%
-				\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
-				{\transparent{\alpi}\fill[black] (\x,\y) circle (1pt);}%
-			}%
-			%
-			\DTLforeach*{hedgdata}{\xa=xa,\ya=ya, \xb=xb,\yb=yb, \r=r, \g=g, \b=b}%
-			{%
-				\definecolor{tmpcolor}{rgb}{\r,\g\b}%
-				\draw[tmpcolor, halfedge] (\xa,\ya) -- (\xb,\yb);
-			}%
-%			\draw[blue, halfedge, line cap=round] 
-%			(0.199, {0.2506+0.02}) to[out=340, in=340]
-%			(0.1689, {0.525-0.02});
-		%\end{scope}
-	\end{tikzpicture}%
-\end{figure}%
-\DTLcleardb{vertdata}
-
-\def\alp{0}
-\DTLloaddb[noheader,keys={x,y,a}]{vertdata_eos}{figures/data/demo_EoS_brep_verts_new.dat}%
-\begin{figure}
-	\centering
-	\begin{tikzpicture}[
-		x=\imw, y=\imh,
-		img/.style={anchor=south west, inner sep=0}]
-		\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep\numim}};%
-		\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep_edges_visible\numim}};%
-		{\transparent{\alp}\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep_edges_hidden\numim}};}%
-		\DTLforeach*{vertdata_eos}{\x=x, \y=y, \a=a}%
-		{%
-			\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
-			{\transparent{\alpi}\fill[black] (\x,\y) circle (1pt);}%
-		}%
-	\end{tikzpicture}
-\end{figure}
-\DTLcleardb{vertdata_eos}
+%\def\numim{2}%{}
+%\def\imw{80mm}
+%\def\imh{\imw}
+%\def\alp{0.2}
+%\def\heoffset{0.013}
+%\DTLsetseparator{ }%
+%\DTLloaddb[noheader,keys={x,y,a}]{vertdata}{figures/data/demo_EoS_brep_verts.dat}%
+%\DTLloaddb[noheader,keys={xa,ya,xb,yb,r,g,b}]{hedgdata}{figures/data/demo_EoS_brep_hedg.dat}%
+%\begin{figure}%
+%	\centering%
+%	\begin{tikzpicture}[
+%		x=\imw, y=\imh,
+%		img/.style={anchor=south west, inner sep=0},
+%		halfedge/.style={thick, -{Triangle[left]}}]
+%		%\begin{scope}
+%		%	\clip (0.11,0) rectangle (0.928,1);
+%			\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep\numim}};%
+%			\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep_edges_visible\numim}};%
+%			{\transparent{\alp}\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_brep_edges_hidden\numim}};}%
+%			\DTLforeach*{vertdata}{\x=x, \y=y, \a=a}%
+%			{%
+%				\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
+%				{\transparent{\alpi}\fill[black] (\x,\y) circle (1pt);}%
+%			}%
+%			%
+%			\DTLforeach*{hedgdata}{\xa=xa,\ya=ya, \xb=xb,\yb=yb, \r=r, \g=g, \b=b}%
+%			{%
+%				\definecolor{tmpcolor}{rgb}{\r,\g\b}%
+%				\draw[tmpcolor, halfedge] (\xa,\ya) -- (\xb,\yb);
+%			}%
+%%			\draw[blue, halfedge, line cap=round] 
+%%			(0.199, {0.2506+0.02}) to[out=340, in=340]
+%%			(0.1689, {0.525-0.02});
+%		%\end{scope}
+%	\end{tikzpicture}%
+%\end{figure}%
+%\DTLgdeletedb{vertdata}
+%
+%\def\alp{0}
+%\DTLloaddb[noheader,keys={x,y,a}]{vertdata_eos}{figures/data/demo_EoS_brep_verts_new.dat}%
+%\begin{figure}
+%	\centering
+%	\begin{tikzpicture}[
+%		x=\imw, y=\imh,
+%		img/.style={anchor=south west, inner sep=0}]
+%		\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep\numim}};%
+%		\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep_edges_visible\numim}};%
+%		{\transparent{\alp}\node [img] at (0,0) {\includegraphics[width=\imw]{figures/demo_EoS_brep_edges_hidden\numim}};}%
+%		\DTLforeach*{vertdata_eos}{\x=x, \y=y, \a=a}%
+%		{%
+%			\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
+%			{\transparent{\alpi}\fill[black] (\x,\y) circle (1pt);}%
+%		}%
+%	\end{tikzpicture}
+%\end{figure}
+%\DTLgdeletedb{vertdata_eos}
 
 
 \bigskip

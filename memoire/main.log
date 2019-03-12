@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  12 MAR 2019 09:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  12 MAR 2019 11:41
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2452,139 +2452,46 @@ Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 \cftsubfigureindent=\skip279
 \cftsubfigurenumwidth=\skip280
 )
-(./preamb/preamb_macros.tex) (./preamb/preamb_glossary.tex
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries.sty
-Package: glossaries 2016/12/16 v4.27 (NLCT)
-
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/mfirstuc/mfirstuc.sty
-Package: mfirstuc 2016/07/31 v2.04 (NLCT)
-\@glsmfirst=\toks82
-\@glsmrest=\toks83
-)
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/textcase/textcase.sty
-Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
-LaTeX Info: Redefining \MakeTextUppercase on input line 47.
-LaTeX Info: Redefining \MakeTextLowercase on input line 50.
-)
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/glossaries/base/glossaries-compat
-ible-307.sty
-Package: glossaries-compatible-307 2016/12/16 v4.27 (NLCT)
-)
-\gls@level=\count375
-\@gls@tmpb=\toks84
-\gls@tmplen=\skip281
-
-
-Package glossaries Warning: Overriding \printglossary on input line 5486.
-
-
-Package glossaries Warning: Overriding `theglossary' environment on input line 
-6136.
-
-\glskeylisttok=\toks85
-\glslabeltok=\toks86
-\glsshorttok=\toks87
-\glslongtok=\toks88
-
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-hypern
-av.sty
-Package: glossary-hypernav 2016/12/16 v4.27 (NLCT)
-)
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-list.s
-ty
-Package: glossary-list 2016/12/16 v4.27 (NLCT)
-\glslistdottedwidth=\skip282
-)
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-long.s
-ty
-Package: glossary-long 2016/12/16 v4.27 (NLCT)
- (/opt/tools/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip283
-\LTright=\skip284
-\LTpre=\skip285
-\LTpost=\skip286
-\LTchunksize=\count376
-\LTcapwidth=\dimen392
-\LT@head=\box102
-\LT@firsthead=\box103
-\LT@foot=\box104
-\LT@lastfoot=\box105
-\LT@cols=\count377
-\LT@rows=\count378
-\c@LT@tables=\count379
-\c@LT@chunks=\count380
-\LT@p@ftn=\toks89
-)
-\glsdescwidth=\skip287
-\glspagelistwidth=\skip288
-)
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-super.
-sty
-Package: glossary-super 2016/12/16 v4.27 (NLCT)
- (/opt/tools/texlive/2016/texmf-dist/tex/latex/supertabular/supertabular.sty
-Package: supertabular 2004/02/20 v4.1e the supertabular environment
-\c@tracingst=\count381
-\ST@wd=\dimen393
-\ST@rightskip=\skip289
-\ST@leftskip=\skip290
-\ST@parfillskip=\skip291
-\ST@pageleft=\dimen394
-\ST@headht=\dimen395
-\ST@tailht=\dimen396
-\ST@pagesofar=\dimen397
-\ST@pboxht=\dimen398
-\ST@lineht=\dimen399
-\ST@stretchht=\dimen400
-\ST@prevht=\dimen401
-\ST@toadd=\dimen402
-\ST@dimen=\dimen403
-\ST@pbox=\box106
-))
-(/opt/tools/texlive/2016/texmf-dist/tex/latex/glossaries/styles/glossary-tree.s
-ty
-Package: glossary-tree 2016/12/16 v4.27 (NLCT)
-\glstreeindent=\skip292
-))) (./preamb/preamb_warning.tex
+(./preamb/preamb_macros.tex) (./preamb/preamb_warning.tex
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/silence/silence.sty
 Package: silence 2012/07/02 v1.5b Selective filtering of warnings and error mes
 sages
-\sl@Save=\count382
-\sl@StateNumber=\count383
-\sl@MessageCount=\count384
-\sl@Casualties=\count385
-\sl@Filter=\toks90
-\sl@Message=\toks91
-\sl@UnexpandedMessage=\toks92
-\sl@Mess@ge=\toks93
-\sl@WarningCount=\count386
-\sl@WarningNumber=\count387
-\sl@WarningCasualties=\count388
-\sl@TempBOW=\toks94
-\sl@BankOfWarnings=\toks95
+\sl@Save=\count375
+\sl@StateNumber=\count376
+\sl@MessageCount=\count377
+\sl@Casualties=\count378
+\sl@Filter=\toks82
+\sl@Message=\toks83
+\sl@UnexpandedMessage=\toks84
+\sl@Mess@ge=\toks85
+\sl@WarningCount=\count379
+\sl@WarningNumber=\count380
+\sl@WarningCasualties=\count381
+\sl@TempBOW=\toks86
+\sl@BankOfWarnings=\toks87
 LaTeX Info: Redefining \GenericWarning on input line 433.
-\sl@ErrorCount=\count389
-\sl@ErrorNumber=\count390
-\sl@ErrorCasualties=\count391
-\sl@TempBOE=\toks96
-\sl@BankOfErrors=\toks97
+\sl@ErrorCount=\count382
+\sl@ErrorNumber=\count383
+\sl@ErrorCasualties=\count384
+\sl@TempBOE=\toks88
+\sl@BankOfErrors=\toks89
 LaTeX Info: Redefining \GenericError on input line 601.
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2016/05/14 v2.6a Micro-typographical refinements (RS)
-\MT@toks=\toks98
-\MT@count=\count392
+\MT@toks=\toks90
+\MT@count=\count385
 LaTeX Info: Redefining \textls on input line 774.
-\MT@outer@kern=\dimen404
+\MT@outer@kern=\dimen392
 LaTeX Info: Redefining \textmicrotypecontext on input line 1310.
-\MT@listname@count=\count393
+\MT@listname@count=\count386
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2016/05/14 v2.6a Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 916.
 LaTeX Info: Redefining \lslig on input line 916.
-\MT@outer@space=\skip293
+\MT@outer@space=\skip281
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
@@ -2593,29 +2500,29 @@ File: microtype.cfg 2016/05/14 v2.6a microtype main configuration file (RS)
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/changebar/changebar.sty
 Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
-\cb@nextpoint=\count394
-\cb@topleft=\count395
-\cb@topright=\count396
-\cb@botleft=\count397
-\cb@botright=\count398
-\cb@cnta=\count399
-\cb@cntb=\count400
-\cb@dima=\dimen405
-\cb@curbarwd=\dimen406
-\cb@page=\count401
-\cb@pagecount=\count402
-\cb@odd@left=\dimen407
-\cb@odd@right=\dimen408
-\cb@even@left=\dimen409
-\cb@even@right=\dimen410
+\cb@nextpoint=\count387
+\cb@topleft=\count388
+\cb@topright=\count389
+\cb@botleft=\count390
+\cb@botright=\count391
+\cb@cnta=\count392
+\cb@cntb=\count393
+\cb@dima=\dimen393
+\cb@curbarwd=\dimen394
+\cb@page=\count394
+\cb@pagecount=\count395
+\cb@odd@left=\dimen395
+\cb@odd@right=\dimen396
+\cb@even@left=\dimen397
+\cb@even@right=\dimen398
 \cb@writexy=\write7
 \cb@readxy=\read5
 \openout7 = `main.cb2'.
 
-\changebarwidth=\skip294
-\deletebarwidth=\skip295
-\changebarsep=\skip296
-\c@changebargrey=\count403
+\changebarwidth=\skip282
+\deletebarwidth=\skip283
+\changebarsep=\skip284
+\c@changebargrey=\count396
 \cb@write=\write8
 \cb@read=\read6
 \openout8 = `main.cb'.
@@ -2623,13 +2530,13 @@ Package: changebar 2005/09/18 v3.5c Indicate changes with marginal bars
 ))
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count404
+\c@lips@count=\count397
 )
 (./figures/fig_brep_face_template.tex)
 (./figures/vortex_erreur_vs_dof_template.tex)
 (./figures/vortex_erreur_vs_dofb_template.tex)
 (./figures/vortex_erreur_vs_dofc_template.tex)
-\tikzscale@accuracy=\skip297
+\tikzscale@accuracy=\skip285
  (./main.aux (./notations.aux)
 (./mainmatter/intro.aux) (./mainmatter/chap1.aux) (./mainmatter/chap2.aux)
 (./mainmatter/chap3.aux) (./mainmatter/chap4.aux) (./mainmatter/chap5.aux)
@@ -2667,21 +2574,21 @@ nuxLibertineT-OsF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 10.95pt on input line 34.
-\c@mv@tabular=\count405
-\c@mv@boldtabular=\count406
+\c@mv@tabular=\count398
+\c@mv@boldtabular=\count399
  (/opt/tools/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count407
-\scratchdimen=\dimen411
-\scratchbox=\box107
-\nofMPsegments=\count408
-\nofMParguments=\count409
-\everyMPshowfont=\toks99
-\MPscratchCnt=\count410
-\MPscratchDim=\dimen412
-\MPnumerator=\count411
-\makeMPintoPDFobject=\count412
-\everyMPtoPDFconversion=\toks100
+\scratchcounter=\count400
+\scratchdimen=\dimen399
+\scratchbox=\box102
+\nofMPsegments=\count401
+\nofMParguments=\count402
+\everyMPshowfont=\toks91
+\MPscratchCnt=\count403
+\MPscratchDim=\dimen400
+\MPnumerator=\count404
+\makeMPintoPDFobject=\count405
+\everyMPtoPDFconversion=\toks92
 ) (/opt/tools/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -2699,7 +2606,7 @@ ig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box108
+\AtBeginShipoutBox=\box103
 Package hyperref Info: Link coloring ON on input line 34.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -2708,7 +2615,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/opt/tools/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count413
+\c@section@level=\count406
 )
 Redoing nameref's sectioning
 Redoing nameref's label
@@ -2837,9 +2744,9 @@ Non-PDF special ignored!
 
 {/opt/tools/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 58.
+(Font)              scaled to size 10.0pt on input line 56.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/sc' will be
-(Font)              scaled to size 10.0pt on input line 58.
+(Font)              scaled to size 10.0pt on input line 56.
  [2]
 \openout2 = `notations.aux'.
 
@@ -2926,36 +2833,34 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/sc' will be
 (Font)              scaled to size 14.4pt on input line 6.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 27.
+(Font)              scaled to size 12.0pt on input line 14.
 (./figures/singular_point_formation.tikz
-\dtldb@nor0=\toks101
-\dtlkeys@nor0=\toks102
-\dtlrows@nor0=\count414
-\dtlcols@nor0=\count415
-\dtldb@xysing=\toks103
-\dtlkeys@xysing=\toks104
-\dtlrows@xysing=\count416
-\dtlcols@xysing=\count417
+\dtldb@nor0=\toks93
+\dtlkeys@nor0=\toks94
+\dtlrows@nor0=\count407
+\dtlcols@nor0=\count408
+\dtldb@xysing=\toks95
+\dtlkeys@xysing=\toks96
+\dtlrows@xysing=\count409
+\dtlcols@xysing=\count410
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 47.
+(Font)              scaled to size 10.0pt on input line 34.
 
 
 LaTeX Warning: Reference `subfig:huygens_principle_eos' on page 1 undefined on 
-input line 54.
+input line 41.
 
 
 LaTeX Warning: Reference `subfig:huygens_principle_eob' on page 1 undefined on 
-input line 54.
+input line 41.
 
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 109.
 [1
 
 
 ]
 LaTeX Font Info:    Try loading font information for TS1+LinuxLibertineT-OsF on
- input line 121.
+ input line 108.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-OsF.
 fd
@@ -2963,29 +2868,29 @@ File: TS1LinuxLibertineT-OsF.fd 2012/11/26 (autoinst) Font definitions for TS1/
 LinuxLibertineT-OsF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 121.
+(Font)              scaled to size 10.95pt on input line 108.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-OsF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--141
+Underfull \hbox (badness 10000) in paragraph at lines 125--128
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 129--130
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--154
+Underfull \hbox (badness 10000) in paragraph at lines 138--141
 
  []
 
-(./figures/brep_hierarchy2.tikz
-\pgf@layerbox@bg=\box109
-\pgf@layerboxsaved@bg=\box110
+(./figures/brep_hierarchy.tikz
+\pgf@layerbox@bg=\box104
+\pgf@layerboxsaved@bg=\box105
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 9.0pt on input line 49.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -3003,299 +2908,213 @@ LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 8.0pt on input line 119.
 )
-Overfull \hbox (0.54843pt too wide) in paragraph at lines 125--159
+Overfull \hbox (0.54843pt too wide) in paragraph at lines 125--146
  [][] 
  []
 
-\dtldb@brepcolors=\toks105
-\dtlkeys@brepcolors=\toks106
-\dtlrows@brepcolors=\count418
-\dtlcols@brepcolors=\count419
-\dtldb@mytab=\toks107
-\dtlkeys@mytab=\toks108
-\dtlrows@mytab=\count420
-\dtlcols@mytab=\count421
-\dtldb@fclr=\toks109
-\dtlkeys@fclr=\toks110
-\dtlrows@fclr=\count422
-\dtlcols@fclr=\count423
-\dtldb@npolys=\toks111
-\dtlkeys@npolys=\toks112
-\dtlrows@npolys=\count424
-\dtlcols@npolys=\count425
-<figures/fig_brep_faces/surface_007.png, id=456, 803.0pt x 803.0pt>
+\dtldb@verts=\toks97
+\dtlkeys@verts=\toks98
+\dtlrows@verts=\count411
+\dtlcols@verts=\count412
+<figures/fig_brep.png, id=450, 803.0pt x 803.0pt>
+File: figures/fig_brep.png Graphic file (type png)
+ <use figures/fig_brep.png>
+Package pdftex.def Info: figures/fig_brep.png used on input line 163.
+(pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
+
+<figures/fig_brep_edges_vis.png, id=452, 803.0pt x 803.0pt>
+File: figures/fig_brep_edges_vis.png Graphic file (type png)
+
+<use figures/fig_brep_edges_vis.png>
+Package pdftex.def Info: figures/fig_brep_edges_vis.png used on input line 164.
+
+(pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
+
+<figures/fig_brep_edges_hid.png, id=453, 803.0pt x 803.0pt>
+File: figures/fig_brep_edges_hid.png Graphic file (type png)
+
+<use figures/fig_brep_edges_hid.png>
+Package pdftex.def Info: figures/fig_brep_edges_hid.png used on input line 166.
+
+(pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
+\dtldb@mytab=\toks99
+\dtlkeys@mytab=\toks100
+\dtlrows@mytab=\count413
+\dtlcols@mytab=\count414
+\dtldb@fclr=\toks101
+\dtlkeys@fclr=\toks102
+\dtlrows@fclr=\count415
+\dtlcols@fclr=\count416
+\dtldb@npolys=\toks103
+\dtlkeys@npolys=\toks104
+\dtlrows@npolys=\count417
+\dtlcols@npolys=\count418
+
+<figures/fig_brep_faces/surface_007.png, id=454, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/surface_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_007.png used on input l
-ine 168.
+ine 177.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/face_007.png, id=458, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/face_007.png, id=455, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/face_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_007.png used on input line
- 168.
+ 177.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 File: figures/fig_brep_faces/surface_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_007.png used on input l
-ine 168.
+ine 177.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/edges_vis_007.png, id=459, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_vis_007.png, id=456, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_vis_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_vis_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_vis_007.png used on input
- line 168.
+ line 177.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/edges_hid_007.png, id=460, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_hid_007.png, id=457, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_hid_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_hid_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_hid_007.png used on input
- line 168.
+ line 177.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-\dtldb@nuv=\toks113
-\dtlkeys@nuv=\toks114
-\dtlrows@nuv=\count426
-\dtlcols@nuv=\count427
-\dtldb@mytab=\toks115
-\dtlkeys@mytab=\toks116
-\dtlrows@mytab=\count428
-\dtlcols@mytab=\count429
-\dtldb@fclr=\toks117
-\dtlkeys@fclr=\toks118
-\dtlrows@fclr=\count430
-\dtlcols@fclr=\count431
-\dtldb@npolys=\toks119
-\dtlkeys@npolys=\toks120
-\dtlrows@npolys=\count432
-\dtlcols@npolys=\count433
+\dtldb@nuv=\toks105
+\dtlkeys@nuv=\toks106
+\dtlrows@nuv=\count419
+\dtlcols@nuv=\count420
+\dtldb@mytab=\toks107
+\dtlkeys@mytab=\toks108
+\dtlrows@mytab=\count421
+\dtlcols@mytab=\count422
+\dtldb@fclr=\toks109
+\dtlkeys@fclr=\toks110
+\dtlrows@fclr=\count423
+\dtlcols@fclr=\count424
+\dtldb@npolys=\toks111
+\dtlkeys@npolys=\toks112
+\dtlrows@npolys=\count425
+\dtlcols@npolys=\count426
 
-<figures/fig_brep_faces/surface_008.png, id=461, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/surface_008.png, id=458, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/surface_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_008.png used on input l
-ine 169.
+ine 178.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/face_008.png, id=462, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/face_008.png, id=459, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/face_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_008.png used on input line
- 169.
+ 178.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 File: figures/fig_brep_faces/surface_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_008.png used on input l
-ine 169.
+ine 178.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/edges_vis_008.png, id=463, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_vis_008.png, id=460, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_vis_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_vis_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_vis_008.png used on input
- line 169.
+ line 178.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/edges_hid_008.png, id=464, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_hid_008.png, id=461, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_hid_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_hid_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_hid_008.png used on input
- line 169.
+ line 178.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-\dtldb@nuv=\toks121
-\dtlkeys@nuv=\toks122
-\dtlrows@nuv=\count434
-\dtlcols@nuv=\count435
-\dtldb@mytab=\toks123
-\dtlkeys@mytab=\toks124
-\dtlrows@mytab=\count436
-\dtlcols@mytab=\count437
-\dtldb@fclr=\toks125
-\dtlkeys@fclr=\toks126
-\dtlrows@fclr=\count438
-\dtlcols@fclr=\count439
-\dtldb@npolys=\toks127
-\dtlkeys@npolys=\toks128
-\dtlrows@npolys=\count440
-\dtlcols@npolys=\count441
+\dtldb@nuv=\toks113
+\dtlkeys@nuv=\toks114
+\dtlrows@nuv=\count427
+\dtlcols@nuv=\count428
+\dtldb@mytab=\toks115
+\dtlkeys@mytab=\toks116
+\dtlrows@mytab=\count429
+\dtlcols@mytab=\count430
+\dtldb@fclr=\toks117
+\dtlkeys@fclr=\toks118
+\dtlrows@fclr=\count431
+\dtlcols@fclr=\count432
+\dtldb@npolys=\toks119
+\dtlkeys@npolys=\toks120
+\dtlrows@npolys=\count433
+\dtlcols@npolys=\count434
 
-<figures/fig_brep_faces/surface_002.png, id=465, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/surface_002.png, id=462, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/surface_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_002.png used on input l
-ine 170.
+ine 179.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/face_002.png, id=466, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/face_002.png, id=463, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/face_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_002.png used on input line
- 170.
+ 179.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 File: figures/fig_brep_faces/surface_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_002.png used on input l
-ine 170.
+ine 179.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/edges_vis_002.png, id=467, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_vis_002.png, id=464, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_vis_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_vis_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_vis_002.png used on input
- line 170.
+ line 179.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
 
-<figures/fig_brep_faces/edges_hid_002.png, id=468, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_hid_002.png, id=465, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_hid_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_hid_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_hid_002.png used on input
- line 170.
+ line 179.
 (pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-\dtldb@nuv=\toks129
-\dtlkeys@nuv=\toks130
-\dtlrows@nuv=\count442
-\dtlcols@nuv=\count443
-\dtldb@mytab=\toks131
-\dtlkeys@mytab=\toks132
-\dtlrows@mytab=\count444
-\dtlcols@mytab=\count445
-\dtldb@fclr=\toks133
-\dtlkeys@fclr=\toks134
-\dtlrows@fclr=\count446
-\dtlcols@fclr=\count447
-\dtldb@npolys=\toks135
-\dtlkeys@npolys=\toks136
-\dtlrows@npolys=\count448
-\dtlcols@npolys=\count449
-
-<figures/fig_brep_faces/surface_004.png, id=469, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/surface_004.png Graphic file (type png)
-
-<use figures/fig_brep_faces/surface_004.png>
-Package pdftex.def Info: figures/fig_brep_faces/surface_004.png used on input l
-ine 172.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-
-<figures/fig_brep_faces/face_004.png, id=470, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/face_004.png Graphic file (type png)
-
-<use figures/fig_brep_faces/face_004.png>
-Package pdftex.def Info: figures/fig_brep_faces/face_004.png used on input line
- 172.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-File: figures/fig_brep_faces/surface_004.png Graphic file (type png)
-
-<use figures/fig_brep_faces/surface_004.png>
-Package pdftex.def Info: figures/fig_brep_faces/surface_004.png used on input l
-ine 172.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-
-<figures/fig_brep_faces/edges_vis_004.png, id=471, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/edges_vis_004.png Graphic file (type png)
-
-<use figures/fig_brep_faces/edges_vis_004.png>
-Package pdftex.def Info: figures/fig_brep_faces/edges_vis_004.png used on input
- line 172.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-
-<figures/fig_brep_faces/edges_hid_004.png, id=472, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/edges_hid_004.png Graphic file (type png)
-
-<use figures/fig_brep_faces/edges_hid_004.png>
-Package pdftex.def Info: figures/fig_brep_faces/edges_hid_004.png used on input
- line 172.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-\dtldb@nuv=\toks137
-\dtlkeys@nuv=\toks138
-\dtlrows@nuv=\count450
-\dtlcols@nuv=\count451
-\dtldb@mytab=\toks139
-\dtlkeys@mytab=\toks140
-\dtlrows@mytab=\count452
-\dtlcols@mytab=\count453
-\dtldb@fclr=\toks141
-\dtlkeys@fclr=\toks142
-\dtlrows@fclr=\count454
-\dtlcols@fclr=\count455
-\dtldb@npolys=\toks143
-\dtlkeys@npolys=\toks144
-\dtlrows@npolys=\count456
-\dtlcols@npolys=\count457
-
-<figures/fig_brep_faces/surface_006.png, id=473, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/surface_006.png Graphic file (type png)
-
-<use figures/fig_brep_faces/surface_006.png>
-Package pdftex.def Info: figures/fig_brep_faces/surface_006.png used on input l
-ine 173.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-
-<figures/fig_brep_faces/face_006.png, id=474, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/face_006.png Graphic file (type png)
-
-<use figures/fig_brep_faces/face_006.png>
-Package pdftex.def Info: figures/fig_brep_faces/face_006.png used on input line
- 173.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-File: figures/fig_brep_faces/surface_006.png Graphic file (type png)
-
-<use figures/fig_brep_faces/surface_006.png>
-Package pdftex.def Info: figures/fig_brep_faces/surface_006.png used on input l
-ine 173.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-
-<figures/fig_brep_faces/edges_vis_006.png, id=475, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/edges_vis_006.png Graphic file (type png)
-
-<use figures/fig_brep_faces/edges_vis_006.png>
-Package pdftex.def Info: figures/fig_brep_faces/edges_vis_006.png used on input
- line 173.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-
-<figures/fig_brep_faces/edges_hid_006.png, id=476, 803.0pt x 803.0pt>
-File: figures/fig_brep_faces/edges_hid_006.png Graphic file (type png)
-
-<use figures/fig_brep_faces/edges_hid_006.png>
-Package pdftex.def Info: figures/fig_brep_faces/edges_hid_006.png used on input
- line 173.
-(pdftex.def)             Requested size: 119.50157pt x 119.50133pt.
-\dtldb@nuv=\toks145
-\dtlkeys@nuv=\toks146
-\dtlrows@nuv=\count458
-\dtlcols@nuv=\count459
-) [3] [4 <./figures/fig_brep_faces/surface_007.png> <./figures/fig_brep_faces/f
-ace_007.png> <./figures/fig_brep_faces/edges_vis_007.png> <./figures/fig_brep_f
-aces/edges_hid_007.png> <./figures/fig_brep_faces/surface_008.png> <./figures/f
-ig_brep_faces/face_008.png> <./figures/fig_brep_faces/edges_vis_008.png> <./fig
-ures/fig_brep_faces/edges_hid_008.png> <./figures/fig_brep_faces/surface_002.pn
-g> <./figures/fig_brep_faces/face_002.png> <./figures/fig_brep_faces/edges_vis_
-002.png> <./figures/fig_brep_faces/edges_hid_002.png> <./figures/fig_brep_faces
-/surface_004.png> <./figures/fig_brep_faces/face_004.png> <./figures/fig_brep_f
-aces/edges_vis_004.png> <./figures/fig_brep_faces/edges_hid_004.png> <./figures
-/fig_brep_faces/surface_006.png> <./figures/fig_brep_faces/face_006.png> <./fig
-ures/fig_brep_faces/edges_vis_006.png> <./figures/fig_brep_faces/edges_hid_006.
-png>]
+\dtldb@nuv=\toks121
+\dtlkeys@nuv=\toks122
+\dtlrows@nuv=\count435
+\dtlcols@nuv=\count436
+) [3] [4 <./figures/fig_brep.png> <./figures/fig_brep_edges_vis.png> <./figures
+/fig_brep_edges_hid.png> <./figures/fig_brep_faces/surface_007.png> <./figures/
+fig_brep_faces/face_007.png> <./figures/fig_brep_faces/edges_vis_007.png> <./fi
+gures/fig_brep_faces/edges_hid_007.png> <./figures/fig_brep_faces/surface_008.p
+ng> <./figures/fig_brep_faces/face_008.png> <./figures/fig_brep_faces/edges_vis
+_008.png> <./figures/fig_brep_faces/edges_hid_008.png> <./figures/fig_brep_face
+s/surface_002.png> <./figures/fig_brep_faces/face_002.png> <./figures/fig_brep_
+faces/edges_vis_002.png> <./figures/fig_brep_faces/edges_hid_002.png>]
 \openout2 = `mainmatter/chap1.aux'.
 
- (./mainmatter/chap1.tex
-<figures/canal_surface4.png, id=539, 1405.25pt x 963.6pt>
+ (./mainmatter/chap1.tex [5
+
+
+
+]
+<figures/canal_surface4.png, id=530, 1405.25pt x 963.6pt>
 File: figures/canal_surface4.png Graphic file (type png)
 
 <use figures/canal_surface4.png>
@@ -3313,87 +3132,24 @@ LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 (Font)              scaled to size 10.50003pt on input line 74.
 LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 (Font)              scaled to size 7.35002pt on input line 74.
- [5
 
-
-
-]
-<figures/2pEoS_nointer.png, id=547, 1405.25pt x 878.28125pt>
+<figures/2pEoS_nointer.png, id=533, 1405.25pt x 878.28125pt>
 File: figures/2pEoS_nointer.png Graphic file (type png)
 
 <use figures/2pEoS_nointer.png>
 Package pdftex.def Info: figures/2pEoS_nointer.png used on input line 150.
 (pdftex.def)             Requested size: 341.43306pt x 213.3917pt.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 200.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6 <./figures/canal_surface4.png> <./figures/2pEoS_nointer.png>]
-\dtldb@vertdata=\toks147
-\dtlkeys@vertdata=\toks148
-\dtlrows@vertdata=\count460
-\dtlcols@vertdata=\count461
-\dtldb@hedgdata=\toks149
-\dtlkeys@hedgdata=\toks150
-\dtlrows@hedgdata=\count462
-\dtlcols@hedgdata=\count463
-
-<figures/demo_brep2.png, id=564, 1204.5pt x 1204.5pt>
-File: figures/demo_brep2.png Graphic file (type png)
-
-<use figures/demo_brep2.png>
-Package pdftex.def Info: figures/demo_brep2.png used on input line 223.
-(pdftex.def)             Requested size: 227.62204pt x 227.60759pt.
-
-<figures/demo_brep_edges_visible2.png, id=565, 1204.5pt x 1204.5pt>
-File: figures/demo_brep_edges_visible2.png Graphic file (type png)
-
-<use figures/demo_brep_edges_visible2.png>
-Package pdftex.def Info: figures/demo_brep_edges_visible2.png used on input lin
-e 224.
-(pdftex.def)             Requested size: 227.62204pt x 227.60759pt.
-
-<figures/demo_brep_edges_hidden2.png, id=566, 1204.5pt x 1204.5pt>
-File: figures/demo_brep_edges_hidden2.png Graphic file (type png)
-
-<use figures/demo_brep_edges_hidden2.png>
-Package pdftex.def Info: figures/demo_brep_edges_hidden2.png used on input line
- 225.
-(pdftex.def)             Requested size: 227.62204pt x 227.60759pt.
-\dtldb@vertdata_eos=\toks151
-\dtlkeys@vertdata_eos=\toks152
-\dtlrows@vertdata_eos=\count464
-\dtlcols@vertdata_eos=\count465
-
-<figures/demo_EoS_brep2.png, id=567, 1204.5pt x 1204.5pt>
-File: figures/demo_EoS_brep2.png Graphic file (type png)
-
-<use figures/demo_EoS_brep2.png>
-Package pdftex.def Info: figures/demo_EoS_brep2.png used on input line 252.
-(pdftex.def)             Requested size: 227.62204pt x 227.60759pt.
-
-<figures/demo_EoS_brep_edges_visible2.png, id=568, 1204.5pt x 1204.5pt>
-File: figures/demo_EoS_brep_edges_visible2.png Graphic file (type png)
-
-<use figures/demo_EoS_brep_edges_visible2.png>
-Package pdftex.def Info: figures/demo_EoS_brep_edges_visible2.png used on input
- line 253.
-(pdftex.def)             Requested size: 227.62204pt x 227.60759pt.
-
-<figures/demo_EoS_brep_edges_hidden2.png, id=569, 1204.5pt x 1204.5pt>
-File: figures/demo_EoS_brep_edges_hidden2.png Graphic file (type png)
-
-<use figures/demo_EoS_brep_edges_hidden2.png>
-Package pdftex.def Info: figures/demo_EoS_brep_edges_hidden2.png used on input 
-line 254.
-(pdftex.def)             Requested size: 227.62204pt x 227.60759pt.
-) [7 <./figures/demo_brep2.png> <./figures/demo_brep_edges_visible2.png> <./fig
-ures/demo_brep_edges_hidden2.png> <./figures/demo_EoS_brep2.png> <./figures/dem
-o_EoS_brep_edges_visible2.png> <./figures/demo_EoS_brep_edges_hidden2.png>]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 200.
+) [7]
 \openout2 = `mainmatter/chap2.aux'.
 
- (./mainmatter/chap2.tex [8
+
+(./mainmatter/chap2.tex [8
 
 
 
@@ -3419,12 +3175,12 @@ mes trigonométriques [[]][] $\OMS/lmsy/m/n/10.95 !$ \T1/LinuxLibertineT-OsF/m/n
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/b/sc' will be
 (Font)              scaled to size 10.95pt on input line 77.
  (./figures/chebyshev_polynomials.tikz
-\pgf@layerbox@pre main=\box111
-\pgf@layerboxsaved@pre main=\box112
+\pgf@layerbox@pre main=\box106
+\pgf@layerboxsaved@pre main=\box107
 Package pgfplots info on input line 74: Setting layers 'axis background,axis gr
 id,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis 
 foreground'...
-) (./figures/cgl_nodes.tikz) [10]
+) [10] (./figures/cgl_nodes.tikz)
 [11] [12] [13] [14] [15]
 Overfull \hbox (5.93239pt too wide) in paragraph at lines 593--594
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) Cette méth-ode + FFT per-met d'évalue
@@ -3452,8 +3208,8 @@ NOTE: coordinate (1Y9.9e1],0.000000000000000000e+00) has been dropped because i
 t is unbounded (in y). (see also unbounded coords=jump). 
 NOTE: coordinate (1Y1.0e2],0.000000000000000000e+00) has been dropped because i
 t is unbounded (in y). (see also unbounded coords=jump). 
-[16] (./figures/fig_cgl_grid.tex
-<figures/parametric_patch_shadow.png, id=788, 803.0pt x 602.25pt>
+[16] [17] (./figures/fig_cgl_grid.tex
+<figures/parametric_patch_shadow.png, id=720, 803.0pt x 602.25pt>
 File: figures/parametric_patch_shadow.png Graphic file (type png)
 
 <use figures/parametric_patch_shadow.png>
@@ -3461,7 +3217,7 @@ Package pdftex.def Info: figures/parametric_patch_shadow.png used on input line
  144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
-<figures/parametric_patch_surface.png, id=789, 803.0pt x 602.25pt>
+<figures/parametric_patch_surface.png, id=721, 803.0pt x 602.25pt>
 File: figures/parametric_patch_surface.png Graphic file (type png)
 
 <use figures/parametric_patch_surface.png>
@@ -3469,7 +3225,7 @@ Package pdftex.def Info: figures/parametric_patch_surface.png used on input lin
 e 144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
-<figures/parametric_patch_cgl_grid.png, id=790, 803.0pt x 602.25pt>
+<figures/parametric_patch_cgl_grid.png, id=722, 803.0pt x 602.25pt>
 File: figures/parametric_patch_cgl_grid.png Graphic file (type png)
 
 <use figures/parametric_patch_cgl_grid.png>
@@ -3477,20 +3233,24 @@ Package pdftex.def Info: figures/parametric_patch_cgl_grid.png used on input li
 ne 144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
-<figures/parametric_patch_border.png, id=791, 803.0pt x 602.25pt>
+<figures/parametric_patch_border.png, id=723, 803.0pt x 602.25pt>
 File: figures/parametric_patch_border.png Graphic file (type png)
 
 <use figures/parametric_patch_border.png>
 Package pdftex.def Info: figures/parametric_patch_border.png used on input line
  144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
-) [17]) [18 <./figures/parametric_patch_shadow.png> <./figures/parametric_patch
-_surface.png> <./figures/parametric_patch_cgl_grid.png> <./figures/parametric_p
-atch_border.png>]
+) [18 <./figures/parametric_patch_shadow.png> <./figures/parametric_patch_surfa
+ce.png> <./figures/parametric_patch_cgl_grid.png> <./figures/parametric_patch_b
+order.png>]) [19]
 \openout2 = `mainmatter/chap3.aux'.
 
 
-(./mainmatter/chap3.tex
+(./mainmatter/chap3.tex [20
+
+
+
+]
 Overfull \hbox (22.76694pt too wide) in paragraph at lines 6--7
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) objectif : définir la paramétri-sa-ti
 on des nou-velles sur-faces (et les lim-ites du do-maine paramétrique
@@ -3502,50 +3262,46 @@ Overfull \hbox (14.0881pt too wide) in paragraph at lines 9--10
 s d'intersection (choix du paramètre : ab-scisse curviligne,
  []
 
-[19
-
-
-
-]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 47--57
 
  []
 
 (./figures/vortex_brep_LRTB6.tikz
-\imwid=\dimen413
-\imypos=\dimen414
+\imwid=\dimen401
+\imypos=\dimen402
 
-<figures/snap_001.png, id=851, 803.0pt x 803.0pt>
+<figures/snap_001.png, id=778, 803.0pt x 803.0pt>
 File: figures/snap_001.png Graphic file (type png)
  <use figures/snap_001.png>
 Package pdftex.def Info: figures/snap_001.png used on input line 11.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_002.png, id=852, 803.0pt x 803.0pt>
+<figures/snap_002.png, id=779, 803.0pt x 803.0pt>
 File: figures/snap_002.png Graphic file (type png)
  <use figures/snap_002.png>
 Package pdftex.def Info: figures/snap_002.png used on input line 12.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_003.png, id=853, 803.0pt x 803.0pt>
+<figures/snap_003.png, id=780, 803.0pt x 803.0pt>
 File: figures/snap_003.png Graphic file (type png)
  <use figures/snap_003.png>
 Package pdftex.def Info: figures/snap_003.png used on input line 13.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_004.png, id=854, 803.0pt x 803.0pt>
+<figures/snap_004.png, id=781, 803.0pt x 803.0pt>
 File: figures/snap_004.png Graphic file (type png)
  <use figures/snap_004.png>
 Package pdftex.def Info: figures/snap_004.png used on input line 14.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_005.png, id=855, 803.0pt x 803.0pt>
+<figures/snap_005.png, id=782, 803.0pt x 803.0pt>
 File: figures/snap_005.png Graphic file (type png)
  <use figures/snap_005.png>
 Package pdftex.def Info: figures/snap_005.png used on input line 15.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_006.png, id=856, 803.0pt x 803.0pt>
+<figures/snap_006.png, id=783, 803.0pt x 803.0pt>
 File: figures/snap_006.png Graphic file (type png)
  <use figures/snap_006.png>
 Package pdftex.def Info: figures/snap_006.png used on input line 16.
@@ -3585,22 +3341,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 101--133
 Package pgfplots info on input line 153: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/vortex_erreur_volume_vs_time_0.001.dat}
-\imwid=\dimen415
-<figures/cube_brep_t1.png, id=857, 181.3977pt x 185.2521pt>
+\imwid=\dimen403
+<figures/cube_brep_t1.png, id=784, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t1.png Graphic file (type png)
 
 <use figures/cube_brep_t1.png>
 Package pdftex.def Info: figures/cube_brep_t1.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t2.png, id=858, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t2.png, id=785, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t2.png Graphic file (type png)
 
 <use figures/cube_brep_t2.png>
 Package pdftex.def Info: figures/cube_brep_t2.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t3.png, id=859, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t3.png, id=786, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t3.png Graphic file (type png)
 
 <use figures/cube_brep_t3.png>
@@ -3609,14 +3365,14 @@ Package pdftex.def Info: figures/cube_brep_t3.png used on input line 190.
 Package pgfplots info on input line 212: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/convergence_expanding_cube.dat}
-) [20] [21 <./figures/snap_001.png> <./figures/snap_002.png> <./figures/snap_00
+) [22] [23 <./figures/snap_001.png> <./figures/snap_002.png> <./figures/snap_00
 3.png> <./figures/snap_004.png> <./figures/snap_005.png> <./figures/snap_006.pn
-g>] [22] [23 <./figures/cube_brep_t1.png> <./figures/cube_brep_t2.png> <./figur
+g>] [24] [25 <./figures/cube_brep_t1.png> <./figures/cube_brep_t2.png> <./figur
 es/cube_brep_t3.png>]
 \openout2 = `mainmatter/chap4.aux'.
 
  (./mainmatter/chap4.tex
-[24
+[26
 
 
 
@@ -3633,7 +3389,7 @@ Overfull \hbox (5.1379pt too wide) in paragraph at lines 10--11
 for-mu-la-tion ALE : fron-tière = mail-lage de l'interface,
  []
 
-[25]) [26]
+[27]) [28]
 \openout2 = `mainmatter/chap5.aux'.
 
  (./mainmatter/chap5.tex
@@ -3647,14 +3403,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--1
  \T1/LinuxLibertineT-OsF/m/sc/20.74/40ls ré-gres-sion de prop-er-gol solide
  []
 
-) [27
+) [29
 
 
 
 ]
 \openout2 = `mainmatter/concl.aux'.
 
- (./mainmatter/concl.tex [28
+ (./mainmatter/concl.tex [30
 
 
 
@@ -3663,10 +3419,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--2
  [][][][][]\T1/LinuxLibertineT-OsF/m/sc/20.74/40ls Conclusion
  []
 
-) [29]
+) [31]
 \openout2 = `appendix/obb.aux'.
 
- (./appendix/obb.tex [30
+ (./appendix/obb.tex [32
 
 
 
@@ -3686,18 +3442,16 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<figures/obb.pdf, id=959, 226.8475pt x 113.42375pt>
+<figures/obb.pdf, id=888, 226.8475pt x 113.42375pt>
 File: figures/obb.pdf Graphic file (type pdf)
  <use figures/obb.pdf>
 Package pdftex.def Info: figures/obb.pdf used on input line 24.
 (pdftex.def)             Requested size: 226.84694pt x 113.42346pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [31 <./figures/obb.pdf>] [32]) [33]
+[33 <./figures/obb.pdf>] [34]) [35]
 \openout2 = `appendix/cdv_affine.aux'.
 
- (./appendix/cdv_affine.tex [34
+ (./appendix/cdv_affine.tex [36
 
 
 
@@ -3706,7 +3460,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--1
  [][][][][]\T1/LinuxLibertineT-OsF/m/sc/20.74/40ls Reparamétrisation affine
  []
 
-[35]) [36] (./main.bbl (./main.brf)
+[37]) [38] (./main.bbl (./main.brf)
 \tf@brf=\write10
 \openout10 = `main.brf'.
 
@@ -3716,100 +3470,93 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--1
  []
 
 bibitemlist
-[37
+[39
 
 
 
 
-] [38])
-
-Package glossaries Warning: No \printnoidxglossary or \printnoidxglossaries
- found. (Remove \makenoidxglossaries if you don't want any glossaries.)
-This document will not have a glossary.
-
-[39] [40]
+] [40] [41]) [42]
 \tf@toc=\write11
 \openout11 = `main.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 101.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 101.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 99.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 99.
  (./main.aux (./notations.aux) (./mainmatter/intro.aux)
 (./mainmatter/chap1.aux) (./mainmatter/chap2.aux) (./mainmatter/chap3.aux)
 (./mainmatter/chap4.aux) (./mainmatter/chap5.aux) (./mainmatter/concl.aux)
 (./appendix/obb.aux) (./appendix/cdv_affine.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 101.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 101.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 99.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 99.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: CE9AF15BC551E191FA5C030007A57D74;4595.
-Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: 6F19CB7E1BD2EAECE6B5BFD8D96ADFE6;2407.
 
+
+Package rerunfilecheck Warning: File `main.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `main.brf':
+(rerunfilecheck)             Before: E2192B435C909195478FF2C154B2911C;2405
+(rerunfilecheck)             After:  85F096D18800B182A7A3A28AE0F2DAF6;2410.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 101.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 99.
  ) 
 Here is how much of TeX's memory you used:
- 61155 strings out of 493013
- 1351193 string characters out of 6131034
- 2175762 words of memory out of 5000000
- 62757 multiletter control sequences out of 15000+600000
- 216948 words of font info for 312 fonts, out of 8000000 for 9000
+ 58617 strings out of 493013
+ 1306535 string characters out of 6131034
+ 2109184 words of memory out of 5000000
+ 60342 multiletter control sequences out of 15000+600000
+ 212514 words of font info for 314 fonts, out of 8000000 for 9000
  1147 hyphenation exceptions out of 8191
- 75i,23n,120p,10635b,2647s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{glo:toto} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{glo:Ckab} has been referenced but does not exist, r
-eplaced by a fixed one
-
-pdfTeX warning (dest): name{glo:Cab} has been referenced but does not exist, re
-placed by a fixed one
-
-{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/opt/tools/te
-xlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/tools/texlive/2016
-/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/tools/texlive/2016/texmf-dis
-t/fonts/enc/dvips/libertine/lbtn_l5ekfx.enc}{/opt/tools/texlive/2016/texmf-dist
-/fonts/enc/dvips/libertine/lbtn_75c3wo.enc}{/opt/tools/texlive/2016/texmf-dist/
-fonts/enc/dvips/lm/lm-mathex.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/
-dvips/base/8r.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertine
-/lbtn_6mhf45.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertine/
-lbtn_urpt4g.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertine/l
-btn_ulngvd.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertine/lb
-tn_vpeqwl.enc}</opt/tools/texlive/2016/texmf-dist/fonts/type1/public/libertine/
-LinLibertineT.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/libert
-ine/LinLibertineTB.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/l
-ibertine/LinLibertineTI.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/publ
-ic/esint-type1/esint10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/publ
-ic/lm/lmbx10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmbx
-8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmex10.pfb></op
-t/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></opt/tools/te
-xlive/2016/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></opt/tools/texlive/2016/
-texmf-dist/fonts/type1/public/lm/lmmi7.pfb></opt/tools/texlive/2016/texmf-dist/
-fonts/type1/public/lm/lmmi8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1
-/public/lm/lmmi9.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/
-lmmib10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr10.pfb
-></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr5.pfb></opt/tools
-/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr6.pfb></opt/tools/texlive/201
-6/texmf-dist/fonts/type1/public/lm/lmr7.pfb></opt/tools/texlive/2016/texmf-dist
-/fonts/type1/public/lm/lmr8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1
-/public/lm/lmr9.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/l
-mss8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><
-/opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></opt/tools/
-texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></opt/tools/texlive/201
-6/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt/tools/texlive/2016/texmf-dis
-t/fonts/type1/public/lm/lmsy9.pfb></opt/tools/texlive/2016/texmf-dist/fonts/typ
-e1/public/amsfonts/symbols/msbm10.pfb></opt/tools/texlive/2016/texmf-dist/fonts
-/type1/urw/zapfchan/uzcmi8a.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1
-/public/boondox/zxxrw8a.pfb>
-Output written on main.pdf (46 pages, 4602504 bytes).
+ 75i,23n,120p,10635b,2626s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/opt/tools/
+texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/tools/texlive/20
+16/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/tools/texlive/2016/texmf-d
+ist/fonts/enc/dvips/libertine/lbtn_l5ekfx.enc}{/opt/tools/texlive/2016/texmf-di
+st/fonts/enc/dvips/libertine/lbtn_75c3wo.enc}{/opt/tools/texlive/2016/texmf-dis
+t/fonts/enc/dvips/lm/lm-mathex.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/en
+c/dvips/base/8r.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/liberti
+ne/lbtn_6mhf45.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertin
+e/lbtn_urpt4g.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertine
+/lbtn_ulngvd.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertine/
+lbtn_vpeqwl.enc}</opt/tools/texlive/2016/texmf-dist/fonts/type1/public/libertin
+e/LinLibertineT.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/libe
+rtine/LinLibertineTB.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public
+/libertine/LinLibertineTI.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/pu
+blic/esint-type1/esint10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/pu
+blic/lm/lmbx10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lm
+bx8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmex10.pfb></
+opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></opt/tools/
+texlive/2016/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></opt/tools/texlive/201
+6/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></opt/tools/texlive/2016/texmf-dis
+t/fonts/type1/public/lm/lmmi8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/typ
+e1/public/lm/lmmi9.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/l
+m/lmmib10.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr10.p
+fb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr5.pfb></opt/too
+ls/texlive/2016/texmf-dist/fonts/type1/public/lm/lmr6.pfb></opt/tools/texlive/2
+016/texmf-dist/fonts/type1/public/lm/lmr7.pfb></opt/tools/texlive/2016/texmf-di
+st/fonts/type1/public/lm/lmr8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/typ
+e1/public/lm/lmr9.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm
+/lmss8.pfb></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy10.pfb
+></opt/tools/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></opt/tool
+s/texlive/2016/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></opt/tools/texlive/2
+016/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></opt/tools/texlive/2016/texmf-d
+ist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/texlive/2016/texmf-dist/fonts/t
+ype1/public/amsfonts/symbols/msbm10.pfb></opt/tools/texlive/2016/texmf-dist/fon
+ts/type1/urw/zapfchan/uzcmi8a.pfb></opt/tools/texlive/2016/texmf-dist/fonts/typ
+e1/public/boondox/zxxrw8a.pfb>
+Output written on main.pdf (48 pages, 3485315 bytes).
 PDF statistics:
- 1275 PDF objects out of 1440 (max. 8388607)
- 1081 compressed objects within 11 object streams
- 359 named destinations out of 1000 (max. 500000)
- 61683 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1193 PDF objects out of 1200 (max. 8388607)
+ 1019 compressed objects within 11 object streams
+ 306 named destinations out of 1000 (max. 500000)
+ 61116 words of extra memory for PDF output out of 61914 (max. 10000000)
 

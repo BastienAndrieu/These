@@ -1,6 +1,22 @@
 import bpy
 import bpy_extras
+from mathutils import Vector
 
+##############################################
+def convert_3d_to_2d_coords(xyz):
+    scene = bpy.context.scene
+    cam = scene.camera
+    
+    render_scale = scene.render.resolution_percentage / 100
+    render_w = int(scene.render.resolution_x * render_scale)
+    render_h = int(scene.render.resolution_y * render_scale)
+
+    co = Vector(xyz)
+    co_2d = bpy_extras.object_utils.world_to_camera_view(scene, cam, co)
+    u = co_2d.x - 2.*bpy.data.cameras["Camera"].shift_x
+    v = co_2d.y - 2.*float(render_w)/float(render_h)*bpy.data.cameras["Camera"].shift_y
+    return u, v
+    
 ##############################################
 def get_2d_coordinates(obj):
     scene = bpy.context.scene
