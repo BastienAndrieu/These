@@ -171,21 +171,29 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 		}%
 	\end{tikzpicture}
 	\DTLgdeletedb{verts}%
-	\def\imfacew{42mm}
+	\def\imfacew{44mm}
+	\def\ngriduv{6}
+	\def\vertsep{0.05}
+	\def\edglabsepuv{0.17}
+	\def\wirlabsepuv{0.18}%0.23}
+	\def\edglabsepxyz{0.06}
+	\def\alp{0.35}%{0.2}
+	\def\iniwclr{0.3}
+	\def\decwclr{0.2}
 	%\hfill
 	\par
-	\figbrepface{007}{\imfacew}{0}{0}%\hfill
-	\figbrepface{008}{\imfacew}{0}{0}%\hfill
-	\figbrepface{002}{\imfacew}{0}{0}%\hfill
-	%\par
-	%\figbrepface{004}{\imw}{0}{0}%\hfill
-	%\figbrepface{006}{\imw}{0}{0}%\hfill
-	%\begin{tikzpicture}[%
-	%	x = \imw, y = \imw,
-	%	img/.style={anchor=south west}]
-	%	\node[img] (surface) at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_faces/surface_007}};
-	%	\node[img] (face) at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_faces/face_007}};
-	%\end{tikzpicture}
+	\begin{tikzpicture}[%
+		x = \imfacew, y = \imfacew,
+		gridtick/.style={red, fill=white, font=\tiny, inner sep=0.5pt},
+		img/.style={anchor=south west, inner sep=0},
+		label/.style={inner sep=1pt, font=\scriptsize},
+		uvgrid/.style={black!10!white},
+		curv/.style={line width=0.8pt, line cap=round},
+		]
+		\foreach \jfa/\ifa in {0/007, 1/008, 2/002}{%
+			\figbrepface{\ifa}{{1.05*\jfa}}{0}%\hfill
+		}%
+	\end{tikzpicture}
 \end{figure}
 
 

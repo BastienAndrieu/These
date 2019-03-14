@@ -56,17 +56,17 @@ if False:
     print('a')
     cam.location = numpy.array([1.93412, 1.37517, 1.00552])
     cam.rotation_euler = numpy.array((65.565, 0.629, 128.129))*numpy.pi/180.0
-    bpy.data.cameras["Camera"].angle = 44.*numpy.pi/180.0
+    cam.data.angle = 44.*numpy.pi/180.0
 elif True:
     print('b')
     cam.location = numpy.array([2.102,1.798,1.104])
     cam.rotation_euler = numpy.array((66.7,0.778,132.2))*numpy.pi/180.0
-    bpy.data.cameras["Camera"].angle = 37.72*numpy.pi/180.0
+    cam.data.angle = 37.72*numpy.pi/180.0
 else:
     print('c')
     cam.location = numpy.array([1.77634,1.49005,0.90784])
     cam.rotation_euler = numpy.array((66.7,0.778,132.2))*numpy.pi/180.0
-    bpy.data.cameras["Camera"].angle = 50.*numpy.pi/180.0
+    cam.data.angle = 50.*numpy.pi/180.0
 
 ## Lighting
 # Environment lighting
@@ -94,6 +94,17 @@ lamp_object.location = [3.75,1.65,3.20]
 # And finally select it make active
 lamp_object.select = True
 scene.objects.active = lamp_object
+
+#################################################
+bpy.ops.import_scene.obj(filepath=pth+'mesh/mesh.obj',
+                         axis_forward='Y', axis_up='Z')
+obj = bpy.data.objects['mesh']
+bpy.ops.object.select_all(action='DESELECT')
+obj.select = True
+bpy.ops.view3d.camera_to_view_selected() # set camera to fit surf in screen
+bpy.data.cameras["Camera"].angle += numpy.pi/180.0 # increase FOV angle by 1 degree
+bpy.ops.object.delete()
+
 #################################################
 clf = numpy.loadtxt('/d/bandrieu/GitHub/These/memoire/figures/code/demo_EoS_brep_palette_modif.dat')
 clf = mycolors.cc_hsv(clf, fs=1.2, fv=1.0)
@@ -164,11 +175,17 @@ mat.use_cast_buffer_shadows = False
 # Mark Freestyle Edges
 for ob in scene.objects:
     ob.select = False
-    
 scene.objects.active = surf
 surf.select = True
-bpy.ops.view3d.camera_to_view_selected() # set camera to fit surf in screen
-bpy.data.cameras["Camera"].angle += numpy.pi/180.0 # increase FOV angle by 1 degree
+
+if False:
+    bpy.ops.view3d.camera_to_view_selected() # set camera to fit surf in screen
+    cam.data.angle += numpy.pi/180.0 # increase FOV angle by 1 degree
+else:
+    lib_fig.fit_camera_to_meshes([bpy.data.meshes["surf"]])
+    cam.data.sensor_width *= 1.01
+
+
 bpy.ops.group.create(name="surf_group")
 mesh = bpy.data.meshes["surf"]
 
@@ -297,12 +314,13 @@ for l in f:
         obj.hide_render = True
 f.close()
 
-cshx = bpy.data.cameras["Camera"].shift_x
-cshy = bpy.data.cameras["Camera"].shift_y
+cshx = cam.data.shift_x
+cshy = cam.data.shift_y
+ratio = scene.render.resolution_x/scene.render.resolution_y
 f = open(pthout + 'verts_' + format(iface+1,'03') + '.dat', 'w')
 for v in vertdat:
     vx = v[1] - 2.*cshx
-    vy = v[2] - 2.*float(render_w)/float(render_h)*cshy
+    vy = v[2] - 2.*ratio*cshy
     f.write(str(v[0]+1) + ', ' + str(vx) + ', ' + str(vy) + ', ' + str(v[3]) + '\n')
 f.close()
 
@@ -423,6 +441,7 @@ f.write(str(len(polylinesuv)) + ', ' + str(len(faces[iface].inner)))
 f.close()
 for j, q in enumerate(polylinesuv):
     numpy.savetxt(pthout+'curve_uv_'+strf+'_'+str(j+1)+'.dat', q)
+
 
 """
 # séparer en segments de visibilité constante
@@ -615,4 +634,3 @@ f.close()
 
 
 #exit()
-

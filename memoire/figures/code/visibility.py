@@ -1,10 +1,11 @@
 import bpy
 import numpy
+from mathutils import Vector
 
 def is_visible_point(xyz, cam, tol=1.e-3, nrs=32, clean=True):
     bpy.ops.mesh.primitive_uv_sphere_add(location=xyz, size=tol, segments=nrs, ring_count=nrs)
     obj = bpy.context.active_object
-    result = bpy.context.scene.ray_cast(start=cam.location, end=xyz)
+    result = bpy.context.scene.ray_cast(start=cam.location, end=Vector(xyz))
     visible = (result[1] == obj)
     if clean:
         bpy.ops.object.select_all(action='DESELECT')
