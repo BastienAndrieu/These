@@ -164,6 +164,13 @@ mat.use_raytrace = False
 mat.use_shadows = False
 mat.use_cast_buffer_shadows = False
 
+
+
+################################################
+stlabel = numpy.loadtxt(pthout + 'face_uvlabel_' + strf + '.dat', delimiter=',')
+xyzfacelabel = chebval2d(stlabel[0], stlabel[1], c)
+myl.addEmpty('label', xyzfacelabel)
+
 ################################################
 # Mark Freestyle Edges
 for ob in scene.objects:

@@ -1,107 +1,128 @@
-\newcommand{\helpergrid}[1]{
-	\pgfmathsetmacro\gridstep{1.0/\ngrid}%
-	\draw[step=\gridstep,dotted,red,thin] (0,0) grid (1,1);
-	\foreach \j in {0,...,#1}{
-		\foreach \x in {0,1}{
-			\node[gridtick] at (\x,{\j/10.}) {$\j$};
-		}
-	}
-	\foreach \i in {1,...,#1}{
-		\foreach \y in {0,1}{
-			\node[gridtick] at ({\i/10.},\y) {$\i$};
-		}
-	}
-}
-
-
-
-
-
-\newcommand{\figbrepface}[4]{%#1 : indice de face, #2 taille figure, #3 x ancrage, #4 y ancrage
-\def\alp{0.35}%{0.2}
+\newcommand{\figbrepface}[3]{%#1 : indice de face, #2 : x ancrage, #3 :y ancrage
 \DTLsetseparator{,}%
-\DTLloaddb[noheader,keys={i,x,y,a}]{verts}{figures/data/fig_brep_faces/verts_#1.dat}%
+%
+\DTLloaddb[noheader,keys={id,x,y,a,dx,dy}]{verts}{figures/data/fig_brep_faces/verts_dxy_#1.dat}%
+%
+\DTLloaddb[noheader,keys={id,x,y,dx,dy,a}]{edges}{figures/data/fig_brep_faces/edges_#1.dat}%
 %
 \DTLloaddb[noheader,keys={r,g,b}]{fclr}{figures/data/fig_brep_faces/facecolor_#1.dat}%
 \DTLassign{fclr}{1}{\rfai=r,\gfai=g,\bfai=b}% 
 \definecolor{facecolor}{RGB}{\rfai,\gfai,\bfai}
 %
+\DTLloaddb[noheader,keys={um,vm,dum,dvm}]{wirelab}{figures/data/fig_brep_faces/contours_label_#1.dat}%
+%
 \DTLloaddb[noheader,keys={um,vm,dum,dvm,ied,ihe,iw}]{cuvdat}{figures/data/fig_brep_faces/curve_uvdata_#1.dat}%
-\DTLassign{cuvdat}{\DTLrowcount{cuvdat}}{\um=um, \vm=vm, \dum=dum, \dvm=dvm, \ied=ied, \ihe=ihe, \nw=iw}%
-\pgfmathsetmacro\inw{int(round(\nw))}%
+%\DTLassign{cuvdat}{\DTLrowcount{cuvdat}}{\um=um, \vm=vm, \dum=dum, \dvm=dvm, \ied=ied, \ihe=ihe, \nw=iw}%
+%\pgfmathsetmacro\inw{int(round(\nw))}%
+\pgfmathsetmacro\inw{\DTLrowcount{wirelab}}%
 %
-\def\ngrid{10}
-\def\edglabsep{0.15}
-%
-\begin{tikzpicture}[%
-	x = #2, y = #2,
-	gridtick/.style={red, fill=white, font=\tiny, inner sep=0.5pt},
-	img/.style={anchor=south west, inner sep=0},
-	label/.style={inner sep=1pt, font=\scriptsize},
-	]
+\begin{scope}[shift={({#2},{#3})}]
+	%% SURFACE & FACE
 	{\transparent{0.08}%
-		\node[img] (surface) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/surface_#1}};
-	}%
-	\node[img] (face) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/face_#1}};
+		\node[img] (surface) at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/surface_#1}};}%
+	\node[img] at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/face_#1}};
+	%
 	{\transparent{0.07}%
-		\node[img] (surface) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/surface_#1}};}
-	\DTLforeach*{verts}{\i=i, \x=x, \y=y, \a=a}%
+		\node[img] (surface) at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/surface_#1}};}%
+	%%% EDGES
+	\node[img] (face) at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/edges_vis_#1}};
+	{\transparent{\alp}%
+		\node[img] (face) at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/edges_hid_#1}};}%
+	\DTLforeach*{edges}{\ii=id, \x=x, \y=y, \dx=dx, \dy=dy, \a=a}%
+	{%
+		\pgfmathsetmacro\iii{int(round(\ii))}%
+		\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
+		\pgfmathsetmacro\scl{\edglabsepxyz/veclen(\dx,\dy)}
+		{\transparent{\alpi}%
+			\node[label, anchor=center] at ({\x+\scl*\dx},{\y+\scl*\dy}) {$\brepedge_{\iii}$};%
+		}%
+	}%
+	%%% VERTICES
+	\DTLforeach*{verts}{\ii=id, \x=x, \y=y, \a=a, \dx=dx, \dy=dy}%
 	{%
 		\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
 		{\transparent{\alpi}%
 			\fill[black] (\x,\y) circle (1pt);
-			\node[label, anchor=south west] at (\x,\y) {$\mathrm{V}_{\mkern-2mu\i}$};%
+%			\draw[red,->] (\x,\y) -- ++ 
+%			({\vertsep*\dx},{\vertsep*\dy});
+			\node[label, anchor=center] at 
+			({\x+\vertsep*\dx},{\y+\vertsep*\dy}) 
+			{$\mathrm{V}_{\mkern-2mu\ii}$};%
 		}%
 	}%
+	%%% UV-SPACE
+	\begin{scope}[shift={(0.5,-0.7)}, scale=0.34]
+		%% UV-GRID
+		\foreach \ii in {0,...,\ngriduv}
+		{%
+			\pgfmathsetmacro\xi{-1 + 2*\ii/\ngriduv}%
+			\draw[uvgrid] (-1,\xi) -- ++ (2,0);
+			\draw[uvgrid] (\xi,-1) -- ++ (0,2);
+		}%		
+		%% FILL UV DOMAIN
+		\ifnum \inw > 0
+			\fill[facecolor] 
+				plot file {figures/data/fig_brep_faces/contour_ext_#1.dat}
+				plot file {figures/data/fig_brep_faces/contour_int_#1_1.dat};
+		\else
+			\fill[facecolor] plot file {figures/data/fig_brep_faces/contour_ext_#1.dat};
+		\fi
+		%% DRAW EDGES
+		\DTLforeach*{cuvdat}{\um=um, \vm=vm, \dum=dum, \dvm=dvm, \ied=ied, \ihe=ihe, \iw=iw}{%
+			\pgfmathsetmacro\iied{int(round(\ied))}%
+			\pgfmathsetmacro\iihe{int(round(\ihe))}%
+			\pgfmathsetmacro\iiw{int(round(\iw))}%
+			% set wire color
+			\pgfmathsetmacro\fiw{(\iniwclr+\iw*\decwclr)}%
+			\pgfmathsetmacro\riw{\fiw*\rfai/255.}%
+			\pgfmathsetmacro\giw{\fiw*\gfai/255.}%
+			\pgfmathsetmacro\biw{\fiw*\bfai/255.}%
+			\definecolor{clriw}{rgb}{\riw, \giw, \biw}%
+			%
+			\node[label, anchor=center, clriw] at 
+			({\um + \edglabsepuv*\dvm},{\vm - \edglabsepuv*\dum})
+			{$\brepedge_{\iied}^{\iihe}$};
+			\draw[curv, 
+				clriw,
+				-{Triangle[left]}, 
+				shorten <= 0.25pt, 
+				shorten >= 0.25pt] plot file 	{figures/data/fig_brep_faces/curve_uv_#1_\DTLcurrentindex.dat};
+		}%
+		%% WIRE LABELS
+		\DTLforeach*{wirelab}{\um=um, \vm=vm, \dum=dum, \dvm=dvm}{%
+			% set wire color
+			\pgfmathsetmacro\fiw{(\iniwclr+(\DTLcurrentindex-1)*\decwclr)}%
+			\pgfmathsetmacro\riw{\fiw*\rfai/255.}%
+			\pgfmathsetmacro\giw{\fiw*\gfai/255.}%
+			\pgfmathsetmacro\biw{\fiw*\bfai/255.}%
+			\definecolor{clriw}{rgb}{\riw, \giw, \biw}%
+			\pgfmathsetmacro\xw{\um-\wirlabsepuv*\dvm}%
+			\pgfmathsetmacro\yw{\vm+\wirlabsepuv*\dum}%
+			\ifnum \DTLcurrentindex = 1%\DTLiffirstrow{%
+				\node[label, anchor=center, clriw] at (\xw,\yw) {$\brepwire_{\stripzero#1}^{\mathrm{ext}}$};
+				%\draw[clriw] ({\um+\duw},{\vm+\dvw}) circle (2pt);
+			\else%}{%
+				\pgfmathsetmacro\iiw{int(\DTLcurrentindex - 1)}
+				\node[label, anchor=center, clriw] at (\xw,\yw) {$\brepwire_{\stripzero#1}^{\mathrm{int},\iiw}$};
+			\fi%}%
+		}%
+		%
+%		\draw[blue] (-1,-1) -- (1,-1) -- (1,1) -- (-1,1) -- cycle;
+%		\draw[blue] (0,-1) -- (0,1);
+%		\draw[blue] (-1,0) -- (1,0);
+	\end{scope}
 	%
-	\node[img] (face) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/edges_vis_#1}};
-	{\transparent{\alp}%
-		\node[img] (face) at (0,0) {\includegraphics[width=#2]{figures/fig_brep_faces/edges_hid_#1}};
-	}%
-	%\helpergrid{\ngrid}
-	% UV-SPACE ##################
-	\def\ngriduv{6}
-	\node[anchor=north, inner sep=0] (uvspace) at ([yshift=-4mm]surface.south)
-	{%
-		\begin{tikzpicture}[
-			uvgrid/.style={black!10!white},
-			curv/.style={line width=0.6pt, line cap=round},
-			]
-			\begin{axis}[width=#2, height=#2, xmin=-1, xmax=1, ymin=-1, ymax=1,
-				hide axis]
-				\pgfplotsinvokeforeach{0,...,\ngriduv}
-				{%
-					\draw[uvgrid] (axis cs:-1,{-1 + 2*##1/\ngriduv}) -- ++ (axis direction cs:2,0);
-					\draw[uvgrid] (axis cs:{-1 + 2*##1/\ngriduv},-1) -- ++ (axis direction cs:0,2);
-				}
-%				\fill[facecolor, even odd rule] plot file {figures/data/fig_brep_faces/contour_ext_#1.dat}
-%				\pgfplotsinvokeforeach{1,...,\inw}{%
-%					\fill[facecolor, even odd rule] plot file {figures/data/fig_brep_faces/contour_int_#1_##1.dat} ;
-%				};
-				\ifnum \inw > 0
-					\fill[facecolor] 
-					plot file {figures/data/fig_brep_faces/contour_ext_#1.dat}
-					plot file {figures/data/fig_brep_faces/contour_int_#1_1.dat};
-				\else
-					\fill[facecolor] plot file {figures/data/fig_brep_faces/contour_ext_#1.dat};
-				\fi
-				%
-				\pgfplotsinvokeforeach{1,2,...,\DTLrowcount{cuvdat}}{%
-					\draw[curv, 
-						-{Triangle[left]}, 
-						shorten <= 0.25pt, 
-						shorten >= 0.25pt] plot file 	{figures/data/fig_brep_faces/curve_uv_#1_##1.dat};
-				}%
-				\DTLforeach*{cuvdat}{\um=um, \vm=vm, \dum=dum, \dvm=dvm, \ied=ied, \ihe=ihe, \iw=iw}{%
-					\pgfmathsetmacro\iied{int(round(\ied))}%
-					\pgfmathsetmacro\iihe{int(round(\ihe))}%
-					\begingroup\edef\temp{\endgroup\noexpand\node[label, anchor=center] at (axis cs:{\um + \edglabsep*\dvm},{\vm - \edglabsep*\dum}) {$E_{\iied}^{\iihe}$};}\temp
-				}%
-			\end{axis}		
-		\end{tikzpicture}
-	};
-\end{tikzpicture}
-\DTLgdeletedb{cuvdat}
+%	\draw[red, dashed] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+%	\draw[red, dashed] (.5,0) -- (.5,1);
+%	\draw[red, dashed] (0,.5) -- (1,.5);
+%	\foreach \ii in  {0,0.1,...,1.01}{
+%		\draw[red, thin] (0,\ii) -- (1,\ii)
+%		                 (\ii,0) -- (\ii,1);
+%	}
+\end{scope}
 \DTLgdeletedb{fclr}
+\DTLgdeletedb{cuvdat}
+\DTLgdeletedb{wirelab}
 \DTLgdeletedb{verts}
+\DTLgdeletedb{edges}
 }

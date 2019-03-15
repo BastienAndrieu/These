@@ -155,33 +155,37 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 	\centering
 	\def\imw{80mm}%
 	\def\imh{\imw}%
-	\def\alp{0.2}%
 	\DTLsetseparator{,}%
-	\DTLloaddb[noheader,keys={x,y,a}]{verts}{figures/data/fig_brep_verts.dat}%
+	\DTLloaddb[noheader,keys={x,y,a}]{dbverts}{figures/data/fig_brep_verts.dat}%
 	\begin{tikzpicture}[x=\imw, y=\imh, 
 						img/.style={anchor=south west, inner sep=0}]
 		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep}};%
 		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_edges_vis}};%
-		{\transparent{\alp}%
-			\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_edges_hid}};%
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_edges_hid}};%
+		\DTLforeach*{dbverts}{\x=x, \y=y, \a=a}{%
+			\fill[black] (\x,\y) circle (1.0pt);
 		}%
-		\DTLforeach*{verts}{\x=x, \y=y, \a=a}{%
-			\pgfmathsetmacro\alpi{1 + (1 - \a)*(\alp - 1)}%
-			{\transparent{\alpi}\fill[black] (\x,\y) circle (1.0pt);}%
+		{\transparent{0.75}
+			\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep}};%
 		}%
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_edges_vis}};%
 	\end{tikzpicture}
-	\DTLgdeletedb{verts}%
+	\DTLgdeletedb{dbverts}%
+	\hrule
+	\par
+	% DECOMPOSITION
 	\def\imfacew{44mm}
 	\def\ngriduv{6}
 	\def\vertsep{0.05}
 	\def\edglabsepuv{0.17}
-	\def\wirlabsepuv{0.18}%0.23}
+	\def\wirlabsepuv{0.18}
 	\def\edglabsepxyz{0.06}
-	\def\alp{0.35}%{0.2}
 	\def\iniwclr{0.3}
 	\def\decwclr{0.2}
-	%\hfill
-	\par
+	\def\uvscale{0.34}
+	\def\uvyshift{-0.7}
+	\pgfmathsetmacro\sepyshift{0.5 * (\uvyshift+\uvscale)}%
+	%
 	\begin{tikzpicture}[%
 		x = \imfacew, y = \imfacew,
 		gridtick/.style={red, fill=white, font=\tiny, inner sep=0.5pt},
@@ -189,11 +193,23 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 		label/.style={inner sep=1pt, font=\scriptsize},
 		uvgrid/.style={black!10!white},
 		curv/.style={line width=0.8pt, line cap=round},
+		spacelabel/.style={anchor=north, rotate=90, inner sep=0, font=\bfseries},
 		]
-		\foreach \jfa/\ifa in {0/007, 1/008, 2/002}{%
-			\figbrepface{\ifa}{{1.05*\jfa}}{0}%\hfill
+		\foreach \jfa/\ifa in {-1/007, 0/008, 1/002}{%
+			\figbrepface{\ifa}{{1.05*\jfa - 0.5}}{{-\sepyshift}}%\hfill
 		}%
+%		\draw (0,0) circle (3pt);
+		\draw[very thick, dashed] 
+		({-0.5*\textwidth},0) -- ++ 
+		(\textwidth,0);
+		\node[spacelabel] (xyzspace) at 
+		({-0.5*\textwidth},{-\sepyshift+0.5}) {Espace euclidien\vphantom{Espace paramétrique}};
+		\node[spacelabel] (uvspace) at 
+		({-0.5*\textwidth},{\sepyshift-\uvscale}) {Espace paramétrique\vphantom{Espace euclidien}};
+%		\draw[red] (uvspace.north west) -- (xyzspace.north east);
 	\end{tikzpicture}
+	\par
+	\hrule
 \end{figure}
 
 
