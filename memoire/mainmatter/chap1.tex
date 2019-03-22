@@ -5,9 +5,47 @@
 L'objet de ce chapitre est de mettre au point un algorithme général basé sur le principe de Huygens (avec condition d'entropie) pour simuler la propagation d'une interface géométriquement régulière par morceaux. 
 On représente l'interface sous la forme d'un modèle \brep. L'algorithme vise alors à construire un nouveau modèle \brep\ (géométrie et topologie) correspondant à une enveloppe de boules (EdB) centrées sur l'interface courante. 
 
+\def\imsiz{74mm}
+%\newlength\hsep
+%\setlength{\hsep}{\textwidth - \imsiz * 2}
+\def\trmask{0.82}
+%\def\alphid{0.25}
+\begin{figure}
+  \centering
+  \tikzset{x=\imsiz, y=\imsiz,
+  	img/.style={anchor=south west, inner sep=0}}
+  %
+  \hspace*{\fill}
+  \subbottom[Modèle \brep\ initial.]{
+	\begin{tikzpicture}
+		\figbrepEoB{1}{0}{0}
+%		\draw[blue, dashed] 
+%			(current bounding box.south west) --
+%			(current bounding box.south east) --
+%			(current bounding box.north east) --
+%			(current bounding box.north west) -- cycle;
+	\end{tikzpicture}
+  }
+  \hfill%\hspace{\hsep}%
+  \subbottom[Modèle \brep\ de l'enveloppe des boules.]{
+	\begin{tikzpicture}
+		\figbrepEoB{2}{0}{0}
+%		\draw[blue, dashed] 
+%			(current bounding box.south west) --
+%			(current bounding box.south east) --
+%			(current bounding box.north east) --
+%			(current bounding box.north west) -- cycle;
+	\end{tikzpicture}
+  }
+  \hspace*{\fill}
+  \caption{???} 
+  \label{fig:brep_EoB_after}
+  %
+\end{figure}
 
 %\textit{on veut mettre en place un algorithme basé sur le principe de Huygens (avec condition d'entropie) pour simuler la propagation d'une interface représentée suivant le formalisme \brep, i.e. pour construire un nouveau modèle \brep\ (géométrie et topologie) correspondant à une enveloppe de boules (EdB) centrées sur l'interface courante.}
 
+Gelston et Dutta \cite{gelston1995} : reconstruction d'une surface comme l'EdS d'un squelette (axe médian, composé de courbes et surfaces) représenté sous forme \brep. (Se limite à des paramétrisations polynomiales cubiques pour le squelette et la fonction rayon)
 
 \section{Traitement des différentes entités \brep}
 on construit d'abord une EdS (partielle), puis on la transforme en EdB pour respecter la condition d'entropie. Chaque entité du modèle \brep\ est traitée spécifiquement
@@ -56,20 +94,40 @@ chaque face repose sur une surface orientée de continuité géométrique élev�
 
 \subsection{Enveloppe d'une famille de sphères à un paramètre}
 %\subsection{Enveloppe d'un ensemble de sphères à un paramètre}
-\eng{canal surfaces} \cite{peternell1997} (\eng{spine curve} $\to$ squelette (ou axe médian))
+\eng{canal surfaces} \cite{monge1809, peternell1997} (\eng{spine curve} $\to$ squelette (ou axe médian))
 
+
+\definecolor{charcirc_clr}{HTML}{105DFF}
+\definecolor{envelope_clr}{HTML}{40C516}
+\definecolor{sphere_clr}{rgb}{0.799,0.396,0.159}
+\def\scl{1.4}
+\def\imw{112mm}%scl*80mm
+\def\imh{76.8mm}%scl*960/1400*80mm
 \begin{figure}[!htp]
 	\centering
 	\begin{tikzpicture}[
-		scale=1.4,
+		scale=\scl,
+		x = \imw,
+		y = \imh,
+		img/.style = {anchor=north west, inner sep=0},
 		point/.style = {circle, scale=0.27, fill=black},
 		vector/.style = {-latex', thick},
 		label/.style = {inner sep=1pt},
 		txt/.style = {font=\small}]
-		\node[anchor=north west, inner sep=0] at (0,0) {\includegraphics[width=112mm]%width=scale*80mm
-		{figures/canal_surface4}};
+		{\transparent{0.5}%
+			\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_envelope_nolines}};
+		}%
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_sphere_circle_nolines}};
+		{\transparent{0.5}%
+			\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_envelope_nolines}};
+		}%
+		%
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_envelope_lines}};
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_sphere_circle_lines}};
+		\draw [thick] plot file {figures/data/fig_canal_surface_spine.dat};
+%		\node[anchor=north west, inner sep=0] at (0,0) {\includegraphics[width=\imw]%width=scale*80mm
+%		{figures/canal_surface4}};
 		\coordinate (g) at (27.4114285714mm,-31.2685714286mm);
-		\node [point] at (g) {};
 		%\node [anchor=north east, label, txt] at (g) {$\bg(u)$};
 		\node [anchor=south west, label, txt] at (g) {$\bg$};
 		\coordinate (p) at (19.8628571429mm,-21.68mm);
@@ -85,19 +143,63 @@ chaque face repose sur une surface orientée de continuité géométrique élev�
 		\draw [vector] (g) -- (dg) node [above right, label, txt, xshift=-2pt] {$\bg_u(u)$};
 		\draw [stealth-stealth, shorten <= 2.2pt, shorten >= 1.5pt] (g) -- node[pos=0.45, right, txt] {$\rho(u)$} (36.1771428571mm,-43.7257142857mm);
 		\node [txt, label, anchor=south east] at (71.0857142857mm,-19.2mm) {$\Gamma$};
-		\definecolor{charcirc_clr}{HTML}{105DFF}
 		\node [txt, label, anchor=south west, charcirc_clr] at 
 		(18.3714285714mm,-41.2mm) %(17.7428571429mm,-38.5142857143mm) 
 		{$\mathscr{C}(u)$};
-		\node [txt, label, anchor=south, charcirc_clr] at 
-		(31.3142857143mm,-8.6mm)%(16.2857142857mm,-53.7142857143mm) 
-		{$\mathscr{P}(u)$};
-		\definecolor{envelope_clr}{HTML}{40C516}
+%		\node [txt, label, anchor=south, charcirc_clr] at 
+%		(31.3142857143mm,-8.6mm)%(16.2857142857mm,-53.7142857143mm) 
+%		{$\mathscr{P}(u)$};
 		\node [txt, label, anchor=south east, envelope_clr] at (47.6571428571mm,-3.7714285714mm) {$\Phi$};
-		\definecolor{sphere_clr}{rgb}{0.799,0.396,0.159}
 		\node [txt, label, sphere_clr] at (36.7mm,-23.8mm) {$\mathscr{S}(u)$};
 		\coordinate (o) at (23.8893473148mm,-30.8355408822mm);
-		\draw [dashed] (o) -- (g);
+		%\draw [dash pattern=on 2pt off 2pt, thick, charcirc_clr] (o) -- (g);
+		\node [point] at (o) {};
+		\node [point] at (g) {};
+		\node [txt, label, below left] at (o) {$\vrm{o}$};
+		\draw [stealth-stealth, shorten <= 2.2pt, shorten >= 2.2pt] (o) -- node[pos=0.5, left, txt] {$r$} (p);
+	\end{tikzpicture}
+\end{figure}
+
+
+
+
+
+
+\def\scl{1.4}
+\def\imw{112mm}%scl*80mm
+\begin{figure}[!htp]
+	\centering
+	\begin{tikzpicture}[
+		scale=\scl,
+		img/.style = {anchor=north west, inner sep=0},
+		point/.style = {circle, scale=0.27, fill=black},
+		vector/.style = {-latex', thick},
+		label/.style = {inner sep=1pt},
+		txt/.style = {font=\small}]
+		{\transparent{0.5}%
+			\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_envelope_nolines}};
+		}%
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_sphere_circle_nolines}};
+		{\transparent{0.5}%
+			\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_envelope_nolines}};
+		}%
+		%
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_envelope_lines}};
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_canal_surface_sphere_circle_lines}};
+		\coordinate (g) at (27.4114285714mm,-31.2685714286mm);
+		\node [point] at (g) {};
+		%\node [anchor=north east, label, txt] at (g) {$\bg(u)$};
+		\node [anchor=south west, label, txt] at (g) {$\bg$};
+		\coordinate (dgmax) at (80mm,-37.8114285714mm);
+		\coordinate (dg) at ($(g)!0.5!(dgmax)$);
+		\draw [vector] (g) -- (dg) node [above right, label, txt, xshift=-2pt] {$\bg_u(u)$};
+		\draw [stealth-stealth, shorten <= 2.2pt, shorten >= 1.5pt] (g) -- node[pos=0.45, right, txt] {$\rho(u)$} (36.1771428571mm,-43.7257142857mm);
+		\node [txt, label, anchor=south west, charcirc_clr] at 
+		(18.3714285714mm,-41.2mm) %(17.7428571429mm,-38.5142857143mm) 
+		{$\mathscr{C}(u)$};
+		\node [txt, label, sphere_clr] at (36.7mm,-23.8mm) {$\mathscr{S}(u)$};
+		\coordinate (o) at (23.8893473148mm,-30.8355408822mm);
+		\draw [dash pattern=on 2pt off 2pt] (o) -- (g);
 		\node [point] at (o) {};
 		\node [txt, label, below left] at (o) {$\vrm{o}$};
 		\draw [stealth-stealth, shorten <= 2.2pt, shorten >= 2.2pt] (o) -- node[pos=0.5, left, txt] {$r$} (p);

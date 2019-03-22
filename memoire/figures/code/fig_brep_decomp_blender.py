@@ -28,6 +28,7 @@ pthin = '/d/bandrieu/GitHub/FFTsurf/test/demo_EoS_brep/'
 pthout = '/d/bandrieu/GitHub/These/memoire/figures/data/fig_brep_faces/'
 
 args = sys.argv
+print(args)
 if len(args) < 4:
     iface = 0
 else:
@@ -167,9 +168,18 @@ mat.use_cast_buffer_shadows = False
 
 
 ################################################
+# Face label
+fid = numpy.loadtxt(pthout + 'faces_id.dat', dtype=int)
+
 stlabel = numpy.loadtxt(pthout + 'face_uvlabel_' + strf + '.dat', delimiter=',')
 xyzfacelabel = chebval2d(stlabel[0], stlabel[1], c)
 myl.addEmpty('label', xyzfacelabel)
+
+u,v = lib_fig.convert_3d_to_2d_coords(xyzfacelabel)
+
+f = open(pthout + 'face_xyzlabel_' + strf + '.dat', 'w')
+f.write(str(fid[iface]+1) + ', ' + str(u) + ', ' + str(v))
+f.close()
 
 ################################################
 # Mark Freestyle Edges

@@ -1,0 +1,115 @@
+\def\degru{6}
+\def\degrv{5}
+\def\uvsize{32mm}
+\def\fracaxeoffset{0.1}
+\def\fracduv{0.2}
+\def\distanceaxe{1.7*\MajorTickLength}
+\colorlet{uvbgcolor}{white!92!black}
+\begin{figure}%
+\centering%
+\hspace*{\fill}%
+\subbottom[Espace paramétrique.]{%
+\begin{tikzpicture}[
+	point/.style={circle, fill=black, scale=0.22},
+	bigpoint/.style={circle, fill=black, scale=0.33},
+	isouv/.style={dotted, line width=0.5pt},
+	tick/.style={line width=0.5pt},
+	axe/.style={-stealth, tick},
+	label/.style={font=\small, inner sep=1.5pt},
+	vector/.style={-latex', very thick},
+	ticklabel/.style={label, inner sep=\MajorTickLength}]
+%
+\coordinate (uvnorth) at (0,{0.5*\parampatchimageheight});
+\coordinate (uvsouth) at (0,{-0.5*\parampatchimageheight});
+\node at (uvnorth) {};
+\node at (uvsouth) {};
+%
+\foreach \j in {0,...,\degrv} {
+	\foreach \i in {0,...,\degru} {
+		\coordinate (uv\i\j) at (
+			{0.5*cos(\i*pi/\degru r)*\uvsize},
+			{0.5*cos(\j*pi/\degrv r)*\uvsize}
+		);
+	}
+}
+%
+\draw[fill=uvbgcolor, semithick] 
+(uv00) -- (uv\degru0) -- (uv\degru\degrv) -- (uv0\degrv) -- cycle;
+%
+\foreach \j in {0,...,\degrv} {
+	\foreach \i in {0,...,\degru} {
+		\node[point] at (uv\i\j) {};
+	}
+}
+\foreach \i in {0,...,\degru} {\draw[isouv] (uv\i0) -- (uv\i\degrv);}
+\foreach \j in {0,...,\degrv} {\draw[isouv] (uv0\j) -- (uv\degru\j);}
+%
+% Axes
+\coordinate (o) at ({-0.5*\uvsize-\distanceaxe},{-0.5*\uvsize-\distanceaxe});
+\draw[axe] (o) -- ++ ({(1.0+\fracaxeoffset)*\uvsize+\distanceaxe},0) node [label, anchor=west] {$u$};
+\draw[axe] (o) -- ++ (0,{(1.0+\fracaxeoffset)*\uvsize+\distanceaxe}) node [label, anchor=south] {$v$};
+% Ticks
+\gettikzxy{(o)}{\ox}{\oy}
+\foreach \i in {-1,0,1} {
+	\draw[tick] ({0.5*\i*\uvsize},{\oy}) -- ({0.5*\i*\uvsize},{\oy+\MajorTickLength});
+	\node[anchor=north, ticklabel] at ({0.5*\i*\uvsize},\oy) {$\i$};
+}
+\foreach \j in {-1,0,1} {
+	\draw[tick] ({\ox},{0.5*\j*\uvsize}) -- (\ox+\MajorTickLength,{0.5*\j*\uvsize});
+	\node[anchor=east, ticklabel] at (\ox,{0.5*\j*\uvsize}) {$\j$};
+}
+%
+\def\i{4}
+\def\j{3}
+\node[label, fill=uvbgcolor, rectangle, rounded corners=1ex, label, anchor=north, inner sep=0.5pt, yshift=-1.5pt] at (uv\i\j) {$(u,v)$};
+\draw[vector, red] (uv\i\j) -- ++ ({\fracduv*\uvsize},0);
+\draw[vector, blue] (uv\i\j) -- ++ (0,{\fracduv*\uvsize});
+\node[bigpoint] at (uv\i\j) {};
+\end{tikzpicture}%
+\label{subfig:carreau_surface_parametrique_uv}%
+}%
+\hfill%
+\subbottom[Espace euclidien.]{
+\def\parampatchimagewidth{80mm}
+\def\parampatchimageheight{0.75*\parampatchimagewidth}
+\begin{tikzpicture}[
+	x=\parampatchimagewidth,
+	y=\parampatchimageheight,
+	im/.style={anchor=south west, inner sep=0pt},
+	bigpoint/.style={circle, fill=black, scale=0.33},
+	axe/.style={-stealth, line width=0.5pt},
+	label/.style={font=\small, inner sep=1.5pt},
+	vector/.style={-latex', very thick}]
+\coordinate (a) at (0,0);
+{\transparent{\parampatchshadowtransparency}\node[im] (shadow) at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_shadow}};}
+% trièdre
+\def\scaletriedre{0.85}
+\coordinate (o) at (0.20309802889823914 ,  0.26374515891075134);
+\coordinate (x) at (0.30103224515914917 ,  0.14841561019420624);
+\coordinate (y) at (0.3310101628303528 ,  0.3642595410346985);
+\coordinate (z) at (0.17395645380020142 ,  0.43496546149253845);
+\draw[axe] (o) -- ($(o)!\scaletriedre!(x)$) node[label, anchor=west] {$x$};
+\draw[axe] (o) -- ($(o)!\scaletriedre!(y)$) node[label, anchor=west] {$y$};
+\draw[axe] (o) -- ($(o)!\scaletriedre!(z)$) node[label, anchor=south] {$z$};
+%
+\node[im] at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_surface}};
+\node[im] at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_cgl_grid}};
+\node[im] at (a) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_border}};
+% vecteurs
+\def\scalevectors{0.99}
+\coordinate (s) at (0.5657749772071838, 0.4292657971382141);
+\coordinate (u) at (0.6539148092269897, 0.5149791240692139);
+\coordinate (v) at (0.506170392036438, 0.5304208993911743);
+\coordinate (n) at (0.5878586769104004, 0.5399532318115234);
+\draw[vector, red] (s) -- ($(s)!\scalevectors!(u)$) node[label, anchor=north west, xshift=-2pt] {$\bs_u$};
+\draw[vector, blue] (s) -- ($(s)!\scalevectors!(v)$) node[label, anchor=east, yshift=-1pt] {$\bs_v$};
+\draw[vector, black] (s) -- ($(s)!\scalevectors!(n)$) node[label, anchor=south] {$\unv$};
+\node [bigpoint] at (s) {};
+\node [label, anchor=north, inner sep=7pt] at (s) {$\bs_{i,j}$};
+\end{tikzpicture}%
+\label{subfig:carreau_surface_parametrique_xyz}%
+}
+\hspace*{\fill}%
+\caption{Grille CGL.}%
+\label{fig:carreau_surface_parametrique}%
+\end{figure}

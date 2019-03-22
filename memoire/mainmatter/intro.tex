@@ -40,53 +40,55 @@ De tels points singuliers peuvent être présents sur l'interface initiale ou bi
 \subsection{Principe de Huygens avec condition d'entropie}
 $\to$ formulation plus générale (approche ``géométrique'') : principe de Huygens (propagation de proche en proche), enveloppe de sphères (e.g. ondes, cf.~\autoref{subfig:huygens_principle_eos}) ou de boules (e.g. flamme, cf.~\autoref{subfig:huygens_principle_eob}) (condition d'entropie \cite{sethian1999})
 
-%\begin{figure}
-%  \centering
-%  \definecolor{spherecolor}{HTML}{5C98D1}
-%  \definecolor{ballcolor}{HTML}{DBEDFF}
-%  \definecolor{vectorcolor}{HTML}{F93802}
-%  \definecolor{frontcolor}{HTML}{000000}
-%  \tikzset{front/.style = {%
-%  	frontcolor, %
-%  	line width=0.8pt, %
-%  	line join=round}}%
-%  \tikzset{vector/.style = {%
-%  	-latex', %
-%  	line width=0.5pt, %
-%  	vectorcolor, %
-%  	shorten >= -2.5pt}}%
-%  \tikzset{sphere/.style = {%
-%  	line width=0.3pt, %
-%  	dash pattern=on 2.5pt off 1pt, %
-%  	spherecolor}}%
-%  \tikzset{ball/.style = {%
-%  	draw=none, %
-%  	fill=ballcolor}}%
-%  \tikzset{fade/.style = {%
-%  dash pattern=on 1.33pt off 2pt on 2pt off 2pt on 3pt off 2pt on 20pt}}%
-%  \tikzset{lbl/.style = {font=\footnotesize, inner sep=2pt}}%
-%  %
-%  \DTLsetseparator{ }%
-%  \DTLloaddb[noheader,keys={x,y,r}]{circdata}{figures/data/huygens_principle_circ.dat}%
-%  \DTLloaddb[noheader,keys={x,y,u,v}]{nordata}{figures/data/huygens_principle_nor.dat}%
-%  %
-%  \hspace*{\fill}
-%  \subbottom[Enveloppe des sphères.]{
-%  \resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eos}%
-%  \input{figures/huygens_principle_eos.tikz}%
-%  }
-%  }
-%  \hfill
-%  \subbottom[Enveloppe des boules.]{
-%  \resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eob}%
-%  \input{figures/huygens_principle_eob.tikz}%
-%  }
-%  }
-%  \hspace*{\fill}
-%  \caption{Principe de Huygens.} 
-%  \label{fig:huygens_principle}
-%  %
-%\end{figure}
+\begin{figure}
+  \centering
+  \definecolor{spherecolor}{HTML}{5C98D1}
+  \definecolor{ballcolor}{HTML}{DBEDFF}
+  \definecolor{vectorcolor}{HTML}{F93802}
+  \definecolor{frontcolor}{HTML}{000000}
+  \tikzset{front/.style = {%
+  	frontcolor, %
+  	line width=0.8pt, %
+  	line join=round}}%
+  \tikzset{vector/.style = {%
+  	-latex', %
+  	line width=0.5pt, %
+  	vectorcolor, %
+  	shorten >= -2.5pt}}%
+  \tikzset{sphere/.style = {%
+  	line width=0.3pt, %
+  	dash pattern=on 2.5pt off 1pt, %
+  	spherecolor}}%
+  \tikzset{ball/.style = {%
+  	draw=none, %
+  	fill=ballcolor}}%
+  \tikzset{fade/.style = {%
+  dash pattern=on 1.33pt off 2pt on 2pt off 2pt on 3pt off 2pt on 20pt}}%
+  \tikzset{lbl/.style = {font=\footnotesize, inner sep=2pt}}%
+  %
+  \DTLsetseparator{ }%
+  \DTLloaddb[noheader,keys={x,y,r}]{circdata}{figures/data/huygens_principle_circ.dat}%
+  \DTLloaddb[noheader,keys={x,y,u,v}]{nordata}{figures/data/huygens_principle_nor.dat}%
+  %
+  \hspace*{\fill}
+  \subbottom[Enveloppe des sphères.]{
+%  	\resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eos}%
+%  		\input{figures/huygens_principle_eos.tikz}%
+%  	}
+  }
+  \hfill
+  \subbottom[Enveloppe des boules.]{
+%  	\resizebox{0.48\linewidth}{!}{\label{subfig:huygens_principle_eob}%
+%  		%\input{figures/huygens_principle_eob.tikz}%
+%  	}
+  }
+  \hspace*{\fill}
+  \caption{Principe de Huygens.} 
+  \label{fig:huygens_principle}
+  %
+  \DTLgdeletedb{nordata}%
+  \DTLgdeletedb{circdata}%
+\end{figure}
 
 
 \par
@@ -96,12 +98,12 @@ résolution analytique impossible $\to$ méthodes numériques
 \section{Méthodes numériques pour le suivi d'interfaces}
 2 façons de traiter l'interface
 \subsection{Description eulérienne}
-\begin{figure}
-	\centering
-%	\input{figures/levelset.tikz}
-	\caption{Méthode \eng{level-set}.}
-	\label{fig:levelset}
-\end{figure}
+%\begin{figure}
+%	\centering
+%%	\input{figures/levelset.tikz}
+%	\caption{Méthode \eng{level-set}.}
+%	\label{fig:levelset}
+%\end{figure}
 
 point de vue eulérien $\to$ représentation implicite
 \begin{itemize}
@@ -132,10 +134,18 @@ dans les applications visées, la définition de la géométrie initiale passe p
 
 
 \section{Représentation par les frontières}
+La représentation par les frontières, ou \brep\ pour \eng{Boundary Representation}, consiste à décrire la frontière $\partial\brepbody$ d'un corps \brepbody\ sous la forme d'un CW-complexe dont les cellules de dimension 0, 1 et 2 sont respectivement nommées \textit{sommets}, \textit{arêtes} et \textit{faces}.
+
+
+
+
+utilisé en CAO pour représenter un solide/corps par sa frontière.
+\par\bigskip
+
 formalisme \brep~ \cite[Section 2.2]{pentcheva2010}\\
 définitions précises, vocabulaire : surface, courbe, point, face, contour/chaîne/cycle (\eng{wire/loop}), arête (vive, douce), sommet (vif, doux)
 \par\bigskip
-Une face \brepface\ est délimitée par un contour extérieur $\brepwire^{\mathrm{ext}}$ et, éventuellement, par un ou plusieurs contours intérieurs $\brepwire^{\mathrm{int},i}$.\\
+Une face \brepface\ est délimitée par exactement un contour extérieur ($\Rightarrow$ connexe) $\brepwire^{\mathrm{ext}}$ et, éventuellement, par un ou plusieurs contours intérieurs $\brepwire^{\mathrm{int},i}$ (trous).\\
 Un contour est un cycle de co-arêtes.\\
 Une arête \brepedge\ est délimitée par deux sommets et est composée de deux co-arêtes jumelles.\\
 
@@ -148,31 +158,40 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 
 
 
-
-%\DTLsetseparator{ }%
-%\DTLloaddb[noheader,keys={r,g,b}]{brepcolors}{figures/code/demo_EoS_brep_palette_modif.dat}%
 \begin{figure}
 	\centering
 	\def\imw{80mm}%
 	\def\imh{\imw}%
+	\def\alphid{0.25}
 	\DTLsetseparator{,}%
 	\DTLloaddb[noheader,keys={x,y,a}]{dbverts}{figures/data/fig_brep_verts.dat}%
 	\begin{tikzpicture}[x=\imw, y=\imh, 
 						img/.style={anchor=south west, inner sep=0}]
-		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep}};%
-		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_edges_vis}};%
+		%%% FACES
+		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep}};
+		%%% HIDDEN EDGES
 		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_edges_hid}};%
-		\DTLforeach*{dbverts}{\x=x, \y=y, \a=a}{%
-			\fill[black] (\x,\y) circle (1.0pt);
+		%%% HIDDEN VERTICES
+		\DTLforeach*{dbverts}{\locx=x, \locy=y, \loca=a}{%
+			\ifnum \loca = 0
+				\fill[black] (\locx,\locy) circle (1.0pt);
+			\fi
 		}%
+		%%% FACES (semi-transparent to mask hidden edges & verts)
 		{\transparent{0.75}
 			\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep}};%
 		}%
+		%%% VISIBLE EDGES
 		\node[img] at (0,0) {\includegraphics[width=\imw]{figures/fig_brep_edges_vis}};%
+		%%% VISIBLE VERTICES
+		\DTLforeach*{dbverts}{\locx=x, \locy=y, \loca=a}{%
+			\ifnum \loca = 1
+				\fill[black] (\locx,\locy) circle (1.0pt);
+			\fi
+		}%
 	\end{tikzpicture}
 	\DTLgdeletedb{dbverts}%
-	\hrule
-	\par
+	%\hrule\par
 	% DECOMPOSITION
 	\def\imfacew{44mm}
 	\def\ngriduv{6}
@@ -181,7 +200,7 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 	\def\wirlabsepuv{0.18}
 	\def\edglabsepxyz{0.06}
 	\def\iniwclr{0.3}
-	\def\decwclr{0.2}
+	\def\decwclr{0.3}%{0.2}
 	\def\uvscale{0.34}
 	\def\uvyshift{-0.7}
 	\pgfmathsetmacro\sepyshift{0.5 * (\uvyshift+\uvscale)}%
@@ -198,8 +217,7 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 		\foreach \jfa/\ifa in {-1/007, 0/008, 1/002}{%
 			\figbrepface{\ifa}{{1.05*\jfa - 0.5}}{{-\sepyshift}}%\hfill
 		}%
-%		\draw (0,0) circle (3pt);
-		\draw[very thick, dashed] 
+		\draw[very thick, gray, dashed] 
 		({-0.5*\textwidth},0) -- ++ 
 		(\textwidth,0);
 		\node[spacelabel] (xyzspace) at 
@@ -208,27 +226,12 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 		({-0.5*\textwidth},{\sepyshift-\uvscale}) {Espace paramétrique\vphantom{Espace euclidien}};
 %		\draw[red] (uvspace.north west) -- (xyzspace.north east);
 	\end{tikzpicture}
-	\par
-	\hrule
+	%\par\hrule
 \end{figure}
 
 
 
-
-\def\parampatchimagewidth{80mm}
-\def\parampatchimageheight{60mm}
-\def\parampatchshadowtransparency{0.4}
-%\begin{figure}
-%\centering
-%\begin{tikzpicture}
-%	{\transparent{\parampatchshadowtransparency}\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_shadow}};}
-%	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_surface}};
-%	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isou}};
-%	\node at (0,0) {\includegraphics[width=\parampatchimagewidth]{figures/parametric_patch_isov}};
-%\end{tikzpicture}
-%\caption{Patch de surface paramétrique.}
-%\end{figure}
-
+\input{figures/fig_diffgeom.tex}
 
 \section{Contributions}% aka "Description de la thèse/démarche"
 

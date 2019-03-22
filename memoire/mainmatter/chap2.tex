@@ -778,14 +778,22 @@ calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est g�
 	\left| \frac{4 \tilde{g}_{M,N}}{(1 - M^2)(1 - N^2)} \right|.
 \end{align}
 
+
+\newlength{\tilesize}
+%\setlength{\tilesize}{\dimexpr\textwidth / 4\relax}
+\setlength{\tilesize}{\textwidth * \real{0.19}}
+%https://tex.stackexchange.com/questions/242003/ratio-arithmetic-in-plain-tex
+\makeatletter
+\Gscale@div\fracmtl \MajorTickLength{\tilesize}
+\makeatother
 %\begin{figure}
 %\centering
 %\begin{tikzpicture}
-%\invertcolormap{RdBu}
+%%\invertcolormap{RdBu}
 %\begin{groupplot}[
 %	group style={group size=5 by 3},
-%	height=3.6cm,
-%	width=3.6cm,
+%	height=\tilesize,
+%	width=\tilesize,
 %	unit vector ratio*=1 1 1,
 %	domain=0:pi,
 %	y domain=0:pi, 
@@ -811,15 +819,294 @@ calcul longueur de courbe/aire de surface (approximation, l'intégrande n'est g�
 %    	\pgfmathtruncatemacro\mm{\currentrow-1}
 %    	\addplot3 graphics [
 %			points={
-%			(0,0,0) => (116.5,225-108.5)
-%			(1,0,0) => (165.5,225- 90.5)
-%			(0,1,0) => ( 78.5,225- 85.5)
-%			(0,0,1) => (116.5,225- 58.0)
-%			}] {figures/T_\mm_\nn.png};
+%			(0,0,0) => ( 256.0000305175781 , 255.9999237060547 )
+%			(1,0,0) => ( 379.09002685546875 , 303.22503662109375 )
+%			(0,1,0) => ( 161.54977416992188 , 317.5448913574219 )
+%			(0,0,1) => ( 256.0000305175781 , 390.3650817871094 )
+%			}] {figures/tensor_product_chebpoly/T_\mm_\nn.png};
 %	}
 %\end{groupplot}
 %\end{tikzpicture}
 %\end{figure}
+
+
+
+
+
+
+%\newlength{\tilesize}
+%\setlength{\tilesize}{\dimexpr\textwidth / 6\relax}
+\DTLsetseparator{,}%
+\DTLloaddb[noheader,keys={x,y}]{dbframe}{figures/data/tensor_product_chebpoly/frame.dat}%
+\DTLassign{dbframe}{1}{\origxco=x,\origyco=y}% 
+\DTLassign{dbframe}{2}{\xstepxco=x,\xstepyco=y}% 
+\DTLassign{dbframe}{3}{\ystepxco=x,\ystepyco=y}% 
+\DTLassign{dbframe}{4}{\zstepxco=x,\zstepyco=y}% 
+%
+\def\imgscale{0.8}
+\newlength{\imgsize}
+\setlength{\imgsize}{\tilesize * \real{\imgscale}}
+%
+\pgfmathsetmacro\sclxtick{\fracmtl/veclen(\ystepxco,\ystepyco)}
+\pgfmathsetmacro\sclytick{\fracmtl/veclen(\xstepxco,\xstepyco)}
+\pgfmathsetmacro\sclztick{\fracmtl/veclen(\xstepxco,\xstepyco)}
+%
+\begin{figure}
+%\hrule\par
+\centering
+\begin{tikzpicture}[
+	x = \tilesize, y = \tilesize,
+	tile/.style={anchor=south west, inner sep=0},
+	axe/.style={line width=0.5pt},
+	grid/.style={line width=0.3pt, draw=black!13},
+	tilelabel/.style={font=\scriptsize},
+	label/.style={font=\normalsize}]
+	\foreach \jtile in {0,...,2}{%
+		\foreach \itile in {0,...,4}{%
+			\begin{scope}[
+				%scale=\imgscale,
+				shift={(\itile,\jtile)}]
+				%
+			\begin{scope}[
+				scale=\imgscale, 
+				shift={({0.5*(1.0 - \imgscale)},{0.5*(1.0 - \imgscale)})}]
+				\begin{scope}[shift={(\origxco,\origyco)}]
+					\foreach \tickco in {0,1,2}{%
+						\draw[grid] % // yz-plane
+							({\tickco*\xstepxco},{\tickco*\xstepyco}) -- ++
+							({2*\ystepxco},{2*\ystepyco}) -- ++
+							({2*\zstepxco},{2*\zstepyco});
+						\draw[grid] % // zx-plane
+							({\tickco*\ystepxco},{\tickco*\ystepyco}) -- ++
+							({2*\xstepxco},{2*\xstepyco}) -- ++
+							({2*\zstepxco},{2*\zstepyco});
+						\draw[grid] % // xy-plane
+							({2*\ystepxco},{2*\ystepyco}) ++
+							({\tickco*\zstepxco},{\tickco*\zstepyco}) -- ++
+							({2*\xstepxco},{2*\xstepyco}) -- ++
+							({-2*\ystepxco},{-2*\ystepyco});
+						%
+						\draw[axe] % x-ticks
+							({\tickco*\xstepxco},{\tickco*\xstepyco}) -- ++
+							({\sclxtick*\ystepxco},{\sclxtick*\ystepyco});
+						\draw[axe] % y-ticks
+							({\tickco*\ystepxco},{\tickco*\ystepyco}) -- ++
+							({\sclytick*\xstepxco},{\sclytick*\xstepyco});
+						\draw[axe] % z-ticks
+							({2*\ystepxco},{2*\ystepyco}) ++
+							({\tickco*\zstepxco},{\tickco*\zstepyco}) -- ++
+							({\sclztick*\xstepxco},{\sclztick*\xstepyco});
+					}%
+				\end{scope}
+				%
+				\node[tile] (T_\itile_\jtile) at (0,0)
+					{\includegraphics[width={\imgsize}]{figures/tensor_product_chebpoly/T_\itile_\jtile}};
+				%
+				\begin{scope}[shift={(\origxco,\origyco)}]
+					\draw[axe]
+						({2*\xstepxco},{2*\xstepyco}) --
+						(0,0) -- ++
+						({2*\ystepxco},{2*\ystepyco}) -- ++
+						({2*\zstepxco},{2*\zstepyco});
+					\ifnum \jtile = 0
+						\ifnum \itile = 0
+							\node[tilelabel, anchor=north west] 
+								at (\xstepxco,\xstepyco) {$u$};
+							\node[tilelabel, anchor=north east] 
+								at (\ystepxco,\ystepyco) {$v$};
+						\fi
+					\fi
+				\end{scope}
+%				\draw[red, dotted] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+			\end{scope}
+%			\draw[blue, dashed] (0,0) -- (1,0) -- (1,1) -- (0,1) -- cycle;
+			\end{scope}
+		}%
+	}%
+	\draw[axe, -stealth] (0.5,0) -- (5,0) node [label, anchor=north] {$m$};
+	\draw[axe, -stealth] (0,0.5) -- (0,3) node [label, anchor=east]  {$n$};
+	\foreach \itile in {0,...,4}{%
+		\draw[axe]
+			({0.5+\itile},-\MajorTickLength) 
+			node[label, anchor=north] {$\itile$}
+			-- ++ (0,\MajorTickLength);
+	}%
+	\foreach \jtile in {0,...,2}{%
+		\draw[axe]
+			(-\MajorTickLength,{0.5+\jtile}) 
+			node[label, anchor=east] {$\jtile$}
+			-- ++ (\MajorTickLength,0);
+	}%
+\end{tikzpicture}
+%\DTLgdeletedb{dbframe}%
+%\par\hrule
+\caption{Polynômes de Chebyshev en produit tensoriel.}
+\end{figure}
+
+
+
+
+
+
+
+\setlength{\tilesize}{\textwidth * \real{0.12}}
+%https://tex.stackexchange.com/questions/242003/ratio-arithmetic-in-plain-tex
+\makeatletter
+\Gscale@div\fracmtl \MajorTickLength{\tilesize}
+\makeatother
+
+\def\sclshft{1.93}
+\begin{figure}
+%\hrule\par
+\centering
+\begin{tikzpicture}[
+	x = \tilesize, y = \tilesize,
+	tile/.style={anchor=south west, inner sep=0},
+	axe/.style={line width=0.5pt},
+	grid/.style={line width=0.3pt, draw=black!13},
+	tilelabel/.style={font=\footnotesize},
+	label/.style={font=\normalsize}]
+	\foreach \itile/\jtile in {
+		3/3,
+		2/3, 3/2,
+		1/3, 2/2, 3/1,
+		0/3, 1/2, 2/1, 3/0,
+		0/2, 1/1, 2/0, 
+		0/1, 1/0, 
+		0/0}{%
+		\begin{scope}[shift={(
+			{\sclshft*2*(\itile*\xstepxco + \jtile*\ystepxco)},
+			{\sclshft*2*(\itile*\xstepyco + \jtile*\ystepyco)})}]
+			%
+			\begin{scope}[shift={(\origxco,\origyco)}]
+				%% WALLS
+				\fill[white] (0,0) -- ++
+					({ 2*\xstepxco},{ 2*\xstepyco}) -- ++
+					({ 2*\zstepxco},{ 2*\zstepyco}) -- ++ 
+					({ 2*\ystepxco},{ 2*\ystepyco}) -- ++ 
+					({-2*\xstepxco},{-2*\xstepyco}) -- ++
+					({-2*\zstepxco},{-2*\zstepyco}) -- cycle;
+				\foreach \tickco in {0,1,2}{%
+					%% GRID LINES
+					\draw[grid] % // yz-plane
+						({\tickco*\xstepxco},{\tickco*\xstepyco}) -- ++
+						({2*\ystepxco},{2*\ystepyco}) -- ++
+						({2*\zstepxco},{2*\zstepyco});
+					\draw[grid] % // zx-plane
+						({\tickco*\ystepxco},{\tickco*\ystepyco}) -- ++
+						({2*\xstepxco},{2*\xstepyco}) -- ++
+						({2*\zstepxco},{2*\zstepyco});
+					\draw[grid] % // xy-plane
+						({2*\ystepxco},{2*\ystepyco}) ++
+						({\tickco*\zstepxco},{\tickco*\zstepyco}) -- ++
+						({2*\xstepxco},{2*\xstepyco}) -- ++
+						({-2*\ystepxco},{-2*\ystepyco});
+					%% TICKS
+					\draw[axe] % x-ticks
+						({\tickco*\xstepxco},{\tickco*\xstepyco}) -- ++
+						({\sclxtick*\ystepxco},{\sclxtick*\ystepyco});
+					\draw[axe] % y-ticks
+						({\tickco*\ystepxco},{\tickco*\ystepyco}) -- ++
+						({\sclytick*\xstepxco},{\sclytick*\xstepyco});
+					\draw[axe] % z-ticks
+						({2*\ystepxco},{2*\ystepyco}) ++
+						({\tickco*\zstepxco},{\tickco*\zstepyco}) -- ++
+						({\sclztick*\xstepxco},{\sclztick*\xstepyco});
+					%% TICK LABELS
+					\pgfmathtruncatemacro{\tloc}{\tickco-1}
+					\ifnum \itile = 0
+						\ifnum \jtile = 0
+							\node[tilelabel, anchor=north west, inner sep=1pt] 
+								at ({\tickco*\xstepxco},{\tickco*\xstepyco}) 
+								{$\tloc$};
+							\node[tilelabel, anchor=north east, inner sep=1pt] 
+								at ({\tickco*\ystepxco},{\tickco*\ystepyco}) 
+								{$\tloc$};
+						\fi
+%						\ifnum \jtile = 3
+%							\node[tilelabel, anchor=east] 
+%								at (
+%								{2*\ystepxco + \tickco*\zstepxco},
+%								{2*\ystepyco + \tickco*\zstepyco}) 
+%								{$\tloc$};
+%						\fi
+					\fi
+				}%
+			\end{scope}
+			%
+			\node[tile] (T_\itile_\jtile) at (0,0)
+					{\includegraphics[width={\tilesize}]{figures/tensor_product_chebpoly/T_\itile_\jtile}};
+			%
+			\begin{scope}[shift={(\origxco,\origyco)}]
+				\draw[axe]
+					({2*\xstepxco},{2*\xstepyco}) --
+					(0,0) -- ++
+					({2*\ystepxco},{2*\ystepyco}) -- ++
+					({2*\zstepxco},{2*\zstepyco});
+				\ifnum \jtile = 0
+					\ifnum \itile = 0
+						\node[tilelabel, anchor=north west, inner sep=10pt] 
+							at (\xstepxco,\xstepyco) {$u$};
+						\node[tilelabel, anchor=north east, inner sep=10pt] 
+							at (\ystepxco,\ystepyco) {$v$};
+					\fi
+				\fi
+			\end{scope}
+			%
+		\end{scope}
+	}%
+%	\begin{scope}[shift={(
+%		{\origxco-1.5*(\xstepxco+\ystepxco)},
+%		{\origyco-1.5*(\xstepyco+\ystepyco)})}]
+%		\draw[axe]
+%			({\sclshft*2*3*\xstepxco},{\sclshft*2*3*\xstepyco}) --
+%			(0,0) -- ++
+%			({\sclshft*2*3*\ystepxco},{\sclshft*2*3*\ystepyco}) -- ++
+%			({2*\zstepxco},{2*\zstepyco});
+%	\end{scope}
+	\begin{scope}[shift={(
+		{\origxco-2*\ystepxco},
+		{\origyco-2*\ystepyco})}]
+		\draw[axe, -latex]
+			(0,0) -- node[label, anchor=north west, inner sep=6mm] {$m$}
+			({2*\xstepxco*(3*\sclshft+1)}, {2*\xstepyco*(3*\sclshft+1)});
+		\foreach \itick in {0,...,3}{%
+			\draw[axe]
+				({\xstepxco*(1 + 2*\sclshft*\itick)},
+				 {\xstepyco*(1 + 2*\sclshft*\itick)}) -- ++
+				({-\sclxtick*\ystepxco},{-\sclxtick*\ystepyco})
+				node [label, anchor=north west] {$\itick$};
+		}%
+	\end{scope}
+	\begin{scope}[shift={(
+		{\origxco-2*\xstepxco},
+		{\origyco-2*\xstepyco})}]
+		\draw[axe, -latex]
+			(0,0) -- node[label, anchor=north east, inner sep=6mm] {$n$}
+			({2*\ystepxco*(3*\sclshft+1)}, {2*\ystepyco*(3*\sclshft+1)}) 
+			-- 
+			node[label, anchor=east, inner sep=6mm] {$T_{m,n}$}
+			++ ({2*\zstepxco},{2*\zstepyco});
+		\foreach \itick in {0,...,3}{%
+			\draw[axe]
+				({\ystepxco*(1 + 2*\sclshft*\itick)},
+				 {\ystepyco*(1 + 2*\sclshft*\itick)}) -- ++
+				({-\sclxtick*\xstepxco},{-\sclxtick*\xstepyco})
+				node [label, anchor=north east] {$\itick$};
+		}%
+	\end{scope}
+\end{tikzpicture}
+\caption{Polynômes de Chebyshev en produit tensoriel.}
+\end{figure}
+
+\DTLgdeletedb{dbframe}%
+
+
+
+
+
+
+
 
 \input{figures/fig_cgl_grid.tex}
 

@@ -13,8 +13,8 @@ def convert_3d_to_2d_coords(xyz):
 
     co = Vector(xyz)
     co_2d = bpy_extras.object_utils.world_to_camera_view(scene, cam, co)
-    u = co_2d.x - 2.*bpy.data.cameras["Camera"].shift_x
-    v = co_2d.y - 2.*float(render_w)/float(render_h)*bpy.data.cameras["Camera"].shift_y
+    u = co_2d.x - 2.*cam.data.shift_x
+    v = co_2d.y - 2.*float(render_w)/float(render_h)*cam.data.shift_y
     return u, v
 ##############################################
 def get_2d_coordinates(obj):

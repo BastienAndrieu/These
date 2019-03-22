@@ -1,0 +1,173 @@
+------------ Braid (2006) ------------
+Boundary representation (B-rep): This represents objects in
+terms of their ‘skin’, the boundary between model and non-model.
+
+
+The method used for representing and manipulating solid models in this book
+is the so-called B-rep technique. This technique represents objects in terms of
+the ‘skin’ surrounding them. See Braid [10][11], Baumgart [4] or Mantyla [82].
+
+The skin is composed of a set of adjacent bounded surface elements, called
+faces. Faces are bounded by sets of edges, which are portions of curves lying
+on the surface of the faces on either side of the edge. The points where several
+faces meet are called vertices. The boundary representation datastructure will
+be described in more detail in chapter 3 and Appendix A.
+
+Boundary techniques can be used to describe both solid models and a vari-
+ety of simplified forms that can be termed: “degenerate models”. Extensions
+to the datastructure allow special types of models called “non-manifold mod-
+els” to be represented that can be used for different purposes.
+
+
+
+
+Boundary representations represent objects in terms of their ‘skin’, the bound-
+ary between ‘model’ and ‘non-model’. The skin is divided up into surface
+portions or faces. The faces are surrounded by sequences of edges, which are
+portions of curves between two adjacent surface portions. Edges, or curve
+portions, are delimited by vertices, which are also where several faces meet
+(figure 3.1). The datastructure can be divided into two basic groups: one
+responsible for defining the structure of the object (the topology) and one the
+form or shape of the object (the geometry) (figure 3.2a). The main elements,
+mentioned above, are the faces, edges, and vertices, together with their geo-
+metric forms: surfaces, curves, and points (figure 3.2b). 
+The ‘normal’ datastructure kernel contains other elements, for various purposes (figure 3.2c).
+Several additional facilities can be added around this kernel for representing
+such things as features and for annotating the model. In addition, it is de-
+sirable to include facilities for creating assemblies and for implicitly copying
+objects. It can be useful to associate supplementary geometric entities with
+models or parts of models for various purposes.
+--------------------------------------
+
+
+------------ "GEOMETRIC MODELING: A First Course", Requicha (1999) ------------
+http://www-bcf.usc.edu/~requicha/ch5.pdf
+
+Essentially, a BRep is a graph structure with nodes corresponding to faces, edges and
+vertices in a cell decomposition of the solid’s boundary. Links between the nodes express
+connectivity information. 
+Faces with holes are used by many BRep modelers. They normally are represented by
+introducing an additional level in the combinatorial structure between faces and edges.
+Edges are grouped into closed circuits or loops, and face nodes point to loop nodes, which
+in turn are linked to their associated edge nodes.
+
+
+Faces and edges are best viewed as representational artifacts that must be carefully defined
+by the designers of BRep schemes. First, let us assume that there is a set of primitive surfaces 
+(e.g. planes and natural quadrics) for a boundary scheme. 
+Then, typical face definitions should satisfy the following conditions:
+* 1. A face is a subset of the solid’s topological boundary.
+* 2. The union of all the faces equals the boundary of the solid.
+* 3. Each face is a subset of only one primitive surface instance.
+* 4. A face is homogeneously 2-D, it has no dangling vertices or edges.
+* 5. A face is a connected set.
+* 6. Faces are quasi-disjoint, i.e., meet only at edges or vertices.
+* 7. A face is the largest subset of the boundary that satisfies all the previous conditions
+
+--- repris par Pentcheva (2010) ---
+une face est un sous-ensemble bidimensionnel de la frontière du solide qui est homogène
+(ne contient pas de sous-ensembles unidimensionnels), ferme, connexe et contenu dans 
+un seul carreau de surface.
+-----------------------------------
+
+Faces of curved objects involve a representation for a host surface or patch, a set of bounding edges, and neighborhood information. 
+Host surface representation involves additional metric information (or “geometry”) beyond vertex coordinates.
+
+
+Edges also must be defined precisely. Typical BRep schemes use edges that satisfy the following conditions:
+* 1. An edge is a subset of a face’s boundary.
+* 2. The union of all the edges associated with a face equals the face’s boundary.
+* 3. Each edge is a subset of the intersection of two primitive surface instances. (parce que manifold, NDT)
+* 4. An edge is a compact, connected 1-manifold. (Some schemes require that an edge be
+homeomorphic to a line segment.)
+* 5. Edges are quasi-disjoint, i.e., meet only at vertices.
+  6. An edge is the largest subset of the boundary of a face that satisfies all the previous
+conditions.
+
+--- repris par Pentcheva (2010) ---
+une arête est un sous-ensemble unidimensionnel fermé et connexe de l’intersection d’une paire 
+de carreaux de surfaces qui appartient au bord d’une face.
+-----------------------------------
+
+Normally, edges are parameterized and represented as curves.
+Approximations, for example by splines, are often used. This can cause delicate numerical problems, 
+because points on the edge do not necessarily lie in the surfaces whose intersection creates the edge. 
+Approximate representations in the (u,v) parametric spaces of
+the surfaces involved are even more pernicious, because each edge is represented twice,
+and the two representations do not coincide exactly.
+-------------------------------------------------------------------------------
+
+
+
+------------------------- Crozet (2017) -------------------------
+The BRep data structure describes the boundary ∂Bk of a body Bk as a 2-manifold CW-complex
+which is connected, closed, oriented, without self-intersections. The previous properties define
+a volume, which is also commonly called a ‘solid’ in the CAD community. The CW-complex
+structure includes three types of entities with a distinction between topological entities 
+(vertices, edges, faces with restrictions over their parametric domains) and their
+corresponding geometric counterparts (points, curves, and surfaces).
+
+1. Faces correspond to 2-manifold smooth entities. They combine a surface represented as
+a mapping σ : R^2 → R^3 with trimming curves that reduces their parametric domain to a
+closed proper subset of the 2D plane R^2. Each trimming curve corresponds to an edge of
+the BRep model;
+
+2. Edges are 1-manifold entities located at the intersection of exactly two faces. The 2-
+manifold structure of the BRep guarantees that two faces cannot intersect without forming
+an edge, and three faces cannot meet at a single edge either. Edges are modeled by curves
+represented by the mapping α : R → R^3;
+
+3. Vertices are 0-manifold entities located at the intersection of edges. Note that two in-
+tersecting edges do so at a vertex only. The geometry of a vertex is a single point of R^3.
+
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+#####################################################
+
+"Représentation par les frontières" ou "Modélisation surfacique" (par opposition à CSG en CAD)
+
+BRep consiste à décrire la frontière d'un solide à l'aide d'un complexe cellulaire formé de faces, d'arêtes et de sommets.
+
+
+
+
+
+
+
+
+
+
+
+CW complexe/complexe cellulaire (de dimension 2): 
+	cellules de dimension 0, 1, 2 : sommets, aretes, faces
+
+séparation topologie (structure) / géométrie (forme)
+plus entités de groupement (coquilles, contours)
+plus entités d'orientation (co-aretes)
+
+
+face : 2-variété bornée, ouvert (possède au moins un bord, représenté par le "contour extérieur"), connexe mais pas nécessairement homéomorphe à un disque (peut posséder plusieurs bords, ie contenir des trous ou "contours intérieurs") --> géométriquement décrite par un carreau restreint de surface paramétrique (de continuité géométrique élevé, au moins G^1)
+dans la présente implémentation, le choix du type paramétrisation implique qu'il n'y a pas de périodicité (cylindres, sphères, cones, ... scindés en plusieurs faces pointant vers le même carreau de surface, mais avec des domaines paramétriques disjoints)
+
+arête : 1-variété bornée, connexe, ouvert (possède deux bords)
+
+sommet : point où deux arêtes adjacentes se rencontrent, et également où plusieurs faces se rencontrent
+
+
+
+
+
+
+
+

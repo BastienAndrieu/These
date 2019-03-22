@@ -1,4 +1,5 @@
 import bpy
+from mathutils import Vector
 import numpy as np
 from numpy.polynomial.chebyshev import chebval
 import sys
@@ -44,7 +45,7 @@ dm = 12
 u = np.linspace(-1,1,m)
 v = np.pi*np.linspace(-1,1,n+1)
 
-u0 = -0.5
+u0 = -0.2#-0.5
 
 # spine curve
 g = chebval(u, pg)
@@ -580,3 +581,27 @@ lamp_object.location = [-3.83856, -4.3118, 6.04704]
 # And finally select it make active
 lamp_object.select = True
 bpy.context.scene.objects.active = lamp_object
+
+
+
+
+
+
+
+
+## export spine coordinates in image
+g = g.T
+g2d = np.zeros((len(g),2))
+cam = scene.camera
+render_scale = scene.render.resolution_percentage / 100
+render_w = int(scene.render.resolution_x * render_scale)
+render_h = int(scene.render.resolution_y * render_scale)
+for i,x in enumerate(g):
+    co = Vector(x)
+    co_2d = bpy_extras.object_utils.world_to_camera_view(scene, cam, co)
+    g2d[i,0] = co_2d.x - 2.*cam.data.shift_x
+    g2d[i,1] = co_2d.y - 2.*float(render_w)/float(render_h)*cam.data.shift_y
+
+g2d[:,1] = g2d[:,1] - 1
+g2d = g2d/1.4
+np.savetxt('/d/bandrieu/GitHub/These/memoire/figures/data/fig_canal_surface_spine.dat', g2d[m1-dm:m2+dm+1])

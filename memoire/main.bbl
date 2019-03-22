@@ -50,17 +50,22 @@
   quadriques}\/}.
 \newblock Thèse de Doctorat, Universit{\'e} Nancy II, 2010.
 
-\bibitem{peternell1997}
-{\scshape M.~Peternell} et {\scshape H.~Pottmann}.
-\newblock {Computing Rational Parametrizations of Canal Surfaces}.
-\newblock {\itshape Journal of Symbolic Computation\/}, {\bfseries
-  23}~(2-3)~:~pp. 255--266, 1997.
-
 \bibitem{gelston1995}
 {\scshape S.~M. Gelston} et {\scshape D.~Dutta}.
 \newblock Boundary surface recovery from skeleton curves and surfaces.
 \newblock {\itshape Computer Aided Geometric Design\/}, {\bfseries
   12}~(1)~:~pp. 27--51, 1995.
+
+\bibitem{monge1809}
+{\scshape G.~Monge}.
+\newblock {\itshape {Application de l'Analyse à la Geometrie}\/}.
+\newblock Bernard, 1809.
+
+\bibitem{peternell1997}
+{\scshape M.~Peternell} et {\scshape H.~Pottmann}.
+\newblock {Computing Rational Parametrizations of Canal Surfaces}.
+\newblock {\itshape Journal of Symbolic Computation\/}, {\bfseries
+  23}~(2-3)~:~pp. 255--266, 1997.
 
 \bibitem{jiao2001}
 {\scshape X.~M. Jiao}.

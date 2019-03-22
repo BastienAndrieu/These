@@ -3,9 +3,10 @@ import numpy
 
 ############################################
 class Face:
-    def __init__(self, outer, inner):
+    def __init__(self, outer, inner, index):
         self.outer = outer
         self.inner = inner
+        self.index = index
 ############################################
 class Curve:
     def __init__(self, xyz, uv):
@@ -178,16 +179,18 @@ while jf < nf:
         ih = 2*he[0] + he[1]
         winn.append(make_wire(ih, edges, vlist, False))
     faces.append(Face(outer=wout,
-                      inner=winn))
+                      inner=winn,
+                      index=-1))
     jf += 1
 f.close()
 
 ################################
-# Re-index vertices and hyperedges
+# Re-index faces, vertices and hyperedges
 idv = []
 idh = []
-for i in ifaces:
+for j,i in enumerate(ifaces):
     f = faces[i]
+    f.index = j
     l = []
     l.extend(f.outer.edges)
     for w in f.inner:
@@ -207,6 +210,11 @@ for i in ifaces:
 f = open(pthout + 'verts_id.dat', 'w')
 for v in verts:
     f.write(str(v.index) + '\n')
+f.close()
+
+f = open(pthout + 'faces_id.dat', 'w')
+for fa in faces:
+    f.write(str(fa.index) + '\n')
 f.close()
 
 ################################

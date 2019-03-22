@@ -327,7 +327,7 @@ for bxy in b:
 ax.plot(ini_curv[:,0], ini_curv[:,1], '-', color=clf, lw=lwf, zorder=10)
     #ax.plot(bxy[:,0], bxy[:,1], 'k-', lw=lwf, color=clf, zorder=10 )
 
-timestep = [1.0]#, 1.0]
+timestep = [1.0]#, 0.5, 0.5]
 for k, dt in enumerate(timestep):
     if k == 0:
         circ_ctr = np.empty((0,2))

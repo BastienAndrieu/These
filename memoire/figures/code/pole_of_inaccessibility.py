@@ -3,6 +3,16 @@ import matplotlib.pyplot as plt
 import sys
 
 ####################################################################
+def make_box(center, ranges, hole=False):
+    verts = numpy.zeros((4,2))
+    for j in range(2):
+        for i in range(2):
+            verts[2*j+i,0] = center[0] - ranges[0]*(-1)**i
+            verts[2*j+i,1] = center[1] - ranges[1]*(-1)**j
+    edges = numpy.array([[0,1],[1,3],[3,2],[2,0]])
+    if hole: edges = numpy.flip(edges, axis=1)
+    return verts, edges
+####################################################################
 def is_inside_polygon(point, verts, edges):
     M = 10.0
     a = 0.5*numpy.pi*numpy.random.rand()
@@ -109,12 +119,19 @@ def get_point_of_inaccessibility_MC(verts,
             xymax = PIA + xyrng*shrink_factor
     return PIA, maximin_distance
 ####################################################################
-# list of faces
+
 args = sys.argv
 if len(args) < 2:
     iface = 1
 else:
     iface = int(args[1])
+
+if len(args) < 3:
+    samples = 21
+else:
+    samples = int(args[2])
+
+
 
 
 pth = '/d/bandrieu/GitHub/FFTsurf/test/demo_EoS_brep/brepmesh/'
@@ -122,6 +139,19 @@ pth = '/d/bandrieu/GitHub/FFTsurf/test/demo_EoS_brep/brepmesh/'
 strf = format(iface, '03')
 buv = numpy.loadtxt(pth + 'bpts_' + strf + '.dat')
 bed = numpy.loadtxt(pth + 'bedg_' + strf + '.dat', dtype=int) - 1
+
+wsep = 0.18
+wrng = 0.167*numpy.array([2.,1.])
+wdat = numpy.loadtxt('../data/fig_brep_faces/contours_label_' + strf + '.dat', delimiter=',')
+if wdat.ndim == 1:
+    wdat = numpy.reshape(wdat, [1,len(wdat)])
+for w in wdat:
+    ctr = w[0:2] + wsep*numpy.array([-w[3], w[2]])
+    wuv, wed = make_box(ctr, 0.5*wrng, hole=True)
+    bed = numpy.vstack([bed, wed+len(buv)])
+    buv = numpy.vstack([buv, wuv])
+
+
 
 
 fig, ax = plt.subplots()
@@ -132,13 +162,15 @@ for e in bed:
 
 dmax = 0.
 xmax = numpy.zeros(2)
-for x in sample_domain(buv, bed, samples=21):
+for x in sample_domain(buv, bed, samples):
     if is_inside_polygon(x, buv, bed):
         d = minimum_distance_from_boundary(x, buv, bed)
         if d > dmax:
             dmax = d
             xmax = x
         ax.plot(x[0], x[1], 'r.')
+        d *= 10
+        ax.text(x[0], x[1], "%.3s" %d)
 t = numpy.linspace(0,2.*numpy.pi,100)
 ax.plot(xmax[0], xmax[1], 'r*')
 ax.plot(xmax[0] + dmax*numpy.cos(t), xmax[1] + dmax*numpy.sin(t), 'g-')

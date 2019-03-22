@@ -8,7 +8,11 @@
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\makeatletter
+%\def\ratiolengths{}
+%\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\usepackage{pythontex}
 
@@ -221,3 +225,34 @@
 \renewcommand{\bottomfraction}{0.5}  % autorise 50% page de graphique en bas
 \renewcommand{\floatpagefraction}{0.7}
 \renewcommand{\textfraction}{0.1}
+
+
+%\tikz@scan@one@point\pgfutil@firstofone#1\relax
+%\edef#2{\the\pgf@x}%
+%\edef#3{\the\pgf@y}%
+
+
+\newcommand\circlearcparameters[6]{%
+% INPUTS:
+%    #1: start coordinate, 
+%    #2: end coordinate, 
+%    #3: angle spanned by the arc (in degrees),
+% OUTPUTS:
+%    #4: start angle,
+%    #5: end angle,
+%    #6: arc radius.
+\gettikzxy{#1}{\axco}{\ayco}
+\gettikzxy{#2}{\bxco}{\byco}
+\pgfmathsetmacro\mxco{0.5*(\axco + \bxco)}%
+\pgfmathsetmacro\myco{0.5*(\ayco + \byco)}%
+\pgfmathsetmacro\abxco{\bxco-\axco}%
+\pgfmathsetmacro\abyco{\byco-\ayco}%
+\pgfmathsetmacro\lenab{veclen(\abxco,\abyco)}
+\pgfmathsetmacro\sinhalfangle{sin(0.5*#3)}
+\pgfmathsetmacro#6{0.5*\lenab/\sinhalfangle}
+\pgfmathsetmacro\mangle{-atan2(\abxco,\abyco)}
+\pgfmathsetmacro#4{\mangle - 0.5*#3}
+\pgfmathsetmacro#5{\mangle + 0.5*#3}
+%\draw[#4] #1 arc (\aangle:{\aangle + #3}:\arcradius) #5;
+%\node[red] at #1 {\convertto{mm}{\abxco},\abyco};%{\aangle, \lenab, \sinhalfangle, \arcradius};
+}

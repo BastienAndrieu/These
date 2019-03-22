@@ -10,9 +10,12 @@
 \definecolor{facecolor}{RGB}{\rfai,\gfai,\bfai}
 %
 \DTLloaddb[noheader,keys={u,v,du,dv}]{dbwires}{figures/data/fig_brep_faces/contours_label_#1.dat}%
+\pgfmathsetmacro\numberofwires{\DTLrowcount{dbwires}}%
 %
 \DTLloaddb[noheader,keys={u,v,du,dv,ied,ihe,iw}]{dbcurves}{figures/data/fig_brep_faces/curve_uvdata_#1.dat}%
-\pgfmathsetmacro\numberofwires{\DTLrowcount{dbwires}}%
+%
+\DTLloaddb[noheader,keys={id,x,y}]{dbfacexyzlabel}{figures/data/fig_brep_faces/face_xyzlabel_#1.dat}%
+\DTLassign{dbfacexyzlabel}{1}{\idflab=id,\xflab=x,\yflab=y}%
 %
 \DTLloaddb[noheader,keys={u,v}]{dbfaceuvlabel}{figures/data/fig_brep_faces/face_uvlabel_#1.dat}%
 %
@@ -22,7 +25,7 @@
 	%
 	{\transparent{0.15}%
 		\node[img] (surface_#1) at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/surface_#1}};}%
-	%%% EDGES
+	%%% HIDDEN EDGES
 		\node[img] at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/edges_hid_#1}};%}%
 	\DTLforeach*{dbedges}{\loci=id, \locx=x, \locy=y, \locdx=dx, \locdy=dy, \loca=a}%
 	{%
@@ -32,17 +35,35 @@
 		({\locx+\scl*\locdx},{\locy+\scl*\locdy}) 
 		{$\brepedge_{\iloci}$};%
 	}%
-	%%% VERTICES
+	%%% HIDDEN VERTICES
 	\DTLforeach*{dbverts}{\loci=id, \locx=x, \locy=y, \loca=a, \locdx=dx, \locdy=dy}%
 	{%
-		\fill[black] (\locx,\locy) circle (1pt);
-		\node[label, anchor=center] at 
-		({\locx+\vertsep*\locdx},{\locy+\vertsep*\locdy}) 
-		{$\mathrm{V}_{\mkern-2mu\loci}$};%
+		\pgfmathsetmacro\iloca{int(round(\loca))}%
+		\ifnum \iloca = 0
+			\fill[black] (\locx,\locy) circle (1pt);
+			\node[label, anchor=center] at 
+			({\locx+\vertsep*\locdx},{\locy+\vertsep*\locdy}) 
+			{$\mathrm{V}_{\mkern-2mu\loci}$};%
+		\fi
 	}%
+	%%% FACE (semi-transparent to mask hidden edges & verts)
 	{\transparent{0.65}%
 		\node[img] (facetr_#1) at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/face_#1}};}%
+	%%% VISIBLE EDGES
 	\node[img] at (0,0) {\includegraphics[width=\imfacew]{figures/fig_brep_faces/edges_vis_#1}};
+	%%% VISIBLE VERTICES
+	\DTLforeach*{dbverts}{\loci=id, \locx=x, \locy=y, \loca=a, \locdx=dx, \locdy=dy}%
+	{%
+		\pgfmathsetmacro\iloca{int(round(\loca))}%
+		\ifnum \iloca = 1
+			\fill[black] (\locx,\locy) circle (1pt);
+			\node[label, anchor=center] at 
+			({\locx+\vertsep*\locdx},{\locy+\vertsep*\locdy}) 
+			{$\mathrm{V}_{\mkern-2mu\loci}$};%
+		\fi
+	}%
+	% FACE LABEL
+	\node[label, anchor=center] at (\xflab,\yflab) {$\brepface_{\idflab}$};
 	%%% UV-SPACE
 	\begin{scope}[shift={(0.5,-0.7)}, scale={\uvscale}]
 		%% UV-GRID
@@ -93,15 +114,15 @@
 			\pgfmathsetmacro\locx{\locu-\wirlabsepuv*\locdv}%
 			\pgfmathsetmacro\locy{\locv+\wirlabsepuv*\locdu}%
 			\ifnum \DTLcurrentindex = 1%
-				\node[label, anchor=center, clriw] at (\locx,\locy) {$\brepwire_{\stripzero#1}^{\mathrm{ext}}$};
+				\node[label, anchor=center, clriw] at (\locx,\locy) {$\brepwire_{\idflab}^{\mathrm{ext}}$};
 			\else%
 				\pgfmathsetmacro\ilociw{int(\DTLcurrentindex - 1)}
-				\node[label, anchor=center, clriw] at (\locx,\locy) {$\brepwire_{\stripzero#1}^{\mathrm{int},\ilociw}$};
+				\node[label, anchor=center, clriw] at (\locx,\locy) {$\brepwire_{\idflab}^{\mathrm{int},\ilociw}$};
 			\fi%
 		}%
 		%% FACE LABEL
 		\DTLassign{dbfaceuvlabel}{1}{\locu=u,\locv=v}% 
-		\node[label, anchor=center] at (\locu,\locv) {$\brepface_{\stripzero#1}$};
+		\node[label, anchor=center] at (\locu,\locv) {$\brepface_{\idflab}$};
 		%
 %		\draw[blue, dashed] (-1,-1) -- (1,-1) -- (1,1) -- (-1,1) -- cycle;
 %		\draw[blue, dashed] (0,-1) -- (0,1);
@@ -116,6 +137,7 @@
 %		                 (\ii,0) -- (\ii,1);
 %	}
 \end{scope}
+\DTLgdeletedb{dbfacexyzlabel}
 \DTLgdeletedb{dbfaceuvlabel}
 \DTLgdeletedb{dbfacecolor}
 \DTLgdeletedb{dbcurves}

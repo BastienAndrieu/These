@@ -14,7 +14,7 @@
 	bounded/.style={arrow, dash pattern=on 4pt off 2pt},
 	described/.style={arrow},
 	composed/.style={arrow, dash pattern=on 1.5pt off 1.5pt},%on 2pt off 1.5pt},
-	box/.style={rectangle, rounded corners=0.6ex},
+	box/.style={rectangle, rounded corners=0.8ex},
 	number/.style={font=\footnotesize},
 	topo/.style={fill=topo_color!33!white},
 	geom/.style={fill=geom_color!33!white},
@@ -46,8 +46,12 @@
 	\draw[described] (edge) -- (curve);
 	\draw[described] (vertex) -- (point);
 	% relations "délimité par"
-	\draw[bounded] (volume) -- node[number,right]{$n$} (shell);
-	\draw[bounded] (face) -- node[number,right]{$1+n_{\mathrm{int}}$} (wire);
+	\draw[bounded] (volume) -- 
+		node[number,left]{$1+n_{\mathrm{s}}^{\mathrm{int}}$} 
+		(shell);
+	\draw[bounded] (face) -- 
+		node[number,right]{$1+n_{\mathrm{w}}^{\mathrm{int}}$} 
+		(wire);
 	\draw[bounded] (edge) -- node[number,above]{$2$} (vertex);
 	% relations "composé de"
 	\draw[composed] (shell) -- node[number,above right]{$n$} (face);
@@ -121,5 +125,6 @@
 	\draw[composed]  (L2) -- (R2) node[label] (lbl2) {composé de};
 	\node[draw=black!25,
 	inner sep=2pt,
+	rounded corners=\smallsep,
 	fit={(L0) (lbl0) (lbl1) (lbl2)}] {};
 \end{tikzpicture}
