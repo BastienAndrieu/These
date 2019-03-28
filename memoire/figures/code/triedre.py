@@ -17,7 +17,7 @@ o[2] = bpy.data.objects["Plane"].location[2] + thck
 
 
 x, y = lib_fig.convert_3d_to_2d_coords(o)
-print('O :', x, y)
+print('O :', x, ',', y)
 
 e = np.eye(3)
 zero = np.zeros(3)

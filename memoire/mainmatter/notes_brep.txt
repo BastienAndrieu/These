@@ -1,4 +1,4 @@
------------- Braid (2006) ------------
+------------ Stroud (2006) ------------
 Boundary representation (B-rep): This represents objects in
 terms of their ‘skin’, the boundary between model and non-model.
 
@@ -66,7 +66,7 @@ Then, typical face definitions should satisfy the following conditions:
 
 --- repris par Pentcheva (2010) ---
 une face est un sous-ensemble bidimensionnel de la frontière du solide qui est homogène
-(ne contient pas de sous-ensembles unidimensionnels), ferme, connexe et contenu dans 
+(ne contient pas de sous-ensembles unidimensionnels), fermé, connexe et contenu dans 
 un seul carreau de surface.
 -----------------------------------
 
@@ -119,8 +119,6 @@ represented by the mapping α : R → R^3;
 
 3. Vertices are 0-manifold entities located at the intersection of edges. Note that two in-
 tersecting edges do so at a vertex only. The geometry of a vertex is a single point of R^3.
-
-
 -----------------------------------------------------------------
 
 

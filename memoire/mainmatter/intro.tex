@@ -6,10 +6,15 @@
 \section{Contexte}%
 
 %Les surfaces (ou interfaces) en propagation interviennent dans de nombreuses applications scientifiques et industrielles. Elles résultent de phénomènes mettant en jeu des couplages multiphysiques complexes comme la combustion, les interactions fluide-structure, les écoulements multi-phasiques ou encore la croissance dendritique de cristaux. C’est généralement au niveau de ces surfaces qu’a lieu la physique la plus intéressante, il est donc indispensable d’en déterminer avec précision l’évolution au cours du temps\ldots
-applications : simulations multi-physiques (flammes, fluide-structure, écoulements multiphasiques, multimateriaux, croissance de cristaux\ldots) CAO (usinage, planification de trajectoire de robots mobiles), infographie \ldots
+applications : simulations multi-physiques (flammes, fluide-structure, écoulements multi-phasiques, multi-matériaux, croissance de cristaux\ldots) CAO (usinage, planification de trajectoire de robots mobiles), infographie \ldots
 
 
 \section{Formulation du problème}% d'interface en propagation}
+Interface = variété (topologique) de dimension 2, bornée, orientable et sans bord $\Rightarrow$ sépare un domaine intérieur (borné, pas nécessairement connexe) et un domaine extérieur (complémentaires dans $\reals^3$). On note $\unv(\bx,t)$ la normale pointant vers l'extérieur
+\par\bigskip
+
+
+
 Le problème que l'on cherche à résoudre consiste à déterminer l'évolution au cours du temps de la position d'une interface $\Gamma$ dont la vitesse instantanée de propagation $\vrm{u}$ est connue.
 \subsection{Formulation lagrangienne}
 %formulation lagrangienne traditionnelle (approche EDP) : vecteur vitesse 
@@ -232,6 +237,51 @@ Une arête \brepedge\ est délimitée par deux sommets et est composée de deux 
 
 
 \input{figures/fig_diffgeom.tex}
+
+
+\par\bigskip
+\textit{On se place dans le cas où l'interface est une variété sans bord.}\par
+Chaque arête \brep\ est alors incidente à exactement deux faces. 
+Géométriquement, l'arête $\brepedge$ est représentée par une branche de la courbe d'intersection entre les carreaux de surfaces $\Sigma_1$ et $\Sigma_2$ qui décrivent respectivement les faces incidentes $\brepface_1$ et $\brepface_2$. 
+Cette courbe peut également être représentée par sa trace dans l'espace paramétrique de chaque carreau de surface. 
+On peut donc la représenter à l'aide des trois courbes paramétriques $\bg$, $\bp_1$ et $\bp_2$ telles que
+\begin{equation}
+	\bg(w) = \bs_1(\bp_1(w)) = \bs_2(\bp_2(w)),
+\end{equation}
+pour tout $w$.\\
+En pratique, seule une approximation de la véritable courbe d'intersection peut être obtenue, si bien que ces trois représentations ne coïncident pas exactement.
+Plusieurs approches sont envisageables :
+\begin{itemize}
+	\item paramétrisation approchée (\eg spline)
+	\begin{itemize}
+		\item avantages : représentation continue, évaluation directe
+		\item inconvénient : ne correspond à la véritable intersection qu'en certains points
+	\end{itemize}
+	\item courbe procédurale
+	\begin{itemize}
+		\item approximation linéaire par morceaux dont chaque n\oe ud est situé \guill{exactement} sur l'intersection
+		\item l'espacement des n\oe ud est dicté par un critère pour contrôler l'\textit{erreur de corde}
+		\item les points intermédiaires sont évalués par raffinement itératif (procédure à détailler)
+		\item avantage : contrôle précis de la précision
+		\item inconvénient : évaluation plus coûteuse 
+	\end{itemize}
+\end{itemize}
+
+%\begin{figure}
+%\centering
+%\includegraphics[width=12cm]{figures/brep_edge_dual_geometric_representation}
+%\caption{Description géométrique d'une arête \brep.}
+%\end{figure}
+
+
+\begin{figure}
+%\hrule\par
+\centering
+\input{figures/simple_intersection.tikz}
+%\par\hrule
+\caption{Description géométrique d'une arête \brep.}
+\end{figure}
+
 
 \section{Contributions}% aka "Description de la thèse/démarche"
 

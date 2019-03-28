@@ -74,13 +74,13 @@
 			\draw[uvgrid] (\locxi,-1) -- ++ (0,2);
 		}%		
 		%% FILL UV DOMAIN
-		\ifnum \numberofwires > 0
-			\fill[facecolor] 
-				plot file {figures/data/fig_brep_faces/contour_ext_#1.dat}
-				plot file {figures/data/fig_brep_faces/contour_int_#1_1.dat};
-		\else
-			\fill[facecolor] plot file {figures/data/fig_brep_faces/contour_ext_#1.dat};
-		\fi
+		\begin{scope}[every path/.style={draw=none,fill=facecolor}]
+			\path 
+				plot file {figures/data/fig_brep_faces/contour_ext_#1.dat} -- cycle
+				\foreach \iwint in {1,...,\numberofwires}{
+					plot file {figures/data/fig_brep_faces/contour_int_#1_\iwint.dat} -- cycle
+				};
+		\end{scope}
 		%% DRAW EDGES
 		\DTLforeach*{dbcurves}{\locu=u, \locv=v, \locdu=du, \locdv=dv, \locie=ied, \locih=ihe, \lociw=iw}{%
 			\pgfmathsetmacro\ilocie{int(round(\locie))}%

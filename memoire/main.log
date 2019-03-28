@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  22 MAR 2019 17:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2017.1.4)  28 MAR 2019 18:12
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2832,8 +2832,8 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 64.92935pt on input line 2.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/sc' will be
 (Font)              scaled to size 14.4pt on input line 6.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/b/sc' will be
+(Font)              scaled to size 14.4pt on input line 6.
 (./figures/singular_point_formation.tikz
 \dtldb@nor0=\toks93
 \dtlkeys@nor0=\toks94
@@ -2845,15 +2845,15 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/b/n' will be
 \dtlcols@xysing=\count410
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 34.
+(Font)              scaled to size 10.0pt on input line 39.
 
 
 LaTeX Warning: Reference `subfig:huygens_principle_eos' on page 1 undefined on 
-input line 41.
+input line 46.
 
 
 LaTeX Warning: Reference `subfig:huygens_principle_eob' on page 1 undefined on 
-input line 41.
+input line 46.
 
 \dtldb@circdata=\toks97
 \dtlkeys@circdata=\toks98
@@ -2864,56 +2864,56 @@ input line 41.
 \dtlrows@nordata=\count413
 \dtlcols@nordata=\count414
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 78.
+(Font)              scaled to size 9.0pt on input line 83.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 78.
+(Font)              scaled to size 9.0pt on input line 83.
 
-Overfull \hbox (5.64572pt too wide) in paragraph at lines 78--78
+Overfull \hbox (5.64572pt too wide) in paragraph at lines 83--83
 []\T1/LinuxLibertineT-OsF/m/n/9 (-10) (a)
  []
 
 
-Overfull \hbox (8.54156pt too wide) in paragraph at lines 78--78
+Overfull \hbox (8.54156pt too wide) in paragraph at lines 83--83
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) En-
  []
 
 
-Overfull \hbox (23.67163pt too wide) in paragraph at lines 78--78
+Overfull \hbox (23.67163pt too wide) in paragraph at lines 83--83
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) veloppe
  []
 
 
-Overfull \hbox (8.33763pt too wide) in paragraph at lines 78--78
+Overfull \hbox (8.33763pt too wide) in paragraph at lines 83--83
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) des
  []
 
 
-Overfull \hbox (23.66017pt too wide) in paragraph at lines 78--78
+Overfull \hbox (23.66017pt too wide) in paragraph at lines 83--83
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) sphères. 
  []
 
 
-Overfull \hbox (6.18246pt too wide) in paragraph at lines 84--84
+Overfull \hbox (6.18246pt too wide) in paragraph at lines 89--89
 []\T1/LinuxLibertineT-OsF/m/n/9 (-10) (b)
  []
 
 
-Overfull \hbox (8.54156pt too wide) in paragraph at lines 84--84
+Overfull \hbox (8.54156pt too wide) in paragraph at lines 89--89
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) En-
  []
 
 
-Overfull \hbox (23.67163pt too wide) in paragraph at lines 84--84
+Overfull \hbox (23.67163pt too wide) in paragraph at lines 89--89
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) veloppe
  []
 
 
-Overfull \hbox (8.33763pt too wide) in paragraph at lines 84--84
+Overfull \hbox (8.33763pt too wide) in paragraph at lines 89--89
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) des
  []
 
 
-Overfull \hbox (20.1958pt too wide) in paragraph at lines 84--84
+Overfull \hbox (20.1958pt too wide) in paragraph at lines 89--89
 \T1/LinuxLibertineT-OsF/m/it/9 (-10) boules. 
  []
 
@@ -2922,7 +2922,7 @@ Overfull \hbox (20.1958pt too wide) in paragraph at lines 84--84
 
 ]
 LaTeX Font Info:    Try loading font information for TS1+LinuxLibertineT-OsF on
- input line 110.
+ input line 115.
 
 (/opt/tools/texlive/2016/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-OsF.
 fd
@@ -2930,23 +2930,23 @@ File: TS1LinuxLibertineT-OsF.fd 2012/11/26 (autoinst) Font definitions for TS1/
 LinuxLibertineT-OsF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 10.95pt on input line 110.
+(Font)              scaled to size 10.95pt on input line 115.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxLibertineT-OsF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \hbox (badness 10000) in paragraph at lines 127--130
-
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
+ [2]
+Underfull \hbox (badness 10000) in paragraph at lines 132--135
 
  []
 
 
-Overfull \hbox (8.90666pt too wide) in paragraph at lines 148--151
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+
+ []
+
+
+Overfull \hbox (8.90666pt too wide) in paragraph at lines 153--156
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) Une face $\OT1/lmr/m/n/10.95 F$ \T1/L
 inuxLibertineT-OsF/m/n/10.95 (-10) est délim-itée par ex-acte-ment un con-tour 
 ex-térieur ($\OMS/lmsy/m/n/10.95 )$ \T1/LinuxLibertineT-OsF/m/n/10.95 (-10) con
@@ -2955,7 +2955,7 @@ ntuelle-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--151
+Underfull \hbox (badness 10000) in paragraph at lines 153--156
 
  []
 
@@ -2977,7 +2977,7 @@ LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 8.0pt on input line 123.
 )
-Overfull \hbox (0.54843pt too wide) in paragraph at lines 130--156
+Overfull \hbox (0.54843pt too wide) in paragraph at lines 130--161
  [][] 
  []
 
@@ -2985,29 +2985,29 @@ Overfull \hbox (0.54843pt too wide) in paragraph at lines 130--156
 \dtlkeys@dbverts=\toks102
 \dtlrows@dbverts=\count415
 \dtlcols@dbverts=\count416
-<figures/fig_brep.png, id=452, 803.0pt x 803.0pt>
+<figures/fig_brep.png, id=453, 803.0pt x 803.0pt>
 File: figures/fig_brep.png Graphic file (type png)
  <use figures/fig_brep.png>
-Package pdftex.def Info: figures/fig_brep.png used on input line 171.
+Package pdftex.def Info: figures/fig_brep.png used on input line 176.
 (pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
 
-<figures/fig_brep_edges_hid.png, id=454, 803.0pt x 803.0pt>
+<figures/fig_brep_edges_hid.png, id=455, 803.0pt x 803.0pt>
 File: figures/fig_brep_edges_hid.png Graphic file (type png)
 
 <use figures/fig_brep_edges_hid.png>
-Package pdftex.def Info: figures/fig_brep_edges_hid.png used on input line 173.
+Package pdftex.def Info: figures/fig_brep_edges_hid.png used on input line 178.
 
 (pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
 File: figures/fig_brep.png Graphic file (type png)
  <use figures/fig_brep.png>
-Package pdftex.def Info: figures/fig_brep.png used on input line 182.
+Package pdftex.def Info: figures/fig_brep.png used on input line 187.
 (pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
 
-<figures/fig_brep_edges_vis.png, id=455, 803.0pt x 803.0pt>
+<figures/fig_brep_edges_vis.png, id=456, 803.0pt x 803.0pt>
 File: figures/fig_brep_edges_vis.png Graphic file (type png)
 
 <use figures/fig_brep_edges_vis.png>
-Package pdftex.def Info: figures/fig_brep_edges_vis.png used on input line 185.
+Package pdftex.def Info: figures/fig_brep_edges_vis.png used on input line 190.
 
 (pdftex.def)             Requested size: 227.62204pt x 227.61984pt.
 \dtldb@dbverts=\toks103
@@ -3039,42 +3039,42 @@ Package pdftex.def Info: figures/fig_brep_edges_vis.png used on input line 185.
 \dtlrows@dbfaceuvlabel=\count429
 \dtlcols@dbfaceuvlabel=\count430
 
-<figures/fig_brep_faces/face_007.png, id=456, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/face_007.png, id=457, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/face_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_007.png used on input line
- 219.
+ 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/surface_007.png, id=457, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/surface_007.png, id=458, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/surface_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_007.png used on input l
-ine 219.
+ine 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/edges_hid_007.png, id=458, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_hid_007.png, id=459, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_hid_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_hid_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_hid_007.png used on input
- line 219.
+ line 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 File: figures/fig_brep_faces/face_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_007.png used on input line
- 219.
+ 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/edges_vis_007.png, id=459, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_vis_007.png, id=460, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_vis_007.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_vis_007.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_vis_007.png used on input
- line 219.
+ line 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
 Package pgf: Warning! Plot data file `figures/data/fig_brep_faces/contour_int_0
@@ -3107,42 +3107,42 @@ Package pgf: Warning! Plot data file `figures/data/fig_brep_faces/contour_int_0
 \dtlkeys@dbfaceuvlabel=\toks130
 \dtlrows@dbfaceuvlabel=\count443
 \dtlcols@dbfaceuvlabel=\count444
-<figures/fig_brep_faces/face_008.png, id=460, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/face_008.png, id=461, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/face_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_008.png used on input line
- 219.
+ 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/surface_008.png, id=461, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/surface_008.png, id=462, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/surface_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_008.png used on input l
-ine 219.
+ine 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/edges_hid_008.png, id=462, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_hid_008.png, id=463, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_hid_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_hid_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_hid_008.png used on input
- line 219.
+ line 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 File: figures/fig_brep_faces/face_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_008.png used on input line
- 219.
+ 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/edges_vis_008.png, id=463, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_vis_008.png, id=464, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_vis_008.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_vis_008.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_vis_008.png used on input
- line 219.
+ line 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
 Package pgf: Warning! Plot data file `figures/data/fig_brep_faces/contour_int_0
@@ -3175,45 +3175,48 @@ Package pgf: Warning! Plot data file `figures/data/fig_brep_faces/contour_int_0
 \dtlkeys@dbfaceuvlabel=\toks144
 \dtlrows@dbfaceuvlabel=\count457
 \dtlcols@dbfaceuvlabel=\count458
-<figures/fig_brep_faces/face_002.png, id=464, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/face_002.png, id=465, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/face_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_002.png used on input line
- 219.
+ 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/surface_002.png, id=465, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/surface_002.png, id=466, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/surface_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/surface_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/surface_002.png used on input l
-ine 219.
+ine 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/edges_hid_002.png, id=466, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_hid_002.png, id=467, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_hid_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_hid_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_hid_002.png used on input
- line 219.
+ line 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 File: figures/fig_brep_faces/face_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/face_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/face_002.png used on input line
- 219.
+ 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-<figures/fig_brep_faces/edges_vis_002.png, id=467, 803.0pt x 803.0pt>
+<figures/fig_brep_faces/edges_vis_002.png, id=468, 803.0pt x 803.0pt>
 File: figures/fig_brep_faces/edges_vis_002.png Graphic file (type png)
 
 <use figures/fig_brep_faces/edges_vis_002.png>
 Package pdftex.def Info: figures/fig_brep_faces/edges_vis_002.png used on input
- line 219.
+ line 224.
 (pdftex.def)             Requested size: 125.19212pt x 125.18663pt.
 
-Overfull \hbox (1.19998pt too wide) in paragraph at lines 192--230
+Package pgf: Warning! Plot data file `figures/data/fig_brep_faces/contour_int_0
+02_2.dat' not found..
+
+Overfull \hbox (1.19998pt too wide) in paragraph at lines 197--235
  [] 
  []
 
@@ -3227,7 +3230,7 @@ Overfull \hbox (1.19998pt too wide) in paragraph at lines 192--230
 \dtlrows@dbpointoncurv=\count461
 \dtlcols@dbpointoncurv=\count462
 
-<figures/parametric_patch_shadow.png, id=468, 803.0pt x 602.25pt>
+<figures/parametric_patch_shadow.png, id=469, 803.0pt x 602.25pt>
 File: figures/parametric_patch_shadow.png Graphic file (type png)
 
 <use figures/parametric_patch_shadow.png>
@@ -3235,7 +3238,7 @@ Package pdftex.def Info: figures/parametric_patch_shadow.png used on input line
  37.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
-<figures/parametric_patch_surface.png, id=469, 803.0pt x 602.25pt>
+<figures/parametric_patch_surface.png, id=470, 803.0pt x 602.25pt>
 File: figures/parametric_patch_surface.png Graphic file (type png)
 
 <use figures/parametric_patch_surface.png>
@@ -3243,7 +3246,7 @@ Package pdftex.def Info: figures/parametric_patch_surface.png used on input lin
 e 39.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
-<figures/parametric_patch_checkerboard6.png, id=470, 803.0pt x 602.25pt>
+<figures/parametric_patch_checkerboard6.png, id=471, 803.0pt x 602.25pt>
 File: figures/parametric_patch_checkerboard6.png Graphic file (type png)
 
 <use figures/parametric_patch_checkerboard6.png>
@@ -3251,7 +3254,7 @@ Package pdftex.def Info: figures/parametric_patch_checkerboard6.png used on inp
 ut line 41.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
-<figures/parametric_patch_border.png, id=471, 803.0pt x 602.25pt>
+<figures/parametric_patch_border.png, id=472, 803.0pt x 602.25pt>
 File: figures/parametric_patch_border.png Graphic file (type png)
 
 <use figures/parametric_patch_border.png>
@@ -3270,33 +3273,73 @@ LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 (Font)              scaled to size 10.50003pt on input line 61.
 LaTeX Font Info:    Font shape `U/BOONDOX-scro/m/n' will be
 (Font)              scaled to size 7.35002pt on input line 61.
-)
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 239.
- [3] [4 <./figures/fig_brep.png> <./figures/fig_brep_edges_hid.png> <./figures/
-fig_brep_edges_vis.png> <./figures/fig_brep_faces/face_007.png> <./figures/fig_
-brep_faces/surface_007.png> <./figures/fig_brep_faces/edges_hid_007.png> <./fig
-ures/fig_brep_faces/edges_vis_007.png> <./figures/fig_brep_faces/face_008.png> 
-<./figures/fig_brep_faces/surface_008.png> <./figures/fig_brep_faces/edges_hid_
-008.png> <./figures/fig_brep_faces/edges_vis_008.png> <./figures/fig_brep_faces
-/face_002.png> <./figures/fig_brep_faces/surface_002.png> <./figures/fig_brep_f
-aces/edges_hid_002.png> <./figures/fig_brep_faces/edges_vis_002.png>]) [5 <./fi
-gures/parametric_patch_shadow.png> <./figures/parametric_patch_surface.png> <./
-figures/parametric_patch_checkerboard6.png> <./figures/parametric_patch_border.
-png>]
+) [3]
+(./figures/simple_intersection.tikz
+\locimw=\skip286
+\locimh=\skip287
+\dtldb@dbpoint=\toks149
+\dtlkeys@dbpoint=\toks150
+\dtlrows@dbpoint=\count463
+\dtlcols@dbpoint=\count464
+
+<figures/fig_simple_intersection.png, id=480, 803.0pt x 602.25pt>
+File: figures/fig_simple_intersection.png Graphic file (type png)
+
+<use figures/fig_simple_intersection.png>
+Package pdftex.def Info: figures/fig_simple_intersection.png used on input line
+ 27.
+(pdftex.def)             Requested size: 192.05609pt x 144.03752pt.
+
+<figures/fig_simple_intersection_border_hid.png, id=481, 803.0pt x 602.25pt>
+File: figures/fig_simple_intersection_border_hid.png Graphic file (type png)
+
+<use figures/fig_simple_intersection_border_hid.png>
+Package pdftex.def Info: figures/fig_simple_intersection_border_hid.png used on
+ input line 28.
+(pdftex.def)             Requested size: 192.05609pt x 144.03752pt.
+File: figures/fig_simple_intersection.png Graphic file (type png)
+
+<use figures/fig_simple_intersection.png>
+Package pdftex.def Info: figures/fig_simple_intersection.png used on input line
+ 30.
+(pdftex.def)             Requested size: 192.05609pt x 144.03752pt.
+
+<figures/fig_simple_intersection_border_vis.png, id=482, 803.0pt x 602.25pt>
+File: figures/fig_simple_intersection_border_vis.png Graphic file (type png)
+
+<use figures/fig_simple_intersection_border_vis.png>
+Package pdftex.def Info: figures/fig_simple_intersection_border_vis.png used on
+ input line 32.
+(pdftex.def)             Requested size: 192.05609pt x 144.03752pt.
+\dtldb@dbsurfacecolor=\toks151
+\dtlkeys@dbsurfacecolor=\toks152
+\dtlrows@dbsurfacecolor=\count465
+\dtlcols@dbsurfacecolor=\count466
+\dtldb@dbsurfacecolor=\toks153
+\dtlkeys@dbsurfacecolor=\toks154
+\dtlrows@dbsurfacecolor=\count467
+\dtlcols@dbsurfacecolor=\count468
+)) [4] [5 <./figures/fig_brep.png> <./figures/fig_brep_edges_hid.png> <./figure
+s/fig_brep_edges_vis.png> <./figures/fig_brep_faces/face_007.png> <./figures/fi
+g_brep_faces/surface_007.png> <./figures/fig_brep_faces/edges_hid_007.png> <./f
+igures/fig_brep_faces/edges_vis_007.png> <./figures/fig_brep_faces/face_008.png
+> <./figures/fig_brep_faces/surface_008.png> <./figures/fig_brep_faces/edges_hi
+d_008.png> <./figures/fig_brep_faces/edges_vis_008.png> <./figures/fig_brep_fac
+es/face_002.png> <./figures/fig_brep_faces/surface_002.png> <./figures/fig_brep
+_faces/edges_hid_002.png> <./figures/fig_brep_faces/edges_vis_002.png>] [6 <./f
+igures/parametric_patch_shadow.png> <./figures/parametric_patch_surface.png> <.
+/figures/parametric_patch_checkerboard6.png> <./figures/parametric_patch_border
+.png> <./figures/fig_simple_intersection.png> <./figures/fig_simple_intersectio
+n_border_hid.png> <./figures/fig_simple_intersection_border_vis.png>]
 \openout2 = `mainmatter/chap1.aux'.
 
  (./mainmatter/chap1.tex
-[6
+\dtldb@dbverts=\toks155
+\dtlkeys@dbverts=\toks156
+\dtlrows@dbverts=\count469
+\dtlcols@dbverts=\count470
 
-
-
-]
-\dtldb@dbverts=\toks149
-\dtlkeys@dbverts=\toks150
-\dtlrows@dbverts=\count463
-\dtlcols@dbverts=\count464
- <figures/fig_brep_EoB_faces1.png, id=611, 803.0pt x 803.0pt>
+<figures/fig_brep_EoB_faces1.png, id=621, 803.0pt x 803.0pt>
 File: figures/fig_brep_EoB_faces1.png Graphic file (type png)
 
 <use figures/fig_brep_EoB_faces1.png>
@@ -3304,7 +3347,7 @@ Package pdftex.def Info: figures/fig_brep_EoB_faces1.png used on input line 28.
 
 (pdftex.def)             Requested size: 210.55038pt x 210.55173pt.
 
-<figures/fig_brep_EoB_edges_hid1.png, id=612, 803.0pt x 803.0pt>
+<figures/fig_brep_EoB_edges_hid1.png, id=622, 803.0pt x 803.0pt>
 File: figures/fig_brep_EoB_edges_hid1.png Graphic file (type png)
 
 <use figures/fig_brep_EoB_edges_hid1.png>
@@ -3318,19 +3361,19 @@ Package pdftex.def Info: figures/fig_brep_EoB_faces1.png used on input line 28.
 
 (pdftex.def)             Requested size: 210.55038pt x 210.55173pt.
 
-<figures/fig_brep_EoB_edges_vis1.png, id=613, 803.0pt x 803.0pt>
+<figures/fig_brep_EoB_edges_vis1.png, id=623, 803.0pt x 803.0pt>
 File: figures/fig_brep_EoB_edges_vis1.png Graphic file (type png)
 
 <use figures/fig_brep_EoB_edges_vis1.png>
 Package pdftex.def Info: figures/fig_brep_EoB_edges_vis1.png used on input line
  28.
 (pdftex.def)             Requested size: 210.55038pt x 210.55173pt.
-\dtldb@dbverts=\toks151
-\dtlkeys@dbverts=\toks152
-\dtlrows@dbverts=\count465
-\dtlcols@dbverts=\count466
+\dtldb@dbverts=\toks157
+\dtlkeys@dbverts=\toks158
+\dtlrows@dbverts=\count471
+\dtlcols@dbverts=\count472
 
-<figures/fig_brep_EoB_faces2.png, id=614, 803.0pt x 803.0pt>
+<figures/fig_brep_EoB_faces2.png, id=624, 803.0pt x 803.0pt>
 File: figures/fig_brep_EoB_faces2.png Graphic file (type png)
 
 <use figures/fig_brep_EoB_faces2.png>
@@ -3338,7 +3381,7 @@ Package pdftex.def Info: figures/fig_brep_EoB_faces2.png used on input line 39.
 
 (pdftex.def)             Requested size: 210.55038pt x 210.55173pt.
 
-<figures/fig_brep_EoB_edges_hid2.png, id=615, 803.0pt x 803.0pt>
+<figures/fig_brep_EoB_edges_hid2.png, id=625, 803.0pt x 803.0pt>
 File: figures/fig_brep_EoB_edges_hid2.png Graphic file (type png)
 
 <use figures/fig_brep_EoB_edges_hid2.png>
@@ -3352,17 +3395,21 @@ Package pdftex.def Info: figures/fig_brep_EoB_faces2.png used on input line 39.
 
 (pdftex.def)             Requested size: 210.55038pt x 210.55173pt.
 
-<figures/fig_brep_EoB_edges_vis2.png, id=616, 803.0pt x 803.0pt>
+<figures/fig_brep_EoB_edges_vis2.png, id=626, 803.0pt x 803.0pt>
 File: figures/fig_brep_EoB_edges_vis2.png Graphic file (type png)
 
 <use figures/fig_brep_EoB_edges_vis2.png>
 Package pdftex.def Info: figures/fig_brep_EoB_edges_vis2.png used on input line
  39.
 (pdftex.def)             Requested size: 210.55038pt x 210.55173pt.
- [7 <./figures/fig_brep_EoB_faces1.png> <./figures/fig_brep_EoB_edges_hid1.png>
- <./figures/fig_brep_EoB_edges_vis1.png> <./figures/fig_brep_EoB_faces2.png> <.
-/figures/fig_brep_EoB_edges_hid2.png> <./figures/fig_brep_EoB_edges_vis2.png>]
-<figures/fig_canal_surface_envelope_nolines.png, id=725, 1405.25pt x 963.6pt>
+ [7
+
+
+
+ <./figures/fig_brep_EoB_faces1.png> <./figures/fig_brep_EoB_edges_hid1.png> <.
+/figures/fig_brep_EoB_edges_vis1.png> <./figures/fig_brep_EoB_faces2.png> <./fi
+gures/fig_brep_EoB_edges_hid2.png> <./figures/fig_brep_EoB_edges_vis2.png>]
+<figures/fig_canal_surface_envelope_nolines.png, id=735, 1405.25pt x 963.6pt>
 File: figures/fig_canal_surface_envelope_nolines.png Graphic file (type png)
 
 <use figures/fig_canal_surface_envelope_nolines.png>
@@ -3370,7 +3417,7 @@ Package pdftex.def Info: figures/fig_canal_surface_envelope_nolines.png used on
  input line 118.
 (pdftex.def)             Requested size: 318.67085pt x 218.52094pt.
 
-<figures/fig_canal_surface_sphere_circle_nolines.png, id=726, 1405.25pt x 963.6
+<figures/fig_canal_surface_sphere_circle_nolines.png, id=736, 1405.25pt x 963.6
 pt>
 File: figures/fig_canal_surface_sphere_circle_nolines.png Graphic file (type pn
 g)
@@ -3385,7 +3432,7 @@ Package pdftex.def Info: figures/fig_canal_surface_envelope_nolines.png used on
  input line 122.
 (pdftex.def)             Requested size: 318.67085pt x 218.52094pt.
 
-<figures/fig_canal_surface_envelope_lines.png, id=727, 1405.25pt x 963.6pt>
+<figures/fig_canal_surface_envelope_lines.png, id=737, 1405.25pt x 963.6pt>
 File: figures/fig_canal_surface_envelope_lines.png Graphic file (type png)
 
 <use figures/fig_canal_surface_envelope_lines.png>
@@ -3393,7 +3440,7 @@ Package pdftex.def Info: figures/fig_canal_surface_envelope_lines.png used on i
 nput line 125.
 (pdftex.def)             Requested size: 318.67085pt x 218.52094pt.
 
-<figures/fig_canal_surface_sphere_circle_lines.png, id=728, 1405.25pt x 963.6pt
+<figures/fig_canal_surface_sphere_circle_lines.png, id=738, 1405.25pt x 963.6pt
 >
 File: figures/fig_canal_surface_sphere_circle_lines.png Graphic file (type png)
 
@@ -3434,7 +3481,7 @@ Package pdftex.def Info: figures/fig_canal_surface_sphere_circle_lines.png used
  on input line 188.
 (pdftex.def)             Requested size: 318.67085pt x 218.52094pt.
 
-<figures/2pEoS_nointer.png, id=731, 1405.25pt x 878.28125pt>
+<figures/2pEoS_nointer.png, id=741, 1405.25pt x 878.28125pt>
 File: figures/2pEoS_nointer.png Graphic file (type png)
 
 <use figures/2pEoS_nointer.png>
@@ -3445,7 +3492,7 @@ face_sphere_circle_nolines.png> <./figures/fig_canal_surface_envelope_lines.png
 > <./figures/fig_canal_surface_sphere_circle_lines.png>]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-OsF/m/n' will be
 (Font)              scaled to size 6.0pt on input line 302.
-) [9 <./figures/2pEoS_nointer.png>] [10]
+ [9 <./figures/2pEoS_nointer.png>]) [10]
 \openout2 = `mainmatter/chap2.aux'.
 
  (./mainmatter/chap2.tex
@@ -3506,13 +3553,13 @@ t is unbounded (in y). (see also unbounded coords=jump).
 NOTE: coordinate (1Y1.0e2],0.000000000000000000e+00) has been dropped because i
 t is unbounded (in y). (see also unbounded coords=jump). 
 [18]
-\tilesize=\skip286
-\dtldb@dbframe=\toks153
-\dtlkeys@dbframe=\toks154
-\dtlrows@dbframe=\count467
-\dtlcols@dbframe=\count468
-\imgsize=\skip287
- <figures/tensor_product_chebpoly/T_0_0.png, id=905, 513.92pt x 513.92pt>
+\tilesize=\skip288
+\dtldb@dbframe=\toks159
+\dtlkeys@dbframe=\toks160
+\dtlrows@dbframe=\count473
+\dtlcols@dbframe=\count474
+\imgsize=\skip289
+ <figures/tensor_product_chebpoly/T_0_0.png, id=913, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_0_0.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_0_0.png>
@@ -3520,7 +3567,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_0_0.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_1_0.png, id=906, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_1_0.png, id=914, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_1_0.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_1_0.png>
@@ -3528,7 +3575,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_1_0.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_2_0.png, id=907, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_2_0.png, id=915, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_2_0.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_2_0.png>
@@ -3536,7 +3583,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_2_0.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_3_0.png, id=908, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_3_0.png, id=916, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_3_0.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_3_0.png>
@@ -3544,7 +3591,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_3_0.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_4_0.png, id=909, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_4_0.png, id=917, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_4_0.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_4_0.png>
@@ -3552,7 +3599,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_4_0.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_0_1.png, id=910, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_0_1.png, id=918, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_0_1.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_0_1.png>
@@ -3560,7 +3607,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_0_1.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_1_1.png, id=911, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_1_1.png, id=919, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_1_1.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_1_1.png>
@@ -3568,7 +3615,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_1_1.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_2_1.png, id=912, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_2_1.png, id=920, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_2_1.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_2_1.png>
@@ -3576,7 +3623,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_2_1.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_3_1.png, id=913, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_3_1.png, id=921, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_3_1.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_3_1.png>
@@ -3584,7 +3631,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_3_1.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_4_1.png, id=914, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_4_1.png, id=922, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_4_1.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_4_1.png>
@@ -3592,7 +3639,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_4_1.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_0_2.png, id=915, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_0_2.png, id=923, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_0_2.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_0_2.png>
@@ -3600,7 +3647,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_0_2.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_1_2.png, id=916, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_1_2.png, id=924, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_1_2.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_1_2.png>
@@ -3608,7 +3655,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_1_2.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_2_2.png, id=917, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_2_2.png, id=925, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_2_2.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_2_2.png>
@@ -3616,7 +3663,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_2_2.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_3_2.png, id=918, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_3_2.png, id=926, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_3_2.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_3_2.png>
@@ -3624,7 +3671,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_3_2.png used on inpu
 t line 925.
 (pdftex.def)             Requested size: 63.08104pt x 63.07925pt.
 
-<figures/tensor_product_chebpoly/T_4_2.png, id=919, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_4_2.png, id=927, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_4_2.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_4_2.png>
@@ -3636,7 +3683,7 @@ Overfull \hbox (3.93674pt too wide) in paragraph at lines 940--943
  [][] 
  []
 
-<figures/tensor_product_chebpoly/T_3_3.png, id=920, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_3_3.png, id=928, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_3_3.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_3_3.png>
@@ -3644,7 +3691,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_3_3.png used on inpu
 t line 1057.
 (pdftex.def)             Requested size: 49.79797pt x 49.79527pt.
 
-<figures/tensor_product_chebpoly/T_2_3.png, id=921, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_2_3.png, id=929, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_2_3.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_2_3.png>
@@ -3658,7 +3705,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_3_2.png used on inpu
 t line 1057.
 (pdftex.def)             Requested size: 49.79797pt x 49.79527pt.
 
-<figures/tensor_product_chebpoly/T_1_3.png, id=922, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_1_3.png, id=930, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_1_3.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_1_3.png>
@@ -3678,7 +3725,7 @@ Package pdftex.def Info: figures/tensor_product_chebpoly/T_3_1.png used on inpu
 t line 1057.
 (pdftex.def)             Requested size: 49.79797pt x 49.79527pt.
 
-<figures/tensor_product_chebpoly/T_0_3.png, id=923, 513.92pt x 513.92pt>
+<figures/tensor_product_chebpoly/T_0_3.png, id=931, 513.92pt x 513.92pt>
 File: figures/tensor_product_chebpoly/T_0_3.png Graphic file (type png)
 
 <use figures/tensor_product_chebpoly/T_0_3.png>
@@ -3753,7 +3800,7 @@ Package pdftex.def Info: figures/parametric_patch_surface.png used on input lin
 e 144.
 (pdftex.def)             Requested size: 227.62204pt x 170.71487pt.
 
-<figures/parametric_patch_cgl_grid.png, id=924, 803.0pt x 602.25pt>
+<figures/parametric_patch_cgl_grid.png, id=932, 803.0pt x 602.25pt>
 File: figures/parametric_patch_cgl_grid.png Graphic file (type png)
 
 <use figures/parametric_patch_cgl_grid.png>
@@ -3805,37 +3852,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 47--57
 \imwid=\dimen401
 \imypos=\dimen402
 
-<figures/snap_001.png, id=1011, 803.0pt x 803.0pt>
+<figures/snap_001.png, id=1019, 803.0pt x 803.0pt>
 File: figures/snap_001.png Graphic file (type png)
  <use figures/snap_001.png>
 Package pdftex.def Info: figures/snap_001.png used on input line 11.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_002.png, id=1012, 803.0pt x 803.0pt>
+<figures/snap_002.png, id=1020, 803.0pt x 803.0pt>
 File: figures/snap_002.png Graphic file (type png)
  <use figures/snap_002.png>
 Package pdftex.def Info: figures/snap_002.png used on input line 12.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_003.png, id=1013, 803.0pt x 803.0pt>
+<figures/snap_003.png, id=1021, 803.0pt x 803.0pt>
 File: figures/snap_003.png Graphic file (type png)
  <use figures/snap_003.png>
 Package pdftex.def Info: figures/snap_003.png used on input line 13.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_004.png, id=1014, 803.0pt x 803.0pt>
+<figures/snap_004.png, id=1022, 803.0pt x 803.0pt>
 File: figures/snap_004.png Graphic file (type png)
  <use figures/snap_004.png>
 Package pdftex.def Info: figures/snap_004.png used on input line 14.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_005.png, id=1015, 803.0pt x 803.0pt>
+<figures/snap_005.png, id=1023, 803.0pt x 803.0pt>
 File: figures/snap_005.png Graphic file (type png)
  <use figures/snap_005.png>
 Package pdftex.def Info: figures/snap_005.png used on input line 15.
 (pdftex.def)             Requested size: 203.35228pt x 203.34709pt.
 
-<figures/snap_006.png, id=1016, 803.0pt x 803.0pt>
+<figures/snap_006.png, id=1024, 803.0pt x 803.0pt>
 File: figures/snap_006.png Graphic file (type png)
  <use figures/snap_006.png>
 Package pdftex.def Info: figures/snap_006.png used on input line 16.
@@ -3876,21 +3923,21 @@ Package pgfplots info on input line 153: Using 'lua backend=false' for axis: ym
 ode=log unsupported (yet).
 PGFPlots: reading {figures/data/vortex_erreur_volume_vs_time_0.001.dat}
 \imwid=\dimen403
-<figures/cube_brep_t1.png, id=1017, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t1.png, id=1025, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t1.png Graphic file (type png)
 
 <use figures/cube_brep_t1.png>
 Package pdftex.def Info: figures/cube_brep_t1.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t2.png, id=1018, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t2.png, id=1026, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t2.png Graphic file (type png)
 
 <use figures/cube_brep_t2.png>
 Package pdftex.def Info: figures/cube_brep_t2.png used on input line 190.
 (pdftex.def)             Requested size: 132.80304pt x 135.62865pt.
 
-<figures/cube_brep_t3.png, id=1019, 181.3977pt x 185.2521pt>
+<figures/cube_brep_t3.png, id=1027, 181.3977pt x 185.2521pt>
 File: figures/cube_brep_t3.png Graphic file (type png)
 
 <use figures/cube_brep_t3.png>
@@ -3911,12 +3958,6 @@ es/cube_brep_t3.png>]
 
 
 ]
-Overfull \hbox (11.73203pt too wide) in paragraph at lines 5--5
-[]\T1/LinuxLibertineT-OsF/m/sc/14.4/40ls Méthodes de sim-u-la-tion dans des géo
-métries dé-formables 
- []
-
-
 Overfull \hbox (5.1379pt too wide) in paragraph at lines 10--11
 []\T1/LinuxLibertineT-OsF/m/n/10.95 (-10) un seul mail-lage \T1/LinuxLibertineT
 -OsF/m/it/10.95 (-10) body-fitted \T1/LinuxLibertineT-OsF/m/n/10.95 (-10) avec 
@@ -3976,7 +4017,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-<figures/obb.pdf, id=1119, 226.8475pt x 113.42375pt>
+<figures/obb.pdf, id=1131, 226.8475pt x 113.42375pt>
 File: figures/obb.pdf Graphic file (type pdf)
  <use figures/obb.pdf>
 Package pdftex.def Info: figures/obb.pdf used on input line 24.
@@ -4011,7 +4052,7 @@ bibitemlist
 
 
 
-] [42]) [43] [44]
+] [42] [43]) [44]
 \tf@toc=\write11
 \openout11 = `main.toc'.
 
@@ -4024,9 +4065,9 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 100.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CE9AF15BC551E191FA5C030007A57D74;4595.
+(rerunfilecheck)             Checksum: 7590577D3239B1985ACFB1EB5EB8BA11;4605.
 Package rerunfilecheck Info: File `main.brf' has not changed.
-(rerunfilecheck)             Checksum: C34158F4B659C2CFDE481E797C8FD05B;2480.
+(rerunfilecheck)             Checksum: 92046C46B06EA15BB4BF757A54800C71;2576.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -4037,18 +4078,18 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
  ) 
 Here is how much of TeX's memory you used:
- 59617 strings out of 493013
- 1327581 string characters out of 6131034
- 2151505 words of memory out of 5000000
- 61143 multiletter control sequences out of 15000+600000
- 214809 words of font info for 299 fonts, out of 8000000 for 9000
+ 60313 strings out of 493013
+ 1349117 string characters out of 6131034
+ 2152901 words of memory out of 5000000
+ 61823 multiletter control sequences out of 15000+600000
+ 212179 words of font info for 298 fonts, out of 8000000 for 9000
  1147 hyphenation exceptions out of 8191
  75i,23n,120p,10635b,2353s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/opt/tools/
 texlive/2016/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/opt/tools/texlive/20
-16/texmf-dist/fonts/enc/dvips/libertine/lbtn_l5ekfx.enc}{/opt/tools/texlive/201
-6/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/tools/texlive/2016/texmf-di
-st/fonts/enc/dvips/libertine/lbtn_75c3wo.enc}{/opt/tools/texlive/2016/texmf-dis
+16/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/opt/tools/texlive/2016/texmf-d
+ist/fonts/enc/dvips/libertine/lbtn_75c3wo.enc}{/opt/tools/texlive/2016/texmf-di
+st/fonts/enc/dvips/libertine/lbtn_l5ekfx.enc}{/opt/tools/texlive/2016/texmf-dis
 t/fonts/enc/dvips/lm/lm-mathex.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/en
 c/dvips/base/8r.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/liberti
 ne/lbtn_6mhf45.enc}{/opt/tools/texlive/2016/texmf-dist/fonts/enc/dvips/libertin
@@ -4081,10 +4122,10 @@ ist/fonts/type1/public/lm/lmsy9.pfb></opt/tools/texlive/2016/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msbm10.pfb></opt/tools/texlive/2016/texmf-dist/fon
 ts/type1/urw/zapfchan/uzcmi8a.pfb></opt/tools/texlive/2016/texmf-dist/fonts/typ
 e1/public/boondox/zxxrw8a.pfb>
-Output written on main.pdf (50 pages, 4900901 bytes).
+Output written on main.pdf (50 pages, 5149859 bytes).
 PDF statistics:
- 1462 PDF objects out of 1728 (max. 8388607)
- 1226 compressed objects within 13 object streams
- 470 named destinations out of 1000 (max. 500000)
- 61773 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 1475 PDF objects out of 1728 (max. 8388607)
+ 1233 compressed objects within 13 object streams
+ 474 named destinations out of 1000 (max. 500000)
+ 61276 words of extra memory for PDF output out of 61914 (max. 10000000)
 

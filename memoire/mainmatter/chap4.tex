@@ -40,7 +40,7 @@ Déformation = mouvement induit par la propagation + lissage/optimisation
 %	\item persistance des entités \brep\  au cours de la déformation
 \end{itemize}
 
-\section{Approche naïve/simple}
+\section{Maillage conforme aux carreaux}
 Maillage conforme aux frontières des faces \brep\ \cite{andrieu2017}
 \begin{itemize}
 	\item un maillage par face \brep
@@ -52,13 +52,22 @@ Maillage conforme aux frontières des faces \brep\ \cite{andrieu2017}
 %	\item respect des caractéristiques géométriques (sommets et arêtes vifs) $\to$ contraintes sur les n\oe uds et arêtes du maillage
 %\end{itemize}
 
-\section{Approche avancée}
+\section{Maillage trans-carreaux}
 Hypergraphe \cite{foucault2008}\par
 Projection d'un déplacement $xyz$ sur une surface paramétrique\par
-Projection d'un déplacement $xyz$ sur une surface \brep\ composite (traversée des arêtes \brep\ douces, ``trajectoire trans-carreaux'' \cite[Section~5.5]{foucault2008})\par
+Projection d'un déplacement $xyz$ sur une surface \brep\ composite (traversée des arêtes \brep\ douces, ``trajectoire trans-carreaux'' \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}\par
 Régénération des chemins contraints\par
 Pré-déformation\par
 Optimisation, pondération des triangles
 
-
-
+\par\bigskip
+n\oe uds du maillage contraints sur :
+\begin{itemize}
+	\item un sommet \brep\ : fixe;
+	\item une arête \brep\ : déplacement $xyz$ projeté sur la direction tangente locale de la courbe qui supporte l'arête
+	\item une face \brep\ : déplacement $xyz$ projeté sur le plan tangent local de la surface qui supporte la face. 
+	Si le n\oe ud est \textit{proche} d'un bord de la face, tester si son déplacement traverse le bord
+	\begin{itemize}
+		\item \ldots
+	\end{itemize}
+\end{itemize}

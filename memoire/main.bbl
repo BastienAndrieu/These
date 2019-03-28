@@ -262,6 +262,19 @@
 \newblock Thèse de Doctorat, {Institut National Polytechnique de Grenoble},
   2008.
 
+\bibitem{thompson2005}
+{\scshape T.~V. Thompson, II} et {\scshape E.~Cohen}.
+\newblock Direct haptic rendering of complex trimmed {NURBS} models.
+\newblock Dans {\itshape ACM SIGGRAPH 2005 Courses\/}, SIGGRAPH '05. ACM, New
+  York, NY, USA, 2005.
+
+\bibitem{crozet2017}
+{\scshape S.~Crozet}.
+\newblock {\itshape {Efficient contact determination between solids with
+  boundary representations (B-Rep)}\/}.
+\newblock Thèse de Doctorat, Communaut{\'e} Universit{\'e} Grenoble Alpes,
+  2017.
+
 \bibitem{lachance1988}
 {\scshape M.~A. Lachance}.
 \newblock Chebyshev economization for parametric surfaces.
