@@ -283,6 +283,33 @@ Plusieurs approches sont envisageables :
 \end{figure}
 
 
+\begin{figure}
+\centering
+\begin{tikzpicture}
+	\begin{axis}[
+		hide axis,
+		xmin=-2.36882376671 , xmax=2.75445795059,
+		ymin=-2.34076094627 , ymax=2.61758756638,
+		zmin=-0.358607441187 , zmax=1.32676851749,]
+    	\addplot3 graphics [
+			points={
+			(0,0,0) => ( 402.2570610046387, 255.00264167785645 )
+			(1,0,0) => ( 496.9456672668457, 202.3828148841858 )
+			(0,1,0) => ( 495.6686019897461, 309.8987698554993 )
+			(0,0,1) => ( 400.9244918823242, 364.14011716842657 )
+			}] {figures/fig_simple_intersection_ortho};
+		\addplot3[black, thick] table {/d/bandrieu/GitHub/FFTsurf/test/demo_intersection/simple/curve_xyz.dat};
+	\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+
+
+
+
+
+
+
 \section{Contributions}% aka "Description de la thèse/démarche"
 
 

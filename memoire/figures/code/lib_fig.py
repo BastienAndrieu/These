@@ -90,3 +90,15 @@ def fit_camera_to_meshes(meshes):
     cam.data.shift_x = scl*(xctr - 0.5)
     cam.data.shift_y = scl*(yctr - 0.5)/ratio
     return
+##############################################
+def get_scene_xyz_AABB():
+    BIG = 1e6
+    aabb = [BIG*Vector([1,1,1]), -BIG*Vector([1,1,1])]
+    for obj in bpy.data.objects:
+        if obj.type == 'MESH':
+            bbox_corners = [obj.matrix_world * Vector(corner) for corner in obj.bound_box]
+            for corner in bbox_corners:
+                for i in range(3):
+                    aabb[0][i] = min(aabb[0][i], corner[i])
+                    aabb[1][i] = max(aabb[1][i], corner[i])
+    return aabb

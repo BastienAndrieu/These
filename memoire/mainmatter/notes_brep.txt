@@ -169,3 +169,6 @@ sommet : point où deux arêtes adjacentes se rencontrent, et également où plu
 
 
 
+###########
+Import et "traduction" du modèle initial?
+"Propreté" du modèle initial?
