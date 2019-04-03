@@ -1,0 +1,80 @@
+\chapter{Déformation de maillage surfacique}
+
+\textit{Objectif du chapitre: on veut mettre au point une méthodologie pour déformer un maillage de l'interface en propagation en utilisant le modèle \brep\ dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformables.}
+
+\par\bigskip
+
+Motivation
+\begin{enumerate}
+	\item la précision et la vitesse de convergence du calcul dépendent fortement de la qualité (forme et taille) des éléments du maillage
+\end{enumerate}
+
+
+\section{Simulation numérique avec géométrie déformable}% [état de l'art]}
+\begin{enumerate}
+	\item maillage volumique (fluide) conforme à l'interface
+	\begin{enumerate}
+		\item \label{item:methodo_bodyfitted_ALE} 1 seul maillage \anglais{body-fitted} avec formulation ALE (ref)
+		\begin{itemize}
+			\item principe : frontière = maillage de l'interface, intérieur déformé de façon arbitraire
+			\item intérêt/avantages : \ldots
+			\item contraintes/inconvénients : 
+			\begin{itemize}
+				\item la qualité du maillage volumique dépend fortement de celle du maillage surfacique, surtout dans les régions proches de l'interface, où ont généralement lieu les phénomènes physiques les plus pertinents
+				\item la connectivité du maillage doit rester fixe
+			\end{itemize}
+		\end{itemize}
+		
+		\item plusieurs maillages \anglais{body-fitted} qui se superposent
+		\begin{itemize}
+			\item méthode Chimère \cite{meakin1989, wang200}, \item FLUSEPA \cite{brenner1991}
+			\item intérêt/avantages : 
+			\begin{itemize}
+				\item facilite la génération du maillage volumique lorsque la géométrie est complexe (\eg hyper-sustentateurs)
+				\item évite de déformer un maillage 3d
+			\end{itemize}						
+			\item contraintes/inconvénients : 
+			\begin{itemize}
+				\item nécessite de traiter les intersections entre les blocs de maillage
+				\item limité aux mouvements rigides (?)
+			\end{itemize}
+		\end{itemize}
+	\end{enumerate}
+	
+	\item maillage volumique non conforme à l’interface
+	\begin{itemize}
+		\item méthode des frontières immergées \cite{peskin2002, hovnanian2012, wang2012} : interface représentée explicitement, volume (fluide) traité de façon eulérienne (\ie maillage fixe)
+		\item intérêt/avantages : évite de générer et déformer un maillage 3d autour d’une géométrie complexe
+		\item contraintes/inconvénients : application indirecte des conditions aux limites
+	\end{itemize}
+\end{enumerate}
+
+Dans cette thèse,
+\begin{enumerate}
+	\item on se concentre sur les applications utilisant la méthodologie décrite à l'\autoref{item:methodo_bodyfitted_ALE}
+	\item on ne traite que le maillage (surfacique) de l'interface
+	\item (on se limite pour le moment à des maillages simpliciaux, mais une future extension aux maillages hybrides et courbes envisageable)
+\end{enumerate}
+
+
+\section{Optimisation de maillage surfacique}% [état de l'art]}
+\begin{enumerate}
+	\item changements locaux de connectivité
+	\begin{enumerate}
+		\item bascule d'arête
+		\item contraction d'arête
+	\end{enumerate}
+	\item bouger de n\oe ud (direct, \ie $xyz$ ou indirect, \ie $uv$)
+	\begin{enumerate}
+		\item méthodes heuristiques (lissage laplacien, analogies physiques \cite{farhat1998}, interpolation (IDW, RBF, \ldots) \ldots)
+		\item lissage basé sur l'optimisation d'une métrique de qualité \cite{freitag1995, canann1998, jiao2008, gargallo2014}
+	\end{enumerate}
+\end{enumerate}
+
+Dans cette thèse,
+\begin{enumerate}
+	\item \autoref{item:methodo_bodyfitted_ALE} $\Rightarrow$ on se concentre essentiellement sur le bouger de n\oe ud (déformation pure)
+	\item on effectuera des reconnections locales qu'en dernier recours (remaillage)
+\end{enumerate}
+
+\section{Génération de maillage surfacique basé sur un modèle \brep}
