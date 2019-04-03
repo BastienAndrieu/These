@@ -1,0 +1,103 @@
+\setlength{\imagewidth}{67.5mm}
+\setlength{\imageheight}{\imagewidth * \real{0.75}}
+%
+\def\uvscale{0.28}
+\def\fracaxeoffset{0.0}
+\def\distanceaxe{0.1}
+\def\psisep{-0.42}
+%
+\DTLsetseparator{,}%
+\DTLloaddb[noheader,keys={x,y}]{dbpoint}{figures/data/simple_intersection/point.dat}%
+\DTLassign{dbpoint}{1}{\xloc=x, \yloc=y}% 
+%
+\begin{tikzpicture}[
+	x=\imagewidth, y=\imageheight, 
+	axe/.style={-stealth, line width=0.5pt},
+	uvdomain/.style={thin}, 
+	image/.style={anchor=south west, inner sep=0},
+	curve/.style={thick, line cap=round},
+	label/.style={font=\normalsize},
+	axelabel/.style={font=\small},
+	axeuvlabel/.style={axelabel, inner sep=0},
+	point/.style={fill=black, circle, scale=0.3},
+	map/.style={-{Classical TikZ Rightarrow[length=4pt,width=4pt]}}]
+	%
+	\node[image] (img) at (0,0) {\includegraphics[width=\imagewidth]{figures/images/simple_intersection/surfaces}};
+	\node[image] (img) at (0,0) {\includegraphics[width=\imagewidth]{figures/images/simple_intersection/borders_hidden}};
+	{\transparent{0.75}%
+		\node[image] (img) at (0,0) {\includegraphics[width=\imagewidth]{figures/images/simple_intersection/surfaces}};
+	}%
+	\node[image] (img) at (0,0) {\includegraphics[width=\imagewidth]{figures/images/simple_intersection/borders_visible}};
+	\draw[curve] plot file {figures/data/simple_intersection/curve_xy.dat};
+	\node[point] (xyz) at (\xloc, \yloc) {};
+	\node[label, anchor=east] at (\xloc, \yloc) {$\bg(w)$};
+	%
+	\node[label] at (0.56, 0.91) {$\Sigma_1$};
+	\node[label] at (0.93, 0.75) {$\Sigma_2$};
+	%
+%	\foreach \igrid in  {0,0.1,...,1.01}{
+%		\draw[red, thin] (0,\igrid) -- (1,\igrid)
+%		                 (\igrid,0) -- (\igrid,1);
+%	}
+	% 
+	% trièdre
+	\def\scaletriedre{0.8}
+	\coordinate (o) at (0.13209545612335205 , 0.14773482084274292);
+	\coordinate (x) at (0.23464959859848022 , 0.02938912808895111);
+	\coordinate (y) at (0.26169726252555847 , 0.2535654902458191);
+	\coordinate (z) at (0.1061694324016571 , 0.31903284788131714);
+	\draw[axe] (o) -- ($(o)!\scaletriedre!(x)$) node[axelabel, anchor=west] {$x$};
+	\draw[axe] (o) -- ($(o)!\scaletriedre!(y)$) node[axelabel, anchor=west] {$y$};
+	\draw[axe] (o) -- ($(o)!\scaletriedre!(z)$) node[axelabel, anchor=south] {$z$};
+	%
+	\begin{scope}[scale=\uvscale, x=\imageheight, y=\imageheight, shift={(img.west)}]
+		\begin{scope}[shift={(-1.5,0.7)}]
+			\DTLloaddb[noheader,keys={r,g,b}]{dbsurfacecolor}{figures/data/BRep/faces/facecolor_002.dat}%
+			\DTLassign{dbsurfacecolor}{1}{\rfai=r,\gfai=g,\bfai=b}% 
+			\definecolor{surfacecolor}{RGB}{\rfai,\gfai,\bfai}
+			\draw[uvdomain, fill=surfacecolor] (-1,-1) -- (1,-1) -- (1,1) -- (-1,1) -- cycle;
+			\DTLgdeletedb{dbsurfacecolor}
+			%
+			\draw[curve] plot file {/d/bandrieu/GitHub/FFTsurf/test/demo_intersection/simple/curve_uv1.dat};
+			%
+			\DTLassign{dbpoint}{2}{\uloc=x, \vloc=y}% 
+			\DTLassign{dbpoint}{3}{\duloc=x, \dvloc=y}% 
+			\node[point] (uv1) at (\uloc, \vloc) {};
+			%\node[label] at ({\uloc + \psisep*\duloc}, {\vloc + \psisep*\dvloc}) {$\bp_1(w)$};
+			\node[label, anchor=north east, inner sep=0] at (\uloc, \vloc) {$\bp_1(w)$};
+			% Axes
+			\coordinate (o) at ({-1-\distanceaxe},{-1-\distanceaxe});
+			\draw[axe] (o) -- ++ ({\fracaxeoffset+\distanceaxe+0.5},0) node [axeuvlabel, anchor=north west] {$u_1$};
+			\draw[axe] (o) -- ++ (0,{\fracaxeoffset+\distanceaxe+0.5}) node [axeuvlabel, anchor=south east] {$v_1$};
+		\end{scope}
+	\end{scope}
+	%
+	\begin{scope}[scale=\uvscale, x=\imageheight, y=\imageheight, shift={(img.east)}]
+		\begin{scope}[shift={(1.6,-0.9)}]
+			\DTLloaddb[noheader,keys={r,g,b}]{dbsurfacecolor}{figures/data/BRep/faces/facecolor_008.dat}%
+			\DTLassign{dbsurfacecolor}{1}{\rfai=r,\gfai=g,\bfai=b}% 
+			\definecolor{surfacecolor}{RGB}{\rfai,\gfai,\bfai}
+			\draw[uvdomain, fill=surfacecolor] (-1,-1) -- (1,-1) -- (1,1) -- (-1,1) -- cycle;
+			\DTLgdeletedb{dbsurfacecolor}
+			%
+			\draw[curve] plot file {/d/bandrieu/GitHub/FFTsurf/test/demo_intersection/simple/curve_uv2.dat};
+			%
+			\DTLassign{dbpoint}{4}{\uloc=x, \vloc=y}% 
+			\DTLassign{dbpoint}{5}{\duloc=x, \dvloc=y}% 
+			\node[point] (uv2) at (\uloc, \vloc) {};
+			%\node[label] at ({\uloc + \psisep*\duloc}, {\vloc + \psisep*\dvloc}) {$\bp_2(w)$};
+			\node[label, anchor=north east, inner sep=0] at (\uloc, \vloc) {$\bp_2(w)$};
+			% Axes
+			\coordinate (o) at ({-1-\distanceaxe},{-1-\distanceaxe});
+			\draw[axe] (o) -- ++ ({\fracaxeoffset+\distanceaxe+0.5},0) node [axeuvlabel, anchor=north west] {$u_2$};
+			\draw[axe] (o) -- ++ (0,{\fracaxeoffset+\distanceaxe+0.5}) node [axeuvlabel, anchor=south east] {$v_2$};
+		\end{scope}
+	\end{scope}
+	%
+	% mappings
+	\draw [map, shorten <= 5mm, shorten >= 5mm] (uv1) to [bend left =40] node [label, anchor=south west] {$\bs_1$} (xyz);
+	\draw [map, shorten <= 5mm, shorten >= 5mm] (uv2) to [bend right=40] node [label, anchor=south west] {$\bs_2$} (xyz);
+	%
+%	\draw[red, thin, dashed] (current bounding box.south west) rectangle (current bounding box.north east);
+\end{tikzpicture}
+\DTLgdeletedb{dbpoint}

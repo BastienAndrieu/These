@@ -1,68 +1,134 @@
+%% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx}
 
+\usepackage{pgf, pgfplots, pgfplotstable}
+\usepgfplotslibrary{external, colormaps, patchplots, groupplots}
+\pgfplotsset{compat=newest}
+
+\usepackage{pst-solides3d,pstricks-add}
+
+\usepackage{tikz, tikzscale}
+\usetikzlibrary{math, fit, calc, external, fadings, angles, arrows, arrows.meta, positioning, angles, quotes, patterns, backgrounds, shapes, shapes.geometric, shapes.misc, decorations.markings, pgfplots.colorbrewer}
+%\tikzexternalize[prefix=figures/tikz_pgf/]
+
+%https://axiomatic.neophilus.net/using-datatool-and-tikz-to-generate-figures-from-data/
+\usepackage{datatool}
+
+\usepackage{transparent}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\graphicspath{{./figures/}{./figures/images/}}
+
+
+
+
+
+
+%% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Conversion pt -> mm
 %https://tex.stackexchange.com/questions/8260/what-are-the-various-units-ex-em-in-pt-bp-dd-pc-expressed-in-mm
 %(The syntax is \convertto{mm}{1pt} to convert 1pt in mm)
-\makeatletter
 \def\convertto#1#2{\strip@pt\dimexpr #2*65536/\number\dimexpr 1#1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\gettikzxy}[3]{%
+  \tikz@scan@one@point\pgfutil@firstofone#1\relax
+  \edef#2{\the\pgf@x}%
+  \edef#3{\the\pgf@y}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\globalgettikzxy}[3]{%
+  \tikz@scan@one@point\pgfutil@firstofone#1\relax
+  \edef\@tempdima{\the\pgf@x}%
+  \edef\@tempdimb{\the\pgf@y}%
+  \global#2=\@tempdima%
+  \global#3=\@tempdimb%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\getwidthofnode[2]{%
+    \pgfextractx{\pgf@xb}{\pgfpointanchor{#2}{east}}%
+    \pgfextractx{\pgf@xa}{\pgfpointanchor{#2}{west}}% 
+    \pgfmathsetlength{\pgf@xb}{\pgf@xb - \pgf@xa}%
+	\global#1=\pgf@xb%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\getheightofnode[2]{%
+    \pgfextracty{\pgf@yb}{\pgfpointanchor{#2}{north}}%
+    \pgfextracty{\pgf@ya}{\pgfpointanchor{#2}{south}}% 
+    \pgfmathsetlength{\pgf@yb}{\pgf@yb - \pgf@ya}%
+	\global#1=\pgf@yb%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% get row/column index in groupplot
+\newcommand{\currentrow}{\the\pgfplots@group@current@row}
+\newcommand{\currentcolumn}{\the\pgfplots@group@current@column}
+\newcommand{\totalplots}{\pgfplots@group@totalplots}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% invert a colormap in pgfplots
+%https://tex.stackexchange.com/questions/141181/inverting-a-colormap-in-pgfplots
+\def\invertcolormap#1{%
+    \pgfplotsarraycopy{pgfpl@cm@#1}\to{custom@COPY}%
+    \c@pgf@counta=0
+    \c@pgf@countb=\pgfplotsarraysizeof{custom@COPY}\relax
+    \c@pgf@countd=\c@pgf@countb
+    \advance\c@pgf@countd by-1 %
+    \pgfutil@loop
+    \ifnum\c@pgf@counta<\c@pgf@countb
+        \pgfplotsarrayselect{\c@pgf@counta}\of{custom@COPY}\to\pgfplots@loc@TMPa
+        \pgfplotsarrayletentry\c@pgf@countd\of{pgfpl@cm@#1}=\pgfplots@loc@TMPa
+        \advance\c@pgf@counta by1 %
+        \advance\c@pgf@countd by-1 %
+    \pgfutil@repeat
+%\pgfplots@colormap@showdebuginfofor{#1}%
+}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatother
+
+%% Legendes %%
+\newcommand{\legenddash}[1]{%
+	\raisebox{2pt}{\tikz{\draw[#1,solid,thick](0,0) -- (4mm,0);}}%
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\def\lgdsqrsiz{1.442pt}
+\newcommand{\legendsquare}[1]{\raisebox{1.2pt}{\tikz{\fill[#1] (-\lgdsqrsiz , -\lgdsqrsiz) rectangle (\lgdsqrsiz , \lgdsqrsiz);}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\makeatletter
-%\def\ratiolengths{}
-%\makeatother
+\newcommand{\legenddot}[1]{\raisebox{0.93pt}{\tikz{\fill[#1] (0.0mm,0.0mm) circle [radius=1.7pt];}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\usepackage{pythontex}
-
-\usepackage{pgf, pgfplots, pgfplotstable}
-\usepgfplotslibrary{external, colormaps, patchplots, groupplots}%, clickable}
-\usepackage{datatool}
-%https://axiomatic.neophilus.net/using-datatool-and-tikz-to-generate-figures-from-data/
-
-%\usepackage{auto-pst-pdf}
-\usepackage{pst-solides3d,pstricks-add}
-%\usepackage[locale=DE]{siunitx}
-
-\pgfplotsset{compat=newest}
-
-\usepackage{tikz, tikzscale}
-\usetikzlibrary{math, fit, calc, external, fadings, angles, arrows, arrows.meta, positioning, angles, quotes, patterns, backgrounds, shapes, shapes.geometric, shapes.misc, decorations.markings}
+\newcommand{\legendtriangle}[1]{\raisebox{1.5pt}{\tikz{\fill[#1] (0.0pt,2.2pt) -- (-1.9pt,-1.1pt) -- (1.9pt,-1.1pt);}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%\tikzexternalize[prefix=figures/pgf/]
 
-\usepackage{transparent}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PGFPLOT SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{mycolor_1}{HTML}{68ABD9}
+\definecolor{mycolor_2}{HTML}{FA7566}%FA6655}%{FAA43A}%
+\definecolor{mycolor_3}{HTML}{98D45B}%AADA57}%{60BD68}%
+\definecolor{mycolor_4}{HTML}{897EDA}
+\definecolor{mycolor_5}{HTML}{FAA43A}%{FA6655}%
+\definecolor{mycolor_6}{HTML}{46AA5B}%60BD68}%{AADA57}%
+\definecolor{mycolor_7}{HTML}{F094C3}
+\definecolor{mycolor_8}{HTML}{A3A3A3}
+\definecolor{mycolor_9}{HTML}{000000}
 
-\usetikzlibrary{pgfplots.colorbrewer}
-
-\definecolor{s1}{HTML}{68ABD9}
-\definecolor{s2}{HTML}{FA7566}%FA6655}%{FAA43A}%
-\definecolor{s3}{HTML}{98D45B}%AADA57}%{60BD68}%
-\definecolor{s4}{HTML}{897EDA}
-\definecolor{s5}{HTML}{FAA43A}%{FA6655}%
-\definecolor{s6}{HTML}{46AA5B}%60BD68}%{AADA57}%
-\definecolor{s7}{HTML}{F094C3}
-\definecolor{s8}{HTML}{A3A3A3}
-\definecolor{s9}{HTML}{000000}
-
-\pgfplotscreateplotcyclelist{set1}{
-  	s1, mark=square*,   mark size=1.2pt\\
-	s2, mark=*,         mark size=1.5pt\\
-	s3, mark=triangle*, mark size=1.7pt\\
-	s4, mark=diamond*,  mark size=1.7pt\\
-	s5, mark=square*,   mark size=1.2pt\\
-	s6, mark=*,         mark size=1.5pt\\
-	s7, mark=triangle*, mark size=1.7pt\\
-	s8, mark=diamond*,  mark size=1.5pt\\
-	s9, mark=square*,   mark size=1.2pt\\
+\pgfplotscreateplotcyclelist{plotcycle_1}{
+  	mycolor_1, mark=square*,   mark size=1.2pt\\
+	mycolor_2, mark=*,         mark size=1.5pt\\
+	mycolor_3, mark=triangle*, mark size=1.7pt\\
+	mycolor_4, mark=diamond*,  mark size=1.7pt\\
+	mycolor_5, mark=square*,   mark size=1.2pt\\
+	mycolor_6, mark=*,         mark size=1.5pt\\
+	mycolor_7, mark=triangle*, mark size=1.7pt\\
+	mycolor_8, mark=diamond*,  mark size=1.5pt\\
+	mycolor_9, mark=square*,   mark size=1.2pt\\
 }
 
 
-\pgfplotscreateplotcyclelist{setBW}{
+\pgfplotscreateplotcyclelist{plotcycle_BW}{
   	every mark/.append style={solid,fill=white}, mark=square*, mark size=1.2pt\\
 	every mark/.append style={solid,fill=white}, mark=*, mark size=1.5pt\\
 	every mark/.append style={solid,fill=white}, mark=triangle*, mark size=1.7pt\\
@@ -74,10 +140,11 @@
 %	black, mark=square*,   mark size=1.2pt\\
 }
 
-
+% longueur des major ticks
 \pgfmathsetlengthmacro\MajorTickLength{
 	\pgfkeysvalueof{/pgfplots/major tick length} * 0.75
 }
+% longueur des minor ticks
 \pgfmathsetlengthmacro\MinorTickLength{
 	\MajorTickLength * 0.5
 }
@@ -112,7 +179,7 @@
 	axis on top=false,%true,%
 	set layers=Bowpark,%
 	cycle multiindex* list={
-		set1
+		plotcycle_1
 		\nextlist
 		thick
 		\nextlist
@@ -131,93 +198,7 @@
 	legend cell align={left},%
 	legend style={line width=0.5pt}%
 }
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% légendes
-\newcommand{\legenddash}[1]{%
-	\raisebox{2pt}{\tikz{\draw[#1,solid,thick](0,0) -- (4mm,0);}}%
-}
-
-\def\lgdsqrsiz{1.442pt}
-\newcommand{\legendsquare}[1]{\raisebox{1.2pt}{\tikz{\fill[#1] (-\lgdsqrsiz , -\lgdsqrsiz) rectangle (\lgdsqrsiz , \lgdsqrsiz);}}}
-
-\newcommand{\legenddot}[1]{\raisebox{0.93pt}{\tikz{\fill[#1] (0.0mm,0.0mm) circle [radius=1.7pt];}}}
-
-\newcommand{\legendtriangle}[1]{\raisebox{1.5pt}{\tikz{\fill[#1] (0.0pt,2.2pt) -- (-1.9pt,-1.1pt) -- (1.9pt,-1.1pt);}}}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-\makeatletter
-\newcommand{\gettikzxy}[3]{%
-  \tikz@scan@one@point\pgfutil@firstofone#1\relax
-  \edef#2{\the\pgf@x}%
-  \edef#3{\the\pgf@y}%
-}
-
-\newcommand{\globalgettikzxy}[3]{%
-  \tikz@scan@one@point\pgfutil@firstofone#1\relax
-  \edef\@tempdima{\the\pgf@x}%
-  \edef\@tempdimb{\the\pgf@y}%
-  \global#2=\@tempdima%
-  \global#3=\@tempdimb%
-}
-
-\newcommand\getwidthofnode[2]{%
-    \pgfextractx{\pgf@xb}{\pgfpointanchor{#2}{east}}%
-    \pgfextractx{\pgf@xa}{\pgfpointanchor{#2}{west}}% 
-    \pgfmathsetlength{\pgf@xb}{\pgf@xb - \pgf@xa}%
-	\global#1=\pgf@xb%
-}
-
-\newcommand\getheightofnode[2]{%
-    \pgfextracty{\pgf@yb}{\pgfpointanchor{#2}{north}}%
-    \pgfextracty{\pgf@ya}{\pgfpointanchor{#2}{south}}% 
-    \pgfmathsetlength{\pgf@yb}{\pgf@yb - \pgf@ya}%
-	\global#1=\pgf@yb%
-}
-\makeatother
-
-
-% get row/column index in groupplot
-\makeatletter
-\newcommand{\currentrow}{\the\pgfplots@group@current@row}
-\newcommand{\currentcolumn}{\the\pgfplots@group@current@column}
-\newcommand{\totalplots}{\pgfplots@group@totalplots}
-\makeatother
-
-
-
-%https://tex.stackexchange.com/questions/141181/inverting-a-colormap-in-pgfplots
-\makeatletter
-\def\invertcolormap#1{%
-    \pgfplotsarraycopy{pgfpl@cm@#1}\to{custom@COPY}%
-    \c@pgf@counta=0
-    \c@pgf@countb=\pgfplotsarraysizeof{custom@COPY}\relax
-    \c@pgf@countd=\c@pgf@countb
-    \advance\c@pgf@countd by-1 %
-    \pgfutil@loop
-    \ifnum\c@pgf@counta<\c@pgf@countb
-        \pgfplotsarrayselect{\c@pgf@counta}\of{custom@COPY}\to\pgfplots@loc@TMPa
-        \pgfplotsarrayletentry\c@pgf@countd\of{pgfpl@cm@#1}=\pgfplots@loc@TMPa
-        \advance\c@pgf@counta by1 %
-        \advance\c@pgf@countd by-1 %
-    \pgfutil@repeat
-%\pgfplots@colormap@showdebuginfofor{#1}%
-}%
-\makeatother
-
-
-
-
-
-% chemin(s) des figures
-\graphicspath{{./figures/}}%,{../fig2/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % controle des objets flottants (figures, tables)
@@ -225,34 +206,9 @@
 \renewcommand{\bottomfraction}{0.5}  % autorise 50% page de graphique en bas
 \renewcommand{\floatpagefraction}{0.7}
 \renewcommand{\textfraction}{0.1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%\tikz@scan@one@point\pgfutil@firstofone#1\relax
-%\edef#2{\the\pgf@x}%
-%\edef#3{\the\pgf@y}%
 
-
-\newcommand\circlearcparameters[6]{%
-% INPUTS:
-%    #1: start coordinate, 
-%    #2: end coordinate, 
-%    #3: angle spanned by the arc (in degrees),
-% OUTPUTS:
-%    #4: start angle,
-%    #5: end angle,
-%    #6: arc radius.
-\gettikzxy{#1}{\axco}{\ayco}
-\gettikzxy{#2}{\bxco}{\byco}
-\pgfmathsetmacro\mxco{0.5*(\axco + \bxco)}%
-\pgfmathsetmacro\myco{0.5*(\ayco + \byco)}%
-\pgfmathsetmacro\abxco{\bxco-\axco}%
-\pgfmathsetmacro\abyco{\byco-\ayco}%
-\pgfmathsetmacro\lenab{veclen(\abxco,\abyco)}
-\pgfmathsetmacro\sinhalfangle{sin(0.5*#3)}
-\pgfmathsetmacro#6{0.5*\lenab/\sinhalfangle}
-\pgfmathsetmacro\mangle{-atan2(\abxco,\abyco)}
-\pgfmathsetmacro#4{\mangle - 0.5*#3}
-\pgfmathsetmacro#5{\mangle + 0.5*#3}
-%\draw[#4] #1 arc (\aangle:{\aangle + #3}:\arcradius) #5;
-%\node[red] at #1 {\convertto{mm}{\abxco},\abyco};%{\aangle, \lenab, \sinhalfangle, \arcradius};
-}
+\newlength{\imagewidth}
+\newlength{\imageheight}

@@ -1,64 +1,6 @@
 % Page style (header, footer) (memoir options)
 \def\headingsfont{\titlefont}%\sffamily}%
 
-% https://tex.stackexchange.com/questions/183973/preserve-memoir-headings-for-1-page
-% \makeatletter
-% \providecommand*{\righttopmark}{\expandafter\@rightmark\topmark\@empty\@empty}
-\makepagestyle{mypagestylezero} 
-\makeoddfoot{mypagestylezero}{}{}{} 
-\makeevenfoot{mypagestylezero}{}{}{} 
-\makeevenhead{mypagestylezero}{\thepage}{}{\headingsfont\small\leftmark}
-\makeoddhead{mypagestylezero}{\itshape\headingsfont\small\rightmark}{}{\thepage}
-\makepsmarks{mypagestylezero}{%
-	\nouppercaseheads
-	\createmark{chapter}{both}{nonumber}{}{ \ }%. \ }%
-	\createmark{section}{right}{shownumber}{} { \ }
-    
-    \createplainmark{bib}{both}{\bibname}
-    \createplainmark{toc}{both}{\contentsname}
-}%
-%\makeatother
-
-\copypagestyle{mypagestyle}{mypagestylezero}
-\makeheadrule{mypagestyle}{\textwidth}{\normalrulethickness} 
-% \makepsmarks{mypagestyle}{%
-% 	\nouppercaseheads
-% 	\createmark{chapter}{left}{nonumber}{}{. \ }
-% 	\createmark{section}{right}{nonumber}{} {. \ }
-% }%
-
-
-\copypagestyle{mypagestyleb}{mypagestyle}
-\makeoddfoot{mypagestyleb}{}{}{\thepage} 
-\makeevenfoot{mypagestyleb}{\thepage}{}{}
-\makeevenhead{mypagestyleb}{\headingsfont\small\scshape\leftmark}{}{}
-\makeoddhead{mypagestyleb}{}{}{\headingsfont\small\rightmark}
-
-
-
-\copypagestyle{mypagestylebiblio}{mypagestyleb}
-\makeoddhead{mypagestylebiblio}{}{}{\headingsfont\small\scshape\rightmark}
-
-
-
-
-\makepagestyle{mypagestylenew}
-\makeevenhead{mypagestylenew}{\thepage\hskip.5cm\vrule\hskip.5cm\leftmark}{}{} \makeoddhead{mypagestylenew}{}{}{\rightmark\hskip.5cm\vrule\hskip.5cm\thepage} 
-\makeatletter 
-\makepsmarks{mypagestylenew}{ 
-  \def\chaptermark##1{\markboth{% 
-  \ifnum \value{secnumdepth} < -1 %
-  	\if@mainmatter \chaptername\ \thechapter\ --- %
-  	\fi %
-  \fi ##1}{}} 
-  \def\sectionmark##1{\markright{% 
-  \ifnum \value{secnumdepth} < 0 %
-  	\thesection. \ %
-  \fi ##1}} } 
-\makeatother 
-
-
-
 
 \makepagestyle{myruledpagestyle} 
 %\makeevenhead{myruledpagestyle}{\liningnums{\thepage}}{}{\leftmark} \makeoddhead{myruledpagestyle}{\rightmark}{}{\liningnums{\thepage}}
@@ -87,22 +29,19 @@
 \makeatother 
 \makerunningwidth{myruledpagestyle}{\textwidth}%1.1\textwidth}%
 \makeheadposition{myruledpagestyle}{flushright}{flushleft}{flushright}{flushleft}
-%\makeheadrule{myruledpagestyle}{\textwidth}{\normalrulethickness} 
+%\makeheadrule{myruledpagestyle}{\textwidth}{\normalrulethickness} % adds horizontal line between header and page
 
 
 
 
 \copypagestyle{chapter}{empty}
-% \copypagestyle{chapter}{plain}
-% \makeoddfoot{chapter}{}{}{\thepage}
-
 
 
 \setsecnumdepth{subsubsection}
 
 %\mergepagefloatstyle{mergedstyle}{myruledpagestyle}{empty} % empty pagestyle on pages with only floats (figures, tables)
 
-\pagestyle{myruledpagestyle}%mypagestyle}%
+\pagestyle{myruledpagestyle}
 
 
 

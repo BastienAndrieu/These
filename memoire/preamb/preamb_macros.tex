@@ -1,3 +1,6 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MOTS, EXPRESSIONS
+
 %% Abbreviations
 \newcommand*{\ie}{i.e.\ }
 \newcommand*{\eg}{e.g.\ }
@@ -16,12 +19,6 @@
 \newcommand*{\brepvertex}{\brepentity{V}}
 
 %% Hyphenation rules for some words
-\hyphenation{res-pec-tively}
-\hyphenation{mono-ti-ca-lly}
-\hyphenation{hypo-the-sis}
-\hyphenation{para-me-ters}
-\hyphenation{sol-va-bi-li-ty}
-
 \hyphenation{in-té-res-se}
 
 
@@ -29,4 +26,18 @@
 \newcommand{\eng}[1]{\textit{#1}}
 
 % guillemets
-\newcommand{\guill}[1]{«~{#1}~»}
+\newcommand{\guillemets}[1]{«~{#1}~»}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FONCTIONS
+
+% macro for removing leading zeros
+%https://tex.stackexchange.com/questions/250804/remove-leading-zeroes-from-an-integer
+\def\stripzero#1{\expandafter\stripzerohelp#1}
+\def\stripzerohelp#1{\ifx 0#1\expandafter\stripzerohelp\else#1\fi}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
