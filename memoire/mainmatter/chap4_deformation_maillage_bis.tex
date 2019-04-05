@@ -9,25 +9,26 @@ Motivation
 	\item la précision et la vitesse de convergence du calcul dépendent fortement de la qualité (forme et taille) des éléments du maillage
 \end{enumerate}
 
+\section{Introduction/état de l'art/problématique}
 
-\section{Simulation numérique avec géométrie déformable}% [état de l'art]}
+\subsection{Simulation numérique avec une géométrie déformable}
 \begin{enumerate}
 	\item maillage volumique (fluide) conforme à l'interface
 	\begin{enumerate}
-		\item \label{item:methodo_bodyfitted_ALE} 1 seul maillage \anglais{body-fitted} avec formulation ALE (ref)
+		\item \label{item:methodo_bodyfitted_ALE} 1 seul maillage \anglais{body-fitted} avec formulation ALE \emph{(ref)}
 		\begin{itemize}
 			\item principe : frontière = maillage de l'interface, intérieur déformé de façon arbitraire
 			\item intérêt/avantages : \ldots
 			\item contraintes/inconvénients : 
 			\begin{itemize}
 				\item la qualité du maillage volumique dépend fortement de celle du maillage surfacique, surtout dans les régions proches de l'interface, où ont généralement lieu les phénomènes physiques les plus pertinents
-				\item la connectivité du maillage doit rester fixe
+				\item la connectivité du maillage doit rester fixe \emph{(à vérifier)}
 			\end{itemize}
 		\end{itemize}
 		
 		\item plusieurs maillages \anglais{body-fitted} qui se superposent
 		\begin{itemize}
-			\item méthode Chimère \cite{meakin1989, wang200}, \item FLUSEPA \cite{brenner1991}
+			\item méthode Chimère \cite{meakin1989, wang2000}, FLUSEPA \cite{brenner1991}
 			\item intérêt/avantages : 
 			\begin{itemize}
 				\item facilite la génération du maillage volumique lorsque la géométrie est complexe (\eg hyper-sustentateurs)
@@ -36,7 +37,7 @@ Motivation
 			\item contraintes/inconvénients : 
 			\begin{itemize}
 				\item nécessite de traiter les intersections entre les blocs de maillage
-				\item limité aux mouvements rigides (?)
+				\item limité aux mouvements rigides \emph{(à vérifier)}
 			\end{itemize}
 		\end{itemize}
 	\end{enumerate}
@@ -57,7 +58,7 @@ Dans cette thèse,
 \end{enumerate}
 
 
-\section{Optimisation de maillage surfacique}% [état de l'art]}
+\subsection{Optimisation de maillage surfacique}
 \begin{enumerate}
 	\item changements locaux de connectivité
 	\begin{enumerate}
@@ -77,4 +78,32 @@ Dans cette thèse,
 	\item on effectuera des reconnections locales qu'en dernier recours (remaillage)
 \end{enumerate}
 
-\section{Génération de maillage surfacique basé sur un modèle \brep}
+\subsection{Génération de maillage surfacique basé sur un modèle \brep}
+Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancée de front) 2d plan à des surfaces immergées/plongées dans $\reals^3$
+\begin{enumerate}
+	\item méthodes indirectes (Riemanniennes) : on travaille dans l'espace paramétrique en tenant compte de la métrique (anisotrope, Riemannienne) induite par la paramétrisation de façon à ce que le plongement du maillage dans $\reals^3$ respecte les critères prescrits
+	\begin{enumerate}
+		\item conforme à la topologie \brep\ : on exploite directement les paramétrisations locales (carreaux de surface) du modèle \brep\ \cite{borouchaki2000} (on maille d'abord les sommets, puis les arêtes et enfin les faces afin de garantir la conformité du maillage)
+		\begin{itemize}
+			\item intérêt/avantages : utilisation de méthodes 2d plan robustes et efficaces
+			\item contraintes/inconvénients : les arêtes \brep\ douces introduisent des contraintes supplémentaires sur le maillage, sans avoir de signification du point du vue du calcul EF/VF $\Rightarrow$ éléments de mauvaise qualité
+		\end{itemize}
+		\item trans-carreaux par (re-)paramétrisation globale : 
+			\begin{enumerate}
+				\item \cite{marcum1999} : %on part d'un maillage de référence conforme à la topologie \brep\ (\anglais{Physical Space Approximation} ou PSA). on plonge ce maillage de référence dans $\reals^2$ de façon à définir une paramétrisation globale linéaire par morceaux. on génère ensuite un maillage en ui
+				\item \cite{noel2002} : 
+				\item \cite{jones2004} : %on part d'un maillage de référence conforme à la topologie \brep. On choisit une face \brep\ de \textit{base}, dont l'espace paramétrique local sert de base pour construire un espace paramétrique global. Les faces \brep\ adjacentes sont ensuite plongées dans l'espace paramétrique global . Cette approche ne fonctionne que lorsque les domaines paramétriques des faces adjacentes ont des dimensions similaires
+			\end{enumerate}
+		\begin{itemize}
+			\item intérêt/avantages : lève les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes pour le calcul EF/VF
+			\item contraintes/inconvénients : 
+			\begin{itemize}
+				\item topologie : limité aux variétés ouvertes (avec un ou plusieurs bords)
+				\item géométrie : limité aux surfaces quasi-planes et régulières, on perd le lien avec la géométrie de la surface \brep
+				\item (méthodes pas suffisamment automatisées)
+			\end{itemize}
+			
+		\end{itemize}
+	\end{enumerate}
+	\item 
+\end{enumerate}
