@@ -1,7 +1,0 @@
-%%%%%%%%%%% NOTES BREP %%%%%%%%%%%
-
-*** Incompatibilités des contraintes CAO/calcul EF,VF
-- représentation CAO souvent trop détaillée, beacoup de détails de petites dimensions par rapport à la taille de maille prescrite pour le calcul EF/VF
-- génération de maillage sur BRep brute donne des zones de forte densité (=> augmente inutilement (ie sans gain de précision nécessaire) la taille du maillage et donc le coût de calcul), et des éléments de mauvaise qualité (=> dégrade la précision et la vitesse de convergence du calcul)
-=> nécessité de supprimer les détails incompatibles avec la carte de taille d'éléments (en dehors du cadre de cette thèse, on suppose que le modèle BRep initial est suffisamment propre, ie adapté à la génération du maillage initial)
-=> les arêtes BRep douces n'ont aucune signification pour le calcul EF/VF et peuvent donner lieu à une incompatibilité avec la carte de taille d'éléments lorsque le maillage est conforme au découpage en faces (abordé dans le chapitre "Déformation de maillage surfacique", section "Déformation de maillage trans-carreaux")
