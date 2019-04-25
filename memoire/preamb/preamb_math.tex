@@ -1,0 +1,167 @@
+% Math packages, notations
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
+\let\equation\gather \let\endequation\endgather
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{stmaryrd}
+\usepackage{cases}
+\usepackage{esint}
+\usepackage[overload]{empheq}%https://tex.stackexchange.com/questions/165685/subequations-and-array-in-braces
+
+\usepackage{mathrsfs}% script (mathscr}
+
+% *** TWEAK (NEGATIVE) SPACES *** 
+%https://tex.stackexchange.com/questions/67912/large-negative-spaces
+%https://tex.stackexchange.com/questions/9091/what-is-the-right-way-to-use-the-spacing-command/9092
+
+%https://tex.stackexchange.com/questions/2783/bold-calligraphic-typeface
+\DeclareMathAlphabet\matholdcal{OMS}{cmsy}{m}{n}
+
+%https://tex.stackexchange.com/questions/247531/how-to-use-boondox-calligraphic-font-in-latex-without-replacing-mathcal-command/247819
+%https://ctan.org/pkg/mathalfa
+\usepackage[
+scr=boondoxo, scrscaled=1.05, 
+cal=zapfc, calscaled=1.18%,
+%frak=mma, frakscaled=1.,
+]{mathalfa}
+
+%https://tex.stackexchange.com/questions/234676/new-theorem-style
+%https://en.wikibooks.org/wiki/LaTeX/Theorems
+\newtheoremstyle%
+   {mythm}% name of the style to be used
+   {\topsep}% measure of space to leave above the theorem. E.g.: 3pt
+   {\topsep}% measure of space to leave below the theorem. E.g.: 3pt
+   {\itshape}% font to use in the body of the theorem
+   {0pt}% measure of space to indent
+   {\bfseries\scshape}% head font
+   {~---}% punctuation between head and body
+   { }%\newline}% space after theorem head; " " = normal interword space
+   {}%{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}% Manually specify head
+\theoremstyle{mythm}
+
+\newtheorem{theoreme}{Théorème}[chapter]
+\newtheorem{propriete}{Propriété}[chapter]
+\newtheorem{definition}{Définition}[chapter]
+
+
+% Notations
+\newcommand*{\rank}[1]{\mathrm{rang}{#1}}
+\newcommand*{\determinant}[1]{\left\lvert {#1} \right\rvert}
+\newcommand*{\inv}[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
+\newcommand*{\inverse}[1]{\ensuremath{{#1} ^{-1}}} % inverse matrix
+\newcommand*{\transpose}[1]{\ensuremath{{#1} ^\mathsf{T}}} % transpose matrix
+\newcommand*{\dotprod}[2]{ \transpose{#1} {#2} } % dot product
+\newcommand*{\crossprod}[2]{ {#1} \times {#2} } % cross product
+\newcommand*{\normtwo}[1]{ \left\| {#1} \right\| } % Euclidean norm
+\newcommand*{\norminf}[1]{ \left\| {#1} \right\|_{\infty} } % infinity norm
+\newcommand*{\vit}[1]{\boldsymbol{#1}} % greek letter vector
+\newcommand*{\vrm}[1]{\mathbf{#1}} % latin letter vector
+\newcommand*{\unitized}[1]{ \frac{#1}{\normtwo{#1}} }
+\newcommand*{\scalprod}[2]{\left \langle {#1}, {#2} \right \rangle}
+\newcommand*{\modulo}[1]{\pmod{#1}}%{\left[ {#1} \right]}
+
+\DeclareMathOperator*{\argmin}{\arg\!\min} % argmin
+
+\newcommand*{\bigO}[1]{O\!\left( {#1} \right)} % big-O
+\newcommand*{\littleo}[1]{o\!\left( {#1} \right)} % little-o
+
+% sets
+\newcommand*{\reals}{\ensuremath{\mathbb{R}}}
+\newcommand*{\integers}{\ensuremath{\mathbb{N}}}
+\newcommand{\family}[4]{\left\{{#1}_{#2}\right\}_{{#2}={#3},\ldots,{#4}}}
+\newcommand{\ffamily}[7]{\left\{{#1}_{#2,#5}\right\}_{\substack{{#2}={#3},\ldots,{#4}\\ \substack{{#5}={#6},\ldots,{#7}}}}}
+\newcommand{\polyspace}[1]{\Pi_{#1}}%\mathbb{R}_{#1}[x]}
+\newcommand{\Ltwospace}{L^2\chebinterval}%\mathcal{L}_2\chebinterval}
+\newcommand*{\contdiff}[1]{\ensuremath{C^{#1}}}%{\matholdcal{C}^{#1}\!}
+\newcommand*{\contgeom}[1]{\ensuremath{G^{#1}}}%{\matholdcal{G}^{#1}\!}
+
+\newcommand*{\bx}{\vit{x}}
+\newcommand*{\bu}{\vit{u}}
+\newcommand*{\bd}{\vit{\delta}}
+\newcommand*{\bg}{\vit{\gamma}}
+\newcommand*{\bgw}{\bg_{\mkern-2muw}}
+\newcommand*{\bp}{\vit{\psi}}
+\newcommand*{\bpw}{\bp_{\mkern-2muw}}
+\newcommand*{\bl}{\vit{\lambda}}
+\renewcommand*{\bs}{\vit{\sigma}} % originally backslash in typewriter font
+\newcommand*{\bsu}{\bs_{\mkern-3muu}}
+\newcommand*{\bsv}{\bs_{\mkern-2muv}}
+
+
+\newcommand*{\unv}{\vrm{n}} % unit normal vector
+\newcommand*{\nv}{\hat{\unv}} % normal vector
+
+\newcommand*{\eos}{\vit{\phi}} % envelope of spheres
+
+\newcommand{\colvec}[1]{\begin{pmatrix} #1 \end{pmatrix}} % vector printed in column
+\newcommand{\rowvec}[1]{ \transpose{\begin{pmatrix} #1 \end{pmatrix}} } % vector printed in row (transposed column)
+
+% Differential operators
+\newcommand*{\dfdx}[2]{\frac{\mathrm{d}}{\mathrm{d}{#2}}{#1}}
+\newcommand*{\partialdfdx}[2]{\frac{\partial}{\partial{#2}}{#1}}
+\newcommand*{\dkfdxk}[3]{\frac{\mathrm{d}^{#3}}{\mathrm{d}{#2}^{#3}}{#1}}
+\newcommand*{\deriv}[2]{{#1}^{({#2})}}
+\newcommand*{\prim}[2]{{#1}^{(\raisebox{0.2ex}{$\scriptscriptstyle-\!$}{#2})}}
+\newcommand*{\jacobian}[1]{\mathbf{J}_{#1}}
+\newcommand*{\gradient}[1]{\nabla \! {#1}}
+\newcommand*{\hessian}[1]{\mathbf{H}_{#1}}
+\newcommand*{\divergence}[1]{\nabla \cdot {#1}}%\mathrm{div}{#1}}
+\newcommand*{\dx}[1]{\mathrm{d}{#1}}
+
+
+
+% Condition number
+\newcommand*{\cond}[1]{\mathrm{cond} \! \left( {#1} \right)}
+
+% Differential geometry
+\newcommand{\fff}{\mathbf{I}}     % first fundamental form
+\newcommand{\sffc}{I\mkern-4.8muI} % second fundamental form coefs
+\newcommand{\sff}{\mathbf{I\!I}} % second fundamental form
+
+
+
+
+%% Chebyshev polynomials
+% Reference interval
+\newcommand*{\chebinterval}{\ensuremath{\left[ -1, 1 \right]}}
+\newcommand*{\chebopeninterval}{\ensuremath{\left] -1, 1 \right[}}
+\newcommand*{\series}[1]{S{#1}}
+\newcommand*{\truncseries}[2]{P_{#2}{#1}}
+\newcommand*{\interpolant}[2]{I_{#2}{#1}}
+\newcommand*{\interpderiv}[3]{D_{#2}^{(#3)}{\!#1}}%\mathcal{D}
+%\newcommand*{\interpprim}[2]{J_{#2}{#1}}
+\newcommand*{\interpprim}[2]{D_{#2}^{(\raisebox{0.2ex}{$\scriptscriptstyle-\!$}1)}{\!#1}}
+
+% Reference interval for Bernstein polynomials
+\newcommand*{\berninterval}{\left[ 0, 1 \right]}
+
+%% System of equations
+\newenvironment{eqsys}
+{\left\lbrace\begin{array}{@{}l@{}}}
+{\end{array}\right.}
+%ex :
+%\begin{equation}
+%	\begin{eqsys}
+%		y_1 = a_1 x + b_1 \\
+%		y_2 = a_2 x + b_2
+%	\end{eqsys}
+%\end{equation}
+
+
+
+
+
+
+% Encircled text
+\newcommand{\pgftextcircled}[1]{                                                                    
+    \setbox0=\hbox{#1}%
+    \dimen0\wd0%
+    \divide\dimen0 by 2%
+    \begin{tikzpicture}[baseline=(a.base)]%
+        \useasboundingbox (-\the\dimen0,0pt) rectangle (\the\dimen0,1pt);
+        \node[circle,draw,outer sep=0pt,inner sep=0.1ex] (a) {#1};
+    \end{tikzpicture}
+}
+

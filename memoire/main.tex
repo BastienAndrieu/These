@@ -1,0 +1,65 @@
+\documentclass[11pt,a4paper,twoside,openright]{memoir}
+
+
+%%% PREAMBULES %%%
+\input{preamb/preamb_main}
+%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%% AVANT-PROPOS %%
+\frontmatter
+\pagenumbering{roman}
+
+\include{frontmatter/remerciements}
+\include{frontmatter/abstract}
+\include{frontmatter/resume}
+%%%%%%%%%%%%%%%%%
+
+
+%% TABLE DES MATIERES %%
+{
+  \hypersetup{linkcolor=black}
+  \microtypesetup{protrusion=false} % disables protrusion locally in the document
+  \tableofcontents*
+  \microtypesetup{protrusion=true} % disables protrusion locally in the document
+}
+%%%%%%%%%%%%%%%%%
+
+
+%% CHAPITRES %%
+\mainmatter
+\include{mainmatter/introduction}
+
+\include{mainmatter/chap1_algorithme_general}
+
+\include{mainmatter/chap2_methode_pseudo_spectrale}
+
+%\include{mainmatter/chap3...}
+
+\include{mainmatter/chap4_deformation_maillage}
+\include{mainmatter/chap4_deformation_maillage_bis}
+
+%%%%%%%%%%%%%%%%%
+
+
+%% ANNEXES %%
+\appendix
+
+
+%%%%%%%%%%%%%%%%%
+
+
+
+%% BIBLIOGRAPHIE %%
+\backmatter
+\cleardoublepage
+\phantomsection
+\nocite{*}% à retirer à la fin!!!
+\bibliographystyle{mybibstyle}
+\bibliography{biblio/spectral_chebyshev,biblio/mesh_generation,biblio/mesh_optimization,biblio/cad,biblio/deformable_geometry,biblio/interface_propagation,biblio/intersection}
+%%%%%%%%%%%%%%%%%
+
+
+\end{document}

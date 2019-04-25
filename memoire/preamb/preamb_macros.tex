@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MOTS, EXPRESSIONS
+
+%% Abbreviations
+\newcommand*{\ie}{i.e.\ }
+\newcommand*{\eg}{e.g.\ }
+\newcommand*{\cf}{cf.~}
+\newcommand*{\etc}{etc.}
+
+%% Commonly used words
+\newcommand{\brep}{BRep}
+
+%% Notations
+\newcommand*{\brepentity}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand*{\brepbody}{\brepentity{B}}
+\newcommand*{\brepshell}{\brepentity{S}}
+\newcommand*{\brepface}{\brepentity{F}}
+\newcommand*{\brepwire}{\brepentity{W}}
+\newcommand*{\brepedge}{\brepentity{E}}
+\newcommand*{\brepvertex}{\brepentity{V}}
+
+\newcommand*{\ddl}{\ensuremath{\mathrm{dd}\ell}}
+
+%% Hyphenation rules for some words
+\hyphenation{in-té-res-se}
+
+
+% mots anglais
+\newcommand{\anglais}[1]{\textit{#1}}
+
+% guillemets
+\newcommand{\guillemets}[1]{«~{#1}~»}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FONCTIONS
+
+% macro for removing leading zeros
+%https://tex.stackexchange.com/questions/250804/remove-leading-zeroes-from-an-integer
+\def\stripzero#1{\expandafter\stripzerohelp#1}
+\def\stripzerohelp#1{\ifx 0#1\expandafter\stripzerohelp\else#1\fi}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

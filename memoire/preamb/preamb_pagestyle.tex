@@ -1,0 +1,47 @@
+% Page style (header, footer) (memoir options)
+\def\headingsfont{\titlefont}%\sffamily}%
+
+
+\makepagestyle{myruledpagestyle} 
+%\makeevenhead{myruledpagestyle}{\liningnums{\thepage}}{}{\leftmark} \makeoddhead{myruledpagestyle}{\rightmark}{}{\liningnums{\thepage}}
+\makeevenhead{myruledpagestyle}{\thepage}{}{\leftmark} \makeoddhead{myruledpagestyle}{\rightmark}{}{\thepage}
+\makeatletter
+\makepsmarks{myruledpagestyle}{ 
+  \nouppercaseheads
+  \def\chaptermark##1{\markboth{% 
+    {\small\headingsfont%
+    \ifnum \value{secnumdepth} > -1 %
+      \if@mainmatter %
+      	\ % \chaptername\ \thechapter\ --- % 
+      \fi %
+    \fi %
+    \scshape ##1}}{}%
+  } 
+  \def\sectionmark##1{\markright{% 
+    {\small\headingsfont\itshape%
+    \ifnum \value{secnumdepth} > 0 %
+    	\thesection \ %. \ % 
+    \fi %
+    ##1}}}
+    \createplainmark{bib}{both}{\small\headingsfont\scshape\bibname}
+    \createplainmark{toc}{both}{\small\headingsfont\scshape\contentsname}
+}
+\makeatother 
+\makerunningwidth{myruledpagestyle}{\textwidth}%1.1\textwidth}%
+\makeheadposition{myruledpagestyle}{flushright}{flushleft}{flushright}{flushleft}
+%\makeheadrule{myruledpagestyle}{\textwidth}{\normalrulethickness} % adds horizontal line between header and page
+
+
+
+
+\copypagestyle{chapter}{empty}
+
+
+\setsecnumdepth{subsubsection}
+
+%\mergepagefloatstyle{mergedstyle}{myruledpagestyle}{empty} % empty pagestyle on pages with only floats (figures, tables)
+
+\pagestyle{myruledpagestyle}
+
+
+

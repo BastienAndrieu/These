@@ -1,0 +1,33 @@
+\newcommand{\figEoBBrep}[3]{%#1 : indice de figure, #2 : x ancrage, #3 :y ancrage
+\DTLsetseparator{,}%
+\DTLloaddb[noheader,keys={x,y,a}]{dbverts}{figures/data/EoB_BRep/verts#1.dat}%
+%
+\begin{scope}[shift={({#2},{#3})}]
+	\clip (0.06,0.06) rectangle (0.96,0.9);
+	%%% FACES
+	\node[img] (brep#1) at (0,0) {\includegraphics[width=\imagewidth]{figures/images/EoB_BRep/shell#1}};
+	%%% HIDDEN EDGES
+	\node[img] at (0,0) {\includegraphics[width=\imagewidth]{figures/images/EoB_BRep/edges_hidden#1}};
+	%%% HIDDEN VERTICES
+	\DTLforeach*{dbverts}{\locx=x, \locy=y, \loca=a}%
+	{%
+		\ifnum \loca = 0
+			\fill[black] (\locx,\locy) circle (1.0pt);
+		\fi
+	}%
+	%%% FACES (semi-transparent to mask hidden edges & verts)
+	{\transparent{\trmask}%
+		\node[img] at (0,0) {\includegraphics[width=\imagewidth]{figures/images/EoB_BRep/shell#1}};
+	}%
+	%%% VISIBLE EDGES
+	\node[img] at (0,0) {\includegraphics[width=\imagewidth]{figures/images/EoB_BRep/edges_visible#1}};
+	%%% VISIBLE VERTICES
+	\DTLforeach*{dbverts}{\locx=x, \locy=y, \loca=a}%
+	{%
+		\ifnum \loca = 1
+			\fill[black] (\locx,\locy) circle (1.0pt);
+		\fi
+	}%
+\end{scope}
+\DTLgdeletedb{dbverts}%
+}

@@ -1,0 +1,90 @@
+\chapter{Déformation de maillage surfacique}
+
+\textit{Objectif du chapitre: on veut mettre au point une méthodologie pour déformer un maillage de l'interface en propagation en utilisant le modèle \brep\ dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformables.}
+
+%Simulations en 3d nécessitent maillage volumique dont l'interface représente la frontière déformable
+
+\section{État de l'art}
+\subsection{Simulation numérique dans une géométrie déformable}
+maillage volumique conforme (body-fitted + ALE, Chimère/FLUSEPA) / non-conforme (IBM \ldots)\\
+
+\subsection{Génération de maillage surfacique basé sur un modèle \brep}
+\begin{itemize}
+	\item méthodes indirectes (\ie Riemanniennes)
+	\begin{itemize}
+		\item face par face \cite{borouchaki2000}
+		\item paramétrisation globale \cite{marcum1999, noel2002, jones2004}
+	\end{itemize}
+	\item méthodes (frontales) directes \cite{foucault2013}
+\end{itemize}
+
+\subsection{Optimisation/Adaptation de maillage surfacique}
+\begin{itemize}
+	\item changements locaux de connectivité
+	\begin{itemize}
+		\item bascule d'arête
+		\item contraction d'arête
+	\end{itemize}
+	\item bouger de n\oe ud (direct, \ie $xyz$ ou indirect, \ie $uv$)
+	\begin{itemize}
+		\item méthodes heuristiques (lissage laplacien, analogies physiques \cite{farhat1998}, interpolation (IDW, RBF, \ldots) \ldots)
+		\item lissage basé sur l'optimisation d'une métrique de qualité \cite{freitag1995, canann1998, jiao2008, gargallo2014}
+	\end{itemize}
+\end{itemize}
+
+\section{Problématiques}
+contraintes :
+\begin{enumerate}
+	\item ALE $\Rightarrow$ préserver la connectivité du maillage autant que faire se peut (\ie déformation pure)
+	%\item le maillage doit représenter fidèlement l’interface (⇒ sommets localisés exactement sur la surface BRep) et ses caractéristiques géométriques (arêtes vives, coins, . . . ) (⇒ contraintes sur les nœuds et arêtes du maillage dans ces régions) (→ persistance des entités BRep?)
+	\item \label{item:maillage_fidele} le maillage doit être une approximation géométrique fidèle de l’interface (dont la géométrie \guillemets{exacte} est définie par le modèle \brep)
+	\begin{itemize}
+		\item solution la plus simple : le maillage interpole la surface \brep\ aux n\oe uds (qui sont alors localisés sur des entités \brep\ et donc sur un ou plusieurs carreaux de surface) $\Rightarrow$ l'écart de corde doit être contrôlé (taille d'élément dicté par le rayon de courbure local, maillage explicite des caractéristiques/singularités géométriques (arêtes vives, coins, \ldots))
+	\end{itemize}
+	\item maintenir une bonne qualité de maillage (métrique à définir suivant la méthode de calcul) $\Rightarrow$ lissage/optimisation (par déplacements tangentiels pour respecter la contrainte \ref{item:maillage_fidele})
+\end{enumerate}
+
+
+\subsection{Lien entre le maillage et le modèle \brep}
+(Solution à la contrainte \ref{item:maillage_fidele})\par
+A chaque n\oe ud du maillage sont associés
+\begin{itemize}
+	\item un pointeur vers l'entité \brep\ qui le supporte (sommet, arête ou face)
+	\item un jeu de coordonnées paramétriques (\ie un point $(u,v)$ pour chaque carreau de surface associé à l'entité \brep\ de support)\footnote{Rappel : les courbes d'intersection ne sont pas paramétrisées directement mais évaluées de manière procédurale en interrogeant les deux carreaux de surface concernés. Les points d'intersection (qui décrivent les sommets \brep) sont repérés dans l'espace paramétrique de chaque carreau de surface concerné.}
+\end{itemize}
+Les coordonnées $(x,y,z)$ d'un n\oe ud sont alors obtenues en évaluant un ou plusieurs carreaux de surfaces, ce qui garantit que le n\oe ud repose exactement sur la surface \brep\ (à condition que les coordonnées $(u,v)$ soient situées à l'intérieur ou sur le bord du domaine paramétrique des faces \brep\ concernées).
+
+
+\section{Déformation de maillage conforme aux faces \brep}
+\subsection{Limitations}
+\begin{itemize}
+	\item les arêtes \brep\ douces introduisent des contraintes supplémentaires sur le maillage, sans avoir de signification du point du vue du calcul EF/VF $\Rightarrow$ éléments de mauvaise qualité
+	\item problème de la persistance des entités \brep
+\end{itemize}
+$\Rightarrow$ maillage \textit{trans-carreaux}
+
+
+\section{Déformation de maillage trans-carreaux}
+\subsection{Construction d'une structure d'hypergraphe}
+Structure intermédiaire qui conserve la définition du modèle \brep\ sous-jacent \cite{foucault2008}\\
+Faces adjacentes qui forment une région surfacique de continuité \contgeom{1} rassemblées dans une \textit{hyper-face}\\
+Arêtes adjacentes qui forment une branche de courbe de continuité \contgeom{1} rassemblées dans une \textit{hyper-arête}\\
+Les n\oe uds du maillage peuvent traverser les arêtes douces intérieures à une hyper-face\\
+Les hyper-arêtes sont des listes chaînées de (co-)arêtes \brep\ (potentiellement cycliques).
+Dans le maillage, elles sont matérialisées par des chaînes d'arêtes dont les n\oe uds sont contraints (1 seul degré de liberté pour les n\oe uds intérieurs, 0 pour les éventuels n\oe uds aux extrémités)
+
+\subsection{\guillemets{Transition} d'un instant au suivant}
+
+\subsubsection{Correspondance des hypergraphes}
+\guillemets{événements} possibles 
+
+\subsubsection{Régénération du maillage contraint}%des hyper-arêtes}
+\begin{itemize}
+	\item n\oe uds avec 0 degré de liberté $\to$ coordonnées $(x,y,z)$ du sommet \brep\ associé (\guillemets{coin})
+	\item n\oe uds avec 1 degré de liberté $\to$ régénération des chaînes (hyper-arêtes)
+\end{itemize}
+
+\subsubsection{\guillemets{Pré-déformation}}
+
+\subsection{Optimisation de maillage trans-carreaux}
+méthode directe avec re-projection sur hyper-face/arête

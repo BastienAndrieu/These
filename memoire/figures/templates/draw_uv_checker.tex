@@ -1,0 +1,17 @@
+\newcommand{\drawUVchecker}[2]{%
+	% #1 : ncells
+	% #2 : fill color
+	\pgfmathsetmacro\cellsize{2.0/#1}
+	\foreach \loci in {1,...,#1}
+	{%
+		\pgfmathsetmacro\locxi{-1 + (\loci-1)*\cellsize}%
+		\foreach \locj in {1,...,#1}
+		{%
+			\pgfmathsetmacro\locyj{-1 + (\locj-1)*\cellsize}%
+			\pgfmathparse{mod(\loci + \locj,2)==0?1:0}
+		    \ifnum\pgfmathresult>0
+		    	\fill[#2] (\locxi,\locyj) rectangle ++ (\cellsize,\cellsize);
+		    \fi
+		}%
+	}%
+}%

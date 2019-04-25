@@ -1,0 +1,75 @@
+\chapter[Méthode d'ordre élevé pour le suivi d'un carreau de surface]{Méthode d'ordre élevé pour le suivi d'un seul carreau de surface}
+\label{chap:methode_ps}
+
+\section{Discrétisation spectrale en espace}
+\subsection{État de l'art}
+\subsection{Polynômes de Chebyshev}
+\subsection{Représentation de surfaces}
+
+\section{Intégration temporelle}
+\subsection{Advection dans un champ de vecteurs vitesse donné}
+Intégration explicite de la vitesse aux marqueurs lagrangiens (typiquement Runge-Kutta à l'ordre 4)
+
+\subsection{Approximation de l'enveloppe des sphères}% partielle}
+Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque marqueur lagrangien , pas de temps $\Delta t$
+\begin{enumerate}
+	\item transformation directe (de l'espace physique vers l'espace spectral) pour construire les polynômes d'interpolation du vecteur position et de la vitesse normale
+	\item construction des polynômes dérivés 
+	\item transformation inverse pour évaluer les dérivées aux n\oe uds CGL $(u_i,v_j)$
+	\item calcul de la normale 
+	\begin{equation}
+		\unv = \frac{1}{\sqrt{\determinant{\fff}}} \crossprod{\bsu}{\bsv}
+	\end{equation}
+	\item calcul de la composante tangentielle du déplacement vers l'EdS
+	\begin{equation}
+		\vrm{w} = \frac{1}{\determinant{\fff}} 
+		\left(
+			\left( \nu_v I_{2,1} - \nu_u I_{2,2} \right)\bsu + 
+			\left( \nu_u I_{2,1} - \nu_v I_{1,1} \right)\bsv
+		\right)
+	\end{equation}
+	\item on pose $\tau = \min\left\{\Delta t, \displaystyle\frac{\lambda}{\displaystyle\max_{i,j} \normtwo{\vrm{w}_{i,j}^{(k)} }} \right\}$ ($\lambda \leq 1$) et on avance dans le temps d'un pas $\tau$
+	\begin{equation}
+		\bx_{i,j}^{(k+1)} = \bx_{i,j}^{(k)} + \tau \nu_{i,j}^{(k)} 
+		\left( 
+			%\tau \vrm{w}_{i,j} + \sqrt{1 - \tau^2 \vrm{w}_{i,j}^2} \unv_{i,j}^{(k)}
+			\tau \vrm{w}_{i,j}^{(k)} + \sqrt{1 - \tau^2 \normtwo{\vrm{w}_{i,j}^{(k)}}^2} \unv_{i,j}^{(k)}
+		\right)
+	\end{equation}
+\end{enumerate}
+
+\section{Amélioration de la stabilité}
+\subsection{Réduction de l'erreur d'aliasing}
+méthode proposée par \cite{rahimian2015} difficile à appliquer dans notre cas car 
+\begin{enumerate}
+	\item les carreaux de surface ont un bord, 
+	\item l'espacement non-uniforme des marqueurs lagrangiens (images des n\oe uds CGL) impose une forte contrainte CFL sur leurs déplacements
+	
+\end{enumerate}
+
+\subsection{Prévention des singularités géométriques}
+
+%singularité $\Leftrightarrow \determinant{\fff} = 0$ ($\Rightarrow$ normale indéfinie)
+%Définition singularité
+%\begin{itemize}
+%	\item paramétrique : $\determinant{\fff}(u,v) = 0 \Leftrightarrow \rank{\jacobian{\bs}(u,v)} < 2$
+%	\item géométrique : 
+%\end{itemize}
+2 types de singularités (\cite[p.320]{patrikalakis2009}) :
+\begin{itemize}
+	\item points irréguliers (plan tangent non défini)
+	\item auto-intersections (non-injectivité de la paramétrisation) : ne pose pas de problème de stabilité numérique mais viole la définition de variété
+\end{itemize}
+
+\begin{itemize}
+	\item \cite{jiao2001} (en 2D, \ie l'interface est une courbe) : 
+	\item \cite{farouki1986} donne les conditions pour qu'une interface (représentée par une mosaïque de carreaux paramétriques) propagée à vitesse normale uniforme devienne localement singulière
+\end{itemize}
+
+pistes de résolution
+\begin{enumerate}
+	\item approximation non dégénérée \cite{farouki1986}
+	\item tracé des courbes iso-courbure critique \cite[chap.8]{patrikalakis2009} pour redéfinir les carreaux de surfaces concernés
+\end{enumerate}
+
+

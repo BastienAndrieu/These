@@ -1,0 +1,84 @@
+\def\chapterabstract{}
+\chapter*{Unnumbered chapter}
+\chaptermark{Unnumbered chapter}
+\addcontentsline{toc}{chapter}{Unnumbered chapter}
+\printskip \lipsum[1-5]
+
+
+\begin{figure}
+  \vspace{\onelineskip}
+  \null\hfill\parbox{0.48\linewidth}{%
+    \centering
+	\begin{tikzpicture}
+		\begin{semilogyaxis}[%\begin{loglogaxis}[%
+			width=0.95\linewidth, height=0.9\linewidth,%
+			%xmin=1.0e0, xmax=1.0e2, 
+			xmin=0, xmax=80,%
+			ymin=1.0e-16, ymax=1.0e1,%
+			grid=both,%
+			xlabel={$N$},%
+			ylabel={$\left \| \truncseries{f}{N} - f \right \|_{\infty} / \left \| f \right \|_{\infty}$},%
+			xtick distance=20,%
+%			ytick={1e-15,1e-10,1e-5,1e0},%
+			ytickten = {-15,-10,-5,0},
+			legend pos=south west,%
+			legend style={font=\small},%
+			samples=100%
+		]%
+		\addplot+ table[x index=0, y index=1] {figures/data/convergence_f.dat}; 
+		\addplot+ table[x index=0, y index=2] {figures/data/convergence_f.dat}; 
+		\addplot+ table[x index=0, y index=3] {figures/data/convergence_f.dat}; 
+%		\addplot+[dashed, color=black, no marks, very thick][domain=2.2:70.0] {2.0*exp(-0.5*x)};
+		\addplot+[dashed, color=black, no marks, very thick][domain=25:55] {1e4*exp(-0.5*x)};
+		\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5N}$}}
+		\end{semilogyaxis}%\end{loglogaxis}
+	\end{tikzpicture}
+  }\hfill
+  \parbox{0.48\linewidth}{%
+    \centering
+	\begin{tikzpicture}
+		\begin{semilogyaxis}[%\begin{loglogaxis}[%
+			width=0.95\linewidth, height=0.9\linewidth,%
+			%xmin=1.0e0, xmax=1.0e2, 
+			xmin=0, xmax=80,%
+			ymin=1.0e-16, ymax=1.0e1,%
+			grid=major,%both,%
+			xlabel={$N$},%
+			ylabel={$\left \| \truncseries{f}{N} - f \right \|_{\infty} / \left \| f \right \|_{\infty}$},%
+			xtick distance=20,%
+			minor x tick num={4},%
+%			ytick={1e-15,1e-10,1e-5,1e0},%
+			ytickten = {-15,-10,-5,0},
+			minor ytick = {1e-14, 1e-13, 1e-12, 1e-11, 1e-9, 1e-8, 1e-7, 1e-6, 1e-4, 1e-3, 1e-2, 1e-1},
+			legend pos=south west,%
+			legend style={font=\small},%
+			samples=100,%
+			cycle multiindex* list={
+				set2
+				\nextlist
+				thick
+				\nextlist
+				mark options={scale=.85}%
+			}
+		]%
+		\addplot+ table[x index=0, y index=1, color=mycl1] {figures/data/convergence_f.dat}; 
+		\addplot+ table[x index=0, y index=2, color=mycl2] {figures/data/convergence_f.dat}; 
+		\addplot+ table[x index=0, y index=3, color=mycl3] {figures/data/convergence_f.dat}; 
+%		\addplot+[dashed, color=black, no marks, very thick][domain=2.2:70.0] {2.0*exp(-0.5*x)};
+		\addplot+[dashed, color=black, no marks, very thick][domain=25:55] {1e4*exp(-0.5*x)};
+		\legend{{$f$},{$f'$},{$f''$},{$e^{-0.5N}$}}
+		\end{semilogyaxis}%\end{loglogaxis}
+	\end{tikzpicture}
+  }\hfill\null
+  \vspace{\onelineskip}%\hrule
+  \null\hfill\parbox[t]{0.48\linewidth}{%
+  	\caption{Color cycle 1.}%
+  	\label{fig:color_cycle1}%
+  }\hfill
+  \parbox[t]{0.48\linewidth}{%
+    \caption{Color cycle 2.}%
+    \label{fig:color_cycle2}%
+  }\hfill\null
+\end{figure}
+
+\lipsum[6-30]

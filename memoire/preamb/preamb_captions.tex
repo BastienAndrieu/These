@@ -1,0 +1,28 @@
+% Format captions (figures, tables, ...) (memoir options)
+\captiondelim{\space\textendash\space}%$\mid$\space}%
+\captionnamefont{\small\scshape}%\bfseries}
+\captiontitlefont{\small\itshape}
+\hangcaption
+
+%\renewcommand{\figurename}{Fig.}
+
+%\usepackage{subfig}
+\providecommand\subfigureautorefname{Figure}
+\newsubfloat{figure}% Allow subfloats in figure environment (subfigures)
+
+\subcaptionsize{\footnotesize}
+\subcaptionlabelfont{\normalfont}
+\subcaptionfont{\itshape}
+
+% Blank footnotes 
+%https://tex.stackexchange.com/questions/30720/footnote-without-a-marker
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+\tightsubcaptions
+%\loosesubcaptions
