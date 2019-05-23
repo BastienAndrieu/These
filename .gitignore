@@ -3,6 +3,9 @@
 *.bbl
 *.blg
 *.brf
+*.cb
+*.cb2
 *.log
+*.out
 *.pyc
 *.synctex.gz
