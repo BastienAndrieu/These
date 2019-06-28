@@ -1,6 +1,6 @@
 \chapter{Adaptation d'un maillage de surface dynamique}
 
-\textit{Objectif du chapitre: on veut mettre au point une méthodologie pour déformer un maillage de l'interface en propagation en utilisant le modèle \brep\ dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformables.}
+\textit{Objectif du chapitre: on veut mettre au point une méthodologie pour déformer un maillage de l'interface en propagation en utilisant le modèle \brep\ dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformable.}
 
 \par\bigskip
 
@@ -53,7 +53,7 @@ Motivation
 Dans cette thèse,
 \begin{enumerate}
 	\item on ne traite que le maillage (surfacique) de l'interface
-	\item on se concentre sur des maillages triangulaires linéaires par morceaux, mais une extension aux maillages hybrides et courbes envisageable
+	\item on se concentre sur des maillages triangulaires linéaires par morceaux, mais une extension aux maillages hybrides et courbes (high-order) est envisageable
 \end{enumerate}
 
 
@@ -75,7 +75,7 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 			\begin{enumerate}
 				\item \cite{marcum1999} :
 				\begin{enumerate}
-					\item on construit d'abord un maillage de référence conforme à la topologie \brep\ de l'ensemble des faces regroupées
+					\item on construit d'abord un maillage de référence conforme à la topologie \brep\ d'un ensemble de faces regroupées
 					\item \label{item:bouche_trous} on bouche artificiellement les éventuels \guillemets{trous} afin qu'il n'y ait qu'un seul bord
 					\item on plonge ce maillage dans un espace paramétrique global :
 					\begin{itemize}
@@ -147,22 +147,29 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 
 \par\bigskip
 le maillage doit être une approximation géométrique fidèle de l’interface (dont la géométrie
-« exacte » est définie par le modèle BRep)\\
+« exacte » est définie par le modèle \brep)\\
 $\to$ solution la plus simple : le maillage interpole la surface \brep\ aux n\oe uds (qui sont alors localisés sur des entités \brep\ et donc sur un ou plusieurs carreaux de surface) $\Rightarrow$ l'écart de corde doit être contrôlé (taille d'élément dicté par le rayon de courbure local, maillage explicite des caractéristiques/singularités géométriques (arêtes vives, coins, \ldots))
 
 
 \section{Lien entre modèle \brep\ et maillage trans-carreaux}
 Objectifs :
 \begin{enumerate}
-	\item alléger les contraintes sur le maillage inutilement imposées par la topologie du modèle \brep (arêtes douces)
-	\item représenter fidèlement 
+	\item \label{item:limiter_ecart_corde} représenter fidèlement la surface (courbe) à l'aide d'un maillage (linéaire) (\ie limiter/contrôler l'écart de corde)
+	\item \label{item:alleger_contraintes_topo} s'affranchir au maximum des contraintes sur le maillage inutilement imposées par la topologie du modèle \brep\ (arêtes douces)
+	
 \end{enumerate}
 
 \subsection{Construction d'une structure d'hypergraphe}
 
 
 \section{Déformation de maillage trans-carreaux basé sur un modèle \brep\ dynamique}
+Objectifs :
+\begin{enumerate}
+	\item \label{item:preserver_connect} préserver autant que faire se peut la connectivité du maillage (éviter de générer un nouveau maillage à chaque pas de temps)
+\end{enumerate}
+
 \subsection{Correspondance d'hypergraphes}
+
 
 \subsection{Régénération du maillage contraint}
 
@@ -170,6 +177,8 @@ Objectifs :
 
 \subsection{Optimisation par bouger de n\oe ud}
 \label{section:projection_surface_composite}
+Décrire la procédure de projection d'un déplacement sur la surface \brep\ (sur une hyper-face ou une hyper-arête)
+$\rightarrow$ trajectoire trans-carreaux \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}
 
 \subsection{Optimisation par reconnections locales}
 \subsubsection{Bascule d'arête}
@@ -182,21 +191,35 @@ Ici, $\ddl(p)$ représente le nombre de degrés de liberté du n\oe ud $n$, \ie
 \begin{itemize}
 	\item $\ddl(p) = 0$ si $n$ est contraint sur un sommet \brep\ ;
 	\item $\ddl(p) = 1$ si $n$ est contraint sur une hyper-arête (chaîne) ;
-	\item $\ddl(p) = 2$ si $n$ n'est pas contraint.
+	\item $\ddl(p) = 2$ si $n$ n'est pas contraint (ou plutôt est contraint sur une hyper-face).
 \end{itemize}
 Si $\ddl(p_1) = \ddl(p_2) = 1$, la contraction n'est possible que si $e$ fait partie d'une chaîne, \ie les n\oe uds $p_1$ et $p_2$ sont contraints sur la même hyper-arête (voir \autoref{fig:contraction_arete_cas_1_1}).
 
 \input{figures/code/contraction_arete_cas_1_1.tex}
 
 Si $\ddl(p_1) < \ddl(p_2)$ on contracte $e$ vers le n\oe ud $p_1$. 
-Si $\ddl(p_1) = \ddl(p_2)$ on contracte $e$ vers son milieu. Afin de localiser précisément ce milieu sur la surface \brep\ (\ie connaître l'entité \brep\ qui le supporte, et ses coordonnées paramétriques dans les carreaux de surface concernés), on l'obtient en calculant la projection sur la surface \brep\ du n\oe ud $p_1$ translaté d'un vecteur $\frac{p_2 - p_1}{2}$, en suivant la procédure décrite dans la \autoref{section:projection_surface_composite}.
+Si $\ddl(p_1) = \ddl(p_2)$ on contracte $e$ vers son milieu. Afin de localiser précisément ce milieu sur la surface \brep\ (\ie connaître l'entité \brep\ qui le supporte, ainsi que ses coordonnées paramétriques dans les carreaux de surface concernés), on calcule la projection sur la surface \brep\ du n\oe ud $p_1$ translaté d'un vecteur $\frac{p_2 - p_1}{2}$ (voir \autoref{fig:contraction_arete_milieu}), en suivant la procédure décrite dans la \autoref{section:projection_surface_composite}.
+
+\setlength{\imagewidth}{50mm}
+\begin{figure}
+  \centering
+  \includegraphics[width=\imagewidth]{contraction_arete_milieu}
+  \caption{Placement du n\oe ud résultant de la contraction d'une arête. Le $\ddl$ de chaque n\oe ud concerné est indiqué à côté de celui-ci. Les flèches représentent les vecteurs déplacement à projeter pour chaque arête contractée.}
+  \label{fig:contraction_arete_milieu}
+\end{figure}
 
 
 \subsubsection{Scission d'arête}
 On insère un n\oe ud au milieu d'une arête. Comme pour la contraction d'arête, les coordonnées de ce milieu sont une nouvelle fois obtenue par la procédure de projection décrite dans la \autoref{section:projection_surface_composite}.
-Cette fois, la projection du déplacement se fait en partant du sommet de l'arête ayant le plus grand nombre de degrés de liberté.
+Cette fois, la projection du déplacement se fait en partant du sommet de l'arête ayant le plus grand nombre de degrés de liberté, comme illustré sur la \autoref{fig:scission_arete_milieu}.
 
-
+\setlength{\imagewidth}{50mm}
+\begin{figure}
+  \centering
+  \includegraphics[width=\imagewidth]{scission_arete_milieu}
+  \caption{Placement du nouveau n\oe ud résultant d'une scission d'arête. Le $\ddl$ de chaque n\oe ud concerné est indiqué à côté de celui-ci. Les flèches représentent les vecteurs déplacement à projeter pour chaque arête scindée.}
+  \label{fig:scission_arete_milieu}
+\end{figure}
 
 
 

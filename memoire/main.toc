@@ -55,5 +55,5 @@
 \contentsline {subsection}{\numberline {5.3.5}Optimisation par reconnections locales}{16}{subsection.5.3.5}
 \contentsline {subsubsection}{\numberline {5.3.5.1}Bascule d'ar\IeC {\^e}te}{16}{subsubsection.5.3.5.1}
 \contentsline {subsubsection}{\numberline {5.3.5.2}Contraction d'ar\IeC {\^e}te}{16}{subsubsection.5.3.5.2}
-\contentsline {subsubsection}{\numberline {5.3.5.3}Scission d'ar\IeC {\^e}te}{16}{subsubsection.5.3.5.3}
+\contentsline {subsubsection}{\numberline {5.3.5.3}Scission d'ar\IeC {\^e}te}{17}{subsubsection.5.3.5.3}
 \contentsline {chapter}{Bibliographie}{19}{section*.3}
