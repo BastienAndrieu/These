@@ -21,15 +21,20 @@
 	bookmarksnumbered=true,
 	bookmarksopen=true,
 	hypertexnames=true,
-	linktoc=all,
-	pdftitle={Ma thèse},
-	pdfauthor={Bastien Andrieu}
-	}
+	linktoc=all
+}
     
 \usepackage{memhfixc} % Must be used on memoir document class after hyperref (?)
 
 
 
+% Adding package bookmark improves bookmarks handling.
+% More features and faster updated bookmarks.
+%https://tex.stackexchange.com/questions/65544/how-to-link-table-of-contents-in-thesis-pdf
+\usepackage{bookmark}
+
+
 \renewcommand*{\sectionrefname}{Section~}
 \renewcommand*{\chapterrefname}{Chapitre~}
+\renewcommand*{\partrefname}{Partie~}
 \renewcommand*{\appendixrefname}{Appendice~}

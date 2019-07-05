@@ -1,0 +1,18 @@
+%https://www.overleaf.com/learn/latex/Nomenclatures
+%https://www.xm1math.net/doculatex/nomenclature.html
+\usepackage[intoc, french]{nomencl}
+\makenomenclature
+
+\renewcommand{\nomname}{Notations}
+
+%% This code creates the groups
+% -----------------------------------------
+\usepackage{etoolbox}
+\renewcommand\nomgroup[1]{%
+  \item[\bfseries
+  \ifstrequal{#1}{T}{Topologie}{%
+  \ifstrequal{#1}{A}{Analyse}{%
+  \ifstrequal{#1}{O}{Other Symbols}{}}}%
+]}
+% -----------------------------------------
+ 

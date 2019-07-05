@@ -1,62 +1,62 @@
-\chapter{Introduction}
-
-\section{Contexte}
-
-
-\section{Formulation du problème de propagation d'interface}
-
-\subsection{Formulation lagrangienne traditionnelle}
-
-\subsection{Principe de Huygens avec condition d'entropie}
+\chapter*{Introduction}
+\chaptermark{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 
 
-\section{Cadre de la thèse}
+\section*{Contexte}
+\begin{itemize}
+	\item Combustion/érosion/ablation de solides
+	\item dépôt (e.g. accrétion de givre, fabrication additive)
+	\item interaction fluide-structure (e.g. aéroélasticité)
+	\item décalage (offset) de surface
+	\begin{itemize}
+		\item définition de tolérances
+		\item usinage par machine-outil à commande numérique
+	\end{itemize}	 
+	\item génération de maillage volumique par avancée de front (e.g. couche limite pour écoulements NS à haut Reynolds)
+\end{itemize}
 
-
-\section{Représentation par les frontières}
-
-
-
-
-\begin{figure}
-	\centering
-	\input{figures/code/BRep_hierarchy}
-	\caption{Hiérarchie des éléments constituant un modèle \brep.}
-	\label{fig:BRep_hierarchy}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\input{figures/code/BRep/BRep}
-	\caption{Modèle \brep.}
-	\label{fig:BRep}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\input{figures/code/simple_intersection/simple_intersection.tex}
-	\caption{Description géométrique d'une arête \brep.}
-\end{figure}
-
-
-
-
-\section{Contributions}
-
-
-
+\section*{Cadre/Problématiques de la thèse}
 \begin{enumerate}
-	\item mise en place d'un \anglais{framework} pour résoudre la propagation d'une interface 3d \textbf{régulière par morceaux} représentée par un modèle \brep
-	\begin{enumerate}
-		\item mise au point d'un algorithme basé sur le \textbf{principe de Huygens} (avec condition d'entropie) pour \textbf{adapter dynamiquement la géométrie et la topologie} du modèle \brep\ de l'interface au cours de la propagation (autrement dit, la validité du modèle \brep\ est maintenue tout au long de la propagation)
-	\end{enumerate}
-
-
-	\item utilisation du \textbf{formalisme \brep\ }pour représenter une interface \textbf{régulière par morceaux} en propagation en 3d (dans des applications de type interaction fluide-structure, combustion de solide dans un fluide)
-	\item mise au point d'un algorithme basé sur le \textbf{principe de Huygens} (avec condition d'entropie) pour \textbf{adapter dynamiquement la géométrie et la topologie} du modèle \brep\ de l'interface au cours de la propagation
-	\item (mise en \oe uvre d'une méthode pseudo-spectrale (\ie d'ordre élevé) (utilisant les polynômes de Chebyshev comme fonctions de base) pour suivre \textbf{efficacement et avec une grande précision} le mouvement de l'interface)
-	\item mise en \oe uvre d'une méthodologie pour adapter un \textbf{maillage dynamique géométriquement fidèle au modèle \brep\ dynamique} de l'interface, dans le but de réaliser des simulations EF/VF
+	\item Résoudre la propagation d'interfaces \troisD \emph{géométriquement régulières par morceaux} et de \emph{genre topologique quelconque} 
+	\begin{itemize}
+		\item on ne s'intéresse pas aux interfaces fluides (e.g. écoulements multi-phasiques, vésicules en suspension, …) dont la propagation est régie par la tension de surface, un flot de courbure ou de Willmore et qui subissent de grands changements de topologie
+	\end{itemize}
+	
+	\item Réaliser des simulations numériques (de type EF/VF) de phénomènes multi-physiques complexes [mettant en jeu des interfaces en propagation]/[tenant compte des déformations dynamiques de le géométrie résultant de la propagation d'interfaces]
 \end{enumerate}
 
 
-\section{Organisation du manuscrit}
+
+\section*{Contributions}
+
+\begin{enumerate}
+	\item Utilisation du \emph{formalisme \brep} pour représenter une interface \textit{régulière par morceaux} en propagation en \troisD (dans des applications de type interaction fluide-structure, combustion de solide dans un fluide).
+	
+	\item Mise au point d’un algorithme basé sur le \emph{principe de Huygens} (avec condition d’entropie) pour \emph{adapter dynamiquement la géométrie et la topologie} du modèle \brep de l’interface au cours de la propagation.
+	
+	\item Mise en \oe uvre d’une méthode pseudo-spectrale (i.e. d’ordre élevé) (utilisant les polynômes de Chebyshev comme fonctions de base) pour suivre \emph{efficacement et avec une grande précision} le mouvement de l’interface.
+	
+	\item Mise en œuvre d’une méthodologie pour adapter un \emph{maillage dynamique géométriquement fidèle au modèle \brep dynamique} de l’interface, dans le but de réaliser des simulations EF/VF.
+	
+	\item (Intégration de l'outil de suivi de surface dans une chaîne de calcul multi-physique)
+\end{enumerate}
+
+
+
+\section*{Organisation du manuscrit}
+2 parties
+\begin{enumerate}
+	\item Développement d'un outil de suivi de surface adapté aux géométries régulières par morceaux
+	\begin{enumerate}
+		\item Formulation mathématique du problème de propagation d'interfaces régulières par morceaux en trois dimensions
+		\item Formulation d'un algorithme basé sur le PHCE pour adapter dynamiquement la géomérie et la topologie du modèle BRep de l'interface au cours de la propagation
+		\item Mise en \oe uvre numérique et validation de l'algorithme
+	\end{enumerate}
+	
+	\item Intégration de l'outil de suivi de surface dans une chaîne de calcul multi-physique
+	\begin{enumerate}
+		\item Méthodologie pour adapter un maillage dynamique géométriquement fidèle au modèle \brep dynamique de l'interface
+		\item Couplage de l'outil de suivi de surface avec des solveurs EF/VF -- Application à la simulation de la combustion de propergol solide dans les moteurs de fusée
+	\end{enumerate}
+\end{enumerate}

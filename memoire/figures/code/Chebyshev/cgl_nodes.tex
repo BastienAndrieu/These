@@ -1,0 +1,19 @@
+\begin{tikzpicture} 
+	\begin{axis}[%
+		width=8cm, height=6cm,
+		axis lines*=left,
+		xmin=-1.0, xmax=1.0, ymin=-1.0, ymax=1.0,
+		grid=major,
+		clip marker paths=false,
+		enlargelimits={abs=0.05},
+		]%
+		\addplot+[samples=200, domain=0:pi, no marks, mycolor_6] ({cos(deg(x))}, {cos(5*deg(x))});%
+		% extrema
+		\addplot+[samples=6, domain=0:pi, ycomb, dashed, mark=none, black] ({cos(deg(x))}, {cos(5*deg(x))});%
+		\addplot+[samples=6, domain=0:pi, only marks, mark=*, black] ({cos(deg(x))}, {0});%
+		% zeros
+%		\pgfplotsinvokeforeach{0,...,4}{
+%			\addplot+[mark=*, red] coordinates {(cos((2.0*#1+1.0)*180.0/10.0),0)};
+%		}
+	\end{axis} 
+\end{tikzpicture}

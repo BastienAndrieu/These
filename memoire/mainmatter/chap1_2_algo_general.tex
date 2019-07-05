@@ -1,0 +1,37 @@
+\chapter[Algorithme de propagation d'interfaces régulières \piecewise]{Algorithme général pour la propagation d'interfaces régulières \piecewise}
+\label{chap:algo_general}
+
+Objectif : proposer un algorithme de construction de l'EdB sous la forme d'un nouveau modèle \brep\ à partir du modèle \brep\ de l'interface courante. 
+Pour cela, on tire d'abord des observations sur lesquelles on se basera pour construire dans un premier temps une pseudo-EdS, que l'on traitera dans un second temps afin d'obtenir l'EdB. 
+Dans ce chapitre, on explicitera une partie des algorithmes utilisés mais les détails de la mise en \oe uvre numérique feront l'objet du chapitre suivant.
+
+\input{figures/code/EoB_BRep/EoB_BRep.tex}
+
+\section{Observations/Motivations}
+Convexité des courbes singulières (foreshadowing Hohmeyer), EdB $\subset$ EdS ($\to$ \autoref{section:principe_huygens}?), notion d'EdS partielle suffisante (ou \guillemets{pseudo-EdS}, \cf notes Huygens)
+
+
+
+
+
+\section{Construction d'une \guillemets{proto-\brep} de l'EdS partielle suffisante}
+\label{section:def_canal_surface}
+Construction des EdS propres des faces (carreaux restreints), arêtes convexes vives (arc/segment de courbe) et sommets vifs convexes, paramétrisation d'une EdS (propre) à 1 paramètre/2 paramètres ($\to$ \autoref{section:principe_huygens}?)
+
+
+
+
+\section{Conversion en \brep\ de l'EdB}
+
+\subsection{Construction du graphe des intersections}
+Conservation/création des intersections tangentielles, calcul des intersections transverses entre paire de carreaux non-restreints, segmentation des courbes d'intersection en segments quasi-disjoints (intersection de 3 carreaux non-restreints ou plus), \guillemets{clipping} par le domaine paramétrique de chaque carreau restreint
+\par\bigskip
+pour un carreau de surface, il s'agit d'un graphe planaire orienté dont un plongement dans $\reals^2$ est donné par la trace des courbes d'intersections dans son espace paramétrique
+
+\subsection{Construction des faces, arêtes et sommets \brep}
+pour chaque carreau : extraction des cycles du graphe d'intersection, caractérisations des contours (extérieurs/intérieurs), détermination des faces $\to$ insertion des contours dans la \brep\ $\to$ insertion des (co-)arêtes et sommets
+\begin{figure}
+	\centering
+	\input{algorithmes/make_cycles.tex}
+	\caption{Organigramme de l'algorithme d'extraction des cycles d'un graphe orienté plongé dans $\reals^2$.}
+\end{figure}

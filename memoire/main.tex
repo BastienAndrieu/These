@@ -5,6 +5,10 @@
 \input{preamb/preamb_main}
 %%%%%%%%%%%%%%%%%%
 
+\hypersetup{
+	pdftitle={Ma thèse},
+	pdfauthor={Bastien Andrieu}
+}
 
 \begin{document}
 
@@ -22,6 +26,10 @@
 {
   \hypersetup{linkcolor=black}
   \microtypesetup{protrusion=false} % disables protrusion locally in the document
+  %https://tex.stackexchange.com/questions/65544/how-to-link-table-of-contents-in-thesis-pdf
+  \newpage% or \cleardoublepage
+  % \pdfbookmark[<level>]{<title>}{<dest>}
+  \pdfbookmark[section]{\contentsname}{toc}
   \tableofcontents*
   \microtypesetup{protrusion=true} % disables protrusion locally in the document
 }
@@ -30,15 +38,33 @@
 
 %% CHAPITRES %%
 \mainmatter
+
+\nomenclature[T, 01]{$\boundary{E}$}{Frontière d'un sous-ensemble $E$ de $\reals^d$}
+\nomenclature[T, 02]{$\interior{E}$}{Intérieur de $E$}
+\nomenclature[T, 03]{$\closure{E}$}{Adhérence de $E$}
+\nomenclature[T, 04]{$\complement{E}$}{Complémentaire de $E$}
+
+\nomenclature[A, 01]{$\polyspace{N}$}{Espace des polynômes à coefficients réels et de degré au plus $N$}
+\nomenclature[A, 02]{$\deriv{f}{k}$}{Dérivée $k$-ième de la fonction $f$}
+\nomenclature[A, 03]{$f_x$}{Dérivée partielle $\frac{\partial f}{\partial x}$}
+\nomenclature[A, 04]{$f_{{x_1}\ldots{x_p}}$}{Dérivée partielle $\frac{\partial^p f}{\partial {x_1} \ldots \partial {x_p}}$}
+\printnomenclature
+
 \include{mainmatter/introduction}
 
-\include{mainmatter/chap1_algorithme_general}
+\mypart{Première}{Développement d'un outil de suivi de surface adapté aux géométries régulières par morceaux}
+\include{mainmatter/chap1_1_formulation_probleme_propagation}
 
-\include{mainmatter/chap2_methode_pseudo_spectrale}
+\include{mainmatter/chap1_2_algo_general}
+
+\include{mainmatter/chap1_3_methode_numerique}
+
+\include{mainmatter/chap1_4_validation}
 
 %\include{mainmatter/chap3...}
+\mypart{Seconde}{Intégration de l'outil de suivi de surface dans une chaîne de calcul multi-physique}
 
-\include{mainmatter/chap4_deformation_maillage}
+%\include{mainmatter/chap4_deformation_maillage}
 \include{mainmatter/chap4_adaptation_maillage}
 
 %%%%%%%%%%%%%%%%%
@@ -58,7 +84,7 @@
 \phantomsection
 \nocite{*}% à retirer à la fin!!!
 \bibliographystyle{mybibstyle}
-\bibliography{biblio/spectral_chebyshev,biblio/mesh_generation,biblio/mesh_optimization,biblio/cad,biblio/deformable_geometry,biblio/interface_propagation,biblio/intersection}
+\bibliography{biblio/spectral_chebyshev,biblio/mesh_generation,biblio/mesh_optimization,biblio/cad,biblio/deformable_geometry,biblio/interface_propagation,biblio/intersection,biblio/computational_geometry}
 %%%%%%%%%%%%%%%%%
 
 

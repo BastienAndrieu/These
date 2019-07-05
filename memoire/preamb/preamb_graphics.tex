@@ -8,13 +8,36 @@
 \usepackage{pst-solides3d,pstricks-add}
 
 \usepackage{tikz, tikzscale}
-\usetikzlibrary{math, fit, calc, external, fadings, angles, arrows, arrows.meta, positioning, angles, quotes, patterns, backgrounds, shapes, shapes.geometric, shapes.misc, decorations.markings, pgfplots.colorbrewer}
+
+\usetikzlibrary{
+angles, 
+arrows, 
+arrows.meta, 
+backgrounds,
+calc,
+chains,
+decorations.markings, 
+external,
+fadings,
+fit,
+math,
+patterns,
+pgfplots.colorbrewer,
+positioning,
+quotes,
+shapes,
+shapes.geometric, 
+shapes.misc
+}
 %\tikzexternalize[prefix=figures/tikz_pgf/]
 
 %https://axiomatic.neophilus.net/using-datatool-and-tikz-to-generate-figures-from-data/
 \usepackage{datatool}
 
 \usepackage{transparent}
+
+%%https://tex.stackexchange.com/questions/57418/crop-an-inserted-image
+%\usepackage[export]{adjustbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \graphicspath{{./figures/}{./figures/images/}}

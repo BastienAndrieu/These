@@ -13,10 +13,16 @@
 \renewcommand*{\cftparskip}{1pt}
 \setlength{\cftbeforechapterskip}{\onelineskip}
 
+
+\renewcommand*{\cftpartfont}{\titlefont\large\scshape\bfseries}
+
+
 \maxtocdepth{subsection}
 
 % Titles
 \colorlet{colchapttl}{black}%mydarkgray}%DodgerBlue3}%
+
+
 
 
 
@@ -141,15 +147,62 @@
 
 
 
-
-
-
-
-
-
 %% Format chapter abstracts
 \def\abstractname{}
 \def\abstitleskip{0pt}
+
+
+
+%% Parts
+%% Pour "première partie", "deuxième partie", ...
+%%https://tex.stackexchange.com/questions/49512/part-style-in-memoir-class
+%\usepackage{fmtcount}
+%\renewcommand*{\printpartname}{\partnamefont{\ordinalstring{part}[f] partie}}
+
+\def\partfont{\titlefont\bfseries}
+
+
+\renewcommand{\partnamefont}{\partfont\scshape\LARGE}
+\renewcommand{\parttitlefont}{\partfont\scshape\huge}
+
+\newlength{\partbarlength}
+\renewcommand*{\printpartnum}{}
+\renewcommand*{\printpartname}{}
+\newcommand{\mypart}[2]{
+	%\renewcommand*{\printpartname}{\partnamefont{#1 partie}}%
+	\setlength{\partbarlength}{30mm}%\widthof{\partnamefont{#1 partie}}}
+	\renewcommand{\midpartskip}{%
+%	\par%
+%	\parbox{\partbarlength}{\hrulefill}%
+	\par%
+	\begin{tikzpicture}%
+\coordinate (a) at (                0, -\vbartipthck);%
+\coordinate (b) at (0.5\partbarlength,    -\vbarthck);%
+\coordinate (c) at (   \partbarlength, -\vbartipthck);%
+\coordinate (d) at (   \partbarlength,  \vbartipthck);%
+\coordinate (e) at (0.5\partbarlength,     \vbarthck);%
+\coordinate (f) at (                0,  \vbartipthck);%
+\path [fill=colchapttl]%
+(a) to [out=0, in=180]%
+(b) to [out=0, in=180]%
+(c) -- %
+(d) to [out=180, in=0]%
+(e) to [out=180, in=0]%
+(f) -- cycle;%
+\node[anchor=south, align=center, font={\partnamefont}] at (0.5\partbarlength, 1.5ex) {#1 partie};
+%\node[anchor=south, align=center] at (0.5\partbarlength, 1.5ex) {\partnamefont{Partie \thepart}};
+%\draw[red, thin] 
+%	(current bounding box.south west) rectangle (current bounding box.north east)
+%	(current bounding box.south) -- (current bounding box.north);
+	\end{tikzpicture}%
+	\par%
+	}%
+	\part{#2}
+}
+
+
+
+
 
 
 

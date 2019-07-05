@@ -93,7 +93,7 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\unv}{\vrm{n}} % unit normal vector
 \newcommand*{\nv}{\hat{\unv}} % normal vector
 
-\newcommand*{\eos}{\vit{\phi}} % envelope of spheres
+
 
 \newcommand{\colvec}[1]{\begin{pmatrix} #1 \end{pmatrix}} % vector printed in column
 \newcommand{\rowvec}[1]{ \transpose{\begin{pmatrix} #1 \end{pmatrix}} } % vector printed in row (transposed column)
@@ -150,8 +150,36 @@ cal=zapfc, calscaled=1.18%,
 %\end{equation}
 
 
+% Intervals
+\newcommand*{\lo}[1]{\underline{#1}}
+\newcommand*{\hi}[1]{\overline{#1}}
 
 
+% GRAPHS
+\DeclareMathOperator{\orig}{orig}%ine}
+\DeclareMathOperator{\dest}{dest}%ination}
+
+
+
+% ENVELOPES OF SPHERES/BALLS
+\newcommand*{\sphere}[2]{\mathscr{S}(#1,#2)}                   % sphère
+\newcommand*{\ball}[2]{\mathscr{B}(#1,#2)}                     % boule ouverte
+\newcommand*{\EoB}[2]{{#1}^{#2}}                               % EdB
+\newcommand*{\EoS}[2]{\widehat{\EoB{#1}{#2}}}                  % EdS
+\newcommand*{\influ}{\mathscr{I}}                              % zone d'influence
+\newcommand*{\influEoB}[2]{\influ^{\!#2}({#1})}                % zone d'influence sur l'EdB
+\newcommand*{\influEoS}[2]{\widehat{\influ}^{\!#2}({#1})}      % zone d'influence sur l'EdS
+\newcommand*{\properEoB}[2]{\influ_*^{\!#2}({#1})}             % EdB propre
+\newcommand*{\properEoS}[2]{\widehat{\influ}_{*}^{\!#2}({#1})} % EdS propre
+\newcommand*{\eos}{\vit{\phi}}                                 % paramétrisation de l'EdS (propre)
+\newcommand*{\dilation}[2]{{#1}_{\uparrow #2}}                 % "dilatation"
+
+
+% SET THEORY/TOPOLOGY
+\newcommand*{\closure}[1]{\overline{#1}}%\mathrm{cl}#1}%
+\newcommand*{\interior}[1]{\mathrm{int}{#1}}%\mathring{#1}}%
+\newcommand*{\boundary}[1]{\partial #1}
+\renewcommand*{\complement}[1]{#1^\mathsf{C}}
 
 
 % Encircled text

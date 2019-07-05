@@ -1,0 +1,70 @@
+\newcommand{\arc}{\mathcal{A}}%
+\newcommand{\subin}{\ensuremath{_{\mathrm{in}}}}%
+\newcommand{\subout}{\ensuremath{_{\mathrm{out}}}}%
+\newcommand{\noeud}{\mathcal{N}}%
+\newcommand{\cycle}{\mathcal{C}}%
+\newcommand{\graph}{\mathcal{G}}%
+\begin{tikzpicture}[%
+	scale=0.5,
+	>={Latex[length=4pt]},      % Arrow style
+    start chain=going below,    % General flow is top-to-bottom
+    node distance=6mm and 50mm, % Global setup of box spacing
+    every join/.style={flow},   % Default linetype for connecting boxes
+    ]
+% ------------------------------------------------- 
+% A few box styles 
+% <on chain> *and* <on grid> reduce the need for manual relative
+% positioning of nodes
+\tikzset{
+  base/.style={draw, on chain, on grid, align=center, minimum height=4ex, minimum width=5em},
+  proc/.style={base, rectangle},
+  test/.style={base, diamond, aspect=2},
+  term/.style={proc, rounded corners=2ex},
+  % coord node style is used for placing corners of connecting lines
+  coord/.style={coordinate, on chain, on grid, node distance=6mm and 25mm},
+  % -------------------------------------------------
+  % Connector line styles for different parts of the diagram
+  flow/.style={->, draw}
+}
+% -------------------------------------------------
+\node [term, join] (start) {Début};
+\node [proc, join] (p1) {Éliminer les branches pendantes de $\graph$};
+\node [test, join] (t1) {$A = \emptyset$ ?};
+
+\node [proc] (startarc) {Choisir un arc $\arc_*$ de $\graph$};
+
+\node [proc, join] {Démarrer un nouveau cycle $\cycle$ à partir de $\arc_*$};
+\node [proc, join] {$\arc \leftarrow \arc_*$ et\\ $\noeud \leftarrow \dest(\arc)$};
+
+
+\node [test, join] (t2) {$\noeud = \orig(\arc_*)$?};
+
+\node [proc] (maxangles) {Identifier $\hi{\alpha}\subin$, $\hi{\alpha}\subout$ et $\hi{\arc}\subout$};
+
+
+\node [test, join] (t3) {$\hi{\alpha}\subin > \hi{\alpha}\subout$ ?};
+\node [proc] (abortcycle) {Abandonner $\cycle$};
+
+\node [term, left=of t1, text width=3em] (end) {Fin};
+\node [proc, right=of t2] (completecycle) {Rajouter $\cycle$\\à la liste des cycles\\et l'extraire de $\graph$};
+\node [proc, left=of t3] (appendcycle) {$\arc \leftarrow \hi{\arc}\subout$,\\ $\noeud \leftarrow \dest(\arc)$ et \\ajouter $\arc$ à $\cycle$};
+
+
+\draw [flow] (t1.west) -- node[above] {oui} (end);
+\draw [flow] (t1.south) -- node[left] {non} (startarc);
+
+\draw [flow] (t2.east) -- node[above] {oui} (completecycle);
+\draw [flow] (t2.south) -- node[left] {non} (maxangles);
+
+\draw [flow] (t3.west) -- node[above] {oui} (appendcycle);
+\draw [flow] (t3.south) -- node[left] {non} (abortcycle);
+
+
+\draw [flow] (appendcycle.north) |- (t2);
+
+\node [coord, left=of appendcycle] (c2)  {};
+\draw [flow] (abortcycle.west) -| (c2) |- (p1);
+
+\draw [flow] (completecycle.north) |- (p1);
+% -------------------------------------------------
+\end{tikzpicture}

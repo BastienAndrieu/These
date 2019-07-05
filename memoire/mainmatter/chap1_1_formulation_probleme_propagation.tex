@@ -1,0 +1,161 @@
+\chapter[Formulation du problème de propagation d'interfaces régulières \piecewise\ en \troisD]{Formulation mathématique du problème de propagation d'interfaces régulières \piecewise\ en trois dimensions}
+\chaptermark{Formulation du problème de propagation d'interfaces $\contgeom{1}$ \piecewise\ en \troisD}
+\label{chap:formulation_probleme_propagation}
+
+Objectif : définir/caractériser une surface poser le problème
+
+On considère une interface $\Sigma$ entre deux milieux distincts (\eg un solide et un fluide).
+Dans cette thèse, on se concentre sur des problèmes en trois dimensions. 
+$\Sigma$ représente donc une surface (\ie une variété de dimension 2) que l’on supposera orientable et fermée.
+De cette manière, $\Sigma$ sépare l'espace en un domaine \textit{intérieur} $\Omega$ (que l'on supposera ouvert) et un domaine \textit{extérieur} $\complement{\Omega}$.
+Avant de rentrer dans le vif du sujet --- à savoir la propagation de l'interface $\Sigma$ --- on rappelle les bases de la géométrie différentielle des surfaces et plus particulièrement des surfaces régulières par morceaux.
+
+
+\section{Géométrie différentielle des courbes et surfaces?}
+courbes et surfaces paramétriques : vocabulaire (arc, carreau, espace et domaine paramétriques, carreau restreint, courbes de restriction),  vecteur(s) et plan tangents, vecteur (pseudo-)normal, tenseur métrique, première et seconde formes fondamentales, courbures principales, gaussienne et moyenne
+\par
+notion de continuités paramétrique/géométrique
+
+\section{Caractérisation d'une surface régulière \piecewise}
+décomposition en nappes régulières ($\contgeom{1}$), courbes singulières (crêtes?) et points irréguliers (coins?) (\cf notes Huygens)
+\par\bigskip
+(Inspiré par \cite[p.65]{rossignac1985} et \cite[Section 2.6]{rossignac1986}.)\par
+
+\begin{figure}
+	\centering
+	\input{figures/code/piecewise_smooth_surface/piecewise_smooth_surface_decomposition}
+	\caption{Surface régulière par morceaux dont les courbes et points singuliers sont mis en évidence.}
+	\label{fig:piecewise_smooth_surface_decomposition}
+\end{figure}
+
+La frontière $\boundary{\Omega}$ du solide $\Omega$ est une surface de continuité $\contgeom{1}$ (\ie possède une direction normale continue) par morceaux. 
+Les singularités géométriques de $\boundary{\Omega}$ peuvent être de dimension 1 (courbes) ou 0 (points).
+Les courbes singulières de $\boundary{\Omega}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux points singuliers.
+
+
+\section{Formulation lagrangienne du problème de propagation d'interface}
+[EDP avec vecteur vitesse ou vitesse normale, problème de définition au niveau des courbes singulières et points irréguliers]
+\par\bigskip
+La formulation lagrangienne traditionnelle du problème de propagation d'interface consiste à exprimer l'évolution de la position d'un point $\bx \in \Sigma$ comme une équation différentielle
+\begin{equation}
+	\frac{\partial \bx}{\partial t} = \vrm{u}(\bx,t).
+	\label{eq:lagrange_vecteur_vitesse}
+\end{equation}
+La composante tangentielle du vecteur vitesse n'affecte pas la forme de l'interface. 
+En principe, on peut donc formuler de façon équivalente la propagation de $\Sigma$ suivant un champ de vitesse normale $\nu : \Sigma \times \reals_+ \to \reals$
+\begin{equation}
+	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t),
+	\label{eq:lagrange_vitesse_normale}
+\end{equation}
+où $\unv(\bx,t)$ désigne la direction normale à $\Sigma$ en $\bx$ à l'instant $t$.
+\par
+
+
+
+
+
+
+\section{Principe de Huygens avec condition d'entropie}
+\label{section:principe_huygens}
+[Histoire, formulation, notion d'enveloppe de sphères/boules, construction géométrique au lieu de EDP, définitions implicites (\cf notes Huygens)]
+\par\bigskip
+
+Dans la suite, étant donné un sous-ensemble (ouvert ou fermé) $E$ de $\reals^d$, on notera $\complement{E} := \reals^d \setminus E$ son \textit{complémentaire}, $\boundary{E}$ sa \textit{frontière}, $\interior{E}$ son \textit{intérieur} et $\closure{E} = E \cup \boundary{E}$ son \textit{adhérence}.
+\par\bigskip
+
+\def\p{\vit{p}}
+\def\q{\vit{q}}
+Soient $r> 0$ et $\p$ un point de $\reals^3$. 
+On note $\sphere{\p}{r}$ la sphère de rayon $r$ centrée en $\p$
+\begin{equation}
+    \sphere{\p}{r} := \left\{ 
+        \bx \in \reals^3 \mid \normtwo{\bx - \p} = r
+    \right\},
+\end{equation}
+et $\ball{\p}{r}$ la boule \textit{ouverte} de rayon $r$ centrée en $\p$
+\begin{equation}
+    \ball{\p}{r} := \left\{ 
+        \bx \in \reals^3 \mid \normtwo{\bx - \p} < r
+    \right\}.
+\end{equation}
+
+Soit $\rho : \Sigma \to \reals_{+*}$ une fonction $\alpha$-lipschitzienne sur $\Sigma$ et à valeurs strictement positives. 
+On note $\ball{\Sigma}{\rho}$ la réunion des boules centrées sur $\Sigma$ et de rayon $\rho$
+\begin{equation}
+    \ball{\Sigma}{\rho} := \bigcup_{\p \in \Sigma} \ball{\p}{\rho(\p)}
+    = \left\{
+        \bx \in \reals^3 \mid \exists \p \in \Sigma \mid \normtwo{\bx - \p} < \rho(\p)
+    \right\}.
+\end{equation}
+
+Son complémentaire est
+\begin{equation}
+    \complement{\ball{\Sigma}{\rho}} = \bigcap_{\p \in \Sigma} \complement{\ball{\p}{\rho(\p)}}
+    = \left\{
+        \bx \in \reals^3 \mid \forall \p \in \Sigma, \normtwo{\bx - \p} \geq \rho(\p)
+    \right\},
+\end{equation}
+
+et sa frontière est
+\begin{align}
+    \boundary{\ball{\Sigma}{\rho}} 
+    &= \boundary{ \left(\complement{\ball{\Sigma}{\rho}}\right) } ,\nonumber\\
+    &= \closure{\ball{\Sigma}{\rho}} \cap 
+        \closure{ \left(\complement{\ball{\Sigma}{\rho}}\right) } ,\nonumber\\
+%    &= \left\{
+%        \bx \in \reals^3 
+%        \mid \forall \p \in \Sigma, \normtwo{\bx - \p} \geq \rho(\p) 
+%        \text{ et }
+%        \exists \p \in \Sigma \mid \normtwo{\bx - \p} \leq \rho(\p)
+%    \right\} ,\nonumber\\
+     &= \left\{
+        \bx \in \reals^3 
+        \mid \forall \p \in \Sigma, \normtwo{\bx - \p} \geq \rho(\p) 
+        \text{ et }
+        \exists \p \in \Sigma \mid \normtwo{\bx - \p} = \rho(\p)
+    \right\}.
+\end{align}
+
+\par\bigskip
+
+On note $\dilation{\Omega}{\rho}$ la \guillemets{dilatation} de $\Omega$ par $\rho$
+\begin{equation}
+    \dilation{\Omega}{\rho} = \Omega \cup \ball{\Sigma}{\rho}.
+\end{equation}
+
+On note $\EoB{\Sigma}{\rho}$ sa frontière
+\begin{align}
+    \EoB{\Sigma}{\rho} 
+    &:= \boundary{ \!\left(\dilation{\Omega}{\rho}\right) }, \\
+    &=  \boundary{ \!\left(\complement{ \left(\dilation{\Omega}{\rho}\right) }\right) } , \nonumber\\
+    &=  \boundary{ \!\left(\complement{\Omega} \cap \complement{\ball{\Sigma}{\rho}}\right) },\nonumber\\
+    &= 
+    \left\{
+        \bx \in \interior{ \left(\complement{ \Omega }\right) }
+        \mid \forall \q \in \Sigma, \normtwo{\bx - \q} \geq \rho(\q) 
+        \text{ et }
+        \exists \p \in \Sigma \mid \normtwo{\bx - \p} = \rho(\p)
+    \right\}.
+\end{align}
+Il s'agit de l'\textit{enveloppe des boules}\footnote{plus exactement des demi-boules à l'extérieur de $\Omega$.} (EdB) centrées sur $\Sigma$ et de rayon $\rho$.
+
+\clearpage
+\section{Représentation par les frontières}
+Origine, utilisation, concept, définitions formelles des entités, lien avec la décomposition d'une surface $\contgeom{1}$ \piecewise, (géométrie différentielle des courbes et surfaces paramétriques), structures de données (DCEL)
+
+\begin{figure}
+	\centering
+	\input{figures/code/BRep_hierarchy}
+	\caption{Hiérarchie des éléments constituant un modèle \brep.}
+	\label{fig:BRep_hierarchy}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\input{figures/code/BRep/BRep}
+	\caption{Modèle \brep.}
+	\label{fig:BRep}
+\end{figure}
+
+\par 
+placer avant Formulation lagrangienne? ou fusionner avec Caractérisation d'une surface régulière \piecewise?

@@ -1,0 +1,65 @@
+\begin{figure}%[!htp]
+\centering%
+\hspace*{\fill}%
+\subbottom[Erreur d'approximation par le polynôme $\interpderiv{f}{N}{k}$.]{%
+\begin{tikzpicture}%
+\begin{semilogyaxis}[
+	width=6.7cm, height=6cm,
+	xmin=0, xmax=100,
+	ymin=1.0e-16, ymax=1.0e2,
+	grid=both,
+	axis x line*=bottom,
+	axis y line*=left,
+	xlabel={$N\vphantom{n}$},
+	ylabel={\small $\norminf{\interpderiv{f}{N}{k} - \deriv{f}{k}} \norminf{\deriv{f}{k}}^{-1}$},
+	xtick distance=25,
+	legend pos=north east,
+	legend style={font=\small},
+	cycle list shift=-1
+	]%
+	%\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-N}$};%
+	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)};%
+	\addlegendentry{$1.8^{-N}$}
+	\pgfplotsinvokeforeach{1,...,3}{
+		\addplot+ table[x index=0, y index=#1] {figures/data/Chebyshev/convergence_DNkf.dat};%
+	}
+\end{semilogyaxis}%
+\end{tikzpicture}%
+\label{subfig:spectral_convergence_Linf}%
+}%
+\hspace{4mm}%
+%\hfill%
+\subbottom[Spectre des coefficients de Chebyshev.]{% du polynôme $\interpderiv{f}{80}{k}$.]{%
+\begin{tikzpicture}%
+\begin{semilogyaxis}[%
+	width=6.7cm, height=6cm,
+	xmin=0, xmax=100,
+	ymin=1.0e-16, ymax=1.0e2,
+	grid=major,
+	axis y line*=right,
+	axis x line*=bottom,
+	xlabel={$n\vphantom{N}$},
+	ylabel={},
+	ylabelv right={$\left | \tilde{f}_n^{(k)} \right |$},
+	ylabel near ticks, 
+	yticklabel pos=right,
+	yticklabels={\empty},
+	xtick distance=25,
+	legend pos=north east,
+	legend style={font=\small},
+	cycle list shift=-1
+	]%
+%	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)} node[pos=0.5, anchor=north east, font=\footnotesize, inner sep=1pt] {$1.8^{-n}$};
+	\addplot+[dashed, color=black, no marks, very thick][domain=40:60] {0.5*exp(-0.57*x)};
+	\addlegendentry{$1.8^{-n}$}
+	\pgfplotsinvokeforeach{0,...,2}{
+		\addplot+[only marks] table[x expr=\coordindex, y index=#1] {figures/data/Chebyshev/coef_DNkf.dat};%
+	}
+\end{semilogyaxis}%
+\end{tikzpicture}%
+\label{subfig:spectral_convergence_coef}%
+}
+\hspace*{\fill}%
+\caption{Décroissance exponentielle de l'erreur d'approximation et des coefficients de Chebyshev pour la fonction analytique $f : x \mapsto e^{\sin 3 x^3}$ et ses dérivées $\deriv{f}{k}$ ($k = 0 (\protect\legendsquare{mycolor_1}), 1 (\protect\legenddot{mycolor_2}), 2 (\protect\legendtriangle{mycolor_3})$).}%
+\label{fig:spectral_convergence}%
+\end{figure}
