@@ -119,17 +119,16 @@ arguments :
 
 
 \subsection{Paramétrisation de la pseudo-EdS d'une arête \brep\ convexe}% arc paramétrique}
-\label{section:parametrisation_pseudo_EdS_arete}
-\begin{enumerate}
-	\item détermination de la convexité de l'arête (signe de $\dotprod{\left(\crossprod{\unv_L}{\unv_R}\right)}{\vrm{t}}$, \cf \autoref{section:def_convexite_courbe_singuliere})
-	\item rappeler système définissant une EdS (propre) à 1 paramètre
-	\item notion de cercle caractéristique
-	\item paramétrisation $\vit{\phi}(u,v) = \vit{o}(u) + r(u)\vrm{r}(u,v)$
-	\item restriction à la portion entre les EdS propres des faces incidentes, paramétrisée sur le domaine $\uvdomain = \wdomain \times  \left[ \lo{v}, \hi{v} \right]$
-\end{enumerate}
+%\begin{enumerate}
+%	\item détermination de la convexité de l'arête (signe de $\dotprod{\left(\crossprod{\unv_L}{\unv_R}\right)}{\vrm{t}}$, \cf \autoref{section:def_convexite_courbe_singuliere})
+%	\item rappeler système définissant une EdS propre à 1 paramètre
+%	\item notion de cercle caractéristique
+%	\item paramétrisation générique $\eos(u,v) = \vit{o}(u) + r(u)\vrm{r}(u,v)$ de l'EdS propre
+%	\item restriction à la portion entre les EdS propres des faces incidentes, paramétrisée sur le domaine $\uvdomain = \left[ \lo{u}, \hi{u} \right] \times \left[ \lo{v}, \hi{v} \right]$
+%\end{enumerate}
 
 \subsubsection{Paramétrisation de l'EdS propre d'un arc paramétrique}
-
+\label{section:parametrisation_EdS_propre_courbe}
 
 \begin{figure}
 	\centering
@@ -143,6 +142,7 @@ arguments :
 		\node[anchor=south west, colorshpere] at (0.46,0.62) {$\sphere[u]$};
 	\end{tikzpicture}
 	\caption{Paramétrisation de l'EdS propre d'un arc paramétrique.}
+	\label{fig:parametrisation_EdS_propre_courbe}
 \end{figure}
 %%Soit $\bg : \wdomain \to \reals^3$ une paramétrisation du support géométrique $\Gamma$ de l'arête $\brepedge$. 
 %%L'EdS propre de $\Gamma$ est le lieu des points $\bx \in \reals^3$ qui vérifient
@@ -157,7 +157,7 @@ arguments :
 %  \right.
 %  \label{eq:sys_canal_surface}
 %\end{equation}
-Soit $\bg : \wdomain \to \reals^3$ une paramétrisation du support géométrique $\Gamma$ de l'arête $\brepedge$. 
+Soit $\bg : \left[ \lo{u}, \hi{u} \right] \to \reals^3$ une paramétrisation du support géométrique $\Gamma$ de l'arête $\brepedge$. 
 Si l'on considère $\rho$ comme une fonction du paramètre $u$ alors $\EdSpropre{\Gamma}{\rho}$ est le lieu des points $\bx \in \reals^3$ qui vérifient
 \begin{equation}
   \left\{
@@ -168,7 +168,7 @@ Si l'on considère $\rho$ comme une fonction du paramètre $u$ alors $\EdSpropre
   \right.
   \label{eq:sys_canal_surface}
 \end{equation}
-A condition que $\rho_u^2 \leq \normtwo{\bg'}^2$, le système \eqref{eq:sys_canal_surface} définit une famille de \textit{cercles caractéristiques}, dont chacun est le lieu des points de tangence entre $\Phi$ et une sphère de la famille $\sphere[\Gamma][\rho]$ (voir figure?).
+A condition que $\rho_u^2 \leq \normtwo{\bg'}^2$, le système \eqref{eq:sys_canal_surface} définit une famille de \textit{cercles caractéristiques}, dont chacun est le lieu des points de tangence entre $\EdSpropre{\Gamma}{\rho}$ et une sphère de la famille $\sphere[\Gamma][\rho]$ (voir \autoref{fig:parametrisation_EdS_propre_courbe}).
 \par
 D'après \eqref{eq:sys_canal_surface}, le cercle caractéristique au point $\bg(u)$ est l'intersection de la sphère $\sphere[u] = \sphere[\bg(u)][\rho(\bg(u))]$ et d'un plan orthogonal à la tangente à $\Gamma$ en ce point (donnée par le vecteur $\bg'(u)$). 
 Ce cercle est centré en
@@ -182,10 +182,10 @@ et a pour rayon
     \label{eq:cercle_caracteristique_rayon}
 \end{equation}
 \par
-Voir $\Phi$ comme une famille cercles caractéristiques permet d'en donner la paramétrisation suivante
+Voir $\EdSpropre{\Gamma}{\rho}$ comme une famille cercles caractéristiques permet d'en donner la paramétrisation suivante
 \begin{equation}
     \eos(u,v) = \vit{o}(u) + r(u)\vrm{r}(u,v),
-    \label{eq:eos_segment_parameterisation}
+    \label{eq:parametrisation_EdS_propre_courbe}
 \end{equation}
 où $\vrm{r}$ vérifie
 \begin{equation}
@@ -207,6 +207,13 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 \newcommand{\psiR}{\lo{\vit{\psi}}}
 \newcommand{\psiL}{\hi{\vit{\psi}}}
 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm]{pseudo-EdS_arete.JPG}
+    \caption{Paramétrisation de $\pseudoEdS{\brepedge}{\rho}$}
+    \label{fig:pseudo-EdS_arete}
+\end{figure}
 
 
 

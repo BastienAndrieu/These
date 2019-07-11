@@ -13,8 +13,8 @@
 \contentsline {section}{\numberline {2.3}Construction d'une EdS partielle}{13}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Param\IeC {\'e}trisation de l'EdS propre d'une face BRep}{13}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Param\IeC {\'e}trisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{13}{subsection.2.3.2}
-\contentsline {subsubsection}{\numberline {2.3.2.1}Param\IeC {\'e}trisation de l'EdS propre d'un arc param\IeC {\'e}trique}{14}{subsubsection.2.3.2.1}
-\contentsline {subsubsection}{\numberline {2.3.2.2}Param\IeC {\'e}trisation de la pseudo-EdS}{15}{subsubsection.2.3.2.2}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Param\IeC {\'e}trisation de l'EdS propre d'un arc param\IeC {\'e}trique}{13}{subsubsection.2.3.2.1}
+\contentsline {subsubsection}{\numberline {2.3.2.2}Param\IeC {\'e}trisation de la pseudo-EdS}{14}{subsubsection.2.3.2.2}
 \contentsline {subsection}{\numberline {2.3.3}Param\IeC {\'e}trisation de la pseudo-EdS d'un sommet BRep\ convexe}{15}{subsection.2.3.3}
 \contentsline {subsubsection}{\numberline {2.3.3.1}Polygone sph\IeC {\'e}rique d\IeC {\'e}coup\IeC {\'e} en quadrilat\IeC {\`e}res}{15}{subsubsection.2.3.3.1}
 \contentsline {subsubsection}{\numberline {2.3.3.2}Ajustement de carreau sph\IeC {\'e}rique \IeC {\`a} un nuage de points}{15}{subsubsection.2.3.3.2}
