@@ -1,0 +1,18 @@
+\setlength{\imagewidth}{60mm}%
+\setlength{\imageheight}{\imagewidth}%
+%
+\colorlet{facecolor1}{mycolor_1}
+\colorlet{facecolor2}{mycolor_2}
+\colorlet{facecolor3}{mycolor_3}
+%
+\begin{tikzpicture}[
+	x=0.5\imagewidth, 
+	y=0.5\imageheight,
+	halfedge/.style={
+		line width=0.8pt, 
+		line cap=round, 
+		-{Triangle[left]}
+	},
+]
+	\input{/d/bandrieu/GitHub/FFTsurf/test/graph/graph_faces_tikzcode.tex}
+\end{tikzpicture}

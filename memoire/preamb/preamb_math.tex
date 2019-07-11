@@ -10,6 +10,10 @@
 \usepackage{esint}
 \usepackage[overload]{empheq}%https://tex.stackexchange.com/questions/165685/subequations-and-array-in-braces
 
+\usepackage{xifthen}% provides \isempty test
+\usepackage{xparse}
+\usepackage{xstring}
+
 \usepackage{mathrsfs}% script (mathscr}
 
 % *** TWEAK (NEGATIVE) SPACES *** 
@@ -26,6 +30,11 @@ scr=boondoxo, scrscaled=1.05,
 cal=zapfc, calscaled=1.18%,
 %frak=mma, frakscaled=1.,
 ]{mathalfa}
+
+
+%https://tex.stackexchange.com/questions/399620/how-can-i-get-a-bar-over-a-subscript
+\usepackage{widebar}
+
 
 %https://tex.stackexchange.com/questions/234676/new-theorem-style
 %https://en.wikibooks.org/wiki/LaTeX/Theorems
@@ -76,6 +85,9 @@ cal=zapfc, calscaled=1.18%,
 \newcommand{\Ltwospace}{L^2\chebinterval}%\mathcal{L}_2\chebinterval}
 \newcommand*{\contdiff}[1]{\ensuremath{C^{#1}}}%{\matholdcal{C}^{#1}\!}
 \newcommand*{\contgeom}[1]{\ensuremath{G^{#1}}}%{\matholdcal{G}^{#1}\!}
+
+\newcommand*{\uvdomain}{\ensuremath{\mathcal{U}}}
+\newcommand*{\wdomain}{\ensuremath{\mathcal{W}}}
 
 \newcommand*{\bx}{\vit{x}}
 \newcommand*{\bu}{\vit{u}}
@@ -152,7 +164,7 @@ cal=zapfc, calscaled=1.18%,
 
 % Intervals
 \newcommand*{\lo}[1]{\underline{#1}}
-\newcommand*{\hi}[1]{\overline{#1}}
+\newcommand*{\hi}[1]{\widebar{#1}}
 
 
 % GRAPHS
@@ -162,8 +174,22 @@ cal=zapfc, calscaled=1.18%,
 
 
 % ENVELOPES OF SPHERES/BALLS
-\newcommand*{\sphere}[2]{\mathscr{S}(#1,#2)}                   % sphère
+%\newcommand*{\sphere}[2]{\mathscr{S}(#1,#2)}                   % sphère
+\newcommand*{\spherenotation}{\mathscr{S}}
+\NewDocumentCommand{\sphere}{o o}{%
+	\IfValueTF{#1}{%
+		\IfValueTF{#2}{%
+			\ensuremath{\spherenotation(#1,#2)}%
+		}{%
+			\ensuremath{\spherenotation(#1)}%
+		}%
+	}{%
+		\ensuremath{\spherenotation}%
+	}%
+}
+
 \newcommand*{\ball}[2]{\mathscr{B}(#1,#2)}                     % boule ouverte
+\newcommand*{\implicitsphere}{S}                               % fonction définissant implicitement une sphère
 \newcommand*{\EoB}[2]{{#1}^{#2}}                               % EdB
 \newcommand*{\EoS}[2]{\widehat{\EoB{#1}{#2}}}                  % EdS
 \newcommand*{\influ}{\mathscr{I}}                              % zone d'influence
@@ -171,15 +197,21 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\influEoS}[2]{\widehat{\influ}^{\!#2}({#1})}      % zone d'influence sur l'EdS
 \newcommand*{\properEoB}[2]{\influ_*^{\!#2}({#1})}             % EdB propre
 \newcommand*{\properEoS}[2]{\widehat{\influ}_{*}^{\!#2}({#1})} % EdS propre
-\newcommand*{\eos}{\vit{\phi}}                                 % paramétrisation de l'EdS (propre)
+\newcommand*{\eos}{\vit{e}}                                    % paramétrisation de l'EdS (propre)
 \newcommand*{\dilation}[2]{{#1}_{\uparrow #2}}                 % "dilatation"
 
+\newcommand*{\envelope}{\mathcal{E}}
+\newcommand*{\EdS}[2]{{\envelope}^{#2}({#1})}                    % EdS
+\newcommand*{\EdSpropre}[2]{{\envelope}_{*}^{#2}({#1})}          % EdS propre
+\newcommand*{\pseudoEdS}[2]{\widehat{\envelope}^{#2}({#1})}    % pseudo-EdS
 
 % SET THEORY/TOPOLOGY
-\newcommand*{\closure}[1]{\overline{#1}}%\mathrm{cl}#1}%
+\newcommand*{\closure}[1]{\widebar{#1}}%\mathrm{cl}#1}%
 \newcommand*{\interior}[1]{\mathrm{int}{#1}}%\mathring{#1}}%
 \newcommand*{\boundary}[1]{\partial #1}
 \renewcommand*{\complement}[1]{#1^\mathsf{C}}
+\newcommand*{\neigborhood}{\mathscr{V}}
+
 
 
 % Encircled text

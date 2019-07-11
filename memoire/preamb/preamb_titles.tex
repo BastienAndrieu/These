@@ -78,7 +78,7 @@
 					text width=\textwidth,%
 					minimum height=\barheight,%
 					align=flush right,%justify,%
-					inner sep=0mm%
+					inner sep=0mm,%
 					]%
 					(chapttl)%
 					at ([xshift=-\foremargin, yshift=\yshiftchapname] current page.north east)%
@@ -89,11 +89,11 @@
 					text width=\textwidth-\vbarxshift,%
 					minimum height=\barheight,%
 					align=flush right,%justify,%
-					inner sep=0mm%
+					inner sep=0mm,%
 					]%
 					(chapttl)%
 					at ([xshift=-\foremargin-\vbarxshift, yshift=\yshiftchapname] current page.north east)%
-					{{\chaptitlefont\color{colchapttl}##1\par}};%
+					{{\chaptitlefont\color{colchapttl}\nohyphens{##1}\par}};%
 					\node[%
 						anchor= west,%west,%
 						align=left,%

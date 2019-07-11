@@ -2,9 +2,13 @@
 \setlength{\imageheight}{\imagewidth}%
 \DTLsetseparator{,}%
 \DTLloaddb[noheader,keys={x,y,a}]{dbcorners}{figures/data/piecewise_smooth_surface/corners_xya.dat}%
+\DTLloaddb[noheader,keys={x,y,a}]{dbedgemidp}{figures/data/piecewise_smooth_surface/edge_midpoints_xya.dat}%
 \begin{tikzpicture}[%
-	x=\imagewidth, y=\imageheight,
-	img/.style={anchor=south west, inner sep=0}]
+		x=\imagewidth, y=\imageheight,
+		img/.style={anchor=south west, inner sep=0},
+		anot/.style={-{Latex[length=4pt]}, shorten >=2pt},
+		anotpoint/.style={anot, shorten >=5pt},
+	]
 	%%% SURFACE
 	\node[img] at (0,0) {\includegraphics[width=\imagewidth]{piecewise_smooth_surface/surface}};
 	%%% HIDDEN EDGES
@@ -24,17 +28,27 @@
 	%%% VISIBLE CORNERS
 	\DTLforeach*{dbcorners}{\locx=x, \locy=y, \loca=a}{%
 		\ifnum \loca = 1
-			\fill[black] (\locx,\locy) circle (1.0pt);
+			\fill[black] (\locx,\locy) circle (1.2pt);
 		\fi
 	}%
 	%
 	%%% ANOTATIONS
-	\DTLassign{dbcorners}{1}{\locxa=x,\locya=y,\loca=a}% 	
+	\DTLassign{dbcorners}{6}{\locxa=x,\locya=y,\loca=a}% 	
 	\DTLassign{dbcorners}{4}{\locxb=x,\locyb=y,\loca=a}% 
-	\DTLassign{dbcorners}{8}{\locxc=x,\locyc=y,\loca=a}% 
-	\node[anchor=west] (anotIrrPts) at (\locxb,{0.5*(\locya + \locyb)}) {points irréguliers};
-	\draw[shorten >=5pt, ->] (anotIrrPts.south) to [bend left=20] (\locxa, \locya);
-	\draw[shorten >=5pt, ->] (anotIrrPts.north) to [bend right=20] (\locxb, \locyb);
-	\draw[shorten >=5pt, ->] (anotIrrPts.west) to [bend left=10] (\locxc, \locyc);
+	\DTLassign{dbcorners}{1}{\locxc=x,\locyc=y,\loca=a}% 
+	%\node[anchor=west] (anotSingPts) at (\locxb,{0.5*(\locya + \locyb)}) {points singuliers};
+	\node[anchor=east] (anotSingPts) at (1.2,0.2) {points singuliers};
+	\draw[anot] (anotSingPts) to [bend left=10] (\locxa, \locya);
+	\draw[anot] (anotSingPts) to [bend right=20] (\locxb, \locyb);
+	\draw[anot] (anotSingPts) to [bend right=10] (\locxc, \locyc);
+	%
+	\DTLassign{dbedgemidp}{19}{\locxa=x,\locya=y,\loca=a}% 	
+	\DTLassign{dbedgemidp}{7}{\locxb=x,\locyb=y,\loca=a}% 
+	\DTLassign{dbedgemidp}{14}{\locxc=x,\locyc=y,\loca=a}% 
+	\node[anchor=west] (anotSingCurv) at (-0.2,0.9) {courbes singulières};
+	\draw[anot] (anotSingCurv) to [bend right=10] (\locxa, \locya);
+	\draw[anot] (anotSingCurv) to [bend right=40] (\locxb, \locyb);
+	\draw[anot] (anotSingCurv.east) to [bend left=10] (\locxc, \locyc);
 \end{tikzpicture}
 \DTLgdeletedb{dbcorners}%
+\DTLgdeletedb{dbedgemidp}%

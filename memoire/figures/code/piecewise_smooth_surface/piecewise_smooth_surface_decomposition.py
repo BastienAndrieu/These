@@ -1,11 +1,27 @@
 import bpy
 import bpy_extras
+from mathutils import Vector
 import numpy
 import sys
 sys.path.append('/d/bandrieu/GitHub/Code/Python/')
 import lib_blender_edit as lbe
 import lib_blender_util as lbu
 import lib_blender_figures as lbf
+
+#################################################
+#################################################
+def get_polyline_midpoint(verts):
+    n = len(verts)
+    s = numpy.zeros(n)
+    for i in range(1,n):
+        s[i] = s[i-1] + Vector(verts[i] - verts[i-1]).length
+    smid = 0.5*s[-1]
+    for i in range(n-1):
+        if s[i] <= smid and s[i+1] >= smid:
+            t = (smid - s[i])/(s[i+1] - s[i])
+            return (1 - t)*verts[i] + t*verts[i+1]
+#################################################
+#################################################
 
 #################################################
 pthin = '/d/bandrieu/GitHub/FFTsurf/test/demo_EoS_brep/'
@@ -92,12 +108,14 @@ for i in range(nhe):
         e, ih = [int(h)-1 for h in f.readline().split()]
         if e not in iedges: iedges.append(e)
 f.close()
+
+iedges.sort()
+iverts.sort()
 #################################################
 
 
 #################################################
 # ADD SINGULAR CURVES
-"""
 mat_edge = bpy.data.materials.new('mat_edge')
 mat_edge.diffuse_color = (0,0,0)
 mat_edge.use_shadeless = True
@@ -109,7 +127,8 @@ for e in iedges:
         thickness=2e-3
     )
     obj.data.materials.append(mat_edge)
-"""
+    obj.hide_render = True
+
 # Freestyle settings
 freestyle = scene.render.layers.active.freestyle_settings
 freestyle.use_smoothness = True
@@ -174,15 +193,20 @@ cam.data.angle += numpy.pi/180.0 # increase FOV angle by 1 degree
 
 #################################################
 # ADD SINGULAR POINTS
-"""
 for v in iverts:
-    bpy.ops.mesh.primitive_uv_sphere_add(
+    """bpy.ops.mesh.primitive_uv_sphere_add(
         location=verts_xyz[v],
         size=1e-2
-    )
-"""
+    )"""
+    scene.objects.active = None
+    bpy.ops.object.empty_add(location=verts_xyz[v])
+    obj = bpy.context.active_object
+    obj.name = 'corner'+str(v+1)
+    obj.empty_draw_size = 5e-2
+
 print('Writing corners_xyza.dat...')
 f = open(pthout + 'corners_xya.dat', 'w')
+iverts.sort()
 for v in iverts:
     xyz = verts_xyz[v]
     u, v = lbf.convert_3d_to_2d_coords(xyz, normalize=True)
@@ -200,42 +224,68 @@ print('done.')
 
 
 
+
+#################################################
+# GET SINGULAR CURVE MIDDLE POINTS
+print('Writing edge_midpoints_xyza.dat...')
+f = open(pthout + 'edge_midpoints_xya.dat', 'w')
+for e in iedges:
+    xyz = get_polyline_midpoint(edges_xyz[e])
+    u, v = lbf.convert_3d_to_2d_coords(xyz, normalize=True)
+    visible = lbu.is_visible_point(
+        xyz=xyz,
+        cam=cam,
+        tol=tolvis,
+        nrs=nrsvis,
+        clean=True
+    )
+    f.write('%s, %s, %d\n' % (u, v, int(visible)))
+f.close()
+print('done.')
+#################################################
+
+
+
+
+
+
+
 #################################################
 # RENDERING
-scene.render.image_settings.file_format='PNG'
-pthimg = '/d/bandrieu/GitHub/These/memoire/figures/images/piecewise_smooth_surface/'
+if False:
+    scene.render.image_settings.file_format='PNG'
+    pthimg = '/d/bandrieu/GitHub/These/memoire/figures/images/piecewise_smooth_surface/'
 
-print('Rendering surface...')
-### 1st render: surface
-scene.render.use_freestyle = False
-scene.render.filepath = pthimg + 'surface'
-bpy.ops.render.render(write_still=True)
-print('done.')
+    print('Rendering surface...')
+    ### 1st render: surface
+    scene.render.use_freestyle = False
+    scene.render.filepath = pthimg + 'surface'
+    bpy.ops.render.render(write_still=True)
+    print('done.')
 
-print('Rendering visible edges...')
-### 2nd render: visible edges
-mat = bpy.data.materials['mat_surface']
-mat.use_transparency = True
-mat.alpha = 0
-mat.transparency_method = 'MASK'
-mat.use_raytrace = False
-mat.use_shadows = False
-mat.use_cast_buffer_shadows = False
+    print('Rendering visible edges...')
+    ### 2nd render: visible edges
+    mat = bpy.data.materials['mat_surface']
+    mat.use_transparency = True
+    mat.alpha = 0
+    mat.transparency_method = 'MASK'
+    mat.use_raytrace = False
+    mat.use_shadows = False
+    mat.use_cast_buffer_shadows = False
 
-scene.render.use_freestyle = True
-freestyle.linesets[0].show_render = True
-freestyle.linesets[1].show_render = False
-scene.render.filepath = pthimg + 'edges_visible'
-bpy.ops.render.render(write_still=True)
-print('done.')
+    scene.render.use_freestyle = True
+    freestyle.linesets[0].show_render = True
+    freestyle.linesets[1].show_render = False
+    scene.render.filepath = pthimg + 'edges_visible'
+    bpy.ops.render.render(write_still=True)
+    print('done.')
 
-print('Rendering hidden edges...')
-### 3rd render: hidden edges
-freestyle.linesets[0].show_render = False
-freestyle.linesets[1].show_render = True
-scene.render.filepath = pthimg + 'edges_hidden'
-bpy.ops.render.render(write_still=True)
-print('done.')
-
+    print('Rendering hidden edges...')
+    ### 3rd render: hidden edges
+    freestyle.linesets[0].show_render = False
+    freestyle.linesets[1].show_render = True
+    scene.render.filepath = pthimg + 'edges_hidden'
+    bpy.ops.render.render(write_still=True)
+    print('done.')
 #################################################
 

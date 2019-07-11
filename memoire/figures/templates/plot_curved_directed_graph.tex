@@ -1,0 +1,35 @@
+\newlength{\arclinewidth}
+\setlength{\arclinewidth}{0.6pt}
+\newlength{\noderadius}
+\setlength{\noderadius}{1.8\arclinewidth}
+
+\newcommand{\plotCurvedDirectedGraph}[2]{
+% Arguments :
+% #1 : nom du fichier contenant les points de controle des arcs du graphe
+% #2 : échelle
+\DTLsetseparator{,}%
+%
+\DTLloaddb[noheader,keys={xa,ya,xb,yb,xc,yc,xd,yd}]{dbbcp}{#1}%
+\begin{tikzpicture}[
+	x=#2, 
+	y=#2,
+	decoration={
+    	markings,
+    	mark=at position 0.5 with {\arrow{stealth}}
+    },
+    arc/.style={
+    	line width=\arclinewidth, 
+    	line cap=round,
+    	%-{Triangle[left]},
+    	postaction={decorate},
+    }
+]
+\DTLforeach*{dbbcp}{\locxa=xa, \locya=ya, \locxb=xb, \locyb=yb, \locxc=xc, \locyc=yc, \locxd=xd, \locyd=yd}%
+	{%
+		\draw[arc] (\locxa,\locya) .. controls (\locxb,\locyb) and (\locxc,\locyc) .. (\locxd,\locyd);
+		\fill[black] (\locxa,\locya) circle (\noderadius);
+		\fill[black] (\locxd,\locyd) circle (\noderadius);
+	}%
+\end{tikzpicture}
+\DTLgdeletedb{dbbcp}%
+}
