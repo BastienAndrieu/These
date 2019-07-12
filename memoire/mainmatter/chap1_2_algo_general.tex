@@ -103,12 +103,69 @@ arguments :
 	\item paramétrisation de l'EdS propre d'un carreau non-restreint
 	\begin{enumerate}
 		\item rappeler système définissant une EdS propre à 2 paramètres
+		
 		\item interprétation : intersection de cercles caractéristiques $\to$ 2 points (\ie 2 nouveaux carreaux), on garde celui dans le sens de $+\unv$ (l'autre est trivialement exclu de l'EdB)
-		\item paramétrisation à la Gelston \cite{gelston1995}
-		\item différence avec le simple transport suivant la normale (ordre 2 en temps)
+		\item paramétrisation à la Gelston \cite{gelston1995} (voir figure \autoref{fig:EdS_propre_carreau})
+		
+		\item différence avec le simple transport suivant la normale (ordre 2 en temps) \cite{jiao2001}
 	\end{enumerate}
 	\item conservation du domaine paramétrique (pas de re-paramétrisation) $\Rightarrow$ coordonnées $(x,y,z)$ des courbes de restriction données directement par la nouvelle paramétrisation
 \end{enumerate}
+
+
+
+\begin{figure}[!htp]
+	\centering
+	\begin{tikzpicture}[
+		scale=1.5,
+		point/.style = {circle, scale=0.27, fill=black},
+		vector/.style = {-latex', thick},
+		label/.style = {inner sep=2pt},
+		txt/.style = {font=\small}]
+		\node[anchor=north west, inner sep=0] at (0,0) {\includegraphics[width=12cm]%width=scale*80mm
+		{figures/2pEoS_nointer}};
+		\coordinate (s) at (40.632mm,-21.936mm);
+		%
+		\coordinate (pp) at (38.4mm,-9.56mm);
+		%\node [anchor=west, txt] at (pp) {$\eos_+$};
+		\node [anchor=north, txt, xshift=3pt, label] at (pp) {$\eos_+$};
+		\coordinate (pm) at (38.76mm,-32.4mm);
+		%\node [anchor=west, txt] at (pm) {$\eos_-$};
+		\node [anchor=south, txt, xshift=3pt, label] at (pm) {$\eos_-$};
+		%
+		\coordinate (svmax) at (8.416mm,-34.856mm);
+		\coordinate (sv) at ($(s)!-0.55!(svmax)$);
+		\draw [vector, blue] (s) -- (sv) node [above, label, txt] {$\bs_v$};
+		\coordinate (sumax) at (60.872mm,-35.28mm);
+		\coordinate (su) at ($(s)!0.65!(sumax)$);
+		\draw [vector, red] (s) -- (su) node [right, label, txt] {$\bs_u$};
+		%
+		\coordinate (nmax) at (40.472mm,-6.176mm);
+		\coordinate (n) at ($(s)!0.4!(nmax)$);
+		\draw [vector] (s) -- (n) node [right, label, txt, black] {$\unv$};
+		%
+		\coordinate (qp) at ($(s)!1.6!(pp)$);
+		%\node [anchor=west, label, txt, xshift=0pt] at (qp) {$\mathbf{q}_+$};
+		\draw [dotted, thick, shorten >= 14pt] (s) -- (pp);
+		\draw [vector] (pp) -- (qp);
+		%
+		\coordinate (qm) at ($(s)!1.6!(pm)$);
+		%\node [anchor=east, label, txt, xshift=0pt]	at (qm) {$\mathbf{q}_-$};
+		\draw [dotted, thick, shorten <= 0pt, shorten >= 14pt] (s) -- (pm);
+		\draw [vector] (pm) -- (qm);
+		%
+		\node [point] at (s) {};
+		\node [point] at (pp) {};
+		\node [point] at (pm) {};
+		%
+%		\node [anchor=north, txt, inner sep=3pt] at (s) {$\bs(u,\!v)$};
+		%\node [anchor=west, txt, inner sep=4pt] at (s) {$\bs(u,\!v)$};
+		\node [anchor=east, txt, inner sep=2pt] at (s) {$\bs(u,v)$};
+		\node [txt, label] at (5.49mm,-15mm) {$\Sigma$};
+	\end{tikzpicture}
+	\caption{Paramétrisation de l'EdS propre d'un carreau paramétrique.}
+	\label{fig:EdS_propre_carreau}
+\end{figure}
 
 \begin{figure}
 	\centering

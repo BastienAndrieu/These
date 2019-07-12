@@ -10,13 +10,42 @@ On donne ensuite la formulation lagrangienne traditionnelle du problème de prop
 On conclut ce chapitre en introduisant une formulation plus adéquate du problème, basée sur le principe de Huygens.
 
 
+\section{Géométrie différentielle des (courbes et) surfaces}
+(annexe?) introduire notions : 
+\begin{enumerate}
+	\item plan tangent, continuité géométrique $\contgeom{1}$
+	\item \textit{carreau paramétrique} : $(\uvdomain, \bs)$
+	\begin{itemize}
+		\item $\uvdomain \subset \reals^2$ est le \textit{domaine paramétrique}
+		\item $\Sigma = \bs(\uvdomain)$ est le \textit{support} du carreau (surface)
+		\item $\bs : \uvdomain \to \Sigma \subset \reals^3$ est une \textit{paramétrisation} de $\Sigma$
+		\item vecteurs tangents $\bsu$ et $\bsv$
+		\item vecteur normal $\unv = \unitized{\crossprod{\bsu}{\bsv}}$
+		\item tenseur métrique, première forme fondamentale $\fff$, structure Riemannienne
+		\item seconde forme fondamentale $\sff$, courbures normale, principales, moyenne et gaussienne
+	\end{itemize}
+	\item \textit{arc/courbe paramétrique} : $(\wdomain, \bg)$
+	\begin{itemize}
+		\item $\wdomain = \left[\lo{ł}, \hi{w}\right]$ est l'\textit{intervalle paramétrique}
+		\item $\Gamma = \bg(\wdomain)$ est le \textit{support} de l'arc (courbe)
+		\item $\bg : \wdomain \to \Gamma \subset \reals^3$ est une \textit{paramétrisation} de $\Gamma$
+		\item vecteur tangent $\bg'$
+		\item courbure
+		\item courbe sur un carreau de surface
+		\begin{itemize}
+			\item géométrie différentielle de l'intersection de deux carreaux
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+
+\input{figures/fig_diffgeom.tex}
+
 
 \section{Description et représentation des surfaces régulières \piecewise}
-[décomposition en nappes régulières ($\contgeom{1}$), courbes singulières (crêtes?) et points irréguliers (coins?) (\cf notes Huygens)]
-\par\bigskip
-(Inspiré par \cite[p.65]{rossignac1985} et \cite[Section 2.6]{rossignac1986}.)\par
+%[décomposition en nappes régulières ($\contgeom{1}$), courbes singulières (crêtes?) et points irréguliers (coins?) (\cf notes Huygens)]
+%\par\bigskip
+%(Inspiré par \cite[p.65]{rossignac1985} et \cite[Section 2.6]{rossignac1986}.)\par
 
-\subsection{Géométrie différentielle des (courbes et) surfaces}
 %[courbes et surfaces paramétriques : vocabulaire (arc, carreau, espace et domaine paramétriques, carreau restreint, courbes de restriction), vecteur(s) et plan tangents, vecteur (pseudo-)normal, notion de continuités paramétrique/géométrique, tenseur métrique, première et seconde formes fondamentales, courbures principales, gaussienne et moyenne]
 %\par\bigskip
 %Dans ce manuscrit, on appelle \textit{carreau de surface paramétrique} de classe $\contdiff{k}$ tout couple $(\uvdomain, \bs)$ où $\uvdomain \subset \reals^2$, $\bs : \uvdomain \to \reals^3$ est une fonction de classe $\contdiff{k}$ sur $\uvdomain$, et $k \in \integers$. 
@@ -24,8 +53,23 @@ On conclut ce chapitre en introduisant une formulation plus adéquate du problè
 %Par commodité, on désignera parfois le carreau simplement par $\bs$.
 %\par
 %Le support $\bs(\uvdomain)$ 
-notion de continuité géométrique : point régulier/singulier $\to$ notion de plan tangent\\
-paramétrisation (locale), atlas, continuité paramétrique
+introduire notions \cite{rossignac1985} : 
+\begin{enumerate}
+	\item \textit{nappe régulière} : variété de dimension 2, connexe, de continuité $\contgeom{1}$ (direction normale continue)
+	\item \textit{courbe singulière} : variété de dimension 1, connexe, de continuité $\contgeom{1}$ (direction tangente continue)
+	\item \textit{point singulier} : point qui n'est à l'intérieur d'aucune nappe régulière ou courbe singulière
+\end{enumerate}
+
+\begin{itemize}
+	\item la frontière d'une nappe régulière est composée de courbes et de points singuliers (si elle n'est pas vide)
+	\item la frontière d'une courbe singulière (ses extrémités) est composée de points singuliers (si elle n'est pas vide)
+	\item tout point d'une surface $\contgeom{1}$ \piecewise\ est
+	\begin{itemize}
+		\item soit situé à l'intérieur d'une nappe régulière ;
+		\item soit situé à l'intérieur d'une courbe singulière ;
+		\item soit un point singulier.
+	\end{itemize}
+\end{itemize}
 
 \begin{figure}
 	\centering
@@ -39,14 +83,58 @@ paramétrisation (locale), atlas, continuité paramétrique
 %Les courbes singulières de $\boundary{\Omega}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux points singuliers.
 
 \subsection{Représentation par les frontières (\brep)}
-Origine, utilisation, concept, définitions formelles des entités, lien avec la décomposition d'une surface $\contgeom{1}$ \piecewise, (géométrie différentielle des courbes et surfaces paramétriques), structures de données (DCEL)
+%Origine, utilisation, concept, définitions formelles des entités, lien avec la décomposition d'une surface $\contgeom{1}$ \piecewise, (géométrie différentielle des courbes et surfaces paramétriques), structures de données (DCEL)
+La \textit{représentation par les frontières} (ou \brep\ pour \anglais{Boundary Representation}) est un formalisme très répandu dans le domaine de la Conception Assistée par Ordinateur (CAO) \textit{(développer \ldots)}.
+Elle consiste à décrire un solide $\Omega$ à l'aide d'une décomposition cellulaire de la surface $\Sigma$ qui matérialise sa frontière. 
+Cette décomposition --- illustrée sur la \autoref{fig:BRep} --- est constituée de \textit{faces}, d'\textit{arêtes} et de \textit{sommets} dont on donne une définition dans les paragraphes suivants. 
 
+\begin{figure}
+	\centering
+	\input{figures/code/BRep/BRep}
+	\caption{Modèle \brep\ d'une surface régulière par morceaux.}
+	\label{fig:BRep}
+\end{figure}
+
+\subsubsection{Faces}
+Une face du modèle \brep\ est une variété de dimension 2 connexe délimitée par des arêtes et des sommets. 
+Géométriquement, une face $\brepface$ est décrite par un carreau paramétrique restreint.
+La topologie des courbes de restriction du domaine paramétrique est décrite à l'aide de \textit{contours} (un par composante connexe du bord de $\brepface$). 
+Une face possède ainsi un contour extérieur $\brepwire^{\mathrm{ext}}$ et, éventuellement un ou plusieurs contours intérieurs $\brepwire^{\mathrm{int},i}$ si celle-ci comporte des \guillemets{trous}.
+Les faces, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en des arêtes ou des sommets du modèle \brep), sont regroupées en \textit{coquilles}, qui représentent chacune une composante connexe de $\Sigma$. 
+
+
+\subsubsection{Arêtes}
+Une arête du modèle \brep\ est une variété de dimension 1 connexe délimitée par des sommets.
+Puisque $\Sigma$ est une variété sans bord, chaque arête du modèle \brep\ est incidente à exactement deux faces $\brepface_1$ et $\brepface_2$. 
+Géométriquement, l'arête $\brepedge$ est représentée par une branche de la courbe d'intersection entre les carreaux $\Sigma_1$ et $\Sigma_2$ qui décrivent respectivement $\brepface_1$ et $\brepface_2$. 
+Cette courbe peut également être représentée par sa trace dans l'espace paramétrique de chaque carreau. 
+On peut donc la représenter à l'aide des trois courbes paramétriques $\bg$, $\bp_1$ et $\bp_2$ telles que
+\begin{equation}
+	\bg = \bs_1 \circ \bp_1 = \bs_2 \circ \bp_2.
+\end{equation}
+
+\begin{figure}
+	\centering
+	\input{figures/code/simple_intersection.tex}
+	\caption{Description géométrique d'une arête \brep.}
+\end{figure}
+
+Les arêtes, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en des sommets du modèle \brep), sont regroupées pour former les contours des faces. 
+Puisque ces derniers sont orientés, chaque arête $\brepedge$ est formée de deux \textit{co-arêtes} jumelles $\brepedge^1$ et $\brepedge^2$, chacune associée à une face incidente à $\brepedge$. 
+Chaque co-arête possède une orientation, conforme à celle du contour qui la contient.
+
+
+\subsubsection{Sommets}
+Un sommet du modèle \brep\ matérialise l'intersection de deux arêtes et a pour support géométrique un point de $\reals^3$.
+
+\subsubsection{Structure de données}
 \begin{enumerate}
-	\item l'ensemble des points singuliers est un sous-ensemble des sommets \brep
-	\item l'ensemble des courbes singulières est un sous-ensemble des arêtes \brep
-%	\item chaque arête \brep\ vive est contenue dans une courbe singulière
+	\item séparation entre topologie (structure) / géométrie (forme)
+	\item connectivité entre les entités capturée à l'aide d'une structure de graphe (homéomorphe à un polyèdre)
+	\item structure de données adaptée $\to$ \anglais{Doubly Connected Edge List} (DCEL) (\anglais{Halfedges}) \textit{(donner réfs.)}
 \end{enumerate}
 
+La \autoref{fig:BRep_hierarchy} présente un diagramme de la hiérarchie des entités qui constituent le modèle \brep.
 \begin{figure}
 	\centering
 	\input{figures/code/BRep_hierarchy}
@@ -55,13 +143,23 @@ Origine, utilisation, concept, définitions formelles des entités, lien avec la
 \end{figure}
 
 
+\subsubsection{Représentation de surfaces régulières par morceaux}
+Le formalisme de la représentation par les frontières est particulièrement adapté pour décrire des surfaces régulières par morceaux. 
+En effet, 
+\begin{itemize}
+	\item l'ensemble des points singuliers de $\Sigma$ est un sous-ensemble des sommets de son modèle \brep\ ;
+	\item l'ensemble des courbes singulières de $\Sigma$ est un sous-ensemble des arêtes de son modèle \brep\ ;
+	\item les nappes régulières de $\Sigma$ sont formées par la réunion des faces de son modèle \brep.
+%	\item chaque arête \brep\ vive est contenue dans une courbe singulière
+\end{itemize}
 
-\begin{figure}
-	\centering
-	\input{figures/code/BRep/BRep}
-	\caption{Modèle \brep\ d'une surface régulière par morceaux.}
-	\label{fig:BRep}
-\end{figure}
+
+
+
+
+
+
+
 
 
 
@@ -123,10 +221,21 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 	%\item formaliser la notion d'enveloppe des boules $\EoB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
 	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{H \subseteq \Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
 	\item formaliser la notion d'enveloppe des boules $\EoB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
-	\item donner définition implicite de $\EoB{\Sigma}{\rho}$
+	\item donner définition implicite de $\EoB{\Sigma}{\rho}$ :
+	\[ \EoB{\Sigma}{\rho} = \phi^{-1}(0) \]
+	avec 
+	\[ \phi(\bx) = \min_{\p \in \Sigma} \normtwo{\bx - \p}^2 - \rho(\p)^2 \]
+	\item après une propagation à vitesse normale $\nu$ constante pendant un intervalle de temps $\tau$ tel que $\nu \tau = \rho$, la nouvelle interface est $\EoB{\Sigma}{\rho}$
 	\item à condition que $\rho$ soit suffisamment régulière (continuité à déterminer), $\EoB{\Sigma}{\rho} \subset \EdS{\Sigma}{\rho}$
 \end{enumerate}
 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=10cm]{EdS_EdB.JPG}
+	\caption{Schéma pour distinguer EdS et EdB (à revoir!).}
+	\label{fig:EdS_EdB}
+\end{figure}
 
 %Dans la suite, étant donné un sous-ensemble (ouvert ou fermé) $E$ de $\reals^d$, on notera $\complement{E} := \reals^d \setminus E$ son \textit{complémentaire}, $\boundary{E}$ sa \textit{frontière}, $\interior{E}$ son \textit{intérieur} et $\closure{E} = E \cup \boundary{E}$ son \textit{adhérence}.
 %\par\bigskip
