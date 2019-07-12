@@ -83,9 +83,11 @@ L'équation décrivant la propagation suivant un champ de vecteur vitesse $\vrm{
 On peut également considérer que chaque point de $\Sigma$ se déplace le long de la direction normale à l'interface suivant un champ de vitesse normale $\nu : \Sigma \times \reals \to \reals$. 
 L'équation décrivant la propagation est alors
 \begin{equation}
-	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t).
+	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t),
 	\label{eq:lagrange_vitesse_normale}
 \end{equation}
+où $\unv(\bx,t)$ désigne la direction normale à $\Sigma$ en $\bx$ à l'instant $t$, pointant vers l'extérieur de $\Omega$.
+\par\bigskip
 En principe, les formulations \eqref{eq:lagrange_vecteur_vitesse} et \eqref{eq:lagrange_vitesse_normale} sont équivalentes puisque la composante tangentielle du vecteur vitesse n'affecte pas la forme de l'interface. 
 \par\bigskip
 La formulation lagrangienne ne permet d'obtenir une solution au problème de propagation d'interface que dans le cas où cette dernière est \textit{globalement} régulière et le reste tout au long de sa propagation. 
@@ -95,10 +97,10 @@ On peut notamment distinguer deux cas \cite{jiao2007}.
 Premièrement, si l'interface subit un mouvement d'advection (comme le transport d'un fluide ou encore la déformation d'un solide sous l'effet de contraintes mécaniques) alors ses singularités géométriques sont préservées au cours de la propagation.
 \par
 En revanche, si l'interface se propage à la manière d'un front d'onde (comme la progression d'une flamme, d'un dépôt de matière ou encore l'ablation d'un solide) alors les singularités sont soit préservées soit régularisées, suivant la convexité locale de l'interface.
-C'est essentiellement sur ce deuxième type de propagation que la thèse se concentre.
+C'est essentiellement sur ce deuxième type de propagation que l'on se concentre dans cette thèse.
 \par\bigskip
 Puisque l'on s'intéresse ici à la propagation d'interfaces régulières seulement \piecewise, il est nécessaire d'obtenir une meilleure formulation du problème qui s'affranchisse des ambiguïtés ainsi mises en évidence. 
-Plutôt que de poser le problème sous la forme d'une équation différentielle, cette nouvelle formulation se présente sous la forme d'une construction géométrique.
+Plutôt que de poser le problème sous la forme d'une équation différentielle, cette nouvelle formulation se présente comme une construction géométrique.
 
 \section{Principe de Huygens avec condition d'entropie}
 \label{section:principe_huygens}
@@ -116,12 +118,13 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 
 \par\bigskip
 \begin{enumerate}
-	\item distinguer propagation d'une onde et d'une interface entre deux milieux matériels $\to$ condition d'entropie
-	\item l'une peut s'auto-intersection, l'autre non
-	\item formaliser la notion d'enveloppe des sphères $\EoS{\Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère) $\to$ système d'équations avec $\implicitsphere_{\rho} : (\bx,\p) \mapsto \normtwo{\bx - \p}^2 - \rho^2(\p)$
+	\item distinguer propagation d'une onde et d'une interface entre deux milieux matériels (l'une peut s'auto-intersecter, l'autre non) $\to$ condition d'entropie
+	%\item formaliser la notion d'enveloppe des sphères $\EdS{\Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère) $\to$ système d'équations avec $\implicitsphere_{\rho} : (\bx,\p) \mapsto \normtwo{\bx - \p}^2 - \rho^2(\p)$
+	%\item formaliser la notion d'enveloppe des boules $\EoB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
+	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{H \subseteq \Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
 	\item formaliser la notion d'enveloppe des boules $\EoB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
-	\item (donner définition implicite de $\EoB{\Sigma}{\rho}$)
-	\item à condition que $\rho$ soit suffisamment régulière (continuité à déterminer), $\EoB{\Sigma}{\rho} \subset \EoS{\Sigma}{\rho}$
+	\item donner définition implicite de $\EoB{\Sigma}{\rho}$
+	\item à condition que $\rho$ soit suffisamment régulière (continuité à déterminer), $\EoB{\Sigma}{\rho} \subset \EdS{\Sigma}{\rho}$
 \end{enumerate}
 
 

@@ -6,7 +6,7 @@ Pour cela, on choisit des géométries simples et sans arête concave.
 
 \section{Propagation suivant un champ de vitesse continu}
 
-sphère/cube dans un écoulement tourbillonnaire incompressible analytique de période temporelle $2T$
+sphère dans un écoulement tourbillonnaire incompressible analytique de période temporelle $2T$
 \begin{equation}
 	\vrm{u}(x,y,z,t) = 
 	%\cos \left( \frac{\pi t}{T} \right)
@@ -21,13 +21,29 @@ sphère/cube dans un écoulement tourbillonnaire incompressible analytique de p�
 \begin{figure}
 	\centering
 	\input{figures/code/vortex/vortex_BRep.tex}
-	\caption{Aperçu du modèle \brep\ à différents instants de la déformation ($T=4$).}
+	\caption{Aperçu du modèle \brep\ de la sphère dans un écoulement tourbillonnaire à différents instants de la propagation ($T=4$).}
 	\label{fig:snapshots_vortex}
 \end{figure}
 
-paramétrisation : cube projeté sur sphère ou \guillemets{slerp}\\
-calcul de volume avec quadrature de Clenshaw-Curtis (exact, l'intégrande est polynomiale) (étanchéité (continuité $\contgeom{0}$ partout) garantie car les marqueurs de bord coïncident tout au long de la déformation)\\
-convergence de l'erreur d'approximation sur la position, l'aire et le volume à $t = 0$ et $t = T$ pour différents niveaux de discrétisations spatiale et temporelle\\
+\begin{enumerate}
+	\item paramétrisation initiale : grille CGL des faces d'un cube projetées sur la sphère% ou \guillemets{slerp}
+	\item calcul de l'aire : intégration (approchée) par quadrature de Clenshaw-Curtis de l'élément d'aire $\sqrt{\determinant{\fff}}$
+	\item calcul de volume : formule de Green avec quadrature exacte car l'intégrande est polynomiale %(étanchéité (continuité $\contgeom{0}$ partout) garantie car les marqueurs de bord coïncident tout au long de la déformation)
+	\item critère d'erreur sur la position : distance à la sphère exacte
+	\item convergence de l'erreur d'approximation sur la position (\autoref{fig:vortex_error_vs_dof_pos}), l'aire (\autoref{fig:vortex_error_vs_dof_air}) et le volume (\autoref{fig:vortex_error_vs_dof_vol}) à $t = 0$ et $t = T$ pour différents niveaux de discrétisations spatiale et temporelle 
+	\begin{itemize}
+		\item[$\to$] l'approximation de la sphère initiale converge rapidement avec le degré du polynôme d'interpolation(\ie le nombre de degrés de liberté)
+		\item[$\to$] si la résolution spatiale est suffisamment fine, l'erreur d'approximation est essentiellement due à la discrétisation temporelle
+	\end{itemize}
+	\item convergence de la variation de volume au cours de la déformation (censée être nulle car $\nabla \cdot \vrm{u} = 0$) (\autoref{fig:vortex_error_volume_vs_time})
+	\begin{itemize}
+		\item[$\to$] on retrouve une convergence rapide : le pic à $t = T/2$ décroît exponentiellement avec $N$ 
+	\end{itemize}
+\end{enumerate}
+
+%\\
+%calcul de volume avec quadrature de Clenshaw-Curtis (exact, l'intégrande est polynomiale) (étanchéité (continuité $\contgeom{0}$ partout) garantie car les marqueurs de bord coïncident tout au long de la déformation)\\
+%convergence de l'erreur d'approximation sur la position, l'aire et le volume à $t = 0$ et $t = T$ pour différents niveaux de discrétisations spatiale et temporelle\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FIGURES ERREUR VS DOF
@@ -44,7 +60,7 @@ convergence de l'erreur d'approximation sur la position, l'aire et le volume à 
 \plotVortexErrorVsDof{volume}{le~}{vol}{relative}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-+ convergence de la variation de volume au cours de la déformation (censée être nulle)\\
+%+ convergence de la variation de volume au cours de la déformation (censée être nulle)\\
 \begin{figure}
   \centering
   \begin{tikzpicture}%
@@ -74,17 +90,73 @@ convergence de l'erreur d'approximation sur la position, l'aire et le volume à 
   \label{fig:vortex_error_volume_vs_time}
 \end{figure}
 
-Nuancer la pertinence d'un tel cas test :
+Nuancer la pertinence de ce cas test :
 \begin{itemize}
-	\item pour d'autres cas test analogues (\eg Enright), un mouvement tangentiel des marqueurs lagrangiens est nécessaire (reparamétrisation)
-	\item mais ce type de déformation extrême n'est pas celui que l'on vise dans nos applications, ce pourquoi on n'a pas trop considéré la reparamétrisation\ldots
-	\item permet toutefois d'évaluer le pouvoir de résolution des polynômes de Chebyshev (vérifier la convergence rapide)
+	\item pour d'autres cas test analogues (\eg cas test de Enright), un mouvement tangentiel (reparamétrisation) des marqueurs lagrangiens est nécessaire pour garantir la stabilité numérique
+	\item mais ce type de déformation extrême n'est pas celui que l'on vise dans nos applications, ce pourquoi on n'a pas plus considéré la reparamétrisation
+	\item permet toutefois d'évaluer le pouvoir de résolution des polynômes de Chebyshev et vérifier la convergence rapide de l'erreur dapproximation
 \end{itemize}
 
 \section{Propagation à vitesse normale uniforme}
-cube en expansion\par
-intérêts :
+cube en expansion à vitesse normale uniforme $\nu = 1$
+
+\begin{figure}
+	\centering
+	\newdimen\imwid
+	\imwid=0.32\linewidth
+	\begin{tikzpicture}
+		\foreach [count=\i] \l in {{0}, {1}, {2}}
+		{%
+			\node (im\i) at (\i\imwid,0) {\includegraphics[width=\imwid]{figures/cube_brep_t\i}};
+			\node[inner sep=0pt] (lab\i) at (im\i.south) {$t = \l$};
+		}%
+	\end{tikzpicture}
+	\caption{Aperçu du modèle \brep\ du cube en expansion à différents instants de la propagation.}
+	\label{fig:snapshots_cube}
+\end{figure}
+
+\begin{enumerate}
+	\item stratégie pour la pseudo-EdS des sommets : polygone découpé en quads (\cf \autoref{section:quadrangulation_polygone_spherique}) pour évaluer simplement l'aire et le volume par quadrature (possible car $\nu$ est uniforme)
+	\item critère d'erreur sur la position : erreur relative sur la distance au cube (car la solution exacte est une iso-surface de la fonction distance)
+	\item convergence de l'erreur d'approximation sur la position, l'aire et le volume à $t = 2$ pour différents niveaux de discrétisations spatiale et temporelle (voir \autoref{fig:convergence_cube})
+\end{enumerate}
+
+
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[inner frame sep=0]%
+      \begin{semilogyaxis}[%
+      %scale only axis,%
+      axis lines*=left,%
+      width=8cm, height=6cm,%
+      xmin = 0, xmax = 20,% 
+      ymin = 1e-16, ymax = 1,%
+      xtick={0,5,10,15,20},%
+      ytickten = {-16,-12,-8,-4,0},%
+      grid=major,%both,%
+      xlabel={$N$},%_{\mathrm{max}}$}, 
+      ylabel={Erreur},%\ylabl},%
+      legend style={font=\small},%
+      legend pos=north east,%south west,%
+      cycle list shift=0]%
+	  \pgfplotstableread{figures/data/convergence_expanding_cube.dat}  {\datatable}%
+	  \pgfplotstablegetcolsof{\datatable}%
+      \pgfmathtruncatemacro\numberofcols{\pgfplotsretval-1}%
+      \pgfplotsinvokeforeach{3,...,\numberofcols}{%
+        \pgfplotstablegetcolumnnamebyindex{#1}\of{\datatable}\to{\colname}%
+        %https://tex.stackexchange.com/questions/317225/automatic-labelling-of-isolines-based-on-tables-column-name
+		\addplot table [x index=0, y index=#1] from \datatable;
+  	    \addlegendentryexpanded{\colname}%
+      }%
+      \end{semilogyaxis}%
+    \end{tikzpicture}%
+	\caption{Erreurs sur la position l'aire et le volume pour différents niveaux de discrétisations spatiale et temporelle, à $t = 2$.}
+	\label{fig:convergence_cube}
+\end{figure}
+
+Intérêts de ce cas test :
 \begin{itemize}
-	\item valider l'approximation du vecteur normal
-	\item valider la construction des EdS propres des arêtes et sommets convexes
+	\item valider l'approximation du vecteur normal unitaire 
+	\item valider la construction des pseudo-EdS des arêtes et sommets \brep\ convexes
 \end{itemize}

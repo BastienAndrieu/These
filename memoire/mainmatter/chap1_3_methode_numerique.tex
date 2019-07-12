@@ -444,8 +444,11 @@ Subdivision
 Suivi lagrangien de marqueurs (points de collocation, n\oe uds de la grille CGL)
 
 \subsection{Advection dans champ de vecteur vitesse connu}
-Intégration explicite du vecteur vitesse des marqueurs lagrangiens (typiquement Runge-Kutta à l'ordre 4)\par
-Pas vraiment le cas dans les applications visées, mais on peut imaginer des situations de ce type (\eg déformation d'un solide sous l'effet d'efforts aérodynamiques $\to$ vitesse donnée par des solveurs de mécanique des structures/fluides)
+\begin{enumerate}
+	\item Intégration explicite du vecteur vitesse des marqueurs lagrangiens (typiquement Runge-Kutta à l'ordre 4)
+	\item Pas vraiment le cas dans les applications visées, mais on peut imaginer des situations de ce type (\eg déformation d'un solide sous l'effet d'efforts aérodynamiques $\to$ vitesse donnée par des solveurs de mécanique des structures/fluides)
+\end{enumerate}
+
 
 
 \subsection{Propagation suivant une vitesse normale donnée}
@@ -480,7 +483,7 @@ Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque 
 
 \subsubsection{Discrétisation de la pseudo-EdS d'une arête \brep\ convexe}%d'un arc de courbe}
 \begin{enumerate}
-	\item \cf \autoref{parametrisation_pseudo_propre_arete}
+	\item \cf \autoref{parametrisation_pseudo_EdS_arete}
 	\item paramétrisation polynomiale
 	\begin{enumerate}
 		\item[$\Rightarrow$] approximation (remarque sur les paramétrisations rationnelles exactes \cite{peternell1997})
