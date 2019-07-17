@@ -54,8 +54,8 @@ Dans ce chapitre, on explicite chaque étape de l'algorithme mais les détails d
 \par
 définitions : 
 \begin{itemize}
-	\item \textit{zone d'influence}\footnote{\label{note_vocabulaire_notation}vocabulaire et notation à préciser \ldots} de $H \subseteq \Sigma$ sur l'EdB  (lieu des points de tangence entre $\EoB{\Sigma}{\rho}$ et $\sphere[H][\rho]$)
-	\[ \influEoB{H}{\rho} := \EoB{\Sigma}{\rho} \cap \sphere[H][\rho] \]
+	\item \textit{zone d'influence}\footnote{\label{note_vocabulaire_notation}vocabulaire et notation à préciser \ldots} de $H \subseteq \Sigma$ sur l'EdB  (lieu des points de tangence entre $\EdB{\Sigma}{\rho}$ et $\sphere[H][\rho]$)
+	\[ \influEdB{H}{\rho} := \EdB{\Sigma}{\rho} \cap \sphere[H][\rho] \]
 	\item \textit{EdS propre}\footref{note_vocabulaire_notation} de $H \subseteq \Sigma$ 
 	\[ \EdSpropre{H}{\rho} := \closure{ {\EdS{H}{\rho} \setminus \EdS{\boundary{H}}{\rho}} } \]
 \end{itemize}
@@ -65,8 +65,38 @@ arguments :
 	\item en revanche, on peut décrire explicitement l'EdS de chaque carreau ($\to$ introduire système définissant l'EdS à 2 paramètres)
 	\item il est plus commode de voir l'EdS d'un carreau comme (un sous-ensemble de) la réunion de 10 nouveaux carreaux (intérieur $\to 2$ , bords $\to 4$ et ``coins'' $\to 4$)
 	\item si on procède ainsi pour chaque carreau qui décrit l'interface, on construit beaucoup de nouveaux carreaux qui sont redondants, voire même trivialement exclus de l'EdB
-	\item la zone d'influence sur l'EdB d'une courbe singulière concave est vide (preuve?) (\ie cette courbe ne contribue pas à l'EdB et peut donc être ignorée)
-	\item la zone d'influence sur l'EdB d'une courbe singulière convexe $\Gamma$ est incluse dans la portion de son EdS qui est tangente aux EdS des deux nappes adhérentes à $\Gamma$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on la note $\pseudoEdS{\Gamma}{\rho}$
+%	\item la zone d'influence sur l'EdB d'une courbe singulière concave est vide (preuve?) (\ie cette courbe ne contribue pas à l'EdB et peut donc être ignorée)
+%	\item la zone d'influence sur l'EdB d'une courbe singulière convexe $\Gamma$ est incluse dans la portion de son EdS qui est tangente aux EdS des deux nappes adhérentes à $\Gamma$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on la note $\pseudoEdS{\Gamma}{\rho}$
+	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \Sigma$ adhérentes aux nappes régulières $\Sigma_L$ et $\Sigma_R$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Sigma_L}{\rho}$ et $\EdS{\Sigma_R}{\rho}$ (on appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$).
+	\begin{proof}
+		En posant\footnote{introduire ces notations dans la \autoref{section:principe_huygens}.}
+		\[
+			\implicitsphere(\bx, \p) := \normtwo{\bx - \p}^2 - \rho(\p)^2,
+		\]
+		et, pour $H \subseteq \Sigma$, 
+		\[
+			\implicitEdB{H}(\bx) := \min_{\p \in H} \implicitsphere(\bx, \p),
+		\]
+		on veut démontrer que 
+		\[
+			\influEdB{\Gamma}{\rho} \subseteq 
+			\left\{
+				\bx \in \complement{\Omega} \mid \implicitEdB{\Gamma}(\bx) = \implicitEdB{\Sigma_L}(\bx) = \implicitEdB{\Sigma_R}(\bx) = 0
+			\right\}
+			\subseteq \pseudoEdS{\Gamma}{\rho}.
+		\]
+		\par
+		Puisque $\Gamma \subseteq \left( \closure{\Sigma_L} \cap \closure{\Sigma_R} \right)$, on a $\implicitEdB{\Gamma} \geq \implicitEdB{\Sigma_L}$ et $\implicitEdB{\Gamma} \geq \implicitEdB{\Sigma_R}$.\par
+		Or, si $\bx \in \influEdB{\Gamma}{\rho}$ alors\footnote{car $\forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{\Gamma}(\bx) \geq 0$ et $\forall \bx \in \sphere[\Gamma][\rho], \implicitEdB{\Gamma}(\bx) \leq 0$.} $\implicitEdB{\Gamma}(\bx) = 0$ et donc $\implicitEdB{\Sigma_L}(\bx) \leq 0$ et $\implicitEdB{\Sigma_R}(\bx) \leq 0$.\par
+		Mais si $\implicitEdB{\Sigma_L} < 0$ ou $\implicitEdB{\Sigma_R} < 0$ alors\footnote{car $\forall H \subseteq \Sigma, \forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{H}(\bx) \geq 0$.} $\bx \notin \EdB{\Sigma}{\rho}$ et donc $\bx \notin \influEdB{\Gamma}{\rho}$.\par
+		Donc si $\bx \in \influEdB{\Gamma}{\rho}$ alors $\implicitEdB{\Sigma_L}(\bx) = 0$ et $\implicitEdB{\Sigma_R}(\bx) = 0$.
+	\end{proof}
+	
+	\item Si $\Gamma$ est une courbe singulière concave de $\Sigma$ alors sa zone d'influence sur l'EdB est vide (\ie $\Gamma$ ne contribue pas à l'EdB et peut donc être ignorée).
+	\begin{proof}
+		On veut montrer que $\influEdB{\Gamma}{\rho} = \varnothing$ (piste : montrer que, pour $\bx \in \complement{\Omega}$, $\implicitEdB{\Gamma}(\bx) = 0 \Rightarrow \implicitEdB{\Sigma_L}(\bx) < 0$ ou $\implicitEdB{\Sigma_R}(\bx) < 0$)
+	\end{proof}
+	
 	\item si toutes les courbes singulières adhérentes à un point singulier sont concaves alors la zone d'influence sur l'EdB de ce point est vide (preuve?) (\ie ce point ne contribue pas à l'EdB et peut donc être ignoré)
 	\item si toutes les courbes singulières adhérentes à un point singulier $\p$ \textit{ne sont pas} concaves (ou bien que $\p$ n'est adhérent à aucune courbe singulière, \eg le sommet d'un cône) on dit que $\p$ est convexe et sa zone d'influence sur l'EdB est la portion de $\sphere[\p][\rho(\p)]$ qui est tangente aux EdS de toutes les courbes singulières adhérentes à $\p$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\p$ et on la note $\pseudoEdS{\p}{\rho}$
 	\item l'EdB est incluse dans la réunion
@@ -80,8 +110,41 @@ arguments :
 
 
 
-
-
+\setlength{\imagewidth}{50mm}%
+\setlength{\imageheight}{\imagewidth}%
+\begin{figure}
+	\centering
+%	\definecolor{colorContourEdSnappe0}{rgb}{1,0,0}
+%	\definecolor{colorContourEdSnappe1}{rgb}{0,1,0}
+%	\definecolor{colorContourEdSarete}{rgb}{0,0,1}
+	\colorlet{colorContourEdSnappe0}{mycolor_2}
+	\colorlet{colorContourEdSnappe1}{mycolor_3}
+	\colorlet{colorContourEdSarete}{mycolor_1}
+	\colorlet{colorInterieurEdSnappe0}{colorContourEdSnappe0}%!50!white}
+	\colorlet{colorInterieurEdSnappe1}{colorContourEdSnappe1}%!50!white}
+	\colorlet{colorInterieurarete}{colorContourEdSarete!30!white}
+	\colorlet{colorPseudoEdSarete}{mycolor_4}%colorContourEdSarete!70!black}
+	\begin{tikzpicture}[
+		x = \imagewidth,
+		y = \imageheight,
+		styleEdS/.style = {
+			thick, fill opacity=0.2
+		},
+		stylePseudoEdS/.style = {
+			line width=1.1pt, colorPseudoEdSarete, line cap=round%, dash pattern=on 4pt off 3pt
+		},
+		styleNappe/.style = {
+			draw=black, thick, line cap=round
+		}
+	]
+		\begin{scope}
+			%\clip (-1,-0.55) rectangle (1,0.8);
+			\input{figures/code/pseudo_EdS_arete/vue_coupe_tikzcode.tex}
+			\node[colorContourEdSarete] at ([shift={(120:0.2\imagewidth)}]Gamma) {$\implicitEdB{\Gamma} < 0$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Vue en coupe \ldots}
+\end{figure}
 
 
 
@@ -100,19 +163,124 @@ arguments :
 \subsection{Paramétrisation de l'EdS propre d'une face \brep}% carreau paramétrique restreint}
 \label{section:parametrisation_eds_propre_face}
 \begin{enumerate}
-	\item paramétrisation de l'EdS propre d'un carreau non-restreint
+	\item paramétrisation $\eos$ de l'EdS propre d'un carreau non-restreint $\Sigma_0 \colon (\left[\lo{u},\hi{u}\right] \times \left[\lo{v},\hi{v}\right], \bs)$
 	\begin{enumerate}
 		\item rappeler système définissant une EdS propre à 2 paramètres
-		\item interprétation : intersection de cercles caractéristiques $\to$ 2 points (\ie 2 nouveaux carreaux), on garde celui dans le sens de $+\unv$ (l'autre est trivialement exclu de l'EdB)
-		\item paramétrisation à la Gelston \cite{gelston1995}
-		\item différence avec le simple transport suivant la normale (ordre 2 en temps)
+		\def\sysvspace{1.5ex}
+		\begin{equation}
+		    \left\{\begin{matrix}
+		        \implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0, \\[\sysvspace]
+		        \frac{\partial }{\partial u}\implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0, \\[\sysvspace]
+		        \frac{\partial }{\partial v}\implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0.
+		    \end{matrix}\right.
+		    \label{eq:sys_envelope_of_spheres}
+		\end{equation}
+		\item interprétation : intersection de cercles caractéristiques (voir figure \autoref{fig:EdS_propre_carreau}) $\to$ 2 points (\ie 2 nouveaux carreaux), on garde celui dans le sens de $+\unv$ (\ie $\EdSpropreplus{\Sigma_i}{\rho}$, l'autre ($\EdSpropremoins{\Sigma_i}{\rho}$) est trivialement exclu de l'EdB)
+		\item paramétrisation à la Gelston \cite{gelston1995} : \\
+		En considérant $\rho$ comme une fonction des paramètres $u$ et $v$, on peut réécrire le système \eqref{eq:sys_envelope_of_spheres} 
+		\begin{equation}
+		    \left\{\begin{matrix}
+		        \normtwo{\eos - \bs}^2 - \rho^2 &= 0, \\
+		        \dotprod{\left( \eos - \bs \right)}{\bsu} + \rho \rho_u &= 0, \\
+		        \dotprod{\left( \eos - \bs \right)}{\bsv} + \rho \rho_v &= 0.
+		    \end{matrix}\right.
+		\end{equation}
+		En effet $\dotprod{\left( \eos - \bs \right)}{\eos_u} = \dotprod{\left( \eos - \bs \right)}{\eos_v} = 0$ car le vecteur $\eos - \bs$ est orthogonal à $\sphere[\bs][\rho]$ et donc à $\EdSpropre{\Sigma_i}{\rho}$. 
+		On cherche une paramétrisation de la forme
+		\[
+			\eos(u,v) = \bs(u,v) + \rho(u,v) \unv_{\envelope}(u,v),
+		\]
+		où $\unv_{\envelope}$ est la direction normale à $\EdSpropre{\Sigma_0}{\rho}$, qui vérifie
+		\[
+			\left\{\begin{matrix}
+				\normtwo{\unv_{\envelope}} = 1,\\
+				\dotprod{\unv_{\envelope}}{\bsu} = -\rho_u,\\
+				\dotprod{\unv_{\envelope}}{\bsv} = -\rho_v.
+			\end{matrix}\right.
+		\]
+		On décompose $\unv_{\envelope} = \mathrm{n}_u \bsu + \mathrm{n}_v \bsv + \mathrm{n}_n \unv$, où $\unv = \unitized{\crossprod{\bsu}{\bsv}}$.\\
+		Puisque $\dotprod{\bsu}{\unv} = \dotprod{\bsv}{\unv} = 0$, on a 
+		\[
+			\transpose{\jacobian{\bs}} \unv_{\envelope} = \fff_{\bs} \colvec{\mathrm{n}_u \\ \mathrm{n}_v} = -\colvec{\rho_u \\ \rho_v}.
+		\]
+		Si on pose $\vrm{t} = \jacobian{\bs} \colvec{\mathrm{n}_u \\ \mathrm{n}_v}$ (on a alors $\unv_{\envelope} = \vrm{t} + \mathrm{n}_n \unv$), on a
+		\[
+			\vrm{t} = - \jacobian{\bs} \inverse{ \left(\fff_{\bs}\right) } \colvec{\rho_u \\ \rho_v},
+		\]
+		soit
+		\[
+			\vrm{t} = \frac{
+				\left( \rho_v I_{1,2} - \rho_u I_{2,2} \right) \bsu + 
+				\left( \rho_u I_{1,2} - \rho_v I_{1,1} \right) \bsv
+			}{
+				\determinant{\fff_{\bs}}
+			}.
+		\]
+		Si $\normtwo{\vrm{t}} \leq 1$ alors on a $\unv_{\envelope}^{\pm} = \vrm{t} \pm \sqrt{1 - \normtwo{\vrm{t}}^2} \unv$.
+				
+		\item différence avec le simple transport suivant la normale (ordre 2 en temps) \cite{jiao2001}
 	\end{enumerate}
 	\item conservation du domaine paramétrique (pas de re-paramétrisation) $\Rightarrow$ coordonnées $(x,y,z)$ des courbes de restriction données directement par la nouvelle paramétrisation
 \end{enumerate}
 
+
+%\begin{figure}[!htp]
+%	\centering
+%	\begin{tikzpicture}[
+%		scale=1.5,
+%		point/.style = {circle, scale=0.27, fill=black},
+%		vector/.style = {-latex', thick},
+%		label/.style = {inner sep=2pt},
+%		txt/.style = {font=\small}]
+%		\node[anchor=north west, inner sep=0] at (0,0) {\includegraphics[width=12cm]%width=scale*80mm
+%		{figures/2pEoS_no_isouv}};
+%		\coordinate (s) at (40.632mm,-21.936mm);
+%		%
+%		\coordinate (pp) at (38.4mm,-9.56mm);
+%		\node [anchor=north, txt, xshift=0pt, label] at (pp) {$\eos^+$};
+%		\coordinate (pm) at (38.76mm,-32.4mm);
+%		\node [anchor=south, txt, xshift=3pt, yshift=2pt, label] at (pm) {$\eos^-$};
+%		%
+%		\coordinate (svmax) at (8.416mm,-34.856mm);
+%		\coordinate (sv) at ($(s)!-0.55!(svmax)$);
+%		\draw [vector, blue] (s) -- (sv) node [above, label, txt] {$\bs_v$};
+%		\coordinate (sumax) at (60.872mm,-35.28mm);
+%		\coordinate (su) at ($(s)!0.65!(sumax)$);
+%		\draw [vector, red] (s) -- (su) node [right, label, txt] {$\bs_u$};
+%		%
+%		\coordinate (nmax) at (40.472mm,-6.176mm);
+%		\coordinate (n) at ($(s)!0.4!(nmax)$);
+%		\draw [vector] (s) -- (n) node [right, label, txt, black] {$\unv$};
+%		%
+%		\coordinate (qp) at ($(s)!1.6!(pp)$);
+%		\node [anchor=west, label, txt, xshift=0pt] at (qp) {$\unv_{\envelope}^+$};
+%		\draw [dotted, thick, shorten >= 14pt] (s) -- (pp);
+%		\draw [vector] (pp) -- (qp);
+%		%
+%		\coordinate (qm) at ($(s)!1.6!(pm)$);
+%		\node [anchor=east, label, txt, xshift=0pt]	at (qm) {$\unv_{\envelope}^-$};
+%		\draw [dotted, thick, shorten <= 0pt, shorten >= 14pt] (s) -- (pm);
+%		\draw [vector] (pm) -- (qm);
+%		%
+%		\node [point] at (s) {};
+%		\node [point] at (pp) {};
+%		\node [point] at (pm) {};
+%		%
+%%		\node [anchor=north, txt, inner sep=3pt] at (s) {$\bs(u,\!v)$};
+%		%\node [anchor=west, txt, inner sep=4pt] at (s) {$\bs(u,\!v)$};
+%		\node [anchor=east, txt, inner sep=2pt] at (s) {$\bs(u,v)$};
+%		\node [txt, label] at (5.49mm,-15mm) {$\Sigma$};
+%	\end{tikzpicture}
+%	\caption{Paramétrisation de l'EdS propre d'un carreau paramétrique.}
+%	\label{fig:EdS_propre_carreau}
+%\end{figure}
+
+\input{figures/code/EdS_propre_carreau/EdS_propre_carreau.tex}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=10cm]{EdS_propre_carreau_restreint.JPG}
+	%\includegraphics[width=10cm]{EdS_propre_carreau_restreint.JPG}
+	\input{figures/code/EdS_propre_carreau_restreint/EdS_propre_carreau_restreint.tex}
 	\caption{EdS propre d'un carreau paramétrique restreint.}
 	\label{fig:EdS_propre_carreau_restreint}
 \end{figure}
@@ -265,11 +433,11 @@ Conservation/création des intersections tangentielles, calcul des intersections
 \par\bigskip
 pour un carreau de surface, il s'agit d'un graphe planaire orienté dont un plongement dans $\reals^2$ est donné par la trace des courbes d'intersections dans son espace paramétrique
 
-%\begin{figure}
-%\centering
-%\plotCurvedDirectedGraph{/d/bandrieu/GitHub/FFTsurf/test/graph/graph_bezier_control_points.dat}{25mm}
-%\caption{Plongement du graphe des intersections dans l'espace paramétrique d'un carreau de surface.}
-%\end{figure}
+\begin{figure}
+	\centering
+	\plotCurvedDirectedGraph{/d/bandrieu/GitHub/FFTsurf/test/graph/graph_bezier_control_points.dat}{25mm}
+	\caption{Plongement du graphe des intersections dans l'espace paramétrique d'un carreau de surface.}
+\end{figure}
 
 
 \subsection{Construction des faces, arêtes et sommets \brep}
@@ -281,8 +449,8 @@ pour chaque carreau : extraction des cycles du graphe d'intersection, caractéri
 \end{figure}
 
 
-%\begin{figure}
-%	\centering
-%	\input{figures/code/graph/graph_faces}
-%	\caption{Faces du graphe}
-%\end{figure}
+\begin{figure}
+	\centering
+	\input{figures/code/graph/graph_faces}
+	\caption{Faces du graphe}
+\end{figure}

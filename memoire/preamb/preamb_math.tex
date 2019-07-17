@@ -53,7 +53,8 @@ cal=zapfc, calscaled=1.18%,
 \newtheorem{theoreme}{Théorème}[chapter]
 \newtheorem{propriete}{Propriété}[chapter]
 \newtheorem{definition}{Définition}[chapter]
-
+\renewcommand{\proofname}{Preuve}
+\renewcommand\qedsymbol{$\blacksquare$}%{C.Q.F.D.}%
 
 % Notations
 \newcommand*{\rank}[1]{\mathrm{rang}{#1}}
@@ -190,19 +191,22 @@ cal=zapfc, calscaled=1.18%,
 
 \newcommand*{\ball}[2]{\mathscr{B}(#1,#2)}                     % boule ouverte
 \newcommand*{\implicitsphere}{S}                               % fonction définissant implicitement une sphère
-\newcommand*{\EoB}[2]{{#1}^{#2}}                               % EdB
-\newcommand*{\EoS}[2]{\widehat{\EoB{#1}{#2}}}                  % EdS
+\newcommand*{\implicitEdB}[1]{\varphi_{#1}}                    % fonction définissant implicitement une EdB
+\newcommand*{\EdB}[2]{{#1}^{#2}}                               % EdB
+%\newcommand*{\EoS}[2]{\widehat{\EoB{#1}{#2}}}                  % EdS
 \newcommand*{\influ}{\mathscr{I}}                              % zone d'influence
-\newcommand*{\influEoB}[2]{\influ^{\!#2}({#1})}                % zone d'influence sur l'EdB
-\newcommand*{\influEoS}[2]{\widehat{\influ}^{\!#2}({#1})}      % zone d'influence sur l'EdS
-\newcommand*{\properEoB}[2]{\influ_*^{\!#2}({#1})}             % EdB propre
-\newcommand*{\properEoS}[2]{\widehat{\influ}_{*}^{\!#2}({#1})} % EdS propre
+\newcommand*{\influEdB}[2]{\influ^{\!#2}({#1})}                % zone d'influence sur l'EdB
+%\newcommand*{\influEoS}[2]{\widehat{\influ}^{\!#2}({#1})}      % zone d'influence sur l'EdS
+%\newcommand*{\properEoB}[2]{\influ_*^{\!#2}({#1})}             % EdB propre
+%\newcommand*{\properEoS}[2]{\widehat{\influ}_{*}^{\!#2}({#1})} % EdS propre
 \newcommand*{\eos}{\vit{e}}                                    % paramétrisation de l'EdS (propre)
 \newcommand*{\dilation}[2]{{#1}_{\uparrow #2}}                 % "dilatation"
 
 \newcommand*{\envelope}{\mathcal{E}}
-\newcommand*{\EdS}[2]{{\envelope}^{#2}({#1})}                    % EdS
-\newcommand*{\EdSpropre}[2]{{\envelope}_{*}^{#2}({#1})}          % EdS propre
+\newcommand*{\EdS}[2]{{\envelope}^{#2}({#1})}                  % EdS
+\newcommand*{\EdSpropre}[2]{{\envelope}_{*}^{#2}({#1})}        % EdS propre
+\newcommand*{\EdSpropreplus}[2]{{\envelope}_{+}^{#2}({#1})}    % EdS propre "positive"
+\newcommand*{\EdSpropremoins}[2]{{\envelope}_{-}^{#2}({#1})}   % EdS propre "négative"
 \newcommand*{\pseudoEdS}[2]{\widehat{\envelope}^{#2}({#1})}    % pseudo-EdS
 
 % SET THEORY/TOPOLOGY
@@ -211,6 +215,10 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\boundary}[1]{\partial #1}
 \renewcommand*{\complement}[1]{#1^\mathsf{C}}
 \newcommand*{\neigborhood}{\mathscr{V}}
+
+
+
+%\newcommand*{\proof}[1]{\textcolor{blue!60!green}{\textbf{Preuve : }#1$\,_\blacksquare$}}
 
 
 
