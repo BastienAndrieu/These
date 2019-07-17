@@ -1,0 +1,54 @@
+\setlength{\imagewidth}{80mm}%
+\setlength{\imageheight}{0.75\imagewidth}%
+\definecolor{colorEdS}{HTML}{81BD3E}%
+%\definecolor{colorInterieurDomaineUV}{HTML}{ADD9F4}%
+%\definecolor{colorBordDomaineUV}{HTML}{6BA2BF}%
+%\colorlet{colorInterieurDomaineUV}{mycolor_5}%
+%\definecolor{colorInterieurDomaineUV}{RGB}{235, 220, 178}
+\definecolor{colorInterieurDomaineUV}{HTML}{FFEED5}%
+\colorlet{colorBordDomaineUV}{colorInterieurDomaineUV!70!black}%
+\definecolor{colorFace0}{HTML}{6BA2BF}%
+\definecolor{colorFace1}{HTML}{C25D53}%
+\begin{tikzpicture}[
+	img/.style={anchor=south west, inner sep=0},
+	axe/.style={-stealth, line width=0.5pt},
+	axelabel/.style={font=\small},
+	axeuvlabel/.style={axelabel, inner sep=0},
+	map/.style={
+		shorten >= 2pt,
+		-{Classical TikZ Rightarrow[length=4pt,width=4pt]}
+	}
+]
+	\begin{scope}[
+		x=\imagewidth,
+		y=\imageheight
+	]
+		\node[img] (3dscene) {\includegraphics[width=80mm]{EdS_propre_carreau_restreint/EdS_propre_carreau_restreint.png}};
+		%\drawGrid{20}{20}{blue, thin, dotted}%%%
+		\node[colorFace0] at (0.64, 0.31) {$\Sigma_i$};
+		\node[colorFace1] at (0.57, 0.455) {$\EdSpropreplus{\Sigma_i}{\rho}$};
+		\node[colorFace0!50!black] at (0.35, 0.55) {$\brepface_i$};
+		\node[colorFace1, anchor=south, inner sep=0] at (0.355, 0.695) {$\EdSpropreplus{\brepface_i}{\rho}$};
+		\node[colorEdS, anchor=west] at (0.81, 0.1) {$\EdS{\Sigma_i}{\rho}$};
+		\coordinate (destMap0) at (0.55, 0.3);
+		\coordinate (destMap1) at (0.4, 0.93);%(0.375, 0.9);
+	\end{scope}
+	%
+	\begin{scope}[
+		x=0.3\imageheight,
+		y=0.3\imageheight,
+		shift={(-0.5\imageheight,0.5\imageheight)}
+	]
+		{\transparent{0.035}%
+			\drawUVchecker{6}{black}
+		}%
+		\input{figures/code/EdS_propre_carreau_restreint/domaine_uv_tikzcode.tex}
+		\node[colorBordDomaineUV] at (-0.2, -0.25) {$\uvdomain_i$};
+		\draw[axe] (-1,-1) -- ++ (2.05,0) node [below right, axeuvlabel] {$u$};
+		\draw[axe] (-1,-1) -- ++ (0,2.05) node [above left, axeuvlabel] {$v$};
+		%
+		\node[inner sep=0.3] (uvcenter) at (0,0) {};
+		\draw[map, colorFace0] (1.05, -0.45) to [bend right=20] node[below] {$\bs$} (destMap0);
+		\draw[map, colorFace1] (1.05, 0.45) to [bend left=20] node[above] {$\eos$} (destMap1);
+	\end{scope}
+\end{tikzpicture}

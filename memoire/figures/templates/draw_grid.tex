@@ -1,0 +1,19 @@
+\newcommand{\drawGrid}[3]{%
+	% #1 : ncells_x
+	% #1 : ncells_y
+	% #3 : draw spec
+	\pgfmathsetmacro\stepx{1.0/#1}
+	\pgfmathsetmacro\stepy{1.0/#2}
+	\foreach \loci in {0,...,#1}
+	{%
+		\pgfmathsetmacro\locxi{\loci*\stepx}%
+		\draw[#3] (\locxi, 0) -- ++ (0,1);%
+		\node[#3, font={\tiny}, inner sep=0] at (\locxi, 0) {$\loci$};%
+	}%
+	\foreach \locj in {0,...,#2}
+	{%
+		\pgfmathsetmacro\locyj{\locj*\stepy}%
+		\draw[#3] (0, \locyj) -- ++ (1,0);%
+		\node[#3, font={\tiny}, inner sep=0] at (0, \locyj) {$\locj$};%
+	}%
+}%
