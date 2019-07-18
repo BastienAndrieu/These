@@ -1,10 +1,10 @@
-\chapter{Validation \ldots}
+\chapter{Validation des méthodes numériques}
 
 On s'intéresse d'abord à des cas de référence dans lesquels tous les carreaux ont un domaine paramétrique égal à $\chebinterval \times \chebinterval$, ce qui permet d'effectuer des mesures de précisions à la fois locales (position de l'interface) et globales (aire et volume délimité, par quadrature). 
 Pour cela, on choisit des géométries simples et sans arête concave.
 (On pourrait étendre les formules de quadrature aux carreaux restreints, voir IGA.)
 
-\section{Propagation suivant un champ de vitesse continu}
+\section{Propagation suivant un champ de vitesse analytique}
 
 sphère dans un écoulement tourbillonnaire incompressible analytique de période temporelle $2T$
 \begin{equation}
@@ -107,7 +107,7 @@ cube en expansion à vitesse normale uniforme $\nu = 1$
 	\begin{tikzpicture}
 		\foreach [count=\i] \l in {{0}, {1}, {2}}
 		{%
-			\node (im\i) at (\i\imwid,0) {\includegraphics[width=\imwid]{figures/cube_brep_t\i}};
+			\node (im\i) at (\i\imwid,0) {\includegraphics[width=\imwid]{expanding_cube/cube_brep_t\i}};
 			\node[inner sep=0pt] (lab\i) at (im\i.south) {$t = \l$};
 		}%
 	\end{tikzpicture}

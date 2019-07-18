@@ -35,10 +35,6 @@
 	\node[label] at (0.56, 0.91) {$\Sigma_1$};
 	\node[label] at (0.93, 0.75) {$\Sigma_2$};
 	%
-%	\foreach \igrid in  {0,0.1,...,1.01}{
-%		\draw[red, thin] (0,\igrid) -- (1,\igrid)
-%		                 (\igrid,0) -- (\igrid,1);
-%	}
 	% 
 	% trièdre
 	\def\scaletriedre{0.8}
@@ -63,7 +59,6 @@
 			\DTLassign{dbpoint}{2}{\uloc=x, \vloc=y}% 
 			\DTLassign{dbpoint}{3}{\duloc=x, \dvloc=y}% 
 			\node[point] (uv1) at (\uloc, \vloc) {};
-			%\node[label] at ({\uloc + \psisep*\duloc}, {\vloc + \psisep*\dvloc}) {$\bp_1(w)$};
 			\node[label, anchor=north east, inner sep=0] at (\uloc, \vloc) {$\bp_1(w)$};
 			% Axes
 			\coordinate (o) at ({-1-\distanceaxe},{-1-\distanceaxe});
@@ -85,7 +80,6 @@
 			\DTLassign{dbpoint}{4}{\uloc=x, \vloc=y}% 
 			\DTLassign{dbpoint}{5}{\duloc=x, \dvloc=y}% 
 			\node[point] (uv2) at (\uloc, \vloc) {};
-			%\node[label] at ({\uloc + \psisep*\duloc}, {\vloc + \psisep*\dvloc}) {$\bp_2(w)$};
 			\node[label, anchor=north east, inner sep=0] at (\uloc, \vloc) {$\bp_2(w)$};
 			% Axes
 			\coordinate (o) at ({-1-\distanceaxe},{-1-\distanceaxe});
@@ -98,6 +92,5 @@
 	\draw [map, shorten <= 5mm, shorten >= 5mm] (uv1) to [bend left =40] node [label, anchor=south west] {$\bs_1$} (xyz);
 	\draw [map, shorten <= 5mm, shorten >= 5mm] (uv2) to [bend right=40] node [label, anchor=south west] {$\bs_2$} (xyz);
 	%
-%	\draw[red, thin, dashed] (current bounding box.south west) rectangle (current bounding box.north east);
 \end{tikzpicture}
 \DTLgdeletedb{dbpoint}

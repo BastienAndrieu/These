@@ -6,11 +6,11 @@
 	txt/.style={font=\normalsize, inner sep=2pt, anchor=south west}%
 	]%
 	%
-	\begin{scope}
+	\begin{scope}%
 	\clip(0,-0.15\imagewidth) rectangle (2\imagewidth, -2\imagewidth);
 	\node[img] (im1) at (          0,         0) {\includegraphics[width=\imagewidth]{vortex/snap_001}};
 	\node[img] (im2) at (\imagewidth,         0) {\includegraphics[width=\imagewidth]{vortex/snap_002}};
-	\end{scope}
+	\end{scope}%
 	\node[img] (im3) at (          0,  -\imypos) {\includegraphics[width=\imagewidth]{vortex/snap_003}};
 	\node[img] (im4) at (\imagewidth,  -\imypos) {\includegraphics[width=\imagewidth]{vortex/snap_004}};
 	\node[img] (im5) at (          0, -2\imypos) {\includegraphics[width=\imagewidth]{vortex/snap_005}};

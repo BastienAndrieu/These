@@ -1,35 +1,75 @@
 \chapter{Mise en \oe uvre numérique de l'algorithme de propagation}
 \label{chap:methode_numerique}
 
-\section{Discrétisation (pseudo-)spectrale en espace}
+Dans ce chapitre, on propose une mise en \oe uvre numérique de l'algorithme présenté au chapitre précédent. 
+\begin{enumerate}
+	\item choix de la discrétisation spatiale
+	\begin{itemize}
+		\item représentation des carreaux de surface
+		\item représentation (et calcul) des courbes d'intersection entre carreaux
+	\end{itemize}
+	\item intégration temporelle
+	\begin{itemize}
+		\item intégration explicite du champ de vitesse 
+		\item construction géométrique discrète de l'EdB suivant une méthode pseudo-spectrale (exacte aux points de collocation + interpolation)
+	\end{itemize}
+	\item considérations sur la stabilité numérique
+\end{enumerate}
+
+
+
+%\section{Discrétisation (pseudo-)spectrale en espace}
+\section{Représentation des carreaux de surface}
 \subsection{État de l'art}
-CAD : Bezier, NURBS (surfaces \guillemets{statiques}), harmoniques sphériques, polynômes trigonométriques\par
-Motivation pour Chebyshev
+\begin{enumerate}
+	\item harmoniques sphériques \cite{rahimian2015}
+	\item polynômes trigonométriques \cite{gueyffier2015}
+	\item[$\Rightarrow$] limitations géométriques (régularité globale) et topologique (périodicité)
+	\item modèle \brep\ permet une plus grande flexibilité
+	\item polynômes algébriques (en produit tensoriel) adaptés aux carreaux de surface
+	\item CAO : Bezier, NURBS $\to$ base des polynômes de Bernstein
+	\begin{itemize}
+		\item $B_n^N(x) = \binom{N}{n} \left( 1 - x \right)^{N-n} x^n$ pour $0 \leq n \leq N$.
+		\item positivité : pour $0 \leq x \leq 1$, $B_n^N(x) \geq 0$
+		\item partition de l'unité : $\sum_{n = 0}^N B_n^N = 1$
+		\item[$\to$] propriétés intéressantes pour la conception géométrique
+		\begin{itemize}
+			\item coefficients = points de contrôle
+			\item l'enveloppe convexe des points de contrôle englobe la courbe/surface de Bézier
+		\end{itemize}
+		\item inconvénients :
+		\begin{itemize}
+			\item points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas exploitables comme marqueurs lagrangiens
+			\item algorithme d'évaluation (de Casteljau) numériquement stable mais coûteux $\bigO{N^2}$
+		\end{itemize}
+	\end{itemize}
+	\item motivation le choix des polynômes de Chebyshev
+\end{enumerate}
 
-\subsection{Polynômes de Bernstein}
-Les polynômes de Bernstein sont définis par
-\begin{equation}
-	B_n^N(x) = \binom{N}{n} \left( 1 - x \right)^{N-n} x^n,
-	\label{eq:bernstein_poly}
-\end{equation}
-pour $0 \leq n \leq N$.
-Propriétés :
-\begin{itemize}
-	\item positivité : pour $0 \leq x \leq 1$, $B_n^N(x) \geq 0$
-	\item partition de l'unité : $\sum_{n = 0}^N B_n^N = 1$
-	\item dérivée : ${B_n^N}' = N \left( B_{n-1}^{N-1} - B_n^{N-1} \right)$
-\end{itemize}
-Avantages/inconvénients
-\begin{itemize}
-	\item[$+$] coefficients = points de contrôle dans l'espace physique, sens géométrique intuitif
-	\item[$+$] partition de l'unité sur $\berninterval$ $\Rightarrow$ propriété d'enveloppe convexe
-	\item[$\pm$] algorithme d'évaluation (de Casteljau) numériquement stable mais coûteux $\bigO{N^2}$
-	\item[$-$] points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas exploitables comme marqueurs lagrangiens
-	\item[$-$] peu pratiques pour réduire/élever le degré des polynômes
-\end{itemize}
+%\subsection{Polynômes de Bernstein}
+%Les polynômes de Bernstein sont définis par
+%\begin{equation}
+%	B_n^N(x) = \binom{N}{n} \left( 1 - x \right)^{N-n} x^n,
+%	\label{eq:bernstein_poly}
+%\end{equation}
+%pour $0 \leq n \leq N$.
+%Propriétés :
+%\begin{itemize}
+%	\item positivité : pour $0 \leq x \leq 1$, $B_n^N(x) \geq 0$
+%	\item partition de l'unité : $\sum_{n = 0}^N B_n^N = 1$
+%	\item dérivée : ${B_n^N}' = N \left( B_{n-1}^{N-1} - B_n^{N-1} \right)$
+%\end{itemize}
+%Avantages/inconvénients
+%\begin{itemize}
+%	\item[$+$] coefficients = points de contrôle dans l'espace physique, sens géométrique intuitif
+%	\item[$+$] partition de l'unité sur $\berninterval$ $\Rightarrow$ propriété d'enveloppe convexe
+%	\item[$\pm$] algorithme d'évaluation (de Casteljau) numériquement stable mais coûteux $\bigO{N^2}$
+%	\item[$-$] points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas exploitables comme marqueurs lagrangiens
+%	\item[$-$] peu pratiques pour réduire/élever le degré des polynômes
+%\end{itemize}
 
 
-\subsection{Polynômes de Chebyshev}
+\subsection{Polynômes de Chebyshev univariés}
 Les polynômes de Chebyshev sont très largement utilisés dans de nombreux domaines tels que l'analyse numérique.
 L'objet des sections suivantes est de rappeler la définition de cette famille de polynômes et d'en présenter brièvement les propriétés remarquables qui seront exploitées dans cette thèse. 
 Nombreux sont les ouvrages consacrés aux polynômes de Chebyshev \cite{mason2002, gil2007} ainsi qu'à leur usage dans les méthodes spectrales \cite{boyd2001, canuto2006}, aussi le lecteur est invité à s'y référer pour plus de détails.
@@ -334,8 +374,7 @@ et enfin
 L'exécution de cet algorithme de sommation --- proposé par Clenshaw \cite{clenshaw1955} --- requiert seulement $\bigO{N}$ opérations. %, ce qui le rend plus efficace que l'algorithme de Casteljau (dont la complexité est asymptotiquement quadratique). 
 La sommation de Clenshaw est donc un moyen efficace et numériquement stable pour évaluer des séries de Chebyshev.
 
-\subsubsection{Dérivation et intégration}
-\label{section:clenshaw_curtis_quadrature}
+\subsubsection{Dérivation}
 %% Dérivation
 (versions matricielle (espace physique) et récursive (espace spectral)\par
 quadrature de Clenshaw-Curtis)\par
@@ -398,36 +437,105 @@ Alternativement, il est intéressant de construire explicitement le polynôme d�
 \end{equation} 
 \textit{Développer motivation\ldots}
 
+\par
+La relation \eqref{eq:chebyshev_relation_deriv_3termes} implique que, pour tout $n \in \mathbb{N}$,
+\begin{equation}
+	2 (n + 1) \tilde{f}_{n+1} = \alpha_n \deriv{\tilde{f}}{1}_n - \deriv{\tilde{f}}{1}_{n+2}.
+	\label{eq:chebyshev_prim_recurrence}
+\end{equation}
+Les coefficients $\deriv{\tilde{f}}{1}_n$ peuvent ainsi être calculés suivant la relation de récurrence
+\begin{equation}
+	\deriv{\tilde{f}}{1}_n = 
+	\frac{1}{\alpha_n} \left( 2 (n + 1) \tilde{f}_{n+1} + \deriv{\tilde{f}}{1}_{n+2} \right).
+	\label{eq:chebyshev_diff_recurrence}
+\end{equation}
+Plus généralement, les coefficients de Chebyshev de la dérivée $k$-ième vérifient
+\begin{equation}
+	\deriv{\tilde{f}}{k}_n = 
+	\frac{1}{\alpha_n} \left( 2 (n + 1) \deriv{\tilde{f}}{k-1}_{n+1} + \deriv{\tilde{f}}{k}_{n+2} \right).
+	\label{eq:chebyshev_diffp_recurrence}
+\end{equation}
+
+Cette méthode + FFT permet d'évaluer les dérivées aux n\oe uds CGL pour $\bigO{N + N \log N} = \bigO{N \log N}$, qui est asymptotiquement (au-delà de $N \approx 16$) plus efficace que le produit matrice-vecteur \eqref{eq:chebyshev_diff_at_cgl} ($\bigO{N^2}$).
+\par
+Toutefois, comme l'ont fait remarquer Wengle et Seinfeld \cite{wengle1978}, l'algorithme récursif \eqref{eq:chebyshev_diffp_recurrence} peut amplifier les erreurs d'arrondi commises sur les plus petits coefficients $\deriv{\hat{f}}{k-1}_{n}$ et ainsi compromettre la précision de \emph{tous} les coefficients $\deriv{\hat{f}}{k}_{n}$. 
+Un moyen simple de remédier à ce problème consiste à mettre à zéro les coefficients $\deriv{\hat{f}}{k-1}_{n}$ inférieurs en valeur absolue à un seuil donné, choisi en fonction de la précision machine $\epsilon_M$. 
+(Un seuil égal à $10 \epsilon_M$ semble être un bon choix \textit{(détailler\ldots)}.)
+
+\par\bigskip
+
+[Illustration de la qualité de l'approximation d'une fonction analytique (et ses dérivées)par le polynôme d'interpolation (et ses dérivées) (voir \autoref{fig:spectral_convergence_function} et \autoref{fig:spectral_convergence})]
 
 \input{figures/code/Chebyshev/spectral_convergence_function}
 
 \input{figures/code/Chebyshev/spectral_convergence}
 
 
-
-
-
-
-%% Intégration
-
-
-
-
-
-
-
-
-
-
-\subsection{Représentation des carreaux de surface}
-polynômes de Chebyshev en produit tensoriel
+\subsubsection{Intégration}
+\label{section:clenshaw_curtis_quadrature}
+La primitive de $\interpolant{f}{N}$ qui s'annule en $-1$
 \begin{equation}
-	\bs(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \tilde{\bs}_{m,n} T_m(u) T_n(v).
+	\interpprim{f}{N} := x \mapsto \int_{-1}^{x} \interpolant{f}{N}(t) \dx{t}
 \end{equation}
 
-%\input{figures/code/Chebyshev/grille_cgl_carreau.tex} % ---> figure à refaire
+est un polynôme de degré $N+1$
+\begin{equation}
+	\interpprim{f}{N} = \sum_{n=0}^{N+1} \prim{\tilde{f}}{1}_n T_n.
+\end{equation}
 
-\subsection{Représentation et calcul des courbes d'intersection}
+\eqref{eq:chebyshev_prim_recurrence} implique 
+\begin{equation}
+	\prim{\tilde{f}}{1}_n = \frac{\alpha_n \tilde{f}_{n-1} - \tilde{f}_{n+1}}{2n},
+\end{equation}
+pour $n \geq 1$ et, puisque $\interpprim{f}{N}(-1) = 0$, on a
+\begin{equation}
+	\prim{\tilde{f}}{1}_0 = - \sum_{n=1}^{N+1} (-1)^n \prim{\tilde{f}}{1}_n.
+\end{equation}
+
+\begin{equation}
+	\int_{-1}^{x} f(t) \dx{t} 
+	\approx \interpprim{f}{N}(x).
+\end{equation}
+En particulier,
+\begin{equation}
+	\int_{-1}^{1} f(t) \dx{t} 
+	\approx 
+	\interpprim{f}{N}(1)
+	=
+	\sum_{\mathclap{\substack{n = 0\\n \text{ pair}}}}^{N} \frac{2 \tilde{f}_n}{1 - n^2},
+\end{equation}
+et
+\begin{equation}
+	\left| \int_{-1}^{1} f(x) \dx{x} - \interpprim{f}{N}(1) \right|
+	\approx
+	\left|\frac{2 \tilde{f}_{N}}{1 - N^2}\right|.
+\end{equation}
+
+[$\to$ quadrature de Clenshaw-Curtis]
+
+
+
+
+
+
+
+
+\subsection{Polynômes de Chebyshev bivariés}
+\begin{itemize}
+	\item Fonctions de base : polynômes de Chebyshev en produit tensoriel
+	\[ \interpolant{f}{M,N}(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \tilde{f}_{m,n} T_m(u) T_n(v). \]
+	\item généralisation des propriétés des polynômes univariés
+	\item paramétrisation d'un carreau de surface
+	\begin{equation}
+		\bs(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \tilde{\bs}_{m,n} T_m(u) T_n(v).
+	\end{equation}
+	(les coefficients $\tilde{\bs}_{m,n}$ sont des vecteurs de $\reals^3$)
+\end{itemize}
+
+%\input{figures/fig_cgl_grid.tex}
+\input{figures/code/Chebyshev/grille_cgl_carreau.tex} % ---> figure à refaire
+
+\section{Représentation et calcul des courbes d'intersection}
 pas de paramétrisation explicite (définition procédurale), méthode de Hohmeyer revisitée
 
 \begin{enumerate}
@@ -454,31 +562,51 @@ Suivi lagrangien de marqueurs (points de collocation, n\oe uds de la grille CGL)
 \subsection{Propagation suivant une vitesse normale donnée}
 \subsubsection{Discrétisation de l'EdS propre d'un carreau paramétrique}
 \label{section:discretisation_EdS_propre_carreau}
-Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque marqueur lagrangien , pas de temps $\Delta t$
+Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque marqueur lagrangien , pas de temps $\Delta t$ (\ie $\rho = \nu \Delta t$)
 \begin{enumerate}
 	\item transformation directe (de l'espace physique vers l'espace spectral) pour construire les polynômes d'interpolation du vecteur position et de la vitesse normale
 	\item construction des polynômes dérivés 
-	\item transformation inverse pour évaluer les dérivées aux n\oe uds CGL $(u_i,v_j)$
-	\item calcul de la normale 
+	\item transformation inverse pour évaluer les dérivées $\bsu$ et $\bsv$ aux n\oe uds CGL $(u_i,v_j)$
+	\item calcul de la normale aux n\oe uds CGL
 	\begin{equation}
-		\unv = \frac{1}{\sqrt{\determinant{\fff}}} \crossprod{\bsu}{\bsv}
+		\unv = \unitized{\crossprod{\bsu}{\bsv}}
 	\end{equation}
-	\item calcul de la composante tangentielle du déplacement vers l'EdS
+	\item calcul de la composante tangentielle du déplacement vers l'EdS propre aux n\oe uds CGL
 	\begin{equation}
-		\vrm{w} = \frac{1}{\determinant{\fff}} 
-		\left(
-			\left( \nu_v I_{2,1} - \nu_u I_{2,2} \right)\bsu + 
-			\left( \nu_u I_{2,1} - \nu_v I_{1,1} \right)\bsv
-		\right)
+		\vrm{t} = \frac{
+				\left( \nu_v I_{1,2} - \nu_u I_{2,2} \right) \bsu + 
+				\left( \nu_u I_{1,2} - \nu_v I_{1,1} \right) \bsv
+			}{
+				I_{1,1} I_{2,2} - I_{1,2}^2
+			}.
 	\end{equation}
-	\item on pose $\tau = \min\left\{\Delta t, \displaystyle\frac{\lambda}{\displaystyle\max_{i,j} \normtwo{\vrm{w}_{i,j}^{(k)} }} \right\}$ ($\lambda \leq 1$) et on avance dans le temps d'un pas $\tau$
+	\item on pose $\tau = \min\left\{\Delta t, \displaystyle\frac{\lambda}{\displaystyle\max_{i,j} \normtwo{\vrm{t}_{i,j}^{(k)} }} \right\}$ ($\lambda \leq 1$) et on avance dans le temps d'un pas $\tau$
 	\begin{equation}
 		\bx_{i,j}^{(k+1)} = \bx_{i,j}^{(k)} + \tau \nu_{i,j}^{(k)} 
 		\left( 
-			%\tau \vrm{w}_{i,j} + \sqrt{1 - \tau^2 \vrm{w}_{i,j}^2} \unv_{i,j}^{(k)}
-			\tau \vrm{w}_{i,j}^{(k)} + \sqrt{1 - \tau^2 \normtwo{\vrm{w}_{i,j}^{(k)}}^2} \unv_{i,j}^{(k)}
+			\tau \vrm{t}_{i,j}^{(k)} + \sqrt{1 - \tau^2 \normtwo{\vrm{t}_{i,j}^{(k)}}^2} \unv_{i,j}^{(k)}
 		\right)
 	\end{equation}
+	
+	\item Différence avec le simple transport suivant la normale
+	\begin{itemize}
+		\item on se bouge suivant la normale à l'EdS propre au lieu de la normale à l'interface
+		\[
+			\bx^{(k+1)} = \bx^{(k)} + \tau \nu^{(k)} \unv^{(k+1)}
+		\]
+		$\sim$ schéma semi-implicite en temps?
+		\[
+			\sqrt{1 - y} = 1 + \bigO{y},
+		\]
+		donc
+		\[
+			\left( \eos - \bs \right) - \tau \nu \unv = \tau^2 \nu \vrm{t} + \bigO{\tau^3}
+		\]
+		et donc la différence est d'ordre 2 en temps
+		\item si $\nu$ est uniforme (\ie $\nu_u = \nu_v = 0$) alors construire l'EdS propre revient à propager suivant la normale à l'interface courante. 
+		En outre, la direction de $\unv$ reste constante en chaque point. 
+		En revanche, le signe de $\unv$ peut s'inverser lorsque $\nu \tau$ dépasse le plus petit rayon de courbure local ($\to$ offset dégénéré \ldots).
+	\end{itemize}
 \end{enumerate}
 
 \subsubsection{Discrétisation de la pseudo-EdS d'une arête \brep\ convexe}%d'un arc de courbe}

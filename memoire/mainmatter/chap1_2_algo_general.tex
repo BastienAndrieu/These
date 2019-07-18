@@ -224,57 +224,6 @@ arguments :
 \end{enumerate}
 
 
-%\begin{figure}[!htp]
-%	\centering
-%	\begin{tikzpicture}[
-%		scale=1.5,
-%		point/.style = {circle, scale=0.27, fill=black},
-%		vector/.style = {-latex', thick},
-%		label/.style = {inner sep=2pt},
-%		txt/.style = {font=\small}]
-%		\node[anchor=north west, inner sep=0] at (0,0) {\includegraphics[width=12cm]%width=scale*80mm
-%		{figures/2pEoS_no_isouv}};
-%		\coordinate (s) at (40.632mm,-21.936mm);
-%		%
-%		\coordinate (pp) at (38.4mm,-9.56mm);
-%		\node [anchor=north, txt, xshift=0pt, label] at (pp) {$\eos^+$};
-%		\coordinate (pm) at (38.76mm,-32.4mm);
-%		\node [anchor=south, txt, xshift=3pt, yshift=2pt, label] at (pm) {$\eos^-$};
-%		%
-%		\coordinate (svmax) at (8.416mm,-34.856mm);
-%		\coordinate (sv) at ($(s)!-0.55!(svmax)$);
-%		\draw [vector, blue] (s) -- (sv) node [above, label, txt] {$\bs_v$};
-%		\coordinate (sumax) at (60.872mm,-35.28mm);
-%		\coordinate (su) at ($(s)!0.65!(sumax)$);
-%		\draw [vector, red] (s) -- (su) node [right, label, txt] {$\bs_u$};
-%		%
-%		\coordinate (nmax) at (40.472mm,-6.176mm);
-%		\coordinate (n) at ($(s)!0.4!(nmax)$);
-%		\draw [vector] (s) -- (n) node [right, label, txt, black] {$\unv$};
-%		%
-%		\coordinate (qp) at ($(s)!1.6!(pp)$);
-%		\node [anchor=west, label, txt, xshift=0pt] at (qp) {$\unv_{\envelope}^+$};
-%		\draw [dotted, thick, shorten >= 14pt] (s) -- (pp);
-%		\draw [vector] (pp) -- (qp);
-%		%
-%		\coordinate (qm) at ($(s)!1.6!(pm)$);
-%		\node [anchor=east, label, txt, xshift=0pt]	at (qm) {$\unv_{\envelope}^-$};
-%		\draw [dotted, thick, shorten <= 0pt, shorten >= 14pt] (s) -- (pm);
-%		\draw [vector] (pm) -- (qm);
-%		%
-%		\node [point] at (s) {};
-%		\node [point] at (pp) {};
-%		\node [point] at (pm) {};
-%		%
-%%		\node [anchor=north, txt, inner sep=3pt] at (s) {$\bs(u,\!v)$};
-%		%\node [anchor=west, txt, inner sep=4pt] at (s) {$\bs(u,\!v)$};
-%		\node [anchor=east, txt, inner sep=2pt] at (s) {$\bs(u,v)$};
-%		\node [txt, label] at (5.49mm,-15mm) {$\Sigma$};
-%	\end{tikzpicture}
-%	\caption{Paramétrisation de l'EdS propre d'un carreau paramétrique.}
-%	\label{fig:EdS_propre_carreau}
-%\end{figure}
-
 \input{figures/code/EdS_propre_carreau/EdS_propre_carreau.tex}
 
 \begin{figure}
@@ -299,20 +248,23 @@ arguments :
 \subsubsection{Paramétrisation de l'EdS propre d'un arc paramétrique}
 \label{section:parametrisation_EdS_propre_courbe}
 
-\begin{figure}
-	\centering
-	\setlength{\imagewidth}{120mm}%
-	\setlength{\imageheight}{0.6857\imagewidth}%
-	\definecolor{coloreos}{HTML}{64CF36}
-	\definecolor{colorshpere}{HTML}{CD6E33}
-	\begin{tikzpicture}[x=\imagewidth, y=\imageheight]
-		\node[inner sep=0, anchor=south west] {\includegraphics[width=\imagewidth]{figures/images/EdS_propre_courbe.png}};
-		\node[coloreos] at (0.55,0.95) {$\EdSpropre{\Gamma}{\rho}$};
-		\node[anchor=south west, colorshpere] at (0.46,0.62) {$\sphere[u]$};
-	\end{tikzpicture}
-	\caption{Paramétrisation de l'EdS propre d'un arc paramétrique.}
-	\label{fig:parametrisation_EdS_propre_courbe}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\setlength{\imagewidth}{120mm}%
+%	\setlength{\imageheight}{0.6857\imagewidth}%
+%	\definecolor{coloreos}{HTML}{64CF36}
+%	\definecolor{colorshpere}{HTML}{CD6E33}
+%	\begin{tikzpicture}[x=\imagewidth, y=\imageheight]
+%		\node[inner sep=0, anchor=south west] {\includegraphics[width=\imagewidth]{figures/images/EdS_propre_courbe.png}};
+%		\node[coloreos] at (0.55,0.95) {$\EdSpropre{\Gamma}{\rho}$};
+%		\node[anchor=south west, colorshpere] at (0.46,0.62) {$\sphere[u]$};
+%	\end{tikzpicture}
+%	\caption{Paramétrisation de l'EdS propre d'un arc paramétrique.}
+%	%\label{fig:parametrisation_EdS_propre_courbe}
+%\end{figure}
+
+\input{figures/code/EdS_propre_courbe/EdS_propre_courbe.tex}
+
 %%Soit $\bg : \wdomain \to \reals^3$ une paramétrisation du support géométrique $\Gamma$ de l'arête $\brepedge$. 
 %%L'EdS propre de $\Gamma$ est le lieu des points $\bx \in \reals^3$ qui vérifient
 %L'enveloppe $\Phi$ d'une famille de sphères à un paramètre centrées sur une courbe directrice $\Gamma$ est appelée \textit{surface canal} \cite{monge1850}. 
@@ -339,7 +291,7 @@ Si l'on considère $\rho$ comme une fonction du paramètre $u$ alors $\EdSpropre
 \end{equation}
 A condition que $\rho_u^2 \leq \normtwo{\bg'}^2$, le système \eqref{eq:sys_canal_surface} définit une famille de \textit{cercles caractéristiques}, dont chacun est le lieu des points de tangence entre $\EdSpropre{\Gamma}{\rho}$ et une sphère de la famille $\sphere[\Gamma][\rho]$ (voir \autoref{fig:parametrisation_EdS_propre_courbe}).
 \par
-D'après \eqref{eq:sys_canal_surface}, le cercle caractéristique au point $\bg(u)$ est l'intersection de la sphère $\sphere[u] = \sphere[\bg(u)][\rho(\bg(u))]$ et d'un plan orthogonal à la tangente à $\Gamma$ en ce point (donnée par le vecteur $\bg'(u)$). 
+D'après \eqref{eq:sys_canal_surface}, le cercle caractéristique $\circlenotation(u)$ au point $\bg(u)$ est l'intersection de la sphère $\sphere[u] = \sphere[\bg(u)][\rho(\bg(u))]$ et d'un plan orthogonal à la tangente à $\Gamma$ en ce point (donnée par le vecteur $\bg'(u)$). 
 Ce cercle est centré en
 \begin{equation}
     \vit{o}(u) = \bg(u) - \frac{\rho(u)\rho_u(u)}{\normtwo{\bg'(u)}^2} \bg'(u),
