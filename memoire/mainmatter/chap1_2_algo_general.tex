@@ -207,20 +207,20 @@ arguments :
 		\[
 			\transpose{\jacobian{\bs}} \unv_{\envelope} = \fff_{\bs} \colvec{\mathrm{n}_u \\ \mathrm{n}_v} = -\colvec{\rho_u \\ \rho_v}.
 		\]
-		Si on pose $\vrm{t} = \jacobian{\bs} \colvec{\mathrm{n}_u \\ \mathrm{n}_v}$ (on a alors $\unv_{\envelope} = \vrm{t} + \mathrm{n}_n \unv$), on a
+		Si on pose $\bt = \jacobian{\bs} \colvec{\mathrm{n}_u \\ \mathrm{n}_v}$ (on a alors $\unv_{\envelope} = \bt + \mathrm{n}_n \unv$), on a
 		\[
-			\vrm{t} = - \jacobian{\bs} \inverse{ \left(\fff_{\bs}\right) } \colvec{\rho_u \\ \rho_v},
+			\bt = - \jacobian{\bs} \inverse{ \left(\fff_{\bs}\right) } \colvec{\rho_u \\ \rho_v},
 		\]
 		soit
 		\[
-			\vrm{t} = \frac{
+			\bt = \frac{
 				\left( \rho_v I_{1,2} - \rho_u I_{2,2} \right) \bsu + 
 				\left( \rho_u I_{1,2} - \rho_v I_{1,1} \right) \bsv
 			}{
 				\determinant{\fff_{\bs}}
 			}.
 		\]
-		Si $\normtwo{\vrm{t}} \leq 1$ alors on a $\unv_{\envelope}^{\pm} = \vrm{t} \pm \sqrt{1 - \normtwo{\vrm{t}}^2} \unv$.
+		Si $\normtwo{\bt} \leq 1$ alors on a $\unv_{\envelope}^{\pm} = \bt \pm \sqrt{1 - \normtwo{\bt}^2} \unv$.
 				
 		\item différence avec le simple transport suivant la normale $\to$ abordé dans la \autoref{section:discretisation_EdS_propre_carreau}
 	\end{enumerate}
@@ -242,16 +242,15 @@ arguments :
 
 \subsection{Paramétrisation de la pseudo-EdS d'une arête \brep\ convexe}% arc paramétrique}
 %\begin{enumerate}
-%	\item détermination de la convexité de l'arête (signe de $\dotprod{\left(\crossprod{\unv_L}{\unv_R}\right)}{\vrm{t}}$, \cf \autoref{section:def_convexite_courbe_singuliere})
+%	\item détermination de la convexité de l'arête (signe de $\dotprod{\left(\crossprod{\unv_L}{\unv_R}\right)}{\bt}$, \cf \autoref{section:def_convexite_courbe_singuliere})
 %	\item rappeler système définissant une EdS propre à 1 paramètre
 %	\item notion de cercle caractéristique
-%	\item paramétrisation générique $\eos(u,v) = \vit{o}(u) + r(u)\vrm{r}(u,v)$ de l'EdS propre
+%	\item paramétrisation générique $\eos(u,v) = \bo(u) + r(u)\br(u,v)$ de l'EdS propre
 %	\item restriction à la portion entre les EdS propres des faces incidentes, paramétrisée sur le domaine $\uvdomain = \left[ \lo{u}, \hi{u} \right] \times \left[ \lo{v}, \hi{v} \right]$
 %\end{enumerate}
 
 \subsubsection{Paramétrisation de l'EdS propre d'un arc paramétrique}
 \label{section:parametrisation_EdS_propre_courbe}
-
 %\begin{figure}
 %	\centering
 %	\setlength{\imagewidth}{120mm}%
@@ -298,7 +297,7 @@ A condition que $\rho_u^2 \leq \normtwo{\bg'}^2$, le système \eqref{eq:sys_cana
 D'après \eqref{eq:sys_canal_surface}, le cercle caractéristique $\circlenotation(u)$ au point $\bg(u)$ est l'intersection de la sphère $\sphere[u] = \sphere[\bg(u)][\rho(\bg(u))]$ et d'un plan orthogonal à la direction tangente à $\Gamma$ en ce point (donnée par le vecteur $\bg'(u)$). 
 Ce cercle est centré en
 \begin{equation}
-    \vit{o}(u) = \bg(u) - \frac{\rho(u)\rho_u(u)}{\normtwo{\bg'(u)}^2} \bg'(u),
+    \bo(u) = \bg(u) - \frac{\rho(u)\rho_u(u)}{\normtwo{\bg'(u)}^2} \bg'(u),
     \label{eq:cercle_caracteristique_centre}
 \end{equation}
 et a pour rayon
@@ -309,17 +308,18 @@ et a pour rayon
 \par
 Voir $\EdSpropre{\Gamma}{\rho}$ comme une famille cercles caractéristiques permet d'en donner la paramétrisation suivante
 \begin{equation}
-    \eos(u,v) = \vit{o}(u) + r(u)\vrm{r}(u,v),
+    \eos(u,v) = \bo(u) + r(u)\br(u,v),
     \label{eq:parametrisation_EdS_propre_courbe}
 \end{equation}
-où $\vrm{r}$ vérifie
+où $\br$ vérifie
 \begin{equation}
 	\left\{
 		\begin{matrix}
-			\normtwo{\vrm{r}} = 1,\\ 
-			\dotprod{\vrm{r}}{\bg'} = 0.
+			\normtwo{\br} = 1,\\ 
+			\dotprod{\br}{\bg'} = 0.
 		\end{matrix}
 	\right.
+	\label{eq:parametrisation_EdS_propre_courbe_condition_r}
 \end{equation}
 De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristiques.
 
@@ -338,7 +338,7 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 \input{figures/code/pseudo_EdS_arete/pseudo_EdS_arete.tex}
 
 \begin{enumerate}
-	\item $\brepedge$ une arête \brep\ convexe, $\bg$ une paramétrisation de son support géométrique dans $\reals^3$
+	\item $\brepedge$ une arête \brep\ convexe, $\bg : \left[ \lo{u}, \hi{u} \right] \to \reals^3$ une paramétrisation de son support géométrique
 	\item $\Right{\brepface}$ (resp. $\Left{\brepface}$) la face à gauche\footnote{relativement à l'orientation donnée par $\bg$, vu de l'extérieur de $\Omega$.} (resp. à droite) de $\brepedge$
 	\item but : construire une paramétrisation $\eos$ de la pseudo-EdS de $\brepedge$, \ie la région $\pseudoEdS{\brepedge}{\rho}$ de $\EdS{\brepedge}{\rho}$ qui est tangente à la fois à $\EdS{\Right{\brepface}}{\rho}$ et $\EdS{\Left{\brepface}}{\rho}$ (voir \autoref{fig:pseudo-EdS_arete})
 	\item on note $\Right{\bs}$ (resp. $\Left{\bs}$) une paramétrisation du carreau supportant $\Right{\brepface}$ (resp. $\Left{\brepface}$) et $\Right{\bp}$ (resp. $\Left{\bp}$) une paramétrisation de la trace de $\brepedge$ dans l'espace paramétrique de $\Right{\brepface}$ (resp. de $\Left{\brepface}$) telle que
@@ -349,7 +349,65 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 	\item enfin, on note
 	\begin{equation}
 	    \Right{\eos} = \Right{\EdB{\bs}{\rho}} \circ \Right{\bp} \quad\text{et}\quad \Left{\eos} = \Left{\EdB{\bs}{\rho}} \circ \Left{\bp}.
+	    \label{eq:pseudoEdSarete_courbes_limites}
 	\end{equation}
+	
+	\item On choisit une paramétrisation de la forme \eqref{eq:parametrisation_EdS_propre_courbe}, \ie les courbes iso-$u$ sont des arcs de cercles caractéristiques dont les extrémités $\Right{\eos}$ et $\Left{\eos}$ sont respectivement atteintes en $v = \lo{v}$ et $v = \hi{v}$. 
+Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est donc le rectangle $\mathcal{U} = \left[ \lo{u}, \hi{u} \right] \times \left[ \lo{v}, \hi{v} \right]$.
+
+	\item on suppose que l'on peut évaluer $\bg(u)$, $\Right{\eos}(u)$ et $\Left{\eos}(u)$ pour tout $u \in \left[ \lo{u}, \hi{u} \right]$
+	
+	\item on propose alors une méthode pour construire une telle paramétrisation qui n'exploite pas directement la donnée de $\rho$ et $\rho_u$ mais plutôt celle de $\Right{\eos}(u)$ et $\Left{\eos}(u)$ (ce choix, qui sera motivé lors de la mise en \oe uvre numérique, garantit que les équations \label{eq:pseudoEdSarete_courbes_limites} sont vérifiées)
+
+	\item on note $\bt = \unitized{\bg'}$ et $\mu = -\frac{\rho \rho_u}{\normtwo{\bg}}$, on a alors $\bo = \bg + \mu \bt$
+	
+	\item or $\mu = \dotprod{\left( \Right{\eos} - \bg \right)}{\bt} = \dotprod{\left( \Left{\eos} - \bg \right)}{\bt}$ (pour l'implémentation, on choisit $\mu = \frac{1}{2} \dotprod{\left( \Right{\eos} + \Left{\eos} - 2 \bg\right)}{\bt}$)
+		
+	\item on a $r = \normtwo{\Right{\eos} - \bo} = \normtwo{\Left{\eos} - \bo}$ (pour l'implémentation, on choisit $r(u,v) = \left( 1 - \frac{v - \lo{v}}{\hi{v} - \lo{v}} \right) \normtwo{\Right{\eos} - \bo} + \frac{v - \lo{v}}{\hi{v} - \lo{v}} \normtwo{\Left{\eos} - \bo}$)
+	
+	\item on note $\Right{\br} = \unitized{\Right{\eos} - \bo}$ et $\Left{\br} = \unitized{\Left{\eos} - \bo}$
+	
+	\item on définit $\Right{\br}^{\perp} = \crossprod{\Right{\br}}{\bt}$ (de telle sorte que $\left( \Right{\br}, \Left{\br}^{\perp}, -\bt \right)$ forme un trièdre orthonormé direct)
+	
+	\item on note $\theta \in \left[0, 2\pi\right[$ l'angle entre les vecteurs $\Right{\br}$ et $\Left{\br}$ mesuré dans le sens direct autour de $-\bt$, \ie
+	\begin{equation}
+	    \theta = 
+	    \begin{cases}
+	       \vartheta + 2\pi & \text{ si } \theta' < 0, \\ 
+	       \vartheta        & \text{ si } \theta' \geq 0,
+	    \end{cases}
+	\end{equation}
+	où
+	\begin{equation}
+		\vartheta = \arctan \left(
+			\frac{
+        		\dotprod{\Left{\br}}{\Right{\br}^{\perp}}    	
+			}{
+				\dotprod{\Left{\br}}{\Right{\br}}
+			}
+		\right).
+	\end{equation}
+	
+	\item Enfin, on choisit une paramétrisation naturelle pour l'arc de cercle caractéristique $\eos(u, \left[\lo{v},\hi{v}\right])$, \ie
+%	\begin{equation}
+%	    \br(u,v) = 
+%	        \cos\left( \lambda(v) \theta(u) \right) \Right{\br}(u) +
+%	        \sin\left( \lambda(v) \theta(u) \right) \Right{\br}^{\perp}(u),
+%	\end{equation}
+%	avec 
+%	\begin{equation}
+%	    \lambda(v) = \frac{v - \lo{v}}{\hi{v} - \lo{v}} \in \left[0, 1\right].
+%	\end{equation}
+	\begin{equation}
+	    \br(u,v) = 
+	        \cos\left( \frac{v - \lo{v}}{\hi{v} - \lo{v}} \theta(u) \right) \Right{\br}(u) +
+	        \sin\left( \frac{v - \lo{v}}{\hi{v} - \lo{v}} \theta(u) \right) \Right{\br}^{\perp}(u).
+	\end{equation}	
+	De cette façon, $\br$ vérifie bien les conditions \eqref{eq:parametrisation_EdS_propre_courbe_condition_r} et on a bien $\br(u,\lo{v}) = \Right{\br}$ et $\br(u,\hi{v}) = \Left{\br}$ (donc $\eos(u,\lo{v}) = \Right{\eos}$ et $\eos(u,\hi{v}) = \Left{\eos}$).
+	
+	\item \textit{Remarque :} si une extrémité de $\brepedge$ est un point régulier de $\Sigma$ alors l'arc de cercle caractéristique en cette extrémité est réduit à un seul point et la paramétrisation $\eos$ y est singulière\\
+	$\to$ un moyen d'y remédier serait d'utiliser un carreau restreint (\ie les courbes $\Right{\eos}$ et $\Left{\eos}$ ne correspondent plus aux courbes $v = \lo{v}$ et $v = \hi{v}$)
+	
 \end{enumerate}
 
 

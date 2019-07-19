@@ -63,7 +63,7 @@
 		%
 		\DTLassign{dbisoupoints}{5}{\occx=x, \occy=y}%
 		\coordinate (occ) at (\occx, \occy);
-		\node[txt, above left, inner sep=0, colorPseudoEdS!90!black] at (occ) {$\vit{o}(u)$};
+		\node[txt, above left, inner sep=0, colorPseudoEdS!90!black] at (occ) {$\bo(u)$};
 		\draw[dotted, thick, colorPseudoEdS] (occ) -- (e);
 		\draw[dotted, thick, colorRight] (occ) -- (eR);
 		\draw[dotted, thick, colorLeft!80!black] (occ) -- (eL);
@@ -74,19 +74,19 @@
 		%
 		\DTLassign{dbisoupoints}{7}{\tx=x, \ty=y}%
 		\coordinate (t) at (\tx, \ty);
-		\draw[vector] (g) -- (t) node[txt, below right, inner sep=0, shift={(-2pt,-1pt)}] {$\vrm{t}(u)$};
+		\draw[vector] (g) -- (t) node[txt, below right, inner sep=0, shift={(-2pt,-1pt)}] {$\bt(u)$};
 		%
 		\DTLassign{dbisoupoints}{8}{\rx=x, \ry=y}%
 		\coordinate (r) at (\rx, \ry);
-		\draw[vector, colorPseudoEdS] (e) -- (r) node[txt, right, inner sep=1pt] {$\vrm{r}(u,v)$};
+		\draw[vector, colorPseudoEdS] (e) -- (r) node[txt, right, inner sep=1pt] {$\br(u,v)$};
 		%
 		\DTLassign{dbisoupoints}{9}{\rRx=x, \rRy=y}%
 		\coordinate (rR) at (\rRx, \rRy);
-		\draw[vector, colorRight] (eR) -- (rR) node[txt, right, inner sep=1pt] {$\Right{\vrm{r}}(u)$};
+		\draw[vector, colorRight] (eR) -- (rR) node[txt, right, inner sep=1pt] {$\Right{\br}(u)$};
 		%
 		\DTLassign{dbisoupoints}{10}{\rLx=x, \rLy=y}%
 		\coordinate (rL) at (\rLx, \rLy);
-		\draw[vector, colorLeft] (eL) -- (rL) node[txt, right] {$\Left{\vrm{r}}(u)$};
+		\draw[vector, colorLeft] (eL) -- (rL) node[txt, right] {$\Left{\br}(u)$};
 		%
 		\node[txt, colorRight] at (0.92,0.38) {$\EdSpropreplus{\Right{\brepface}}{\rho}$};
 		\node[txt, colorLeft] at (0.6,0.9) {$\EdSpropreplus{\Left{\brepface}}{\rho}$};

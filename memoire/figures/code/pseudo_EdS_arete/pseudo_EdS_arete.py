@@ -405,10 +405,18 @@ vecrL = Vector(eL - occ)
 rL = vecrL.length
 vecrL.normalize()
 
-vecrR90d = tng.cross(vecrR)
+vecrR90d = vecrR.cross(tng)
 
-angle = numpy.arctan2(vecrL.dot(vecrR90d), vecrL.dot(vecrR))
-if angle > 0: angle -= 2*numpy.pi
+if True:
+    angle = numpy.arctan2(vecrL.dot(vecrR90d), vecrL.dot(vecrR))
+    if angle < 0: angle += 2*numpy.pi
+else:
+    w = vecrR.cross(vecrL)
+    angle = numpy.arctan2(w.length, vecrR.dot(vecrL))
+    if w.dot(tng) > 0:
+        angle += numpy.pi
+    print(w.dot(tng))
+print(angle)
 
 v01 = 0.5*(v + 1)
 xyz = numpy.zeros((n,3))

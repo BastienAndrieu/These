@@ -37,7 +37,7 @@
 			%
 			\DTLassign{dbcirclectrpt}{1}{\occx=x, \occy=y}%
 			\coordinate (occ) at (\occx, \occy);
-			\node[txt, below left, inner sep=0, colorCercle, shift={(1pt,-1pt)}] at (occ) {$\vit{o}(u)$};
+			\node[txt, below left, inner sep=0, colorCercle, shift={(1pt,-1pt)}] at (occ) {$\bo(u)$};
 			%
 			\DTLassign{dbenvelope}{1}{\edsx=x, \edsy=y}%
 			\node[colorEdS, above] at (\edsx, \edsy) {$\EdSpropre{\Gamma}{\rho}$};
@@ -51,7 +51,7 @@
 			%
 			\DTLassign{dbenvelope}{3}{\rx=x, \ry=y}%
 			\coordinate (r) at (\rx, \ry);
-			\draw[vector] (e) -- (r) node[txt, right] {$\vrm{r}(u,v)$};
+			\draw[vector] (e) -- (r) node[txt, right] {$\br(u,v)$};
 			\node[point, colorEdSPoint] at (e) {};
 			\node[colorSphere] at (0.31,0.55) {$\sphere[u]$};
 			%
