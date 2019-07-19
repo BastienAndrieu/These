@@ -162,8 +162,12 @@ arguments :
 
 \subsection{Paramétrisation de l'EdS propre d'une face \brep}% carreau paramétrique restreint}
 \label{section:parametrisation_eds_propre_face}
+\def\indice{_0}
+\def\carreau{\Sigma\indice}
+\def\face{\brepface\indice}
+
 \begin{enumerate}
-	\item paramétrisation $\eos$ de l'EdS propre d'un carreau non-restreint $\Sigma_0 \colon (\left[\lo{u},\hi{u}\right] \times \left[\lo{v},\hi{v}\right], \bs)$
+	\item paramétrisation $\eos$ de l'EdS propre d'un carreau non-restreint $\carreau \colon (\left[\lo{u},\hi{u}\right] \times \left[\lo{v},\hi{v}\right], \bs)$
 	\begin{enumerate}
 		\item rappeler système définissant une EdS propre à 2 paramètres
 		\def\sysvspace{1.5ex}
@@ -175,7 +179,7 @@ arguments :
 		    \end{matrix}\right.
 		    \label{eq:sys_envelope_of_spheres}
 		\end{equation}
-		\item interprétation : intersection de cercles caractéristiques (voir figure \autoref{fig:EdS_propre_carreau}) $\to$ 2 points (\ie 2 nouveaux carreaux), on garde celui dans le sens de $+\unv$ (\ie $\EdSpropreplus{\Sigma_i}{\rho}$, l'autre ($\EdSpropremoins{\Sigma_i}{\rho}$) est trivialement exclu de l'EdB)
+		\item interprétation : intersection de cercles caractéristiques (voir figure \autoref{fig:EdS_propre_carreau}) $\to$ 2 points (\ie 2 nouveaux carreaux), on garde celui dans le sens de $+\unv$ (\ie $\EdSpropreplus{\carreau}{\rho}$, l'autre ($\EdSpropremoins{\carreau}{\rho}$) est trivialement exclu de l'EdB)
 		\item paramétrisation à la Gelston \cite{gelston1995} : \\
 		En considérant $\rho$ comme une fonction des paramètres $u$ et $v$, on peut réécrire le système \eqref{eq:sys_envelope_of_spheres} 
 		\begin{equation}
@@ -185,12 +189,12 @@ arguments :
 		        \dotprod{\left( \eos - \bs \right)}{\bsv} + \rho \rho_v &= 0.
 		    \end{matrix}\right.
 		\end{equation}
-		En effet $\dotprod{\left( \eos - \bs \right)}{\eos_u} = \dotprod{\left( \eos - \bs \right)}{\eos_v} = 0$ car le vecteur $\eos - \bs$ est orthogonal à $\sphere[\bs][\rho]$ et donc à $\EdSpropre{\Sigma_i}{\rho}$. 
+		En effet $\dotprod{\left( \eos - \bs \right)}{\eos_u} = \dotprod{\left( \eos - \bs \right)}{\eos_v} = 0$ car le vecteur $\eos - \bs$ est orthogonal à $\sphere[\bs][\rho]$ et donc à $\EdSpropre{\carreau}{\rho}$. 
 		On cherche une paramétrisation de la forme
 		\[
 			\eos(u,v) = \bs(u,v) + \rho(u,v) \unv_{\envelope}(u,v),
 		\]
-		où $\unv_{\envelope}$ est la direction normale à $\EdSpropre{\Sigma_0}{\rho}$, qui vérifie
+		où $\unv_{\envelope}$ est la direction normale à $\EdSpropre{\carreau}{\rho}$, qui vérifie
 		\[
 			\left\{\begin{matrix}
 				\normtwo{\unv_{\envelope}} = 1,\\
@@ -218,9 +222,9 @@ arguments :
 		\]
 		Si $\normtwo{\vrm{t}} \leq 1$ alors on a $\unv_{\envelope}^{\pm} = \vrm{t} \pm \sqrt{1 - \normtwo{\vrm{t}}^2} \unv$.
 				
-		\item différence avec le simple transport suivant la normale (ordre 2 en temps) \cite{jiao2001}
+		\item différence avec le simple transport suivant la normale $\to$ abordé dans la \autoref{section:discretisation_EdS_propre_carreau}
 	\end{enumerate}
-	\item conservation du domaine paramétrique (pas de re-paramétrisation) $\Rightarrow$ coordonnées $(x,y,z)$ des courbes de restriction données directement par la nouvelle paramétrisation
+	\item conservation du domaine paramétrique (pas de re-paramétrisation) $\Rightarrow$ coordonnées $(x,y,z)$ des courbes de restriction données directement par la nouvelle paramétrisation (voir \autoref{fig:EdS_propre_carreau_restreint}).
 \end{enumerate}
 
 
@@ -291,7 +295,7 @@ Si l'on considère $\rho$ comme une fonction du paramètre $u$ alors $\EdSpropre
 \end{equation}
 A condition que $\rho_u^2 \leq \normtwo{\bg'}^2$, le système \eqref{eq:sys_canal_surface} définit une famille de \textit{cercles caractéristiques}, dont chacun est le lieu des points de tangence entre $\EdSpropre{\Gamma}{\rho}$ et une sphère de la famille $\sphere[\Gamma][\rho]$ (voir \autoref{fig:parametrisation_EdS_propre_courbe}).
 \par
-D'après \eqref{eq:sys_canal_surface}, le cercle caractéristique $\circlenotation(u)$ au point $\bg(u)$ est l'intersection de la sphère $\sphere[u] = \sphere[\bg(u)][\rho(\bg(u))]$ et d'un plan orthogonal à la tangente à $\Gamma$ en ce point (donnée par le vecteur $\bg'(u)$). 
+D'après \eqref{eq:sys_canal_surface}, le cercle caractéristique $\circlenotation(u)$ au point $\bg(u)$ est l'intersection de la sphère $\sphere[u] = \sphere[\bg(u)][\rho(\bg(u))]$ et d'un plan orthogonal à la direction tangente à $\Gamma$ en ce point (donnée par le vecteur $\bg'(u)$). 
 Ce cercle est centré en
 \begin{equation}
     \vit{o}(u) = \bg(u) - \frac{\rho(u)\rho_u(u)}{\normtwo{\bg'(u)}^2} \bg'(u),
@@ -322,22 +326,31 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 
 \subsubsection{Paramétrisation de la pseudo-EdS}
 \label{section:parametrisation_pseudo_EdS_arete}
-\newcommand{\eosR}{\lo{\vit{\eos}}}
-\newcommand{\eosL}{\hi{\vit{\eos}}}
+\newcommand{\Right}[1]{\lo{#1}}%{#1_R}
+\newcommand{\Left}[1]{\hi{#1}}%{#1_L}
 
-\newcommand{\psiR}{\lo{\vit{\psi}}}
-\newcommand{\psiL}{\hi{\vit{\psi}}}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=10cm]{pseudo-EdS_arete.JPG}
+%    \caption{Paramétrisation de $\pseudoEdS{\brepedge}{\rho}$}
+%    \label{fig:pseudo-EdS_arete}
+%\end{figure}
+\input{figures/code/pseudo_EdS_arete/pseudo_EdS_arete.tex}
 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=10cm]{pseudo-EdS_arete.JPG}
-    \caption{Paramétrisation de $\pseudoEdS{\brepedge}{\rho}$}
-    \label{fig:pseudo-EdS_arete}
-\end{figure}
-
-
-
+\begin{enumerate}
+	\item $\brepedge$ une arête \brep\ convexe, $\bg$ une paramétrisation de son support géométrique dans $\reals^3$
+	\item $\Right{\brepface}$ (resp. $\Left{\brepface}$) la face à gauche\footnote{relativement à l'orientation donnée par $\bg$, vu de l'extérieur de $\Omega$.} (resp. à droite) de $\brepedge$
+	\item but : construire une paramétrisation $\eos$ de la pseudo-EdS de $\brepedge$, \ie la région $\pseudoEdS{\brepedge}{\rho}$ de $\EdS{\brepedge}{\rho}$ qui est tangente à la fois à $\EdS{\Right{\brepface}}{\rho}$ et $\EdS{\Left{\brepface}}{\rho}$ (voir \autoref{fig:pseudo-EdS_arete})
+	\item on note $\Right{\bs}$ (resp. $\Left{\bs}$) une paramétrisation du carreau supportant $\Right{\brepface}$ (resp. $\Left{\brepface}$) et $\Right{\bp}$ (resp. $\Left{\bp}$) une paramétrisation de la trace de $\brepedge$ dans l'espace paramétrique de $\Right{\brepface}$ (resp. de $\Left{\brepface}$) telle que
+	\begin{equation}
+	    \bg = \Right{\bs} \circ \Right{\bp} = \Left{\bs} \circ \Left{\bp}.
+	\end{equation}
+	\item on note $\Right{\EdB{\bs}{\rho}}$ (resp. $\Left{\EdB{\bs}{\rho}}$) la paramétrisation de $\EdSpropreplus{\Right{\brepface}}{\rho}$ (resp. de $\EdSpropreplus{\Left{\brepface}}{\rho}$) obtenue comme décrit dans la \autoref{section:parametrisation_eds_propre_face}. 
+	\item enfin, on note
+	\begin{equation}
+	    \Right{\eos} = \Right{\EdB{\bs}{\rho}} \circ \Right{\bp} \quad\text{et}\quad \Left{\eos} = \Left{\EdB{\bs}{\rho}} \circ \Left{\bp}.
+	\end{equation}
+\end{enumerate}
 
 
 
@@ -368,7 +381,7 @@ avantages/inconvénients :
 \end{itemize}
 
 Soit $\brepvertex$ un sommet \brep\ convexe dont le support géométrique est le point $\p$. 
-On cherche à construire un carreau paramétrique restreint décrivant $\pseudoEdS{\p}{\rho}$ \ie la région de la sphère $\sphere[\p][\rho{\p}]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\p$. 
+On cherche à construire un carreau paramétrique restreint décrivant $\pseudoEdS{\p}{\rho}$ \ie la région de la sphère $\sphere[\p][\rho(\p)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\p$. 
 Afin de simplifier cette construction, on considère que $\p$ est situé à l'origine et que $\rho(\p) = 1$. 
 (On appliquera la transformation adéquate en fin de construction pour se placer à nouveau dans le cas général.)
 \par

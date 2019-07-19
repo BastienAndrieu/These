@@ -117,7 +117,7 @@ mat_EdS.diffuse_color = (0.527, 0.800, 0.213)
 mat_EdS.diffuse_intensity = 1
 mat_EdS.use_transparency = True
 mat_EdS.alpha = 0.68
-mat_EdS.emit = 1.0
+mat_EdS.emit = 0.8#1.0
 mat_EdS.specular_intensity = 0.5
 mat_EdS.specular_hardness = 30
 mat_EdS.raytrace_transparency.fresnel = 2.7
@@ -198,7 +198,7 @@ lbe.set_smooth(sphere)
 mat_sphere = bpy.data.materials.new('mat_sphere')
 mat_sphere.diffuse_color = (0.800, 0.494, 0.317)
 mat_sphere.diffuse_intensity = 1
-mat_sphere.specular_intensity = 1
+mat_sphere.specular_intensity = 0.75#1
 mat_sphere.specular_hardness = 30
 mat_sphere.use_transparency = True
 mat_sphere.raytrace_transparency.fresnel = 2.1

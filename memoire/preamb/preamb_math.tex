@@ -4,6 +4,7 @@
 \usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage{amsfonts}
+\usepackage{bm}
 \usepackage{mathtools}
 \usepackage{stmaryrd}
 \usepackage{cases}
@@ -66,7 +67,7 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\crossprod}[2]{ {#1} \times {#2} } % cross product
 \newcommand*{\normtwo}[1]{ \left\| {#1} \right\| } % Euclidean norm
 \newcommand*{\norminf}[1]{ \left\| {#1} \right\|_{\infty} } % infinity norm
-\newcommand*{\vit}[1]{\boldsymbol{#1}} % greek letter vector
+\newcommand*{\vit}[1]{\bm{#1}} % greek letter vector
 \newcommand*{\vrm}[1]{\mathbf{#1}} % latin letter vector
 \newcommand*{\unitized}[1]{ \frac{#1}{\normtwo{#1}} }
 \newcommand*{\scalprod}[2]{\left \langle {#1}, {#2} \right \rangle}
@@ -165,7 +166,7 @@ cal=zapfc, calscaled=1.18%,
 
 % Intervals
 \newcommand*{\lo}[1]{\underline{#1}}
-\newcommand*{\hi}[1]{\widebar{#1}}
+\newcommand*{\hi}[1]{\widebar{#1}}%\overline{#1}}
 
 
 % GRAPHS

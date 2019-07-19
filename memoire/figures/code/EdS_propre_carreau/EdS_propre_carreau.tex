@@ -33,7 +33,7 @@
 		%
 		\DTLassign{dbsurfvectors}{2}{\svx=x, \svy=y}
 		\coordinate (sv) at (\svx, \svy);
-		\draw [vector, blue] (s) -- (sv) node [above, xshift=-4pt, label, txt] {$\bsv$};
+		\draw [vector, blue] (s) -- (sv) node [above, xshift=-5pt, label, txt] {$\bsv$};
 		%
 		\DTLassign{dbsurfvectors}{3}{\snx=x, \sny=y}
 		\coordinate (sn) at (\snx, \sny);
@@ -57,7 +57,7 @@
 		%
 		\node [anchor=east, txt, inner sep=2pt] at (s) {$\bs(u,v)$};
 		\definecolor{colorSurfLabel}{rgb}{0.330, 0.413, 0.500}
-		\node [txt, label, colorSurfLabel] at (0.1,0.68) {$\Sigma_i$};
+		\node [txt, label, colorSurfLabel] at (0.1,0.68) {$\carreau$};
 	\end{tikzpicture}
 	\DTLgdeletedb{dbsurfpoint}%
 	\DTLgdeletedb{dbsurfvectors}%

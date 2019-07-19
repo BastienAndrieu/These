@@ -25,11 +25,11 @@
 	]
 		\node[img] (3dscene) {\includegraphics[width=80mm]{EdS_propre_carreau_restreint/EdS_propre_carreau_restreint.png}};
 		%\drawGrid{20}{20}{blue, thin, dotted}%%%
-		\node[colorFace0] at (0.64, 0.31) {$\Sigma_i$};
-		\node[colorFace1] at (0.57, 0.455) {$\EdSpropreplus{\Sigma_i}{\rho}$};
-		\node[colorFace0!50!black] at (0.35, 0.55) {$\brepface_i$};
-		\node[colorFace1, anchor=south, inner sep=0] at (0.355, 0.695) {$\EdSpropreplus{\brepface_i}{\rho}$};
-		\node[colorEdS, anchor=west] at (0.81, 0.1) {$\EdS{\Sigma_i}{\rho}$};
+		\node[colorFace0] at (0.64, 0.31) {$\carreau$};
+		\node[colorFace1] at (0.57, 0.455) {$\EdSpropreplus{\carreau}{\rho}$};
+		\node[colorFace0!50!black] at (0.35, 0.55) {$\face$};
+		\node[colorFace1, anchor=south, inner sep=0] at (0.355, 0.695) {$\EdSpropreplus{\face}{\rho}$};
+		\node[colorEdS, anchor=west] at (0.81, 0.1) {$\EdS{\carreau}{\rho}$};
 		\coordinate (destMap0) at (0.55, 0.3);
 		\coordinate (destMap1) at (0.4, 0.93);%(0.375, 0.9);
 	\end{scope}
@@ -43,7 +43,7 @@
 			\drawUVchecker{6}{black}
 		}%
 		\input{figures/code/EdS_propre_carreau_restreint/domaine_uv_tikzcode.tex}
-		\node[colorBordDomaineUV] at (-0.2, -0.25) {$\uvdomain_i$};
+		\node[colorBordDomaineUV] at (-0.2, -0.25) {$\uvdomain\indice$};
 		\draw[axe] (-1,-1) -- ++ (2.05,0) node [below right, axeuvlabel] {$u$};
 		\draw[axe] (-1,-1) -- ++ (0,2.05) node [above left, axeuvlabel] {$v$};
 		%
