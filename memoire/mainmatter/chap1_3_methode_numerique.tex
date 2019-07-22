@@ -562,7 +562,7 @@ Suivi lagrangien de marqueurs (points de collocation, n\oe uds de la grille CGL)
 \subsection{Propagation suivant une vitesse normale donnée}
 \subsubsection{Discrétisation de l'EdS propre d'un carreau paramétrique}
 \label{section:discretisation_EdS_propre_carreau}
-Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque marqueur lagrangien , pas de temps $\Delta t$ (\ie $\rho = \nu \Delta t$)
+Entrée : vecteur position $\bx_{i,j}^{(k)}$ et vitesse normale $\nu_{i,j}^{(k)}$ de chaque marqueur lagrangien au $k$-ième instant, pas de temps $\Delta t$ (\ie $\rho = \nu \Delta t$)
 \begin{enumerate}
 	\item transformation directe (de l'espace physique vers l'espace spectral) pour construire les polynômes d'interpolation du vecteur position et de la vitesse normale
 	\item construction des polynômes dérivés 
@@ -580,7 +580,7 @@ Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque 
 				I_{1,1} I_{2,2} - I_{1,2}^2
 			}.
 	\end{equation}
-	\item on pose $\tau = \min\left\{\Delta t, \displaystyle\frac{\lambda}{\displaystyle\max_{i,j} \normtwo{\vrm{t}_{i,j}^{(k)} }} \right\}$ ($\lambda \leq 1$) et on avance dans le temps d'un pas $\tau$
+	\item on pose $\tau = \min\left\{\Delta t, \displaystyle\frac{\lambda}{\displaystyle\max_{i,j} \normtwo{\vrm{t}_{i,j}^{(k)} }} \right\}$ ($\lambda \leq 1$) et on avance dans le temps d'un pas $\tau$\\(ATTENTION : $\tau$ doit être le même pour tous les carreaux!)
 	\begin{equation}
 		\bx_{i,j}^{(k+1)} = \bx_{i,j}^{(k)} + \tau \nu_{i,j}^{(k)} 
 		\left( 
@@ -594,13 +594,17 @@ Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque 
 		\[
 			\bx^{(k+1)} = \bx^{(k)} + \tau \nu^{(k)} \unv^{(k+1)}
 		\]
+		au lieu de 
+		\[
+			\bx^{(k+1)} = \bx^{(k)} + \tau \nu^{(k)} \unv^{(k)}
+		\]
 		$\sim$ schéma semi-implicite en temps?
 		\[
 			\sqrt{1 - y} = 1 + \bigO{y},
 		\]
 		donc
 		\[
-			\left( \eos - \bs \right) - \tau \nu \unv = \tau^2 \nu \vrm{t} + \bigO{\tau^3}
+			\left( \bx^{(k+1)} - \bx^{(k)} \right) - \tau \nu^{(k)} \unv^{(k)} = \tau^2 \nu^{(k)} \vrm{t}^{(k)} + \bigO{\tau^3}
 		\]
 		et donc la différence est d'ordre 2 en temps
 		\item si $\nu$ est uniforme (\ie $\nu_u = \nu_v = 0$) alors construire l'EdS propre revient à propager suivant la normale à l'interface courante. 
@@ -611,63 +615,47 @@ Entrée : vecteur position $\bx_{i,j}$ et vitesse normale $\nu_{i,j}$ de chaque 
 
 \subsubsection{Discrétisation de la pseudo-EdS d'une arête \brep\ convexe}%d'un arc de courbe}
 \begin{enumerate}
-	\item \cf \autoref{parametrisation_pseudo_EdS_arete}
+	\item \cf \autoref{section:parametrisation_pseudo_EdS_arete}
 	\item paramétrisation polynomiale
 	\begin{enumerate}
 		\item[$\Rightarrow$] approximation (remarque sur les paramétrisations rationnelles exactes \cite{peternell1997})
 		\item[$\Rightarrow$] degré à choisir
 	\end{enumerate}
-	\item décrire l'échantillonnage de la courbe s'intersection ($\Right{\bp}$, $\Left{\bp}$ et $\bg$) aux n\oe uds CGL pour le paramètre de Hohmeyer $w = \dotprod{\vrm{p}}{\bg}$
+	\item décrire l'échantillonnage de la courbe d'intersection ($\Right{\bp}$, $\Left{\bp}$ et $\bg$) aux n\oe uds CGL pour le paramètre de Hohmeyer $w = \dotprod{\vrm{p}}{\bg}$
 	\begin{enumerate}
 		\item méthode procédurale : on s'appuie sur une polyligne et on affine par la méthode de Newton (expliciter l'itération)
 		\item calcul de la direction tangente $\vrm{t} = \unitized{\bgw}$ (\cf géométrie différentielle des courbes d'intersection transverses, s'assurer de la positivité du produit scalaire avec le vecteur de paramétrisation de Hohmeyer $\vrm{p}$)
 	\end{enumerate}
 	\item évaluation des courbes \guillemets{limites} $\Right{\eos}$ et $\Left{\eos}$
 	\item échantillonnage des arc caractéristiques aux n\oe uds CGL en $v \in \chebinterval$
+	\begin{enumerate}
+		\item en pratique, pour garantir la validité des courbes d'intersections tangentielles entre les carreaux de l'EdB, on choisit 
+		\[
+			\bo_i = \bg_i + \frac{\dotprod{\left( \Right{\eos}_i + \Left{\eos}_i - 2 \bg_i \right)}{\bt_i}}{2}\bt_i,
+		\]  
+		et, puisque $\lo{v} = -1$ et $\hi{v} = 1$,
+		\[
+			r_{i,j} = 
+			\frac{
+				\left(1 - v_j\right) \normtwo{\Right{\eos}_i - \bo_i} + \left(1 + v_j\right) \normtwo{\Left{\eos}_i - \bo_i}
+			}{
+				2
+			},
+		\]
+		et
+		\[
+			\br_{i,j} = 
+	        \cos\left( \frac{1 + v_j}{2} \theta_i \right) \Right{\br}_i +
+	        \sin\left( \frac{1 + v_j}{2} \theta_i \right) \Right{\br}^{\perp}_i,
+		\]
+		\item[$\Rightarrow$] on a alors 
+		\[
+			\eos_{i,j} = \bo_{i} + r_{i,j} \br_{i,j}
+		\]
+	\end{enumerate}
+	\item à noter qu'ici on n'utilise ni $\tau$ ni $\nu$
+	\item les nouveaux carreaux ainsi créés seront ensuite propagés comme les autres aux instants suivants
 \end{enumerate}
-%[portion de surface canal (\cf notes Huygens, \autoref{section:principe_huygens} pour les définitions d'EdS propres et \autoref{section:def_canal_surface} pour la définition/paramétrisation de surface canal)]
-%\par\bigskip
-%
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=10cm]{EdS_arete.JPG}
-%    \caption{Paramétrisation de $\properEoS{\brepedge}{\rho}$}
-%    \label{fig:EdS_edge}
-%\end{figure}
-%
-%On pose $\rho = \nu \tau$.\par
-%
-%\newcommand{\eosR}{\lo{\vit{\eos}}}
-%\newcommand{\eosL}{\hi{\vit{\eos}}}
-%
-%\newcommand{\psiR}{\lo{\vit{\psi}}}
-%\newcommand{\psiL}{\hi{\vit{\psi}}}
-%
-%\newcommand{\rrwbw}{R}
-%
-%Soient $\brepedge$ une arête vive convexe, $\bg$ une paramétrisation de son support géométrique dans $\reals^3$ et $\lo{\brepface}$ (resp. $\hi{\brepface}$) la face à gauche\footnote{relativement à l'orientation donnée par $\bg$, vu de l'extérieur de $\Omega$.} (resp. à droite) de $\brepedge$.
-%On cherche à construire un carreau paramétrique $(\mathcal{U}, \eos)$ décrivant la région de l'EdS propre de $\brepedge$ (\ie $\properEoS{\brepedge}{\rho}$) \guillemets{contenue entre}\footnote{reformuler!} $\properEoS{\lo{\brepface}}{\rho}$ et $\properEoS{\hi{\brepface}}{\rho}$ (voir \autoref{fig:EdS_edge}).\par
-%On note $\lo{\bs}$ (resp. $\hi{\bs}$) une paramétrisation du carreau de surface de $\lo{\brepface}$ (resp. de $\hi{\brepface}$) et $\psiR$ (resp. $\psiL$) une paramétrisation de la trace de $\Gamma$ dans l'espace paramétrique de $\lo{\brepface}$ (resp. de $\hi{\brepface}$) telle que
-%\begin{equation}
-%    \bg = \lo{\bs} \circ \psiR = \hi{\bs} \circ \psiL.
-%\end{equation}
-%Enfin, on note $\lo{\EoB{\bs}{\rho}}$ (resp. $\hi{\EoB{\bs}{\rho}}$) la paramétrisation de $\properEoS{\lo{\brepface}}{\rho}$ (resp. de $\properEoS{\hi{\brepface}}{\rho}$) obtenue comme décrit dans la \autoref{section:paramétrisation_EdS_propre_carreau}. 
-%On a alors
-%\begin{equation}
-%    \eosR = \lo{\EoB{\bs}{\rho}} \circ \psiR \text{ et } \eosL = \hi{\EoB{\bs}{\rho}} \circ \psiL.
-%\end{equation}
-%
-%On choisit une paramétrisation $\eos$ de la forme \eqref{eq:eos_segment_parameterisation}, \ie les courbes iso-$u$ sont des arcs de cercles caractéristiques dont les extrémités $\eosR$ et $\eosL$ sont respectivement atteintes en $v = \lo{v}$ et $v = \hi{v}$. 
-%Le domaine paramétrique est donc le rectangle $\mathcal{U} = \mathcal{W} \times \left[ \lo{v}, \hi{v} \right]$ où $\mathcal{W}$ désigne le domaine paramétrique (segment de $\reals$) de $\bg$.
-%
-%\par\bigskip
-%
-%On propose ici une méthode pour construire une telle paramétrisation. 
-%\par
-%[Rappeler que les courbes d'intersection sont définies de façon procédurale \ldots]
-%\par
-%La méthode proposée nécessite de connaître $\bg$, $\bgw$, $\eosR$ et $\eosL$ mais ne nécessite pas explicitement la donnée de $\rho$ et $\rho_w$
-
 
 
 

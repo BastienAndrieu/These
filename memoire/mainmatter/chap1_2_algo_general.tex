@@ -374,8 +374,8 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 	\begin{equation}
 	    \theta = 
 	    \begin{cases}
-	       \vartheta + 2\pi & \text{ si } \theta' < 0, \\ 
-	       \vartheta        & \text{ si } \theta' \geq 0,
+	       \vartheta + 2\pi & \text{ si } \vartheta < 0, \\ 
+	       \vartheta        & \text{ si } \vartheta \geq 0,
 	    \end{cases}
 	\end{equation}
 	où
@@ -404,7 +404,7 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 	        \cos\left( \frac{v - \lo{v}}{\hi{v} - \lo{v}} \theta(u) \right) \Right{\br}(u) +
 	        \sin\left( \frac{v - \lo{v}}{\hi{v} - \lo{v}} \theta(u) \right) \Right{\br}^{\perp}(u).
 	\end{equation}	
-	De cette façon, $\br$ vérifie bien les conditions \eqref{eq:parametrisation_EdS_propre_courbe_condition_r} et on a bien $\br(u,\lo{v}) = \Right{\br}$ et $\br(u,\hi{v}) = \Left{\br}$ (donc $\eos(u,\lo{v}) = \Right{\eos}$ et $\eos(u,\hi{v}) = \Left{\eos}$).
+	De cette façon, $\br$ vérifie bien les conditions \eqref{eq:parametrisation_EdS_propre_courbe_condition_r} et on a bien $\br(u,\lo{v}) = \Right{\br}(u)$ et $\br(u,\hi{v}) = \Left{\br}(u)$ (donc $\eos(u,\lo{v}) = \Right{\eos}(u)$ et $\eos(u,\hi{v}) = \Left{\eos}(u)$).
 	
 	\item \textit{Remarque :} si une extrémité de $\brepedge$ est un point régulier de $\Sigma$ alors l'arc de cercle caractéristique en cette extrémité est réduit à un seul point et la paramétrisation $\eos$ y est singulière\\
 	$\to$ un moyen d'y remédier serait d'utiliser un carreau restreint (\ie les courbes $\Right{\eos}$ et $\Left{\eos}$ ne correspondent plus aux courbes $v = \lo{v}$ et $v = \hi{v}$)
