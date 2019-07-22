@@ -2,6 +2,9 @@
 \chapter[Algorithme général pour la propagation d'interfaces $\contgeom{1}$ \piecewise]{Mise au point d'un algorithme général pour la propagation d'interfaces régulières \piecewise}
 \label{chap:algo_general}
 
+\newcommand{\Right}[1]{\lo{#1}}%{#1_R}
+\newcommand{\Left}[1]{\hi{#1}}%{#1_L}
+
 %Objectif : proposer un algorithme de construction de l'EdB sous la forme d'un nouveau modèle \brep\ à partir du modèle \brep\ de l'interface courante. 
 %Pour cela, on tire d'abord des observations sur lesquelles on se basera pour construire dans un premier temps une pseudo-EdS, que l'on traitera dans un second temps afin d'obtenir l'EdB. 
 %Dans ce chapitre, on explicitera une partie des algorithmes utilisés mais les détails de la mise en \oe uvre numérique feront l'objet du chapitre suivant.
@@ -67,7 +70,7 @@ arguments :
 	\item si on procède ainsi pour chaque carreau qui décrit l'interface, on construit beaucoup de nouveaux carreaux qui sont redondants, voire même trivialement exclus de l'EdB
 %	\item la zone d'influence sur l'EdB d'une courbe singulière concave est vide (preuve?) (\ie cette courbe ne contribue pas à l'EdB et peut donc être ignorée)
 %	\item la zone d'influence sur l'EdB d'une courbe singulière convexe $\Gamma$ est incluse dans la portion de son EdS qui est tangente aux EdS des deux nappes adhérentes à $\Gamma$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on la note $\pseudoEdS{\Gamma}{\rho}$
-	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \Sigma$ adhérentes aux nappes régulières $\Sigma_L$ et $\Sigma_R$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Sigma_L}{\rho}$ et $\EdS{\Sigma_R}{\rho}$ (on appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$).
+	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \Sigma$ adhérente aux nappes régulières $\Left{\Sigma}$ et $\Right{\Sigma}$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Left{\Sigma}}{\rho}$ et $\EdS{\Right{\Sigma}}{\rho}$ (on appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$).
 	\begin{proof}
 		En posant\footnote{introduire ces notations dans la \autoref{section:principe_huygens}.}
 		\[
@@ -81,20 +84,20 @@ arguments :
 		\[
 			\influEdB{\Gamma}{\rho} \subseteq 
 			\left\{
-				\bx \in \complement{\Omega} \mid \implicitEdB{\Gamma}(\bx) = \implicitEdB{\Sigma_L}(\bx) = \implicitEdB{\Sigma_R}(\bx) = 0
+				\bx \in \complement{\Omega} \mid \implicitEdB{\Gamma}(\bx) = \implicitEdB{\Left{\Sigma}}(\bx) = \implicitEdB{\Right{\Sigma}}(\bx) = 0
 			\right\}
 			\subseteq \pseudoEdS{\Gamma}{\rho}.
 		\]
 		\par
-		Puisque $\Gamma \subseteq \left( \closure{\Sigma_L} \cap \closure{\Sigma_R} \right)$, on a $\implicitEdB{\Gamma} \geq \implicitEdB{\Sigma_L}$ et $\implicitEdB{\Gamma} \geq \implicitEdB{\Sigma_R}$.\par
-		Or, si $\bx \in \influEdB{\Gamma}{\rho}$ alors\footnote{car $\forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{\Gamma}(\bx) \geq 0$ et $\forall \bx \in \sphere[\Gamma][\rho], \implicitEdB{\Gamma}(\bx) \leq 0$.} $\implicitEdB{\Gamma}(\bx) = 0$ et donc $\implicitEdB{\Sigma_L}(\bx) \leq 0$ et $\implicitEdB{\Sigma_R}(\bx) \leq 0$.\par
-		Mais si $\implicitEdB{\Sigma_L} < 0$ ou $\implicitEdB{\Sigma_R} < 0$ alors\footnote{car $\forall H \subseteq \Sigma, \forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{H}(\bx) \geq 0$.} $\bx \notin \EdB{\Sigma}{\rho}$ et donc $\bx \notin \influEdB{\Gamma}{\rho}$.\par
-		Donc si $\bx \in \influEdB{\Gamma}{\rho}$ alors $\implicitEdB{\Sigma_L}(\bx) = 0$ et $\implicitEdB{\Sigma_R}(\bx) = 0$.
+		Puisque $\Gamma \subseteq \left( \closure{\Left{\Sigma}} \cap \closure{\Right{\Sigma}} \right)$, on a $\implicitEdB{\Gamma} \geq \implicitEdB{\Left{\Sigma}}$ et $\implicitEdB{\Gamma} \geq \implicitEdB{\Right{\Sigma}}$.\par
+		Or, si $\bx \in \influEdB{\Gamma}{\rho}$ alors\footnote{car $\forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{\Gamma}(\bx) \geq 0$ et $\forall \bx \in \sphere[\Gamma][\rho], \implicitEdB{\Gamma}(\bx) \leq 0$.} $\implicitEdB{\Gamma}(\bx) = 0$ et donc $\implicitEdB{\Left{\Sigma}}(\bx) \leq 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) \leq 0$.\par
+		Mais si $\implicitEdB{\Left{\Sigma}} < 0$ ou $\implicitEdB{\Right{\Sigma}} < 0$ alors\footnote{car $\forall H \subseteq \Sigma, \forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{H}(\bx) \geq 0$.} $\bx \notin \EdB{\Sigma}{\rho}$ et donc $\bx \notin \influEdB{\Gamma}{\rho}$.\par
+		Donc si $\bx \in \influEdB{\Gamma}{\rho}$ alors $\implicitEdB{\Left{\Sigma}}(\bx) = 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) = 0$.
 	\end{proof}
 	
 	\item Si $\Gamma$ est une courbe singulière concave de $\Sigma$ alors sa zone d'influence sur l'EdB est vide (\ie $\Gamma$ ne contribue pas à l'EdB et peut donc être ignorée).
 	\begin{proof}
-		On veut montrer que $\influEdB{\Gamma}{\rho} = \varnothing$ (piste : montrer que, pour $\bx \in \complement{\Omega}$, $\implicitEdB{\Gamma}(\bx) = 0 \Rightarrow \implicitEdB{\Sigma_L}(\bx) < 0$ ou $\implicitEdB{\Sigma_R}(\bx) < 0$)
+		On veut montrer que $\influEdB{\Gamma}{\rho} = \varnothing$ (piste : montrer que si $\Gamma$ est concave alors, pour $\bx \in \complement{\Omega}$, $\implicitEdB{\Gamma}(\bx) = 0 \Rightarrow \implicitEdB{\Left{\Sigma}}(\bx) < 0$ ou $\implicitEdB{\Right{\Sigma}}(\bx) < 0$)
 	\end{proof}
 	
 	\item si toutes les courbes singulières adhérentes à un point singulier sont concaves alors la zone d'influence sur l'EdB de ce point est vide (preuve?) (\ie ce point ne contribue pas à l'EdB et peut donc être ignoré)
@@ -326,8 +329,6 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 
 \subsubsection{Paramétrisation de la pseudo-EdS}
 \label{section:parametrisation_pseudo_EdS_arete}
-\newcommand{\Right}[1]{\lo{#1}}%{#1_R}
-\newcommand{\Left}[1]{\hi{#1}}%{#1_L}
 
 %\begin{figure}
 %    \centering
@@ -355,7 +356,7 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 	\item On choisit une paramétrisation de la forme \eqref{eq:parametrisation_EdS_propre_courbe}, \ie les courbes iso-$u$ sont des arcs de cercles caractéristiques dont les extrémités $\Right{\eos}$ et $\Left{\eos}$ sont respectivement atteintes en $v = \lo{v}$ et $v = \hi{v}$. 
 Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est donc le rectangle $\mathcal{U} = \left[ \lo{u}, \hi{u} \right] \times \left[ \lo{v}, \hi{v} \right]$.
 
-	\item on suppose que l'on peut évaluer $\bg(u)$, $\Right{\eos}(u)$ et $\Left{\eos}(u)$ pour tout $u \in \left[ \lo{u}, \hi{u} \right]$
+	%\item on suppose que l'on peut évaluer $\bg(u)$, $\Right{\eos}(u)$ et $\Left{\eos}(u)$ pour tout $u \in \left[ \lo{u}, \hi{u} \right]$
 	
 	\item on propose alors une méthode pour construire une telle paramétrisation qui n'exploite pas directement la donnée de $\rho$ et $\rho_u$ mais plutôt celle de $\Right{\eos}(u)$ et $\Left{\eos}(u)$ (ce choix, qui sera motivé lors de la mise en \oe uvre numérique, garantit que les équations \label{eq:pseudoEdSarete_courbes_limites} sont vérifiées)
 
@@ -417,6 +418,20 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 
 \subsubsection{Polygone sphérique découpé en quadrilatères}
 \label{section:quadrangulation_polygone_spherique}
+
+\begin{enumerate}
+	\item hypothèse : $\rho$ est uniforme sur $\Sigma$
+	\item[$\Rightarrow$] $\pseudoEdS{\vit{v}}{\rho}$ est le polygone sphérique formé par les $m$ points $\p_i = \vit{v} + \rho \unv_{\Sigma_i}$ ($i = 1, \ldots, m$)	où $\Sigma_i$ est le carreau de la $i$-ème face incidente à $\vit{v}$ (le cycle des faces incidentes est parcouru dans le sens direct vu de l'extérieur de $\Omega$)
+	\item si $m = 4$, on représente ce polygone à l'aide d'un seul carreau sphérique
+	\item si $m \neq 4$, on \guillemets{quadrangule} le polygone de la manière suivante 
+	\begin{itemize}
+		\item on note $\vit{c} = \vit{v} + \rho \unitized{\sum_{i=1}^m \unv_{\Sigma_i}}$ et $\q_i = \vit{v} + \rho \unitized{\unv_{\Sigma_i} + \unv_{\Sigma_{i+1}}}$
+		\item on construit $m$ carreaux sphériques dont les \guillemets{coins} sont $\vit{c}$, $\q_{i-1}$, $\p_i$ et $\q_i$
+	\end{itemize}
+	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\vit{v}][\rho]$ le carreau bilinéaire qui interpole ses coins
+\end{enumerate}
+
+
 avantages/inconvénients :
 \begin{itemize}
 	\item[$-$] valable seulement si la vitesse normale est uniforme

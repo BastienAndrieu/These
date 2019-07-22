@@ -109,7 +109,8 @@ for curve in nappes:
 
 ########################################################
 # PLOT & WRITE TikZ CODE
-sidelabel = ['R','L']
+#sidelabel = ['R','L']
+sidelabel = ['Right','Left']
 
 pthcode = '../../code/pseudo_EdS_arete/'
 f = open(pthcode + 'vue_coupe_tikzcode.tex', 'w')
@@ -226,7 +227,8 @@ for inappe, curve in enumerate(nappes):
     f.write('    styleNappe,\n')
     f.write('    postaction={\n')
     f.write('        decoration={\n')
-    f.write('            text along path, raise={1ex}, text={{$\\Sigma_%s$}{}}, text align=center, reverse path\n' % sidelabel[inappe])
+    #f.write('            text along path, raise={1ex}, text={{$\\Sigma_%s$}{}}, text align=center, reverse path\n' % sidelabel[inappe])
+    f.write('            text along path, raise={1ex}, text={{$\\%s{\\Sigma}$}{}}, text align=center, reverse path\n' % sidelabel[inappe])
     f.write('        },\n')
     f.write('        decorate\n')
     f.write('    }\n')
@@ -240,13 +242,15 @@ for inappe, curve in enumerate(nappes):
              inappe)
     )
     #
-    f.write('\\node[colorContourEdSnappe%d, inner sep=0.15\\imagewidth, below] at (labelNappe%d) {$\\implicitEdB{\\Sigma_%s} < 0$};\n' %
+    #f.write('\\node[colorContourEdSnappe%d, inner sep=0.15\\imagewidth, below] at (labelNappe%d) {$\\implicitEdB{\\Sigma_%s} < 0$};\n' %
+    f.write('\\node[colorContourEdSnappe%d, inner sep=0.15\\imagewidth, below] at (labelNappe%d) {$\\implicitEdB{\\%s{\\Sigma}} < 0$};\n' %
             (inappe,
              inappe,
              sidelabel[inappe])
     )
     #
-    f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe%d, text={{$\\implicitEdB{\\Sigma_%s}$} {$=$} {$0$}{}}, text align={center}}, decorate] \n' %
+    #f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe%d, text={{$\\implicitEdB{\\Sigma_%s}$} {$=$} {$0$}{}}, text align={center}}, decorate] \n' %
+    f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe%d, text={{$\\implicitEdB{\\%s{\\Sigma}}$} {$=$} {$0$}{}}, text align={center}}, decorate] \n' %
             (inappe,
              sidelabel[inappe])
     )
