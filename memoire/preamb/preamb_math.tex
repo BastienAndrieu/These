@@ -7,7 +7,12 @@
 \usepackage{bm}
 \usepackage{mathtools}
 \usepackage{stmaryrd}
+
+%https://tex.stackexchange.com/questions/165685/subequations-and-array-in-braces
+\usepackage[overload]{empheq}
+
 \usepackage{cases}
+
 \usepackage{esint}
 \usepackage[overload]{empheq}%https://tex.stackexchange.com/questions/165685/subequations-and-array-in-braces
 
@@ -59,7 +64,7 @@ cal=zapfc, calscaled=1.18%,
 
 % Notations
 \newcommand*{\rank}[1]{\mathrm{rang}{#1}}
-\newcommand*{\determinant}[1]{\left\lvert {#1} \right\rvert}
+\newcommand*{\determinant}[1]{\det{#1}}%{\left\lvert {#1} \right\rvert}
 \newcommand*{\inv}[1]{#1\raisebox{1.15ex}{$\scriptscriptstyle-\!1$}}
 \newcommand*{\inverse}[1]{\ensuremath{{#1} ^{-1}}} % inverse matrix
 \newcommand*{\transpose}[1]{\ensuremath{{#1} ^\mathsf{T}}} % transpose matrix

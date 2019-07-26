@@ -173,38 +173,55 @@ arguments :
 	\item paramétrisation $\eos$ de l'EdS propre d'un carreau non-restreint $\carreau \colon (\left[\lo{u},\hi{u}\right] \times \left[\lo{v},\hi{v}\right], \bs)$
 	\begin{enumerate}
 		\item rappeler système définissant une EdS propre à 2 paramètres
-		\def\sysvspace{1.5ex}
-		\begin{equation}
-		    \left\{\begin{matrix}
-		        \implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0, \\[\sysvspace]
-		        \frac{\partial }{\partial u}\implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0, \\[\sysvspace]
-		        \frac{\partial }{\partial v}\implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0.
-		    \end{matrix}\right.
-		    \label{eq:sys_envelope_of_spheres}
-		\end{equation}
+		\begin{subequations}
+			\label{eq:sys_envelope_of_spheres}
+			\begin{empheq}[left={\empheqlbrace\,}]{align}
+				\implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0, \label{eq:sys_envelope_of_spheres_Sphere} \\%[\sysvspace]
+				\frac{\partial }{\partial u}\implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0, \label{eq:sys_envelope_of_spheres_PlaneU} \\%[\sysvspace]
+				\frac{\partial }{\partial v}\implicitsphere_{\rho}(\eos(u,v), \bs(u,v)) &= 0. \label{eq:sys_envelope_of_spheres_PlaneV}
+			\end{empheq}
+		\end{subequations}				
 		\item interprétation : intersection de cercles caractéristiques (voir figure \autoref{fig:EdS_propre_carreau}) $\to$ 2 points (\ie 2 nouveaux carreaux), on garde celui dans le sens de $+\unv$ (\ie $\EdSpropreplus{\carreau}{\rho}$, l'autre ($\EdSpropremoins{\carreau}{\rho}$) est trivialement exclu de l'EdB)
 		\item paramétrisation à la Gelston \cite{gelston1995} : \\
 		En considérant $\rho$ comme une fonction des paramètres $u$ et $v$, on peut réécrire le système \eqref{eq:sys_envelope_of_spheres} 
+		\begin{subequations}
+			%\label{eq:sys_envelope_of_spheres}
+			\begin{empheq}[left={\empheqlbrace\,}]{align}
+				\normtwo{\eos - \bs}^2 - \rho^2 &= 0, \\
+				\dotprod{\left( \eos - \bs \right)}{\left( \eos_u - \bsu \right)} - \rho \rho_u &= 0,\\
+				\dotprod{\left( \eos - \bs \right)}{\left( \eos_v - \bsv \right)} - \rho \rho_v &= 0.
+			\end{empheq}
+		\end{subequations}	
+		%Or $\eos - \bs$ est orthogonal à la sphère $\sphere[\bs][\rho]$ et donc aussi à $\EdSpropre{\carreau}{\rho}$.
+		Or $\eos - \bs$ est un rayon de la sphère $\sphere[\bs][\rho]$ et est donc orthogonal à $\EdSpropre{\carreau}{\rho}$ en $\eos$.
+		Donc $\dotprod{\left( \eos - \bs \right)}{\eos_u} = \dotprod{\left( \eos - \bs \right)}{\eos_v} = 0$ et on a finalement
+		\begin{subequations}
+			%\label{eq:sys_envelope_of_spheres}
+			\begin{empheq}[left={\empheqlbrace\,}]{align}
+				\normtwo{\eos - \bs}^2 - \rho^2 &= 0, \\
+				\dotprod{\left( \eos - \bs \right)}{\bsu} + \rho \rho_u &= 0,\\
+				\dotprod{\left( \eos - \bs \right)}{\bsv} + \rho \rho_v &= 0.
+			\end{empheq}
+		\end{subequations}	
+%		\begin{equation}
+%		    \left\{\begin{matrix}
+%		        \normtwo{\eos - \bs}^2 - \rho^2 &= 0, \\
+%		        \dotprod{\left( \eos - \bs \right)}{\bsu} + \rho \rho_u &= 0, \\
+%		        \dotprod{\left( \eos - \bs \right)}{\bsv} + \rho \rho_v &= 0.
+%		    \end{matrix}\right.
+%		\end{equation}
+		On cherche alors une paramétrisation de la forme
 		\begin{equation}
-		    \left\{\begin{matrix}
-		        \normtwo{\eos - \bs}^2 - \rho^2 &= 0, \\
-		        \dotprod{\left( \eos - \bs \right)}{\bsu} + \rho \rho_u &= 0, \\
-		        \dotprod{\left( \eos - \bs \right)}{\bsv} + \rho \rho_v &= 0.
-		    \end{matrix}\right.
-		\end{equation}
-		En effet $\dotprod{\left( \eos - \bs \right)}{\eos_u} = \dotprod{\left( \eos - \bs \right)}{\eos_v} = 0$ car le vecteur $\eos - \bs$ est orthogonal à $\sphere[\bs][\rho]$ et donc à $\EdSpropre{\carreau}{\rho}$. 
-		On cherche une paramétrisation de la forme
-		\[
 			\eos(u,v) = \bs(u,v) + \rho(u,v) \unv_{\envelope}(u,v),
-		\]
+		\end{equation}
 		où $\unv_{\envelope}$ est la direction normale à $\EdSpropre{\carreau}{\rho}$, qui vérifie
-		\[
-			\left\{\begin{matrix}
-				\normtwo{\unv_{\envelope}} = 1,\\
-				\dotprod{\unv_{\envelope}}{\bsu} = -\rho_u,\\
-				\dotprod{\unv_{\envelope}}{\bsv} = -\rho_v.
-			\end{matrix}\right.
-		\]
+		\begin{subequations}
+			\begin{empheq}[left={\empheqlbrace\,}]{align}
+				\normtwo{\unv_{\envelope}}       &= 1,        \\
+				\dotprod{\unv_{\envelope}}{\bsu} &= -\rho_u , \\
+				\dotprod{\unv_{\envelope}}{\bsv} &= -\rho_v .
+			\end{empheq}
+		\end{subequations}	
 		On décompose $\unv_{\envelope} = \mathrm{n}_u \bsu + \mathrm{n}_v \bsv + \mathrm{n}_n \unv$, où $\unv = \unitized{\crossprod{\bsu}{\bsv}}$.\\
 		Puisque $\dotprod{\bsu}{\unv} = \dotprod{\bsv}{\unv} = 0$, on a 
 		\[
@@ -286,15 +303,22 @@ arguments :
 %\end{equation}
 Soit $\bg : \left[ \lo{u}, \hi{u} \right] \to \reals^3$ une paramétrisation du support géométrique $\Gamma$ de l'arête $\brepedge$. 
 Si l'on considère $\rho$ comme une fonction du paramètre $u$ alors $\EdSpropre{\Gamma}{\rho}$ est le lieu des points $\bx \in \reals^3$ qui vérifient
-\begin{equation}
-  \left\{
-    \begin{matrix}
-        \normtwo{\bx - \bg(u)}^2 - \rho(u)^2 &= 0 ,\\ 
-        \dotprod{\left(  \bx - \bg(u) \right)}{\bg'(u)} + \rho(u)\rho_u(u) &= 0.
-    \end{matrix}
-  \right.
-  \label{eq:sys_canal_surface}
-\end{equation}
+%\begin{equation}
+%  \left\{
+%    \begin{matrix}
+%        \normtwo{\bx - \bg(u)}^2 - \rho(u)^2 &= 0 ,\\ 
+%        \dotprod{\left(  \bx - \bg(u) \right)}{\bg'(u)} + \rho(u)\rho_u(u) &= 0.
+%    \end{matrix}
+%  \right.
+%  \label{eq:sys_canal_surface}
+%\end{equation}
+\begin{subequations}
+	\label{eq:sys_canal_surface}
+	\begin{empheq}[left={\empheqlbrace\,}]{align}
+		\normtwo{\bx - \bg(u)}^2 - \rho(u)^2 &= 0 ,\\ 
+		\dotprod{\left(  \bx - \bg(u) \right)}{\bg'(u)} + \rho(u)\rho_u(u) &= 0.
+	\end{empheq}
+\end{subequations}	
 A condition que $\rho_u^2 \leq \normtwo{\bg'}^2$, le système \eqref{eq:sys_canal_surface} définit une famille de \textit{cercles caractéristiques}, dont chacun est le lieu des points de tangence entre $\EdSpropre{\Gamma}{\rho}$ et une sphère de la famille $\sphere[\Gamma][\rho]$ (voir \autoref{fig:parametrisation_EdS_propre_courbe}).
 \par
 D'après \eqref{eq:sys_canal_surface}, le cercle caractéristique $\circlenotation(u)$ au point $\bg(u)$ est l'intersection de la sphère $\sphere[u] = \sphere[\bg(u)][\rho(\bg(u))]$ et d'un plan orthogonal à la direction tangente à $\Gamma$ en ce point (donnée par le vecteur $\bg'(u)$). 
@@ -339,7 +363,7 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 \input{figures/code/pseudo_EdS_arete/pseudo_EdS_arete.tex}
 
 \begin{enumerate}
-	\item $\brepedge$ une arête \brep\ convexe, $\bg : \left[ \lo{u}, \hi{u} \right] \to \reals^3$ une paramétrisation de son support géométrique
+	\item $\brepedge$ une arête convexe du modèle \brep\ de $\Sigma$, $\bg : \left[ \lo{u}, \hi{u} \right] \to \reals^3$ une paramétrisation de son support géométrique
 	\item $\Right{\brepface}$ (resp. $\Left{\brepface}$) la face à gauche\footnote{relativement à l'orientation donnée par $\bg$, vu de l'extérieur de $\Omega$.} (resp. à droite) de $\brepedge$
 	\item but : construire une paramétrisation $\eos$ de la pseudo-EdS de $\brepedge$, \ie la région $\pseudoEdS{\brepedge}{\rho}$ de $\EdS{\brepedge}{\rho}$ qui est tangente à la fois à $\EdS{\Right{\brepface}}{\rho}$ et $\EdS{\Left{\brepface}}{\rho}$ (voir \autoref{fig:pseudo-EdS_arete})
 	\item on note $\Right{\bs}$ (resp. $\Left{\bs}$) une paramétrisation du carreau supportant $\Right{\brepface}$ (resp. $\Left{\brepface}$) et $\Right{\bp}$ (resp. $\Left{\bp}$) une paramétrisation de la trace de $\brepedge$ dans l'espace paramétrique de $\Right{\brepface}$ (resp. de $\Left{\brepface}$) telle que
@@ -358,13 +382,13 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 
 	%\item on suppose que l'on peut évaluer $\bg(u)$, $\Right{\eos}(u)$ et $\Left{\eos}(u)$ pour tout $u \in \left[ \lo{u}, \hi{u} \right]$
 	
-	\item on propose alors une méthode pour construire une telle paramétrisation qui n'exploite pas directement la donnée de $\rho$ et $\rho_u$ mais plutôt celle de $\Right{\eos}(u)$ et $\Left{\eos}(u)$ (ce choix, qui sera motivé lors de la mise en \oe uvre numérique, garantit que les équations \label{eq:pseudoEdSarete_courbes_limites} sont vérifiées)
+	\item on propose alors une méthode pour construire une telle paramétrisation qui n'exploite pas directement la donnée de $\rho$ et $\rho_u$ mais plutôt celle de $\Right{\eos}(u)$ et $\Left{\eos}(u)$ (ce choix, qui sera motivé lors de la mise en \oe uvre numérique, garantit que $\eos(u,\lo{v}) = \Right{\eos}(u)$ et $\eos(u,\hi{v}) = \Left{\eos}(u)$)
 
 	\item on note $\bt = \unitized{\bg'}$ et $\mu = -\frac{\rho \rho_u}{\normtwo{\bg}}$, on a alors $\bo = \bg + \mu \bt$
 	
-	\item or $\mu = \dotprod{\left( \Right{\eos} - \bg \right)}{\bt} = \dotprod{\left( \Left{\eos} - \bg \right)}{\bt}$ (pour l'implémentation, on choisit $\mu = \frac{1}{2} \dotprod{\left( \Right{\eos} + \Left{\eos} - 2 \bg\right)}{\bt}$)
+	\item or $\mu = \dotprod{\left( \Right{\eos} - \bg \right)}{\bt} = \dotprod{\left( \Left{\eos} - \bg \right)}{\bt}$ %(pour l'implémentation, on choisit $\mu = \frac{1}{2} \dotprod{\left( \Right{\eos} + \Left{\eos} - 2 \bg\right)}{\bt}$)
 		
-	\item on a $r = \normtwo{\Right{\eos} - \bo} = \normtwo{\Left{\eos} - \bo}$ (pour l'implémentation, on choisit $r(u,v) = \left( 1 - \frac{v - \lo{v}}{\hi{v} - \lo{v}} \right) \normtwo{\Right{\eos} - \bo} + \frac{v - \lo{v}}{\hi{v} - \lo{v}} \normtwo{\Left{\eos} - \bo}$)
+	\item on a $r = \normtwo{\Right{\eos} - \bo} = \normtwo{\Left{\eos} - \bo}$ (rayon du cercle caractéristique) %(pour l'implémentation, on choisit $r(u,v) = \left( 1 - \frac{v - \lo{v}}{\hi{v} - \lo{v}} \right) \normtwo{\Right{\eos} - \bo} + \frac{v - \lo{v}}{\hi{v} - \lo{v}} \normtwo{\Left{\eos} - \bo}$)
 	
 	\item on note $\Right{\br} = \unitized{\Right{\eos} - \bo}$ et $\Left{\br} = \unitized{\Left{\eos} - \bo}$
 	
@@ -414,21 +438,27 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 
 
 \subsection{Paramétrisation de la pseudo-EdS d'un sommet \brep\ convexe}
-2 approches :
+\def\v{\vit{v}}
+
+Soit $\brepvertex$ un sommet convexe du modèle \brep\ de $\Sigma$ dont le support géométrique est le point $\v \in \reals^3$. 
+On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou non) décrivant $\pseudoEdS{\v}{\rho}$ \ie la région de la sphère $\sphere[\v][\rho(\v)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\brepvertex$.\par
+
+On propose deux approches, en en donnant le principe ainsi que les avantages et les inconvénients.
 
 \subsubsection{Polygone sphérique découpé en quadrilatères}
 \label{section:quadrangulation_polygone_spherique}
+Premièrement, on suppose que $\rho$ est uniforme sur $\Sigma$. 
 
 \begin{enumerate}
-	\item hypothèse : $\rho$ est uniforme sur $\Sigma$
-	\item[$\Rightarrow$] $\pseudoEdS{\vit{v}}{\rho}$ est le polygone sphérique formé par les $m$ points $\p_i = \vit{v} + \rho \unv_{\Sigma_i}$ ($i = 1, \ldots, m$)	où $\Sigma_i$ est le carreau de la $i$-ème face incidente à $\vit{v}$ (le cycle des faces incidentes est parcouru dans le sens direct vu de l'extérieur de $\Omega$)
+	%\item hypothèse : $\rho$ est uniforme sur $\Sigma$
+	\item[$\Rightarrow$] $\pseudoEdS{\v}{\rho}$ est alors le polygone sphérique formé par les $m$ points $\p_i = \v + \rho \unv_{\Sigma_i}$ ($i = 1, \ldots, m$)	où $\Sigma_i$ est le carreau de la $i$-ème face incidente à $\v$ (le cycle des faces incidentes est parcouru dans le sens direct vu de l'extérieur de $\Omega$)
 	\item si $m = 4$, on représente ce polygone à l'aide d'un seul carreau sphérique
 	\item si $m \neq 4$, on \guillemets{quadrangule} le polygone de la manière suivante 
 	\begin{itemize}
-		\item on note $\vit{c} = \vit{v} + \rho \unitized{\sum_{i=1}^m \unv_{\Sigma_i}}$ et $\q_i = \vit{v} + \rho \unitized{\unv_{\Sigma_i} + \unv_{\Sigma_{i+1}}}$
+		\item on note $\vit{c} = \v + \rho \unitized{\sum_{i=1}^m \unv_{\Sigma_i}}$ et $\q_i = \v + \rho \unitized{\unv_{\Sigma_i} + \unv_{\Sigma_{i+1}}}$
 		\item on construit $m$ carreaux sphériques dont les \guillemets{coins} sont $\vit{c}$, $\q_{i-1}$, $\p_i$ et $\q_i$
 	\end{itemize}
-	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\vit{v}][\rho]$ le carreau bilinéaire qui interpole ses coins
+	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\v][\rho]$ le carreau bilinéaire qui interpole ses coins
 \end{enumerate}
 
 
@@ -436,14 +466,54 @@ avantages/inconvénients :
 \begin{itemize}
 	\item[$-$] valable seulement si la vitesse normale est uniforme
 	\item[$-$] génère plusieurs nouveaux carreaux de surface
-	\item[$+$] les nouveaux carreaux sont rectangulaires ($\Rightarrow$ permet l'utilisation de quadratures simples (\cf \autoref{section:clenshaw_curtis_quadrature})
+	%\item[$+$] les nouveaux carreaux sont rectangulaires ($\Rightarrow$ permet l'utilisation de quadratures simples (\cf \autoref{section:clenshaw_curtis_quadrature})
+	\item[$+$] utiliser des carreaux paramétriques non restreints présente plusieurs avantages :
+	\begin{enumerate}
+		\item permet l'utilisation de quadratures simples (\cf \autoref{section:clenshaw_curtis_quadrature})
+		\item simplifie les tests de sortie du domaine paramétrique (\cf partie optimisation de maillage trans-carreaux)
+	\end{enumerate}
 \end{itemize}
 
 
 \subsubsection{Ajustement de carreau sphérique à un nuage de points}
 \label{section:ajustement_carreau_spherique}
-
 \def\s{\vit{s}}
+On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$. 
+
+\begin{enumerate}
+	\item on cherche alors à construire un seul carreau paramétrique restreint qui contient les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\brepvertex$
+	\item afin de simplifier la construction, on considère que $\v$ est situé à l'origine et que $\rho(\v) = 1$ (on appliquera la transformation adéquate en fin de construction pour se placer à nouveau dans le cas général)
+	\item le problème consiste alors, étant donné un ensemble $C$ de courbes sur la sphère unité $\mathbb{S}^2$, à construire un carreau paramétrique décrivant une région $\Sigma_S$ de $\mathbb{S}^2$ contenant $C$
+	\item on cherche également à faire en sorte $\Sigma_S$ englobe $S$ le plus étroitement possible ($\sim$ minimisation de l'aire) \textit{(développer motivation\ldots)}
+	
+	\item on choisit d'utiliser les coordonnées sphériques comme paramètres, \ie
+	\begin{equation}
+	    \bs = \mathbf{R} 
+	    \begin{pmatrix}
+		    \cos \theta \cos \lambda \\
+		    \sin \theta \cos \lambda \\
+		    \sin \lambda \\
+	    \end{pmatrix},
+	\end{equation}
+	où $\mathbf{R}$ désigne une matrice de rotation (\ie ses colonnes forment une base orthonormée de $\reals^3$) et $\theta$, $\lambda$ désignent respectivement la longitude et la latitude d'un point du carreau
+	\begin{align*}
+	    \theta(u,v)  &= \Theta u + \theta_0, \\
+	    \lambda(u,v) &= \Lambda v + \lambda_0,
+	\end{align*}
+	avec $-1 \leq u, v \leq 1$
+	\end{enumerate}
+
+	\item on propose donc une méthode heuristique pour construire un tel carreau (\ie trouver $\mathbf{R}$, $\Theta$, $\theta_0$, $\Lambda$ et $\lambda_0$) d'aire minimale
+	\item on suppose qu'on dispose d'un échantillonnage suffisamment $S = \family{\s}{i}{1}{n}$ fin de l'ensemble des arcs de cercle caractéristiques limites
+	\item le problème consiste alors à construire un carreau paramétrique décrivant une région $\Sigma_S$ de $\mathbb{S}^2$ contenant $S$
+	
+	\item On note $\s_{0} = \sum_{i = 1}^n \s_i$. 
+	On suppose pour le moment que $\normtwo{\s_{0}} \neq 0$. 
+	On définit alors 
+	\begin{equation}
+	    \vrm{r}_1 = \unitized{ \s_{0} }.
+	\end{equation}
+	
 
 %(\cf notes Huygens)
 avantages/inconvénients :
@@ -453,13 +523,13 @@ avantages/inconvénients :
 	\item[$+$] génère un seul nouveau carreau de surface
 \end{itemize}
 
-Soit $\brepvertex$ un sommet \brep\ convexe dont le support géométrique est le point $\p$. 
-On cherche à construire un carreau paramétrique restreint décrivant $\pseudoEdS{\p}{\rho}$ \ie la région de la sphère $\sphere[\p][\rho(\p)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\p$. 
-Afin de simplifier cette construction, on considère que $\p$ est situé à l'origine et que $\rho(\p) = 1$. 
-(On appliquera la transformation adéquate en fin de construction pour se placer à nouveau dans le cas général.)
-\par
-Le problème consiste alors, étant donné un ensemble de points $S = \family{\s}{i}{1}{n}$ sur la sphère unité $\mathbb{S}^2$, à construire un carreau paramétrique décrivant une portion $R$ de $\mathbb{S}^2$ contenant $S$. 
-On cherche également à minimiser l'aire de $R$ \ldots
+%%Soit $\brepvertex$ un sommet \brep\ convexe dont le support géométrique est le point $\v \in \reals^3$. 
+%%On cherche à construire un carreau paramétrique restreint décrivant $\pseudoEdS{\v}{\rho}$ \ie la région de la sphère $\sphere[\v][\rho(\v)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\v$. 
+%Afin de simplifier cette construction, on considère que $\v$ est situé à l'origine et que $\rho(\v) = 1$. 
+%(On appliquera la transformation adéquate en fin de construction pour se placer à nouveau dans le cas général.)
+%\par
+%Le problème consiste alors, étant donné un ensemble de points $S = \family{\s}{i}{1}{n}$ sur la sphère unité $\mathbb{S}^2$, à construire un carreau paramétrique décrivant une portion $R$ de $\mathbb{S}^2$ contenant $S$. 
+%On cherche également à minimiser l'aire de $R$ \ldots
 
 
 

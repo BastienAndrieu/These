@@ -19,13 +19,13 @@
 \contentsline {subsection}{\numberline {2.3.1}Param\IeC {\'e}trisation de l'EdS propre d'une face BRep}{18}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}Param\IeC {\'e}trisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{19}{subsection.2.3.2}
 \contentsline {subsubsection}{\numberline {2.3.2.1}Param\IeC {\'e}trisation de l'EdS propre d'un arc param\IeC {\'e}trique}{19}{subsubsection.2.3.2.1}
-\contentsline {subsubsection}{\numberline {2.3.2.2}Param\IeC {\'e}trisation de la pseudo-EdS}{20}{subsubsection.2.3.2.2}
-\contentsline {subsection}{\numberline {2.3.3}Param\IeC {\'e}trisation de la pseudo-EdS d'un sommet BRep\ convexe}{22}{subsection.2.3.3}
-\contentsline {subsubsection}{\numberline {2.3.3.1}Polygone sph\IeC {\'e}rique d\IeC {\'e}coup\IeC {\'e} en quadrilat\IeC {\`e}res}{22}{subsubsection.2.3.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2.2}Param\IeC {\'e}trisation de la pseudo-EdS}{21}{subsubsection.2.3.2.2}
+\contentsline {subsection}{\numberline {2.3.3}Param\IeC {\'e}trisation de la pseudo-EdS d'un sommet BRep\ convexe}{23}{subsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.3.1}Polygone sph\IeC {\'e}rique d\IeC {\'e}coup\IeC {\'e} en quadrilat\IeC {\`e}res}{23}{subsubsection.2.3.3.1}
 \contentsline {subsubsection}{\numberline {2.3.3.2}Ajustement de carreau sph\IeC {\'e}rique \IeC {\`a} un nuage de points}{23}{subsubsection.2.3.3.2}
-\contentsline {section}{\numberline {2.4}Construction d'un mod\IeC {\`e}le BRep\ de l'EdB}{23}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Construction du graphe des intersections}{23}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Construction des faces, ar\IeC {\^e}tes et sommets BRep}{23}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.4}Construction d'un mod\IeC {\`e}le BRep\ de l'EdB}{24}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Construction du graphe des intersections}{24}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Construction des faces, ar\IeC {\^e}tes et sommets BRep}{24}{subsection.2.4.2}
 \contentsline {chapter}{\chapternumberline {3}Mise en \oe uvre num\IeC {\'e}rique de l'algorithme de propagation}{27}{chapter.3}
 \contentsline {section}{\numberline {3.1}Repr\IeC {\'e}sentation des carreaux de surface}{27}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}\IeC {\'E}tat de l'art}{27}{subsection.3.1.1}
