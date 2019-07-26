@@ -212,7 +212,7 @@ obj_sphere.draw_type = 'WIRE'
 obj_sphere.show_all_edges = True
 obj_sphere.hide_render = True
 
-
+"""
 corner_avg = numpy.zeros(3)
 for xyz in corners:
     corner_avg = corner_avg + xyz
@@ -225,6 +225,7 @@ obj = lbu.pydata_to_polyline(
     name='corner_avg')
 obj.location = V.xyz
 obj.hide_render = True
+"""
 ################################################################
 
 
@@ -245,7 +246,8 @@ while True:
     else:
         ie = int((ih-1)/2)
     ie += 1
-    c = lcheb.read_polynomial2(pthin + 'debug/eos_edge_c_' + format(ie, '03') + '.cheb')
+    #c = lcheb.read_polynomial2(pthin + 'debug/eos_edge_c_' + format(ie, '03') + '.cheb')
+    c = lcheb.read_polynomial2('/d/bandrieu/GitHub/FFTsurf/debug/eos_edge_c_' + format(ie, '03') + '.cheb')
     if ih%2 != 0:
         c = lcheb.flip_polynomial2(c, flip_u=True, flip_v=True)
     #
@@ -302,11 +304,11 @@ for obj in bpy.data.objects:
         obj.hide_render = True
         obj.data.materials.append(mat_plane)
 
+"""
 nor_avg = Vector((0,0,0))
 for nor, pt in end_planes:
     nor_avg += nor
 nor_avg.normalize()
-
 
 obj = lbu.pydata_to_polyline(
     [Vector((0,0,0)), -rho*nor_avg],
@@ -314,7 +316,8 @@ obj = lbu.pydata_to_polyline(
     name='nor_avg')
 obj.location = V.xyz
 obj.hide_render = True
-
+"""
+        
 
 """
 # BOUNDING GREAT CIRCLES
