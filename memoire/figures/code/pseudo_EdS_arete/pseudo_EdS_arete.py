@@ -40,6 +40,7 @@ lbu.clear_scene(meshes=True, lamps=True, cameras=False)
 
 resx = 1024
 resy = 0.75*resx
+print('res = (%d, %d)' % (rex, resy))
 
 lbu.set_scene(
     resolution_x=resx,

@@ -440,26 +440,59 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 \subsection{Paramétrisation de la pseudo-EdS d'un sommet \brep\ convexe}
 \def\v{\vit{v}}
 
-Soit $\brepvertex$ un sommet convexe du modèle \brep\ de $\Sigma$ dont le support géométrique est le point $\v \in \reals^3$. 
-On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou non) décrivant $\pseudoEdS{\v}{\rho}$ \ie la région de la sphère $\sphere[\v][\rho(\v)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\brepvertex$.\par
+%Soit $\brepvertex$ un sommet convexe du modèle \brep\ de $\Sigma$ dont le support géométrique est le point $\v \in \reals^3$. 
+%On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou non) décrivant $\pseudoEdS{\v}{\rho}$ \ie la région de la sphère $\sphere[\v][\rho(\v)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\brepvertex$.\par
+%On propose deux approches, en en donnant le principe ainsi que les avantages et les inconvénients.
 
+La pseudo-EdS $\pseudoEdS{\brepvertex}{\rho}$ d'un sommet convexe $\brepvertex$ ayant pour support géométrique le point $\v$ est la région de la sphère $\sphere[\v][\rho(\v)]$ qui est tangente à l'EdS de chacune des arêtes $\family{\brepedge}{i}{1}{m}$ incidentes à $\brepvertex$.
+Cette région est le lieu des points $\bx$ vérifiant 
+\begin{subequations}
+	\label{eq:sys_pseudoEdS_sommet}
+	\begin{empheq}[left={\empheqlbrace\,}]{align}
+		\normtwo{\bx - \v} &= \rho(\v), \\ 
+		\dotprod{\left(  \bx - \lo{\bo}_i \right)}{\lo{\bt}_i} &\leq 0 \quad (i = 1, \ldots, m), 
+	\end{empheq}
+\end{subequations}
+
+%où $\lo{\bo}_i$ et $\lo{\bt}_i$ désignent respectivement le centre et la normale au plan contenant le cercle caractéristique de l'arête incidente $\brepedge_i$ en son extrémité correspondant à $\brepvertex$ (\cf \autoref{section:parametrisation_pseudo_EdS_arete}).
+où $\lo{\bo}_i$ désigne le centre du cercle caractéristique de l'arête incidente $\brepedge_i$ en son extrémité correspondant à $\brepvertex$ et $\lo{\bt}_i$ la normale au plan contenant ce cercle, orientée vers l'intérieur de $\brepedge_i$ (\cf \autoref{section:parametrisation_pseudo_EdS_arete}).
+\par
+$\pseudoEdS{\brepvertex}{\rho}$ est donc l'intersection de $\sphere{\v}{\rho(\v)}$ et de $m$ demi-espaces délimités par les plans contenant les arcs de cercles caractéristiques des arêtes incidentes.
+\par
+Si $\gradient{\rho}(\v) = \vit{0}$ alors $\lo{\bo}_i = \v$  pour $i = 1, \ldots, m$ donc ces arcs caractéristiques sont des arcs de grands cercles sur $\sphere[\v][\rho(\v)]$ et donc $\pseudoEdS{\brepvertex}{\rho}$ est un polygone sphérique. 
+En revanche, dans le cas général ces plans ne passent pas par $\v$.
+\par
+On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou non) décrivant $\pseudoEdS{\v}{\rho}$.
+Afin de simplifier cette construction, on suppose sans restreindre la généralité que $\v$ est situé à l'origine et que $\rho(\v) = 1$. 
+On peut toujours se ramener à ce cas à l'aide d'une transformation adéquate (translation et homothétie) que l'on inversera en fin de construction pour se placer à nouveau dans le cas général.
+\par
+On suppose également que les arêtes $\family{\brepedge}{i}{1}{m}$ et les faces $\family{\brepface}{i}{1}{m}$ incidentes à $\brepvertex$ sont ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\Omega$ (voir \autoref{fig:cycle_aretes_faces_incidentes}).
+\par
 On propose deux approches, en en donnant le principe ainsi que les avantages et les inconvénients.
 
-\subsubsection{Polygone sphérique découpé en quadrilatères}
+\input{figures/code/pseudo_EdS_sommet/aretes_faces_incidentes.tex}
+
+\subsubsection{Ajustement de plusieurs carreaux non-restreints}%Polygone sphérique découpé en quadrilatères}
 \label{section:quadrangulation_polygone_spherique}
-Premièrement, on suppose que $\rho$ est uniforme sur $\Sigma$. 
+Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$. 
 
 \begin{enumerate}
 	%\item hypothèse : $\rho$ est uniforme sur $\Sigma$
-	\item[$\Rightarrow$] $\pseudoEdS{\v}{\rho}$ est alors le polygone sphérique formé par les $m$ points $\p_i = \v + \rho \unv_{\Sigma_i}$ ($i = 1, \ldots, m$)	où $\Sigma_i$ est le carreau de la $i$-ème face incidente à $\v$ (le cycle des faces incidentes est parcouru dans le sens direct vu de l'extérieur de $\Omega$)
+	\item[$\Rightarrow$] $\pseudoEdS{\v}{\rho}$ est alors le polygone sphérique formé par les $m$ points $\p_i = \v + \rho \unv_i$, où $\unv_i$ désigne la direction normale à la face $\brepface_i$ au point $\v$
 	\item si $m = 4$, on représente ce polygone à l'aide d'un seul carreau sphérique
 	\item si $m \neq 4$, on \guillemets{quadrangule} le polygone de la manière suivante 
 	\begin{itemize}
-		\item on note $\vit{c} = \v + \rho \unitized{\sum_{i=1}^m \unv_{\Sigma_i}}$ et $\q_i = \v + \rho \unitized{\unv_{\Sigma_i} + \unv_{\Sigma_{i+1}}}$
+		\item on note $\vit{c} = \v + \rho \unitized{\sum_{i=1}^m \unv_i}$ et $\q_i = \v + \rho \unitized{\unv_i + \unv_{i+1}}$
 		\item on construit $m$ carreaux sphériques dont les \guillemets{coins} sont $\vit{c}$, $\q_{i-1}$, $\p_i$ et $\q_i$
 	\end{itemize}
 	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\v][\rho]$ le carreau bilinéaire qui interpole ses coins
+	
+	\item 
 \end{enumerate}
+
+\input{figures/code/pseudo_EdS_sommet/pseudo_EdS_sommet_quadpoly.tex}
+
+
 
 
 avantages/inconvénients :
@@ -475,7 +508,7 @@ avantages/inconvénients :
 \end{itemize}
 
 
-\subsubsection{Ajustement de carreau sphérique à un nuage de points}
+\subsubsection{Ajustement d'un seul carreau restreint}%Ajustement de carreau sphérique à un nuage de points}
 \label{section:ajustement_carreau_spherique}
 \def\s{\vit{s}}
 On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$. 
@@ -501,7 +534,7 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
 	    \lambda(u,v) &= \Lambda v + \lambda_0,
 	\end{align*}
 	avec $-1 \leq u, v \leq 1$
-	\end{enumerate}
+
 
 	\item on propose donc une méthode heuristique pour construire un tel carreau (\ie trouver $\mathbf{R}$, $\Theta$, $\theta_0$, $\Lambda$ et $\lambda_0$) d'aire minimale
 	\item on suppose qu'on dispose d'un échantillonnage suffisamment $S = \family{\s}{i}{1}{n}$ fin de l'ensemble des arcs de cercle caractéristiques limites
@@ -513,7 +546,7 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
 	\begin{equation}
 	    \vrm{r}_1 = \unitized{ \s_{0} }.
 	\end{equation}
-	
+\end{enumerate}	
 
 %(\cf notes Huygens)
 avantages/inconvénients :
