@@ -213,7 +213,7 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\EdSpropre}[2]{{\envelope}_{*}^{#2}({#1})}        % EdS propre
 \newcommand*{\EdSpropreplus}[2]{{\envelope}_{+}^{#2}({#1})}    % EdS propre "positive"
 \newcommand*{\EdSpropremoins}[2]{{\envelope}_{-}^{#2}({#1})}   % EdS propre "négative"
-\newcommand*{\pseudoEdS}[2]{\widehat{\envelope}^{#2}({#1})}    % pseudo-EdS
+%\newcommand*{\pseudoEdS}[2]{\widehat{\envelope}^{#2}({#1})}    % pseudo-EdS
 
 \newcommand*{\circlenotation}{\mathscr{C}}
 
@@ -225,7 +225,13 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\neigborhood}{\mathscr{V}}
 
 
-
+\NewDocumentCommand{\pseudoEdS}{m m o}{%
+	\IfValueTF{#3}{%
+		\ensuremath{\widehat{\envelope}_{#3}^{#2}({#1})}%
+	}{%
+		\ensuremath{\widehat{\envelope}^{#2}({#1})}%
+	}%
+}
 %\newcommand*{\proof}[1]{\textcolor{blue!60!green}{\textbf{Preuve : }#1$\,_\blacksquare$}}
 
 

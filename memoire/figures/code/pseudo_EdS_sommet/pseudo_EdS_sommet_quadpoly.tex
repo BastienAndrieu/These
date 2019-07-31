@@ -59,6 +59,7 @@
 		%
 		\foreach \iface in {1,...,\nfaces}
 		{%
+			\pgfmathtruncatemacro\iiface{\iface - 1}
 			{\transparent{0.8}%
 				\draw[
 					curv,
@@ -68,7 +69,7 @@
 			\draw[
 				curv,
 				shorten >= 0.4pt,
-				insert node={\node[label] {$\brepedge_{\iface}$};} at 0.75 raised -1.8ex,
+				insert node={\node[label] {$\brepedge_{\iiface}$};} at 0.75 raised -1.8ex,
 			] plot file {figures/data/pseudo_EdS_sommet/quadpoly/xy_edge_vis_\iface.dat};
 			%
 			\DTLassign{dbcolors}{\iface}{\fcolorr=r, \fcolorg=g, \fcolorb=b}%
@@ -81,12 +82,13 @@
 				\raisevalue=-1.7ex
 			\fi%
 			%
-			\coordinate (n\iface) at ($(\vx, \vy)!0.5!(p\iface)$);
+			\coordinate (n\iface) at (p\iface);%($(\vx, \vy)!0.5!(p\iface)$);
 			\draw[vector, labelcolor] (\vx, \vy) -- (n\iface);
-			\draw[thick, dotted, labelcolor, shorten <= 1pt] (n\iface) -- (p\iface);
-			\path[
-				insert node={\node[labelcolor, labelpoint] {$\unv_{\iface}$};} at 0.49 raised -1.7ex,%\raisevalue,
-			] (\vx, \vy) -- (p\iface);
+			%\draw[thick, dotted, labelcolor, shorten <= 1pt] (n\iface) -- (p\iface);
+%			\path[
+%				insert node={\node[labelcolor, labelpoint] {$\unv_{\iface}$};} at 0.49 raised -1.7ex,%\raisevalue,
+%			] (\vx, \vy) -- (p\iface);
+			\node[labelcolor, labelpoint] at ($(\vx, \vy)!1.12!(p\iface)$) {$\unv_{\iiface}$};
 			%
 			\pgfmathtruncatemacro\jface{1 + mod(\iface, \nfaces)}%
 			\draw[thin, quadcolordark]
@@ -98,14 +100,16 @@
 		\DTLforeach{dbpointlabel}{\plx=x, \ply=y, \plxl=xl, \plyl=yl, \pll=l}%
 		{%
 			\fill[quadcolordark] (\plx, \ply) circle (1.2pt);
-			\node[quadcolordark, labelpoint] at (\plxl, \plyl) {$\pll$};
+			\ifnum \arabic{DTLrowi}>\nfaces\relax%
+				\node[quadcolordark, labelpoint] at (\plxl, \plyl) {$\pll$};
+			\fi
 		}%
 		%
 		%\drawGrid{10}{10}{thin, dotted};
 		{\transparent{0.55}%
-			\node[label] at (0.90, 0.45) {$\brepface_1$};
-			\node[label] at (0.17, 0.85) {$\brepface_2$};
-			\node[label] at (0.10, 0.30) {$\brepface_3$};
+			\node[label] at (0.90, 0.45) {$\brepface_0$};
+			\node[label] at (0.17, 0.85) {$\brepface_1$};
+			\node[label] at (0.10, 0.30) {$\brepface_2$};
 		}%
 		%
 		\fill[black] (\vx, \vy) circle (1.2pt);
@@ -122,20 +126,22 @@
 		\DTLforeach{dbquadlabel}{\qlx=x, \qly=y}%
 		{%
 			\pgfmathtruncatemacro\iface{\arabic{DTLrowi}}%
+			\pgfmathtruncatemacro\iiface{\iface - 1}%
 			\pgfmathtruncatemacro\kface{1 + mod(\iface +  \nfaces - 2, \nfaces)}%
+			\pgfmathtruncatemacro\kkface{\kface - 1}%
 			\draw[
 				curv,
-				insert node={\node[label] {$\Gamma_{\kface,\iface}$};} at 0.25 raised -2ex,
-				insert node={\node[label] {$\Gamma_{\iface,\iface}$};} at 0.75 raised -2ex,
+				insert node={\node[label] {$\Gamma_{\kkface,\iiface}$};} at 0.25 raised -2ex,
+				insert node={\node[label] {$\Gamma_{\iiface,\iiface}$};} at 0.75 raised -2ex,
 			] plot file {figures/data/pseudo_EdS_sommet/quadpoly/xy_arc_\iface.dat};
 			\draw[
 				curv, 
 				shorten >= 0.4pt,
-				insert node={\node[label] {$\Gamma_{\iface}$};} at 0.5 raised -1.5ex,
+				insert node={\node[label] {$\Gamma_{\iiface}$};} at 0.5 raised -1.5ex,
 			] plot file {figures/data/pseudo_EdS_sommet/quadpoly/xy_quadsep_\iface.dat};
 			%
 			{\transparent{0.55}%
-				\node[label] at (\qlx, \qly) {$\Sigma_{\iface}$};
+				\node[label] at (\qlx, \qly) {$\pseudoEdS{\brepvertex}{\rho}[\iiface]$};
 			}%
 		}%
 		%
@@ -147,13 +153,13 @@
 		%
 		%\drawGrid{10}{10}{thin, dotted};
 		{\transparent{0.55}%
-			\node[label] at (0.90, 0.20) {$\EdSpropreplus{\brepface_1}{\rho}$};
-			\node[label] at (0.45, 0.92) {$\EdSpropreplus{\brepface_2}{\rho}$};
-			\node[label] at (0.10, 0.10) {$\EdSpropreplus{\brepface_3}{\rho}$};
+			\node[label] at (0.90, 0.20) {$\EdSpropreplus{\brepface_0}{\rho}$};
+			\node[label] at (0.45, 0.92) {$\EdSpropreplus{\brepface_1}{\rho}$};
+			\node[label] at (0.13, 0.10) {$\EdSpropreplus{\brepface_2}{\rho}$};
 			%
-			\node[label] at (0.55, 0.05) {$\pseudoEdS{\brepedge_1}{\rho}$};
-			\node[label] at (0.85, 0.74) {$\pseudoEdS{\brepedge_2}{\rho}$};
-			\node[label] at (0.13, 0.58) {$\pseudoEdS{\brepedge_3}{\rho}$};
+			\node[label] at (0.55, 0.05) {$\pseudoEdS{\brepedge_0}{\rho}$};
+			\node[label] at (0.85, 0.74) {$\pseudoEdS{\brepedge_1}{\rho}$};
+			\node[label] at (0.13, 0.58) {$\pseudoEdS{\brepedge_2}{\rho}$};
 		}%
 	\end{scope}
 	%

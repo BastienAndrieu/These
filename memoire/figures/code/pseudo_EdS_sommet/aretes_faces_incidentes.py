@@ -120,7 +120,7 @@ while True:
 
 
 ################################################################
-# LOAD INCIDENT FACES AND MAKE OFFSET FACES
+# LOAD FACES
 color_face = numpy.loadtxt('/d/bandrieu/GitHub/These/memoire/figures/data/BRep/face_color.dat')
 color_face = lco.cc_hsv(color_face, fs=1.2, fv=1.0)
 

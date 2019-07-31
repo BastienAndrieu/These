@@ -408,7 +408,8 @@ f.close()
 ################################################################
 # EXPORT CONSTRUCTION POINTS IN IMAGE COORDS
 sep_pointlabel = 0.036
-label = ['\\p_{%d}' % (i+1) for i in range(nf)] + ['\\q_{%d}' % (i+1) for i in range(nf)] + ['\\vit{c}']
+#label = ['\\p_{%d}' % (i+1) for i in range(nf)] + ['\\q_{%d}' % (i+1) for i in range(nf)] + ['\\vit{c}']
+label = ['\\unv_{%d}' % i for i in range(nf)] + ['\\vrm{m}_{%d}' % i for i in range(nf)] + ['\\vrm{q}']
 f = open(pthout + 'xylabel_points.dat', 'w')
 for i, xyz in enumerate(normals + q + [c]):
     #
@@ -603,6 +604,7 @@ for obj in bpy.data.objects:
         if obj.name[0:8] == 'bilinear' or obj.name[0:9] == 'spherical':
             scene.objects.active = obj
             bpy.ops.object.mode_set(mode='EDIT')
+            print('unvraps UVs...')
             bpy.ops.uv.unwrap(
                 method='ANGLE_BASED',
                 fill_holes=True,
@@ -612,6 +614,7 @@ for obj in bpy.data.objects:
             )
             bpy.ops.object.mode_set(mode='OBJECT')
             uvlayer = obj.data.uv_layers.active
+            print('edit UVs...')
             for j in range(n-1):
                 for i in range(m-1):
                     k = i + j*(m-1)
@@ -624,7 +627,7 @@ for obj in bpy.data.objects:
                         uvlayer.data[f.loop_start + l].uv[1] = vv[j]
                     for l in [2,3]:
                         uvlayer.data[f.loop_start + l].uv[1] = vv[j+1]
-
+            print('set material...')
             slot = mat.texture_slots.add()
             slot.texture = texchecker
             slot.texture_coords = 'UV'

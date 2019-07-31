@@ -24,7 +24,7 @@ class Vertex:
         self.faces = faces
         return
 ################################################################
-
+"""
 ################################################################
 def bilinear_patch(a, b, c, d, u, v):
     xyz = numpy.zeros((3,len(u),len(v)))
@@ -36,10 +36,11 @@ def bilinear_patch(a, b, c, d, u, v):
             d[k]*numpy.outer(1.0-u, 1.0+v) )
     return xyz
 ################################################################
-
+"""
 
 ################################################################
 pthin = '/d/bandrieu/GitHub/FFTsurf/test/demo_EoS_brep/'
+pthout = '/d/bandrieu/GitHub/These/memoire/figures/data/pseudo_EdS_sommet/trimmed_patch/'
 pthimg = '/d/bandrieu/GitHub/These/memoire/figures/images/pseudo_EdS_sommet/'
 
 ivert = 7
@@ -49,7 +50,7 @@ rho = 0.11
 
 #################################################
 # CHECKER TEXTURE
-imgchecker = bpy.data.images.load(filepath='/d/bandrieu/GitHub/These/memoire/figures/code/BRep/checker.png')
+imgchecker = bpy.data.images.load(filepath='/d/bandrieu/GitHub/These/memoire/figures/images/checker6.png')
 texchecker = bpy.data.textures.new('texture_checker', 'IMAGE')
 texchecker.image = imgchecker
 #################################################
@@ -61,13 +62,13 @@ scene = bpy.context.scene
 lbu.clear_scene(meshes=True, lamps=True, cameras=False)
 
 resx = 1024
-resy = 0.75*resx
+resy = 0.85*resx
 
 lbu.set_scene(
     resolution_x=resx,
     resolution_y=resy,
     resolution_percentage=100,
-    alpha_mode='SKY',
+    alpha_mode='TRANSPARENT',
     horizon_color=(1,1,1),
     light_samples=4,#16,
     use_environment_light=True,
@@ -82,10 +83,13 @@ light_settings.ao_blend_type = 'MULTIPLY'
 ## Set Lighting
 lamp = lbu.add_point_light(
     name="lamp",
-    energy=1.0,
-    shadow_method='NOSHADOW',
-    location=(-2.68, 1.65, 3.20)
+    energy=1.2,
+    shadow_method='RAY_SHADOW',#'NOSHADOW',
+    shadow_ray_samples=4,#16,
+    shadow_soft_size=2.0,
+    location=(2.66,0.99,3.34)#location=(-2.68, 1.65, 3.20)
 )
+lamp.data.shadow_color = 0.3*numpy.ones(3)
 
 ## Set Camera
 cam = scene.camera
@@ -116,9 +120,6 @@ f.close()
 
 
 V = verts[ivert - 1]
-#print('faces = ', V.faces)
-
-#bpy.ops.mesh.primitive_uv_sphere_add(location=v.xyz, size=1e-2)
 
 
 ################################################################
@@ -193,6 +194,11 @@ for iloc, iface in enumerate(V.faces):
     xyz = chebval2d(Vuv[iloc][0], Vuv[iloc][1], c)
     corners.append(xyz)
 
+corner_avg = numpy.zeros(3)
+for xyz in corners:
+    corner_avg = corner_avg + xyz
+corner_avg = corner_avg/len(corners)
+
 # SPHERE RADIUS
 rho = 0
 for xyz in corners:
@@ -201,58 +207,55 @@ rho /= float(len(corners))
 
 bpy.ops.mesh.primitive_uv_sphere_add(
     location=V.xyz,
-    size=rho
+    size=rho,
+    segments=100,
+    ring_count=100
 )
 
-for obj in bpy.data.objects:
-    if obj.name[0:6] == 'Sphere':
-        obj_sphere = obj
-        break
-obj_sphere.draw_type = 'WIRE'
-obj_sphere.show_all_edges = True
-obj_sphere.hide_render = True
+sphere = bpy.data.objects['Sphere']
+lbe.set_smooth(sphere)
+sphere.draw_type = 'WIRE'
+sphere.show_all_edges = True
 
-"""
-corner_avg = numpy.zeros(3)
-for xyz in corners:
-    corner_avg = corner_avg + xyz
-corner_avg = corner_avg/float(len(corners))
+mat = bpy.data.materials.new('mat_sphere')
+mat.diffuse_color = (0.8,0.8,0.8)
+mat.diffuse_intensity = 1
+mat.specular_intensity = 0.346
+mat.specular_hardness = 20
+mat.emit = 0.4
+mat.use_transparency = True
+mat.raytrace_transparency.fresnel = 2.
 
+sphere.data.materials.append(mat)
 
-obj = lbu.pydata_to_polyline(
-    [Vector((0,0,0)), corner_avg - V.xyz],
-    thickness=2e-3,
-    name='corner_avg')
-obj.location = V.xyz
-obj.hide_render = True
-"""
+sphere.layers[1] = True
+sphere.layers[0] = False
 ################################################################
-
-
 
 
 
 ################################################################
 # OFFSET EDGES
+iclr = [15,29,16]
 end_planes = []
-arc_mid = []
 jm = int(m/2)
 
 ih = 2*V.edge[0] + V.edge[1]
+iedg = -1
 while True:
-    # do stuff...
+    iedg += 1
+    #
     if ih%2 == 0:
         ie = int(ih/2)
     else:
         ie = int((ih-1)/2)
     ie += 1
-    #c = lcheb.read_polynomial2(pthin + 'debug/eos_edge_c_' + format(ie, '03') + '.cheb')
-    c = lcheb.read_polynomial2('/d/bandrieu/GitHub/FFTsurf/debug/eos_edge_c_' + format(ie, '03') + '.cheb')
+    c = lcheb.read_polynomial2(pthin + 'debug/eos_edge_c_' + format(ie, '03') + '.cheb')
     if ih%2 != 0:
         c = lcheb.flip_polynomial2(c, flip_u=True, flip_v=True)
     #
     mat = bpy.data.materials.new('mat_edge_'+str(ie))
-    mat.diffuse_color = color_face[8+ie]
+    mat.diffuse_color = color_face[iclr[iedg]-1]#color_face[8+ie]
 
     xyz = chebgrid2d(u, u, c)
     mverts, mfaces = lbu.tensor_product_mesh_vf(xyz[0], xyz[1], xyz[2])
@@ -271,126 +274,59 @@ while True:
     tng = (eR - e).cross(eL - e)
     tng.normalize()
     occ, rcc = circumcircle(eR, eL, e)
+    print(Vector(occ - V.xyz).length/rho)
     end_planes.append((tng, occ))
     #
     rot = Matrix(complete_orthonormal_matrix(tng, i=2)).transposed()
     bpy.ops.mesh.primitive_plane_add(
-        location=V.xyz,
+        location=occ,
         rotation=rot.to_euler(),
-        radius=rcc
+        radius=1.1*rcc
     )
     #
-    # arc midpoint and tangent
-    xyz = chebval2d(-1, 0, c)
-    cu, cv = lcheb.diff2(c)
-    xyz_v = chebval2d(-1, 0, cv)
-    arc_mid.append((Vector(xyz - V.xyz).normalized(), Vector(xyz_v).normalized()))
+    """bpy.ops.mesh.primitive_circle_add(
+        location=occ,
+        rotation=rot.to_euler(),
+        radius=rcc,
+        vertices=100,
+        fill_type='TRIFAN'
+    )"""
     #
     # move on to next incident (outgoing) halfedge
     ih = halfedges[ih].prev
     ih = halfedges[ih].twin
     if ih == 2*V.edge[0] + V.edge[1]: break
 
-mat_plane = bpy.data.materials.new('mat_plane')
-mat_plane.use_transparency = True
-mat_plane.alpha = 0.5
-
-obj_planes = []
-for obj in bpy.data.objects:
-    if obj.name[0:5] == 'Plane':
-        obj_planes.append(obj)
-        #obj.show_axis = True
-        obj.show_transparent = True
-        obj.hide_render = True
-        obj.data.materials.append(mat_plane)
-
 """
-nor_avg = Vector((0,0,0))
-for nor, pt in end_planes:
-    nor_avg += nor
-nor_avg.normalize()
-
-obj = lbu.pydata_to_polyline(
-    [Vector((0,0,0)), -rho*nor_avg],
-    thickness=2e-3,
-    name='nor_avg')
-obj.location = V.xyz
-obj.hide_render = True
+color_planes = lco.sample_colormap('IR', len(end_planes))
+color_planes = lco.cc_hsv(color_planes, fs=1.4, fv=0.9)
 """
-        
+color_planes = numpy.array([
+    (250, 117, 102),
+    (152, 212, 91),
+    (104, 171, 217)
+])/255.
+f = open(pthout + 'color_planes.dat', 'w')
+for r, g, b in color_planes:
+    f.write('%s, %s, %s\n' % (r, g, b))
+f.close()
 
-"""
-# BOUNDING GREAT CIRCLES
-for vec1, vec2 in arc_mid:
-    vec3 = vec1.cross(vec2)
-    rot = Matrix((vec1, vec2, vec3)).transposed()
-    bpy.ops.mesh.primitive_circle_add(
-        location=V.xyz,
-        rotation=rot.to_euler(),
-        radius=1.1*rho,
-        vertices=100,
-        fill_type='TRIFAN'
-    )
-"""
+obj_planes = [bpy.data.objects['Plane'+suf] for suf in ['', '.001', '.002']]
+for ipl, obj in enumerate(obj_planes):
+    #obj.show_axis = True
+    obj.show_transparent = True
+    #obj.hide_render = True
+    mat_plane = bpy.data.materials.new('mat_plane_'+str(ipl))
+    mat_plane.diffuse_color = color_planes[ipl]
+    mat_plane.diffuse_intensity = 1
+    mat_plane.specular_intensity = 0
+    mat_plane.use_transparency = True
+    mat_plane.alpha = 0.5
+    mat_plane.emit = 0.3
+    obj.data.materials.append(mat_plane)
+    obj.layers[1] = True
+    obj.layers[0] = False
 
-# BOUNDING CONE
-generators = []
-ng = len(arc_mid)
-for i in range(ng):
-    j = (i+1)%ng
-    nori = arc_mid[i][0].cross(arc_mid[i][1])
-    norj = arc_mid[j][0].cross(arc_mid[j][1])
-    vec = nori.cross(norj).normalized()
-    for sens in [-1,1]:
-        xyz = sens*vec
-        keep = True
-        for k in range(ng):
-            if k == i or k == j: continue
-            nork = arc_mid[k][0].cross(arc_mid[k][1])
-            if xyz.dot(nork) < -1e-6:
-                keep = False
-                break
-        if keep:
-            generators.append(xyz)
-            break
-
-mverts = [Vector((0,0,0))] +  [2*rho*xyz for xyz in generators]
-mfaces = [[0, 1+i, 1+(i+1)%len(generators)] for i in range(len(generators))]
-cone = lbu.pydata_to_mesh(
-    mverts,
-    mfaces,
-    name='bounding_cone'
-)
-cone.location = V.xyz
-#cone.layers[1] = True
-#cone.layers[0] = False
-
-"""
-# BISECTOR PLANES
-npl = len(end_planes)
-mat = numpy.array([
-    end_planes[0][0],
-    end_planes[1][0],
-    end_planes[2][0]
-])
-rhs = numpy.array([
-    end_planes[0][0].dot(end_planes[0][1]),
-    end_planes[1][0].dot(end_planes[1][1]),
-    end_planes[2][0].dot(end_planes[2][1]),
-])
-
-pt = numpy.linalg.solve(mat, rhs)
-
-for i in range(npl):
-    nor = end_planes[i][0] + end_planes[(i+1)%npl][0]
-    nor = nor.cross(end_planes[i][0].cross(end_planes[(i+1)%npl][0]))
-    rot = Matrix(complete_orthonormal_matrix(nor, i=2)).transposed()
-    bpy.ops.mesh.primitive_plane_add(
-        location=pt,
-        rotation=rot.to_euler(),
-        radius=rho
-    )
-"""
 ################################################################
 
 
@@ -432,7 +368,7 @@ for i, f in enumerate(pseudoEdS.data.polygons):
 
 # MATERIAL
 mat = bpy.data.materials.new('mat_pseudoEdS')
-mat.diffuse_color = color_face[(iv-1)%len(color_face)]
+mat.diffuse_color = color_face[19]#color_face[(iv-1)%len(color_face)]
 #
 slot = mat.texture_slots.add()
 slot.texture = texchecker
@@ -444,14 +380,143 @@ pseudoEdS.data.materials.append(mat)
 
 
 ################################################################
-# ADJUST CAMERA
-bpy.ops.object.select_all(action='DESELECT')
-#obj_sphere.select = True
-pseudoEdS.select = True
+# VERTEX EOS UNTRIMMED PATCH
+c = lcheb.read_polynomial2(pthin + 'debug/eos_vert_c_' + format(ivert, '03') + '.cheb')
+xyz = chebgrid2d(u, u, c)
+mverts, mfaces = lbu.tensor_product_mesh_vf(xyz[0], xyz[1], xyz[2])
+LLpatch = lbu.pydata_to_mesh(
+    mverts,
+    mfaces,
+    name='LLpatch'
+)
+lbe.set_smooth(LLpatch)
 
-bpy.ops.view3d.camera_to_view_selected()
-cam.data.angle += numpy.radians(5.)
-bpy.ops.object.select_all(action='DESELECT')
+# TEXTURE COORDS
+scene.objects.active = LLpatch
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.uv.unwrap(
+    method='ANGLE_BASED',
+    fill_holes=True,
+    correct_aspect=True,
+    use_subsurf_data=False,
+    margin=0.001
+)
+bpy.ops.object.mode_set(mode='OBJECT')
+uvlayer = LLpatch.data.uv_layers.active
+n = m
+uu = 0.5*(u + 1)
+vv = uu
+for j in range(n-1):
+    for i in range(m-1):
+        k = i + j*(m-1)
+        f = LLpatch.data.polygons[k]
+        for l in [0,3]:
+            uvlayer.data[f.loop_start + l].uv[0] = uu[i]
+        for l in [1,2]:
+            uvlayer.data[f.loop_start + l].uv[0] = uu[i+1]
+        for l in [0,1]:
+            uvlayer.data[f.loop_start + l].uv[1] = vv[j]
+        for l in [2,3]:
+            uvlayer.data[f.loop_start + l].uv[1] = vv[j+1]
+
+# MATERIAL
+mat = bpy.data.materials.new('mat_LLpatch')
+mat.diffuse_color = bpy.data.materials['mat_pseudoEdS'].diffuse_color
+#
+slot = mat.texture_slots.add()
+slot.texture = texchecker
+slot.texture_coords = 'UV'
+slot.blend_type = 'MULTIPLY'
+slot.diffuse_color_factor = 0.1
+LLpatch.data.materials.append(mat)
+
+LLpatch.layers[2] = True
+LLpatch.layers[0] = False
+################################################################
+
+
+################################################################
+# ADJUST CAMERA
+if True:
+    cam.rotation_mode = 'QUATERNION'
+    cam.location = (0.90851, 0.71343, 0.76544)
+    cam.rotation_quaternion = (0.417, 0.241, 0.439, 0.758)
+    cam.data.angle = numpy.radians(34.)
+else:
+    bpy.ops.object.select_all(action='DESELECT')
+    #obj_sphere.select = True
+    pseudoEdS.select = True
+    
+    bpy.ops.view3d.camera_to_view_selected()
+    cam.data.angle += numpy.radians(10.)
+    bpy.ops.object.select_all(action='DESELECT')
+################################################################
+
+
+################################################################
+# EXPORT VERTEX IMAGE COORDS
+bpy.ops.object.empty_add(location=V.xyz)
+vx, vy = lbf.convert_3d_to_2d_coords(V.xyz, normalize=True)
+print('(vx, vy) = (%s, %s)' % (vx, vy))
+f = open(pthout + 'xy_vertex.dat', 'w')
+f.write('%s, %s' % (vx, vy))
+f.close()
+################################################################
+
+
+################################################################
+# EXPORT PLANES IMAGE COORDS
+f = open(pthout + 'xy_planes.dat', 'w')
+scltng = 0.135
+for tng, occ in end_planes:
+    x, y = lbf.convert_3d_to_2d_coords(occ, normalize=True)
+    X, Y = lbf.convert_3d_to_2d_coords(occ + scltng*tng, normalize=True)
+    f.write('%s, %s, %s, %s\n' % (x, y, X, Y))
+f.close()
+################################################################
+
+
+################################################################
+# EXPORT CORNERS IMAGE COORDS
+f = open(pthout + 'xy_corners.dat', 'w')
+corner_label = ['\\unv_{'+str(i)+'}' for i in range(len(corners))] + ['\\vrm{q}']
+for i, xyz in enumerate(corners + [corner_avg]):
+    x, y = lbf.convert_3d_to_2d_coords(xyz, normalize=True)
+    f.write('%s, %s, %s\n' % (x, y, corner_label[i]))
+f.close()
+################################################################
+
+
+################################################################
+# EXPORT ARCS IMAGE COORDS
+ncc = 100
+tc = numpy.linspace(0, 1, ncc)
+npl = len(end_planes)
+for ipl, (tng, occ) in enumerate(end_planes):
+    #B = complete_orthonormal_matrix(tng, i=2)
+    ci = corners[ipl]
+    cj = corners[(ipl-1)%npl]
+    r1 = cj - occ
+    r2 = ci - occ
+    r190d = numpy.cross(r1, tng)
+    a = numpy.arctan2(numpy.dot(r2, r190d), numpy.dot(r2, r1))
+    ts = numpy.linspace(0, a, ncc)
+    td = numpy.linspace(a, 2*numpy.pi, ncc)
+    if a < 0: a += 2*numpy.pi
+    arc_solid = numpy.array(
+        [occ + numpy.cos(ts[i])*r1 + numpy.sin(ts[i])*r190d for i in range(ncc)]
+    )
+    arc_dashed = numpy.array(
+        [occ + numpy.cos(td[i])*r1 + numpy.sin(td[i])*r190d for i in range(ncc)]
+    )
+    xy_arc_solid = numpy.array(
+        [lbf.convert_3d_to_2d_coords(xyz, normalize=True) for xyz in arc_solid]
+    )
+    xy_arc_dashed = numpy.array(
+        [lbf.convert_3d_to_2d_coords(xyz, normalize=True) for xyz in arc_dashed]
+    )
+    numpy.savetxt(pthout + 'xy_arc_solid_' + str(ipl) + '.dat', xy_arc_solid)
+    numpy.savetxt(pthout + 'xy_arc_dashed_' + str(ipl) + '.dat', xy_arc_dashed)
 ################################################################
 
 
@@ -460,66 +525,20 @@ bpy.ops.object.select_all(action='DESELECT')
 # ADJUST ALL SURFACE MATERIALS
 for obj in bpy.data.objects:
     if obj.type == 'MESH':
-        if obj.name in [obj_sphere] + obj_planes: continue
+        if obj in obj_planes or obj == sphere: continue
         if len(obj.data.materials) < 1: continue
         mat = obj.data.materials[0]
         mat.diffuse_intensity = 1
-        mat.specular_intensity = 0.3
+        mat.specular_intensity = 0#0.3
         mat.specular_hardness = 20
 ################################################################
 
-
-
-"""
-################################################################
-# SET TEXTURE COORDS AND ADD CHECKER SLOT
-n = m
-uu = 0.5*(u + 1)
-vv = uu
-
-for obj in bpy.data.objects:
-    #if obj.type == 'MESH':
-    if obj.name[0:8] == 'bilinear' or obj.name[0:9] == 'spherical':
-        scene.objects.active = obj
-        bpy.ops.object.mode_set(mode='EDIT')
-        bpy.ops.uv.unwrap(
-            method='ANGLE_BASED',
-            fill_holes=True,
-            correct_aspect=True,
-            use_subsurf_data=False,
-            margin=0.001
-        )
-        bpy.ops.object.mode_set(mode='OBJECT')
-        uvlayer = obj.data.uv_layers.active
-        for j in range(n-1):
-            for i in range(m-1):
-                k = i + j*(m-1)
-                f = obj.data.polygons[k]
-                for l in [0,3]:
-                    uvlayer.data[f.loop_start + l].uv[0] = uu[i]
-                for l in [1,2]:
-                    uvlayer.data[f.loop_start + l].uv[0] = uu[i+1]
-                for l in [0,1]:
-                    uvlayer.data[f.loop_start + l].uv[1] = vv[j]
-                for l in [2,3]:
-                    uvlayer.data[f.loop_start + l].uv[1] = vv[j+1]
-
-        mat = obj.data.materials[0]
-        mat.diffuse_intensity = 1
-        mat.specular_intensity = 0.3
-        mat.specular_hardness = 20
-        
-        slot = mat.texture_slots.add()
-        slot.texture = texchecker
-        slot.texture_coords = 'UV'
-        slot.blend_type = 'MULTIPLY'
-        slot.diffuse_color_factor = 0.09
-################################################################
 
 
 
 ################################################################
 # USE SEPARATE LAYERS
+"""
 for obj in bpy.data.objects:
     if obj.name[0:8] == 'EdS_face':
         obj.layers[1] = True
@@ -531,10 +550,9 @@ for obj in bpy.data.objects:
     if obj.name[0:9] == 'spherical' or obj.name[0:8] == 'EdS_edge':
         obj.layers[2] = True
         obj.layers[0] = False
-
-
+"""
 for ilayer in range(3):
     cam.layers[ilayer] = True
     lamp.layers[ilayer] = True
 ################################################################
-"""
+

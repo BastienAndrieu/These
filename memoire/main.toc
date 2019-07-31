@@ -21,49 +21,49 @@
 \contentsline {subsubsection}{\numberline {2.3.2.1}Param\IeC {\'e}trisation de l'EdS propre d'un arc param\IeC {\'e}trique}{19}{subsubsection.2.3.2.1}
 \contentsline {subsubsection}{\numberline {2.3.2.2}Param\IeC {\'e}trisation de la pseudo-EdS}{21}{subsubsection.2.3.2.2}
 \contentsline {subsection}{\numberline {2.3.3}Param\IeC {\'e}trisation de la pseudo-EdS d'un sommet BRep\ convexe}{23}{subsection.2.3.3}
-\contentsline {subsubsection}{\numberline {2.3.3.1}Ajustement de plusieurs carreaux non-restreints}{24}{subsubsection.2.3.3.1}
+\contentsline {subsubsection}{\numberline {2.3.3.1}Ajustement de plusieurs carreaux non-restreints}{23}{subsubsection.2.3.3.1}
 \contentsline {subsubsection}{\numberline {2.3.3.2}Ajustement d'un seul carreau restreint}{25}{subsubsection.2.3.3.2}
 \contentsline {section}{\numberline {2.4}Construction d'un mod\IeC {\`e}le BRep\ de l'EdB}{26}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Construction du graphe des intersections}{26}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Construction des faces, ar\IeC {\^e}tes et sommets BRep}{26}{subsection.2.4.2}
-\contentsline {chapter}{\chapternumberline {3}Mise en \oe uvre num\IeC {\'e}rique de l'algorithme de propagation}{29}{chapter.3}
-\contentsline {section}{\numberline {3.1}Repr\IeC {\'e}sentation des carreaux de surface}{29}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}\IeC {\'E}tat de l'art}{29}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Polyn\IeC {\^o}mes de Chebyshev univari\IeC {\'e}s}{30}{subsection.3.1.2}
-\contentsline {subsubsection}{\numberline {3.1.2.1}D\IeC {\'e}finition et principales propri\IeC {\'e}t\IeC {\'e}s}{30}{subsubsection.3.1.2.1}
-\contentsline {subsubsection}{\numberline {3.1.2.2}Approximation de fonctions}{31}{subsubsection.3.1.2.2}
-\contentsline {subsubsection}{\numberline {3.1.2.3}\IeC {\'E}valuation d'une somme partielle}{34}{subsubsection.3.1.2.3}
-\contentsline {subsubsection}{\numberline {3.1.2.4}D\IeC {\'e}rivation}{34}{subsubsection.3.1.2.4}
-\contentsline {subsubsection}{\numberline {3.1.2.5}Int\IeC {\'e}gration}{36}{subsubsection.3.1.2.5}
-\contentsline {subsection}{\numberline {3.1.3}Polyn\IeC {\^o}mes de Chebyshev bivari\IeC {\'e}s}{37}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Repr\IeC {\'e}sentation et calcul des courbes d'intersection}{37}{section.3.2}
-\contentsline {section}{\numberline {3.3}Int\IeC {\'e}gration temporelle}{38}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Advection dans champ de vecteur vitesse connu}{38}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{38}{subsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{38}{subsubsection.3.3.2.1}
-\contentsline {subsubsection}{\numberline {3.3.2.2}Discr\IeC {\'e}tisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{39}{subsubsection.3.3.2.2}
-\contentsline {subsubsection}{\numberline {3.3.2.3}Discr\IeC {\'e}tisation de la pseudo-EdS d'un sommet BRep\ convexe}{40}{subsubsection.3.3.2.3}
-\contentsline {section}{\numberline {3.4}Am\IeC {\'e}lioration de la stabilit\IeC {\'e} num\IeC {\'e}rique}{40}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}R\IeC {\'e}duction de l'erreur d'aliasing}{40}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Pr\IeC {\'e}vention des singularit\IeC {\'e}s g\IeC {\'e}om\IeC {\'e}triques}{41}{subsection.3.4.2}
-\contentsline {chapter}{\chapternumberline {4}Validation des m\IeC {\'e}thodes num\IeC {\'e}riques}{43}{chapter.4}
-\contentsline {section}{\numberline {4.1}Propagation suivant un champ de vitesse analytique}{43}{section.4.1}
-\contentsline {section}{\numberline {4.2}Propagation \IeC {\`a} vitesse normale uniforme}{46}{section.4.2}
-\contentsline {part}{\partnumberline {II}Int\IeC {\'e}gration de l'outil de suivi de surface dans une cha\IeC {\^\i }ne de calcul multi-physique}{49}{part.2}
-\contentsline {chapter}{\chapternumberline {5}Adaptation d'un maillage de surface dynamique}{51}{chapter.5}
-\contentsline {section}{\numberline {5.1}Probl\IeC {\'e}matique et \IeC {\'e}tat de l'art}{51}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Simulation num\IeC {\'e}rique avec une g\IeC {\'e}om\IeC {\'e}trie d\IeC {\'e}formable}{51}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}G\IeC {\'e}n\IeC {\'e}ration de maillage surfacique bas\IeC {\'e} sur un mod\IeC {\`e}le BRep}{52}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Optimisation de maillage surfacique}{53}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Lien entre mod\IeC {\`e}le BRep\ et maillage trans-carreaux}{53}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Construction d'une structure d'hypergraphe}{54}{subsection.5.2.1}
-\contentsline {section}{\numberline {5.3}D\IeC {\'e}formation de maillage trans-carreaux bas\IeC {\'e} sur un mod\IeC {\`e}le BRep\ dynamique}{54}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Correspondance d'hypergraphes}{54}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}R\IeC {\'e}g\IeC {\'e}n\IeC {\'e}ration du maillage contraint}{54}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}\textit {Untanglement}}{54}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Optimisation par bouger de n\oe ud}{54}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Optimisation par reconnections locales}{54}{subsection.5.3.5}
-\contentsline {subsubsection}{\numberline {5.3.5.1}Bascule d'ar\IeC {\^e}te}{54}{subsubsection.5.3.5.1}
-\contentsline {subsubsection}{\numberline {5.3.5.2}Contraction d'ar\IeC {\^e}te}{54}{subsubsection.5.3.5.2}
-\contentsline {subsubsection}{\numberline {5.3.5.3}Scission d'ar\IeC {\^e}te}{55}{subsubsection.5.3.5.3}
-\contentsline {chapter}{Bibliographie}{57}{section*.11}
+\contentsline {subsection}{\numberline {2.4.2}Construction des faces, ar\IeC {\^e}tes et sommets BRep}{27}{subsection.2.4.2}
+\contentsline {chapter}{\chapternumberline {3}Mise en \oe uvre num\IeC {\'e}rique de l'algorithme de propagation}{31}{chapter.3}
+\contentsline {section}{\numberline {3.1}Repr\IeC {\'e}sentation des carreaux de surface}{31}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}\IeC {\'E}tat de l'art}{31}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Polyn\IeC {\^o}mes de Chebyshev univari\IeC {\'e}s}{32}{subsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.2.1}D\IeC {\'e}finition et principales propri\IeC {\'e}t\IeC {\'e}s}{32}{subsubsection.3.1.2.1}
+\contentsline {subsubsection}{\numberline {3.1.2.2}Approximation de fonctions}{33}{subsubsection.3.1.2.2}
+\contentsline {subsubsection}{\numberline {3.1.2.3}\IeC {\'E}valuation d'une somme partielle}{36}{subsubsection.3.1.2.3}
+\contentsline {subsubsection}{\numberline {3.1.2.4}D\IeC {\'e}rivation}{36}{subsubsection.3.1.2.4}
+\contentsline {subsubsection}{\numberline {3.1.2.5}Int\IeC {\'e}gration}{38}{subsubsection.3.1.2.5}
+\contentsline {subsection}{\numberline {3.1.3}Polyn\IeC {\^o}mes de Chebyshev bivari\IeC {\'e}s}{39}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Repr\IeC {\'e}sentation et calcul des courbes d'intersection}{39}{section.3.2}
+\contentsline {section}{\numberline {3.3}Int\IeC {\'e}gration temporelle}{40}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Advection dans champ de vecteur vitesse connu}{40}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{40}{subsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{40}{subsubsection.3.3.2.1}
+\contentsline {subsubsection}{\numberline {3.3.2.2}Discr\IeC {\'e}tisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{41}{subsubsection.3.3.2.2}
+\contentsline {subsubsection}{\numberline {3.3.2.3}Discr\IeC {\'e}tisation de la pseudo-EdS d'un sommet BRep\ convexe}{42}{subsubsection.3.3.2.3}
+\contentsline {section}{\numberline {3.4}Am\IeC {\'e}lioration de la stabilit\IeC {\'e} num\IeC {\'e}rique}{42}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}R\IeC {\'e}duction de l'erreur d'aliasing}{42}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Pr\IeC {\'e}vention des singularit\IeC {\'e}s g\IeC {\'e}om\IeC {\'e}triques}{43}{subsection.3.4.2}
+\contentsline {chapter}{\chapternumberline {4}Validation des m\IeC {\'e}thodes num\IeC {\'e}riques}{45}{chapter.4}
+\contentsline {section}{\numberline {4.1}Propagation suivant un champ de vitesse analytique}{45}{section.4.1}
+\contentsline {section}{\numberline {4.2}Propagation \IeC {\`a} vitesse normale uniforme}{48}{section.4.2}
+\contentsline {part}{\partnumberline {II}Int\IeC {\'e}gration de l'outil de suivi de surface dans une cha\IeC {\^\i }ne de calcul multi-physique}{51}{part.2}
+\contentsline {chapter}{\chapternumberline {5}Adaptation d'un maillage de surface dynamique}{53}{chapter.5}
+\contentsline {section}{\numberline {5.1}Probl\IeC {\'e}matique et \IeC {\'e}tat de l'art}{53}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Simulation num\IeC {\'e}rique avec une g\IeC {\'e}om\IeC {\'e}trie d\IeC {\'e}formable}{53}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}G\IeC {\'e}n\IeC {\'e}ration de maillage surfacique bas\IeC {\'e} sur un mod\IeC {\`e}le BRep}{54}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Optimisation de maillage surfacique}{55}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}Lien entre mod\IeC {\`e}le BRep\ et maillage trans-carreaux}{55}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Construction d'une structure d'hypergraphe}{56}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}D\IeC {\'e}formation de maillage trans-carreaux bas\IeC {\'e} sur un mod\IeC {\`e}le BRep\ dynamique}{56}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Correspondance d'hypergraphes}{56}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}R\IeC {\'e}g\IeC {\'e}n\IeC {\'e}ration du maillage contraint}{56}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}\textit {Untanglement}}{56}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Optimisation par bouger de n\oe ud}{56}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Optimisation par reconnections locales}{56}{subsection.5.3.5}
+\contentsline {subsubsection}{\numberline {5.3.5.1}Bascule d'ar\IeC {\^e}te}{56}{subsubsection.5.3.5.1}
+\contentsline {subsubsection}{\numberline {5.3.5.2}Contraction d'ar\IeC {\^e}te}{56}{subsubsection.5.3.5.2}
+\contentsline {subsubsection}{\numberline {5.3.5.3}Scission d'ar\IeC {\^e}te}{57}{subsubsection.5.3.5.3}
+\contentsline {chapter}{Bibliographie}{59}{section*.11}

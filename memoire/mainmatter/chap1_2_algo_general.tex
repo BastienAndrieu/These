@@ -444,50 +444,118 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 %On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou non) décrivant $\pseudoEdS{\v}{\rho}$ \ie la région de la sphère $\sphere[\v][\rho(\v)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\brepvertex$.\par
 %On propose deux approches, en en donnant le principe ainsi que les avantages et les inconvénients.
 
-La pseudo-EdS $\pseudoEdS{\brepvertex}{\rho}$ d'un sommet convexe $\brepvertex$ ayant pour support géométrique le point $\v$ est la région de la sphère $\sphere[\v][\rho(\v)]$ qui est tangente à l'EdS de chacune des arêtes $\family{\brepedge}{i}{1}{m}$ incidentes à $\brepvertex$.
+La pseudo-EdS $\pseudoEdS{\brepvertex}{\rho}$ d'un sommet convexe $\brepvertex$ ayant pour support géométrique le point $\v$ est la région de la sphère $\sphere[\v][\rho(\v)]$ qui est tangente à l'EdS de chacune des arêtes $\family{\brepedge}{i}{0}{m-1}$ incidentes à $\brepvertex$.
 Cette région est le lieu des points $\bx$ vérifiant 
 \begin{subequations}
 	\label{eq:sys_pseudoEdS_sommet}
 	\begin{empheq}[left={\empheqlbrace\,}]{align}
 		\normtwo{\bx - \v} &= \rho(\v), \\ 
-		\dotprod{\left(  \bx - \lo{\bo}_i \right)}{\lo{\bt}_i} &\leq 0 \quad (i = 1, \ldots, m), 
+		\dotprod{\left(  \bx - \lo{\bo}_i \right)}{\lo{\bt}_i} &\leq 0 \quad (i = 0, \ldots, m-1), 
 	\end{empheq}
 \end{subequations}
 
 %où $\lo{\bo}_i$ et $\lo{\bt}_i$ désignent respectivement le centre et la normale au plan contenant le cercle caractéristique de l'arête incidente $\brepedge_i$ en son extrémité correspondant à $\brepvertex$ (\cf \autoref{section:parametrisation_pseudo_EdS_arete}).
 où $\lo{\bo}_i$ désigne le centre du cercle caractéristique de l'arête incidente $\brepedge_i$ en son extrémité correspondant à $\brepvertex$ et $\lo{\bt}_i$ la normale au plan contenant ce cercle, orientée vers l'intérieur de $\brepedge_i$ (\cf \autoref{section:parametrisation_pseudo_EdS_arete}).
 \par
-$\pseudoEdS{\brepvertex}{\rho}$ est donc l'intersection de $\sphere{\v}{\rho(\v)}$ et de $m$ demi-espaces délimités par les plans contenant les arcs de cercles caractéristiques des arêtes incidentes.
+$\pseudoEdS{\brepvertex}{\rho}$ est donc l'intersection de $\sphere[\v][\rho(\v)]$ et de $m$ demi-espaces délimités par les plans contenant les arcs de cercles caractéristiques des arêtes incidentes.
 \par
-Si $\gradient{\rho}(\v) = \vit{0}$ alors $\lo{\bo}_i = \v$  pour $i = 1, \ldots, m$ donc ces arcs caractéristiques sont des arcs de grands cercles sur $\sphere[\v][\rho(\v)]$ et donc $\pseudoEdS{\brepvertex}{\rho}$ est un polygone sphérique. 
+Si $\gradient{\rho}(\v) = \vit{0}$ alors $\lo{\bo}_i = \v$  pour $i = 0, \ldots, m-1$ donc ces arcs caractéristiques sont des arcs de grands cercles sur $\sphere[\v][\rho(\v)]$ et donc $\pseudoEdS{\brepvertex}{\rho}$ est un polygone sphérique. 
 En revanche, dans le cas général ces plans ne passent pas par $\v$.
 \par
 On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou non) décrivant $\pseudoEdS{\v}{\rho}$.
 Afin de simplifier cette construction, on suppose sans restreindre la généralité que $\v$ est situé à l'origine et que $\rho(\v) = 1$. 
 On peut toujours se ramener à ce cas à l'aide d'une transformation adéquate (translation et homothétie) que l'on inversera en fin de construction pour se placer à nouveau dans le cas général.
 \par
-On suppose également que les arêtes $\family{\brepedge}{i}{1}{m}$ et les faces $\family{\brepface}{i}{1}{m}$ incidentes à $\brepvertex$ sont ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\Omega$ (voir \autoref{fig:cycle_aretes_faces_incidentes}).
+On note respectivement $\family{\brepedge}{i}{0}{m-1}$ et $\family{\brepface}{i}{0}{m-1}$ les arêtes et les faces incidentes à $\brepvertex$, que l'on suppose ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\Omega$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} gauche). 
+On note également $\bg^{\brepedge_i}$ (resp. $\bs^{\brepface_i}$) une paramétrisation du support géométrique de $\brepedge_i$ (resp. de $\brepface_i$) et $\eos^{\brepedge_i}$ (resp. $\eos^{\brepface_i}$) celle de $\pseudoEdS{\brepedge_i}{\rho}$ (resp. de $\EdSpropreplus{\brepface_i}{\rho}$).
+Enfin, on note respectivement $u_{\brepedge_i}$ et $(u_{\brepface_i}, v_{\brepface_i})$ les coordonnées paramétriques du sommet $\brepvertex$ dans $\brepedge_i$ et $\brepface_i$, \ie $\bg^{\brepedge_i}(u_{\brepedge_i}) = \bs^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i}) = \v$.
+%On suppose également que les arêtes $\family{\brepedge}{i}{1}{m}$ et les faces $\family{\brepface}{i}{1}{m}$ incidentes à $\brepvertex$ sont ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\Omega$ (voir \autoref{fig:cycle_aretes_faces_incidentes}).
 \par
 On propose deux approches, en en donnant le principe ainsi que les avantages et les inconvénients.
 
-\input{figures/code/pseudo_EdS_sommet/aretes_faces_incidentes.tex}
+%\input{figures/code/pseudo_EdS_sommet/aretes_faces_incidentes.tex}
 
 \subsubsection{Ajustement de plusieurs carreaux non-restreints}%Polygone sphérique découpé en quadrilatères}
 \label{section:quadrangulation_polygone_spherique}
 Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$. 
 
+\newcommand*{\incrementnotation}[2]{#1_{\text{#2}}}%{#1\raisebox{1.15ex}{$\scriptscriptstyle{#2}$}}
+\newcommand{\iplus}{\incrementnotation{i}{+}}%{i_+}
+\newcommand{\imoins}{\incrementnotation{i}{--}}%{i_-}
+
 \begin{enumerate}
 	%\item hypothèse : $\rho$ est uniforme sur $\Sigma$
-	\item[$\Rightarrow$] $\pseudoEdS{\v}{\rho}$ est alors le polygone sphérique formé par les $m$ points $\p_i = \v + \rho \unv_i$, où $\unv_i$ désigne la direction normale à la face $\brepface_i$ au point $\v$
+	\item[$\Rightarrow$] $\pseudoEdS{\v}{\rho}$ est alors le polygone sphérique formé par les $m$ points $\v + \rho \unv_i$, où $\unv_i$ désigne la direction normale à la face $\brepface_i$ au point $\v$
 	\item si $m = 4$, on représente ce polygone à l'aide d'un seul carreau sphérique
 	\item si $m \neq 4$, on \guillemets{quadrangule} le polygone de la manière suivante 
 	\begin{itemize}
-		\item on note $\vit{c} = \v + \rho \unitized{\sum_{i=1}^m \unv_i}$ et $\q_i = \v + \rho \unitized{\unv_i + \unv_{i+1}}$
-		\item on construit $m$ carreaux sphériques dont les \guillemets{coins} sont $\vit{c}$, $\q_{i-1}$, $\p_i$ et $\q_i$
+		\item on note $\vrm{q} = \unitized{\sum_{i=1}^{m-1} \unv_i}$ et $\vrm{m}_i = \unitized{\unv_i + \unv_{\iplus}}$
+		\item on construit $m$ carreaux sphériques $\left\{ \pseudoEdS{\brepvertex}{\rho}[i] \right\}_{i = 1, \ldots, m-1}$ dont les \guillemets{coins} sont $\vrm{q}$, $\vrm{m}_{\imoins}$, $\unv_i$ et $\vrm{m}_i$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} droite)
+		\item avec $\iplus := (i+1)\bmod{m}$ et $\imoins := (i-1)\bmod{m}$
 	\end{itemize}
 	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\v][\rho]$ le carreau bilinéaire qui interpole ses coins
+	\begin{align}
+		\vit{\ell}_i(u,v) 
+		    & = \frac{(\hi{u} - u) (\hi{v} - v)}{(\hi{u} - \lo{u})(\hi{v} - \lo{v})} \vrm{q}  \nonumber\\
+			& + \frac{(u - \lo{u}) (\hi{v} - v)}{(\hi{u} - \lo{u})(\hi{v} - \lo{v})} \vrm{m}_{\imoins} \nonumber\\
+			& + \frac{(u - \lo{u}) (v - \lo{v})}{(\hi{u} - \lo{u})(\hi{v} - \lo{v})} \unv_i     \nonumber\\
+			& + \frac{(\hi{u} - u) (v - \lo{v})}{(\hi{u} - \lo{u})(\hi{v} - \lo{v})} \vrm{m}_i.
+	\end{align}
+	et
+	\[
+		\eos^{\brepvertex_i} = \v + \rho \unitized{\vit{\ell}_i - \v}.
+	\]
 	
-	\item 
+	\item on rajoute explicitement les courbes et points d'intersection suivants au graphe partiel des intersections.
+	Il s'agit d'intersections tangentielles, qui sont complexes à calculer avec efficacité et robustesse. 
+	De cette façon, on simplifie significativement le futur calcul des intersections.
+	\begin{enumerate}
+		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\EdSpropreplus{\brepface_i}{\rho}$ s'intersectent au point $\unv_i = \eos^{\brepvertex_i}(\hi{u}, \hi{v}) = \eos^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i})$. 
+%		Pour la paramétrisation $\bs_i$, ses coordonnées paramétriques sont $(\hi{u}, \hi{v})$.
+%		Pour la paramétrisation de $\EdSpropreplus{\brepface_i}{\rho}$, ses coordonnées paramétriques $(u_i, v_i)$ ;
+		\item tous les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ s'intersectent au point $\vrm{q} = \eos^{\brepvertex_i}(\lo{u}, \lo{v})$ ;
+		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[\imoins]$ et $\pseudoEdS{\brepvertex}{\rho}[i]$ s'intersectent le long de la courbe 
+		\[
+			\Gamma_i 
+			= \eos^{\brepvertex_{\imoins}}(\lo{u}, \left[\lo{v},\hi{v}\right])
+			= \eos^{\brepvertex_i}(\left[\lo{u},\hi{u}\right], \lo{v}),
+		\] 
+		dont les extrémités sont les points $\vrm{q}$ et 
+		$\vrm{m}_{\imoins} 
+		= \eos^{\brepvertex_{\imoins}}(\lo{u},\hi{v}) 
+		= \eos^{\brepvertex_i}(\hi{u}, \lo{v})$ ; 
+		
+		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_i}{\rho}$ s'intersectent le long de la courbe 
+		\[
+			\Gamma_{i,i} 
+			= \eos^{\brepvertex_i}(\hi{u}, \left[\lo{v},\hi{v}\right])
+			= \eos^{\brepedge_i}(u_{\brepedge_i},\left[\lo{v},\hi{v}\right]),
+		\]
+		dont les extrémités sont les points 
+		$\vrm{m}_{\imoins} = \eos^{\brepedge_i}(u_{\brepedge_i}, \frac{\lo{v} + \hi{v}}{2})$ 
+		et 
+		$\unv_i 
+		= \eos^{\brepvertex_i}(\hi{u}, \hi{v})
+		= \eos^{\brepedge_i}(u_{\brepedge_i}, u_{\brepedge_i})$;
+		
+		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_{\iplus}}{\rho}$ s'intersectent le long de la courbe 
+		\[
+			\Gamma_{i,i+1} 
+			= \eos^{\brepvertex_i}(\left[\lo{u},\hi{u}\right],\hi{v}) 
+			= \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}},\left[\lo{v},\hi{v}\right]),
+		\]
+		dont les extrémités sont les points 
+		$\unv_i = \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, v_{\brepedge_{\iplus}})$ 
+		et 
+		$\vrm{m}_i = \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, \frac{\lo{v} + \hi{v}}{2})$, 
+%		où $v_{\brepedge_i} = 
+%		\begin{cases}
+%			\hi{v} \text{ si } u_{\brepedge_i} = \lo{u}, \\ 
+%			\lo{v} \text{ si } u_{\brepedge_i} = \hi{u}.
+%		\end{cases}$
+		où $v_{\brepedge_i} = \frac{(u_{\brepedge_i} - \lo{u}) \lo{v} + (\hi{u} - u_{\brepedge_i}) \hi{v}}{\hi{u} - \lo{u}}$.
+		
+	\end{enumerate}
 \end{enumerate}
 
 \input{figures/code/pseudo_EdS_sommet/pseudo_EdS_sommet_quadpoly.tex}
@@ -498,7 +566,7 @@ Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$.
 avantages/inconvénients :
 \begin{itemize}
 	\item[$-$] valable seulement si la vitesse normale est uniforme
-	\item[$-$] génère plusieurs nouveaux carreaux de surface
+	\item[$-$] génère plusieurs carreaux
 	%\item[$+$] les nouveaux carreaux sont rectangulaires ($\Rightarrow$ permet l'utilisation de quadratures simples (\cf \autoref{section:clenshaw_curtis_quadrature})
 	\item[$+$] utiliser des carreaux paramétriques non restreints présente plusieurs avantages :
 	\begin{enumerate}
@@ -555,6 +623,9 @@ avantages/inconvénients :
 	\item[$+$] valable également si la vitesse normale varie spatialement
 	\item[$+$] génère un seul nouveau carreau de surface
 \end{itemize}
+
+\input{figures/code/pseudo_EdS_sommet/pseudo_EdS_sommet_trimmed_patch.tex}
+
 
 %%Soit $\brepvertex$ un sommet \brep\ convexe dont le support géométrique est le point $\v \in \reals^3$. 
 %%On cherche à construire un carreau paramétrique restreint décrivant $\pseudoEdS{\v}{\rho}$ \ie la région de la sphère $\sphere[\v][\rho(\v)]$ délimitée par les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\v$. 
