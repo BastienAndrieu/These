@@ -28,11 +28,11 @@ class Vertex:
 
 
 ################################################################
-def LL_patch_from_corners(corners, center, mrg=0):
-    m = len(corners)
+def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False):
+    m = len(arcs)
 
     # normalize corners onto unit sphere
-    s = numpy.array([xyz - center for xyz in corners])
+    s = numpy.array([arc[0] - center for arc in arcs])
     r = numpy.sqrt(numpy.sum(s**2, axis=1))
     ravg = numpy.sum(r)/float(m)
     s = s/numpy.tile(r, (3,1)).T
@@ -48,42 +48,71 @@ def LL_patch_from_corners(corners, center, mrg=0):
 
     # coordinates in local frame (r2, r3)
     ab = lib_linalg.matmul(p, R[:,1:3])
-
-    abverts = [(a, b, 0) for a, b in ab]
-    obj = lbu.pydata_to_mesh(
-        verts=abverts,
-        faces=[],
-        edges=[],
-        name='ab_points'
-    )
-    obj.layers[3] = True
-    obj.layers[0] = False
+    if construction_steps:
+        abverts = [(a, b, 0) for a, b in ab]
+        obj = lbu.pydata_to_mesh(
+            verts=abverts,
+            faces=[],
+            edges=[],
+            name='ab_points'
+        )
+        obj.layers[3] = True
+        obj.layers[0] = False
 
     # mimimum-area OBB
     ctr_ab, rng_ab, axes_ab = minimum_area_OBB(ab)
-    OBBverts = [((-1)**(i+1), (-1)**(j+1), 0) for j in range(2) for i in range(2)]
-    OBBedges = [(0, 1), (1, 3), (3, 2), (2, 0)]
-    obj = lbu.pydata_to_mesh(
-        verts=OBBverts,
-        faces=[],
-        edges=OBBedges,
-        name='ab_OBB'
-    )
-    obj.layers[3] = True
-    obj.layers[0] = False
-    obj.scale = (rng_ab[0], rng_ab[1], 1)
-    obj.location = (ctr_ab[0], ctr_ab[1], 0)
-    obj.rotation_euler[2] = numpy.arctan2(axes_ab[1,0], axes_ab[0,0])
+    if construction_steps:
+        OBBverts = [((-1)**(i+1), (-1)**(j+1), 0) for j in range(2) for i in range(2)]
+        OBBedges = [(0, 1), (1, 3), (3, 2), (2, 0)]
+        obj = lbu.pydata_to_mesh(
+            verts=OBBverts,
+            faces=[],
+            edges=OBBedges,
+            name='ab_OBB'
+        )
+        obj.layers[3] = True
+        obj.layers[0] = False
+        obj.scale = (rng_ab[0], rng_ab[1], 1)
+        obj.location = (ctr_ab[0], ctr_ab[1], 0)
+        obj.rotation_euler[2] = numpy.arctan2(axes_ab[1,0], axes_ab[0,0])
 
     R[:,1:3] = lib_linalg.matmul(R[:,1:3], axes_ab)
 
     # xyz-coords in rotated frame
-    s = lib_linalg.matmul(s, R)
+    s = numpy.empty((0,3), dtype=float)
+    for arc in arcs:
+        s = numpy.vstack([s, lib_linalg.matmul((arc - numpy.tile(center, (len(arc),1)))/ravg, R)])
+    n = len(s)
+    
+    if construction_steps:
+        obj = lbu.pydata_to_mesh(
+            verts=s,
+            faces=[],
+            edges=[(i, (i+1)%n) for i in range(n)],
+            name='s_points'
+        )
+        obj.layers[2] = True
+        obj.layers[0] = False
+        obj.location = center
+        obj.scale = ravg*numpy.ones(3)
+        obj.rotation_euler = Matrix(R).to_euler()
 
+    
     # spherical coords: longitude t(heta), latitude l(ambda)
-    tl = numpy.zeros((m,2))
+    tl = numpy.zeros((n,2))
     tl[:,0] = numpy.arctan2(s[:,1], s[:,0])
     tl[:,1] = numpy.arcsin(s[:,2])
+    
+    if construction_steps:
+        tlverts = [(t/numpy.pi, l/numpy.pi, 0) for t, l in tl]
+        obj = lbu.pydata_to_mesh(
+            verts=tlverts,
+            faces=[],
+            edges=[],
+            name='tl_points'
+        )
+        obj.layers[4] = True
+        obj.layers[0] = False
 
     min_tl = numpy.amin(tl, axis=0)
     max_tl = numpy.amax(tl, axis=0)
@@ -91,8 +120,20 @@ def LL_patch_from_corners(corners, center, mrg=0):
     ctr_tl = 0.5*(min_tl + max_tl)
     rng_tl = (1 + mrg)*0.5*(max_tl - min_tl)
 
+    if construction_steps:
+        obj = lbu.pydata_to_mesh(
+            verts=OBBverts,
+            faces=[],
+            edges=OBBedges,
+            name='tl_OBB'
+        )
+        obj.layers[4] = True
+        obj.layers[0] = False
+        obj.scale = (rng_tl[0]/numpy.pi, rng_tl[1]/numpy.pi, 1)
+        obj.location = (ctr_tl[0]/numpy.pi, ctr_tl[1]/numpy.pi, 0)
+
     # uv-coords
-    uv = (tl - numpy.tile(ctr_tl, (m,1)))/numpy.tile(rng_tl, (m,1))
+    uv = (tl - numpy.tile(ctr_tl, (n,1)))/numpy.tile(rng_tl, (n,1))
 
     return (ravg, R, ctr_tl, rng_tl, uv)
     
@@ -563,7 +604,7 @@ f.close()
 
 ################################################################
 # EXPORT ARCS IMAGE COORDS
-xyz_arcs = numpy.empty((0,3))
+xyz_arcs = []
 ncc = 100
 tc = numpy.linspace(0, 1, ncc)
 npl = len(end_planes)
@@ -581,7 +622,7 @@ for ipl, (tng, occ) in enumerate(end_planes):
     arc_solid = numpy.array(
         [occ + numpy.cos(ts[i])*r1 + numpy.sin(ts[i])*r190d for i in range(ncc)]
     )
-    xyz_arcs = numpy.vstack([xyz_arcs, arc_solid])
+    xyz_arcs.append(arc_solid)
     arc_dashed = numpy.array(
         [occ + numpy.cos(td[i])*r1 + numpy.sin(td[i])*r190d for i in range(ncc)]
     )
@@ -601,9 +642,10 @@ for ipl, (tng, occ) in enumerate(end_planes):
 ################################################################
 # LL-PATCH
 ravg, R, ctr_tl, rng_tl, uv = LL_patch_from_corners(
-    corners,#xyz_arcs,#
+    xyz_arcs,
     V.xyz,
-    mrg=2e-2
+    mrg=2e-2,
+    construction_steps=True
 )
 
 us = ctr_tl[0] + u*rng_tl[0]
