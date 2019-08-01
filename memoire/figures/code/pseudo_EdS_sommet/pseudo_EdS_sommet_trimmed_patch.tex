@@ -50,11 +50,12 @@
 			%
 			\pgfmathtruncatemacro\iplane{\arabic{DTLrowi} - 1}
 			%
-			\draw[curv, dash pattern=on 2pt off 4pt, circlecolor] plot file {figures/data/pseudo_EdS_sommet/trimmed_patch/xy_arc_dashed_\iplane.dat};
+			{\transparent{0.5}%
+				\draw[curv, dash pattern=on 2pt off 4pt, circlecolor] plot file {figures/data/pseudo_EdS_sommet/trimmed_patch/xy_arc_dashed_\iplane.dat};
+			}%
 			\draw[curv, circlecolor] plot file {figures/data/pseudo_EdS_sommet/trimmed_patch/xy_arc_solid_\iplane.dat};
 			%
 			\fill[circlecolor] (\ox, \oy) circle (1.2pt);
-			%\node[above, labelpoint] at (\ox, \oy) {$\lo{\bo}_{\iplane}$};
 			\draw[
 				circlecolor,
 				vector,
@@ -62,7 +63,7 @@
 			] (\ox, \oy) -- (\tx, \ty) node[pos=1.09] {$\lo{\bt}_{\iplane}$};
 		}%
 		%
-		\fill[black] (\vx, \vy) circle (1.2pt);
+		\fill[black] (\vx, \vy) circle (1.35pt);
 		\node[labelpoint] at ([shift={(145:5pt)}]\vx, \vy) {$\v$};
 		%
 		\DTLforeach{dbcorners}{\nx=x, \ny=y, \nl=l}%

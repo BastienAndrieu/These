@@ -14,7 +14,7 @@ import lib_chebyshev as lcheb
 import lib_color as lco
 import lib_brep as lbrep
 import lib_linalg
-from lib_compgeom import circumcircle, complete_orthonormal_matrix
+from lib_compgeom import circumcircle, complete_orthonormal_matrix, minimum_area_OBB
 
 ################################################################
 class Vertex:
@@ -24,19 +24,92 @@ class Vertex:
         self.faces = faces
         return
 ################################################################
-"""
+
+
+
 ################################################################
-def bilinear_patch(a, b, c, d, u, v):
-    xyz = numpy.zeros((3,len(u),len(v)))
-    for k in range(3):
-        xyz[k] = 0.25*(
-            a[k]*numpy.outer(1.0-u, 1.0-v) + 
-            b[k]*numpy.outer(1.0+u, 1.0-v) + 
-            c[k]*numpy.outer(1.0+u, 1.0+v) + 
-            d[k]*numpy.outer(1.0-u, 1.0+v) )
-    return xyz
+def LL_patch_from_corners(corners, center, mrg=0):
+    m = len(corners)
+
+    # normalize corners onto unit sphere
+    s = numpy.array([xyz - center for xyz in corners])
+    r = numpy.sqrt(numpy.sum(s**2, axis=1))
+    ravg = numpy.sum(r)/float(m)
+    s = s/numpy.tile(r, (3,1)).T
+
+    # orthonormal basis
+    R = complete_orthonormal_matrix(numpy.sum(s, axis=0), i=0).T
+
+    # central projection onto plane tangent to unit sphere at point r1 = R[:,0]
+    s_dot_r1 = s[:,0]*R[0,0] + s[:,1]*R[1,0] + s[:,2]*R[2,0]
+    s_dot_r1 = numpy.sign(s_dot_r1)*numpy.maximum(1e-6, numpy.absolute(s_dot_r1))
+    inv_s_dot_r1 = 1./s_dot_r1
+    p = s*numpy.tile(inv_s_dot_r1, (3,1)).T
+
+    # coordinates in local frame (r2, r3)
+    ab = lib_linalg.matmul(p, R[:,1:3])
+
+    abverts = [(a, b, 0) for a, b in ab]
+    obj = lbu.pydata_to_mesh(
+        verts=abverts,
+        faces=[],
+        edges=[],
+        name='ab_points'
+    )
+    obj.layers[3] = True
+    obj.layers[0] = False
+
+    # mimimum-area OBB
+    ctr_ab, rng_ab, axes_ab = minimum_area_OBB(ab)
+    OBBverts = [((-1)**(i+1), (-1)**(j+1), 0) for j in range(2) for i in range(2)]
+    OBBedges = [(0, 1), (1, 3), (3, 2), (2, 0)]
+    obj = lbu.pydata_to_mesh(
+        verts=OBBverts,
+        faces=[],
+        edges=OBBedges,
+        name='ab_OBB'
+    )
+    obj.layers[3] = True
+    obj.layers[0] = False
+    obj.scale = (rng_ab[0], rng_ab[1], 1)
+    obj.location = (ctr_ab[0], ctr_ab[1], 0)
+    obj.rotation_euler[2] = numpy.arctan2(axes_ab[1,0], axes_ab[0,0])
+
+    R[:,1:3] = lib_linalg.matmul(R[:,1:3], axes_ab)
+
+    # xyz-coords in rotated frame
+    s = lib_linalg.matmul(s, R)
+
+    # spherical coords: longitude t(heta), latitude l(ambda)
+    tl = numpy.zeros((m,2))
+    tl[:,0] = numpy.arctan2(s[:,1], s[:,0])
+    tl[:,1] = numpy.arcsin(s[:,2])
+
+    min_tl = numpy.amin(tl, axis=0)
+    max_tl = numpy.amax(tl, axis=0)
+
+    ctr_tl = 0.5*(min_tl + max_tl)
+    rng_tl = (1 + mrg)*0.5*(max_tl - min_tl)
+
+    # uv-coords
+    uv = (tl - numpy.tile(ctr_tl, (m,1)))/numpy.tile(rng_tl, (m,1))
+
+    return (ravg, R, ctr_tl, rng_tl, uv)
+    
 ################################################################
-"""
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ################################################################
 pthin = '/d/bandrieu/GitHub/FFTsurf/test/demo_EoS_brep/'
@@ -70,7 +143,7 @@ lbu.set_scene(
     resolution_percentage=100,
     alpha_mode='TRANSPARENT',
     horizon_color=(1,1,1),
-    light_samples=4,#16,
+    light_samples=16,
     use_environment_light=True,
     environment_energy=0.3,
     environment_color='PLAIN'
@@ -85,7 +158,7 @@ lamp = lbu.add_point_light(
     name="lamp",
     energy=1.2,
     shadow_method='RAY_SHADOW',#'NOSHADOW',
-    shadow_ray_samples=4,#16,
+    shadow_ray_samples=16,
     shadow_soft_size=2.0,
     location=(2.66,0.99,3.34)#location=(-2.68, 1.65, 3.20)
 )
@@ -435,6 +508,7 @@ LLpatch.layers[0] = False
 ################################################################
 
 
+
 ################################################################
 # ADJUST CAMERA
 if True:
@@ -480,7 +554,7 @@ f.close()
 # EXPORT CORNERS IMAGE COORDS
 f = open(pthout + 'xy_corners.dat', 'w')
 corner_label = ['\\unv_{'+str(i)+'}' for i in range(len(corners))] + ['\\vrm{q}']
-for i, xyz in enumerate(corners + [corner_avg]):
+for i, xyz in enumerate(corners):# + [corner_avg]):
     x, y = lbf.convert_3d_to_2d_coords(xyz, normalize=True)
     f.write('%s, %s, %s\n' % (x, y, corner_label[i]))
 f.close()
@@ -489,6 +563,7 @@ f.close()
 
 ################################################################
 # EXPORT ARCS IMAGE COORDS
+xyz_arcs = numpy.empty((0,3))
 ncc = 100
 tc = numpy.linspace(0, 1, ncc)
 npl = len(end_planes)
@@ -506,6 +581,7 @@ for ipl, (tng, occ) in enumerate(end_planes):
     arc_solid = numpy.array(
         [occ + numpy.cos(ts[i])*r1 + numpy.sin(ts[i])*r190d for i in range(ncc)]
     )
+    xyz_arcs = numpy.vstack([xyz_arcs, arc_solid])
     arc_dashed = numpy.array(
         [occ + numpy.cos(td[i])*r1 + numpy.sin(td[i])*r190d for i in range(ncc)]
     )
@@ -518,6 +594,45 @@ for ipl, (tng, occ) in enumerate(end_planes):
     numpy.savetxt(pthout + 'xy_arc_solid_' + str(ipl) + '.dat', xy_arc_solid)
     numpy.savetxt(pthout + 'xy_arc_dashed_' + str(ipl) + '.dat', xy_arc_dashed)
 ################################################################
+
+
+
+
+################################################################
+# LL-PATCH
+ravg, R, ctr_tl, rng_tl, uv = LL_patch_from_corners(
+    corners,#xyz_arcs,#
+    V.xyz,
+    mrg=2e-2
+)
+
+us = ctr_tl[0] + u*rng_tl[0]
+vs = ctr_tl[1] + u*rng_tl[1]
+
+xs = numpy.outer(numpy.cos(us), numpy.cos(vs))
+ys = numpy.outer(numpy.sin(us), numpy.cos(vs))
+zs = numpy.outer(numpy.ones(len(us)), numpy.sin(vs))
+
+mverts, mfaces = lbu.tensor_product_mesh_vf(xs, ys, zs)
+LLpatch2 = lbu.pydata_to_mesh(
+    verts=mverts,
+    faces=mfaces,
+    edges=[],
+    name='LLpatch2'
+)
+lbe.set_smooth(LLpatch)
+LLpatch2.show_wire = True
+LLpatch2.show_all_edges = True
+LLpatch2.location = V.xyz
+LLpatch2.rotation_euler = Matrix(R).to_euler()
+LLpatch2.scale = ravg*numpy.ones(3)
+
+LLpatch2.layers[2] = True
+LLpatch2.layers[0] = False
+################################################################
+
+
+
 
 
 
