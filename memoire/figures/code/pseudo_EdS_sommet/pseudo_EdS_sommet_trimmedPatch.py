@@ -14,7 +14,7 @@ import lib_chebyshev as lcheb
 import lib_color as lco
 import lib_brep as lbrep
 import lib_linalg
-from lib_compgeom import circumcircle, complete_orthonormal_matrix, minimum_area_OBB
+from lib_compgeom import circumcircle, complete_orthonormal_matrix, minimal_OBB
 
 ################################################################
 class Vertex:
@@ -26,9 +26,38 @@ class Vertex:
 ################################################################
 
 
+################################################################
+def LL_patch_from_arcs(planes, corners, center):
+    m = len(planes)
+    s = numpy.asarray(corners) - numpy.tile(center, (m,1))
+    r = numpy.sqrt(numpy.sum(s**2, axis=1))
+    ravg = numpy.sum(r)/float(m)
+    s = s/numpy.tile(r, (3,1)).T
+    
+    min_max_dz = 2
+    for (normal, origin) in planes:
+        max_dz = 0
+        for xyz in s:
+            dz = abs(numpy.dot(xyz, normal))
+            max_dz = max(max_dz, dz)
+            print('   dz = ', dz)
+        min_max_dz = min(min_max_dz, max_dz)
+        print('\n')
+    print('min_max_dz = ', min_max_dz)
+    return min_max_dz
+################################################################
+
+
+
+
+
+
+
+
+
 
 ################################################################
-def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False):
+def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False, critere='area'):
     m = len(arcs)
 
     # normalize corners onto unit sphere
@@ -60,7 +89,7 @@ def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False):
         obj.layers[0] = False
 
     # mimimum-area OBB
-    ctr_ab, rng_ab, axes_ab = minimum_area_OBB(ab)
+    ctr_ab, rng_ab, axes_ab = minimal_OBB(ab)
     if construction_steps:
         OBBverts = [((-1)**(i+1), (-1)**(j+1), 0) for j in range(2) for i in range(2)]
         OBBedges = [(0, 1), (1, 3), (3, 2), (2, 0)]
@@ -115,10 +144,12 @@ def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False):
         obj.layers[0] = False
 
     min_tl = numpy.amin(tl, axis=0)
-    max_tl = numpy.amax(tl, axis=0)
+    max_tl = numpy.amax(tl, axis=0)    
 
     ctr_tl = 0.5*(min_tl + max_tl)
+    print('lambda_0/pi = ', ctr_tl[1]/numpy.pi)
     rng_tl = (1 + mrg)*0.5*(max_tl - min_tl)
+    print('max |lambda|/pi = ', max(abs(ctr_tl[1] - rng_tl[1]), ctr_tl[1] + rng_tl[1])/numpy.pi)
 
     if construction_steps:
         obj = lbu.pydata_to_mesh(
@@ -234,6 +265,7 @@ f.close()
 
 
 V = verts[ivert - 1]
+print('V.xyz = ', V.xyz)
 
 
 ################################################################
@@ -387,8 +419,9 @@ while True:
     eL = Vector(xyz[:,-1])
     tng = (eR - e).cross(eL - e)
     tng.normalize()
+    print('tng = ', tng)
     occ, rcc = circumcircle(eR, eL, e)
-    print(Vector(occ - V.xyz).length/rho)
+    #print(Vector(occ - V.xyz).length/rho)
     end_planes.append((tng, occ))
     #
     rot = Matrix(complete_orthonormal_matrix(tng, i=2)).transposed()
@@ -572,7 +605,7 @@ else:
 # EXPORT VERTEX IMAGE COORDS
 bpy.ops.object.empty_add(location=V.xyz)
 vx, vy = lbf.convert_3d_to_2d_coords(V.xyz, normalize=True)
-print('(vx, vy) = (%s, %s)' % (vx, vy))
+#print('(vx, vy) = (%s, %s)' % (vx, vy))
 f = open(pthout + 'xy_vertex.dat', 'w')
 f.write('%s, %s' % (vx, vy))
 f.close()
@@ -609,7 +642,6 @@ ncc = 100
 tc = numpy.linspace(0, 1, ncc)
 npl = len(end_planes)
 for ipl, (tng, occ) in enumerate(end_planes):
-    #B = complete_orthonormal_matrix(tng, i=2)
     ci = corners[ipl]
     cj = corners[(ipl-1)%npl]
     r1 = cj - occ
@@ -645,7 +677,8 @@ ravg, R, ctr_tl, rng_tl, uv = LL_patch_from_corners(
     xyz_arcs,
     V.xyz,
     mrg=2e-2,
-    construction_steps=True
+    construction_steps=True,
+    critere='width'
 )
 
 us = ctr_tl[0] + u*rng_tl[0]
@@ -663,14 +696,18 @@ LLpatch2 = lbu.pydata_to_mesh(
     name='LLpatch2'
 )
 lbe.set_smooth(LLpatch)
-LLpatch2.show_wire = True
-LLpatch2.show_all_edges = True
+
 LLpatch2.location = V.xyz
 LLpatch2.rotation_euler = Matrix(R).to_euler()
 LLpatch2.scale = ravg*numpy.ones(3)
 
+LLpatch2.draw_type = 'WIRE'
+LLpatch2.show_all_edges = True
+LLpatch2.hide_render = True
 LLpatch2.layers[2] = True
 LLpatch2.layers[0] = False
+
+min_max_dz = LL_patch_from_arcs(end_planes, corners, V.xyz)
 ################################################################
 
 

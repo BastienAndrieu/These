@@ -517,8 +517,8 @@ Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$.
 		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[\imoins]$ et $\pseudoEdS{\brepvertex}{\rho}[i]$ s'intersectent le long de la courbe 
 		\[
 			\Gamma_i 
-			= \eos^{\brepvertex_{\imoins}}(\lo{u}, \left[\lo{v},\hi{v}\right])
-			= \eos^{\brepvertex_i}(\left[\lo{u},\hi{u}\right], \lo{v}),
+			= \eos^{\brepvertex_{\imoins}}(\lo{u}, \intervalLoHi{v})
+			= \eos^{\brepvertex_i}(\intervalLoHi{u}, \lo{v}),
 		\] 
 		dont les extrémités sont les points $\vrm{q}$ et 
 		$\vrm{m}_{\imoins} 
@@ -528,8 +528,8 @@ Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$.
 		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_i}{\rho}$ s'intersectent le long de la courbe 
 		\[
 			\Gamma_{i,i} 
-			= \eos^{\brepvertex_i}(\hi{u}, \left[\lo{v},\hi{v}\right])
-			= \eos^{\brepedge_i}(u_{\brepedge_i},\left[\lo{v},\hi{v}\right]),
+			= \eos^{\brepvertex_i}(\hi{u}, \intervalLoHi{v})
+			= \eos^{\brepedge_i}(u_{\brepedge_i}, \intervalLoHi{v}),
 		\]
 		dont les extrémités sont les points 
 		$\vrm{m}_{\imoins} = \eos^{\brepedge_i}(u_{\brepedge_i}, \frac{\lo{v} + \hi{v}}{2})$ 
@@ -541,8 +541,8 @@ Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$.
 		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_{\iplus}}{\rho}$ s'intersectent le long de la courbe 
 		\[
 			\Gamma_{i,i+1} 
-			= \eos^{\brepvertex_i}(\left[\lo{u},\hi{u}\right],\hi{v}) 
-			= \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}},\left[\lo{v},\hi{v}\right]),
+			= \eos^{\brepvertex_i}(\intervalLoHi{u}, \hi{v}) 
+			= \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, \intervalLoHi{v}),
 		\]
 		dont les extrémités sont les points 
 		$\unv_i = \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, v_{\brepedge_{\iplus}})$ 
@@ -582,39 +582,88 @@ avantages/inconvénients :
 On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$. 
 
 \begin{enumerate}
-	\item on cherche alors à construire un seul carreau paramétrique restreint qui contient les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\brepvertex$
-	\item afin de simplifier la construction, on considère que $\v$ est situé à l'origine et que $\rho(\v) = 1$ (on appliquera la transformation adéquate en fin de construction pour se placer à nouveau dans le cas général)
-	\item le problème consiste alors, étant donné un ensemble $C$ de courbes sur la sphère unité $\mathbb{S}^2$, à construire un carreau paramétrique décrivant une région $\Sigma_S$ de $\mathbb{S}^2$ contenant $C$
-	\item on cherche également à faire en sorte $\Sigma_S$ englobe $S$ le plus étroitement possible ($\sim$ minimisation de l'aire) \textit{(développer motivation\ldots)}
+	\item on cherche alors à construire le carreau paramétrique restreint $\pseudoEdS{\brepvertex}{\rho} = (\uvdomain, \eos^{\brepvertex})$
+	\begin{enumerate}
+		\item on trouve une paramétrisation $\eos^{\brepvertex}$ d'un carreau $\Sigma_{\brepvertex} := \eos^{\brepvertex}(\intervalLoHi{u} \times \intervalLoHi{v})$ vérifiant $\pseudoEdS{\brepvertex}{\rho} \subset \Sigma_{\brepvertex}$
+		\item on détermine les courbes de restriction du domaine paramétrique $\uvdomain \subset \intervalLoHi{u} \times \intervalLoHi{v}$ (\ie la trace des arcs caractéristiques limites dans l'espace paramétrique de $\Sigma_{\brepvertex}$)
+	\end{enumerate}
 	
-	\item on choisit d'utiliser les coordonnées sphériques comme paramètres, \ie
-	\begin{equation}
-	    \bs = \mathbf{R} 
-	    \begin{pmatrix}
-		    \cos \theta \cos \lambda \\
-		    \sin \theta \cos \lambda \\
-		    \sin \lambda \\
-	    \end{pmatrix},
-	\end{equation}
-	où $\mathbf{R}$ désigne une matrice de rotation (\ie ses colonnes forment une base orthonormée de $\reals^3$) et $\theta$, $\lambda$ désignent respectivement la longitude et la latitude d'un point du carreau
-	\begin{align*}
-	    \theta(u,v)  &= \Theta u + \theta_0, \\
-	    \lambda(u,v) &= \Lambda v + \lambda_0,
-	\end{align*}
-	avec $-1 \leq u, v \leq 1$
+	\item on cherche une paramétrisation de la forme
+	\[
+		\eos^{\brepvertex} = \v + \rho(\v) \mathbf{R} \vit{s},
+	\]
+	où
+    \begin{enumerate}
+        \item $\mathbf{R} = \colvec{\br_1 & \br_2 & \br_3}$ désigne une matrice de rotation ($\dotprod{\br_i}{\br_j} = \delta_{i,j}$ et $\br_{i+2} = \crossprod{\br_i}{\br_{i+1}}$)
+        \item $\vit{s} = 
+		\begin{pmatrix}
+            \cos \theta \cos \lambda \\
+            \sin \theta \cos \lambda \\
+            \sin \lambda \\
+        \end{pmatrix}$
+        \item $\theta(u,v) = \Theta u + \theta_0$ est la longitude
+        \item $\lambda(u,v) = \Lambda v + \lambda_0$ est la latitude
+        \item $\lo{u} = -1 \leq u \leq 1 = \hi{u}$
+        \item $\lo{v} = -1 \leq v \leq 1 = \hi{v}$
+    \end{enumerate}
+    
+    \item on veut éviter que $\Sigma_{\brepvertex}$ contienne les pôles $\lambda = \pm \frac{\pi}{2}$ (\ie $\vit{s} = \pm \br_3$), car la paramétrisation $\eos^{\brepvertex}$ y est singulière (en effet $\eos^{\brepvertex}_{\theta}(\theta, \pm \frac{\pi}{2}) = \vit{0}$)
+    \begin{enumerate}
+        \item[$\to$] étendue en latitude $\Lambda$ (relativement) minimale
+        %\item[$\to$] centrer $\lambda_0$ sur zéro
+    \end{enumerate}
+    \item on veut limiter le risque de ``fausses intersections'' avec les carreaux voisins lors de la construction de l'EdB
+    \begin{enumerate}
+        %\item[$\to$] aire de $\Sigma_{\brepvertex}$ (relativement) minimale ($\left| \Sigma_{\brepvertex} \right| = 4 \rho(\v)^2 \Theta \cos \lambda_0 \sin \Lambda$)
+        \item[$\to$] ratio des aires $\frac{\left| \pseudoEdS{\brepvertex}{\rho} \right|}{\left| \Sigma_{\brepvertex} \right|}$ (relativement) proche de 1 ($\left| \Sigma_{\brepvertex} \right| = 4 \rho(\v)^2 \Theta \cos \lambda_0 \sin \Lambda$)
+    \end{enumerate}
+    
+\end{enumerate}
 
 
-	\item on propose donc une méthode heuristique pour construire un tel carreau (\ie trouver $\mathbf{R}$, $\Theta$, $\theta_0$, $\Lambda$ et $\lambda_0$) d'aire minimale
-	\item on suppose qu'on dispose d'un échantillonnage suffisamment $S = \family{\s}{i}{1}{n}$ fin de l'ensemble des arcs de cercle caractéristiques limites
-	\item le problème consiste alors à construire un carreau paramétrique décrivant une région $\Sigma_S$ de $\mathbb{S}^2$ contenant $S$
-	
-	\item On note $\s_{0} = \sum_{i = 1}^n \s_i$. 
-	On suppose pour le moment que $\normtwo{\s_{0}} \neq 0$. 
-	On définit alors 
-	\begin{equation}
-	    \vrm{r}_1 = \unitized{ \s_{0} }.
-	\end{equation}
-\end{enumerate}	
+
+
+
+
+
+
+
+
+
+%\begin{enumerate}
+%	\item on cherche alors à construire un seul carreau paramétrique restreint qui contient les arcs de cercles caractéristiques aux extrémités des arêtes \brep\ incidentes à $\brepvertex$
+%	\item afin de simplifier la construction, on considère que $\v$ est situé à l'origine et que $\rho(\v) = 1$ (on appliquera la transformation adéquate en fin de construction pour se placer à nouveau dans le cas général)
+%	\item le problème consiste alors, étant donné un ensemble $C$ de courbes sur la sphère unité $\mathbb{S}^2$, à construire un carreau paramétrique décrivant une région $\Sigma_S$ de $\mathbb{S}^2$ contenant $C$
+%	\item on cherche également à faire en sorte $\Sigma_S$ englobe $S$ le plus étroitement possible ($\sim$ minimisation de l'aire) \textit{(développer motivation\ldots)}
+%	
+%	\item on choisit d'utiliser les coordonnées sphériques comme paramètres, \ie
+%	\begin{equation}
+%	    \bs = \mathbf{R} 
+%	    \begin{pmatrix}
+%		    \cos \theta \cos \lambda \\
+%		    \sin \theta \cos \lambda \\
+%		    \sin \lambda \\
+%	    \end{pmatrix},
+%	\end{equation}
+%	où $\mathbf{R}$ désigne une matrice de rotation (\ie ses colonnes forment une base orthonormée de $\reals^3$) et $\theta$, $\lambda$ désignent respectivement la longitude et la latitude d'un point du carreau
+%	\begin{align*}
+%	    \theta(u,v)  &= \Theta u + \theta_0, \\
+%	    \lambda(u,v) &= \Lambda v + \lambda_0,
+%	\end{align*}
+%	avec $-1 \leq u, v \leq 1$
+%
+%
+%	\item on propose donc une méthode heuristique pour construire un tel carreau (\ie trouver $\mathbf{R}$, $\Theta$, $\theta_0$, $\Lambda$ et $\lambda_0$) d'aire minimale
+%	\item on suppose qu'on dispose d'un échantillonnage suffisamment $S = \family{\s}{i}{1}{n}$ fin de l'ensemble des arcs de cercle caractéristiques limites
+%	\item le problème consiste alors à construire un carreau paramétrique décrivant une région $\Sigma_S$ de $\mathbb{S}^2$ contenant $S$
+%	
+%	\item On note $\s_{0} = \sum_{i = 1}^n \s_i$. 
+%	On suppose pour le moment que $\normtwo{\s_{0}} \neq 0$. 
+%	On définit alors 
+%	\begin{equation}
+%	    \vrm{r}_1 = \unitized{ \s_{0} }.
+%	\end{equation}
+%\end{enumerate}	
 
 %(\cf notes Huygens)
 avantages/inconvénients :
