@@ -27,24 +27,123 @@ class Vertex:
 
 
 ################################################################
-def LL_patch_from_arcs(planes, corners, center):
+def Newton_extremum_longitude(t, o, v, R1, R2, a, r1, r190d, TOL=1e-6, itmax=100):
+    for it in range(itmax):
+        x = o - v + r1*numpy.cos(a*t) + r190d*numpy.sin(a*t)
+        xt = a*(r190d*numpy.cos(a*t) - r1*numpy.sin(a*t))
+        xtt = -a**2*x
+        #
+        """
+        N = numpy.dot(R2, x)
+        Nt = numpy.dot(R2, xt)
+        D = numpy.dot(R1, x)
+        Dt = numpy.dot(R1, xt)    
+        #
+        h = numpy.dot(xt, (D*R2 - N*R1))
+        #
+        ht = numpy.dot(xtt, (D*R2 - N*R1)) + numpy.dot(xt, (Dt*R2 - Nt*R1))
+        """
+        h = numpy.dot(xt, numpy.dot(R1, x)*R2 - numpy.dot(R2, x)*R1)
+        ht = numpy.dot(xtt, numpy.dot(R1, x)*R2 - numpy.dot(R2, x)*R1) + numpy.dot(xt, numpy.dot(R1, xt)*R2 - numpy.dot(R2, xt)*R1)
+        print('it. #%d, t = %s, |ht| = %s' % (it, t, abs(ht)))
+        if abs(ht) < TOL:
+            return t
+        #
+        dt = -h/ht
+        #
+        t += dt
+    return None
+################################################################
+
+
+
+################################################################
+def LL_patch_from_arcs(planes, corners, center, nsample=10):
     m = len(planes)
-    s = numpy.asarray(corners) - numpy.tile(center, (m,1))
+
+    # normalize corners onto unit sphere
+    s = numpy.array([xyz - center for xyz in corners])
     r = numpy.sqrt(numpy.sum(s**2, axis=1))
     ravg = numpy.sum(r)/float(m)
     s = s/numpy.tile(r, (3,1)).T
-    
-    min_max_dz = 2
-    for (normal, origin) in planes:
-        max_dz = 0
-        for xyz in s:
-            dz = abs(numpy.dot(xyz, normal))
-            max_dz = max(max_dz, dz)
-            print('   dz = ', dz)
-        min_max_dz = min(min_max_dz, max_dz)
-        print('\n')
-    print('min_max_dz = ', min_max_dz)
-    return min_max_dz
+
+    # orthonormal basis
+    R = complete_orthonormal_matrix(numpy.sum(s, axis=0), i=0).T
+
+    # central projection onto plane tangent to unit sphere at point r1 = R[:,0]
+    s_dot_r1 = s[:,0]*R[0,0] + s[:,1]*R[1,0] + s[:,2]*R[2,0]
+    s_dot_r1 = numpy.sign(s_dot_r1)*numpy.maximum(1e-6, numpy.absolute(s_dot_r1))
+    inv_s_dot_r1 = 1./s_dot_r1
+    p = s*numpy.tile(inv_s_dot_r1, (3,1)).T
+
+    # coordinates in local frame (r2, r3)
+    ab = lib_linalg.matmul(p, R[:,1:3])
+
+    # mimimum-area OBB
+    ctr_ab, rng_ab, axes_ab = minimal_OBB(ab)
+
+    # final rotation matrix
+    R[:,1:3] = lib_linalg.matmul(R[:,1:3], axes_ab)
+
+    # longitude-latitude extrema
+    min_lon = numpy.pi
+    max_lon = -numpy.pi
+    min_lat = 0.5*numpy.pi
+    max_lat = -0.5*numpy.pi
+    for i, (tng, occ) in enumerate(planes):
+        ci = corners[i]
+        cj = corners[(i-1)%m]
+        r1 = cj - occ
+        r2 = ci - occ
+        r190d = numpy.cross(r1, tng)
+        a = numpy.arctan2(numpy.dot(r2, r190d), numpy.dot(r2, r1))
+        if a < 0: a += 2*numpy.pi
+        #
+        lati = numpy.arcsin(numpy.dot(R[:,2], ci - center)/ravg)
+        print('        lat_i/PI = %s' % (lati/numpy.pi))
+        min_lat = min(min_lat, lati)
+        max_lat = max(max_lat, lati)
+        # find possible interior extrema
+        #     longitude
+        tsample = numpy.linspace(0,1,nsample)
+        ta = a*tsample
+        x = numpy.tile(occ - center, (nsample, 1)).T + numpy.outer(r1, numpy.cos(ta)) + numpy.outer(r190d, numpy.sin(ta))
+        lon = numpy.arctan2(
+            R[0,1]*x[0] + R[1,1]*x[1] + R[2,1]*x[2],
+            R[0,0]*x[0] + R[1,0]*x[1] + R[2,0]*x[2]
+        )
+        iext = [numpy.argmin(lon), numpy.argmax(lon)]
+        for i in iext:
+            t = tsample[i]
+            if i > 0 and i < nsample-1:
+                t = Newton_extremum_longitude(t, occ, center, R[:,0], R[:,1], a, r1, r190d)
+            if t is not None:
+                if t >= 0 and t <= 1:
+                    x = occ - center + r1*numpy.cos(a*t) + r190d*numpy.sin(a*t)
+                    lon = numpy.arctan2(numpy.dot(R[:,1], x), numpy.dot(R[:,0], x))
+                    print('       t = %s' % t)
+                    print('       lon/PI   = %s' % (lon/numpy.pi))
+                    min_lon = min(min_lon, lon)
+                    max_lon = max(max_lon, lon)
+        #     latitude
+        w = numpy.cross(tng, R[:,2])
+        b = -numpy.arctan2(numpy.dot(r1, w), numpy.dot(r190d, w))
+        if b < 0: b += 2*numpy.pi
+        if b <= a:
+            t = b/a
+            x = occ + numpy.cos(t)*r1 + numpy.sin(t)*r190d
+            lat = numpy.arcsin(numpy.dot(R[:,2], x - center)/ravg)
+            print('       t = %s' % t)
+            print('       lat/PI   = %s' % (lat/numpy.pi))
+            min_lat = min(min_lat, lat)
+            max_lat = max(max_lat, lat)
+
+    print('%s < lon/PI < %s' % (min_lon/numpy.pi, max_lon/numpy.pi))
+    print('%s < lat/PI < %s' % (min_lat/numpy.pi, max_lat/numpy.pi))
+    ctr_tl = 0.5*numpy.array([max_lon + min_lon, max_lat + min_lat])
+    rng_tl = 0.5*numpy.array([max_lon - min_lon, max_lat - min_lat])
+
+    return (ravg, R, ctr_tl, rng_tl)
 ################################################################
 
 
@@ -82,7 +181,7 @@ def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False, critere
         obj = lbu.pydata_to_mesh(
             verts=abverts,
             faces=[],
-            edges=[],
+            edges=[(i, (i+1)%m) for i in range(m)],
             name='ab_points'
         )
         obj.layers[3] = True
@@ -137,7 +236,7 @@ def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False, critere
         obj = lbu.pydata_to_mesh(
             verts=tlverts,
             faces=[],
-            edges=[],
+            edges=[(i, (i+1)%n) for i in range(n)],
             name='tl_points'
         )
         obj.layers[4] = True
@@ -638,7 +737,7 @@ f.close()
 ################################################################
 # EXPORT ARCS IMAGE COORDS
 xyz_arcs = []
-ncc = 100
+ncc = 200
 tc = numpy.linspace(0, 1, ncc)
 npl = len(end_planes)
 for ipl, (tng, occ) in enumerate(end_planes):
@@ -680,6 +779,7 @@ ravg, R, ctr_tl, rng_tl, uv = LL_patch_from_corners(
     construction_steps=True,
     critere='width'
 )
+print('ctr_tl =', ctr_tl, ', rng_tl =', rng_tl)
 
 us = ctr_tl[0] + u*rng_tl[0]
 vs = ctr_tl[1] + u*rng_tl[1]
@@ -707,7 +807,37 @@ LLpatch2.hide_render = True
 LLpatch2.layers[2] = True
 LLpatch2.layers[0] = False
 
-min_max_dz = LL_patch_from_arcs(end_planes, corners, V.xyz)
+
+
+#min_max_dz = LL_patch_from_arcs(end_planes, corners, V.xyz)
+ravg, R, ctr_tl, rng_tl = LL_patch_from_arcs(end_planes, corners, V.xyz, nsample=4)
+print('ctr_tl =', ctr_tl, ', rng_tl =', rng_tl)
+
+us = ctr_tl[0] + u*rng_tl[0]
+vs = ctr_tl[1] + u*rng_tl[1]
+
+xs = numpy.outer(numpy.cos(us), numpy.cos(vs))
+ys = numpy.outer(numpy.sin(us), numpy.cos(vs))
+zs = numpy.outer(numpy.ones(len(us)), numpy.sin(vs))
+
+mverts, mfaces = lbu.tensor_product_mesh_vf(xs, ys, zs)
+LLpatch3 = lbu.pydata_to_mesh(
+    verts=mverts,
+    faces=mfaces,
+    edges=[],
+    name='LLpatch3'
+)
+lbe.set_smooth(LLpatch)
+
+LLpatch3.location = V.xyz
+LLpatch3.rotation_euler = Matrix(R).to_euler()
+LLpatch3.scale = ravg*numpy.ones(3)
+
+LLpatch3.draw_type = 'WIRE'
+LLpatch3.show_all_edges = True
+LLpatch3.hide_render = True
+LLpatch3.layers[2] = True
+LLpatch3.layers[0] = False
 ################################################################
 
 

@@ -19,6 +19,8 @@
 
 \usepackage{mathrsfs}% script (mathscr}
 
+\usepackage{dsfont}% doublestroke (mathds}
+
 % *** TWEAK (NEGATIVE) SPACES *** 
 %https://tex.stackexchange.com/questions/67912/large-negative-spaces
 %https://tex.stackexchange.com/questions/9091/what-is-the-right-way-to-use-the-spacing-command/9092
@@ -237,6 +239,8 @@ cal=zapfc, calscaled=1.18%,
 }
 %\newcommand*{\proof}[1]{\textcolor{blue!60!green}{\textbf{Preuve : }#1$\,_\blacksquare$}}
 
+\newcommand*{\identitymatrix}[1]{\mathds{1}_{#1}}
+\newcommand*{\rotationgroup}[1]{\mathrm{SO(#1)}}
 
 
 % Encircled text
