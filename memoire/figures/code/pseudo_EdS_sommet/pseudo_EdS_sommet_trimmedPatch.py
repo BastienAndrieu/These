@@ -30,7 +30,7 @@ class Vertex:
 
 
 ################################################################
-def extrema_latitude(o, t, v, r1, r1perp, a, b3):
+def extrema_latitude(o_minus_v, t, r1, r1perp, a, b3):
     beta = numpy.arctan2(r1.dot(numpy.cross(t, b3)), r1.dot(b3)) + numpy.array([0, numpy.pi])
     beta = beta%(2*numpy.pi)
     u = [0, a]
@@ -38,41 +38,76 @@ def extrema_latitude(o, t, v, r1, r1perp, a, b3):
         if bi <= a:
             u.append(bi)
     #
-    x = numpy.tile(occ - center, (len(u), 1)).T + numpy.outer(r1, numpy.cos(u)) + numpy.outer(r1perp, numpy.sin(u))
-    lat = numpy.arcsin(x[0]*b3[0] + x[1]*b3[1] + x[2]*b3[2])/numpy.sqrt(numpy.sum(x**2, axis=0))
+    print('u = ', [ui/a for ui in u])
+    x = numpy.tile(o_minus_v, (len(u), 1)).T + numpy.outer(r1, numpy.cos(u)) + numpy.outer(r1perp, numpy.sin(u))
+    lat = numpy.arcsin((x[0]*b3[0] + x[1]*b3[1] + x[2]*b3[2])/numpy.sqrt(numpy.sum(x**2, axis=0)))
+    print('lat/PI = ', lat/numpy.pi)
     return numpy.amin(lat), numpy.amax(lat)
 ################################################################
 
+################################################################
+def extrema_longitude(o_minus_v, t, r1, r1perp, a, B, nsample=10):
+    u = a*numpy.linspace(0,1,nsample)
+    x = numpy.tile(o_minus_v, (nsample, 1)).T + numpy.outer(r1, numpy.cos(u)) + numpy.outer(r1perp, numpy.sin(u))
+    lon = numpy.arctan2(
+        B[0,1]*x[0] + B[1,1]*x[1] + B[2,1]*x[2],
+        B[0,0]*x[0] + B[1,0]*x[1] + B[2,0]*x[2]
+    )
+    imin = numpy.argmin(lon)
+    imax = numpy.argmax(lon)
+
+    uext = [0,0]
+    for j, i in enumerate([imin, imax]):
+        if i == 0:
+            uext[j] = 0
+        elif i == nsample-1:
+            uext[j] = a
+        else:
+            uext[j] = u[i]
+            ui = Newton_extremum_longitude(u[i]/a, o_minus_v, B, a, r1, r1perp)
+            if ui is not None: uext[j] = ui*a
+            
+    print('u = ', [ui/a for ui in uext])
+    x = numpy.tile(o_minus_v, (2, 1)).T + numpy.outer(r1, numpy.cos(uext)) + numpy.outer(r1perp, numpy.sin(uext))
+    lon = numpy.arctan2(
+        B[0,1]*x[0] + B[1,1]*x[1] + B[2,1]*x[2],
+        B[0,0]*x[0] + B[1,0]*x[1] + B[2,0]*x[2]
+    )
+    print('lon/PI = ', lon/numpy.pi)
+    return min(lon), max(lon)
+################################################################
+
+
 
 ################################################################
-def Newton_extremum_longitude(t, o, v, R, a, r1, r190d, TOL=1e-6, itmax=100):
+def Newton_extremum_longitude(u, o_minus_v, B, a, r1, r1perp, TOL=1e-6, itmax=100):
     #
     for it in range(itmax):
-        rvec = r1*numpy.cos(a*t) + r190d*numpy.sin(a*t)
-        x = o - v + rvec
-        x_t = a*(r190d*numpy.cos(a*t) - r1*numpy.sin(a*t))
-        x_tt = -a**2*rvec
+        rvec = r1*numpy.cos(a*u) + r1perp*numpy.sin(a*u)
+        x = o_minus_v + rvec
+        x_u = a*(r1perp*numpy.cos(a*u) - r1*numpy.sin(a*u))
+        x_uu = -a**2*rvec
         #
-        cost = x.dot(R[:,0])
-        sint = x.dot(R[:,1])
-        lon = numpy.arctan2(sint, cost)
-        e = R.dot([-sint, cost, 0])
+        cosu = x.dot(B[:,0])
+        sinu = x.dot(B[:,1])
+        lon = numpy.arctan2(sinu, cosu)
+        e = B.dot([-sinu, cosu, 0])
         #
-        cost_t = x_t.dot(R[:,0])
-        sint_t = x_t.dot(R[:,1])
-        e_t = R.dot([-sint_t, cost_t, 0])
+        cosu_u = x_u.dot(B[:,0])
+        sinu_u = x_u.dot(B[:,1])
+        e_u = B.dot([-sinu_u, cosu_u, 0])
         #
-        h = e.dot(x_t)
-        h_t = e_t.dot(x_t) + e.dot(x_tt)
-        print('it. #%d, t = %s, lon/PI = %s, |h| = %s' % (it, t, lon/numpy.pi, abs(h)))
+        h = e.dot(x_u)
+        h_u = e_u.dot(x_u) + e.dot(x_uu)
+        print('it. #%d, u = %s, lon/PI = %s, |h| = %s' % (it, u, lon/numpy.pi, abs(h)))
         #
-        dt = -h/h_t
-        print('         dt = %s' % dt)
-        if abs(dt) < TOL and abs(h) < TOL:
-            return t
+        du = -h/h_u
+        print('         du = %s' % du)
+        if abs(du) < TOL and abs(h) < TOL:
+            return u
         #
-        t += dt
-        t = min(1, max(0, t))
+        u += du
+        u = min(1, max(0, u))
     return None
 ################################################################
 
@@ -90,23 +125,23 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
     s = s/numpy.tile(r, (3,1)).T
 
     # orthonormal basis
-    R = complete_orthonormal_matrix(numpy.sum(s, axis=0), i=0).T
+    B = complete_orthonormal_matrix(numpy.sum(s, axis=0), i=0).T
 
-    # central projection onto plane tangent to unit sphere at point r1 = R[:,0]
-    s_dot_r1 = s[:,0]*R[0,0] + s[:,1]*R[1,0] + s[:,2]*R[2,0]
+    # central projection onto plane tangent to unit sphere at point r1 = B[:,0]
+    s_dot_r1 = s[:,0]*B[0,0] + s[:,1]*B[1,0] + s[:,2]*B[2,0]
     s_dot_r1 = numpy.sign(s_dot_r1)*numpy.maximum(1e-6, numpy.absolute(s_dot_r1))
     inv_s_dot_r1 = 1./s_dot_r1
     p = s*numpy.tile(inv_s_dot_r1, (3,1)).T
 
     # coordinates in local frame (r2, r3)
-    ab = lib_linalg.matmul(p, R[:,1:3])
+    ab = lib_linalg.matmul(p, B[:,1:3])
 
     # mimimum-area OBB
     ctr_ab, rng_ab, axes_ab = minimal_OBB(ab)
 
     # final rotation matrix
-    R[:,1:3] = lib_linalg.matmul(R[:,1:3], axes_ab)
-    numpy.savetxt(pth_test + 'rotation_matrix.dat', R)
+    B[:,1:3] = lib_linalg.matmul(B[:,1:3], axes_ab)
+    numpy.savetxt(pth_test + 'rotation_matrix.dat', B)
 
     # longitude-latitude extrema
     min_lon = numpy.pi
@@ -116,65 +151,32 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
     for i, (tng, occ) in enumerate(planes):
         ci = corners[i]
         cj = corners[(i-1)%m]
-        r1 = cj - occ
-        r2 = ci - occ
-        r190d = numpy.cross(r1, tng)
-        a = numpy.arctan2(numpy.dot(r2, r190d), numpy.dot(r2, r1))
-        if a < 0: a += 2*numpy.pi
-        #
         #
         fid = open(pth_test +'arc_'+str(i)+'.dat', 'w')
         for vec in [center, occ, tng, cj, ci]:
             fid.write('%s %s %s\n' % (vec[0], vec[1], vec[2]))
         fid.close()
         #
-        #
-        lati = numpy.arcsin(numpy.dot(R[:,2], ci - center)/ravg)
-        print('        lat_i/PI = %s' % (lati/numpy.pi))
-        min_lat = min(min_lat, lati)
-        max_lat = max(max_lat, lati)
-        # find possible interior extrema
-        #     longitude
-        tsample = numpy.linspace(0,1,nsample)
-        ta = a*tsample
-        x = numpy.tile(occ - center, (nsample, 1)).T + numpy.outer(r1, numpy.cos(ta)) + numpy.outer(r190d, numpy.sin(ta))
-        lon = numpy.arctan2(
-            R[0,1]*x[0] + R[1,1]*x[1] + R[2,1]*x[2],
-            R[0,0]*x[0] + R[1,0]*x[1] + R[2,0]*x[2]
-        )
-        iext = [numpy.argmin(lon), numpy.argmax(lon)]
-        for i in iext:
-            t = tsample[i]
-            if i > 0 and i < nsample-1:
-                t = Newton_extremum_longitude(t, occ, center, R, a, r1, r190d)
-            if t is not None:
-                if t >= 0 and t <= 1:
-                    x = occ - center + r1*numpy.cos(a*t) + r190d*numpy.sin(a*t)
-                    lon = numpy.arctan2(numpy.dot(R[:,1], x), numpy.dot(R[:,0], x))
-                    lat = numpy.arcsin(numpy.dot(R[:,2], x)/ravg)
-                    print('       t = %s' % t)
-                    print('       lon/PI   = %s, lat/PI = %s' % (lon/numpy.pi, lat/numpy.pi))
-                    min_lon = min(min_lon, lon)
-                    max_lon = max(max_lon, lon)
-        #     latitude
-        w = numpy.cross(tng, R[:,2])
-        b = -numpy.arctan2(numpy.dot(r1, w), numpy.dot(r190d, w))
-        if b < 0: b += 2*numpy.pi
-        if b <= a:
-            t = b/a
-            x = occ + numpy.cos(t)*r1 + numpy.sin(t)*r190d
-            lat = numpy.arcsin(numpy.dot(R[:,2], x - center)/ravg)
-            print('       t = %s' % t)
-            print('       lat/PI   = %s' % (lat/numpy.pi))
-            min_lat = min(min_lat, lat)
-            max_lat = max(max_lat, lat)
+        r1 = cj - occ
+        r2 = ci - occ
+        r190d = numpy.cross(r1, tng)
+        a = numpy.arctan2(numpy.dot(r2, r190d), numpy.dot(r2, r1))
+        if a < 0: a += 2*numpy.pi
+        # latitude
+        min_lati, max_lati = extrema_latitude(occ - center, tng, r1, r190d, a, B[:,2])
+        min_lat = min(min_lat, min_lati)
+        max_lat = max(max_lat, max_lati)
+        # longitude
+        min_loni, max_loni = extrema_longitude(occ - center, tng, r1, r190d, a, B)
+        min_lon = min(min_lon, min_loni)
+        max_lon = max(max_lon, max_loni)
 
     print('%s < lon/PI < %s' % (min_lon/numpy.pi, max_lon/numpy.pi))
     print('%s < lat/PI < %s' % (min_lat/numpy.pi, max_lat/numpy.pi))
     ctr_tl = 0.5*numpy.array([max_lon + min_lon, max_lat + min_lat])
     rng_tl = 0.5*numpy.array([max_lon - min_lon, max_lat - min_lat])
 
-    return (ravg, R, ctr_tl, rng_tl)
+    return (ravg, B, ctr_tl, rng_tl)
 ################################################################
 
 
