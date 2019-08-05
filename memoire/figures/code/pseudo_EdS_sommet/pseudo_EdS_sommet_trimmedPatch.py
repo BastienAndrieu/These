@@ -1,3 +1,5 @@
+ROOT = '/home/bastien/'#'/d/bandrieu/'#
+
 import bpy
 from mathutils import Vector, Matrix
 
@@ -6,7 +8,7 @@ import numpy.linalg
 from numpy.polynomial.chebyshev import chebgrid2d, chebval2d
 
 import sys
-sys.path.append('/d/bandrieu/GitHub/Code/Python/')
+sys.path.append(ROOT + 'GitHub/Code/Python/')
 import lib_blender_util as lbu
 import lib_blender_edit as lbe
 import lib_blender_figures as lbf
@@ -26,38 +28,58 @@ class Vertex:
 ################################################################
 
 
+
 ################################################################
-def Newton_extremum_longitude(t, o, v, R1, R2, a, r1, r190d, TOL=1e-6, itmax=100):
+def extrema_latitude(o, t, v, r1, r1perp, a, b3):
+    beta = numpy.arctan2(r1.dot(numpy.cross(t, b3)), r1.dot(b3)) + numpy.array([0, numpy.pi])
+    beta = beta%(2*numpy.pi)
+    u = [0, a]
+    for bi in beta:
+        if bi <= a:
+            u.append(bi)
+    #
+    x = numpy.tile(occ - center, (len(u), 1)).T + numpy.outer(r1, numpy.cos(u)) + numpy.outer(r1perp, numpy.sin(u))
+    lat = numpy.arcsin(x[0]*b3[0] + x[1]*b3[1] + x[2]*b3[2])/numpy.sqrt(numpy.sum(x**2, axis=0))
+    return numpy.amin(lat), numpy.amax(lat)
+################################################################
+
+
+################################################################
+def Newton_extremum_longitude(t, o, v, R, a, r1, r190d, TOL=1e-6, itmax=100):
+    #
     for it in range(itmax):
-        x = o - v + r1*numpy.cos(a*t) + r190d*numpy.sin(a*t)
-        xt = a*(r190d*numpy.cos(a*t) - r1*numpy.sin(a*t))
-        xtt = -a**2*x
+        rvec = r1*numpy.cos(a*t) + r190d*numpy.sin(a*t)
+        x = o - v + rvec
+        x_t = a*(r190d*numpy.cos(a*t) - r1*numpy.sin(a*t))
+        x_tt = -a**2*rvec
         #
-        """
-        N = numpy.dot(R2, x)
-        Nt = numpy.dot(R2, xt)
-        D = numpy.dot(R1, x)
-        Dt = numpy.dot(R1, xt)    
+        cost = x.dot(R[:,0])
+        sint = x.dot(R[:,1])
+        lon = numpy.arctan2(sint, cost)
+        e = R.dot([-sint, cost, 0])
         #
-        h = numpy.dot(xt, (D*R2 - N*R1))
+        cost_t = x_t.dot(R[:,0])
+        sint_t = x_t.dot(R[:,1])
+        e_t = R.dot([-sint_t, cost_t, 0])
         #
-        ht = numpy.dot(xtt, (D*R2 - N*R1)) + numpy.dot(xt, (Dt*R2 - Nt*R1))
-        """
-        h = numpy.dot(xt, numpy.dot(R1, x)*R2 - numpy.dot(R2, x)*R1)
-        ht = numpy.dot(xtt, numpy.dot(R1, x)*R2 - numpy.dot(R2, x)*R1) + numpy.dot(xt, numpy.dot(R1, xt)*R2 - numpy.dot(R2, xt)*R1)
-        print('it. #%d, t = %s, |ht| = %s' % (it, t, abs(ht)))
-        if abs(ht) < TOL:
+        h = e.dot(x_t)
+        h_t = e_t.dot(x_t) + e.dot(x_tt)
+        print('it. #%d, t = %s, lon/PI = %s, |h| = %s' % (it, t, lon/numpy.pi, abs(h)))
+        #
+        dt = -h/h_t
+        print('         dt = %s' % dt)
+        if abs(dt) < TOL and abs(h) < TOL:
             return t
         #
-        dt = -h/ht
-        #
         t += dt
+        t = min(1, max(0, t))
     return None
 ################################################################
 
 
 
 ################################################################
+pth_test = '/home/bastien/TravauxThese/SphericalGeometry/extrema_longitude_latitude/'
 def LL_patch_from_arcs(planes, corners, center, nsample=10):
     m = len(planes)
 
@@ -84,6 +106,7 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
 
     # final rotation matrix
     R[:,1:3] = lib_linalg.matmul(R[:,1:3], axes_ab)
+    numpy.savetxt(pth_test + 'rotation_matrix.dat', R)
 
     # longitude-latitude extrema
     min_lon = numpy.pi
@@ -98,6 +121,13 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
         r190d = numpy.cross(r1, tng)
         a = numpy.arctan2(numpy.dot(r2, r190d), numpy.dot(r2, r1))
         if a < 0: a += 2*numpy.pi
+        #
+        #
+        fid = open(pth_test +'arc_'+str(i)+'.dat', 'w')
+        for vec in [center, occ, tng, cj, ci]:
+            fid.write('%s %s %s\n' % (vec[0], vec[1], vec[2]))
+        fid.close()
+        #
         #
         lati = numpy.arcsin(numpy.dot(R[:,2], ci - center)/ravg)
         print('        lat_i/PI = %s' % (lati/numpy.pi))
@@ -116,13 +146,14 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
         for i in iext:
             t = tsample[i]
             if i > 0 and i < nsample-1:
-                t = Newton_extremum_longitude(t, occ, center, R[:,0], R[:,1], a, r1, r190d)
+                t = Newton_extremum_longitude(t, occ, center, R, a, r1, r190d)
             if t is not None:
                 if t >= 0 and t <= 1:
                     x = occ - center + r1*numpy.cos(a*t) + r190d*numpy.sin(a*t)
                     lon = numpy.arctan2(numpy.dot(R[:,1], x), numpy.dot(R[:,0], x))
+                    lat = numpy.arcsin(numpy.dot(R[:,2], x)/ravg)
                     print('       t = %s' % t)
-                    print('       lon/PI   = %s' % (lon/numpy.pi))
+                    print('       lon/PI   = %s, lat/PI = %s' % (lon/numpy.pi, lat/numpy.pi))
                     min_lon = min(min_lon, lon)
                     max_lon = max(max_lon, lon)
         #     latitude
@@ -283,9 +314,9 @@ def LL_patch_from_corners(arcs, center, mrg=0, construction_steps=False, critere
 
 
 ################################################################
-pthin = '/d/bandrieu/GitHub/FFTsurf/test/demo_EoS_brep/'
-pthout = '/d/bandrieu/GitHub/These/memoire/figures/data/pseudo_EdS_sommet/trimmed_patch/'
-pthimg = '/d/bandrieu/GitHub/These/memoire/figures/images/pseudo_EdS_sommet/'
+pthin = ROOT + 'GitHub/FFTsurf/test/demo_EoS_brep/'
+pthout = ROOT + '/GitHub/These/memoire/figures/data/pseudo_EdS_sommet/trimmed_patch/'
+pthimg = ROOT + 'GitHub/These/memoire/figures/images/pseudo_EdS_sommet/'
 
 ivert = 7
 rho = 0.11
@@ -294,7 +325,7 @@ rho = 0.11
 
 #################################################
 # CHECKER TEXTURE
-imgchecker = bpy.data.images.load(filepath='/d/bandrieu/GitHub/These/memoire/figures/images/checker6.png')
+imgchecker = bpy.data.images.load(filepath=ROOT + 'GitHub/These/memoire/figures/images/checker6.png')
 texchecker = bpy.data.textures.new('texture_checker', 'IMAGE')
 texchecker.image = imgchecker
 #################################################
@@ -395,7 +426,7 @@ while True:
 
 ################################################################
 # LOAD INCIDENT FACES AND MAKE OFFSET FACES
-color_face = numpy.loadtxt('/d/bandrieu/GitHub/These/memoire/figures/data/BRep/face_color.dat')
+color_face = numpy.loadtxt(ROOT + 'GitHub/These/memoire/figures/data/BRep/face_color.dat')
 color_face = lco.cc_hsv(color_face, fs=1.2, fv=1.0)
 
 m = 100
@@ -779,7 +810,7 @@ ravg, R, ctr_tl, rng_tl, uv = LL_patch_from_corners(
     construction_steps=True,
     critere='width'
 )
-print('ctr_tl =', ctr_tl, ', rng_tl =', rng_tl)
+print('ctr_tl/PI =', ctr_tl/numpy.pi, ', rng_tl/PI =', rng_tl/numpy.pi)
 
 us = ctr_tl[0] + u*rng_tl[0]
 vs = ctr_tl[1] + u*rng_tl[1]
@@ -810,8 +841,17 @@ LLpatch2.layers[0] = False
 
 
 #min_max_dz = LL_patch_from_arcs(end_planes, corners, V.xyz)
-ravg, R, ctr_tl, rng_tl = LL_patch_from_arcs(end_planes, corners, V.xyz, nsample=4)
-print('ctr_tl =', ctr_tl, ', rng_tl =', rng_tl)
+ravg, R, ctr_tl, rng_tl = LL_patch_from_arcs(end_planes, corners, V.xyz, nsample=10)
+print('ctr_tl/PI =', ctr_tl/numpy.pi, ', rng_tl/PI =', rng_tl/numpy.pi)
+
+OBBtl = None
+for obj in bpy.data.objects:
+    if obj.name == 'tl_OBB':
+        OBBtl = obj
+        break
+if OBBtl is not None:
+    OBBtl.scale = (rng_tl[0]/numpy.pi, rng_tl[1]/numpy.pi, 1)
+    OBBtl.location = (ctr_tl[0]/numpy.pi, ctr_tl[1]/numpy.pi, 0)
 
 us = ctr_tl[0] + u*rng_tl[0]
 vs = ctr_tl[1] + u*rng_tl[1]
