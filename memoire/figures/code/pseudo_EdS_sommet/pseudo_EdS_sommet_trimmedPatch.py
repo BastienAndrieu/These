@@ -119,25 +119,57 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
     m = len(planes)
 
     # normalize corners onto unit sphere
-    s = numpy.array([xyz - center for xyz in corners])
+    if False:
+        xyz_sample = corners
+    else:
+        xyz_sample = []
+        for i, (tng, occ) in enumerate(planes):
+            ci = corners[i]
+            cj = corners[(i-1)%m]
+            #
+            r1 = cj - occ
+            r2 = ci - occ
+            r190d = numpy.cross(r1, tng)
+            a = numpy.arctan2(r2.dot(r190d), r2.dot(r1))%(2*numpy.pi)
+            mij = occ + r1*numpy.cos(0.5*a) + r190d*numpy.sin(0.5*a)
+            xyz_sample.append(cj)
+            xyz_sample.append(mij)
+        
+    s = numpy.array([xyz - center for xyz in xyz_sample])
     r = numpy.sqrt(numpy.sum(s**2, axis=1))
-    ravg = numpy.sum(r)/float(m)
+    ravg = numpy.sum(r)/float(len(s))
     s = s/numpy.tile(r, (3,1)).T
+    print('s = ')
+    print(s)
 
     # orthonormal basis
     B = complete_orthonormal_matrix(numpy.sum(s, axis=0), i=0).T
+    print('Btmp =')
+    print(B)
 
     # central projection onto plane tangent to unit sphere at point r1 = B[:,0]
     s_dot_r1 = s[:,0]*B[0,0] + s[:,1]*B[1,0] + s[:,2]*B[2,0]
     s_dot_r1 = numpy.sign(s_dot_r1)*numpy.maximum(1e-6, numpy.absolute(s_dot_r1))
     inv_s_dot_r1 = 1./s_dot_r1
     p = s*numpy.tile(inv_s_dot_r1, (3,1)).T
+    print('p =')
+    print(p)
 
     # coordinates in local frame (r2, r3)
     ab = lib_linalg.matmul(p, B[:,1:3])
+    print('p_2d =')
+    print(ab)
 
     # mimimum-area OBB
     ctr_ab, rng_ab, axes_ab = minimal_OBB(ab)
+    print('ctr_ab =')
+    print(ctr_ab)
+    print('rng_ab =')
+    print(rng_ab)
+    print('area =')
+    print(rng_ab[0]*rng_ab[1])
+    print('axes_ab =')
+    print(axes_ab)
 
     # final rotation matrix
     B[:,1:3] = lib_linalg.matmul(B[:,1:3], axes_ab)
@@ -813,6 +845,7 @@ ravg, R, ctr_tl, rng_tl, uv = LL_patch_from_corners(
     critere='width'
 )
 print('ctr_tl/PI =', ctr_tl/numpy.pi, ', rng_tl/PI =', rng_tl/numpy.pi)
+print('area = ', rng_tl[0]*numpy.cos(ctr_tl[1])*numpy.sin(rng_tl[1]))
 
 us = ctr_tl[0] + u*rng_tl[0]
 vs = ctr_tl[1] + u*rng_tl[1]
@@ -845,6 +878,7 @@ LLpatch2.layers[0] = False
 #min_max_dz = LL_patch_from_arcs(end_planes, corners, V.xyz)
 ravg, R, ctr_tl, rng_tl = LL_patch_from_arcs(end_planes, corners, V.xyz, nsample=10)
 print('ctr_tl/PI =', ctr_tl/numpy.pi, ', rng_tl/PI =', rng_tl/numpy.pi)
+print('area = ', rng_tl[0]*numpy.cos(ctr_tl[1])*numpy.sin(rng_tl[1]))
 
 OBBtl = None
 for obj in bpy.data.objects:
@@ -880,11 +914,34 @@ LLpatch3.show_all_edges = True
 LLpatch3.hide_render = True
 LLpatch3.layers[2] = True
 LLpatch3.layers[0] = False
+
+
+
+
+c = lcheb.read_polynomial2(ROOT + 'GitHub/FFTsurf/test/LL_patch/surf.cheb')
+xyz = chebgrid2d(u, u, c)
+mverts, mfaces = lbu.tensor_product_mesh_vf(xyz[0], xyz[1], xyz[2])
+LLpatch4 = lbu.pydata_to_mesh(
+    mverts,
+    mfaces,
+    name='LLpatch4'
+)
+lbe.set_smooth(LLpatch4)
+LLpatch4.layers[2] = True
+LLpatch4.layers[0] = False
 ################################################################
 
 
-
-
+################################################################
+# EXPORT DATA FOR FFTSURF TEST
+f = open(ROOT + 'GitHub/FFTsurf/test/LL_patch/input.dat', 'w')
+f.write('%d\n' % len(end_planes))
+cc_center = [pla[1] for pla in end_planes]
+normal = [pla[0] for pla in end_planes]
+for x, y, z in [V.xyz] + cc_center + normal + corners:
+    f.write('%s %s %s\n' % (x, y, z))
+f.close()
+################################################################
 
 
 ################################################################
