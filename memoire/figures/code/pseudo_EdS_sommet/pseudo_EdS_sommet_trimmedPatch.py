@@ -6,6 +6,7 @@ from mathutils import Vector, Matrix
 import numpy
 import numpy.linalg
 from numpy.polynomial.chebyshev import chebgrid2d, chebval2d
+import os
 
 import sys
 sys.path.append(ROOT + 'GitHub/Code/Python/')
@@ -16,7 +17,7 @@ import lib_chebyshev as lcheb
 import lib_color as lco
 import lib_brep as lbrep
 import lib_linalg
-from lib_compgeom import circumcircle, complete_orthonormal_matrix, minimal_OBB
+from lib_compgeom import circumcircle, complete_orthonormal_matrix, minimal_OBB, covariance_ellipse
 
 ################################################################
 class Vertex:
@@ -161,7 +162,10 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
     print(ab)
 
     # mimimum-area OBB
-    ctr_ab, rng_ab, axes_ab = minimal_OBB(ab)
+    if True:
+        ctr_ab, rng_ab, axes_ab = minimal_OBB(ab)
+    else:
+        ctr_ab, rng_ab, axes_ab = covariance_ellipse(ab)
     print('ctr_ab =')
     print(ctr_ab)
     print('rng_ab =')
@@ -213,8 +217,93 @@ def LL_patch_from_arcs(planes, corners, center, nsample=10):
 
 
 
+################################################################
+def LL_trimmed_patch(planes, corners, center, degr=16, name='trimmed_LLpatch', tol_chord=1e-3):
+    #
+    path_tmp = pthout + 'meshgen/'
+    #
+    #
+    ravg, B, ctr_tl, rng_tl = LL_patch_from_arcs(planes, corners, center, nsample=10)
+    #
+    uc = ctr_tl[0] + lcheb.cgl_nodes(degr)*rng_tl[0]
+    vc = ctr_tl[1] + lcheb.cgl_nodes(degr)*rng_tl[1]
 
+    xc = numpy.outer(numpy.cos(uc), numpy.cos(vc))
+    yc = numpy.outer(numpy.sin(uc), numpy.cos(vc))
+    zc = numpy.outer(numpy.ones(len(uc)), numpy.sin(vc))
 
+    xyzc = numpy.zeros((3, degr+1, degr+1))
+    xyzc[0] = center[0] + ravg*(xc*B[0,0] + yc*B[0,1] + zc*B[0,2])
+    xyzc[1] = center[1] + ravg*(xc*B[1,0] + yc*B[1,1] + zc*B[1,2])
+    xyzc[2] = center[2] + ravg*(xc*B[2,0] + yc*B[2,1] + zc*B[2,2])
+
+    c = numpy.zeros((degr+1,degr+1,3))
+    for k in range(3):
+        c[:,:,k] = lcheb.fcht(lcheb.fcht(xyzc[k]).T).T
+
+    lcheb.write_polynomial2(c, path_tmp + 'c.cheb')
+    #
+    frac = 0.5/numpy.sqrt(tol_chord*(2 - tol_chord))
+    xyz = []
+    uv = []
+    m = len(planes)
+    for i, (tng, occ) in enumerate(planes):
+        ci = corners[i]
+        cj = corners[(i-1)%m]
+        #
+        r1 = cj - occ
+        r2 = ci - occ
+        ri = 0.5*(Vector(r1).length + Vector(r2).length)
+        r1perp = numpy.cross(r1, tng)
+        a = numpy.arctan2(r2.dot(r1perp), r2.dot(r1))%(2*numpy.pi)
+        #
+        ni = max(2, int(frac*a))
+        v = numpy.linspace(0,a,ni)
+        for j in range(ni-1):
+            xyzj = occ + r1*numpy.cos(v[j]) + r1perp*numpy.sin(v[j])
+            sj = xyzj - center
+            lon = numpy.arctan2(sj.dot(B[:,1]), sj.dot(B[:,0]))
+            lat = numpy.arcsin(sj.dot(B[:,2])/numpy.sqrt(numpy.sum(sj**2)))
+            xyz.append(xyzj)
+            uv.append([(lon - ctr_tl[0])/rng_tl[0], (lat - ctr_tl[1])/rng_tl[1]])
+    n = len(uv)
+    edg = numpy.asarray([(i, (i+1)%n) for i in range(n)])
+    #h0 = frac*ravg
+    h0 = 0
+    for e in edg:
+        h0 += Vector(xyz[e[0]] - xyz[e[1]]).length
+    h0 /= float(len(edg))
+    hmin = 0.9*h0
+    hmax = 1.1*h0
+    f = open(path_tmp + 'info.dat', 'w')
+    f.write('%s\n%s\n%s' % (hmin, hmax, tol_chord))
+    f.close()
+    numpy.savetxt(path_tmp + 'bpts.dat', uv)
+    numpy.savetxt(path_tmp + 'bedg.dat', edg + 1, fmt='%d')
+    #
+    cmd = '/home/bastien/MeshGen/./meshgen.out '
+    cmd += path_tmp + 'c.cheb '
+    cmd += path_tmp + 'bpts.dat '
+    cmd += path_tmp + 'bedg.dat '
+    cmd += path_tmp + 'info.dat '
+    cmd += path_tmp + 'tri.dat '
+    cmd += path_tmp + 'uv.dat '
+    cmd += path_tmp + 'xyz.dat '
+    print('Run meshgen...')
+    os.system(cmd)
+    print('ok!')
+    #
+    tri = numpy.loadtxt(path_tmp + 'tri.dat', dtype=int) - 1
+    xyz = numpy.loadtxt(path_tmp + 'xyz.dat')
+    uv = numpy.loadtxt(path_tmp + 'uv.dat')
+    obj = lbu.pydata_to_mesh(
+        verts=xyz.tolist(),
+        faces=tri.tolist(),
+        edges=None,
+        name=name
+    )
+    return (obj, uv, ravg, B, ctr_tl, rng_tl)
+################################################################
 
 
 
@@ -675,7 +764,7 @@ for i, f in enumerate(pseudoEdS.data.polygons):
     for j in range(f.loop_total):
         k = f.loop_start + j
         for l in range(2):
-            uvlayer.data[k].uv[l] = 0.5*(uv[f.vertices[j],l] + 1.0)
+            uvlayer.data[k].uv[l] = 0.5*(uv[f.vertices[j]][l] + 1.0)
 
 # MATERIAL
 mat = bpy.data.materials.new('mat_pseudoEdS')
@@ -743,6 +832,7 @@ LLpatch.data.materials.append(mat)
 
 LLpatch.layers[2] = True
 LLpatch.layers[0] = False
+LLpatch.hide_render = True
 ################################################################
 
 
@@ -903,7 +993,42 @@ LLpatch3 = lbu.pydata_to_mesh(
     edges=[],
     name='LLpatch3'
 )
-lbe.set_smooth(LLpatch)
+lbe.set_smooth(LLpatch3)
+
+# TEXTURE COORDS
+scene.objects.active = LLpatch3
+bpy.ops.object.mode_set(mode='EDIT')
+bpy.ops.uv.unwrap(
+    method='ANGLE_BASED',
+    fill_holes=True,
+    correct_aspect=True,
+    use_subsurf_data=False,
+    margin=0.001
+)
+bpy.ops.object.mode_set(mode='OBJECT')
+uvlayer = LLpatch3.data.uv_layers.active
+n = m
+uu = 0.5*(u + 1)
+vv = uu
+for j in range(n-1):
+    for i in range(m-1):
+        k = i + j*(m-1)
+        f = LLpatch3.data.polygons[k]
+        for l in [0,3]:
+            uvlayer.data[f.loop_start + l].uv[0] = uu[i]
+        for l in [1,2]:
+            uvlayer.data[f.loop_start + l].uv[0] = uu[i+1]
+        for l in [0,1]:
+            uvlayer.data[f.loop_start + l].uv[1] = vv[j]
+        for l in [2,3]:
+            uvlayer.data[f.loop_start + l].uv[1] = vv[j+1]
+
+# MATERIAL
+mat = bpy.data.materials['mat_LLpatch']
+mat.alpha = 0.2
+mat.use_transparency = True
+mat.use_raytrace = False
+LLpatch3.data.materials.append(mat)
 
 LLpatch3.location = V.xyz
 LLpatch3.rotation_euler = Matrix(R).to_euler()
@@ -911,13 +1036,13 @@ LLpatch3.scale = ravg*numpy.ones(3)
 
 LLpatch3.draw_type = 'WIRE'
 LLpatch3.show_all_edges = True
-LLpatch3.hide_render = True
+
 LLpatch3.layers[2] = True
 LLpatch3.layers[0] = False
 
 
 
-
+"""
 c = lcheb.read_polynomial2(ROOT + 'GitHub/FFTsurf/test/LL_patch/surf.cheb')
 xyz = chebgrid2d(u, u, c)
 mverts, mfaces = lbu.tensor_product_mesh_vf(xyz[0], xyz[1], xyz[2])
@@ -929,6 +1054,38 @@ LLpatch4 = lbu.pydata_to_mesh(
 lbe.set_smooth(LLpatch4)
 LLpatch4.layers[2] = True
 LLpatch4.layers[0] = False
+"""
+trimmedLLpatch, uv, ravg, B, ctr_tl, rng_tl = LL_trimmed_patch(
+    end_planes,
+    corners,
+    V.xyz,
+    name='trimmed_LLpatch',
+    tol_chord=1e-4
+)
+
+scene.objects.active = trimmedLLpatch
+lbe.set_smooth(trimmedLLpatch)
+bpy.ops.object.mode_set(mode='EDIT')
+print('   unwrap UVs...')
+bpy.ops.uv.unwrap(
+    method='ANGLE_BASED',
+    fill_holes=True,
+    correct_aspect=True,
+    use_subsurf_data=False,
+    margin=0.001
+)
+bpy.ops.object.mode_set(mode='OBJECT')
+uvlayer = trimmedLLpatch.data.uv_layers.active
+for f in trimmedLLpatch.data.polygons:
+    for j in range(f.loop_total):
+        k = f.loop_start + j
+        for l in range(2):
+            uvlayer.data[k].uv[l] = 0.5*(uv[f.vertices[j]][l] + 1.0)
+
+trimmedLLpatch.data.materials.append(bpy.data.materials['mat_pseudoEdS'])
+
+trimmedLLpatch.layers[2] = True
+trimmedLLpatch.layers[0] = False
 ################################################################
 
 

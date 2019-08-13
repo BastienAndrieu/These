@@ -22,8 +22,8 @@
 \contentsline {subsection}{\numberline {2.3.3}Param\IeC {\'e}trisation de la pseudo-EdS d'un sommet BRep\ convexe}{21}{subsection.2.3.3}
 \contentsline {subsubsection}{\numberline {2.3.3.1}Ajustement de plusieurs carreaux non-restreints}{21}{subsubsection.2.3.3.1}
 \contentsline {subsubsection}{\numberline {2.3.3.2}Ajustement d'un seul carreau restreint}{23}{subsubsection.2.3.3.2}
-\contentsline {section}{\numberline {2.4}Construction d'un mod\IeC {\`e}le BRep\ de l'EdB}{24}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Construction du graphe des intersections}{24}{subsection.2.4.1}
+\contentsline {section}{\numberline {2.4}Construction d'un mod\IeC {\`e}le BRep\ de l'EdB}{25}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Construction du graphe des intersections}{25}{subsection.2.4.1}
 \contentsline {subsection}{\numberline {2.4.2}Construction des faces, ar\IeC {\^e}tes et sommets BRep}{25}{subsection.2.4.2}
 \contentsline {chapter}{\chapternumberline {3}Mise en \oe uvre num\IeC {\'e}rique de l'algorithme de propagation}{29}{chapter.3}
 \contentsline {section}{\numberline {3.1}Repr\IeC {\'e}sentation des carreaux de surface}{29}{section.3.1}

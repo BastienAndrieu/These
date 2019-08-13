@@ -590,11 +590,11 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
 	
 	\item on cherche une paramétrisation de la forme
 	\[
-		\eos^{\brepvertex} = \v + \rho(\v) \mathbf{R} \vit{s},
+		\eos^{\brepvertex} = \v + \rho(\v) \mathbf{B} \vit{s},
 	\]
 	où
     \begin{enumerate}
-        \item $\mathbf{R} = \colvec{\br_1 & \br_2 & \br_3} \in \rotationgroup{3}$ désigne une matrice de rotation ($\transpose{\mathbf{R}} \mathbf{R} = \identitymatrix{}$ et $\determinant{\mathbf{R}} = 1$)% ($\dotprod{\br_i}{\br_j} = \delta_{i,j}$ et $\br_{i+2} = \crossprod{\br_i}{\br_{i+1}}$)
+        \item $\mathbf{B} = \colvec{\bb_1 & \bb_2 & \bb_3} \in \rotationgroup{3}$ désigne une matrice de rotation ($\transpose{\mathbf{B}} \mathbf{B} = \identitymatrix{}$ et $\determinant{\mathbf{B}} = 1$)% ($\dotprod{\br_i}{\br_j} = \delta_{i,j}$ et $\br_{i+2} = \crossprod{\br_i}{\br_{i+1}}$)
         \item $\vit{s} = 
 		\begin{pmatrix}
             \cos \theta \cos \lambda \\
@@ -607,7 +607,7 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
         \item $\lo{v} = -1 \leq v \leq 1 = \hi{v}$
     \end{enumerate}
     
-    \item on veut éviter que $\Sigma_{\brepvertex}$ contienne les pôles $\lambda = \pm \frac{\pi}{2}$ (\ie $\vit{s} = \pm \br_3$), car la paramétrisation $\eos^{\brepvertex}$ y est singulière (en effet $\eos^{\brepvertex}_{\theta}(\theta, \pm \frac{\pi}{2}) = \vit{0}$)
+    \item on veut éviter que $\Sigma_{\brepvertex}$ contienne les pôles $\lambda = \pm \frac{\pi}{2}$ (\ie $\vit{s} = \pm \bb_3$), car la paramétrisation $\eos^{\brepvertex}$ y est singulière (en effet $\eos^{\brepvertex}_{\theta}(\theta, \pm \frac{\pi}{2}) = \vit{0}$)
     \begin{enumerate}
         \item[$\to$] étendue en latitude $\Lambda$ (relativement) minimale
         %\item[$\to$] centrer $\lambda_0$ sur zéro
@@ -617,6 +617,49 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
         %\item[$\to$] aire de $\Sigma_{\brepvertex}$ (relativement) minimale ($\left| \Sigma_{\brepvertex} \right| = 4 \rho(\v)^2 \Theta \cos \lambda_0 \sin \Lambda$)
         \item[$\to$] ratio des aires $\frac{\left| \pseudoEdS{\brepvertex}{\rho} \right|}{\left| \Sigma_{\brepvertex} \right|}$ (relativement) proche de 1 ($\left| \Sigma_{\brepvertex} \right| = 4 \rho(\v)^2 \Theta \cos \lambda_0 \sin \Lambda$)
     \end{enumerate}
+    
+	\item 
+	\begin{equation}
+	    \vit{s} = \frac{1}{\rho(\v)} \transpose{\mathbf{B}} \left(\eos^{\brepvertex} - \v\right) 
+	    = \begin{pmatrix}
+	            \cos \theta \cos \lambda \\
+	            \sin \theta \cos \lambda \\
+	            \sin \lambda \\
+	        \end{pmatrix},
+	\end{equation}
+	donc 
+	\begin{align}
+	    \theta &= \arctan \left( 
+	        \frac{
+	            \dotprod{\bb_2}{\left(\eos^{\brepvertex} - \v\right)}
+	        }{
+	            \dotprod{\bb_1}{\left(\eos^{\brepvertex} - \v\right)}
+	        }
+	    \right), \\
+	    \lambda &= \arcsin \left( 
+	        \frac{
+	            \dotprod{\bb_3}{\left(\eos^{\brepvertex} - \v\right)}
+	        }{
+	            \rho(\v)
+	        }
+	    \right).
+	\end{align} 
+	
+	 \item choix de $\mathbf{B}$ :
+	 \item on note $\unv_i$ la direction normale à $\EdSpropreplus{\brepface_i}$ au point $\eos^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i})$
+	 \item on choisit $\bb_1 = \unitized{\sum_{i=0}^{m-1} \unv_i}$
+    \item on note $\p_i = \frac{\p}{\dot_prod{\unv_i}{\bb_1}}$ la projection centrale de $\unv_i$ sur le plan tangent à la sphère unité au point $\bb_1}$
+    \item on détermine une base orthonormée $\left( \bb_2, \bb_3 \right)$ de ce plan, adéquate vis-à-vis des points $\family{\p}{i}{0}{m-1}$
+    \begin{itemize}
+    	\item rectangle englobant d'aire minimale
+    	\item ellipse de covariance
+    \end{itemize}
+    \item[$\to$] on obtient la matrice $\mathbf{B} = \colvec{\bb_1 & \bb_2 & \bb_3}$
+    \item on calcule les extrema en longitude et latitude atteints sur les arcs caractéristiques
+    \begin{enumerate}
+    	\item \cf notes ``Huygens'' \ldots
+    \end{enumerate}
+    \item on prend $\theta_0 = \frac{\lo{\theta} + \hi{\theta}}{2}$, $\lambda_0 = \frac{\lo{\lambda} + \hi{\lambda}}{2}$, $\Theta = (1 + \epsilon) \frac{\hi{\theta} - \lo{\theta}}{2}$ et $\Lambda = (1 + \epsilon) \frac{\hi{\lambda} - \lo{\lambda}}{2}$, où $\epsilon \geq 0$ est un paramètre de marge
     
 \end{enumerate}
 
@@ -638,14 +681,14 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
 %	
 %	\item on choisit d'utiliser les coordonnées sphériques comme paramètres, \ie
 %	\begin{equation}
-%	    \bs = \mathbf{R} 
+%	    \bs = \mathbf{B} 
 %	    \begin{pmatrix}
 %		    \cos \theta \cos \lambda \\
 %		    \sin \theta \cos \lambda \\
 %		    \sin \lambda \\
 %	    \end{pmatrix},
 %	\end{equation}
-%	où $\mathbf{R}$ désigne une matrice de rotation (\ie ses colonnes forment une base orthonormée de $\reals^3$) et $\theta$, $\lambda$ désignent respectivement la longitude et la latitude d'un point du carreau
+%	où $\mathbf{B}$ désigne une matrice de rotation (\ie ses colonnes forment une base orthonormée de $\reals^3$) et $\theta$, $\lambda$ désignent respectivement la longitude et la latitude d'un point du carreau
 %	\begin{align*}
 %	    \theta(u,v)  &= \Theta u + \theta_0, \\
 %	    \lambda(u,v) &= \Lambda v + \lambda_0,
@@ -653,7 +696,7 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
 %	avec $-1 \leq u, v \leq 1$
 %
 %
-%	\item on propose donc une méthode heuristique pour construire un tel carreau (\ie trouver $\mathbf{R}$, $\Theta$, $\theta_0$, $\Lambda$ et $\lambda_0$) d'aire minimale
+%	\item on propose donc une méthode heuristique pour construire un tel carreau (\ie trouver $\mathbf{B}$, $\Theta$, $\theta_0$, $\Lambda$ et $\lambda_0$) d'aire minimale
 %	\item on suppose qu'on dispose d'un échantillonnage suffisamment $S = \family{\s}{i}{1}{n}$ fin de l'ensemble des arcs de cercle caractéristiques limites
 %	\item le problème consiste alors à construire un carreau paramétrique décrivant une région $\Sigma_S$ de $\mathbb{S}^2$ contenant $S$
 %	
