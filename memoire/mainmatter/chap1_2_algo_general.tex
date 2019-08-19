@@ -1,4 +1,4 @@
-%\chapter[Algorithme de propagation d'interfaces régulières \piecewise]{Algorithme général pour la propagation d'interfaces régulières \piecewise}
+stique %\chapter[Algorithme de propagation d'interfaces régulières \piecewise]{Algorithme général pour la propagation d'interfaces régulières \piecewise}
 \chapter[Algorithme général pour la propagation d'interfaces $\contgeom{1}$ \piecewise]{Mise au point d'un algorithme général pour la propagation d'interfaces régulières \piecewise}
 \label{chap:algo_general}
 
@@ -70,7 +70,7 @@ arguments :
 	\item si on procède ainsi pour chaque carreau qui décrit l'interface, on construit beaucoup de nouveaux carreaux qui sont redondants, voire même trivialement exclus de l'EdB
 %	\item la zone d'influence sur l'EdB d'une courbe singulière concave est vide (preuve?) (\ie cette courbe ne contribue pas à l'EdB et peut donc être ignorée)
 %	\item la zone d'influence sur l'EdB d'une courbe singulière convexe $\Gamma$ est incluse dans la portion de son EdS qui est tangente aux EdS des deux nappes adhérentes à $\Gamma$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on la note $\pseudoEdS{\Gamma}{\rho}$
-	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \Sigma$ adhérente aux nappes régulières $\Left{\Sigma}$ et $\Right{\Sigma}$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Left{\Sigma}}{\rho}$ et $\EdS{\Right{\Sigma}}{\rho}$ (on appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$).
+	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \Sigma$ adhérente aux nappes régulières $\Left{\Sigma}$ et $\Right{\Sigma}$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Left{\Sigma}}{\rho}$ et $\EdS{\Right{\Sigma}}{\rho}$. On appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$.
 	\begin{proof}
 		En posant\footnote{introduire ces notations dans la \autoref{section:principe_huygens}.}
 		\[
@@ -97,11 +97,11 @@ arguments :
 	
 	\item Si $\Gamma$ est une courbe singulière concave de $\Sigma$ alors sa zone d'influence sur l'EdB est vide (\ie $\Gamma$ ne contribue pas à l'EdB et peut donc être ignorée).
 	\begin{proof}
-		On veut montrer que $\influEdB{\Gamma}{\rho} = \varnothing$ (piste : montrer que si $\Gamma$ est concave alors, pour $\bx \in \complement{\Omega}$, $\implicitEdB{\Gamma}(\bx) = 0 \Rightarrow \implicitEdB{\Left{\Sigma}}(\bx) < 0$ ou $\implicitEdB{\Right{\Sigma}}(\bx) < 0$)
+		On veut montrer que $\influEdB{\Gamma}{\rho} = \varnothing$ (piste : montrer que si $\Gamma$ est concave alors, pour $\bx \in \complement{\Omega}$, $\implicitEdB{\Gamma}(\bx) = 0 \Rightarrow \implicitEdB{\Left{\Sigma}}(\bx) < 0$ ou $\implicitEdB{\Right{\Sigma}}(\bx) < 0$) [\ldots]
 	\end{proof}
 	
 	\item si toutes les courbes singulières adhérentes à un point singulier sont concaves alors la zone d'influence sur l'EdB de ce point est vide (preuve?) (\ie ce point ne contribue pas à l'EdB et peut donc être ignoré)
-	\item si toutes les courbes singulières adhérentes à un point singulier $\p$ \textit{ne sont pas} concaves (ou bien que $\p$ n'est adhérent à aucune courbe singulière, \eg le sommet d'un cône) on dit que $\p$ est convexe et sa zone d'influence sur l'EdB est la portion de $\sphere[\p][\rho(\p)]$ qui est tangente aux EdS de toutes les courbes singulières adhérentes à $\p$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\p$ et on la note $\pseudoEdS{\p}{\rho}$
+	\item si toutes les courbes singulières adhérentes à un point singulier $\p$ \textit{ne sont pas} concaves (ou bien que $\p$ n'est adhérent à aucune courbe singulière, \eg le sommet d'un cône) on dit que $\p$ est convexe et sa zone d'influence sur l'EdB est la portion de $\sphere[\p][\rho(\p)]$ qui est tangente aux EdS de toutes les courbes singulières adhérentes à $\p$ (preuve?). On appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\p$ et on la note $\pseudoEdS{\p}{\rho}$.
 	\item l'EdB est incluse dans la réunion
 	\begin{itemize}
 		\item des EdS propres des nappes régulières, qui sont elles-mêmes contenues dans la réunion des EdS propres des faces \brep
@@ -111,44 +111,7 @@ arguments :
 	\item[$\Rightarrow$] on construit d'abord une telle réunion (que l'on appelle \textit{EdS partielle}\footref{note_vocabulaire_notation}) puis on en élimine les régions qui sont exclues de l'EdB (au passage on constitue les relations topologiques qui assurent la validité du modèle \brep)
 \end{enumerate}
 
-
-
-\setlength{\imagewidth}{50mm}%
-\setlength{\imageheight}{\imagewidth}%
-\begin{figure}
-	\centering
-%	\definecolor{colorContourEdSnappe0}{rgb}{1,0,0}
-%	\definecolor{colorContourEdSnappe1}{rgb}{0,1,0}
-%	\definecolor{colorContourEdSarete}{rgb}{0,0,1}
-	\colorlet{colorContourEdSnappe0}{mycolor_2}
-	\colorlet{colorContourEdSnappe1}{mycolor_3}
-	\colorlet{colorContourEdSarete}{mycolor_1}
-	\colorlet{colorInterieurEdSnappe0}{colorContourEdSnappe0}%!50!white}
-	\colorlet{colorInterieurEdSnappe1}{colorContourEdSnappe1}%!50!white}
-	\colorlet{colorInterieurarete}{colorContourEdSarete!30!white}
-	\colorlet{colorPseudoEdSarete}{mycolor_4}%colorContourEdSarete!70!black}
-	\begin{tikzpicture}[
-		x = \imagewidth,
-		y = \imageheight,
-		styleEdS/.style = {
-			thick, fill opacity=0.2
-		},
-		stylePseudoEdS/.style = {
-			line width=1.1pt, colorPseudoEdSarete, line cap=round%, dash pattern=on 4pt off 3pt
-		},
-		styleNappe/.style = {
-			draw=black, thick, line cap=round
-		}
-	]
-		\begin{scope}
-			%\clip (-1,-0.55) rectangle (1,0.8);
-			\input{figures/code/pseudo_EdS_arete/vue_coupe_tikzcode.tex}
-			\node[colorContourEdSarete] at ([shift={(120:0.2\imagewidth)}]Gamma) {$\implicitEdB{\Gamma} < 0$};
-		\end{scope}
-	\end{tikzpicture}
-	\caption{Vue en coupe \ldots}
-\end{figure}
-
+\input{figures/code/pseudo_EdS_arete/pseudo_EdS_arete_vue_coupe.tex}
 
 
 
@@ -156,19 +119,35 @@ arguments :
 
 
 \section{Construction d'une EdS partielle}
+\label{section:construction_EdS_partielle}
 \label{section:def_canal_surface}
 
 [Objectif : donner les étapes de la construction d'une EdS partielle sous la forme d'un ensemble de carreaux restreints (paramétrisation + courbes de restriction du domaine paramétrique) avec des relations d'adjacences partielles)]
 
+\textit{Graphe des intersections} : en réalité 2 graphes
+\begin{enumerate}
+	\item graphe points d'intersection-courbes d'intersection
+	\item graphe carreaux-courbes d'intersection
+\end{enumerate}
+
+\begin{enumerate}
+	\item construction d'un ensemble de carreaux restreints suffisant pour décrire l'EdB 
+	\item construction du graphe des intersections tangentielles entre ces carreaux
+	\begin{itemize}
+		\item le calcul numérique des intersections tangentielles pose généralement des difficultés d'efficacité et de robustesse
+		\item avec l'approche choisie, il est aisé de construire explicitent ces courbes et points intersections simultanément à la construction des carreaux puisqu'on connaît la nature de ces derniers (EdS propre de face, pseudo-EdS d'arête ou de sommet), qui perdue par la suite $\Rightarrow$ de cette façon, on simplifie significativement le futur calcul des intersections
+	\end{itemize}
+\end{enumerate}
 
 
 
-\subsection{Paramétrisation de l'EdS propre d'une face \brep}% carreau paramétrique restreint}
+\subsection{Représentation de l'EdS propre d'une face \brep}% carreau paramétrique restreint}
 \label{section:parametrisation_eds_propre_face}
 \def\indice{_0}
 \def\carreau{\Sigma\indice}
 \def\face{\brepface\indice}
 
+\subsubsection{Paramétrisation de l'EdS propre d'un carreau paramétrique}
 \begin{enumerate}
 	\item paramétrisation $\eos$ de l'EdS propre d'un carreau non-restreint $\carreau \colon (\left[\lo{u},\hi{u}\right] \times \left[\lo{v},\hi{v}\right], \bs)$
 	\begin{enumerate}
@@ -244,11 +223,20 @@ arguments :
 				
 		\item différence avec le simple transport suivant la normale $\to$ abordé dans la \autoref{section:discretisation_EdS_propre_carreau}
 	\end{enumerate}
+\end{enumerate}
+
+\input{figures/code/EdS_propre_carreau/EdS_propre_carreau.tex}
+
+
+\subsubsection{Courbes de restriction \ldots}
+\begin{enumerate}
 	\item conservation du domaine paramétrique (pas de re-paramétrisation) $\Rightarrow$ coordonnées $(x,y,z)$ des courbes de restriction données directement par la nouvelle paramétrisation (voir \autoref{fig:EdS_propre_carreau_restreint}).
+	\item on ajoute au graphe des intersections tangentielles celles parmi ces courbes de restriction qui correspondent à des intersections tangentielles\\
+	(argument : la zone d'influence sur l'EdB d'un point régulier de $\Sigma$ est incluse dans un point, donc si $\p = \bs^1(u_1,v_1) = \bs^2(u_2,v_2)$ est un point d'intersection entre les faces $\brepface_1$ et $\brepface_1$ tel qu'elles y on la même direction normale alors leurs EdS propres s'intersectent aussi au point $\q = \eos^1(u_1,v_1) = \eos^2(u_2,v_2)$ où elles partagent la même direction normale.) 
 \end{enumerate}
 
 
-\input{figures/code/EdS_propre_carreau/EdS_propre_carreau.tex}
+
 
 \begin{figure}
 	\centering
@@ -260,7 +248,7 @@ arguments :
 
 
 
-\subsection{Paramétrisation de la pseudo-EdS d'une arête \brep\ convexe}% arc paramétrique}
+\subsection{Représentation de la pseudo-EdS d'une arête \brep\ convexe}% arc paramétrique}
 %\begin{enumerate}
 %	\item détermination de la convexité de l'arête (signe de $\dotprod{\left(\crossprod{\unv_L}{\unv_R}\right)}{\bt}$, \cf \autoref{section:def_convexite_courbe_singuliere})
 %	\item rappeler système définissant une EdS propre à 1 paramètre
@@ -351,7 +339,8 @@ où $\br$ vérifie
 De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristiques.
 
 
-\subsubsection{Paramétrisation de la pseudo-EdS}
+%\subsubsection{Paramétrisation de la pseudo-EdS}
+\subsubsection{Ajustement d'un carreau paramétrique (non-restreint)}
 \label{section:parametrisation_pseudo_EdS_arete}
 
 %\begin{figure}
@@ -365,15 +354,15 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 \begin{enumerate}
 	\item $\brepedge$ une arête convexe du modèle \brep\ de $\Sigma$, $\bg : \left[ \lo{u}, \hi{u} \right] \to \reals^3$ une paramétrisation de son support géométrique
 	\item $\Right{\brepface}$ (resp. $\Left{\brepface}$) la face à gauche\footnote{relativement à l'orientation donnée par $\bg$, vu de l'extérieur de $\Omega$.} (resp. à droite) de $\brepedge$
-	\item but : construire une paramétrisation $\eos$ de la pseudo-EdS de $\brepedge$, \ie la région $\pseudoEdS{\brepedge}{\rho}$ de $\EdS{\brepedge}{\rho}$ qui est tangente à la fois à $\EdS{\Right{\brepface}}{\rho}$ et $\EdS{\Left{\brepface}}{\rho}$ (voir \autoref{fig:pseudo-EdS_arete})
+	\item but : construire une paramétrisation $\eos^{\brepedge}$ de la pseudo-EdS de $\brepedge$, \ie la région $\pseudoEdS{\brepedge}{\rho}$ de $\EdS{\brepedge}{\rho}$ qui est tangente à la fois à $\EdS{\Right{\brepface}}{\rho}$ et $\EdS{\Left{\brepface}}{\rho}$ (voir \autoref{fig:pseudo-EdS_arete})
 	\item on note $\Right{\bs}$ (resp. $\Left{\bs}$) une paramétrisation du carreau supportant $\Right{\brepface}$ (resp. $\Left{\brepface}$) et $\Right{\bp}$ (resp. $\Left{\bp}$) une paramétrisation de la trace de $\brepedge$ dans l'espace paramétrique de $\Right{\brepface}$ (resp. de $\Left{\brepface}$) telle que
 	\begin{equation}
 	    \bg = \Right{\bs} \circ \Right{\bp} = \Left{\bs} \circ \Left{\bp}.
 	\end{equation}
-	\item on note $\Right{\EdB{\bs}{\rho}}$ (resp. $\Left{\EdB{\bs}{\rho}}$) la paramétrisation de $\EdSpropreplus{\Right{\brepface}}{\rho}$ (resp. de $\EdSpropreplus{\Left{\brepface}}{\rho}$) obtenue comme décrit dans la \autoref{section:parametrisation_eds_propre_face}. 
+	\item on note $\eos^{\Right{\brepface}}$ (resp. $\eos^{\Left{\brepface}}$) la paramétrisation de $\EdSpropreplus{\Right{\brepface}}{\rho}$ (resp. de $\EdSpropreplus{\Left{\brepface}}{\rho}$) obtenue comme décrit dans la \autoref{section:parametrisation_eds_propre_face}. 
 	\item enfin, on note
 	\begin{equation}
-	    \Right{\eos} = \Right{\EdB{\bs}{\rho}} \circ \Right{\bp} \quad\text{et}\quad \Left{\eos} = \Left{\EdB{\bs}{\rho}} \circ \Left{\bp}.
+	    \Right{\eos} = \eos^{\Right{\brepface}} \circ \Right{\bp} \quad\text{et}\quad \Left{\eos} = \eos^{\Left{\brepface}} \circ \Left{\bp}.
 	    \label{eq:pseudoEdSarete_courbes_limites}
 	\end{equation}
 	
@@ -382,7 +371,7 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 
 	%\item on suppose que l'on peut évaluer $\bg(u)$, $\Right{\eos}(u)$ et $\Left{\eos}(u)$ pour tout $u \in \left[ \lo{u}, \hi{u} \right]$
 	
-	\item on propose alors une méthode pour construire une telle paramétrisation qui n'exploite pas directement la donnée de $\rho$ et $\rho_u$ mais plutôt celle de $\Right{\eos}(u)$ et $\Left{\eos}(u)$ (ce choix, qui sera motivé lors de la mise en \oe uvre numérique, garantit que $\eos(u,\lo{v}) = \Right{\eos}(u)$ et $\eos(u,\hi{v}) = \Left{\eos}(u)$)
+	\item on propose alors une méthode pour construire une telle paramétrisation qui n'exploite pas directement la donnée de $\rho$ et $\rho_u$ mais plutôt celle de $\Right{\eos}(u)$ et $\Left{\eos}(u)$ (ce choix, qui sera motivé lors de la mise en \oe uvre numérique, garantit que $\eos^{\brepedge}(u,\lo{v}) = \Right{\eos}(u)$ et $\eos^{\brepedge}(u,\hi{v}) = \Left{\eos}(u)$)
 
 	\item on note $\bt = \unitized{\bg'}$ et $\mu = -\frac{\rho \rho_u}{\normtwo{\bg}}$, on a alors $\bo = \bg + \mu \bt$
 	
@@ -413,7 +402,7 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 		\right).
 	\end{equation}
 	
-	\item Enfin, on choisit une paramétrisation naturelle pour l'arc de cercle caractéristique $\eos(u, \left[\lo{v},\hi{v}\right])$, \ie
+	\item Enfin, on choisit une paramétrisation naturelle pour l'arc de cercle caractéristique $\eos^{\brepedge}(u, \left[\lo{v},\hi{v}\right])$, \ie
 %	\begin{equation}
 %	    \br(u,v) = 
 %	        \cos\left( \lambda(v) \theta(u) \right) \Right{\br}(u) +
@@ -428,16 +417,23 @@ Le domaine paramétrique du carreau décrivant $\pseudoEdS{\brepedge}{\rho}$ est
 	        \cos\left( \frac{v - \lo{v}}{\hi{v} - \lo{v}} \theta(u) \right) \Right{\br}(u) +
 	        \sin\left( \frac{v - \lo{v}}{\hi{v} - \lo{v}} \theta(u) \right) \Right{\br}^{\perp}(u).
 	\end{equation}	
-	De cette façon, $\br$ vérifie bien les conditions \eqref{eq:parametrisation_EdS_propre_courbe_condition_r} et on a bien $\br(u,\lo{v}) = \Right{\br}(u)$ et $\br(u,\hi{v}) = \Left{\br}(u)$ (donc $\eos(u,\lo{v}) = \Right{\eos}(u)$ et $\eos(u,\hi{v}) = \Left{\eos}(u)$).
+	De cette façon, $\br$ vérifie bien les conditions \eqref{eq:parametrisation_EdS_propre_courbe_condition_r} et on a bien $\br(u,\lo{v}) = \Right{\br}(u)$ et $\br(u,\hi{v}) = \Left{\br}(u)$ (donc $\eos^{\brepedge}(u,\lo{v}) = \Right{\eos}(u)$ et $\eos^{\brepedge}(u,\hi{v}) = \Left{\eos}(u)$).
 	
-	\item \textit{Remarque :} si une extrémité de $\brepedge$ est un point régulier de $\Sigma$ alors l'arc de cercle caractéristique en cette extrémité est réduit à un seul point et la paramétrisation $\eos$ y est singulière\\
+	\item \textit{Remarque :} si une extrémité de $\brepedge$ est un point régulier de $\Sigma$ alors l'arc de cercle caractéristique en cette extrémité est réduit à un seul point et la paramétrisation $\eos^{\brepedge}$ y est singulière\\
 	$\to$ un moyen d'y remédier serait d'utiliser un carreau restreint (\ie les courbes $\Right{\eos}$ et $\Left{\eos}$ ne correspondent plus aux courbes $v = \lo{v}$ et $v = \hi{v}$)
+	
+	\item on ajoute au graphe des intersections tangentielles les courbes d'intersection suivantes :
+	\begin{enumerate}
+		\item les carreaux $\pseudoEdS{\brepedge}{\rho}$ et $\EdSpropreplus{\Right{\brepface}}{\rho}$ s'intersectent le long de la courbe $\Right{\eos}(\intervalLoHi{u}) = \eos^{\brepedge}(\intervalLoHi{u}, \lo{v}) = \left( \eos^{\Right{\brepface}} \circ \Right{\bp} \right) (\intervalLoHi{u})$ ;
+		\item les carreaux $\pseudoEdS{\brepedge}{\rho}$ et $\EdSpropreplus{\Left{\brepface}}{\rho}$ s'intersectent le long de la courbe $\Left{\eos}(\intervalLoHi{u}) = \eos^{\brepedge}(\intervalLoHi{u}, \hi{v}) = \left( \eos^{\Left{\brepface}} \circ \Left{\bp} \right) (\intervalLoHi{u})$ ;
+		\item si les arêtes $\brepedge_1$ et $\brepedge_2$ partagent un sommet où elles ont la même direction tangente (\ie $\brepedge_1$ et $\brepedge_2$ sont sur une même courbe singulière de $\Sigma$) alors les carreaux $\pseudoEdS{\brepedge_1}{\rho}$ et $\pseudoEdS{\brepedge_2}{\rho}$ s'intersectent le long de l'arc caractéristique associé à leur sommet commun.
+	\end{enumerate}
 	
 \end{enumerate}
 
 
 
-\subsection{Paramétrisation de la pseudo-EdS d'un sommet \brep\ convexe}
+\subsection{Représentation de la pseudo-EdS d'un sommet \brep\ convexe}
 \def\v{\vit{v}}
 
 %Soit $\brepvertex$ un sommet convexe du modèle \brep\ de $\Sigma$ dont le support géométrique est le point $\v \in \reals^3$. 
@@ -463,8 +459,8 @@ Si $\gradient{\rho}(\v) = \vit{0}$ alors $\lo{\bo}_i = \v$  pour $i = 0, \ldots,
 En revanche, dans le cas général ces plans ne passent pas par $\v$.
 \par
 On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou non) décrivant $\pseudoEdS{\v}{\rho}$.
-Afin de simplifier cette construction, on suppose sans restreindre la généralité que $\v$ est situé à l'origine et que $\rho(\v) = 1$. 
-On peut toujours se ramener à ce cas à l'aide d'une transformation adéquate (translation et homothétie) que l'on inversera en fin de construction pour se placer à nouveau dans le cas général.
+%Afin de simplifier cette construction, on suppose sans restreindre la généralité que $\v$ est situé à l'origine et que $\rho(\v) = 1$. 
+%On peut toujours se ramener à ce cas à l'aide d'une transformation adéquate (translation et homothétie) que l'on inversera en fin de construction pour se placer à nouveau dans le cas général.
 \par
 On note respectivement $\family{\brepedge}{i}{0}{m-1}$ et $\family{\brepface}{i}{0}{m-1}$ les arêtes et les faces incidentes à $\brepvertex$, que l'on suppose ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\Omega$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} gauche). 
 On note également $\bg^{\brepedge_i}$ (resp. $\bs^{\brepface_i}$) une paramétrisation du support géométrique de $\brepedge_i$ (resp. de $\brepface_i$) et $\eos^{\brepedge_i}$ (resp. $\eos^{\brepface_i}$) celle de $\pseudoEdS{\brepedge_i}{\rho}$ (resp. de $\EdSpropreplus{\brepface_i}{\rho}$).
@@ -503,57 +499,64 @@ Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$.
 	\end{align}
 	et
 	\[
-		\eos^{\brepvertex_i} = \v + \rho \unitized{\vit{\ell}_i - \v}.
+		\eos^{\brepvertex_i} = \v + \rho \unitized{\vit{\ell}_i}.
 	\]
 	
-	\item on rajoute explicitement les courbes et points d'intersection suivants au graphe partiel des intersections.
-	Il s'agit d'intersections tangentielles, qui sont complexes à calculer avec efficacité et robustesse. 
-	De cette façon, on simplifie significativement le futur calcul des intersections.
+	\item on ajoute au graphe des intersections tangentielles les courbes et points d'intersection suivants :
 	\begin{enumerate}
-		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\EdSpropreplus{\brepface_i}{\rho}$ s'intersectent au point $\unv_i = \eos^{\brepvertex_i}(\hi{u}, \hi{v}) = \eos^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i})$. 
+		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\EdSpropreplus{\brepface_i}{\rho}$ s'intersectent au point $\v + \rho \unv_i = \eos^{\brepvertex_i}(\hi{u}, \hi{v}) = \eos^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i})$ ;
 %		Pour la paramétrisation $\bs_i$, ses coordonnées paramétriques sont $(\hi{u}, \hi{v})$.
 %		Pour la paramétrisation de $\EdSpropreplus{\brepface_i}{\rho}$, ses coordonnées paramétriques $(u_i, v_i)$ ;
-		\item tous les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ s'intersectent au point $\vrm{q} = \eos^{\brepvertex_i}(\lo{u}, \lo{v})$ ;
+		\item tous les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ s'intersectent au point $\v + \rho \vrm{q} = \eos^{\brepvertex_i}(\lo{u}, \lo{v})$ ;
 		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[\imoins]$ et $\pseudoEdS{\brepvertex}{\rho}[i]$ s'intersectent le long de la courbe 
 		\[
 			\Gamma_i 
 			= \eos^{\brepvertex_{\imoins}}(\lo{u}, \intervalLoHi{v})
 			= \eos^{\brepvertex_i}(\intervalLoHi{u}, \lo{v}),
 		\] 
-		dont les extrémités sont les points $\vrm{q}$ et 
-		$\vrm{m}_{\imoins} 
+		dont les extrémités sont les points $\v + \rho \vrm{q}$ et 
+		$\v + \rho \vrm{m}_{\imoins} 
 		= \eos^{\brepvertex_{\imoins}}(\lo{u},\hi{v}) 
 		= \eos^{\brepvertex_i}(\hi{u}, \lo{v})$ ; 
 		
-		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_i}{\rho}$ s'intersectent le long de la courbe 
+		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_i}{\rho}$ s'intersectent le long de la courbe (demi-arc caractéristique limite)
 		\[
 			\Gamma_{i,i} 
 			= \eos^{\brepvertex_i}(\hi{u}, \intervalLoHi{v})
-			= \eos^{\brepedge_i}(u_{\brepedge_i}, \intervalLoHi{v}),
+			%= \eos^{\brepedge_i}(u_{\brepedge_i}, \left[ \frac{\lo{v} + \hi{v}}{2}, \hi{v} \right]),
+			= 
+			\begin{cases}
+				\eos^{\brepedge_i} \!\left( u_{\brepedge_i}, \left[ \frac{\lo{v} + \hi{v}}{2}, \hi{v} \right] \right) &\text{ si } u_{\brepedge_i} = \lo{u},\\
+				\eos^{\brepedge_i} \!\left( u_{\brepedge_i}, \left[ \lo{v}, \frac{\lo{v} + \hi{v}}{2} \right] \right) &\text{ si } u_{\brepedge_i} = \hi{u},
+			\end{cases}
 		\]
 		dont les extrémités sont les points 
-		$\vrm{m}_{\imoins} = \eos^{\brepedge_i}(u_{\brepedge_i}, \frac{\lo{v} + \hi{v}}{2})$ 
+		$\v + \rho \vrm{m}_{\imoins} = \eos^{\brepedge_i}(u_{\brepedge_i}, \frac{\lo{v} + \hi{v}}{2})$ 
 		et 
-		$\unv_i 
-		= \eos^{\brepvertex_i}(\hi{u}, \hi{v})
-		= \eos^{\brepedge_i}(u_{\brepedge_i}, u_{\brepedge_i})$;
-		
-		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_{\iplus}}{\rho}$ s'intersectent le long de la courbe 
 		\[
-			\Gamma_{i,i+1} 
+			\v + \rho \unv_i 
+			= \eos^{\brepvertex_i}(\hi{u}, \hi{v})
+			= 
+			\begin{cases}
+				\eos^{\brepedge_i}(u_{\brepedge_i}, \hi{v}) &\text{ si } u_{\brepedge_i} = \lo{u}, \\ 
+				\eos^{\brepedge_i}(u_{\brepedge_i}, \lo{v}) &\text{ si } u_{\brepedge_i} = \hi{u} \; ;
+			\end{cases}
+		\]
+		\item les carreaux $\pseudoEdS{\brepvertex}{\rho}[i]$ et $\pseudoEdS{\brepedge_{\iplus}}{\rho}$ s'intersectent le long de la courbe (demi-arc caractéristique limite)
+		\[
+			\Gamma_{i,\iplus} 
 			= \eos^{\brepvertex_i}(\intervalLoHi{u}, \hi{v}) 
-			= \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, \intervalLoHi{v}),
+			%= \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, \intervalLoHi{v}),
+			= 
+			\begin{cases}
+				\eos^{\brepedge_{\iplus}} \!\left( u_{\brepedge_{\iplus}}, \left[ \lo{v}, \frac{\lo{v} + \hi{v}}{2} \right] \right) &\text{ si } u_{\brepedge_{\iplus}} = \lo{u},\\
+				\eos^{\brepedge_{\iplus}} \!\left( u_{\brepedge_{\iplus}}, \left[ \frac{\lo{v} + \hi{v}}{2}, \hi{v} \right] \right) &\text{ si } u_{\brepedge_{\iplus}} = \hi{u},
+			\end{cases}
 		\]
 		dont les extrémités sont les points 
-		$\unv_i = \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, v_{\brepedge_{\iplus}})$ 
+		$\v + \rho \unv_i = \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, u_{\brepedge_{\iplus}})$ 
 		et 
-		$\vrm{m}_i = \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, \frac{\lo{v} + \hi{v}}{2})$, 
-%		où $v_{\brepedge_i} = 
-%		\begin{cases}
-%			\hi{v} \text{ si } u_{\brepedge_i} = \lo{u}, \\ 
-%			\lo{v} \text{ si } u_{\brepedge_i} = \hi{u}.
-%		\end{cases}$
-		où $v_{\brepedge_i} = \frac{(u_{\brepedge_i} - \lo{u}) \lo{v} + (\hi{u} - u_{\brepedge_i}) \hi{v}}{\hi{u} - \lo{u}}$.
+		$\v + \rho \vrm{m}_i = \eos^{\brepedge_{\iplus}}(u_{\brepedge_{\iplus}}, \frac{\lo{v} + \hi{v}}{2})$.
 		
 	\end{enumerate}
 \end{enumerate}
@@ -646,9 +649,9 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
 	\end{align} 
 	
 	 \item choix de $\mathbf{B}$ :
-	 \item on note $\unv_i$ la direction normale à $\EdSpropreplus{\brepface_i}$ au point $\eos^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i})$
+	 \item on note $\unv_i$ la direction normale à $\EdSpropreplus{\brepface_i}{\rho}$ au point $\eos^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i})$
 	 \item on choisit $\bb_1 = \unitized{\sum_{i=0}^{m-1} \unv_i}$
-    \item on note $\p_i = \frac{\p}{\dot_prod{\unv_i}{\bb_1}}$ la projection centrale de $\unv_i$ sur le plan tangent à la sphère unité au point $\bb_1}$
+    \item on note $\p_i = \frac{\p}{\dotprod{\bb_1}{\unv_i}}$ la projection centrale de $\unv_i$ sur le plan tangent à la sphère unité au point $\bb_1$
     \item on détermine une base orthonormée $\left( \bb_2, \bb_3 \right)$ de ce plan, adéquate vis-à-vis des points $\family{\p}{i}{0}{m-1}$
     \begin{itemize}
     	\item rectangle englobant d'aire minimale
@@ -660,6 +663,40 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
     	\item \cf notes ``Huygens'' \ldots
     \end{enumerate}
     \item on prend $\theta_0 = \frac{\lo{\theta} + \hi{\theta}}{2}$, $\lambda_0 = \frac{\lo{\lambda} + \hi{\lambda}}{2}$, $\Theta = (1 + \epsilon) \frac{\hi{\theta} - \lo{\theta}}{2}$ et $\Lambda = (1 + \epsilon) \frac{\hi{\lambda} - \lo{\lambda}}{2}$, où $\epsilon \geq 0$ est un paramètre de marge
+    
+    
+    \item on ajoute au graphe des intersections tangentielles les courbes d'intersection suivantes :
+    \begin{enumerate}
+    	\item les carreaux $\pseudoEdS{\brepvertex}{\rho}$ et $\EdSpropreplus{\brepface_i}{\rho}$ s'intersectent au point $\eos^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i})$ ;
+    	
+    	\item les carreaux $\pseudoEdS{\brepvertex}{\rho}$ et $\pseudoEdS{\brepedge_i}{\rho}$ s'intersectent le long de la courbe (arc caractéristique limite) $\eos^{\brepedge_i} (u_{\brepedge_i}, \intervalLoHi{v})$.
+    	
+    	\item Pour obtenir les coordonnées de ces points et courbes d'intersection dans l'espace paramétrique du carreau $\pseudoEdS{\brepvertex}{\rho}$,
+    	\begin{itemize}
+    		\item on en calcule les coordonnées sphériques
+    		\begin{align}
+			    \theta &= \arctan \left( 
+			        \frac{
+			            \dotprod{\bb_2}{\left(\bx - \v\right)}
+			        }{
+			            \dotprod{\bb_1}{\left(\bx - \v\right)}
+			        }
+			    \right), \\
+			    \lambda &= \arcsin \left( 
+			        \frac{
+			            \dotprod{\bb_3}{\left(\bx - \v\right)}
+			        }{
+			            \rho(\v)
+			        }
+			    \right),
+			\end{align} 
+			\item on a alors
+			\begin{align}
+			    u &= \frac{\theta - \theta_0}{\Theta}, \\
+			    v &= \frac{\lambda - \lambda_0}{\Lambda}.
+			\end{align} 
+    	\end{itemize}
+    \end{enumerate}
     
 \end{enumerate}
 
@@ -732,15 +769,76 @@ avantages/inconvénients :
 
 \section{Construction d'un modèle \brep\ de l'EdB}
 
+\begin{enumerate}
+	\item les régions de l'EdS partielle qui sont exclues de l'EdB sont délimitées par les bords \guillemets{naturels} des carreaux et par les courbes d'intersections entre les carreaux (argument à introduire plus tôt\ldots)\\
+	\begin{proof}
+		\cf notes ``Huygens'' ($\to$ définition implicite de l'EdB)
+	\end{proof}
+%	\item tous les points et courbes d'intersection tangentielle entre les carreaux de l'EdS partielle sont connus (\cf \autoref{section:construction_EdS_partielle})
+%	\item (l'EdB ne peut contenir aucune courbe singulière convexe)
+%	\item il reste à trouver les points et courbes d'intersection transverse (concave) entre les carreaux de l'EdS partielle
+%	\item on complète ainsi le graphe des intersections, qui donne la topologie de l'agencement des carreaux (relations d'adjacences)
+	\item pour obtenir un modèle \brep\ valide de l'EdB, il faut
+	\begin{itemize}
+		\item délimiter les faces (\cf \autoref{section:def_brep_faces}), \ie éliminer les régions des carreaux qui sont exclues de l'EdB (\ie tout région $G$ pour laquelle il existe une région $H$ telle que $\forall \bx \in G, \implicitEdB{H}(\bx) < 0$) vérifiant les critères donnés dans la \autoref{section:def_brep_faces} :
+		\begin{enumerate}
+			\item délimitée par exactement un contour extérieur ($\to$ connexe, donc un carreau peut donner plusieurs faces) et éventuellement par un plusieurs contours intérieurs $\Rightarrow$ former contours et distinguer extérieur/intérieur
+		\end{enumerate}
+		
+		\item matérialiser les courbes d'intersection par des arêtes vérifiant les critères donnés dans la \autoref{section:def_brep_edges} :
+		\begin{enumerate}
+			\item quasi-disjointes deux-à-deux $\Rightarrow$ scinder les courbes d'intersection en segments quasi-disjoints
+			\item décomposer chaque arête en une paire de co-arêtes jumelles à chacune desquelles on associe 
+			\begin{itemize}
+				\item la face incidente
+				\item le sommet origine
+				\item la co-arête précédente (sur un contour)
+				\item la co-arête suivante (sur un contour)
+			\end{itemize}			 
+		\end{enumerate}
+		
+		\item matérialiser les points d'intersection par des sommets vérifiant les critères donnés dans la \autoref{section:def_brep_vertices}
+	\end{itemize}
+\end{enumerate}
+
 \subsection{Construction du graphe des intersections}
-Conservation/création des intersections tangentielles, calcul des intersections transverses entre paire de carreaux non-restreints, segmentation des courbes d'intersection en segments quasi-disjoints (intersection de 3 carreaux non-restreints ou plus), \guillemets{clipping} par le domaine paramétrique de chaque carreau restreint
+\begin{enumerate}
+	\item tous les points et courbes d'intersection tangentielle entre les carreaux de l'EdS partielle sont connus (\cf \autoref{section:construction_EdS_partielle})
+	\item (l'EdB ne peut contenir aucune courbe singulière convexe)
+	\item il reste à trouver les points et courbes d'intersection transverse concave entre les carreaux de l'EdS partielle
+	%\item on peut aisément orienter ces courbes de telle sorte que les régions à droite soient exclues de l'EdB (\cf notes ``Huygens'', paragraphe ``Intersection des EdS propres'')
+	\item on complète ainsi le graphe des intersections, qui donne la topologie de l'agencement des carreaux (relations d'adjacences)
+	\item (le choix de la méthode de calcul des intersections est étroitement lié au type de paramétrisation choisi pour les carreaux de surface $\Rightarrow$ détails d'implémentation donnés au chapitre \autoref{chap:methode_numerique})
+	\item principe : 
+	\begin{enumerate}
+		\item calcul des intersections transverses entre paire de carreaux \textit{non-restreints}
+		\item segmentation des courbes d'intersection en segments quasi-disjoints (intersection de 3 carreaux \textit{non-restreints} ou plus)
+		\item \guillemets{clipping} par le domaine paramétrique de chaque carreau \textit{restreint}
+	\end{enumerate}
+\end{enumerate}
+
 \par\bigskip
-pour un carreau de surface, il s'agit d'un graphe planaire orienté dont un plongement dans $\reals^2$ est donné par la trace des courbes d'intersections dans son espace paramétrique
+
+\begin{enumerate}
+	\item Pour un carreau donné, on peut extraire le sous-graphe 
+	\begin{itemize}
+		\item dont les arcs sont des segments (quasi-disjoints) de courbes d'intersection entre ce carreau et chaque autre carreau adjacent
+		\item dont les n\oe uds sont les extrémités de ces segments (points d'intersection entre plusieurs courbes)
+	\end{itemize}
+	\item on peut orienter ces segments de telle sorte que les régions localement à droite de chacun d'eux soient nécessairement exclues de l'EdB
+	\begin{enumerate}
+		\item ambigu pour les intersections tangentielles, mais celles-ci décrivent nécessairement des portions du bord du domaine paramétrique et sont déjà orientées de façon adéquate
+		\item les nouvelles intersections calculées ne peuvent pas correspondre à des courbes singulières convexes de l'EdB, donc l'orientation correcte de ces courbes est obtenue aisément (\cf notes ``Huygens'', paragraphe ``Intersection des EdS propres'')
+	\end{enumerate}
+	\item on obtient donc un graphe planaire orienté dont un plongement dans $\reals^2$ est donné par la trace des courbes d'intersections dans l'espace paramétrique du carreau (exemple donné sur la \autoref{fig:sous_graphe_intersections_brut}).
+\end{enumerate}
+%pour un carreau donné, le sous-graphe constitué par les points et segments d'intersection entre ce carreau et tous les autres est un graphe planaire orienté dont un plongement dans $\reals^2$ est donné par la trace des courbes d'intersections dans son espace paramétrique (exemple donné sur la \autoref{fig:sous_graphe_intersections_brut}).
 
 \begin{figure}
 	\centering
 	\plotCurvedDirectedGraph{../../FFTsurf/test/graph/graph_bezier_control_points.dat}{25mm}
-	\caption{Plongement du graphe des intersections dans l'espace paramétrique d'un carreau de surface.}
+	\caption{Plongement du sous-graphe des intersections associé à un carreau de surface.}
+	\label{fig:sous_graphe_intersections_brut}
 \end{figure}
 
 

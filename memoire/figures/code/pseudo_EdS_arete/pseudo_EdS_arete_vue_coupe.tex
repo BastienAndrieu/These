@@ -1,0 +1,33 @@
+\setlength{\imagewidth}{50mm}%
+\setlength{\imageheight}{\imagewidth}%
+\begin{figure}
+	\centering
+	\colorlet{colorContourEdSnappe0}{mycolor_2}
+	\colorlet{colorContourEdSnappe1}{mycolor_3}
+	\colorlet{colorContourEdSarete}{mycolor_1}
+	\colorlet{colorInterieurEdSnappe0}{colorContourEdSnappe0}%!50!white}
+	\colorlet{colorInterieurEdSnappe1}{colorContourEdSnappe1}%!50!white}
+	\colorlet{colorInterieurarete}{colorContourEdSarete!30!white}
+	\colorlet{colorPseudoEdSarete}{mycolor_4}%colorContourEdSarete!70!black}
+	\begin{tikzpicture}[
+		x = \imagewidth,
+		y = \imageheight,
+		styleEdS/.style = {
+			thick, fill opacity=0.2
+		},
+		stylePseudoEdS/.style = {
+			line width=1.1pt, colorPseudoEdSarete, line cap=round%, dash pattern=on 4pt off 3pt
+		},
+		styleNappe/.style = {
+			draw=black, thick, line cap=round
+		}
+	]
+		\begin{scope}
+			%\clip (-1,-0.55) rectangle (1,0.8);
+			\input{figures/code/pseudo_EdS_arete/vue_coupe_tikzcode.tex}
+			\node[colorContourEdSarete] at ([shift={(120:0.2\imagewidth)}]Gamma) {$\implicitEdB{\Gamma} < 0$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Vue en coupe \ldots}
+	\label{fig:pseudo_EdS_arete_vue_coupe}
+\end{figure}

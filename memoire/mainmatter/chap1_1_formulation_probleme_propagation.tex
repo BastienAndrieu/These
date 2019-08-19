@@ -96,6 +96,7 @@ Cette décomposition --- illustrée sur la \autoref{fig:BRep} --- est constitué
 \end{figure}
 
 \subsubsection{Faces}
+\label{section:def_brep_faces}
 Une face du modèle \brep\ est une variété de dimension 2 connexe délimitée par des arêtes et des sommets. 
 Géométriquement, une face $\brepface$ est décrite par un carreau paramétrique restreint.
 La topologie des courbes de restriction du domaine paramétrique est décrite à l'aide de \textit{contours} (un par composante connexe du bord de $\brepface$). 
@@ -104,6 +105,7 @@ Les faces, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en d
 
 
 \subsubsection{Arêtes}
+\label{section:def_brep_edges}
 Une arête du modèle \brep\ est une variété de dimension 1 connexe délimitée par des sommets.
 Puisque $\Sigma$ est une variété sans bord, chaque arête du modèle \brep\ est incidente à exactement deux faces $\brepface_1$ et $\brepface_2$. 
 Géométriquement, l'arête $\brepedge$ est représentée par une branche de la courbe d'intersection entre les carreaux $\Sigma_1$ et $\Sigma_2$ qui décrivent respectivement $\brepface_1$ et $\brepface_2$. 
@@ -125,6 +127,7 @@ Chaque co-arête possède une orientation, conforme à celle du contour qui la c
 
 
 \subsubsection{Sommets}
+\label{section:def_brep_vertices}
 Un sommet du modèle \brep\ matérialise l'intersection de deux arêtes et a pour support géométrique un point de $\reals^3$.
 
 \subsubsection{Structure de données}
