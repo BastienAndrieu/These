@@ -770,7 +770,7 @@ avantages/inconvénients :
 \section{Construction d'un modèle \brep\ de l'EdB}
 
 \begin{enumerate}
-	\item les régions de l'EdS partielle qui sont exclues de l'EdB sont délimitées par les bords \guillemets{naturels} des carreaux et par les courbes d'intersections entre les carreaux (argument à introduire plus tôt\ldots)\\
+	\item les régions de l'EdS partielle qui sont exclues de l'EdB sont délimitées par les courbes d'intersections entre les carreaux restreints (argument à introduire plus tôt\ldots)\\
 	\begin{proof}
 		\cf notes ``Huygens'' ($\to$ définition implicite de l'EdB)
 	\end{proof}
@@ -780,7 +780,7 @@ avantages/inconvénients :
 %	\item on complète ainsi le graphe des intersections, qui donne la topologie de l'agencement des carreaux (relations d'adjacences)
 	\item pour obtenir un modèle \brep\ valide de l'EdB, il faut
 	\begin{itemize}
-		\item délimiter les faces (\cf \autoref{section:def_brep_faces}), \ie éliminer les régions des carreaux qui sont exclues de l'EdB (\ie tout région $G$ pour laquelle il existe une région $H$ telle que $\forall \bx \in G, \implicitEdB{H}(\bx) < 0$) vérifiant les critères donnés dans la \autoref{section:def_brep_faces} :
+		\item délimiter les faces, \ie éliminer les régions des carreaux qui sont exclues de l'EdB (\ie tout région $G$ pour laquelle il existe une région (\eg un carreau restreint) $H$ telle que $\forall \bx \in G, \implicitEdB{H}(\bx) < 0$) vérifiant les critères donnés dans la \autoref{section:def_brep_faces} :
 		\begin{enumerate}
 			\item délimitée par exactement un contour extérieur ($\to$ connexe, donc un carreau peut donner plusieurs faces) et éventuellement par un plusieurs contours intérieurs $\Rightarrow$ former contours et distinguer extérieur/intérieur
 		\end{enumerate}
