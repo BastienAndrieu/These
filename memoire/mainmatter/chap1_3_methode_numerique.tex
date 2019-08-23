@@ -326,7 +326,7 @@ En outre, de la relation \eqref{eq:chebyshev_aliasing} on déduit que pour tout 
 \end{equation}
 L'erreur d'approximation due à l'interpolation est donc \textit{au pire} supérieure à l'erreur de troncature par un facteur 2.
 L'erreur d'aliasing peut cependant devenir problématique lorsqu'elle est amplifiée par les non-linéarités présentes dans les équations que l'on sera amené à résoudre. 
-Nous reviendrons sur ce point dans la \autoref{sec:instabilites} lorsque nous aborderons \ldots
+Nous reviendrons sur ce point dans la \autoref{section:instabilités} lorsque nous aborderons \ldots
 
 \input{figures/code/Chebyshev/aliasing}
 
@@ -678,7 +678,10 @@ Entrée : vecteur position $\bx_{i,j}^{(k)}$ et vitesse normale $\nu_{i,j}^{(k)}
 
 
 \section{Amélioration de la stabilité numérique}
+\label{section:instabilités}
+
 \subsection{Réduction de l'erreur d'aliasing}
+
 méthode proposée par \cite{rahimian2015} difficile à appliquer dans notre cas car 
 \begin{enumerate}
 	\item les carreaux de surface ont un bord, 

@@ -102,13 +102,25 @@ arguments :
 	
 	\item si toutes les courbes singulières adhérentes à un point singulier sont concaves alors la zone d'influence sur l'EdB de ce point est vide (preuve?) (\ie ce point ne contribue pas à l'EdB et peut donc être ignoré)
 	\item si toutes les courbes singulières adhérentes à un point singulier $\p$ \textit{ne sont pas} concaves (ou bien que $\p$ n'est adhérent à aucune courbe singulière, \eg le sommet d'un cône) on dit que $\p$ est convexe et sa zone d'influence sur l'EdB est la portion de $\sphere[\p][\rho(\p)]$ qui est tangente aux EdS de toutes les courbes singulières adhérentes à $\p$ (preuve?). On appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\p$ et on la note $\pseudoEdS{\p}{\rho}$.
+	
 	\item l'EdB est incluse dans la réunion
 	\begin{itemize}
-		\item des EdS propres des nappes régulières, qui sont elles-mêmes contenues dans la réunion des EdS propres des faces \brep
-		\item des pseudo-EdS des courbes singulières convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des arêtes \brep\ convexes
-		\item des pseudo-EdS des points singuliers convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des sommets \brep\ convexes
+		\item des EdS propres des nappes régulières, qui sont elles-mêmes contenues dans la réunion des EdS propres des faces \brep,
+		\item des pseudo-EdS des courbes singulières convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des arêtes \brep\ convexes,
+		\item des pseudo-EdS des points singuliers convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des sommets \brep\ convexes.
 	\end{itemize}
-	\item[$\Rightarrow$] on construit d'abord une telle réunion (que l'on appelle \textit{EdS partielle}\footref{note_vocabulaire_notation}) puis on en élimine les régions qui sont exclues de l'EdB (au passage on constitue les relations topologiques qui assurent la validité du modèle \brep)
+	On appelle cette réunion l'\textit{EdS partielle}\footref{note_vocabulaire_notation}.
+	
+	\item Les régions de l'EdS partielle qui sont exclues de l'EdB sont délimitées par les courbes d'intersection entre les carreaux restreints matérialisant les EdS propres des faces et les pseudo-EdS des arêtes et sommets du modèle \brep\ de l'interface courante. 
+	\begin{proof}
+		Soient $G$ et $H$ deux régions non-vides de $\Sigma$ dont l'intersection est de dimension strictement inférieure à 2.
+%On note $G' := \properEoS{G}{\rho} = \levelset_G^{-1}(0)$, $H' := \properEoS{H}{\rho} = \levelset_H^{-1}(0)$ et $\Gamma := G' \cap H'$.
+	\end{proof}
+	
+	%\item Ces courbes d'intersection servent ensuite de support pour les arêtes du modèle \brep\ de l'EdB : elles en fournissent la définition géométrique ainsi que les relations d'adjacences entre carreaux, qui 
+	
+	%\item $\Rightarrow$ On construit d'abord l'EdS partielle puis on en élimine les régions qui sont exclues de l'EdB (au passage on constitue les relations topologiques qui assurent la validité du modèle \brep)
+	\item $\Rightarrow$ On construit d'abord tous les carreaux de l'EdS partielle. On détermine ensuite les courbes d'intersection entre ces carreaux $\to$ ``graphe des intersections''. On analyse ensuite ce graphe pour constituer le modèle \brep\ de l'EdB.
 \end{enumerate}
 
 \input{figures/code/pseudo_EdS_arete/pseudo_EdS_arete_vue_coupe.tex}
@@ -118,17 +130,16 @@ arguments :
 
 
 
-\section{Construction d'une EdS partielle}
+\section{Construction de l'EdS partielle}
 \label{section:construction_EdS_partielle}
-\label{section:def_canal_surface}
 
 [Objectif : donner les étapes de la construction d'une EdS partielle sous la forme d'un ensemble de carreaux restreints (paramétrisation + courbes de restriction du domaine paramétrique) avec des relations d'adjacences partielles)]
 
-\textit{Graphe des intersections} : en réalité 2 graphes
-\begin{enumerate}
-	\item graphe points d'intersection-courbes d'intersection
-	\item graphe carreaux-courbes d'intersection
-\end{enumerate}
+%\textit{Graphe des intersections} : en réalité 2 graphes
+%\begin{enumerate}
+%	\item graphe points d'intersection-courbes d'intersection
+%	\item graphe carreaux-courbes d'intersection
+%\end{enumerate}
 
 \begin{enumerate}
 	\item construction d'un ensemble de carreaux restreints suffisant pour décrire l'EdB 

@@ -223,19 +223,65 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 	%\item formaliser la notion d'enveloppe des sphères $\EdS{\Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère) $\to$ système d'équations avec $\implicitsphere_{\rho} : (\bx,\p) \mapsto \normtwo{\bx - \p}^2 - \rho^2(\p)$
 	%\item formaliser la notion d'enveloppe des boules $\EdB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
 	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{H \subseteq \Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
-	\item formaliser la notion d'enveloppe des boules $\EdB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
-	\item donner définition implicite de $\EdB{\Sigma}{\rho}$ :
-	\[ \EdB{\Sigma}{\rho} = \phi^{-1}(0) \]
-	avec 
-	\[ \phi(\bx) = \min_{\p \in \Sigma} \normtwo{\bx - \p}^2 - \rho(\p)^2 \]
-	\item après une propagation à vitesse normale $\nu$ constante pendant un intervalle de temps $\tau$ tel que $\nu \tau = \rho$, la nouvelle interface est $\EdB{\Sigma}{\rho}$
-	\item à condition que $\rho$ soit suffisamment régulière (continuité à déterminer), $\EdB{\Sigma}{\rho} \subset \EdS{\Sigma}{\rho}$
+	%\item formaliser la notion d'enveloppe des boules $\EdB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
+	\item formaliser la notion d'enveloppe des boules (EdB) $\EdB{H \subseteq \Sigma}{\rho} := \boundary{ \left( \ball{H}{\rho} \right) }$
+	\item si $H \subseteq \Sigma$ est une variété sans bord alors $\EdB{H}{\rho}  = \EdBplus{H}{\rho} \cup \EdBmoins{H}{\rho}$ où $\EdBplus{H}{\rho} \subset \complement{\Omega}$ et $\EdBmoins{H}{\rho} \subset \Omega$ (\textit{illustrer})
+	\item donner définition implicite de l'EdB :\\
+	on pose 
+	\[
+		\implicitsphere(\bx, \p) := \normtwo{\bx - \p}^2 - \rho(\p)^2,
+	\]
+	et, pour $H \subseteq \Sigma$, 
+	\[
+		\implicitEdB{H}(\bx) := \min_{\p \in H} \implicitsphere(\bx, \p).
+	\]
+	Alors,
+	\[ 
+		\EdB{H}{\rho} 
+		= \implicitEdB{H}^{-1}(0)
+		= 
+		\left\{
+			\bx \in \reals^3 \mid \forall \p \in H, \implicitsphere(\bx, \p) \geq 0
+			\text{ et } \exists \q \in H \mid \implicitsphere(\bx, \p) = 0
+		\right\}.
+	\]
+	\item après une propagation à vitesse normale $\nu$ constante pendant un intervalle de temps $\tau$ tel que $\nu \tau = \rho$, la nouvelle interface est $\EdBplus{\Sigma}{\rho}$
+	\item à condition que $\rho$ soit suffisamment régulière (continuité à déterminer), $\EdB{\Sigma}{\rho} \subseteq \EdS{\Sigma}{\rho}$
+	\item si $\EdS{\Sigma}{\rho}$ ne présente pas d'auto-intersections alors $\EdB{\Sigma}{\rho} = \EdS{\Sigma}{\rho}$
 \end{enumerate}
 
 
+\setlength{\imagewidth}{50mm}
+\setlength{\imageheight}{\imagewidth}
 \begin{figure}
 	\centering
 	%\includegraphics[width=10cm]{EdS_EdB.JPG}
+	\begin{tikzpicture}[
+		x=\imagewidth, y=\imageheight,
+		solide/.style={fill=yellow},
+		EdS/.style={densely dotted},
+		EdB/.style={},
+		plus/.style={red, thick},
+		moins/.style={blue},
+	]
+		\input{figures/code/Huygens_principle/teapot/teapot_tikzcode.tex}
+		%
+		\node at (-0.06,-0.055) {$\Omega$};
+		\node at (0.45,0.45) {$\complement{\Omega}$};
+%		\node[above] at (-0.5,0.28) {$\Sigma$};
+		%
+		\input{figures/code/Huygens_principle/teapot/teapot_EdS_plus_tikzcode.tex}
+		\input{figures/code/Huygens_principle/teapot/teapot_EdS_moins_tikzcode.tex}
+		%
+		\input{figures/code/Huygens_principle/teapot/teapot_EdB_plus_tikzcode.tex}
+		\input{figures/code/Huygens_principle/teapot/teapot_EdB_moins_tikzcode.tex}
+%		\begin{scope}[
+%			scale=2,
+%			shift={(-0.5,-0.5)}
+%		]
+%			\drawGrid{10}{10}{red, thin, dotted}
+%		\end{scope}
+	\end{tikzpicture}
 	\caption{Schéma pour distinguer EdS et EdB (à revoir!).}
 	\label{fig:EdS_EdB}
 \end{figure}

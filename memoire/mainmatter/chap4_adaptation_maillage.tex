@@ -6,12 +6,14 @@
 
 Motivation
 \begin{enumerate}
+	\item les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du domaine de calcul
 	\item la précision et la vitesse de convergence du calcul dépendent fortement de la qualité (forme et taille) des éléments du maillage
+	\item on 
 \end{enumerate}
 
 \section{Problématique et état de l'art}
 
-\subsection{Simulation numérique avec une géométrie déformable}
+\subsection{Simulation numérique dans un domaine à géométrie déformable}
 \begin{enumerate}
 	\item maillage volumique (fluide) conforme à l'interface
 	\begin{enumerate}
@@ -42,7 +44,7 @@ Motivation
 		\end{itemize}
 	\end{enumerate}
 	
-	\item maillage volumique non conforme à l’interface
+	\item maillage volumique non-conforme à l’interface
 	\begin{itemize}
 		\item méthode des frontières immergées \cite{peskin2002, hovnanian2012, wang2012} : interface représentée explicitement, volume (fluide) traité de façon eulérienne (\ie maillage fixe)
 		\item intérêt/avantages : évite de générer et déformer un maillage 3d autour d’une géométrie complexe
@@ -106,7 +108,12 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 			
 		\end{itemize}
 	\end{enumerate}
-	\item 
+	
+	\item méthodes directes : 
+	\begin{enumerate}
+		\item \cite{lau1996} : avancée de front directement dans $\reals^3$ avec projection sur la surface exacte des n\oe uds au cours de la génération $\to$ limité à une paramétrisation continue (\ie carreau par carreau)
+		\item \cite{foucault2013} : avancée de front directe trans-carreaux
+	\end{enumerate}
 \end{enumerate}
 
 
