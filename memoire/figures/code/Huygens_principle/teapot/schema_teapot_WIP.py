@@ -350,100 +350,45 @@ SPACE_BETWEEN_CIRCLES = 0#1e-3#
 centers = []
 centers_xy = []
 
-
-for numpath, path in enumerate(elems):#,inner]):
-    print 'path #%d' % (numpath+1)
-    pend = path[-1].eval(1.0)
-    rend, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(pend[0], pend[1])
-
-    # find 1st center
-    t = 0.0
-    ipath = 0
-
-    # predictor
-    p = path[ipath].eval(t)
-    r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(p[0], p[1])
-    if r < 0:
-        #exit('   r < 0')
-        print 'r < 0 at (x, y) = (%s, %s)' % (p[0], p[1])
-        break
-    dp_dt = path[ipath].evald(t)
-
-    if START_FROM_ENDPOINT:
-        o = p
-        do_dt = dp_dt
-    else:
-        dt = FRAC_DT_PREDICTOR*r/norm2(dp_dt)
-        #print '   predictor dt = %s' % dt
-
-        # Newton
-        t += dt
-        converged, t, o, do_dt, r = newton_circle_packing(
-            path[ipath],
-            t,
-            p,
-            0,
-            TOL
-        )
-        if not converged:
-            #print '   t = %s' % t
-            exit('   first o not converged')
-
-    centers.append([ipath, t])
-    dt = FRAC_DT_PREDICTOR*(2*r)/norm2(do_dt)
-
-    keep_running = True
-    while keep_running:
-        print '   curve #%d/%d' % (ipath+1, len(path))
-        while True:
-            print '   t = %s, predictor dt = %s' % (t, dt)
-
-            # Newton
-            told = t
-            t += dt
-            print '     predictor t = %s' % t
-            if t > 2:
-                print '     too large --> move on to next segment'
-                break
-            elif t < 0:
-                t = 0
-                print '     force t = 0'
-            converged, t, o, do_dt, r = newton_circle_packing(
-                path[ipath],
-                t,
-                o,
-                r,
-                TOL
-            )
-            #print '     converged t = %s    (dt = %s)' % (t, t - told)
-
-            if not converged:
-                print '   t = %s' % t
-                print '   o not converged'
-                keep_running = False
-                break
-            else:
-                if t > 1:
-                    break # move on to the next subpath
-                else:
-                    centers.append([ipath, t])
-                    centers_xy.append(path[ipath].eval(t))
-                    dt = FRAC_DT_PREDICTOR*(2*r)/norm2(do_dt)
-        ipath += 1
-        if ipath == len(path): break
-        o = path[centers[-1][0]].eval(centers[-1][1])
-        r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(o[0], o[1])
-        t = 0.0
-        q = path[ipath].eval(t)
-        dq_dt = path[ipath].evald(t)
-        # find point on linearized subpath at distance 2*r from last circle's center
-        A = dot(dq_dt, dq_dt)
-        B = dot(dq_dt, q-o)
-        C = dot(q-o, q-o) - 4*r**2
-        dt = (sqrt(max(0, B**2 - A*C)) - B)/A
-        s = q + dt*dq_dt
-        #print '|s - p| = %s, 2*r(p) = %s' % (norm2(s - o), 2*r)
-        dt *= FRAC_DT_PREDICTOR
+# Find 'key' points along each path
+# type: 0: G1 discontinuity, 1: alpha (locally) maximally negative
+key_pts = []
+tsample = numpy.linspace(0,1,100)
+TOLangleG1 = 10.0 # degrees
+for path in elems:
+    ncurves = len(path)
+    key_pts_i = []
+    for icurve in range(ncurves):
+        # potential type-0 key point at first knot (t=0)
+        jcurve = (icurve-1)%ncurves # index of previous curve on same path
+        if numpy.degrees(
+                angle_between_vectors_2d(
+                    path[icurve].x[1] - path[icurve].x[0],
+                    path[jcurve].x[3] - path[jcurve].x[2]
+                )
+        ) > TOLangleG1:
+            newpoint = True
+            for typ, kcurve, tval, xy in key_pts_i:
+                if norm2(path[icurve].x[0] - xy) < EPSspt:
+                    newpoint = False
+                    break
+            if newpoint: key_pts_i.append([0, icurve, 0.0, path[icurve].x[0].copy()])
+        #
+        # potential type-1 key points
+        """
+        a = path[icurve].alpha(tsample)
+        for iside in range(2):
+            imin = numpy.argmin(a[iside])
+            if a[iside][imin] < EPSalpha:
+                newpoint = True
+                xyi = path[icurve].eval(tsample[imin])
+                for typ, kcurve, tval, xy in key_pts_i:
+                    if norm2(xyi - xy) < EPSspt:
+                        newpoint = False
+                        break
+                if newpoint: key_pts_i.append([1, icurve, tsample[imin], xyi])
+        """
+    key_pts.append(key_pts_i)
 ########################################################
 
 
@@ -725,11 +670,22 @@ for i in range(2):
 fig, ax = plt.subplots(1,2)
 
 for iax in range(2):
-    for path in elems:
+    for ipath, path in enumerate(elems):
         for curve in path:#
             xy = curve.eval(t)
             ax[iax].plot(xy[:,0], xy[:,1], 'k-')
-            
+        for typ, icurve, tval, xy in key_pts[ipath]:
+            p = (xy - ctr)*scale
+            r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xy[0], xy[1])
+            ax[iax].add_artist(
+                plt.Circle(
+                    p,
+                    scale*r,
+                    ec='g',
+                    fc='g',
+                    alpha=0.5
+                )
+            )
 
 if True:
     for iax in range(2):
