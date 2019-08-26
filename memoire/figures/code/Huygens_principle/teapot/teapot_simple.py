@@ -3,15 +3,15 @@
 import numpy
 import matplotlib.pyplot as plt
 import sys
-#sys.path.append('/d/bandrieu/GitHub/Code/Python/')
-sys.path.append('/home/bastien/GitHub/Code/Python/')
+sys.path.append('/d/bandrieu/GitHub/Code/Python/')
+#sys.path.append('/home/bastien/GitHub/Code/Python/')
 import lib_bezier as lbez
 
 
 
 ######################################################
 # OPTIONS
-SHARP_SPOUT = True
+SHARP_SPOUT = True#False#
 ######################################################
 
 
@@ -215,6 +215,7 @@ for i in range(7):
 # spout
 if SHARP_SPOUT:
     # sharp tip
+    """
     #   find y-extremal value
     t2 = bezier_extremal_values(paths[1][1], 0)
     print 't2 = ', t2
@@ -231,6 +232,9 @@ if SHARP_SPOUT:
         paths[1][2] = lbez.reparameterize_bezier_curve(paths[1][2], start=t3[0])
     #
     paths[1] = insert_joint(paths[1], after=1, tension=(0,1))
+    """
+    paths[1][1] = lbez.reparameterize_bezier_curve(paths[1][1], end=0.4)
+    paths[1][2][0] = paths[1][1][-1]
         
 else:
     # smooth tip
@@ -280,7 +284,7 @@ if ti is not None:
 
 # # # # # # # # # # #
 if SHARP_SPOUT:
-    i1 = 4
+    i1 = 3#4
 else:
     i1 = 3
 ti = Newton_intersection(

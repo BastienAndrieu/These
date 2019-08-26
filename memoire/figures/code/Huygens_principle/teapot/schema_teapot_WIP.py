@@ -6,8 +6,8 @@ from numpy import *
 import matplotlib.pyplot as plt
 
 import sys
-#sys.path.append('/d/bandrieu/GitHub/Code/Python/')
-sys.path.append('/home/bastien/GitHub/Code/Python/')
+sys.path.append('/d/bandrieu/GitHub/Code/Python/')
+#sys.path.append('/home/bastien/GitHub/Code/Python/')
 import lib_bezier as lbez
 #from lib_compgeom import angle_between_vectors_2d
 
@@ -153,7 +153,13 @@ class Curve:
                     else:
                         itail = ihead + 1
                         while True:#itail < n:
-                            if a[iside][itail] > EPSalpha or itail >= n-1:
+                            #print 'itail = %d/%d' % (itail, n)
+                            if itail > n-1:
+                                #print '\tappend [%d, %d]' % (ihead, itail-1)
+                                flipped.append([ihead,itail-1])
+                                break
+                            if a[iside][itail] > EPSalpha:# or itail > n-1:
+                                #print '\tappend [%d, %d]' % (ihead, itail-1)
                                 flipped.append([ihead,itail-1])
                                 break
                             else:
@@ -161,7 +167,7 @@ class Curve:
                                 continue
                         ihead = itail + 1
                 #
-                print '\t\t\tside ', iside, ', flipped = ', flipped
+                #print '\t\t\tside ', iside, ', flipped = ', flipped
                 if flipped[0][0] > 0:
                     self.eod[iside].append(self.eoc[iside][:flipped[0][0]])
                 for j in range(len(flipped)-1):
@@ -231,33 +237,43 @@ def read_connected_path(filename):
     return segments
 #####################################
 
-
-def newton_circle_packing(path, t, oprev, rprev, tol, itmax=20):
-    converged = False
+def circle_packing(curves, nsample, itmax):
+    tsample = numpy.linspace(0,1,nsample)
+    #
+    spacing = 0
+    #
     for it in range(itmax):
-        o = path.eval(t)
-        do_dt = path.evald(t)
-        r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(o[0], o[1])
-        if r < 0:
-            #exit('newton_circle_packing: r < 0')
-            print '\t\t**** r < 0 at (x, y) = (%s, %s)' % (o[0], o[1])
-            return converged, t, o, do_dt, r
-        dr_dt = do_dt[0]*dr_dx + do_dt[1]*dr_dy
-
-        res = o - oprev
-
-        f = dot(res, res) - (r + rprev + SPACE_BETWEEN_CIRCLES)**2
-        #print '\t\tit.#%d, resf = %s' % (it, sqrt(abs(f))/r)
-        if abs(f) < (tol*r)**2:
-            converged = True
+        print '\tCP: it #%d' % it
+        xyc = numpy.empty((0,2))
+        rc = numpy.empty(0)
+        for curve in curves:
+            xy = curve.eval(tsample)
+            r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xy[:,0], xy[:,1])
+            #
+            xyc = numpy.vstack([xyc, xy[:-1]])
+            rc = numpy.hstack([rc, r[:-1]])
+        #
+        j = 1
+        while j < len(rc)-1:
+            n = len(rc)
+            i = (j-1)%n
+            if norm2(xyc[j] - xyc[i]) < rc[j] + rc[i] + spacing:
+                xyc = numpy.delete(xyc, j, 0)
+                rc = numpy.delete(rc, j)
+            else:
+                j += 1
+        #
+        if norm2(xyc[-2] - xyc[-1]) < rc[-2] + rc[-1] + spacing:
+            xyc = numpy.delete(xyc, -2, 0)
+            rc = numpy.delete(rc, -2)
+        #
+        if norm2(xyc[-2] - xyc[-1]) > rc[-2] + rc[-1] + 2*spacing:
+            spacing += 1e-3
+            continue
+        else:
+            print '\tconverged, %d points' % len(xyc)
             break
-
-        df_dt = 2.0*(dot(do_dt, res) - dr_dt*(r + rprev))
-
-        dt = -f/df_dt
-        #print '\t\t        dt = %s' % dt
-        t += dt
-    return converged, t, o, do_dt, r
+    return [xyc, rc]
 #####################################
 def diff_angle(u, v):
     return arctan2(u[1]*v[0] - u[0]*v[1], u[0]*v[0] + u[1]*v[1])
@@ -298,11 +314,13 @@ else:
 
 
 # **************
+"""
 if True:
     elems[0][3].x = lbez.reparameterize_bezier_curve(elems[0][3].x, end=0.4)
     elems[0][3].update()
     elems[0][4].x[0] = elems[0][3].x[-1]
     elems[0][4].update()
+"""
 # **************
 
 ########################################################
@@ -342,10 +360,10 @@ if False:
 
 ########################################################
 # PACK CIRCLES
-TOL = 1e-1
+TOL = 0#-1e-1
 FRAC_DT_PREDICTOR = 1
 START_FROM_ENDPOINT = False#True
-SPACE_BETWEEN_CIRCLES = 0#1e-3#
+SPACE_BETWEEN_CIRCLES = 0#1e-2#4e-2#
 
 centers = []
 centers_xy = []
@@ -354,7 +372,7 @@ centers_xy = []
 # type: 0: G1 discontinuity, 1: alpha (locally) maximally negative
 key_pts = []
 tsample = numpy.linspace(0,1,100)
-TOLangleG1 = 10.0 # degrees
+TOLangleG1 = 20.0 # degrees
 for path in elems:
     ncurves = len(path)
     key_pts_i = []
@@ -389,6 +407,70 @@ for path in elems:
                 if newpoint: key_pts_i.append([1, icurve, tsample[imin], xyi])
         """
     key_pts.append(key_pts_i)
+
+######################
+tsample = numpy.linspace(0,1,200)
+circles = []
+MRG = (1 + TOL)
+for ipath in range(len(key_pts)):
+    nkey = len(key_pts[ipath])
+    xys = numpy.empty((0,2))
+    rs = numpy.empty(0)
+    for ikey in range(nkey):
+        print '%d/%d' % (ikey, nkey-1)
+        ntmp = len(rs)
+        jkey = (ikey+1)%nkey
+        typi, icurve, ti, xyi = key_pts[ipath][ikey]
+        typj, jcurve, tj, xyj = key_pts[ipath][jkey]
+        print '\t[%d, %d[ /%d' % (icurve, jcurve, len(elems[ipath])-1)
+        #rs = numpy.empty(0)
+        if jcurve < icurve:
+            list_curves = [k for k in range(icurve,len(elems[ipath]))] + [k for k in range(jcurve)]
+        else:
+            list_curves = [k for k in range(icurve,jcurve)]
+        if True:
+            xyc, rc = circle_packing([elems[ipath][k] for k in list_curves], 200, 30)
+            xys = numpy.vstack([xys, xyc[:-1]])
+            rs = numpy.hstack([rs, rc[:-1]])
+        else:
+            for kcurve in list_curves:
+                xy = elems[ipath][kcurve].eval(tsample)
+                r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xy[:,0], xy[:,1])
+                #
+                xys = numpy.vstack([xys, xy[:-1]])
+                rs = numpy.hstack([rs, r[:-1]])
+            j = ntmp+1
+            while j < len(rs):
+                n = len(rs)
+                i = (j-1)%n
+                if norm2(xys[j] - xys[i]) < MRG*(rs[j] + rs[i] + SPACE_BETWEEN_CIRCLES):
+                    xys = numpy.delete(xys, j, 0)
+                    rs = numpy.delete(rs, j)
+                else:
+                    j += 1
+            xyj = elems[ipath][jcurve].x[0]
+            rj, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xyj[0], xyj[1])
+            #if norm2(xys[-1] - xyj) < MRG*(rs[-1] + rj + SPACE_BETWEEN_CIRCLES):
+            if norm2(xys[-1] - xyj) < 0.9*(rs[-1] + rj + SPACE_BETWEEN_CIRCLES):
+                xys = xys[:-1]
+                rs = rs[:-1]
+    circles.append([xys, rs])
+
+######################
+"""
+for ipath in range(len(key_pts)):
+    j = 1
+    while j < len(circles[ipath][0]):
+        n = len(circles[ipath][0])
+        i = (j-1)%n
+        k = (j+1)%n
+        #if norm2(circles[ipath][0][i] - circles[ipath][0][k]) < circles[ipath][1][i] + circles[ipath][1][k]:
+        if norm2(circles[ipath][0][j] - circles[ipath][0][i]) < circles[ipath][1][j] + circles[ipath][1][i]:
+            circles[ipath][0] = numpy.delete(circles[ipath][0], j, 0)
+            circles[ipath][1] = numpy.delete(circles[ipath][1], j)
+        else:
+            j += 1
+"""
 ########################################################
 
 
@@ -674,6 +756,7 @@ for iax in range(2):
         for curve in path:#
             xy = curve.eval(t)
             ax[iax].plot(xy[:,0], xy[:,1], 'k-')
+        """
         for typ, icurve, tval, xy in key_pts[ipath]:
             p = (xy - ctr)*scale
             r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xy[0], xy[1])
@@ -681,9 +764,23 @@ for iax in range(2):
                 plt.Circle(
                     p,
                     scale*r,
+                    ec='y',
+                    fc='y',
+                    alpha=0.8
+                )
+            )
+        """
+        for i, xy in enumerate(circles[ipath][0]):
+            p = (xy - ctr)*scale
+            #r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xy[0], xy[1])
+            r = circles[ipath][1][i]
+            ax[iax].add_artist(
+                plt.Circle(
+                    p,
+                    scale*r,
                     ec='g',
                     fc='g',
-                    alpha=0.5
+                    alpha=0.4
                 )
             )
 
@@ -722,6 +819,7 @@ xy_inter = numpy.asarray(xy_inter)
 
 for axe in ax:
     axe.set_aspect('equal')
+plt.tight_layout()
 plt.show()
 
 
@@ -751,14 +849,12 @@ def closed_polyline_to_string(poly):
     s += 'cycle'
     return s
 ##############
-
+"""
 f = open('teapot_tikzcode.tex', 'w')
 f.write('\\draw[solide]\n')
 f.write('\t%s\n' % (bezier_path_to_string(elems[0])))
 f.write('\t%s;' % (bezier_path_to_string(elems[1])))
 f.close()
-
-
 
 f = open('teapot_EdS_plus_tikzcode.tex', 'w')
 f.write('\\draw[EdS, plus]\n')
@@ -774,9 +870,6 @@ for path in eoc:
 f.write(';')
 f.close()
 
-
-
-
 f = open('teapot_EdB_plus_tikzcode.tex', 'w')
 f.write('\\draw[EdB, plus]\n')
 for path in eod:
@@ -791,8 +884,56 @@ for path in eod:
 f.write(';')
 f.close()
 
+f = open('teapot_union_of_balls_tikzcode.tex', 'w')
+f.write('\\fill[colorBalls, even odd rule]\n')
+for path in eod:
+    for side in path:
+        f.write('\t%s\n' % (closed_polyline_to_string(side)))
+f.write(';')
+f.close()
+"""
 
 
+#
+f = open('teapot_def_paths_tikzcode.tex', 'w')
+
+f.write('\\def\pathSigma{')
+f.write('%s ' % (bezier_path_to_string(elems[0])))
+f.write('%s' % (bezier_path_to_string(elems[1])))
+f.write('}\n')
+
+f.write('\\def\pathEdSplus{')
+for path in eoc:
+    f.write('%s' % (closed_polyline_to_string(path[0])))
+f.write('}\n')
+
+f.write('\\def\pathEdSmoins{')
+for path in eoc:
+    f.write('%s' % (closed_polyline_to_string(path[1])))
+f.write('}\n')
+
+f.write('\\def\pathEdBplus{')
+for path in eod:
+    f.write('%s' % (closed_polyline_to_string(path[0])))
+f.write('}\n')
+
+f.write('\\def\pathEdBmoins{')
+for path in eod:
+    f.write('%s' % (closed_polyline_to_string(path[1])))
+f.write('}\n')
+
+f.close()
+#
+
+
+
+f = open('teapot_circles.dat', 'w')
+for ipath in range(len(circles)):
+    for i, xy in enumerate(circles[ipath][0]):
+        p = (xy - ctr)*scale
+        r = circles[ipath][1][i]
+        f.write('%s, %s, %s\n' % (p[0], p[1], r*scale))
+f.close()
 
 
 ########################################################

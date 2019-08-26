@@ -255,33 +255,61 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 \setlength{\imageheight}{\imagewidth}
 \begin{figure}
 	\centering
+	%
+	\DTLsetseparator{,}%
+	\DTLloaddb[noheader,keys={x,y,r}]{dbcircles}{figures/code/Huygens_principle/teapot/teapot_circles.dat}%
 	%\includegraphics[width=10cm]{EdS_EdB.JPG}
-	\begin{tikzpicture}[
-		x=\imagewidth, y=\imageheight,
-		solide/.style={fill=yellow},
-		EdS/.style={densely dotted},
-		EdB/.style={},
-		plus/.style={red, thick},
-		moins/.style={blue},
-	]
-		\input{figures/code/Huygens_principle/teapot/teapot_tikzcode.tex}
-		%
-		\node at (-0.06,-0.055) {$\Omega$};
-		\node at (0.45,0.45) {$\complement{\Omega}$};
-%		\node[above] at (-0.5,0.28) {$\Sigma$};
-		%
-		\input{figures/code/Huygens_principle/teapot/teapot_EdS_plus_tikzcode.tex}
-		\input{figures/code/Huygens_principle/teapot/teapot_EdS_moins_tikzcode.tex}
-		%
-		\input{figures/code/Huygens_principle/teapot/teapot_EdB_plus_tikzcode.tex}
-		\input{figures/code/Huygens_principle/teapot/teapot_EdB_moins_tikzcode.tex}
-%		\begin{scope}[
-%			scale=2,
-%			shift={(-0.5,-0.5)}
-%		]
-%			\drawGrid{10}{10}{red, thin, dotted}
-%		\end{scope}
-	\end{tikzpicture}
+	\newcounter{fignumber}
+	\colorlet{colorBalls}{mycolor_3}
+	\input{figures/code/Huygens_principle/teapot/teapot_def_paths_tikzcode.tex}
+	\forloop{fignumber}{1}{\value{fignumber} < 3}{
+		\begin{tikzpicture}[
+			x=\imagewidth, y=\imageheight,
+			curve/.style={semithick},
+			EdS/.style={curve, line join=round},%densely dotted},
+			EdB/.style={curve},
+			plus/.style={mycolor_2!80!red},
+			moins/.style={mycolor_1!80!blue},
+		]
+		%\begin{scope} [rotate=-30]
+			\fill[black!10!white] \pathSigma;
+			%
+%			\node at (-0.06,-0.055) {$\Omega$};
+%			\node at (0.45,0.45) {$\complement{\Omega}$};
+%			\node[above] at (-0.5,0.28) {$\Sigma$};
+			%
+			{\transparent{0.4}
+				\fill[colorBalls, even odd rule] \pathEdBplus \pathEdBmoins;
+			}%
+			\draw[semithick] \pathSigma;
+			%
+			\DTLforeach*{dbcircles}{\locx=x, \locy=y, \locr=r}{%
+				\draw[colorBalls!60!black, thin, densely dotted, line cap=round] (\locx, \locy) circle (\locr);
+			}%
+			%
+			\ifnum\value{fignumber}=1
+				\draw[EdS, plus] \pathEdSplus;
+				\draw[EdS, moins] \pathEdSmoins;
+			\else
+				\draw[EdB, plus] \pathEdBplus;
+				\draw[EdB, moins] \pathEdBmoins;
+			\fi
+			%
+	%		\begin{scope}[
+	%			scale=2,
+	%			shift={(-0.5,-0.5)}
+	%		]
+	%			\drawGrid{10}{10}{red, thin, dotted}
+	%		\end{scope}
+		%\end{scope}
+		\end{tikzpicture}%\par
+		\ifnum\value{fignumber}=1
+			\hfill
+		\else
+			\relax
+		\fi
+	}
+	\DTLgdeletedb{dbcircles}
 	\caption{Schéma pour distinguer EdS et EdB (à revoir!).}
 	\label{fig:EdS_EdB}
 \end{figure}
