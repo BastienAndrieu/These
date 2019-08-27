@@ -170,7 +170,11 @@ En effet,
 On considère une interface $\Sigma$ entre deux milieux distincts (\eg un solide et un fluide).
 Dans cette thèse, on se concentre sur des problèmes en trois dimensions. 
 $\Sigma$ représente donc une surface (\ie une variété de dimension 2) que l’on supposera orientable et fermée (\ie sans bord).
-De cette manière, l'interface sépare un domaine \textit{intérieur} $\Omega$ --- que l'on supposera ouvert --- et un domaine \textit{extérieur} $\complement{\Omega} = \reals^3 \setminus \Omega$.
+De cette manière, l'interface sépare un domaine \textit{intérieur} $\Omega$ --- que l'on supposera ouvert --- et un domaine \textit{extérieur} $\complement{\Omega} = \reals^3 \setminus \Omega$ (voir \autoref{fig:schema_interface_2d}). 
+$\Sigma$ est alors la frontière commune de ces domaines
+\begin{equation}
+	\Sigma = \boundary{\Omega} = \boundary{(\complement{\Omega})}.
+\end{equation}
 \par
 %[EDP avec vecteur vitesse ou vitesse normale, problème de définition au niveau des courbes singulières et points irréguliers]
 %\par\bigskip
@@ -212,7 +216,7 @@ Plutôt que de poser le problème sous la forme d'une équation différentielle,
 %\par\bigskip
 Alors qu'il développait un modèle ondulatoire de la propagation de la lumière, Christiaan Huygens proposa le principe suivant : chaque point de l'espace atteint par une onde lumineuse se comporte comme la source d'une ondelette secondaire émise dans toutes les directions. 
 Si le milieu de propagation est homogène et isotrope alors les ondelettes sont sphériques. 
-Le front d'onde, qui se propage ainsi de proche en proche, est alors formé par l'\textit{enveloppe} de ces ondelettes, \ie la surface qui est tangente à chacune d'elles et dont chaque point est un point de tangence avec une ondelette.
+Le front d'onde, qui se propage ainsi de proche en proche, est formé par l'\textit{enveloppe} de ces ondelettes, \ie la surface qui est tangente à chacune d'elles et dont chaque point est un point de tangence avec une ondelette.
 \par
 Le principe de Huygens permet de décrire de nombreux phénomènes analogues à la propagation d'une onde dans un milieu tels que la progression d'une flamme. 
 \textit{(développer \ldots)}
@@ -251,58 +255,67 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 \end{enumerate}
 
 
-\setlength{\imagewidth}{50mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{figures/code/Huygens_principle/teapot/teapot_def_paths_tikzcode.tex}
+
+\setlength{\imagewidth}{0.375\textwidth}%{50mm}
 \setlength{\imageheight}{\imagewidth}
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[
+		x=\imagewidth, y=\imageheight
+	]
+		\draw[
+			semithick,
+			fill=black!10!white,
+			postaction={
+				decorate,
+				decoration={
+					markings,
+					mark=at position 0.15 with {
+						\draw [-stealth, red] (0,0) -- (0,-5mm) node[right, inner sep=0] {$\unv$};
+						\fill[black] (0,0) circle (1.2pt);
+						\node at (0,1.3ex) {$\bx$};
+					};
+				}
+			}, 
+			postaction={
+				decorate,
+				decoration={
+					markings,
+					mark=at position 0.55 with {
+						\node at (0,-1.5ex) {$\Sigma$};
+					};
+				}
+			}, 
+		] \pathSigma;
+		\node[black!60!white] at (-0.06,-0.055) {$\Omega$};
+		\node[black!30!white] at (0.45,0.45) {$\complement{\Omega}$};
+		%\node[above] at (-0.5,0.28) {$\Sigma$};
+	\end{tikzpicture}
+	\caption{\ldots}
+	\label{fig:schema_interface_2d}
+\end{figure}
+	
+	
+
+%\setlength{\imagewidth}{50mm}
+%\setlength{\imageheight}{\imagewidth}
 \begin{figure}
 	\centering
 	%
 	\DTLsetseparator{,}%
 	\DTLloaddb[noheader,keys={x,y,r}]{dbcircles}{figures/code/Huygens_principle/teapot/teapot_circles.dat}%
-	%\includegraphics[width=10cm]{EdS_EdB.JPG}
 	\newcounter{fignumber}
 	\colorlet{colorBalls}{mycolor_3}
-	\input{figures/code/Huygens_principle/teapot/teapot_def_paths_tikzcode.tex}
+	\colorlet{colorSpy}{black!50!white}
 	\forloop{fignumber}{1}{\value{fignumber} < 3}{
-		\begin{tikzpicture}[
-			x=\imagewidth, y=\imageheight,
-			curve/.style={semithick},
-			EdS/.style={curve, line join=round},%densely dotted},
-			EdB/.style={curve},
-			plus/.style={mycolor_2!80!red},
-			moins/.style={mycolor_1!80!blue},
-		]
-		%\begin{scope} [rotate=-30]
-			\fill[black!10!white] \pathSigma;
-			%
-%			\node at (-0.06,-0.055) {$\Omega$};
-%			\node at (0.45,0.45) {$\complement{\Omega}$};
-%			\node[above] at (-0.5,0.28) {$\Sigma$};
-			%
-			{\transparent{0.4}
-				\fill[colorBalls, even odd rule] \pathEdBplus \pathEdBmoins;
-			}%
-			\draw[semithick] \pathSigma;
-			%
-			\DTLforeach*{dbcircles}{\locx=x, \locy=y, \locr=r}{%
-				\draw[colorBalls!60!black, thin, densely dotted, line cap=round] (\locx, \locy) circle (\locr);
-			}%
-			%
-			\ifnum\value{fignumber}=1
-				\draw[EdS, plus] \pathEdSplus;
-				\draw[EdS, moins] \pathEdSmoins;
-			\else
-				\draw[EdB, plus] \pathEdBplus;
-				\draw[EdB, moins] \pathEdBmoins;
-			\fi
-			%
-	%		\begin{scope}[
-	%			scale=2,
-	%			shift={(-0.5,-0.5)}
-	%		]
-	%			\drawGrid{10}{10}{red, thin, dotted}
-	%		\end{scope}
-		%\end{scope}
-		\end{tikzpicture}%\par
+%		\ifnum\value{fignumber}=1
+			\input{figures/code/Huygens_principle/teapot/EdS_EdB.tex} % everything maginfied in spy
+%		\else
+%			\input{figures/code/Huygens_principle/teapot/EdS_EdB2.tex} % line width not maginfied in spy
+%		\fi
 		\ifnum\value{fignumber}=1
 			\hfill
 		\else
@@ -310,9 +323,13 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 		\fi
 	}
 	\DTLgdeletedb{dbcircles}
-	\caption{Schéma pour distinguer EdS et EdB (à revoir!).}
+	\caption{Schéma pour distinguer EdS et EdB (\ldots).}
 	\label{fig:EdS_EdB}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %Dans la suite, étant donné un sous-ensemble (ouvert ou fermé) $E$ de $\reals^d$, on notera $\complement{E} := \reals^d \setminus E$ son \textit{complémentaire}, $\boundary{E}$ sa \textit{frontière}, $\interior{E}$ son \textit{intérieur} et $\closure{E} = E \cup \boundary{E}$ son \textit{adhérence}.
 %\par\bigskip

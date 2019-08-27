@@ -9,7 +9,6 @@ import sys
 sys.path.append('/d/bandrieu/GitHub/Code/Python/')
 #sys.path.append('/home/bastien/GitHub/Code/Python/')
 import lib_bezier as lbez
-#from lib_compgeom import angle_between_vectors_2d
 
 
 EPSfp = 1e-15
@@ -22,22 +21,15 @@ EPSspt = 1e-4
 
 #####################################
 def radius_function(x, y):
-    """
-    return r, dr_dx, dr_dy
-    """
-    if False:
-        a = 0.05
-        b, c, d, e, f = 0
-    else:
-        a = 0.08#0.28#
-        b = 0.2
-        c = 2
-        d = 0.13
-        e = 1.5
-        f = 0.25
+    a = 0.08
+    b = 0.2
+    c = 2
+    d = 0.13
+    e = 1.5
+    f = 0.25
     ox = 0.1
     oy = 0.2
-    f = 0.25#0.01#
+    f = 0.25
     sx = 2
     r = a*(1 + b*sin(c*x + ox) + d*cos(e*y + oy) + f*(x + sx))
     dr_dx = a*(b*c*cos(c*x + ox) + f)
@@ -47,12 +39,6 @@ def radius_function(x, y):
     d2r_dxdy = 0*x
     return r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy
 #####################################
-
-
-
-
-
-
 
 
 
@@ -112,13 +98,13 @@ class Curve:
         sqr_norm_dxy_dt = sum(dxy_dt**2, axis=1)
         inv_sqr_norm_dxy_dt = 1/sqr_norm_dxy_dt
         normal = vstack([dxy_dt[:,1], -dxy_dt[:,0]]).T
-
+        #
         r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xy[:,0], xy[:,1])
         dr_dt = dr_dx*dxy_dt[:,0] + dr_dy*dxy_dt[:,1]
-
+        #
         n = len(t)
         a = curve.alpha(t, dxy_dt, r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy)
-        
+        #
         self.eoc = [numpy.zeros((n,2)), numpy.zeros((n,2))]
         self.eod = [[], []]
         for iside in range(2):
@@ -132,34 +118,17 @@ class Curve:
             else:
                 flipped = []
                 ihead = 0
-                """
-                while ihead < n:
-                    #print 'ihead = %d/%d' % (ihead,n)
-                    if a[iside][ihead] > EPSalpha:
-                        ihead += 1
-                        continue
-                    for itail in range(ihead,n-1):
-                        if a[iside][itail+1] > EPSalpha:
-                            break
-                    if itail == n-2: itail += 1
-                    flipped.append([ihead,itail])
-                    ihead = itail + 1
-                    if ihead >= n-1: break
-                """
                 while ihead < n:
                     if a[iside][ihead] > EPSalpha:
                         ihead += 1
                         continue
                     else:
                         itail = ihead + 1
-                        while True:#itail < n:
-                            #print 'itail = %d/%d' % (itail, n)
+                        while True:
                             if itail > n-1:
-                                #print '\tappend [%d, %d]' % (ihead, itail-1)
                                 flipped.append([ihead,itail-1])
                                 break
                             if a[iside][itail] > EPSalpha:# or itail > n-1:
-                                #print '\tappend [%d, %d]' % (ihead, itail-1)
                                 flipped.append([ihead,itail-1])
                                 break
                             else:
@@ -167,7 +136,6 @@ class Curve:
                                 continue
                         ihead = itail + 1
                 #
-                #print '\t\t\tside ', iside, ', flipped = ', flipped
                 if flipped[0][0] > 0:
                     self.eod[iside].append(self.eoc[iside][:flipped[0][0]])
                 for j in range(len(flipped)-1):
@@ -177,20 +145,19 @@ class Curve:
         return
     #####################
     def alpha(self, t, dxy_dt=None, r=None, dr_dx=None, dr_dy=None, d2r_dx2=None, d2r_dy2=None, d2r_dxdy=None):
+        # cf. 'Data transfer and interface propagation in multicomponent simulations', Jiao (2001)
         # position and derivatives
         if dxy_dt is None: dxy_dt = self.evald(t)
         d2xy_dt2 = self.evald2(t)
-
         # curvature
         k = self.curvature(t, dxy_dt, d2xy_dt2)
-
         # radius function and derivatives
         if r is None or dr_dx is None or dr_dy is None or d2r_dx2 is None or d2r_dy2 is None or d2r_dxdy is None:
             xy = self.eval(t)
             r, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xy[:,0], xy[:,1])
         dr_dt = dr_dx*dxy_dt[:,0] + dr_dy*dxy_dt[:,1]
         d2r_dt2 = dr_dx*d2xy_dt2[:,0] + dr_dy*d2xy_dt2[:,1] + (d2r_dx2 + d2r_dxdy)*dxy_dt[:,0] + (d2r_dy2 + d2r_dxdy)*dxy_dt[:,1]
-        
+        #
         sqrtterm = numpy.sqrt(1 - dr_dt**2)
         commonterm = sqrtterm - dr_dt*d2r_dt2/sqrtterm
         return [commonterm + k*r, commonterm - k*r]
@@ -236,7 +203,6 @@ def read_connected_path(filename):
     f.close()
     return segments
 #####################################
-
 def circle_packing(curves, nsample, itmax):
     tsample = numpy.linspace(0,1,nsample)
     #
@@ -282,9 +248,9 @@ def circle_arc_between_two_points(center, xy0, xy1, tolchord=1e-2):
     p0 = xy0 - center
     p1 = xy1 - center
     angle = angle_between_vectors_2d(p0, p1)%(2*numpy.pi)
-
+    #
     npts = max(2, int(0.5*abs(angle)/sqrt(tolchord*(2-tolchord))))
-    
+    #
     t = linspace(0,1,npts)
     s = sin(angle)
     if abs(s) < 1e-15:
@@ -311,17 +277,9 @@ if True:
         elems.append(read_connected_path('teapot_simple_'+name+'_bcp.dat'))
 else:
     elems = [read_connected_path('teapot_simple_outer_bcp.dat')]
+########################################################
 
 
-# **************
-"""
-if True:
-    elems[0][3].x = lbez.reparameterize_bezier_curve(elems[0][3].x, end=0.4)
-    elems[0][3].update()
-    elems[0][4].x[0] = elems[0][3].x[-1]
-    elems[0][4].update()
-"""
-# **************
 
 ########################################################
 # PLOT CURRENT INTERFACE
@@ -360,14 +318,6 @@ if False:
 
 ########################################################
 # PACK CIRCLES
-TOL = 0#-1e-1
-FRAC_DT_PREDICTOR = 1
-START_FROM_ENDPOINT = False#True
-SPACE_BETWEEN_CIRCLES = 0#1e-2#4e-2#
-
-centers = []
-centers_xy = []
-
 # Find 'key' points along each path
 # type: 0: G1 discontinuity, 1: alpha (locally) maximally negative
 key_pts = []
@@ -417,13 +367,12 @@ for ipath in range(len(key_pts)):
     xys = numpy.empty((0,2))
     rs = numpy.empty(0)
     for ikey in range(nkey):
-        print '%d/%d' % (ikey, nkey-1)
+        #print '%d/%d' % (ikey, nkey-1)
         ntmp = len(rs)
         jkey = (ikey+1)%nkey
         typi, icurve, ti, xyi = key_pts[ipath][ikey]
         typj, jcurve, tj, xyj = key_pts[ipath][jkey]
-        print '\t[%d, %d[ /%d' % (icurve, jcurve, len(elems[ipath])-1)
-        #rs = numpy.empty(0)
+        #print '\t[%d, %d[ /%d' % (icurve, jcurve, len(elems[ipath])-1)
         if jcurve < icurve:
             list_curves = [k for k in range(icurve,len(elems[ipath]))] + [k for k in range(jcurve)]
         else:
@@ -450,27 +399,10 @@ for ipath in range(len(key_pts)):
                     j += 1
             xyj = elems[ipath][jcurve].x[0]
             rj, dr_dx, dr_dy, d2r_dx2, d2r_dy2, d2r_dxdy = radius_function(xyj[0], xyj[1])
-            #if norm2(xys[-1] - xyj) < MRG*(rs[-1] + rj + SPACE_BETWEEN_CIRCLES):
             if norm2(xys[-1] - xyj) < 0.9*(rs[-1] + rj + SPACE_BETWEEN_CIRCLES):
                 xys = xys[:-1]
                 rs = rs[:-1]
     circles.append([xys, rs])
-
-######################
-"""
-for ipath in range(len(key_pts)):
-    j = 1
-    while j < len(circles[ipath][0]):
-        n = len(circles[ipath][0])
-        i = (j-1)%n
-        k = (j+1)%n
-        #if norm2(circles[ipath][0][i] - circles[ipath][0][k]) < circles[ipath][1][i] + circles[ipath][1][k]:
-        if norm2(circles[ipath][0][j] - circles[ipath][0][i]) < circles[ipath][1][j] + circles[ipath][1][i]:
-            circles[ipath][0] = numpy.delete(circles[ipath][0], j, 0)
-            circles[ipath][1] = numpy.delete(circles[ipath][1], j)
-        else:
-            j += 1
-"""
 ########################################################
 
 
@@ -499,8 +431,6 @@ for ipath, path in enumerate(elems):
     for icurve, curvei in enumerate(path):
         for iside in range(2):
             eod[ipath][iside].append(curvei.eoc[iside])
-        # look for self-intersections
-        # ...
         # look for intersections at sharp joints
         jcurve = (icurve + 1)%ncurves
         curvej = path[jcurve]
@@ -537,8 +467,9 @@ for ipath, path in enumerate(elems):
                 eod[ipath][0].append(arc.eoc[0])
                 arc.eod[0] = [arc.eoc[0].copy()]
 
+
 ########################################################
-# ARCS (PSEUDO-EDS DES COINS)
+# INSERT ARCS (PSEUDO-EDS DES COINS)
 for i in range(len(arcs)):
     ipath, icurve, arc = arcs[i]
     elems[ipath].insert(icurve+1, arc)
@@ -546,9 +477,6 @@ for i in range(len(arcs)):
         if arcs[j][0] == ipath:
             arcs[j][1] += 1
 ########################################################
-
-
-
 
 
 ########################################################
@@ -561,6 +489,7 @@ for path in elems:
     eoc.append(eoc_path)
 ########################################################
 
+
 ########################################################
 # REMOVE SELF-INTERSECTIONS
 eod = []
@@ -571,7 +500,6 @@ for path in elems:
             for xy in eod_side:
                 eod_path[iside].append(xy)
     eod.append(eod_path)
-
 
 for ipath in range(len(eod)):
     for iside in range(2):

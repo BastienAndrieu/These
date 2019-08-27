@@ -27,9 +27,11 @@ patterns,
 pgfplots.colorbrewer,
 positioning,
 quotes,
+shadows,
 shapes,
 shapes.geometric, 
-shapes.misc
+shapes.misc,
+spy
 }
 %\tikzexternalize[prefix=figures/tikz_pgf/]
 
@@ -89,6 +91,22 @@ shapes.misc
     \pgfmathsetlength{\pgf@yb}{\pgf@yb - \pgf@ya}%
 	\global#1=\pgf@yb%
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\getDistance}[3]{%
+%	%https://tex.stackexchange.com/questions/39293/coordinates-a-b-compute-b-a-and-angle-between-x-and-b-a
+%	\pgfpointdiff{\pgfpointanchor{#1}{center}}
+%                 {\pgfpointanchor{#2}{center}}
+%    \pgf@xa=\pgf@x % no need to use a new dimen
+%    \pgf@ya=\pgf@y
+%    %\pgfmathparse{veclen(\pgf@xa,\pgf@ya)/28.45274} % to convert from pt to cm   
+%    \pgfmathparse{veclen(\pgf@xa,\pgf@ya)}
+%    %\global\let\mylength\pgfmathresult % we need a global macro
+%    \global#3=\pgfmathresult%
+%https://tex.stackexchange.com/questions/412899/tikz-calculate-and-store-the-euclidian-distance-between-two-coordinates?rq=1
+\tikz@scan@one@point\pgfutil@firstofone($#1-#2$)\relax  
+\pgfmathsetmacro{#3}{veclen(\the\pgf@x,\the\pgf@y)}
+}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % get row/column index in groupplot
 \newcommand{\currentrow}{\the\pgfplots@group@current@row}

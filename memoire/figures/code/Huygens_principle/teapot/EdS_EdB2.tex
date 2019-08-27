@@ -1,0 +1,101 @@
+%https://tex.stackexchange.com/questions/59036/using-tikzlibrary-spy-without-magnifying-line-width-and-or-mark-size
+% size of the spy-in node
+\def\spyviewersize{2.5cm}
+% (line width of the spy node) / 2
+% (we need this for clipping later)
+\def\spyonclipreduce{0.5pt}
+% zoom factor
+\def\spyfactor{3.2}
+\begin{tikzpicture}[
+	x=\imagewidth, y=\imageheight,
+	curve/.style={semithick},
+	EdS/.style={curve, line join=round},
+	EdB/.style={curve},
+	plus/.style={mycolor_2!80!red},
+	moins/.style={mycolor_1!80!blue},
+	spy/.style={%
+        draw, 
+        colorSpy,
+        line width=1pt,
+        circle,
+        inner sep=0pt,
+    },
+	%spy using outlines={colorSpy},%, connect spies},
+	%grid/.style={thin, dotted, font={\tiny}, inner sep=0}
+]
+%
+% the graph/picture
+\def\pic{
+	\fill[black!10!white] \pathSigma;
+	%
+%			\node at (-0.06,-0.055) {$\Omega$};
+%			\node at (0.45,0.45) {$\complement{\Omega}$};
+%			\node[above] at (-0.5,0.28) {$\Sigma$};
+	%
+	{\transparent{0.4}
+		\fill[colorBalls, even odd rule] \pathEdBplus \pathEdBmoins;
+	}%
+	\draw[semithick] \pathSigma;
+	%
+	\DTLforeach*{dbcircles}{\locx=x, \locy=y, \locr=r}{%
+		\draw[colorBalls!60!black, thin, densely dotted, line cap=round] (\locx, \locy) circle (\locr);
+	}%
+	%
+	\ifnum\value{fignumber}=1
+		\draw[EdS, plus] \pathEdSplus;
+		\draw[EdS, moins] \pathEdSmoins;
+	\else
+		\draw[
+			EdB, 
+			plus,
+			postaction={
+				decorate,
+				decoration={
+					markings,
+					mark=at position 0.495 with {
+						\node at (0,-1.5ex) {$\EdBplus{\Sigma}{\rho}$};
+					};
+				}
+			}, 
+		] \pathEdBplus;
+		\draw[
+			EdB, 
+			moins,
+			postaction={
+				decorate,
+				decoration={
+					markings,
+					mark=at position 0.425 with {
+						\node at (0,1.6ex) {$\EdBmoins{\Sigma}{\rho}$};
+					};
+				}
+			}, 
+		] \pathEdBmoins;
+	\fi
+}
+	%
+	% draw the original picture
+    \pic
+	%
+	% ZOOM
+	\coordinate (spyon) at (0.01, 0.415);
+	\coordinate (spyin) at (0.6, 0.5);
+	%
+	% spy on node
+    \node[spy, minimum size={\spyviewersize/\spyfactor}] (spyonNode) at (spyon) {};
+    % spy in node
+    \node[spy, minimum size={\spyviewersize}] (spyinNode) at (spyin) {};
+    \begin{scope}
+    	\clip (spyin) circle (0.5*\spyviewersize-\spyonclipreduce);
+    	\pgfmathsetmacro\invspyfactor{1/\spyfactor}
+    	\begin{scope}[
+    		shift={($\invspyfactor*(spyin)-\invspyfactor*(spyon)$)},
+    		scale around={\spyfactor:(spyon)}
+    	]
+    		\pic
+    	\end{scope}
+    \end{scope}
+    % connect the nodes
+    \draw [spy, dashed, line cap=round] (spyonNode) to [bend right=5] (spyinNode);
+	%
+\end{tikzpicture}

@@ -1,0 +1,134 @@
+% size of the spy-in node
+\def\spyviewersize{2.5cm}
+% zoom factor
+\def\spyfactor{3.2}
+%
+\pgfmathsetmacro{\rin}{\spyviewersize*0.5}
+\pgfmathsetmacro{\ron}{\rin/\spyfactor}
+%
+\def\spybendiness{0.1}% in [0,1]
+\begin{tikzpicture}[
+	x=\imagewidth, y=\imageheight,
+	curve/.style={semithick},
+	EdS/.style={curve, line join=round},
+	EdB/.style={curve},
+	plus/.style={mycolor_2!80!red},
+	moins/.style={mycolor_1!80!blue},
+	spy using outlines={colorSpy},%, connect spies},
+	grid/.style={thin, dotted, font={\tiny}, inner sep=0}
+]
+%\begin{scope} [rotate=-30]
+	\fill[black!10!white] \pathSigma;
+	%
+%			\node at (-0.06,-0.055) {$\Omega$};
+%			\node at (0.45,0.45) {$\complement{\Omega}$};
+%			\node[above] at (-0.5,0.28) {$\Sigma$};
+	%
+	{\transparent{0.4}
+		\fill[colorBalls, even odd rule] \pathEdBplus \pathEdBmoins;
+	}%
+	%
+	\DTLforeach*{dbcircles}{\locx=x, \locy=y, \locr=r}{%
+		\draw[colorBalls!60!black, thin, densely dotted, line cap=round] (\locx, \locy) circle (\locr);
+	}%
+	%
+	\draw[semithick] \pathSigma;
+	%
+	\ifnum\value{fignumber}=1
+		\draw[EdS, plus] \pathEdSplus;
+		\draw[EdS, moins] \pathEdSmoins;
+	\else
+		\draw[
+			EdB, 
+			plus,
+			postaction={
+				decorate,
+				decoration={
+					markings,
+					mark=at position 0.495 with {
+						\node at (0,-1.5ex) {$\EdBplus{\Sigma}{\rho}$};
+					};
+				}
+			}, 
+		] \pathEdBplus;
+		\draw[
+			EdB, 
+			moins,
+			postaction={
+				decorate,
+				decoration={
+					markings,
+					mark=at position 0.425 with {
+						\node at (0,1.6ex) {$\EdBmoins{\Sigma}{\rho}$};
+					};
+				}
+			}, 
+		] \pathEdBmoins;
+	\fi
+	%
+	\coordinate (spyon) at (0.01, 0.415);%(0.548, 0.01);%
+	\coordinate (spyin) at (-0.07,-0.05);%(0.6, 0.5);%
+	\fill[white] (spyin) circle (\spyviewersize/2);
+	%
+	\node[circle, minimum size=\spyviewersize, inner sep=0pt] (c1) at (spyin) {};
+	\node[circle, minimum size=\spyviewersize/\spyfactor, inner sep=0pt] (c2) at (spyon) {};
+	%\getDistance{(c1)}{(c2)}{\spydistance}
+	\pgfmathsetmacro{\spydistance}{veclen(0.01+0.07, 0.415+0.05)}%veclen(\x{spyon) - \x{spyin), \y{(spyon) - \y{(spyin))}
+	%
+	\pgfmathsetmacro{\posmid}{\rin/(\rin + \ron)}
+	%\pgfmathsetmacro{\posmid}{(\rin - \ron)/0.94366307546 - 0.5)}
+	\pgfmathsetmacro{\posout}{\rin/(\rin - \ron)}
+%	\coordinate (mid) at ($(spyin)!\posmid!(spyon)$);
+%	\coordinate (out) at ($(spyin)!\posout!(spyon)$);
+	\path (spyin) -- node[coordinate,pos=\posmid] (mid) {} (spyon);
+	\path (spyin) -- node[coordinate,pos=\posout] (out) {}  (spyon);
+	%
+	%
+	\spy[
+		magnification=\spyfactor, circle, size=\spyviewersize,
+%				magnification=2.9, ellipse, minimum width=3.15cm, minimum height=2.65cm,
+%				magnification=2.9, rounded rectangle=1.28cm, width=3.15cm, height=2.56cm,
+		every spy on node/.append style={
+			thick,
+		}
+%		spy connection path={
+%			\draw[
+%				thick, 
+%				dashed,
+%				line cap=round
+%			] (tikzspyonnode) to [bend right=5] (tikzspyinnode);
+%		}
+	] on (spyon) in node[thick] at (spyin);
+	%
+%	\path (mid) -- node[coordinate,pos=\spybendiness] (inter1) {} (spyin);
+%	\path (mid) -- node[coordinate,pos=-\spybendiness] (inter2) {} (spyon);
+%	%
+%	\coordinate (tng1a) at (tangent cs:node=c1,point={(inter1)},solution=2);
+%	\coordinate (tng1b) at (tangent cs:node=c1,point={(inter1)});
+%	\coordinate (tng2a) at (tangent cs:node=c2,point={(inter2)});
+%	\coordinate (tng2b) at (tangent cs:node=c2,point={(inter2)},solution=2);
+	%
+	\draw[thick, colorSpy, dashed] 
+%		(tng1a) .. controls (inter1) and (inter2) .. (tng2a)
+%		(tng1b) .. controls (inter1) and (inter2) .. (tng2b);
+		(tangent cs:node=c2,point={(out)}) -- (tangent cs:node=c1,point={(out)})
+		(tangent cs:node=c2,point={(out)},solution=2) -- (tangent cs:node=c1,point={(out)},solution=2);
+%	\foreach \loci in {0,...,10}
+%	{%
+%		\pgfmathsetmacro\locxi{\loci*0.1}%
+%		\draw[grid] (-\locxi, -1) -- ++ (0,2);%
+%		\node[grid] at (-\locxi, -1) {$-\loci$};%
+%		\draw[grid] (\locxi, -1) -- ++ (0,2);%
+%		\node[grid] at (\locxi, -1) {$\loci$};%
+%	}%
+%	\foreach \locj in {0,...,10}
+%	{%
+%		\pgfmathsetmacro\locyj{\locj*0.1}%
+%		\draw[grid] (-1, -\locyj) -- ++ (2,0);%
+%		\node[grid] at (-1, -\locyj) {$-\locj$};%
+%		\draw[grid] (-1, \locyj) -- ++ (2,0);%
+%		\node[grid] at (-1, \locyj) {$\locj$};%
+%	}%
+	%
+%\end{scope}
+\end{tikzpicture}
