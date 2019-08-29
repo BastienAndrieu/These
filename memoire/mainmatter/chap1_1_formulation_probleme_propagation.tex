@@ -106,7 +106,7 @@ Les faces, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en d
 
 \subsubsection{Arêtes}
 \label{section:def_brep_edges}
-Une arête du modèle \brep\ est une variété de dimension 1 connexe délimitée par des sommets.
+Une arête du modèle \brep\ est une variété de dimension 1 connexe délimitée par deux sommets. 
 Puisque $\Sigma$ est une variété sans bord, chaque arête du modèle \brep\ est incidente à exactement deux faces $\brepface_1$ et $\brepface_2$. 
 Géométriquement, l'arête $\brepedge$ est représentée par une branche de la courbe d'intersection entre les carreaux $\Sigma_1$ et $\Sigma_2$ qui décrivent respectivement $\brepface_1$ et $\brepface_2$. 
 Cette courbe peut également être représentée par sa trace dans l'espace paramétrique de chaque carreau. 
@@ -122,6 +122,8 @@ On peut donc la représenter à l'aide des trois courbes paramétriques $\bg$, $
 \end{figure}
 
 Les arêtes, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en des sommets du modèle \brep), sont regroupées pour former les contours des faces. 
+Ici, on impose qu'un contour soit composé d'au moins deux (co-)arêtes distinctes.
+Cela implique notamment que les deux sommets aux extrémités d'une même arête soient également distincts.
 Puisque ces derniers sont orientés, chaque arête $\brepedge$ est formée de deux \textit{co-arêtes} jumelles $\brepedge^1$ et $\brepedge^2$, chacune associée à une face incidente à $\brepedge$. 
 Chaque co-arête possède une orientation, conforme à celle du contour qui la contient.
 

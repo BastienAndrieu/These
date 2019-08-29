@@ -791,7 +791,7 @@ avantages/inconvénients :
 %	\item on complète ainsi le graphe des intersections, qui donne la topologie de l'agencement des carreaux (relations d'adjacences)
 	\item pour obtenir un modèle \brep\ valide de l'EdB, il faut
 	\begin{itemize}
-		\item délimiter les faces, \ie éliminer les régions des carreaux qui sont exclues de l'EdB (\ie tout région $G$ pour laquelle il existe une région (\eg un carreau restreint) $H$ telle que $\forall \bx \in G, \implicitEdB{H}(\bx) < 0$) vérifiant les critères donnés dans la \autoref{section:def_brep_faces} :
+		\item délimiter les faces, \ie éliminer les régions des carreaux qui sont exclues de l'EdB (\ie toute région $G$ pour laquelle il existe une région (\eg un ou plusieurs carreaux restreints) $H$ telle que $\forall \bx \in G, \implicitEdB{H}(\bx) < 0$). Chacune de ces faces doit vérifier les critères donnés dans la \autoref{section:def_brep_faces} :
 		\begin{enumerate}
 			\item délimitée par exactement un contour extérieur ($\to$ connexe, donc un carreau peut donner plusieurs faces) et éventuellement par un plusieurs contours intérieurs $\Rightarrow$ former contours et distinguer extérieur/intérieur
 		\end{enumerate}
@@ -799,6 +799,7 @@ avantages/inconvénients :
 		\item matérialiser les courbes d'intersection par des arêtes vérifiant les critères donnés dans la \autoref{section:def_brep_edges} :
 		\begin{enumerate}
 			\item quasi-disjointes deux-à-deux $\Rightarrow$ scinder les courbes d'intersection en segments quasi-disjoints
+			\item a pour extrémités deux sommets distincts $\Rightarrow$ 
 			\item décomposer chaque arête en une paire de co-arêtes jumelles à chacune desquelles on associe 
 			\begin{itemize}
 				\item la face incidente
@@ -814,24 +815,45 @@ avantages/inconvénients :
 
 \subsection{Construction du graphe des intersections}
 \begin{enumerate}
-	\item tous les points et courbes d'intersection tangentielle entre les carreaux de l'EdS partielle sont connus (\cf \autoref{section:construction_EdS_partielle})
+	\item tous les points et courbes d'intersection tangentielle entre les carreaux de l'EdS partielle sont connus (\cf \autoref{section:construction_EdS_partielle}) (!!! en fait, seulement les intersections de ``bord'', il peut éventuellement y avoir des contacts tangentiels ``intérieurs'' $\to$ configurations \anglais{non-manifold})
 	\item (l'EdB ne peut contenir aucune courbe singulière convexe)
 	\item il reste à trouver les points et courbes d'intersection transverse concave entre les carreaux de l'EdS partielle
 	%\item on peut aisément orienter ces courbes de telle sorte que les régions à droite soient exclues de l'EdB (\cf notes ``Huygens'', paragraphe ``Intersection des EdS propres'')
 	\item on complète ainsi le graphe des intersections, qui donne la topologie de l'agencement des carreaux (relations d'adjacences)
 	\item (le choix de la méthode de calcul des intersections est étroitement lié au type de paramétrisation choisi pour les carreaux de surface $\Rightarrow$ détails d'implémentation donnés au chapitre \autoref{chap:methode_numerique})
-	\item principe : 
+	\item principe : pour chaque paire de carreaux $\left\{ (\uvdomain_i, \eos_i), (\uvdomain_j, \eos_j) \right\}$ de l'EdS partielle,
+%	\begin{enumerate}
+%		\item calcul des intersections transverses entre paire de carreaux \textit{non-restreints}
+%		\item segmentation des courbes d'intersection en segments quasi-disjoints (intersection de 3 carreaux \textit{non-restreints} ou plus)
+%		\item \guillemets{clipping} par le domaine paramétrique de chaque carreau \textit{restreint}
+%	\end{enumerate}
 	\begin{enumerate}
-		\item calcul des intersections transverses entre paire de carreaux \textit{non-restreints}
-		\item segmentation des courbes d'intersection en segments quasi-disjoints (intersection de 3 carreaux \textit{non-restreints} ou plus)
-		\item \guillemets{clipping} par le domaine paramétrique de chaque carreau \textit{restreint}
-	\end{enumerate}
+		\item trouver toutes les branches $B_k^{i,j}$ de l'intersection des carreaux non-restreints, \ie $\eos_i(\fullUVdomain) \cap \eos_j(\fullUVdomain) = \cup_k B_k^{i,j}$\\
+		Remarque : la courbe d'intersection entre deux carreaux non-restreints est composée de branches
+		\begin{enumerate}
+			\item \textit{ouvertes}, dont chacune des deux extrémités est située sur le bord d'au moins un des deux carreaux ;
+			\item \textit{fermées}, qui n'intersectent le bord d'aucun des deux carreaux.
+		\end{enumerate}
+		On suppose (sans restreindre la généralité) que toutes les branches sont ouvertes, \ie chaque branche fermée est découpée en au moins deux branches ouvertes. 
+		(On verra au chapitre suivant qu'on peut toujours se ramener à ce cas.)
+		\item pour chaque branche $B_k^{i,j}$,
+		\begin{enumerate}
+			%\item trouver tous les points d'intersection entre $B_k^{i,j}$ et les courbes $\Gamma_\ell^i \subset \eos_i(\boundary{\uvdomain_i})$ et $\Gamma_\ell^j \subset \eos_j(\boundary{\uvdomain_j})$ qui correspondent à des intersections  \emph{tangentielles} entre $(\uvdomain_i, \eos_i)$ (resp. $(\uvdomain_j, \eos_j)$) et un carreau tiers.%, et déterminer pour chacun de ces points si $B_k^{i,j}$ y est \textit{entrante} ou \textit{sortante} pour les carreaux restreints $i, j$.
+			\item pour chaque carreau $k = i$ ou $j$, trouver les éventuels points d'intersection entre $B_k^{i,j}$ et les courbes $\Gamma_\ell^k \subset \eos_k(\boundary{\uvdomain_k})$  qui correspondent à des intersections \emph{tangentielles} entre $(\uvdomain_k, \eos_k)$ et un carreau tiers.
+			Ces points sont ainsi situés à l'intersection d'au moins 3 carreaux (dont $i$ et $j$).
+			
+			\item scinder $B_k^{i,j}$ en segments séparés par ces points (initialement, $B_k^{i,j}$ est composée d'un seul segment puisque $B_k^{i,j}$ possède exactement deux extrémités distinctes, qui ne représentent pas nécessairement des points d'intersection)
+			$B_k^{i,j}$ étant orientée\footnote{intersection transverse concave,}, on peut déterminer 
+			\item déterminer pour chacun de ces segments 
+			\item ne considérer que les segments de $B_k^{i,j}$ étant contenus à la fois dans $\eos_i(\uvdomain_i)$ et $\eos_j(\uvdomain_j)$
+		\end{enumerate} 
+	\end{enumerate} 
 \end{enumerate}
 
 \par\bigskip
 
 \begin{enumerate}
-	\item Pour un carreau donné, on peut extraire le sous-graphe 
+	\item Pour chaque carreau, on peut extraire le sous-graphe 
 	\begin{itemize}
 		\item dont les arcs sont des segments (quasi-disjoints) de courbes d'intersection entre ce carreau et chaque autre carreau adjacent
 		\item dont les n\oe uds sont les extrémités de ces segments (points d'intersection entre plusieurs courbes)

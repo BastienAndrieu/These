@@ -178,8 +178,11 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\hi}[1]{\widebar{#1}}%\overline{#1}}
 
 \newcommand*{\intervalLoHi}[1]{\left[ \lo{#1}, \hi{#1} \right]}
+\newcommand*{\fullUVdomain}{\lo{\hi{\uvdomain}}}
 
-
+% Restriction
+%https://tex.stackexchange.com/questions/351004/typesetting-a-function-restriction-with-a-bar-shorter-than-big
+\newcommand*{\restr}[2]{#1_{\mkern 1mu \vrule height 2ex\mkern2mu #2}}
 
 % GRAPHS
 \DeclareMathOperator{\orig}{orig}%ine}
