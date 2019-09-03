@@ -536,9 +536,64 @@ et
 \input{figures/code/Chebyshev/grille_cgl_carreau.tex} % ---> figure à refaire
 
 \section{Représentation et calcul des courbes d'intersection}
-\subsection{État de l'art}
+\subsection{Enjeux, État de l'art}
+Enjeux :
 \begin{enumerate}
-	\item 
+	\item le problème du calcul de l'intersection de carreaux paramétriques consiste à résoudre un système de trois équations non-linéaires (ici polynomiales)
+	\begin{equation}
+		\bs^1(u_1,v_1) - \bs^2(u_2, v_2) = \vit{0},
+	\end{equation}
+	dont les quatre inconnues sont les paramètres des deux carreaux. 
+	(On cherche en effet à déterminer la \guillemets{trace} de l'intersection dans l'espace paramétrique de chaque carreau.)
+	\item l'intersection non-vide de deux carreaux de surface peut être constituée
+	\begin{enumerate}
+		\item d'un ensemble de points (isolés) ;
+		\item d'un ensemble de courbes ;
+		\item d'un ensemble de régions surfaciques.
+	\end{enumerate}
+	$\Rightarrow$ l'algorithme de calcul des intersections doit être en mesure d'identifier la bonne configuration et, pour les deux premières, de retourner l'ensemble des éléments qui constitue l'intersection (le troisième cas traduit une dégénérescence)
+	\item puisque chaque carreau est une variété différentielle homéomorphe à un disque (\ie avec un bord), les courbes d'intersections sont soit 
+	\begin{enumerate}
+		\item des branches \textit{ouvertes}, dont chacune des deux extrémités est située sur le bord d'au moins un des deux carreaux ;
+		\item des branches \textit{fermées} (boucles), qui n'intersectent le bord d'aucun des deux carreaux.
+	\end{enumerate}
+	%$\to$ 
+%	\item (le degré algébrique de la courbe d'intersection de deux carreaux polynomiaux augmente très vite avec le degré de ces derniers)
+%	\item le problème du calcul de l'intersection de carreaux paramétriques courbes consiste à résoudre un système d'équations (polynomiales) non-linéaires
+%	\begin{equation}
+%		\bs^1(u_1,v_1) - \bs^2(u_2, v_2) = \vit{0}
+%	\end{equation}
+%	\item \textit{robustesse} vs. \textit{efficacité} (et \textit{précision})
+\end{enumerate}
+
+État de l'art des méthodes pour calculer l'intersection de carreaux paramétriques :
+\begin{enumerate}
+%	\item Analytiques : limité aux surfaces de degré algébrique très bas (\eg quadriques)
+%	\item (Implicitisation (approchée) : )
+	\item \anglais{Lattice}. 
+	Les méthodes de ce type consistent à calculer les intersections entre un réseau de \textit{courbes} iso-paramétriques d'un carreau et la \textit{surface} de l'autre carreau \cite{rossignac1987}. 
+	Les points d'intersection obtenus sont ensuite connectés pour former les branches de la courbe d'intersection. 
+	Cette approche, qui présente l'avantage de réduire la dimension du problème, nécessite toutefois de choisir une résolution suffisamment fine pour le réseau des courbes iso-paramétriques afin de capturer correctement la topologie de la courbe d'intersection. 
+	En effet, si cette résolution est trop grossière, la méthode peut échouer à détecter certains détails tels que des points de contact isolés ou des petites boucles, qui apparaissent lorsque les carreaux s'intersectent de façon tangentielle ou quasi-tangentielle.
+	
+	\item Subdivision.
+	Le principe de cette approche est de subdiviser de manière récursive le problème d'intersection original en plusieurs sous-problèmes -- typiquement des intersections de régions planes (\eg triangles) -- dont la solution de chacun peut être trouvée aisément \cite{houghton1985}. 
+	Ce type de méthodes produit ainsi un ensemble de segments de la courbe d'intersection, qui doivent également être connectés pour en former les branches. 
+	Si la position des points d'intersection ainsi calculés peut être corrigée a posteriori afin de les ramener sur la véritable intersection des carreaux, les approximations utilisées ne garantissent pas la restitution de la topologie exacte de la courbe d'intersection, en particulier dans des cas d'intersections tangentielles ou quasi-tangentielles (illustration faux positif/faux négatif).
+	Par ailleurs, le niveau élevé de précision requis par la plupart des applications en CAO nécessite un nombre de subdivisions souvent prohibitif, ce qui disqualifie les méthodes reposant uniquement sur la subdivision.
+	%Toutefois, la combinaison de techniques de subdivision adaptative à d'autres méthodes locales de haute précision -- comme les méthodes dites de \textit{suivi} -- permet de concevoir des algorithmes de calcul d'intersection plus efficaces.
+	%Les techniques de subdivision adaptative peuvent toutefois être utilisées 
+
+	\item Suivi (\anglais{Marching}).
+	Les méthodes dites de suivi cherchent dans un premier temps à trouver un point sur chaque branche de la courbe d'intersection. 
+	Ensuite, elles procèdent au tracé de ces branches en marchant dans une direction indiquée par la géométrie différentielle locale de la courbe . 
+	\begin{itemize}
+		\item trouver toutes les branches, sans doublons
+		\begin{itemize}
+			\item bords, points \guillemets{colinéaires}
+		\end{itemize}
+		\item tracer avec un pas adéquat pour éviter \anglais{jumping} (\anglais{straying)}, \anglais{looping} et \anglais{backtracking}
+	\end{itemize}
 \end{enumerate}
 %pas de paramétrisation explicite (définition procédurale), méthode de Hohmeyer revisitée
 %

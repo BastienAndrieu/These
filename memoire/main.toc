@@ -39,17 +39,17 @@
 \contentsline {subsubsection}{\numberline {3.1.2.5}Int\IeC {\'e}gration}{40}{subsubsection.3.1.2.5}
 \contentsline {subsection}{\numberline {3.1.3}Polyn\IeC {\^o}mes de Chebyshev bivari\IeC {\'e}s}{41}{subsection.3.1.3}
 \contentsline {section}{\numberline {3.2}Repr\IeC {\'e}sentation et calcul des courbes d'intersection}{41}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}\IeC {\'E}tat de l'art}{41}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\'e}sentation/Vue d'ensemble/Caract\IeC {\'e}ristiques de la m\IeC {\'e}thode retenue}{42}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Int\IeC {\'e}gration temporelle}{42}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Advection dans champ de vecteur vitesse connu}{42}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{42}{subsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{42}{subsubsection.3.3.2.1}
-\contentsline {subsubsection}{\numberline {3.3.2.2}Discr\IeC {\'e}tisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{43}{subsubsection.3.3.2.2}
-\contentsline {subsubsection}{\numberline {3.3.2.3}Discr\IeC {\'e}tisation de la pseudo-EdS d'un sommet BRep\ convexe}{44}{subsubsection.3.3.2.3}
-\contentsline {section}{\numberline {3.4}Am\IeC {\'e}lioration de la stabilit\IeC {\'e} num\IeC {\'e}rique}{44}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}R\IeC {\'e}duction de l'erreur d'aliasing}{44}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Pr\IeC {\'e}vention des singularit\IeC {\'e}s g\IeC {\'e}om\IeC {\'e}triques}{45}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.2.1}Enjeux, \IeC {\'E}tat de l'art}{41}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\'e}sentation/Vue d'ensemble/Caract\IeC {\'e}ristiques de la m\IeC {\'e}thode retenue}{43}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Int\IeC {\'e}gration temporelle}{43}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Advection dans champ de vecteur vitesse connu}{43}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{43}{subsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{43}{subsubsection.3.3.2.1}
+\contentsline {subsubsection}{\numberline {3.3.2.2}Discr\IeC {\'e}tisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{45}{subsubsection.3.3.2.2}
+\contentsline {subsubsection}{\numberline {3.3.2.3}Discr\IeC {\'e}tisation de la pseudo-EdS d'un sommet BRep\ convexe}{45}{subsubsection.3.3.2.3}
+\contentsline {section}{\numberline {3.4}Am\IeC {\'e}lioration de la stabilit\IeC {\'e} num\IeC {\'e}rique}{46}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}R\IeC {\'e}duction de l'erreur d'aliasing}{46}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Pr\IeC {\'e}vention des singularit\IeC {\'e}s g\IeC {\'e}om\IeC {\'e}triques}{46}{subsection.3.4.2}
 \contentsline {chapter}{\chapternumberline {4}Validation des m\IeC {\'e}thodes num\IeC {\'e}riques}{47}{chapter.4}
 \contentsline {section}{\numberline {4.1}Propagation suivant un champ de vitesse analytique}{47}{section.4.1}
 \contentsline {section}{\numberline {4.2}Propagation \IeC {\`a} vitesse normale uniforme}{50}{section.4.2}
