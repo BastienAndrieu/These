@@ -586,7 +586,10 @@ Enjeux :
 
 	\item Suivi (\anglais{Marching}).
 	Les méthodes dites de suivi cherchent dans un premier temps à trouver un point sur chaque branche de la courbe d'intersection. 
-	Ensuite, elles procèdent au tracé de ces branches en marchant dans une direction indiquée par la géométrie différentielle locale de la courbe . 
+	Ensuite, elles procèdent au tracé de ces branches en marchant dans une direction indiquée par la géométrie différentielle locale de la courbe. 
+	Afin d'identifier toutes les composantes connectées de la courbe d'intersection, il suffit de trouver les points où les branches ouvertes rencontrent le bord d'un des carreaux, ainsi que les paires de points ``collinéaux'' où les carreaux ont des directions normales parallèles.
+	En effet, à chaque branche fermée de la courbe d'intersection est associée une telle paire de points \cite{sederberg1989}.
+	En outre, tous les points singuliers de la courbe d'intersection sont également des points ``collinéaux''.
 	\begin{itemize}
 		\item trouver toutes les branches, sans doublons
 		\begin{itemize}

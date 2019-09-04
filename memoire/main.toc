@@ -43,8 +43,8 @@
 \contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\'e}sentation/Vue d'ensemble/Caract\IeC {\'e}ristiques de la m\IeC {\'e}thode retenue}{43}{subsection.3.2.2}
 \contentsline {section}{\numberline {3.3}Int\IeC {\'e}gration temporelle}{43}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Advection dans champ de vecteur vitesse connu}{43}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{43}{subsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{43}{subsubsection.3.3.2.1}
+\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{44}{subsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{44}{subsubsection.3.3.2.1}
 \contentsline {subsubsection}{\numberline {3.3.2.2}Discr\IeC {\'e}tisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{45}{subsubsection.3.3.2.2}
 \contentsline {subsubsection}{\numberline {3.3.2.3}Discr\IeC {\'e}tisation de la pseudo-EdS d'un sommet BRep\ convexe}{45}{subsubsection.3.3.2.3}
 \contentsline {section}{\numberline {3.4}Am\IeC {\'e}lioration de la stabilit\IeC {\'e} num\IeC {\'e}rique}{46}{section.3.4}
