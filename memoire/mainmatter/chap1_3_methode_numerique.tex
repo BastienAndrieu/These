@@ -577,11 +577,11 @@ Enjeux :
 	En effet, si cette résolution est trop grossière, la méthode peut échouer à détecter certains détails tels que des points de contact isolés ou des petites boucles, qui apparaissent lorsque les carreaux s'intersectent de façon tangentielle ou quasi-tangentielle.
 	
 	\item Subdivision.
-	Le principe de cette approche est de subdiviser de manière récursive le problème d'intersection original en plusieurs sous-problèmes -- typiquement des intersections de régions planes (\eg triangles) -- dont la solution de chacun peut être trouvée aisément \cite{houghton1985}. 
+	Le principe de cette approche est de subdiviser de manière récursive le problème d'intersection original en plusieurs sous-problèmes --- typiquement des intersections de régions planes (\eg triangles) --- dont la solution de chacun peut être trouvée aisément \cite{houghton1985}. 
 	Ce type de méthodes produit ainsi un ensemble de segments de la courbe d'intersection, qui doivent également être connectés pour en former les branches. 
 	Si la position des points d'intersection ainsi calculés peut être corrigée a posteriori afin de les ramener sur la véritable intersection des carreaux, les approximations utilisées ne garantissent pas la restitution de la topologie exacte de la courbe d'intersection, en particulier dans des cas d'intersections tangentielles ou quasi-tangentielles (illustration faux positif/faux négatif).
 	Par ailleurs, le niveau élevé de précision requis par la plupart des applications en CAO nécessite un nombre de subdivisions souvent prohibitif, ce qui disqualifie les méthodes reposant uniquement sur la subdivision.
-	%Toutefois, la combinaison de techniques de subdivision adaptative à d'autres méthodes locales de haute précision -- comme les méthodes dites de \textit{suivi} -- permet de concevoir des algorithmes de calcul d'intersection plus efficaces.
+	%Toutefois, la combinaison de techniques de subdivision adaptative à d'autres méthodes locales de haute précision --- comme les méthodes dites de \textit{suivi} --- permet de concevoir des algorithmes de calcul d'intersection plus efficaces.
 	%Les techniques de subdivision adaptative peuvent toutefois être utilisées 
 
 	\item Suivi (\anglais{Marching}).
