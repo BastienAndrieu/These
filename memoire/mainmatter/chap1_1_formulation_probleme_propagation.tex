@@ -42,7 +42,7 @@ On conclut ce chapitre en introduisant une formulation plus adéquate du problè
 
 
 \section{Description et représentation des surfaces régulières \piecewise}
-%[décomposition en nappes régulières ($\contgeom{1}$), courbes singulières (crêtes?) et points irréguliers (coins?) (\cf notes Huygens)]
+%[décomposition en nappes régulières ($\contgeom{1}$), crêtes (crêtes?) et points irréguliers (coins?) (\cf notes Huygens)]
 %\par\bigskip
 %(Inspiré par \cite[p.65]{rossignac1985} et \cite[Section 2.6]{rossignac1986}.)\par
 
@@ -53,34 +53,35 @@ On conclut ce chapitre en introduisant une formulation plus adéquate du problè
 %Par commodité, on désignera parfois le carreau simplement par $\bs$.
 %\par
 %Le support $\bs(\uvdomain)$ 
+\label{section:description_surface_G1_piecewise}
 introduire notions \cite{rossignac1985} : 
 \begin{enumerate}
-	\item \textit{nappe régulière} : variété de dimension 2, connexe, de continuité $\contgeom{1}$ (direction normale continue)
-	\item \textit{courbe singulière} : variété de dimension 1, connexe, de continuité $\contgeom{1}$ (direction tangente continue)
-	\item \textit{point singulier} : point qui n'est à l'intérieur d'aucune nappe régulière ou courbe singulière
+	\item \textit{nappe (régulière/$\contgeom{1}$)} : variété de dimension 2, connexe, de continuité $\contgeom{1}$ (direction normale continue)
+	\item \textit{crête} : variété de dimension 1, connexe, de continuité $\contgeom{1}$ (direction tangente continue)
+	\item \textit{coin} : point qui n'est à l'intérieur d'aucune nappe régulière ou crête
 \end{enumerate}
 
 \begin{itemize}
-	\item la frontière d'une nappe régulière est composée de courbes et de points singuliers (si elle n'est pas vide)
-	\item la frontière d'une courbe singulière (ses extrémités) est composée de points singuliers (si elle n'est pas vide)
+	\item la frontière d'une nappe régulière est composée de crêtes et de coins (si elle n'est pas vide)
+	\item la frontière d'une crête (ses extrémités) est composée de coins (si elle n'est pas vide)
 	\item tout point d'une surface $\contgeom{1}$ \piecewise\ est
 	\begin{itemize}
 		\item soit situé à l'intérieur d'une nappe régulière ;
-		\item soit situé à l'intérieur d'une courbe singulière ;
-		\item soit un point singulier.
+		\item soit situé à l'intérieur d'une crête ;
+		\item soit un coin.
 	\end{itemize}
 \end{itemize}
 
 \begin{figure}
 	\centering
 	\input{figures/code/piecewise_smooth_surface/piecewise_smooth_surface_decomposition}
-	\caption{Surface régulière \piecewise\ dont les courbes et points singuliers sont mis en évidence.}
+	\caption{Surface régulière \piecewise\ dont les crêtes et coins sont mis en évidence.}
 	\label{fig:piecewise_smooth_surface_decomposition}
 \end{figure}
 
 %La frontière $\boundary{\Omega}$ du solide $\Omega$ est une surface de continuité $\contgeom{1}$ (\ie possède une direction normale continue) \piecewise. 
 %Les singularités géométriques de $\boundary{\Omega}$ peuvent être de dimension 1 (courbes) ou 0 (points).
-%Les courbes singulières de $\boundary{\Omega}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux points singuliers.
+%Les crêtes de $\boundary{\Omega}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux coins.
 
 \subsection{Représentation par les frontières (\brep)}
 %Origine, utilisation, concept, définitions formelles des entités, lien avec la décomposition d'une surface $\contgeom{1}$ \piecewise, (géométrie différentielle des courbes et surfaces paramétriques), structures de données (DCEL)
@@ -125,7 +126,8 @@ Les arêtes, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en
 Ici, on impose qu'un contour soit composé d'au moins deux (co-)arêtes distinctes.
 Cela implique notamment que les deux sommets aux extrémités d'une même arête soient également distincts.
 Puisque ces derniers sont orientés, chaque arête $\brepedge$ est formée de deux \textit{co-arêtes} jumelles $\brepedge^1$ et $\brepedge^2$, chacune associée à une face incidente à $\brepedge$. 
-Chaque co-arête possède une orientation, conforme à celle du contour qui la contient.
+Chaque co-arête possède une orientation, conforme à celle du contour qui la contient.\par
+Dans la suite, on distinguera les arêtes \textit{vives} --- dont les faces incidentes s'y intersectent avec des directions normales différentes (\eg les arêtes $\brepedge_1$ et $\brepedge_4$ dans la \autoref{fig:BRep}) --- des arêtes \textit{douces} --- dont les faces incidentes s'y intersectent de façon tangentielle (\eg les arêtes $\brepedge_3$ et $\brepedge_5$ dans la \autoref{fig:BRep}).
 
 
 \subsubsection{Sommets}
@@ -152,10 +154,10 @@ La \autoref{fig:BRep_hierarchy} présente un diagramme de la hiérarchie des ent
 Le formalisme de la représentation par les frontières est particulièrement adapté pour décrire des surfaces régulières par morceaux. 
 En effet, 
 \begin{itemize}
-	\item l'ensemble des points singuliers de $\Sigma$ est un sous-ensemble des sommets de son modèle \brep\ ;
-	\item l'ensemble des courbes singulières de $\Sigma$ est un sous-ensemble des arêtes de son modèle \brep\ ;
+	\item l'ensemble des coins de $\Sigma$ est un sous-ensemble des sommets de son modèle \brep\ ;
+	\item l'ensemble des crêtes de $\Sigma$ est un sous-ensemble des arêtes de son modèle \brep\ ;
 	\item les nappes régulières de $\Sigma$ sont formées par la réunion des faces de son modèle \brep.
-%	\item chaque arête \brep\ vive est contenue dans une courbe singulière
+%	\item chaque arête \brep\ vive est contenue dans une crête
 \end{itemize}
 
 
@@ -178,7 +180,7 @@ $\Sigma$ est alors la frontière commune de ces domaines
 	\Sigma = \boundary{\Omega} = \boundary{(\complement{\Omega})}.
 \end{equation}
 \par
-%[EDP avec vecteur vitesse ou vitesse normale, problème de définition au niveau des courbes singulières et points irréguliers]
+%[EDP avec vecteur vitesse ou vitesse normale, problème de définition au niveau des crêtes et points irréguliers]
 %\par\bigskip
 Le problème que l'on cherche à résoudre consiste à déterminer l’évolution au cours du temps de l'interface $\Sigma$ étant données sa position actuelle ainsi que sa vitesse de propagation.
 Dans la formulation lagrangienne traditionnelle, ce problème est exprimé sous la forme d'une équation aux dérivées partielles (EDP) pour le vecteur position $\bx$ d'un point de l'interface.
@@ -198,7 +200,7 @@ où $\unv(\bx,t)$ désigne la direction normale à $\Sigma$ en $\bx$ à l'instan
 En principe, les formulations \eqref{eq:lagrange_vecteur_vitesse} et \eqref{eq:lagrange_vitesse_normale} sont équivalentes puisque la composante tangentielle du vecteur vitesse n'affecte pas la forme de l'interface. 
 \par\bigskip
 La formulation lagrangienne ne permet d'obtenir une solution au problème de propagation d'interface que dans le cas où cette dernière est \textit{globalement} régulière et le reste tout au long de sa propagation. 
-En effet, puisque la direction normale $\unv$ n'est pas définie au niveau des courbes et points singuliers de $\Sigma$, le déplacement de ces points est ambigu. 
+En effet, puisque la direction normale $\unv$ n'est pas définie au niveau des crêtes et coins de $\Sigma$, le déplacement de ces points est ambigu. 
 On peut notamment distinguer deux cas \cite{jiao2007}.
 \par
 Premièrement, si l'interface subit un mouvement d'advection (comme le transport d'un fluide ou encore la déformation d'un solide sous l'effet de contraintes mécaniques) alors ses singularités géométriques sont préservées au cours de la propagation.

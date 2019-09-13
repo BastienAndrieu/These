@@ -6,9 +6,8 @@
 
 Motivation
 \begin{enumerate}
-	\item les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du domaine de calcul
+	\item les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du (volume du) domaine de calcul
 	\item la précision et la vitesse de convergence du calcul dépendent fortement de la qualité (forme et taille) des éléments du maillage
-	\item on 
 \end{enumerate}
 
 \section{Problématique et état de l'art}
@@ -19,7 +18,7 @@ Motivation
 	\begin{enumerate}
 		\item \label{item:methodo_bodyfitted_ALE} 1 seul maillage \anglais{body-fitted} avec formulation ALE \emph{(ref)}
 		\begin{itemize}
-			\item principe : frontière = maillage de l'interface, intérieur déformé de façon arbitraire
+			\item principe : frontière = maillage de l'interface, intérieur déformé de façon arbitraire (purement lagrangien si la vitesse de déformation du maillage est imposée par le champ de vitesse du fluide)
 			\item intérêt/avantages : \ldots
 			\item contraintes/inconvénients : 
 			\begin{itemize}
@@ -73,8 +72,9 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 			\item intérêt/avantages : utilisation de méthodes 2d plan robustes et efficaces
 			\item contraintes/inconvénients : les arêtes \brep\ douces introduisent des contraintes supplémentaires sur le maillage, sans avoir de signification du point du vue du calcul EF/VF $\Rightarrow$ éléments de mauvaise qualité
 		\end{itemize}
-		\item trans-carreaux par (re-)paramétrisation globale : 
+		\item trans-carreaux par (re-)paramétrisation globale : l'idée générale est de construire une transformation affine par morceaux (par triangles) l'espace $uv$ de chacune des faces qui composent une nappe et un l'espace $uv$ global de cette nappe, sans affecter la définition géométrique du modèle \brep\ sous-jacent
 			\begin{enumerate}
+			
 				\item \cite{marcum1999} :
 				\begin{enumerate}
 					\item on construit d'abord un maillage de référence conforme à la topologie \brep\ d'un ensemble de faces regroupées
@@ -86,24 +86,39 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 						\item (on répète le processus jusqu'à ce que la qualité des éléments dans l'espace paramétrique global soit convenable)
 					\end{itemize}
 					\item on élimine les éventuels éléments fictifs créés à l'étape \ref{item:bouche_trous}
-					\item on génère un maillage dans l'espace paramétrique global par avancée de front en utilisant le maillage de référence comme approximation géométrique dans l'espace physique
+					\item on génère une triangulation dans l'espace paramétrique global par avancée de front en utilisant le maillage de référence comme approximation géométrique dans l'espace physique
 					\item on retrouve les coordonnées paramétriques locales des n\oe uds du nouveau maillage 
+					\item limites : la nappe doit avoir au moins un bord
 				\end{enumerate}
+				
 				\item \cite{noel2002} : 
 				\begin{enumerate}
 					\item le domaine paramétrique de chaque face \brep\ est décomposé en cellules triangulaires s'appuyant sur les contours
-					\item chaque cellule (courbe) est en bijection avec un triangle (linéaire) dans l'espace paramétrique global
-					\item un maillage du domaine paramétrique global est généré (quadtree-Delaunay) 
+					\item chaque cellule (courbe) est en bijection avec un triangle (linéaire) dans l'espace paramétrique global de la nappe
+					\item une triangulation du domaine paramétrique global (convexe) est générée (quadtree-Delaunay) 
+					\item limites : la nappe doit avoir au moins un bord
 				\end{enumerate}
-				\item \cite{jones2004} : ?%on part d'un maillage de référence conforme à la topologie \brep. On choisit une face \brep\ de \textit{base}, dont l'espace paramétrique local sert de base pour construire un espace paramétrique global. Les faces \brep\ adjacentes sont ensuite plongées dans l'espace paramétrique global . Cette approche ne fonctionne que lorsque les domaines paramétriques des faces adjacentes ont des dimensions similaires
+				
+				\item \cite{jones2004} :
+				\begin{enumerate}
+					\item on part ici aussi d'une triangulation de référence conforme à la topologie \brep\ (\ie chaque face a sa propre triangulation)
+					\item l'assemblage des faces en nappes est réalisé directement dans le plan $(u,v)$ à partir des plongements de leur triangulation respective dans leur espace paramétrique local
+					\item une face de ``base'' est choisie, le plongement de sa triangulation dans l'espace paramétrique global est identique à celui dans son espace paramétrique local
+					\item les triangulations des faces adjacentes sont ensuite plongées une à une dans l'espace $uv$ global à l'aide d'une technique d'avancée de front qui préserve la forme des triangles
+					\item limites : 
+					\begin{itemize}
+						\item cette approche peut échouer si les plongements des triangulations de deux faces adjacentes dans leur espace $uv$ respectif ont des rapports d'échelles différents au niveau d'une arête commune %suivant les deux directions paramétriques
+						\item il semblerait que les nappes doivent ici aussi avoir au moins un bord
+					\end{itemize}
+					
+				\end{enumerate}
 			\end{enumerate}
 		\begin{itemize}
-			\item intérêt/avantages : lève les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes pour le calcul EF/VF
-			\item contraintes/inconvénients : 
+			\item intérêt/avantages : lève les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes pour le calcul EF/VF, sans en affecter la définition géométrique
+			\item limites/inconvénients : 
 			\begin{itemize}
-				\item topologie : limité aux variétés avec un ou plusieurs bords $\Rightarrow$ nécessite un découpage (généralement manuel) de l'interface
-				\item géométrie : limité aux surfaces quasi-planes et régulières
-				\item (méthodes pas suffisamment automatisées)
+				\item topologie : limité aux nappes avec un ou plusieurs bords $\Rightarrow$ nécessite un découpage (généralement manuel) de l'interface
+				\item géométrie : limité aux nappes quasi-planes et régulières
 			\end{itemize}
 			
 		\end{itemize}
@@ -111,7 +126,7 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 	
 	\item méthodes directes : 
 	\begin{enumerate}
-		\item \cite{lau1996} : avancée de front directement dans $\reals^3$ avec projection sur la surface exacte des n\oe uds au cours de la génération $\to$ limité à une paramétrisation continue (\ie carreau par carreau)
+		\item \cite{lau1996} : avancée de front directement dans $\reals^3$ avec projection sur la surface exacte des n\oe uds au cours de la génération $\to$ limité à une paramétrisation continue (\ie carreau par carreau, conforme à la topologie \brep)
 		\item \cite{foucault2013} : avancée de front directe trans-carreaux
 	\end{enumerate}
 \end{enumerate}
@@ -163,8 +178,9 @@ Objectifs :
 \begin{enumerate}
 	\item \label{item:limiter_ecart_corde} représenter fidèlement la surface (courbe) à l'aide d'un maillage (linéaire) (\ie limiter/contrôler l'écart de corde)
 	\item \label{item:alleger_contraintes_topo} s'affranchir au maximum des contraintes sur le maillage inutilement imposées par la topologie du modèle \brep\ (arêtes douces)
-	
 \end{enumerate}
+
+Essentiellement, on veut que le maillage respecte la \textit{géométrie} du modèle \brep, mais pas nécessairement sa \textit{topologie}.
 
 \subsection{Construction d'une structure d'hypergraphe}
 

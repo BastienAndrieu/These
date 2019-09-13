@@ -37,7 +37,7 @@
 	\DTLassign{dbcorners}{4}{\locxb=x,\locyb=y,\loca=a}% 
 	\DTLassign{dbcorners}{1}{\locxc=x,\locyc=y,\loca=a}% 
 	%\node[anchor=west] (anotSingPts) at (\locxb,{0.5*(\locya + \locyb)}) {points singuliers};
-	\node[anchor=east] (anotSingPts) at (1.2,0.2) {points singuliers};
+	\node[anchor=east] (anotSingPts) at (1.2,0.2) {coins};
 	\draw[anot] (anotSingPts) to [bend left=10] (\locxa, \locya);
 	\draw[anot] (anotSingPts) to [bend right=20] (\locxb, \locyb);
 	\draw[anot] (anotSingPts) to [bend right=10] (\locxc, \locyc);
@@ -45,7 +45,7 @@
 	\DTLassign{dbedgemidp}{19}{\locxa=x,\locya=y,\loca=a}% 	
 	\DTLassign{dbedgemidp}{7}{\locxb=x,\locyb=y,\loca=a}% 
 	\DTLassign{dbedgemidp}{14}{\locxc=x,\locyc=y,\loca=a}% 
-	\node[anchor=west] (anotSingCurv) at (-0.2,0.9) {courbes singulières};
+	\node[anchor=west] (anotSingCurv) at (-0.2,0.9) {crêtes};
 	\draw[anot] (anotSingCurv) to [bend right=10] (\locxa, \locya);
 	\draw[anot] (anotSingCurv) to [bend right=40] (\locxb, \locyb);
 	\draw[anot] (anotSingCurv.east) to [bend left=10] (\locxc, \locyc);

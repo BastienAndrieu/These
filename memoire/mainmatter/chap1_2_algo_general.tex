@@ -72,27 +72,20 @@ arguments :
 %	\item la zone d'influence sur l'EdB d'une courbe singulière convexe $\Gamma$ est incluse dans la portion de son EdS qui est tangente aux EdS des deux nappes adhérentes à $\Gamma$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on la note $\pseudoEdS{\Gamma}{\rho}$
 	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \Sigma$ adhérente aux nappes régulières $\Left{\Sigma}$ et $\Right{\Sigma}$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Left{\Sigma}}{\rho}$ et $\EdS{\Right{\Sigma}}{\rho}$. On appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$.
 	\begin{proof}
-		En posant\footnote{introduire ces notations dans la \autoref{section:principe_huygens}.}
-		\[
-			\implicitsphere(\bx, \p) := \normtwo{\bx - \p}^2 - \rho(\p)^2,
-		\]
-		et, pour $H \subseteq \Sigma$, 
-		\[
-			\implicitEdB{H}(\bx) := \min_{\p \in H} \implicitsphere(\bx, \p),
-		\]
-		on veut démontrer que 
-		\[
-			\influEdB{\Gamma}{\rho} \subseteq 
-			\left\{
-				\bx \in \complement{\Omega} \mid \implicitEdB{\Gamma}(\bx) = \implicitEdB{\Left{\Sigma}}(\bx) = \implicitEdB{\Right{\Sigma}}(\bx) = 0
-			\right\}
-			\subseteq \pseudoEdS{\Gamma}{\rho}.
-		\]
-		\par
-		Puisque $\Gamma \subseteq \left( \closure{\Left{\Sigma}} \cap \closure{\Right{\Sigma}} \right)$, on a $\implicitEdB{\Gamma} \geq \implicitEdB{\Left{\Sigma}}$ et $\implicitEdB{\Gamma} \geq \implicitEdB{\Right{\Sigma}}$.\par
-		Or, si $\bx \in \influEdB{\Gamma}{\rho}$ alors\footnote{car $\forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{\Gamma}(\bx) \geq 0$ et $\forall \bx \in \sphere[\Gamma][\rho], \implicitEdB{\Gamma}(\bx) \leq 0$.} $\implicitEdB{\Gamma}(\bx) = 0$ et donc $\implicitEdB{\Left{\Sigma}}(\bx) \leq 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) \leq 0$.\par
-		Mais si $\implicitEdB{\Left{\Sigma}} < 0$ ou $\implicitEdB{\Right{\Sigma}} < 0$ alors\footnote{car $\forall H \subseteq \Sigma, \forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{H}(\bx) \geq 0$.} $\bx \notin \EdB{\Sigma}{\rho}$ et donc $\bx \notin \influEdB{\Gamma}{\rho}$.\par
-		Donc si $\bx \in \influEdB{\Gamma}{\rho}$ alors $\implicitEdB{\Left{\Sigma}}(\bx) = 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) = 0$.
+		\cf notes ``Huygens'', section ``Observations et preuves''
+%		En utilisant les notations de la \autoref{section:principe_huygens}, on veut démontrer que 
+%		\[
+%			\influEdB{\Gamma}{\rho} \subseteq 
+%			\left\{
+%				\bx \in \complement{\Omega} \mid \implicitEdB{\Gamma}(\bx) = \implicitEdB{\Left{\Sigma}}(\bx) = \implicitEdB{\Right{\Sigma}}(\bx) = 0
+%			\right\}
+%			\subseteq \pseudoEdS{\Gamma}{\rho}.
+%		\]
+%		\par
+%		Puisque $\Gamma \subseteq \left( \closure{\Left{\Sigma}} \cap \closure{\Right{\Sigma}} \right)$, on a $\implicitEdB{\Gamma} \geq \implicitEdB{\Left{\Sigma}}$ et $\implicitEdB{\Gamma} \geq \implicitEdB{\Right{\Sigma}}$.\par
+%		Or, si $\bx \in \influEdB{\Gamma}{\rho}$ alors\footnote{car $\forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{\Gamma}(\bx) \geq 0$ et $\forall \bx \in \sphere[\Gamma][\rho], \implicitEdB{\Gamma}(\bx) \leq 0$.} $\implicitEdB{\Gamma}(\bx) = 0$ et donc $\implicitEdB{\Left{\Sigma}}(\bx) \leq 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) \leq 0$.\par
+%		Mais si $\implicitEdB{\Left{\Sigma}} < 0$ ou $\implicitEdB{\Right{\Sigma}} < 0$ alors\footnote{car $\forall H \subseteq \Sigma, \forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{H}(\bx) \geq 0$.} $\bx \notin \EdB{\Sigma}{\rho}$ et donc $\bx \notin \influEdB{\Gamma}{\rho}$.\par
+%		Donc si $\bx \in \influEdB{\Gamma}{\rho}$ alors $\implicitEdB{\Left{\Sigma}}(\bx) = 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) = 0$.
 	\end{proof}
 	
 	\item Si $\Gamma$ est une courbe singulière concave de $\Sigma$ alors sa zone d'influence sur l'EdB est vide (\ie $\Gamma$ ne contribue pas à l'EdB et peut donc être ignorée).
@@ -101,6 +94,7 @@ arguments :
 	\end{proof}
 	
 	\item si toutes les courbes singulières adhérentes à un point singulier sont concaves alors la zone d'influence sur l'EdB de ce point est vide (preuve?) (\ie ce point ne contribue pas à l'EdB et peut donc être ignoré)
+	
 	\item si toutes les courbes singulières adhérentes à un point singulier $\p$ \textit{ne sont pas} concaves (ou bien que $\p$ n'est adhérent à aucune courbe singulière, \eg le sommet d'un cône) on dit que $\p$ est convexe et sa zone d'influence sur l'EdB est la portion de $\sphere[\p][\rho(\p)]$ qui est tangente aux EdS de toutes les courbes singulières adhérentes à $\p$ (preuve?). On appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\p$ et on la note $\pseudoEdS{\p}{\rho}$.
 	
 	\item l'EdB est incluse dans la réunion
