@@ -1,22 +1,23 @@
 \chapter{Adaptation d'un maillage de surface dynamique}
 
 \textit{Objectif du chapitre: on veut mettre au point une méthodologie pour déformer un maillage de l'interface en propagation en utilisant le modèle \brep\ dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformable.}
-
+\par
+(Motivation : les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du (volume du) domaine de calcul)
 
 \section{Problématiques et état de l'art}
 
 \subsection{Simulation numérique dans un domaine à géométrie déformable}
-Motivation
-\begin{enumerate}
-	\item les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du (volume du) domaine de calcul
-	%\item la précision et la vitesse de convergence du calcul dépendent fortement de la qualité (forme et taille) des éléments du maillage
-\end{enumerate}
+%Motivation :
+%\begin{enumerate}
+%	\item les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du (volume du) domaine de calcul
+%	%\item la précision et la vitesse de convergence du calcul dépendent fortement de la qualité (forme et taille) des éléments du maillage
+%\end{enumerate}
 
 État de l'art :
 \begin{enumerate}
 	\item maillage volumique (fluide) conforme à l'interface
 	\begin{enumerate}
-		\item \label{item:methodo_bodyfitted_ALE} 1 seul maillage \anglais{body-fitted} avec formulation ALE \emph{(ref)}
+		\item \label{item:methodo_bodyfitted_ALE} un seul maillage \anglais{body-fitted} avec formulation ALE \emph{(ref)}
 		\begin{itemize}
 			\item principe : frontière = maillage de l'interface, intérieur déformé de façon arbitraire (purement lagrangien si la vitesse de déformation du maillage est imposée par le champ de vitesse du fluide)
 			\item intérêt/avantages : \ldots
@@ -94,9 +95,9 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 		\item conforme à la topologie \brep\ : on exploite directement les paramétrisations locales (carreaux de surface) du modèle \brep\ \cite{borouchaki2000} (on maille d'abord les sommets, puis les arêtes et enfin les faces afin de garantir la conformité du maillage)
 		\begin{itemize}
 			\item intérêt/avantages : utilisation de méthodes \deuxD\ plan robustes et efficaces
-			\item contraintes/inconvénients : les arêtes \brep\ douces introduisent des contraintes supplémentaires sur le maillage, sans avoir de signification du point du vue du calcul EF/VF $\Rightarrow$ éléments de mauvaise qualité
+			\item contraintes/inconvénients : les arêtes \brep\ régulières introduisent des contraintes supplémentaires sur le maillage, sans avoir de signification du point du vue du calcul EF/VF $\Rightarrow$ éléments de mauvaise qualité
 		\end{itemize}
-		\item trans-carreaux par (re-)paramétrisation globale : l'idée générale est de construire une transformation affine par morceaux (par triangles) l'espace $uv$ de chacune des faces qui composent une nappe et un l'espace $uv$ global de cette nappe, sans affecter la définition géométrique du modèle \brep\ sous-jacent
+		\item trans-carreaux par (re-)paramétrisation globale : l'idée générale est de construire une transformation affine par morceaux (par triangles) l'espace $uv$ de chaque face et un espace $uv$ global, sans affecter la définition géométrique du modèle \brep\ sous-jacent
 			\begin{enumerate}
 			
 				\item \cite{marcum1999} :
@@ -112,7 +113,7 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 					\item on élimine les éventuels éléments fictifs créés à l'étape \ref{item:bouche_trous}
 					\item on génère une triangulation dans l'espace paramétrique global par avancée de front en utilisant le maillage de référence comme approximation géométrique dans l'espace physique
 					\item on retrouve les coordonnées paramétriques locales des n\oe uds du nouveau maillage 
-					\item limites : la nappe doit avoir au moins un bord
+					\item limites : le groupe de faces doit avoir au moins un bord
 				\end{enumerate}
 				
 				\item \cite{noel2002} : 
@@ -120,7 +121,7 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 					\item le domaine paramétrique de chaque face \brep\ est décomposé en cellules triangulaires s'appuyant sur les contours
 					\item chaque cellule (courbe) est en bijection avec un triangle (linéaire) dans l'espace paramétrique global de la nappe
 					\item une triangulation du domaine paramétrique global (convexe) est générée (quadtree-Delaunay) 
-					\item limites : la nappe doit avoir au moins un bord
+					\item limites : le groupe de faces doit avoir au moins un bord
 				\end{enumerate}
 				
 				\item \cite{jones2004} :
@@ -132,7 +133,7 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 					\item limites : 
 					\begin{itemize}
 						\item cette approche peut échouer si les plongements des triangulations de deux faces adjacentes dans leur espace $uv$ respectif ont des rapports d'échelles différents au niveau d'une arête commune %suivant les deux directions paramétriques
-						\item il semblerait que les nappes doivent ici aussi avoir au moins un bord
+						\item il semblerait que les groupes de faces doivent ici aussi avoir au moins un bord
 					\end{itemize}
 					
 				\end{enumerate}
@@ -141,8 +142,8 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 			\item intérêt/avantages : lève les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes pour le calcul EF/VF, sans en affecter la définition géométrique
 			\item limites/inconvénients : 
 			\begin{itemize}
-				\item topologie : limité aux nappes avec un ou plusieurs bords $\Rightarrow$ nécessite un découpage (généralement manuel) de l'interface
-				\item géométrie : limité aux nappes quasi-planes et régulières
+				\item topologie : limité aux groupes de faces avec un ou plusieurs bords $\Rightarrow$ nécessite un découpage (généralement manuel) de l'interface
+				\item géométrie : limité aux groupes de faces quasi-plans
 			\end{itemize}
 			
 		\end{itemize}
@@ -188,11 +189,9 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 
 
 \section{Maillage trans-carreaux reposant sur un modèle \brep dynamique}
-Motivation :
-\begin{itemize}
-	\item \cf objectif \ref{obj:maillage_geometriquement_fidele} : on veut que le maillage respecte la \textit{géométrie} du modèle \brep, mais pas nécessairement sa \textit{topologie}
-	\item on veut s'affranchir des contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes du point de vue du calcul EF/VF
-\end{itemize}
+Motivation : on veut que le maillage respecte la \textit{géométrie} du modèle \brep\ (\cf objectif \ref{obj:maillage_geometriquement_fidele}), mais pas nécessairement sa \textit{topologie}\\
+$\to$ on veut s'affranchir de toutes les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes du point de vue du calcul EF/VF
+
 
 \subsection{Décomposition naturelle}
 Comme nous l'avons vu dans la \autoref{section:description_surface_G1_piecewise}, une surface régulière \piecewise\ peut être décrite comme un ensemble de \textit{nappes}, \textit{crêtes} et \textit{coins}. \par 
@@ -207,18 +206,18 @@ On décrit dans les paragraphes suivants les procédures permettant de construir
 \subsubsection{Assemblage des faces en nappes}
 Pour constituer les nappes, on procède de la manière suivante. 
 On commence par marquer toutes les faces du modèle \brep\ comme \textit{non-visitées}. 
-Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide que l'on remplit en suivant l'algorithme récursif \ref{algo:assembler_nappe}.
+Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide que l'on remplit en suivante la procédure récursive décrite par l'\autoref{algo:assembler_nappe}.
 
 \begin{algorithm}
-	\caption{Algorithme récurisf d'assemblage de faces en une nappe.}\label{algo:assembler_nappe}
+	\caption{Assemblage récursif de faces en une nappe.}\label{algo:assembler_nappe}
 	\begin{algorithmic}[1]
 		\Procedure{Assembler nappe}{$\brepface$, $N$}
 			\State marquer $\brepface$ comme visitée
 			\State ajouter $\brepface$ à la nappe $N$
 			\For{chaque contour $\brepwire$ de $\brepface$}
-				\For{chaque co-arête douce $\brepedge$ de $\brepwire$}
-					\If{la face $\brepface_i$ incidente à la co-arête jumelle de $\brepedge$ n'a pas été visitée}
-						\State \Call{Assembler nappe}{$\brepface_i$, $N$}
+				\For{chaque co-arête régulière $\brepedge^i$ de $\brepwire$}
+					\If{la face $\brepface_j$ incidente à la co-arête jumelle de $\brepedge^i$ n'a pas déjà été visitée}
+						\State \Call{Assembler nappe}{$\brepface_j$, $N$}
 					\EndIf
 				\EndFor
 			\EndFor
@@ -237,7 +236,7 @@ Sont des coins les sommets
 	\item de valence égale à 2, et où les deux arêtes incidentes ont des directions tangentes non-parallèles.
 \end{itemize}
 
-Pour le dernier cas, on calcule la direction tangente $\bt_i$ à chaque arête en exploitant la géométrie différentielle de la courbe d'intersection transverse qui la supporte (voir \autoref{section:representation_intersections}). 
+Pour le dernier cas, on calcule la direction tangente $\bt_i$ ($i = 1,2$) à chaque arête en exploitant la géométrie différentielle de la courbe d'intersection transverse qui la supporte (voir \autoref{section:representation_intersections}). 
 On considère que le sommet commun de ces arêtes est un coin si l'angle entre les directions tangentes dépasse un certain seuil $\epsilon$, \ie si 
 \begin{equation}
 	\left| \dotprod{\bt_1}{\bt_2} \right| < \cos \epsilon.
@@ -246,80 +245,186 @@ On considère que le sommet commun de ces arêtes est un coin si l'angle entre l
 
 
 \subsubsection{Assemblage des arêtes vives en crêtes}
-Dans un premier temps, on assemble les crêtes \textit{ouvertes}, \ie qui possèdent deux coins distincts comme extrémités. 
-On assemble ainsi ces crêtes en \guillemets{marchant} de coin en coin le long d'arêtes vives en prenant soin de ne parcourir chaque arête qu'au plus une fois. 
-Cette procédure est décrite par l'algorithme \ref{algo:assembler_crete}. 
-On a formé toutes les crêtes ouvertes une fois que toutes les arêtes vives incidentes à chaque coin ont été visitées. 
-
-%On commence par marquer toutes les arêtes vives du modèle \brep\ comme \textit{non-visitées}. 
-%
-%Pour chaque coin $c(\brepvertex)$, on parcourt le cycle de ses arêtes incidentes. 
-%Lorsqu'on rencontre une arête vive, on initialise une nouvelle crête. 
-%On décrémente $c(\brepvertex)$ de 1
+Afin d'en simplifier le parcours, on donne une orientation consistante aux crêtes. 
+Pour cela, on conçoit une crête comme une suite de \textit{co-arêtes}.
+\par
+Dans un premier temps, on obtient les crêtes \textit{ouvertes}, \ie qui possèdent deux coins distincts comme extrémités. 
+L'\autoref{algo:former_cretes_ouvertes} qui réalise l'assemblage de ces crêtes consiste à \guillemets{marcher} de coin en coin le long d'arêtes vives en prenant soin de ne parcourir chaque arête qu'au plus une fois. 
+Cette procédure de marche est décrite par l'\autoref{algo:assembler_crete}. 
+On a obtenu toutes les crêtes ouvertes une fois que toutes les arêtes vives incidentes à chaque coin ont été visitées. 
 
 
-%\begin{algorithm}
-%	\caption{Algorithme de formation des crêtes ouvertes.}\label{algo:former_cretes_ouvertes}
-%	\begin{algorithmic}[1]
-%		\Procedure{Former crêtes ouvertes}{}
-%			%
-%%			\For{chaque sommet $\brepvertex$}
-%%				\State $c(\brepvertex) \to \text{valence}(\brepvertex)$
-%%			\EndFor
-%			%
-%			\For{chaque coin $\brepvertex$}
-%				\For{chaque co-arête vive $\brepedge{E}$ non-visitée ayant pour origine $\brepvertex$}
-%					\State $c(\brepvertex) \to c(\brepvertex) - 1$
-%					\State initialiser une nouvelle crête vide $C$
-%					\State \Call{Assembler crête}{$\brepedge_i$, $C$}
-%				\EndFor
-%			\EndFor
-%		\EndProcedure
-%	\end{algorithmic}
-%\end{algorithm}
+\begin{algorithm}
+	\caption{Obtention des crêtes ouvertes.}\label{algo:former_cretes_ouvertes}
+	\begin{algorithmic}[1]
+		%\Procedure{Obtenir crêtes ouvertes}{}
+			%
+			\For{chaque coin $\brepvertex$}
+				\For{chaque co-arête vive $\brepedge^i$ non-visitée ayant pour origine $\brepvertex$}
+					% comment? parcourir cycle des co-aretes incidentes (twin(prev))
+					\State $C = $ \Call{Assembler crête}{$\brepedge^i$}
+					\State Ajouter $C$ à la liste des crêtes
+				\EndFor
+			\EndFor
+		%\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 \par
 On procède alors à l'assemblage des crêtes \textit{fermées}. 
 Celles-ci n'ayant pas d'extrémité, on choisit arbitrairement un de leurs sommets intérieurs comme point de départ pour l'assemblage. 
-On utilise également la procédure décrite par l'algorithme \ref{algo:assembler_crete} pour assembler ces crêtes. 
+L'\autoref{algo:former_cretes_ouvertes} qui réalise l'assemblage des crêtes fermées utilise également la procédure de marche décrite par l'\autoref{algo:assembler_crete}. 
 Cette fois, en revanche, l'assemblage se termine lorsque le sommet destination de la dernière co-arête visitée est identique au sommet de départ. 
-On a formé toutes les crêtes fermées une fois que chaque arête vive a été visitée exactement une fois. 
+On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été visitée exactement une fois. 
+
+\begin{algorithm}
+	\caption{Obtention des crêtes fermées.}\label{algo:former_cretes_fermees}
+	\begin{algorithmic}[1]
+		%\Procedure{Obtenir crêtes fermées}{}
+			%
+			\For{chaque sommet \brep\ $\brepvertex$ de valence égale à 2 qui n'est pas un coin}
+				\State{$\brepedge^i \gets$ co-arête vive ayant pour origine $\brepvertex$}\Comment{celle-ci est unique et n'a pas encore été visitée}
+				\State $C = $ \Call{Assembler crête}{$\brepedge^i$}
+				\State Ajouter $C$ à la liste des crêtes
+			\EndFor
+		%\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
 
 
 %
 \begin{algorithm}
-	\caption{Algorithme d'assemblage d'une crête.}\label{algo:assembler_crete}
+	\caption{Assemblage de (co-)arêtes en une crête.}\label{algo:assembler_crete}
 	\begin{algorithmic}[1]
-		\Procedure{Assembler crête}{?}
+		\Procedure{Assembler crête}{$\brepedge_0^i$}
 			%
-			\State Décrire parcours de la structure DCEL\ldots
-			%\State{$\brepvertex_{0} \leftarrow \orig{\brepedge}$}
+%			\State initialiser une crête $C = \left\{ \brepedge_0^i \right\}$
+%			\State marquer la co-arête $\brepedge_0^i$ et sa jumelle comme visitées
+%			\State{$\brepvertex \gets \dest(\brepedge_0^i)$}
+%			\While{$\brepvertex \neq \orig(\brepedge_0^i)$ et $\brepvertex$ n'est pas un coin}
+%				%
+%				\State{$\brepedge^j \gets$ co-arête vive ayant pour origine $\brepvertex$}\Comment{celle-ci est unique et n'a pas encore été visitée}
+%				% comment? parcourir cycle des co-aretes incidentes (twin(prev))
+%				\State ajouter $\brepedge^j$ à la crête $C$
+%				\State marquer la co-arête $\brepedge^j$ et sa jumelle comme visitées
+%				\State{$\brepvertex \gets \dest(\brepedge^i)$}
+%			\EndWhile
+%			\State\Return{$C$}
 			%
-%			\For{chaque coin $\brepvertex$}
-%				\For{chaque co-arête vive $\brepedge{E}$ non-visitée ayant pour origine $\brepvertex$}
-%					%\State $c(\brepvertex) \to c(\brepvertex) - 1$
-%					\State initialiser une nouvelle crête vide $C$
-%					\State \Call{Assembler crête}{$\brepedge_i$, $C$}
-%				\EndFor
-%			\EndFor
+			\State initialiser une crête vide $C$
+			\State{$\brepedge^j \gets \brepedge_0^i$}
+			\While{$\dest(\brepedge^j) \neq \orig(\brepedge_0^i)$ et $\dest(\brepedge^j)$ n'est pas un coin}
+				\State ajouter $\brepedge^j$ à la crête $C$
+				\State marquer la co-arête $\brepedge^j$ et sa jumelle comme visitées
+				\State{$\brepedge^j \gets$ co-arête vive ayant pour origine $\dest(\brepedge^j)$}\Comment{celle-ci est unique et n'a pas encore été visitée}
+%				\Repeat\Comment{$\brepedge^j \gets$ co-arête vive ayant pour origine $\dest(\brepedge^j)$}
+%					\State{$\brepedge^j \gets \prev(\brepedge^j)$}
+%					\State{$\brepedge^j \gets \twin(\brepedge^j)$}
+%				\Until{$\brepedge^j$ est vive et n'a pas encore été visitée}
+			\EndWhile
+			\State\Return{$C$}
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
 
 
+\subsubsection{Association maillage-décomposition naturelle}
+
+
+
+\subsection{Cohérence/Persistance de la décomposition naturelle}
+\cf notes ``Virtual topology''
 
 
 
 
-%\subsection{}
+
+
+
 
 
 \section{Optimisation de maillage trans-carreaux}
 
 \subsection{Bouger de n\oe ud}
 \label{section:projection_surface_composite}
-Décrire la procédure de projection d'un déplacement sur la surface \brep\ (sur une hyper-face ou une hyper-arête)
-$\rightarrow$ trajectoire trans-carreaux \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}
+\begin{enumerate}
+	\item l'étape d'optimisation prescrit pour chaque n\oe ud un déplacement $\vrm{d}$ dans l'espace physique
+	\item pour chaque n\oe ud, on projette ce déplacement sur l'entité naturelle qui le supporte, en mettant à jour sa localisation sur le modèle \brep
+	\begin{itemize}
+		\item si le n\oe ud est associé à un coin/sommet (zéro degré de liberté), il reste fixe 
+		\item si le n\oe ud fait partie d'une chaîne (un degré de liberté), on projette $\vrm{d}$ sur la crête associée à cette chaîne (procédure décrite dans l'\autoref{algo:projection_crete})
+		\item si le n\oe ud repose sur une nappe (deux degrés de liberté), on projette $\vrm{d}$ sur cette nappe
+	\end{itemize}
+	\item[$\Rightarrow$] les n\oe uds suivent des trajectoires trans-carreaux \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}
+\end{enumerate}
+
+\subsubsection{Projection sur une crête}
+%\begin{enumerate}
+%	%\item projection sur une arête : $\delta = \lo{w} + (\hi{w} - \lo{w}) \dotprod{\hat{\vrm{p}}}{(\delta - \lo{\bg})}$
+%	\item projection sur une arête : $\delta = (\hi{w} - \lo{w}) \dotprod{\hat{\vrm{p}}}{\vrm{d}}$, où $\hat{\vrm{p}} = \frac{\vrm{p}}{\dotprod{\vrm{p}}{(\hi{\bg} - \lo{\bg})}}$ ($\vrm{p}$ orienté dans le sens de la crête)
+%	\begin{itemize}
+%		\item si $w + \delta < \lo{w}$, on passe à la (co-)arête précédente sur la crête
+%		\item si $w + \delta < \lo{w}$, on passe à la (co-)arête suivante sur la crête
+%		\item sinon OK
+%	\end{itemize}
+%\end{enumerate}
+
+
+\begin{algorithm}
+	\caption{Projection d'un déplacement sur une crête (introduire dans section ``Régénération des chaînes''.}\label{algo:projection_crete}
+	\begin{algorithmic}[1]
+		\Procedure{Projection sur crête}{$\q, \vit{u}=(u_1, v_1, u_2, v_2), \brepedge^i$}
+			%
+			\Repeat
+				\State $\mathrm{convergé} \gets \text{Faux}$
+				\State $\lo{\bg} \gets$ coordonnées physiques de $\orig(\brepedge^i)$
+				\State $\hi{\bg} \gets$ coordonnées physiques de $\dest(\brepedge^i)$
+				\State $\bt \gets$ direction tangente à $\brepedge^i$ en $\q$
+				\State $\vrm{d} \gets (\dotprod{\vrm{d}}{\bt}) \vrm{d}$
+				\State $\vrm{p}$ vecteur de paramétrisation (Hohmeyer), orienté tel que $\dotprod{\vrm{\p}}{\bt} > 0$
+				%\State $\hat{\vrm{p}} \gets \frac{\vrm{p}}{\dotprod{\vrm{p}}{(\hi{\bg} - \lo{\bg})}}$
+				%\State $w \gets \dotprod{\hat{\vrm{p}}}{(\q + \vrm{d} - \lo{\bg})}$
+				\State $w \gets \frac{ \dotprod{ \vrm{p} }{ (\q + \vrm{d} - \lo{\bg}) } }{ \dotprod{ \vrm{p} }{ (\hi{\bg} - \lo{\bg}) } }$
+			%\State $\delta \gets \dotprod{\hat{\vrm{p}}}{(\q - \lo{\bg})}$
+			%\While{$w \notin \left[0, 1\right]$}
+				%
+				%\State{$\brepedge^j \gets$ (unique) co-arête vive ayant pour origine $\brepvertex$}
+				% comment? parcourir cycle des co-aretes incidentes (twin(prev))
+				%\State ajouter $\brepedge^i$ à la crête $C$
+				%\State marquer l'arête $\brepedge$ comme visitée
+				%\State{$\brepvertex \gets \dest(\brepedge^i)$}
+				\If{$w < 0$}
+					\State $\brepedge^i \gets$ co-arête qui précède $\brepedge^i$ sur la crête
+					\State $\vrm{d} \gets \vrm{d} + \q - \lo{\bg}$
+					\State $\q \gets \lo{\bg}$
+					\State $\vit{u} \gets $ coordonnées paramétriques de $\dest(\brepedge^i)$ dans les faces incidentes à $\brepedge^i$ et sa co-arête jumelle
+				%\Else\Comment{$w > 1$}
+				\ElsIf{$w > 1$}
+					\State $\brepedge^i \gets$ co-arête qui succède $\brepedge^i$ sur la crête
+					\State $\vrm{d} \gets \vrm{d} + \q - \hi{\bg}$
+					\State $\q \gets \hi{\bg}$
+					\State $\vit{u} \gets $ coordonnées paramétriques de $\orig(\brepedge^i)$ dans les faces incidentes à $\brepedge^i$ et sa co-arête jumelle
+				\Else
+					\State projection sur $\brepedge^i$\label{step:projection_arete}
+					\State $\mathrm{convergé} \gets \text{Vrai}$
+					\State\Return{$\q, \vit{u}, \brepedge^i$}
+				\EndIf
+			%\EndWhile
+			\Until{$\mathrm{convergé}$}
+			%
+		\EndProcedure
+	\end{algorithmic}
+\end{algorithm}
+
+Ligne \ref{step:projection_arete} de l'\autoref{algo:projection_crete}
+
+
+\subsubsection{Projection sur une nappe}
+
+
+
+%Décrire la procédure de projection d'un déplacement sur la surface \brep\ (sur une hyper-face ou une hyper-arête)
+%$\rightarrow$ trajectoire trans-carreaux \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}
 
 \subsection{Reconnections locales}
 \subsubsection{Bascule d'arête}

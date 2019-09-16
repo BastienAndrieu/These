@@ -544,12 +544,16 @@ Enjeux :
 	\item le problème du calcul de l'intersection de carreaux paramétriques consiste à résoudre un système de trois équations non-linéaires (ici polynomiales)
 	\begin{equation}
 		\bs^1(u_1,v_1) - \bs^2(u_2, v_2) = \vit{0},
+		\label{eq:intersection_2_carreaux}
 	\end{equation}
-	dont les quatre inconnues sont les paramètres des deux carreaux. 
+	dont les quatre inconnues (paramètres des deux carreaux), sont soumises aux contraintes
+	\begin{equation}
+		-1 \leq u_1, v_1, u_2, v_2 \leq 1.
+	\end{equation}
 	(On cherche en effet à déterminer la \guillemets{trace} de l'intersection dans l'espace paramétrique de chaque carreau.)
 	\item l'intersection non-vide de deux carreaux de surface peut être constituée
 	\begin{enumerate}
-		\item d'un ensemble de points (isolés) ;
+		\item d'un ensemble de points isolés ;
 		\item d'un ensemble de courbes ;
 		\item d'un ensemble de régions surfaciques.
 	\end{enumerate}
@@ -579,9 +583,9 @@ Enjeux :
 	En effet, si cette résolution est trop grossière, la méthode peut échouer à détecter certains détails tels que des points de contact isolés ou des petites boucles, qui apparaissent lorsque les carreaux s'intersectent de façon tangentielle ou quasi-tangentielle.
 	
 	\item Subdivision.
-	Le principe de cette approche est de subdiviser de manière récursive le problème d'intersection original en plusieurs sous-problèmes --- typiquement des intersections de régions planes (\eg triangles) --- dont la solution de chacun peut être trouvée aisément \cite{houghton1985}. 
+	Le principe de cette approche est de subdiviser de manière récursive le problème d'intersection original en plusieurs sous-problèmes --- typiquement des intersections de régions planes (\eg triangles) --- pour chacun desquels on peut aisément trouver la solution \cite{houghton1985}. 
 	Ce type de méthodes produit ainsi un ensemble de segments de la courbe d'intersection, qui doivent également être connectés pour en former les branches. 
-	Si la position des points d'intersection ainsi calculés peut être corrigée a posteriori afin de les ramener sur la véritable intersection des carreaux, les approximations utilisées ne garantissent pas la restitution de la topologie exacte de la courbe d'intersection, en particulier dans des cas d'intersections tangentielles ou quasi-tangentielles (illustration faux positif/faux négatif).
+	Si la position des points d'intersection ainsi calculés peut être corrigée a posteriori afin de les ramener sur la véritable intersection des carreaux, les approximations utilisées ne garantissent pas la restitution exacte de la topologie de la courbe d'intersection, en particulier dans des cas d'intersections tangentielles ou quasi-tangentielles (illustration faux positif/faux négatif).
 	Par ailleurs, le niveau élevé de précision requis par la plupart des applications en CAO nécessite un nombre de subdivisions souvent prohibitif, ce qui disqualifie les méthodes reposant uniquement sur la subdivision.
 	%Toutefois, la combinaison de techniques de subdivision adaptative à d'autres méthodes locales de haute précision --- comme les méthodes dites de \textit{suivi} --- permet de concevoir des algorithmes de calcul d'intersection plus efficaces.
 	%Les techniques de subdivision adaptative peuvent toutefois être utilisées 
@@ -589,7 +593,7 @@ Enjeux :
 	\item Suivi (\anglais{Marching}).
 	Les méthodes dites de suivi cherchent dans un premier temps à trouver un point sur chaque branche de la courbe d'intersection. 
 	Ensuite, elles procèdent au tracé de ces branches en marchant dans une direction indiquée par la géométrie différentielle locale de la courbe. 
-	Afin d'identifier toutes les composantes connectées de la courbe d'intersection, il suffit de trouver les points où les branches ouvertes rencontrent le bord d'un des carreaux, ainsi que les paires de points ``collinéaux'' où les carreaux ont des directions normales parallèles.
+	Afin d'identifier toutes les composantes connexes de la courbe d'intersection, il suffit de trouver les points où les branches ouvertes rencontrent le bord d'un des carreaux, ainsi que les paires de points ``collinéaux'' où les carreaux ont des directions normales parallèles.
 	En effet, à chaque branche fermée de la courbe d'intersection est associée une telle paire de points \cite{sederberg1989}.
 	En outre, tous les points singuliers de la courbe d'intersection sont également des points ``collinéaux''.
 	\begin{itemize}
@@ -597,7 +601,7 @@ Enjeux :
 		\begin{itemize}
 			\item bords, points \guillemets{colinéaires}
 		\end{itemize}
-		\item tracer avec un pas adéquat pour éviter \anglais{jumping} (\anglais{straying)}, \anglais{looping} et \anglais{backtracking}
+		\item tracer avec un pas adéquat pour éviter saut/\anglais{jumping}, (\anglais{looping}) et marche arrière /\anglais{backtracking}
 	\end{itemize}
 \end{enumerate}
 %pas de paramétrisation explicite (définition procédurale), méthode de Hohmeyer revisitée
@@ -608,8 +612,44 @@ Enjeux :
 %\end{enumerate}
 \subsection{Présentation/Vue d'ensemble/Caractéristiques de la méthode retenue}
 \begin{enumerate}
-	\item pas de paramétrisation explicite (définition procédurale)
-	\item \ldots
+	\item Détection des branches (composantes connexes) de la courbe d'intersection
+	\begin{enumerate}
+		\item Subdivision récursive des carreaux en régions qui
+		\begin{itemize}
+			\item sont clairement disjointes (test de séparation de volumes englobants)
+			\item ou bien s'intersectent de façon tangentielle
+			\item ou bien ne peuvent pas s'intersecter en une boucle (critère d'élimination des boucles basé sur les enveloppes des normales)
+		\end{itemize}
+		\item Intersection entre les bords d'une région et la surface de l'autre, et vice versa (intersection courbe-surface)
+		\begin{enumerate}
+			\item 
+		\end{enumerate}
+		\item Subdivision récursive en régions qui
+		\begin{itemize}
+			\item sont clairement disjointes
+			\item ne s'intersectent qu'en un seul segment transverse (pas de singularité), que l'on peut tracer sans ambiguïté (pas de saut d'une branche à l'autre)
+		\end{itemize}
+	\end{enumerate}
+	
+
+	\item Représentation des courbes d'intersection
+	\begin{enumerate}
+		\item le degré algébrique ainsi que le genre topologique des courbes solutions du système \eqref{eq:intersection_2_carreaux} augmentent tellement vite avec le degré des polynômes $\bs^i$ qu'il n'est pas envisageable de les représenter par des arcs paramétriques polynomiaux (\eg la courbe d'intersection de deux carreaux bi-cubiques est de degré 324 et de genre topologique 433 \cite{katz1988}).
+		\item on a tout de même besoin d'un type de représentation permettant une évaluation précise des courbes d'intersection
+		\item (compte tenu du niveau de précision exigé, une approximation paramétrique polynomiale globale ou \piecewise\ (spline) nécessiterait un volume excessif de données)
+		\item on choisit donc d'adopter une représentation \textit{procédurale}
+		\begin{enumerate}
+			\item approximation linéaire par morceaux (polyligne) $(x,y,z,u_1,v_1,u_2,v_2)$
+			\item on peut évaluer précisément n'importe quel point sur la courbe en évaluant d'abord la polyligne puis en raffinant le résultat de façon itérative (projection sur la véritable intersection)
+			\item[$\Rightarrow$] un faible volume de données est stocké mais permet d'évaluer la courbe avec une précision arbitraire
+		\end{enumerate}
+	\end{enumerate}
+	
+	
+	\item Tracé des courbes d'intersection
+	\begin{enumerate}
+		\item le critère d'élimination des boucles assure la monotonie de la paramétrisation de chaque segment d'intersection (pas de marche arrière)
+	\end{enumerate}
 \end{enumerate}
 
 
