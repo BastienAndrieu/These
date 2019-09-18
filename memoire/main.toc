@@ -22,7 +22,7 @@
 \contentsline {subsection}{\numberline {2.3.2}Repr\IeC {\'e}sentation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{19}{subsection.2.3.2}
 \contentsline {subsubsection}{\numberline {2.3.2.1}Param\IeC {\'e}trisation de l'EdS propre d'un arc param\IeC {\'e}trique}{21}{subsubsection.2.3.2.1}
 \contentsline {subsubsection}{\numberline {2.3.2.2}Ajustement d'un carreau param\IeC {\'e}trique (non-restreint)}{21}{subsubsection.2.3.2.2}
-\contentsline {subsection}{\numberline {2.3.3}Repr\IeC {\'e}sentation de la pseudo-EdS d'un sommet BRep\ convexe}{23}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.3}Repr\IeC {\'e}sentation de la pseudo-EdS d'un sommet BRep\ non-concave}{23}{subsection.2.3.3}
 \contentsline {subsubsection}{\numberline {2.3.3.1}Ajustement de plusieurs carreaux non-restreints}{23}{subsubsection.2.3.3.1}
 \contentsline {subsubsection}{\numberline {2.3.3.2}Ajustement d'un seul carreau restreint}{25}{subsubsection.2.3.3.2}
 \contentsline {section}{\numberline {2.4}Construction d'un mod\IeC {\`e}le BRep\ de l'EdB}{28}{section.2.4}
@@ -40,48 +40,48 @@
 \contentsline {subsection}{\numberline {3.1.3}Polyn\IeC {\^o}mes de Chebyshev bivari\IeC {\'e}s}{41}{subsection.3.1.3}
 \contentsline {section}{\numberline {3.2}Repr\IeC {\'e}sentation et calcul des courbes d'intersection}{41}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Enjeux, \IeC {\'E}tat de l'art}{41}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\'e}sentation/Vue d'ensemble/Caract\IeC {\'e}ristiques de la m\IeC {\'e}thode retenue}{43}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Int\IeC {\'e}gration temporelle}{44}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Advection dans champ de vecteur vitesse connu}{44}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{44}{subsection.3.3.2}
-\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{44}{subsubsection.3.3.2.1}
-\contentsline {subsubsection}{\numberline {3.3.2.2}Discr\IeC {\'e}tisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{45}{subsubsection.3.3.2.2}
-\contentsline {subsubsection}{\numberline {3.3.2.3}Discr\IeC {\'e}tisation de la pseudo-EdS d'un sommet BRep\ convexe}{46}{subsubsection.3.3.2.3}
-\contentsline {section}{\numberline {3.4}Am\IeC {\'e}lioration de la stabilit\IeC {\'e} num\IeC {\'e}rique}{46}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}R\IeC {\'e}duction de l'erreur d'aliasing}{46}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Pr\IeC {\'e}vention des singularit\IeC {\'e}s g\IeC {\'e}om\IeC {\'e}triques}{47}{subsection.3.4.2}
-\contentsline {chapter}{\chapternumberline {4}Validation des m\IeC {\'e}thodes num\IeC {\'e}riques}{49}{chapter.4}
-\contentsline {section}{\numberline {4.1}Propagation suivant un champ de vitesse analytique}{49}{section.4.1}
-\contentsline {section}{\numberline {4.2}Propagation \IeC {\`a} vitesse normale uniforme}{52}{section.4.2}
-\contentsline {part}{\partnumberline {II}Int\IeC {\'e}gration de l'outil de suivi de surface dans une cha\IeC {\^\i }ne de calcul multi-physique}{55}{part.2}
-\contentsline {chapter}{\chapternumberline {5}Adaptation d'un maillage de surface dynamique}{57}{chapter.5}
-\contentsline {section}{\numberline {5.1}Probl\IeC {\'e}matiques et \IeC {\'e}tat de l'art}{57}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Simulation num\IeC {\'e}rique dans un domaine \IeC {\`a} g\IeC {\'e}om\IeC {\'e}trie d\IeC {\'e}formable}{57}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}G\IeC {\'e}n\IeC {\'e}ration de maillage surfacique bas\IeC {\'e} sur un mod\IeC {\`e}le BRep}{58}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Optimisation de maillage surfacique}{60}{subsection.5.1.3}
-\contentsline {section}{\numberline {5.2}Maillage trans-carreaux reposant sur un mod\IeC {\`e}le BRepdynamique}{60}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}D\IeC {\'e}composition naturelle}{61}{subsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.1.1}Assemblage des faces en nappes}{61}{subsubsection.5.2.1.1}
-\contentsline {subsubsection}{\numberline {5.2.1.2}Identification des coins}{61}{subsubsection.5.2.1.2}
-\contentsline {subsubsection}{\numberline {5.2.1.3}Assemblage des ar\IeC {\^e}tes vives en cr\IeC {\^e}tes}{62}{subsubsection.5.2.1.3}
-\contentsline {subsubsection}{\numberline {5.2.1.4}Association maillage-d\IeC {\'e}composition naturelle}{63}{subsubsection.5.2.1.4}
-\contentsline {subsection}{\numberline {5.2.2}Coh\IeC {\'e}rence/Persistance de la d\IeC {\'e}composition naturelle}{63}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Optimisation de maillage trans-carreaux}{63}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Bouger de n\oe ud}{63}{subsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.1.1}Projection sur une cr\IeC {\^e}te}{63}{subsubsection.5.3.1.1}
-\contentsline {subsubsection}{\numberline {5.3.1.2}Projection sur une nappe}{63}{subsubsection.5.3.1.2}
-\contentsline {subsection}{\numberline {5.3.2}Reconnections locales}{63}{subsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.2.1}Bascule d'ar\IeC {\^e}te}{63}{subsubsection.5.3.2.1}
-\contentsline {subsubsection}{\numberline {5.3.2.2}Contraction d'ar\IeC {\^e}te}{63}{subsubsection.5.3.2.2}
-\contentsline {subsubsection}{\numberline {5.3.2.3}Scission d'ar\IeC {\^e}te}{65}{subsubsection.5.3.2.3}
-\contentsline {chapter}{\chapternumberline {6}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{67}{chapter.6}
-\contentsline {section}{\numberline {6.1}Contexte}{67}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Principe d'un propulseur \IeC {\`a} propergol solide}{67}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}\IeC {\'E}tat de l'art des m\IeC {\'e}thodes de simulation }{67}{subsection.6.1.2}
-\contentsline {section}{\numberline {6.2}Cas d'application}{67}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Plateforme de simulation multi-physique CEDRE}{67}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Configuration du cas d'application}{67}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}M\IeC {\'e}thodologie de couplage/cha\IeC {\^\i }nage}{67}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}R\IeC {\'e}sultats de la simulation}{67}{subsection.6.2.4}
-\contentsline {chapter}{Conclusion}{69}{chapter*.9}
-\contentsline {chapter}{Bibliographie}{71}{section*.12}
+\contentsline {subsection}{\numberline {3.2.2}Pr\IeC {\'e}sentation/Vue d'ensemble/Caract\IeC {\'e}ristiques de la m\IeC {\'e}thode retenue}{44}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Int\IeC {\'e}gration temporelle}{46}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Advection dans champ de vecteur vitesse connu}{46}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Propagation suivant une vitesse normale donn\IeC {\'e}e}{46}{subsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.2.1}Discr\IeC {\'e}tisation de l'EdS propre d'un carreau param\IeC {\'e}trique}{46}{subsubsection.3.3.2.1}
+\contentsline {subsubsection}{\numberline {3.3.2.2}Discr\IeC {\'e}tisation de la pseudo-EdS d'une ar\IeC {\^e}te BRep\ convexe}{47}{subsubsection.3.3.2.2}
+\contentsline {subsubsection}{\numberline {3.3.2.3}Discr\IeC {\'e}tisation de la pseudo-EdS d'un sommet BRep\ non-concave}{48}{subsubsection.3.3.2.3}
+\contentsline {section}{\numberline {3.4}Am\IeC {\'e}lioration de la stabilit\IeC {\'e} num\IeC {\'e}rique}{48}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}R\IeC {\'e}duction de l'erreur d'aliasing}{48}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Pr\IeC {\'e}vention des singularit\IeC {\'e}s g\IeC {\'e}om\IeC {\'e}triques}{49}{subsection.3.4.2}
+\contentsline {chapter}{\chapternumberline {4}Validation des m\IeC {\'e}thodes num\IeC {\'e}riques}{51}{chapter.4}
+\contentsline {section}{\numberline {4.1}Propagation suivant un champ de vitesse analytique}{51}{section.4.1}
+\contentsline {section}{\numberline {4.2}Propagation \IeC {\`a} vitesse normale uniforme}{54}{section.4.2}
+\contentsline {part}{\partnumberline {II}Int\IeC {\'e}gration de l'outil de suivi de surface dans une cha\IeC {\^\i }ne de calcul multi-physique}{57}{part.2}
+\contentsline {chapter}{\chapternumberline {5}Adaptation d'un maillage de surface dynamique}{59}{chapter.5}
+\contentsline {section}{\numberline {5.1}Probl\IeC {\'e}matiques et \IeC {\'e}tat de l'art}{59}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Simulation num\IeC {\'e}rique dans un domaine \IeC {\`a} g\IeC {\'e}om\IeC {\'e}trie d\IeC {\'e}formable}{59}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}G\IeC {\'e}n\IeC {\'e}ration de maillage surfacique bas\IeC {\'e} sur un mod\IeC {\`e}le BRep}{60}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Optimisation de maillage surfacique}{62}{subsection.5.1.3}
+\contentsline {section}{\numberline {5.2}Maillage trans-carreaux reposant sur un mod\IeC {\`e}le BRep\ dynamique}{62}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}D\IeC {\'e}composition naturelle}{63}{subsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.1.1}Assemblage des faces en nappes}{63}{subsubsection.5.2.1.1}
+\contentsline {subsubsection}{\numberline {5.2.1.2}Identification des coins}{63}{subsubsection.5.2.1.2}
+\contentsline {subsubsection}{\numberline {5.2.1.3}Assemblage des ar\IeC {\^e}tes vives en cr\IeC {\^e}tes}{64}{subsubsection.5.2.1.3}
+\contentsline {subsubsection}{\numberline {5.2.1.4}Association maillage-d\IeC {\'e}composition naturelle}{65}{subsubsection.5.2.1.4}
+\contentsline {subsection}{\numberline {5.2.2}Coh\IeC {\'e}rence/Persistance de la d\IeC {\'e}composition naturelle}{65}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Optimisation de maillage trans-carreaux}{65}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Bouger de n\oe ud}{65}{subsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.1.1}Projection sur une cr\IeC {\^e}te}{65}{subsubsection.5.3.1.1}
+\contentsline {subsubsection}{\numberline {5.3.1.2}Projection sur une nappe}{65}{subsubsection.5.3.1.2}
+\contentsline {subsection}{\numberline {5.3.2}Reconnections locales}{65}{subsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.2.1}Bascule d'ar\IeC {\^e}te}{65}{subsubsection.5.3.2.1}
+\contentsline {subsubsection}{\numberline {5.3.2.2}Contraction d'ar\IeC {\^e}te}{65}{subsubsection.5.3.2.2}
+\contentsline {subsubsection}{\numberline {5.3.2.3}Scission d'ar\IeC {\^e}te}{67}{subsubsection.5.3.2.3}
+\contentsline {chapter}{\chapternumberline {6}Application \IeC {\`a} la simulation de la r\IeC {\'e}gression de propergol solide}{69}{chapter.6}
+\contentsline {section}{\numberline {6.1}Contexte}{69}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Principe d'un propulseur \IeC {\`a} propergol solide}{69}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}\IeC {\'E}tat de l'art des m\IeC {\'e}thodes de simulation }{69}{subsection.6.1.2}
+\contentsline {section}{\numberline {6.2}Cas d'application}{69}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Plateforme de simulation multi-physique CEDRE}{69}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Configuration du cas d'application}{69}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}M\IeC {\'e}thodologie de couplage/cha\IeC {\^\i }nage}{69}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}R\IeC {\'e}sultats de la simulation}{69}{subsection.6.2.4}
+\contentsline {chapter}{Conclusion}{71}{chapter*.9}
+\contentsline {chapter}{Bibliographie}{73}{section*.12}
