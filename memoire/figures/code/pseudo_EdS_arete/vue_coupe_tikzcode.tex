@@ -609,20 +609,20 @@ cycle;
 \coordinate (EdS1) at (-0.4337189344495226, 0.3834576024096734);
 \end{scope}
 \draw[styleEdS, draw=colorContourEdSarete, fill=colorInterieurarete] (0.03846156134313788, 0.25480769814250004) circle (0.3464951869522779);
-\draw[stylePseudoEdS] (0.29657632742188633, 0.5040452822876815) arc (43.99759375651435:122.72148004933781:0.3588071986713943) node[above, pos=0.5, inner sep=2pt] {$\pseudoEdS{\Gamma}{\rho}$};
-\path[decoration={text along path, raise={1ex}, text color=colorContourEdSarete, text={{$\implicitEdB{\Gamma}$} {$=$} {$0$}{}}, text align={center}}, decorate] (-0.21027863798930502, 0.0060674988100571925) arc (225:310:0.3517717634033278);
+\draw[stylePseudoEdS] (0.29657632742188633, 0.5040452822876815) arc (43.99759375651435:122.72148004933781:0.3588071986713943) node[above, pos=0.5, inner sep=2pt] {$\pseudoEdS{\crete}{\rho}$};
+\path[decoration={text along path, raise={1ex}, text color=colorContourEdSarete, text={{$\implicitEdB{\crete}$} {$=$} {$0$}{}}, text align={center}}, decorate] (-0.21027863798930502, 0.0060674988100571925) arc (225:310:0.3517717634033278);
 \draw[
     styleNappe,
     postaction={
         decoration={
-            text along path, raise={1ex}, text={{$\Right{\Sigma}$}{}}, text align=center, reverse path
+            text along path, raise={1ex}, text={{$\Right{\nappe}$}{}}, text align=center, reverse path
         },
         decorate
     }
 ]
 (1.0, -0.2548076981425002) .. controls (0.6394231211989716, -0.18750003123338313) and (0.33205293517056217, 0.00165690420180032) .. (0.03846156134313788, 0.25480769814250004) node[pos=0.35, above] (labelNappe0) {};
-\node[colorContourEdSnappe0, inner sep=0.15\imagewidth, below] at (labelNappe0) {$\implicitEdB{\Right{\Sigma}} < 0$};
-\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe0, text={{$\implicitEdB{\Right{\Sigma}}$} {$=$} {$0$}{}}, text align={center}}, decorate] 
+\node[colorContourEdSnappe0, inner sep=0.15\imagewidth, below] at (labelNappe0) {$\implicitEdB{\Right{\nappe}} < 0$};
+\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe0, text={{$\implicitEdB{\Right{\nappe}}$} {$=$} {$0$}{}}, text align={center}}, decorate] 
 (0.291515253577205, 0.4991582708338544) -- 
 (0.3117526549541225, 0.4786331276446601) -- 
 (0.33179640986407155, 0.4583287883406225) -- 
@@ -667,14 +667,14 @@ cycle;
     styleNappe,
     postaction={
         decoration={
-            text along path, raise={1ex}, text={{$\Left{\Sigma}$}{}}, text align=center, reverse path
+            text along path, raise={1ex}, text={{$\Left{\nappe}$}{}}, text align=center, reverse path
         },
         decorate
     }
 ]
 (0.03846156134313788, 0.25480769814250004) .. controls (-0.28894796328001215, 0.06631655134905) and (-0.5865384951744124, -0.014423064681421358) .. (-0.9999999999999998, -0.0336538334545584) node[pos=0.65, above] (labelNappe1) {};
-\node[colorContourEdSnappe1, inner sep=0.15\imagewidth, below] at (labelNappe1) {$\implicitEdB{\Left{\Sigma}} < 0$};
-\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe1, text={{$\implicitEdB{\Left{\Sigma}}$} {$=$} {$0$}{}}, text align={center}}, decorate] 
+\node[colorContourEdSnappe1, inner sep=0.15\imagewidth, below] at (labelNappe1) {$\implicitEdB{\Left{\nappe}} < 0$};
+\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe1, text={{$\implicitEdB{\Left{\nappe}}$} {$=$} {$0$}{}}, text align={center}}, decorate] 
 (-1.0144828286234011, 0.20017537250377648) -- 
 (-0.9876820080846747, 0.20237893711210087) -- 
 (-0.961401274258467, 0.20510750705228062) -- 
@@ -717,4 +717,4 @@ cycle;
 (-0.15169069257764084, 0.5507561630088252);
 \coordinate (Gamma) at (0.03846156134313788, 0.25480769814250004);
 \fill[black] (Gamma) circle (1.2pt);
-\node[above] at (Gamma) {$\Gamma$};
+\node[above] at (Gamma) {$\crete$};

@@ -23,7 +23,7 @@ Dans ce chapitre, on explicite chaque étape de l'algorithme mais les détails d
 
 \section{Convexité des courbes singulières}
 \label{section:def_convexite_courbe_singuliere}
-[Objectif : formaliser la notion de convexité d'une courbe singulière de $\Sigma$ (qui servira pour simplifier la construction de l'EdB) et démontrer que la convexité est "continue", \ie que deux segments d'une même courbe singulière, l'un convexe et l'autre concave, sont nécessairement séparés par un point régulier de $\Sigma$]
+[Objectif : formaliser la notion de convexité d'une courbe singulière de $\interface$ (qui servira pour simplifier la construction de l'EdB) et démontrer que la convexité est "continue", \ie que deux segments d'une même courbe singulière, l'un convexe et l'autre concave, sont nécessairement séparés par un point régulier de $\interface$]
 %\par\bigskip
 %\begin{enumerate}
 %	\item $\Sigma$ 2-variété donc tout $\p \in \Sigma$ possède un voisinage $\neigborhood$ homéomorphe à un disque
@@ -57,58 +57,46 @@ Dans ce chapitre, on explicite chaque étape de l'algorithme mais les détails d
 \par
 définitions : 
 \begin{itemize}
-	\item \textit{zone d'influence}\footnote{\label{note_vocabulaire_notation}vocabulaire et notation à préciser \ldots} de $H \subseteq \Sigma$ sur l'EdB  (lieu des points de tangence entre $\EdB{\Sigma}{\rho}$ et $\sphere[H][\rho]$)
-	\[ \influEdB{H}{\rho} := \EdB{\Sigma}{\rho} \cap \sphere[H][\rho] \]
-	\item \textit{EdS propre}\footref{note_vocabulaire_notation} de $H \subseteq \Sigma$ 
+	\item \textit{zone d'influence}\footnote{\label{note_vocabulaire_notation}vocabulaire et notation à préciser \ldots} de $H \subseteq \interface$ sur l'EdB  (lieu des points de tangence entre $\EdB{\interface}{\rho}$ et $\sphere[H][\rho]$)
+	\[ \influEdB{H}{\rho} := \EdB{\interface}{\rho} \cap \sphere[H][\rho] \]
+	\item \textit{EdS propre}\footref{note_vocabulaire_notation} de $H \subseteq \interface$ 
 	\[ \EdSpropre{H}{\rho} := \closure{ {\EdS{H}{\rho} \setminus \EdS{\boundary{H}}{\rho}} } \]
 \end{itemize}
 arguments :
 \begin{enumerate}
 	\item on sait décrire l'EdB simplement de manière \textit{implicite} (\cf \autoref{section:principe_huygens}) mais on cherche à en construire une représentation \textit{explicite}
 	\item en revanche, on peut décrire explicitement l'EdS de chaque carreau ($\to$ introduire système définissant l'EdS à 2 paramètres)
-	\item il est plus commode de voir l'EdS d'un carreau comme (un sous-ensemble de) la réunion de 10 nouveaux carreaux (intérieur $\to 2$ , bords $\to 4$ et ``coins'' $\to 4$)
+	\item il est plus commode de voir l'EdS d'un carreau comme (un sous-ensemble de) la réunion de 10 nouveaux carreaux (intérieur $\to 2$ , bords $\to 4$ et ``pics'' $\to 4$)
 	\item si on procède ainsi pour chaque carreau qui décrit l'interface, on construit beaucoup de nouveaux carreaux qui sont redondants, voire même trivialement exclus de l'EdB
-%	\item la zone d'influence sur l'EdB d'une courbe singulière concave est vide (preuve?) (\ie cette courbe ne contribue pas à l'EdB et peut donc être ignorée)
-%	\item la zone d'influence sur l'EdB d'une courbe singulière convexe $\Gamma$ est incluse dans la portion de son EdS qui est tangente aux EdS des deux nappes adhérentes à $\Gamma$ (preuve?), on appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on la note $\pseudoEdS{\Gamma}{\rho}$
-	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \Sigma$ adhérente aux nappes régulières $\Left{\Sigma}$ et $\Right{\Sigma}$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Left{\Sigma}}{\rho}$ et $\EdS{\Right{\Sigma}}{\rho}$. On appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$.
-	\begin{proof}
-		\cf notes ``Huygens'', section ``Observations et preuves''
-%		En utilisant les notations de la \autoref{section:principe_huygens}, on veut démontrer que 
-%		\[
-%			\influEdB{\Gamma}{\rho} \subseteq 
-%			\left\{
-%				\bx \in \complement{\Omega} \mid \implicitEdB{\Gamma}(\bx) = \implicitEdB{\Left{\Sigma}}(\bx) = \implicitEdB{\Right{\Sigma}}(\bx) = 0
-%			\right\}
-%			\subseteq \pseudoEdS{\Gamma}{\rho}.
-%		\]
-%		\par
-%		Puisque $\Gamma \subseteq \left( \closure{\Left{\Sigma}} \cap \closure{\Right{\Sigma}} \right)$, on a $\implicitEdB{\Gamma} \geq \implicitEdB{\Left{\Sigma}}$ et $\implicitEdB{\Gamma} \geq \implicitEdB{\Right{\Sigma}}$.\par
-%		Or, si $\bx \in \influEdB{\Gamma}{\rho}$ alors\footnote{car $\forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{\Gamma}(\bx) \geq 0$ et $\forall \bx \in \sphere[\Gamma][\rho], \implicitEdB{\Gamma}(\bx) \leq 0$.} $\implicitEdB{\Gamma}(\bx) = 0$ et donc $\implicitEdB{\Left{\Sigma}}(\bx) \leq 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) \leq 0$.\par
-%		Mais si $\implicitEdB{\Left{\Sigma}} < 0$ ou $\implicitEdB{\Right{\Sigma}} < 0$ alors\footnote{car $\forall H \subseteq \Sigma, \forall \bx \in \EdB{\Sigma}{\rho}, \implicitEdB{H}(\bx) \geq 0$.} $\bx \notin \EdB{\Sigma}{\rho}$ et donc $\bx \notin \influEdB{\Gamma}{\rho}$.\par
-%		Donc si $\bx \in \influEdB{\Gamma}{\rho}$ alors $\implicitEdB{\Left{\Sigma}}(\bx) = 0$ et $\implicitEdB{\Right{\Sigma}}(\bx) = 0$.
-	\end{proof}
+
+%	\item La zone d'influence sur l'EdB d'une courbe $\Gamma \subset \interface$ adhérente aux nappes régulières $\Left{\nappe}$ et $\Right{\nappe}$ est incluse dans le lieu des points de tangence entre $\EdS{\Gamma}{\rho}$, $\EdS{\Left{\nappe}}{\rho}$ et $\EdS{\Right{\nappe}}{\rho}$. On appelle ce lieu \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\Gamma$ et on le note $\pseudoEdS{\Gamma}{\rho}$.
+%	\begin{proof}
+%		\cf notes ``Huygens'', section ``Observations et preuves''
+%	\end{proof}
+%	
+%	\item Si $\Gamma$ est une courbe singulière concave de $\interface$ alors sa zone d'influence sur l'EdB est vide (\ie $\Gamma$ ne contribue pas à l'EdB et peut donc être ignorée).
+%	\begin{proof}
+%		On veut montrer que $\influEdB{\Gamma}{\rho} = \varnothing$ (piste : montrer que si $\Gamma$ est concave alors, pour $\bx \in \complement{\solide}$, $\implicitEdB{\Gamma}(\bx) = 0 \Rightarrow \implicitEdB{\Left{\nappe}}(\bx) < 0$ ou $\implicitEdB{\Right{\nappe}}(\bx) < 0$) [\ldots]
+%	\end{proof}
+%	
+%	\item si toutes les courbes singulières adhérentes à un point singulier sont concaves alors la zone d'influence sur l'EdB de ce point est vide (preuve?) (\ie ce point ne contribue pas à l'EdB et peut donc être ignoré)
+%	
+%	\item si toutes les courbes singulières adhérentes à un point singulier $\p$ \textit{ne sont pas} concaves (ou bien que $\p$ n'est adhérent à aucune courbe singulière, \eg le sommet d'un cône) on dit que $\p$ est convexe et sa zone d'influence sur l'EdB est la portion de $\sphere[\p][\rho(\p)]$ qui est tangente aux EdS de toutes les courbes singulières adhérentes à $\p$ (preuve?). On appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\p$ et on la note $\pseudoEdS{\p}{\rho}$.
 	
-	\item Si $\Gamma$ est une courbe singulière concave de $\Sigma$ alors sa zone d'influence sur l'EdB est vide (\ie $\Gamma$ ne contribue pas à l'EdB et peut donc être ignorée).
-	\begin{proof}
-		On veut montrer que $\influEdB{\Gamma}{\rho} = \varnothing$ (piste : montrer que si $\Gamma$ est concave alors, pour $\bx \in \complement{\Omega}$, $\implicitEdB{\Gamma}(\bx) = 0 \Rightarrow \implicitEdB{\Left{\Sigma}}(\bx) < 0$ ou $\implicitEdB{\Right{\Sigma}}(\bx) < 0$) [\ldots]
-	\end{proof}
-	
-	\item si toutes les courbes singulières adhérentes à un point singulier sont concaves alors la zone d'influence sur l'EdB de ce point est vide (preuve?) (\ie ce point ne contribue pas à l'EdB et peut donc être ignoré)
-	
-	\item si toutes les courbes singulières adhérentes à un point singulier $\p$ \textit{ne sont pas} concaves (ou bien que $\p$ n'est adhérent à aucune courbe singulière, \eg le sommet d'un cône) on dit que $\p$ est convexe et sa zone d'influence sur l'EdB est la portion de $\sphere[\p][\rho(\p)]$ qui est tangente aux EdS de toutes les courbes singulières adhérentes à $\p$ (preuve?). On appelle cette portion \textit{pseudo-EdS}\footref{note_vocabulaire_notation} de $\p$ et on la note $\pseudoEdS{\p}{\rho}$.
-	
-	\item l'EdB est incluse dans la réunion
-	\begin{itemize}
-		\item des EdS propres des nappes régulières, qui sont elles-mêmes contenues dans la réunion des EdS propres des faces \brep,
-		\item des pseudo-EdS des courbes singulières convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des arêtes \brep\ convexes,
-		\item des pseudo-EdS des points singuliers convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des sommets \brep\ convexes.
-	\end{itemize}
-	On appelle cette réunion l'\textit{EdS partielle}\footref{note_vocabulaire_notation}.
+%	\item l'EdB est incluse dans la réunion
+%	\begin{itemize}
+%		\item des EdS propres des nappes régulières, qui sont elles-mêmes contenues dans la réunion des EdS propres des faces \brep,
+%		\item des pseudo-EdS des courbes singulières convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des arêtes \brep\ convexes,
+%		\item des pseudo-EdS des points singuliers convexes, qui sont elles-mêmes contenues dans la réunion des pseudo-EdS des sommets \brep\ convexes.
+%	\end{itemize}
+%	On appelle cette réunion l'\textit{EdS partielle}\footref{note_vocabulaire_notation}.
+	\item \cf notes ``Huygens'', section ``Observations et preuves''
 	
 	\item Les régions de l'EdS partielle qui sont exclues de l'EdB sont délimitées par les courbes d'intersection entre les carreaux restreints matérialisant les EdS propres des faces et les pseudo-EdS des arêtes et sommets du modèle \brep\ de l'interface courante. 
 	\begin{proof}
-		Soient $G$ et $H$ deux régions non-vides de $\Sigma$ dont l'intersection est de dimension strictement inférieure à 2.
-%On note $G' := \properEoS{G}{\rho} = \levelset_G^{-1}(0)$, $H' := \properEoS{H}{\rho} = \levelset_H^{-1}(0)$ et $\Gamma := G' \cap H'$.
+		?
+%		Soient $G$ et $H$ deux régions non-vides de $\interface$ dont l'intersection est de dimension strictement inférieure à 2.
+%%On note $G' := \properEoS{G}{\rho} = \levelset_G^{-1}(0)$, $H' := \properEoS{H}{\rho} = \levelset_H^{-1}(0)$ et $\Gamma := G' \cap H'$.
 	\end{proof}
 	
 	%\item Ces courbes d'intersection servent ensuite de support pour les arêtes du modèle \brep\ de l'EdB : elles en fournissent la définition géométrique ainsi que les relations d'adjacences entre carreaux, qui 
@@ -148,9 +136,6 @@ arguments :
 
 \subsection{Représentation de l'EdS propre d'une face \brep}% carreau paramétrique restreint}
 \label{section:parametrisation_eds_propre_face}
-\def\indice{_0}
-\def\carreau{\Sigma\indice}
-\def\face{\brepface\indice}
 
 \subsubsection{Paramétrisation de l'EdS propre d'un carreau paramétrique}
 \begin{enumerate}
@@ -237,7 +222,7 @@ arguments :
 \begin{enumerate}
 	\item conservation du domaine paramétrique (pas de re-paramétrisation) $\Rightarrow$ coordonnées $(x,y,z)$ des courbes de restriction données directement par la nouvelle paramétrisation (voir \autoref{fig:EdS_propre_carreau_restreint}).
 	\item on ajoute au graphe des intersections tangentielles celles parmi ces courbes de restriction qui correspondent à des intersections tangentielles\\
-	(argument : la zone d'influence sur l'EdB d'un point régulier de $\Sigma$ est incluse dans un point, donc si $\p = \bs^1(u_1,v_1) = \bs^2(u_2,v_2)$ est un point d'intersection entre les faces $\brepface_1$ et $\brepface_1$ tel qu'elles y on la même direction normale alors leurs EdS propres s'intersectent aussi au point $\q = \eos^1(u_1,v_1) = \eos^2(u_2,v_2)$ où elles partagent la même direction normale.) 
+	(argument : la zone d'influence sur l'EdB d'un point régulier de $\interface$ est incluse dans un point, donc si $\p = \bs^1(u_1,v_1) = \bs^2(u_2,v_2)$ est un point d'intersection entre les faces $\brepface_1$ et $\brepface_1$ tel qu'elles y on la même direction normale alors leurs EdS propres s'intersectent aussi au point $\q = \eos^1(u_1,v_1) = \eos^2(u_2,v_2)$ où elles partagent la même direction normale.) 
 \end{enumerate}
 
 
@@ -358,7 +343,7 @@ De cette façon, les courbes iso-$u$ de $\eos$ sont les cercles caractéristique
 
 \begin{enumerate}
 	\item $\brepedge$ une arête convexe du modèle \brep\ de $\Sigma$, $\bg : \left[ \lo{u}, \hi{u} \right] \to \reals^3$ une paramétrisation de son support géométrique
-	\item $\Right{\brepface}$ (resp. $\Left{\brepface}$) la face à gauche\footnote{relativement à l'orientation donnée par $\bg$, vu de l'extérieur de $\Omega$.} (resp. à droite) de $\brepedge$
+	\item $\Right{\brepface}$ (resp. $\Left{\brepface}$) la face à gauche\footnote{relativement à l'orientation donnée par $\bg$, vu de l'extérieur de $\solide$.} (resp. à droite) de $\brepedge$
 	\item but : construire une paramétrisation $\eos^{\brepedge}$ de la pseudo-EdS de $\brepedge$, \ie la région $\pseudoEdS{\brepedge}{\rho}$ de $\EdS{\brepedge}{\rho}$ qui est tangente à la fois à $\EdS{\Right{\brepface}}{\rho}$ et $\EdS{\Left{\brepface}}{\rho}$ (voir \autoref{fig:pseudo-EdS_arete})
 	\item on note $\Right{\bs}$ (resp. $\Left{\bs}$) une paramétrisation du carreau supportant $\Right{\brepface}$ (resp. $\Left{\brepface}$) et $\Right{\bp}$ (resp. $\Left{\bp}$) une paramétrisation de la trace de $\brepedge$ dans l'espace paramétrique de $\Right{\brepface}$ (resp. de $\Left{\brepface}$) telle que
 	\begin{equation}
@@ -467,10 +452,10 @@ On cherche à construire un ou plusieurs carreaux paramétriques (restreints ou 
 %Afin de simplifier cette construction, on suppose sans restreindre la généralité que $\v$ est situé à l'origine et que $\rho(\v) = 1$. 
 %On peut toujours se ramener à ce cas à l'aide d'une transformation adéquate (translation et homothétie) que l'on inversera en fin de construction pour se placer à nouveau dans le cas général.
 \par
-On note respectivement $\family{\brepedge}{i}{0}{m-1}$ et $\family{\brepface}{i}{0}{m-1}$ les arêtes et les faces incidentes à $\brepvertex$, que l'on suppose ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\Omega$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} gauche). 
+On note respectivement $\family{\brepedge}{i}{0}{m-1}$ et $\family{\brepface}{i}{0}{m-1}$ les arêtes et les faces incidentes à $\brepvertex$, que l'on suppose ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\solide$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} gauche). 
 On note également $\bg^{\brepedge_i}$ (resp. $\bs^{\brepface_i}$) une paramétrisation du support géométrique de $\brepedge_i$ (resp. de $\brepface_i$) et $\eos^{\brepedge_i}$ (resp. $\eos^{\brepface_i}$) celle de $\pseudoEdS{\brepedge_i}{\rho}$ (resp. de $\EdSpropreplus{\brepface_i}{\rho}$).
 Enfin, on note respectivement $u_{\brepedge_i}$ et $(u_{\brepface_i}, v_{\brepface_i})$ les coordonnées paramétriques du sommet $\brepvertex$ dans $\brepedge_i$ et $\brepface_i$, \ie $\bg^{\brepedge_i}(u_{\brepedge_i}) = \bs^{\brepface_i}(u_{\brepface_i}, v_{\brepface_i}) = \v$.
-%On suppose également que les arêtes $\family{\brepedge}{i}{1}{m}$ et les faces $\family{\brepface}{i}{1}{m}$ incidentes à $\brepvertex$ sont ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\Omega$ (voir \autoref{fig:cycle_aretes_faces_incidentes}).
+%On suppose également que les arêtes $\family{\brepedge}{i}{1}{m}$ et les faces $\family{\brepface}{i}{1}{m}$ incidentes à $\brepvertex$ sont ordonnées dans le sens direct autour de $\brepvertex$, vu de l'extérieur de $\solide$ (voir \autoref{fig:cycle_aretes_faces_incidentes}).
 \par
 On propose deux approches, en en donnant le principe ainsi que les avantages et les inconvénients.
 
@@ -491,10 +476,10 @@ Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$.
 	\item si $m \neq 4$, on \guillemets{quadrangule} le polygone de la manière suivante 
 	\begin{itemize}
 		\item on note $\vrm{q} = \unitized{\sum_{i=1}^{m-1} \unv_i}$ et $\vrm{m}_i = \unitized{\unv_i + \unv_{\iplus}}$
-		\item on construit $m$ carreaux sphériques $\left\{ \pseudoEdS{\brepvertex}{\rho}[i] \right\}_{i = 1, \ldots, m-1}$ dont les \guillemets{coins} sont $\vrm{q}$, $\vrm{m}_{\imoins}$, $\unv_i$ et $\vrm{m}_i$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} droite)
+		\item on construit $m$ carreaux sphériques $\left\{ \pseudoEdS{\brepvertex}{\rho}[i] \right\}_{i = 1, \ldots, m-1}$ dont les \guillemets{pics} sont $\vrm{q}$, $\vrm{m}_{\imoins}$, $\unv_i$ et $\vrm{m}_i$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} droite)
 		\item avec $\iplus := (i+1)\bmod{m}$ et $\imoins := (i-1)\bmod{m}$
 	\end{itemize}
-	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\v][\rho]$ le carreau bilinéaire qui interpole ses coins
+	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\v][\rho]$ le carreau bilinéaire qui interpole ses pics
 	\begin{align}
 		\vit{\ell}_i(u,v) 
 		    & = \frac{(\hi{u} - u) (\hi{v} - v)}{(\hi{u} - \lo{u})(\hi{v} - \lo{v})} \vrm{q}  \nonumber\\

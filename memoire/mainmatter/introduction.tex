@@ -31,13 +31,27 @@
 \section*{Contributions}
 
 \begin{enumerate}
-	\item Utilisation du \emph{formalisme \brep} pour représenter une interface \textit{régulière par morceaux} en propagation en \troisD\ (dans des applications de type combustion de solide, interaction fluide-structure, \ldots).
+	\item Utilisation du \emph{formalisme \brep} pour représenter une interface \textit{régulière par morceaux} en propagation en \troisD\ (dans des applications de type combustion de solide, interaction fluide-structure, \ldots).\\
+	(Évoquer IGA \ldots)
 	
-	\item Mise au point d’un algorithme basé sur le \emph{principe de Huygens} (avec condition d’entropie) pour \emph{adapter dynamiquement la géométrie et la topologie} du modèle \brep\ de l’interface au cours de la propagation.
+	\item Mise au point d’un algorithme basé sur le \emph{principe de Huygens} (avec condition d’entropie) pour \emph{adapter dynamiquement la géométrie et la topologie} du modèle \brep\ de l’interface au cours de la propagation.\\
+	(L'opération de décalage (\anglais{offset}) est très courante en CAO (calcul de trajectoire d'une machine outil, \ldots). 
+	L'approche traditionnelle repose sur une représentation duale CSG/\brep, \ldots? 
+	Ici, on n'utilise q'un modèle \brep.
+	En outre, on se limite souvent à une distance de décalage constante, ce qui n'est qu'un cas particulier de propagation suivant le principe de Huygens. 
+	Enfin, cette opération est rarement(?, propergol\ldots) effectuée pour décrire la propagation d'une interface).
 	
-	\item Mise en \oe uvre d’une méthode pseudo-spectrale (i.e. d’ordre élevé) (utilisant les polynômes de Chebyshev comme fonctions de base) pour suivre \emph{efficacement et avec une grande précision} le mouvement de l’interface.
 	
-	\item Mise en œuvre d’une méthodologie pour adapter un \emph{maillage dynamique géométriquement fidèle au modèle \brep\ dynamique} de l’interface, dans le but de réaliser des simulations EF/VF.
+	\item Mise en \oe uvre d’une méthode pseudo-spectrale (d’ordre élevé) (utilisant les polynômes de Chebyshev comme fonctions de base) pour suivre \emph{efficacement et avec une grande précision} le mouvement de(s carreaux qui décrivent) l’interface.\\
+	(Évoquer IGA \ldots)
+	
+	\item Mise en \oe uvre d’une méthodologie pour adapter un \emph{maillage dynamique trans-carreaux géométriquement fidèle au modèle \brep\ dynamique} de l’interface, dans le but de réaliser des simulations EF/VF.\\
+	(Des méthodes de \textit{génération/adaptation} de maillage \textit{trans-carreaux} à partir de modèles \brep\ \textit{statiques} \cite{noel1995, foucault2008} ainsi que %ont déjà fait l'objet de plusieurs travaux. 
+	des méthodes de \textit{déformation(/adaptation)} de maillage \textit{carreau-par-carreau} à partir de modèles \brep\ \textit{dynamiques} \cite{martin2017} ont déjà fait l'objet de plusieurs travaux. 
+	Certains travaux \cite{louhichi2015} ont également considéré l'approche inverse, à savoir la reconstitution d'un modèle \brep\ à partir d'un maillage déformé (à l'issue d'un calcul EF). Ici aussi, le maillage est conforme aux carreaux et la topologie \brep\ ne change pas car la déformation est dictée par un champ vectoriel de déplacement continu. 
+	En revanche, (à ma connaissance), aucun travail concernant l'adaptation de maillage trans-carreaux à partir de modèles \brep\ dynamiques n'a été publié à ce jour.
+	)
+	
 	
 	\item (Intégration de l'outil de suivi de surface dans une chaîne de calcul multi-physique)
 \end{enumerate}

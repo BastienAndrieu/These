@@ -17,8 +17,8 @@ On conclut ce chapitre en introduisant une formulation plus adéquate du problè
 	\item \textit{carreau paramétrique} : $(\uvdomain, \bs)$
 	\begin{itemize}
 		\item $\uvdomain \subset \reals^2$ est le \textit{domaine paramétrique}
-		\item $\Sigma = \bs(\uvdomain)$ est le \textit{support} du carreau (surface)
-		\item $\bs : \uvdomain \to \Sigma \subset \reals^3$ est une \textit{paramétrisation} de $\Sigma$
+		\item $\carreau = \bs(\uvdomain)$ est le \textit{support} du carreau (surface)
+		\item $\bs : \uvdomain \to \carreau \subset \reals^3$ est une \textit{paramétrisation} de $\carreau$
 		\item vecteurs tangents $\bsu$ et $\bsv$
 		\item vecteur normal $\unv = \unitized{\crossprod{\bsu}{\bsv}}$
 		\item tenseur métrique, première forme fondamentale $\fff$, structure Riemannienne
@@ -55,22 +55,36 @@ On conclut ce chapitre en introduisant une formulation plus adéquate du problè
 %Le support $\bs(\uvdomain)$ 
 \label{section:description_surface_G1_piecewise}
 introduire notions \cite{rossignac1985} : 
-\begin{enumerate}
-	\item \textit{nappe (régulière/$\contgeom{1}$)} : variété de dimension 2, connexe, de continuité $\contgeom{1}$ (direction normale continue)
-	\item \textit{crête} : variété de dimension 1, connexe, de continuité $\contgeom{1}$ (direction tangente continue)
-	\item \textit{coin} : point qui n'est à l'intérieur d'aucune nappe régulière ou crête
-\end{enumerate}
+%\begin{enumerate}
+%	\item \textit{nappe (régulière/$\contgeom{1}$)} : variété de dimension 2, connexe, de continuité $\contgeom{1}$ (direction normale continue)
+%	\item \textit{crête} : variété de dimension 1, connexe, de continuité $\contgeom{1}$ (direction tangente continue)
+%	\item \textit{coin} : point qui n'est à l'intérieur d'aucune nappe régulière ou crête
+%\end{enumerate}
 
-\begin{itemize}
-	\item la frontière d'une nappe régulière est composée de crêtes et de coins (si elle n'est pas vide)
-	\item la frontière d'une crête (ses extrémités) est composée de coins (si elle n'est pas vide)
-	\item tout point d'une surface $\contgeom{1}$ \piecewise\ est
-	\begin{itemize}
-		\item soit situé à l'intérieur d'une nappe régulière ;
-		\item soit situé à l'intérieur d'une crête ;
-		\item soit un coin.
-	\end{itemize}
-\end{itemize}
+\begin{definition}[Nappe régulière]
+	On appelle \emph{nappe régulière} (ou plus simplement \emph{nappe}) de $\interface$ toute variété $\nappe \subseteq \interface$ de dimension 2, connexe, de continuité globale $\contgeom{1}$ (\ie dont la direction normale est continue partout).
+\end{definition}
+
+\begin{definition}[Crête]
+	On appelle \emph{crête} de $\interface$ toute variété $\crete \subset \interface$ de dimension 1, connexe, de continuité globale $\contgeom{1}$ (\ie dont la direction tangente est continue partout) et qui n'est constituée que de points irréguliers de $\interface$.
+\end{definition}
+
+\begin{definition}[Coin]
+	On appelle \emph{coin} de $\interface$ tout point irrégulier de $\interface$ qui n'est à l'intérieur d'aucune crête.
+\end{definition}
+
+Avec ces définitions, tout point d'une surface régulière \piecewise\ est soit un coin, soit contenu à l'intérieur d'une nappe ou d'une crête.
+
+%\begin{itemize}
+%	\item la frontière d'une nappe régulière est composée de crêtes et de coins (si elle n'est pas vide)
+%	\item la frontière d'une crête (ses extrémités) est composée de coins (si elle n'est pas vide)
+%	\item tout point d'une surface $\contgeom{1}$ \piecewise\ est
+%	\begin{itemize}
+%		\item soit situé à l'intérieur d'une nappe régulière ;
+%		\item soit situé à l'intérieur d'une crête ;
+%		\item soit un coin.
+%	\end{itemize}
+%\end{itemize}
 
 \begin{figure}
 	\centering
@@ -79,14 +93,14 @@ introduire notions \cite{rossignac1985} :
 	\label{fig:piecewise_smooth_surface_decomposition}
 \end{figure}
 
-%La frontière $\boundary{\Omega}$ du solide $\Omega$ est une surface de continuité $\contgeom{1}$ (\ie possède une direction normale continue) \piecewise. 
-%Les singularités géométriques de $\boundary{\Omega}$ peuvent être de dimension 1 (courbes) ou 0 (points).
-%Les crêtes de $\boundary{\Omega}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux coins.
+%La frontière $\boundary{\solide}$ du solide $\solide$ est une surface de continuité $\contgeom{1}$ (\ie possède une direction normale continue) \piecewise. 
+%Les singularités géométriques de $\boundary{\solide}$ peuvent être de dimension 1 (courbes) ou 0 (points).
+%Les crêtes de $\boundary{\solide}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux coins.
 
 \subsection{Représentation par les frontières (\brep)}
 %Origine, utilisation, concept, définitions formelles des entités, lien avec la décomposition d'une surface $\contgeom{1}$ \piecewise, (géométrie différentielle des courbes et surfaces paramétriques), structures de données (DCEL)
 La \textit{représentation par les frontières} (ou \brep\ pour \anglais{Boundary Representation}) est un formalisme très répandu dans le domaine de la Conception Assistée par Ordinateur (CAO) \textit{(développer \ldots)}.
-Elle consiste à décrire un solide $\Omega$ à l'aide d'une décomposition cellulaire de la surface $\Sigma$ qui matérialise sa frontière. 
+Elle consiste à décrire un solide $\solide$ à l'aide d'une décomposition cellulaire de la surface $\interface = \boundary{\solide}$ qui matérialise sa frontière. 
 Cette décomposition --- illustrée sur la \autoref{fig:BRep} --- est constituée de \textit{faces}, d'\textit{arêtes} et de \textit{sommets} dont on donne une définition dans les paragraphes suivants. 
 
 \begin{figure}
@@ -102,14 +116,14 @@ Une face du modèle \brep\ est une variété de dimension 2 connexe délimitée 
 Géométriquement, une face $\brepface$ est décrite par un carreau paramétrique restreint.
 La topologie des courbes de restriction du domaine paramétrique est décrite à l'aide de \textit{contours} (un par composante connexe du bord de $\brepface$). 
 Une face possède ainsi un contour extérieur $\brepwire^{\mathrm{ext}}$ et, éventuellement un ou plusieurs contours intérieurs $\brepwire^{\mathrm{int},i}$ si celle-ci comporte des \guillemets{trous}.
-Les faces, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en des arêtes ou des sommets du modèle \brep), sont regroupées en \textit{coquilles}, qui représentent chacune une composante connexe de $\Sigma$. 
+Les faces, qui sont quasi-disjointes deux-à-deux (\ie ne s'intersectent qu'en des arêtes ou des sommets du modèle \brep), sont regroupées en \textit{coquilles}, qui représentent chacune une composante connexe de $\interface$. 
 
 
 \subsubsection{Arêtes}
 \label{section:def_brep_edges}
 Une arête du modèle \brep\ est une variété de dimension 1 connexe délimitée par deux sommets. 
-Puisque $\Sigma$ est une variété sans bord, chaque arête du modèle \brep\ est incidente à exactement deux faces $\brepface_1$ et $\brepface_2$. 
-Géométriquement, l'arête $\brepedge$ est représentée par une branche de la courbe d'intersection entre les carreaux $\Sigma_1$ et $\Sigma_2$ qui décrivent respectivement $\brepface_1$ et $\brepface_2$. 
+Puisque $\interface$ est une variété sans bord, chaque arête du modèle \brep\ est incidente à exactement deux faces $\brepface_1$ et $\brepface_2$. 
+Géométriquement, l'arête $\brepedge$ est représentée par une branche de la courbe d'intersection entre les carreaux $\carreau_1$ et $\carreau_2$ qui décrivent respectivement $\brepface_1$ et $\brepface_2$. 
 Cette courbe peut également être représentée par sa trace dans l'espace paramétrique de chaque carreau. 
 On peut donc la représenter à l'aide des trois courbes paramétriques $\bg$, $\bp_1$ et $\bp_2$ telles que
 \begin{equation}
@@ -137,7 +151,7 @@ Un sommet du modèle \brep\ matérialise l'intersection de deux arêtes et a pou
 \subsubsection{Structure de données}
 \begin{enumerate}
 	\item séparation entre topologie (structure) / géométrie (forme)
-	\item connectivité entre les entités capturée à l'aide d'une structure de graphe (homéomorphe à un polyèdre)
+	\item connectivité entre les entités capturée à l'aide d'une structure de graphe (homéomorphe à un polyèdre) (notion de \textit{carte combinatoire})
 	\item structure de données adaptée $\to$ \anglais{Doubly Connected Edge List} (DCEL) (\anglais{Halfedges}) \textit{(donner réfs.)}
 \end{enumerate}
 
@@ -154,9 +168,12 @@ La \autoref{fig:BRep_hierarchy} présente un diagramme de la hiérarchie des ent
 Le formalisme de la représentation par les frontières est particulièrement adapté pour décrire des surfaces régulières par morceaux. 
 En effet, 
 \begin{itemize}
-	\item l'ensemble des coins de $\Sigma$ est un sous-ensemble des sommets de son modèle \brep\ ;
-	\item l'ensemble des crêtes de $\Sigma$ est un sous-ensemble des arêtes de son modèle \brep\ ;
-	\item les nappes régulières de $\Sigma$ sont formées par la réunion des faces de son modèle \brep.
+	\item chaque face du modèle \brep\ est une nappe de $\interface$
+	\item chaque arête vive est une crête de $\interface$
+	\item chaque coin de $\interface$ est un sommet \brep
+	%\item l'ensemble des coins de $\interface$ est un sous-ensemble des sommets de son modèle \brep\ ;
+	%\item l'ensemble des crêtes de $\interface$ est un sous-ensemble des arêtes de son modèle \brep\ ;
+	%\item les nappes régulières de $\interface$ sont formées par la réunion des faces de son modèle \brep.
 %	\item chaque arête \brep\ vive est contenue dans une crête
 \end{itemize}
 
@@ -171,36 +188,36 @@ En effet,
 
 
 \section{Formulation lagrangienne du problème de propagation d'interface}
-On considère une interface $\Sigma$ entre deux milieux distincts (\eg un solide et un fluide).
+On considère une interface $\interface$ entre deux milieux distincts (\eg un solide et un fluide).
 Dans cette thèse, on se concentre sur des problèmes en trois dimensions. 
-$\Sigma$ représente donc une surface (\ie une variété de dimension 2) que l’on supposera orientable et fermée (\ie sans bord).
-De cette manière, l'interface sépare un domaine \textit{intérieur} $\Omega$ --- que l'on supposera ouvert --- et un domaine \textit{extérieur} $\complement{\Omega} = \reals^3 \setminus \Omega$ (voir \autoref{fig:schema_interface_2d}). 
-$\Sigma$ est alors la frontière commune de ces domaines
+$\interface$ représente donc une surface (\ie une variété de dimension 2) que l’on supposera orientable et fermée (\ie sans bord).
+De cette manière, l'interface sépare un domaine \textit{intérieur} $\solide$ --- que l'on supposera ouvert --- et un domaine \textit{extérieur} $\complement{\solide} = \reals^3 \setminus \solide$ (voir \autoref{fig:schema_interface_2d}). 
+$\interface$ est alors la frontière commune de ces domaines
 \begin{equation}
-	\Sigma = \boundary{\Omega} = \boundary{(\complement{\Omega})}.
+	\interface = \boundary{\solide} = \boundary{(\complement{\solide})}.
 \end{equation}
 \par
 %[EDP avec vecteur vitesse ou vitesse normale, problème de définition au niveau des crêtes et points irréguliers]
 %\par\bigskip
-Le problème que l'on cherche à résoudre consiste à déterminer l’évolution au cours du temps de l'interface $\Sigma$ étant données sa position actuelle ainsi que sa vitesse de propagation.
+Le problème que l'on cherche à résoudre consiste à déterminer l’évolution au cours du temps de l'interface $\interface$ étant données sa position actuelle ainsi que sa vitesse de propagation.
 Dans la formulation lagrangienne traditionnelle, ce problème est exprimé sous la forme d'une équation aux dérivées partielles (EDP) pour le vecteur position $\bx$ d'un point de l'interface.
-L'équation décrivant la propagation suivant un champ de vecteur vitesse $\vrm{u} : \Sigma \times \reals \to \reals^3$ est
+L'équation décrivant la propagation suivant un champ de vecteur vitesse $\vrm{u} : \interface \times \reals \to \reals^3$ est
 \begin{equation}
 	\frac{\partial \bx}{\partial t} = \vrm{u}(\bx,t).
 	\label{eq:lagrange_vecteur_vitesse}
 \end{equation}
-On peut également considérer que chaque point de $\Sigma$ se déplace le long de la direction normale à l'interface suivant un champ de vitesse normale $\nu : \Sigma \times \reals \to \reals$. 
+On peut également considérer que chaque point de $\interface$ se déplace le long de la direction normale à l'interface suivant un champ de vitesse normale $\nu : \interface \times \reals \to \reals$. 
 L'équation décrivant la propagation est alors
 \begin{equation}
 	\frac{\partial \bx}{\partial t} = \nu(\bx,t) \unv(\bx,t),
 	\label{eq:lagrange_vitesse_normale}
 \end{equation}
-où $\unv(\bx,t)$ désigne la direction normale à $\Sigma$ en $\bx$ à l'instant $t$, pointant vers l'extérieur de $\Omega$.
+où $\unv(\bx,t)$ désigne la direction normale à $\interface$ en $\bx$ à l'instant $t$, pointant vers l'extérieur de $\solide$.
 \par\bigskip
 En principe, les formulations \eqref{eq:lagrange_vecteur_vitesse} et \eqref{eq:lagrange_vitesse_normale} sont équivalentes puisque la composante tangentielle du vecteur vitesse n'affecte pas la forme de l'interface. 
 \par\bigskip
 La formulation lagrangienne ne permet d'obtenir une solution au problème de propagation d'interface que dans le cas où cette dernière est \textit{globalement} régulière et le reste tout au long de sa propagation. 
-En effet, puisque la direction normale $\unv$ n'est pas définie au niveau des crêtes et coins de $\Sigma$, le déplacement de ces points est ambigu. 
+En effet, puisque la direction normale $\unv$ n'est pas définie au niveau des crêtes et coins de $\interface$, le déplacement de ces points est ambigu. 
 On peut notamment distinguer deux cas \cite{jiao2007}.
 \par
 Premièrement, si l'interface subit un mouvement d'advection (comme le transport d'un fluide ou encore la déformation d'un solide sous l'effet de contraintes mécaniques) alors ses singularités géométriques sont préservées au cours de la propagation.
@@ -228,13 +245,13 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 \par\bigskip
 \begin{enumerate}
 	\item distinguer propagation d'une onde et d'une interface entre deux milieux matériels (l'une peut s'auto-intersecter, l'autre non) $\to$ condition d'entropie
-	%\item formaliser la notion d'enveloppe des sphères $\EdS{\Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère) $\to$ système d'équations avec $\implicitsphere_{\rho} : (\bx,\p) \mapsto \normtwo{\bx - \p}^2 - \rho^2(\p)$
-	%\item formaliser la notion d'enveloppe des boules $\EdB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
-	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{H \subseteq \Sigma}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
-	%\item formaliser la notion d'enveloppe des boules $\EdB{\Sigma}{\rho} := \boundary{\left\{\Omega \cup \sphere[\Sigma][\rho]\right\}}$
-	\item formaliser la notion d'enveloppe des boules (EdB) $\EdB{H \subseteq \Sigma}{\rho} := \boundary{ \left( \ball{H}{\rho} \right) }$
-	\item si $H \subseteq \Sigma$ est une variété sans bord alors $\EdB{H}{\rho}  = \EdBplus{H}{\rho} \cup \EdBmoins{H}{\rho}$ où $\EdBplus{H}{\rho} \subset \complement{\Omega}$ et $\EdBmoins{H}{\rho} \subset \Omega$ (car $\rho > 0$) \textit{(illustrer)}\\
-	$\Rightarrow$ en particulier, $\EdB{\Sigma}{\rho}  = \EdBplus{\Sigma}{\rho} \cup \EdBmoins{\Sigma}{\rho}$
+	%\item formaliser la notion d'enveloppe des sphères $\EdS{\interface}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère) $\to$ système d'équations avec $\implicitsphere_{\rho} : (\bx,\p) \mapsto \normtwo{\bx - \p}^2 - \rho^2(\p)$
+	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} := \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
+	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{H \subseteq \interface}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
+	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} := \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
+	\item formaliser la notion d'enveloppe des boules (EdB) $\EdB{H \subseteq \interface}{\rho} := \boundary{ \left( \ball{H}{\rho} \right) }$
+	\item si $H \subseteq \interface$ est une variété sans bord alors $\EdB{H}{\rho}  = \EdBplus{H}{\rho} \cup \EdBmoins{H}{\rho}$ où $\EdBplus{H}{\rho} \subset \complement{\solide}$ et $\EdBmoins{H}{\rho} \subset \solide$ (car $\rho > 0$) \textit{(illustrer)}\\
+	$\Rightarrow$ en particulier, $\EdB{\interface}{\rho}  = \EdBplus{\interface}{\rho} \cup \EdBmoins{\interface}{\rho}$
 	
 	
 	\item donner définition implicite de l'EdB :\\
@@ -242,7 +259,7 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 	\[
 		\implicitsphere(\bx, \p) := \normtwo{\bx - \p}^2 - \rho(\p)^2,
 	\]
-	et, pour $H \subseteq \Sigma$, 
+	et, pour $H \subseteq \interface$, 
 	\[
 		\implicitEdB{H}(\bx) := \min_{\p \in H} \implicitsphere(\bx, \p).
 	\]
@@ -256,9 +273,9 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 			\text{ et } \exists \q \in H \mid \implicitsphere(\bx, \p) = 0
 		\right\}.
 	\]
-	\item après une propagation à vitesse normale $\nu$ constante pendant un intervalle de temps $\tau$ tel que $\nu \tau = \rho$, la nouvelle interface est $\EdBplus{\Sigma}{\rho}$
-	\item à condition que $\rho$ soit suffisamment régulière (continuité à déterminer), $\EdB{\Sigma}{\rho} \subseteq \EdS{\Sigma}{\rho}$
-	\item si $\EdS{\Sigma}{\rho}$ ne présente pas d'auto-intersections alors $\EdB{\Sigma}{\rho} = \EdS{\Sigma}{\rho}$
+	\item après une propagation à vitesse normale $\nu$ constante pendant un intervalle de temps $\tau$ tel que $\nu \tau = \rho$, la nouvelle interface est $\EdBplus{\interface}{\rho}$
+	\item à condition que $\rho$ soit suffisamment régulière (continuité à déterminer), $\EdB{\interface}{\rho} \subseteq \EdS{\interface}{\rho}$
+	\item si $\EdS{\interface}{\rho}$ ne présente pas d'auto-intersections alors $\EdB{\interface}{\rho} = \EdS{\interface}{\rho}$
 \end{enumerate}
 
 
@@ -292,14 +309,14 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 				decoration={
 					markings,
 					mark=at position 0.55 with {
-						\node at (0,-1.5ex) {$\Sigma$};
+						\node at (0,-1.5ex) {$\interface$};
 					};
 				}
 			}, 
 		] \pathSigma;
-		\node[black!60!white] at (-0.06,-0.055) {$\Omega$};
-		\node[black!30!white] at (0.45,0.45) {$\complement{\Omega}$};
-		%\node[above] at (-0.5,0.28) {$\Sigma$};
+		\node[black!60!white] at (-0.06,-0.055) {$\solide$};
+		\node[black!30!white] at (0.45,0.45) {$\complement{\solide}$};
+		%\node[above] at (-0.5,0.28) {$\interface$};
 	\end{tikzpicture}
 	\caption{\ldots}
 	\label{fig:schema_interface_2d}
@@ -338,130 +355,3 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 
 
 
-%Dans la suite, étant donné un sous-ensemble (ouvert ou fermé) $E$ de $\reals^d$, on notera $\complement{E} := \reals^d \setminus E$ son \textit{complémentaire}, $\boundary{E}$ sa \textit{frontière}, $\interior{E}$ son \textit{intérieur} et $\closure{E} = E \cup \boundary{E}$ son \textit{adhérence}.
-%\par\bigskip
-%
-%\def\p{\vit{p}}
-%\def\q{\vit{q}}
-%Soient $r> 0$ et $\p$ un point de $\reals^3$. 
-%On note $\sphere[\p][r]$ la sphère de rayon $r$ centrée en $\p$
-%\begin{equation}
-%    \sphere[\p][r] := \left\{ 
-%        \bx \in \reals^3 \mid \normtwo{\bx - \p} = r
-%    \right\},
-%\end{equation}
-%et $\ball{\p}{r}$ la boule \textit{ouverte} de rayon $r$ centrée en $\p$
-%\begin{equation}
-%    \ball{\p}{r} := \left\{ 
-%        \bx \in \reals^3 \mid \normtwo{\bx - \p} < r
-%    \right\}.
-%\end{equation}
-%
-%Soit $\rho : \Sigma \to \reals_{+*}$ une fonction $\alpha$-lipschitzienne sur $\Sigma$ et à valeurs strictement positives. 
-%On note $\ball{\Sigma}{\rho}$ la réunion des boules centrées sur $\Sigma$ et de rayon $\rho$
-%\begin{equation}
-%    \ball{\Sigma}{\rho} := \bigcup_{\p \in \Sigma} \ball{\p}{\rho(\p)}
-%    = \left\{
-%        \bx \in \reals^3 \mid \exists \p \in \Sigma \mid \normtwo{\bx - \p} < \rho(\p)
-%    \right\}.
-%\end{equation}
-%
-%Son complémentaire est
-%\begin{equation}
-%    \complement{\ball{\Sigma}{\rho}} = \bigcap_{\p \in \Sigma} \complement{\ball{\p}{\rho(\p)}}
-%    = \left\{
-%        \bx \in \reals^3 \mid \forall \p \in \Sigma, \normtwo{\bx - \p} \geq \rho(\p)
-%    \right\},
-%\end{equation}
-%
-%et sa frontière est
-%\begin{align}
-%    \boundary{\ball{\Sigma}{\rho}} 
-%    &= \boundary{ \left(\complement{\ball{\Sigma}{\rho}}\right) } ,\nonumber\\
-%    &= \closure{\ball{\Sigma}{\rho}} \cap 
-%        \closure{ \left(\complement{\ball{\Sigma}{\rho}}\right) } ,\nonumber\\
-%%    &= \left\{
-%%        \bx \in \reals^3 
-%%        \mid \forall \p \in \Sigma, \normtwo{\bx - \p} \geq \rho(\p) 
-%%        \text{ et }
-%%        \exists \p \in \Sigma \mid \normtwo{\bx - \p} \leq \rho(\p)
-%%    \right\} ,\nonumber\\
-%     &= \left\{
-%        \bx \in \reals^3 
-%        \mid \forall \p \in \Sigma, \normtwo{\bx - \p} \geq \rho(\p) 
-%        \text{ et }
-%        \exists \p \in \Sigma \mid \normtwo{\bx - \p} = \rho(\p)
-%    \right\}.
-%\end{align}
-%
-%\par\bigskip
-%
-%On note $\dilation{\Omega}{\rho}$ la \guillemets{dilatation} de $\Omega$ par $\rho$
-%\begin{equation}
-%    \dilation{\Omega}{\rho} = \Omega \cup \ball{\Sigma}{\rho}.
-%\end{equation}
-%
-%On note $\EdB{\Sigma}{\rho}$ sa frontière
-%\begin{align}
-%    \EdB{\Sigma}{\rho} 
-%    &:= \boundary{ \!\left(\dilation{\Omega}{\rho}\right) }, \\
-%    &=  \boundary{ \!\left(\complement{ \left(\dilation{\Omega}{\rho}\right) }\right) } , \nonumber\\
-%    &=  \boundary{ \!\left(\complement{\Omega} \cap \complement{\ball{\Sigma}{\rho}}\right) },\nonumber\\
-%    &= 
-%    \left\{
-%        \bx \in \interior{ \left(\complement{ \Omega }\right) }
-%        \mid \forall \q \in \Sigma, \normtwo{\bx - \q} \geq \rho(\q) 
-%        \text{ et }
-%        \exists \p \in \Sigma \mid \normtwo{\bx - \p} = \rho(\p)
-%    \right\}.
-%\end{align}
-%Il s'agit de l'\textit{enveloppe des boules}\footnote{plus exactement des demi-boules à l'extérieur de $\Omega$.} (EdB) centrées sur $\Sigma$ et de rayon $\rho$.
-
-%
-%\def\p{\vit{p}}
-%\def\q{\vit{q}}
-%Soient $r > 0$ et $\p$ un point de $\reals^3$.
-%On note $\sphere[\p][r]$ la sphère de rayon $r$ centrée en $\p$
-%\begin{equation}
-%    \sphere[\p][r] := \left\{ 
-%        \bx \in \reals^3 \mid \normtwo{\bx - \p} = r
-%    \right\},
-%\end{equation}
-%et $\ball{\p}{r}$ la boule \textit{ouverte} de rayon $r$ centrée en $\p$
-%\begin{equation}
-%    \ball{\p}{r} := \left\{ 
-%        \bx \in \reals^3 \mid \normtwo{\bx - \p} < r
-%    \right\}.
-%\end{equation}
-%
-%Soit $\rho : \Sigma \to \reals_{+*}$ une fonction $\alpha$-lipschitzienne sur $\Sigma$ et à valeurs strictement positives. 
-%On définit
-%\begin{align}
-%  \implicitsphere_{\rho} \colon \interior{ \left(\complement{ \Omega }\right) } \times \Sigma & \to \reals \nonumber\\
-%  (\bx, \p) &\mapsto \normtwo{\bx - \p}^2 - \rho^2(\p).
-%\end{align}
-%La sphère $\sphere[\p][\rho(\p)]$ est alors le lieu des points $\left\{ \bx \in \reals^3 \mid \implicitsphere_{\rho}(\bx, \p) = 0 \right\}$, alors que la boule $\ball{\p}{r}$ est le lieu des points $\left\{ \bx \in \reals^3 \mid \implicitsphere_{\rho}(\bx, \p) < 0 \right\}$.
-%
-%On note $\sphere[\p][\rho(\p)]$ la famille des sphères 
-%\begin{equation}
-%    \sphere[\Sigma][\rho] := \left\{ \sphere[\p][\rho(\p)] \mid \p \in \Sigma \right\}.
-%\end{equation}
-%L'enveloppe de cette famille est la surface qui est tangente à chacun de ses membres et qui est en tout point tangente à une sphère $\sphere[\p][\rho(\p)]$.
-%Si $\bs$ est une paramétrisation de $\Sigma$ alors l'enveloppe de $\sphere[\Sigma][\rho]$ est le lieu des points $\bx \in \reals^3$ qui vérifient%
-%\def\sysvspace{1.5ex}
-%\begin{equation}
-%    \left\{\begin{matrix}
-%        \implicitsphere_{\rho}(\bx, \bs(u,v)) &= 0, \\[\sysvspace]
-%        \frac{\partial }{\partial u}\implicitsphere_{\rho}(\bx, \bs(u,v)) &= 0, \\[\sysvspace]
-%        \frac{\partial }{\partial v}\implicitsphere_{\rho}(\bx, \bs(u,v)) &= 0.
-%    \end{matrix}\right.
-%    \label{eq:sys_envelope_of_spheres}
-%\end{equation}
-%En considérant $\rho$ comme une fonction des paramètres $u$ et $v$, on peut réécrire le système \eqref{eq:sys_envelope_of_spheres} 
-%\begin{equation}
-%    \left\{\begin{matrix}
-%        \normtwo{\bx - \bs(u,v)}^2 - \rho(u,v)^2 &= 0, \\
-%        \dotprod{\left( \bx - \bs(u,v) \right)}{\bsu(u,v)} + \rho(u,v) \rho_u(u,v) &= 0, \\
-%        \dotprod{\left( \bx - \bs(u,v) \right)}{\bsv(u,v)} + \rho(u,v) \rho_v(u,v) &= 0.
-%    \end{matrix}\right.
-%\end{equation}

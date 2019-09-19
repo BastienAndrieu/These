@@ -1,0 +1,117 @@
+\newcommand{\interface}{\ensuremath{\mathcal{S}}}
+\newcommand{\carreau}{\ensuremath{\Sigma}}
+\newcommand{\point}{\ensuremath{\bm{p}}}
+\newcommand{\nappe}{\ensuremath{\matholdcal{N}}}
+\newcommand{\crete}{\ensuremath{\matholdcal{C}}}
+\newcommand{\adherentsDimSup}[1]{\ensuremath{\mathcal{H}\!(#1)}}
+\newcommand{\solide}{\ensuremath{\Omega}}
+\newcommand{\region}{\ensuremath{\matholdcal{R}}}
+\newcommand{\regionB}{\ensuremath{\matholdcal{Q}}}
+
+\chapter*{Notions et vocabulaire}
+
+\section*{Carreau paramétrique}
+Carreau $\carreau = (\fullUVdomain = \intervalLoHi{u} \times \intervalLoHi{v}, \bs)$
+\begin{itemize}
+	\item Arc/courbe iso-paramétrique du bord de $\carreau$ ($u = \lo{u}$ ou $u = \hi{u}$ ou $v = \lo{v}$ ou $v = \hi{v}$) :
+	\begin{itemize}
+		\item côté de $\carreau$
+	\end{itemize}
+	
+	\item intersection de deux côtés de $\carreau$ ($(u,v) = (\lo{u}, \lo{v})$ ou $(u,v) = (\hi{u}, \lo{v})$ ou $(u,v) = (\hi{u}, \hi{v})$ ou $(u,v) = (\lo{u}, \hi{v})$) :
+	\begin{itemize}
+		\item coin de $\carreau$
+	\end{itemize}
+\end{itemize}
+
+\section*{Arc paramétrique}
+Arc
+\begin{itemize}
+	\item dans $\reals^3$ : $\Gamma = (\fullWdomain = \intervalLoHi{w}, \bg)$
+	\item dans $\reals^2$ : $\Psi = (\fullWdomain, \bp)$
+\end{itemize}
+
+\begin{itemize}
+	\item Points $\bg(\lo{w})$ et $\bg(\hi{w})$ (resp. $\bp(\lo{w})$ et $\bp(\hi{w})$) :
+	\begin{itemize}
+		\item extrémités de $\Gamma$ (resp. $\Psi$)
+	\end{itemize}
+\end{itemize}
+
+
+\section*{Description et représentation des surfaces régulières \piecewise}
+Surface (variété de dimension 2) $\interface$, $\contgeom{1}$ \piecewise
+\begin{itemize}
+	\item sous-variété de dimension 2 de $\interface$, connexe, de continuité $\contgeom{1}$ :
+	\begin{itemize}
+		\item nappe (régulière/$\contgeom{1}$) (de $\interface$), notée $\nappe$
+		\item[+] \textit{maximale} si n'est contenue dans aucune autre ($\Rightarrow$ quasi-disjointe avec toutes les autres)
+	\end{itemize}
+	\item sous-variété de dimension 1 de $\interface$, connexe, de continuité $\contgeom{1}$, formée exclusivement de points irréguliers de $\interface$ :
+	\begin{itemize}
+		\item crête (de $\interface$), notée $\crete$
+		\item courbe singulière (de $\interface$)
+		\item[+] \textit{maximale} si ne peut être contenue dans aucune autre ($\Rightarrow$ quasi-disjointe avec toutes les autres)
+	\end{itemize}
+	\item point irrégulier de $\interface$ qui n'est à l'intérieur d'aucune nappe ou crête
+	\begin{itemize}
+		\item pic (de $\interface$)
+		\item coin (de $\interface$)
+		\item point singulier (de $\interface$)
+		\item pointe (de $\interface$)
+	\end{itemize}
+	\item (unique) décomposition de $\interface$ en nappes maximales, crêtes maximales et coins :
+	\begin{itemize}
+		\item modèle maximal de $\interface$ (MM)
+		\item décomposition maximale de $\interface$ (DM)
+		\item représentation maximale de $\interface$ (MRep?)
+	\end{itemize}
+\end{itemize}
+
+\section*{Propagation d'interface}
+\begin{itemize}
+	\item interface $\interface = \boundary{\solide}$
+	\item domaine intérieur ($\sim$ solide) $\solide$ (ouvert)
+	\item domaine extérieur (complémentaire) $\complement{\solide}$
+\end{itemize}
+
+\subsection*{Principe de Huygens}
+$\region \subset \interface$
+\begin{itemize}
+	\item sphère centrée en $\point$ et de rayon $r$ notée $\sphere[\point][r]$
+	\item $\bigcup_{\point \in \region} \sphere[\point][\rho(\point)]$ : ?, noté $\sphere[\region][\rho]$
+	\item boule ouverte centrée en $\point$ et de rayon $r$ notée $\ball{\point}{r}$
+	\item $\bigcup_{\point \in \region} \ball{\point}{\rho(\point)}$ : ?, noté $\ball{\region}{\rho}$
+	\item $\boundary{\ball{\region}{\rho}}$ : enveloppe des boules (EdB), notée $\EdB{\region}{\rho}$
+	\item surface tangente à toutes les sphères de $\sphere[\region][\rho]$ et en tout point tangente à une sphère de $\sphere[\region][\rho]$ : enveloppe des sphères (EdS), notée $\EdS{\region}{\rho}$
+	\item $\closure{ {\EdS{\region}{\rho} \setminus \EdS{\boundary{\region}}{\rho}} }$ : EdS propre de $\region$, notée $\EdSpropre{\region}{\rho}$
+	\item $\EdB{\interface}{\rho} \cap \sphere[\region][\rho]$ : zone d'influence sur l'EdB, notée $\influEdB{\region}{\rho}$
+	%\item $\left\{ \regionB \subseteq \Sigma \mid \region \in \closure{\regionB} \text{ (et } \dim \regionB > \dim \region \text{)} \right\}$ : ?, noté $\adherentsDimSup{\region}$
+	\item $\left\{ \regionB \subseteq \Sigma \mid \region \in \boundary{\regionB}  \right\}$ : ?, noté $\adherentsDimSup{\region}$
+	\item $\EdS{\region}{\rho} \bigcap_{\regionB \in \adherentsDimSup{\region}} \EdS{\regionB}{\rho}$ (\ie lieu des points de tangence entre l'EdS de $\region$ et les EdS des entités de dimension $> \dim \region$ adhérentes à $\region$) : pseudo-EdS de $\region$, notée $\pseudoEdS{\region}{\rho}$
+\end{itemize}
+
+\subsection*{\brep}
+\begin{enumerate}
+	\item modèle \brep, noté \brepbody
+	\item sommet vif/régulier, noté $\brepvertex$
+	\item arête vive/régulière, notée $\brepedge$
+	\item (co-)arête, notée $\brepedge^i$, ($i=1,2$)
+	\item face, notée $\brepface$
+	\item contour, noté $\brepwire$
+\end{enumerate}
+
+\subsection*{Maillage}
+\begin{itemize}
+	\item n\oe ud, noté $\bm{v}$
+	\item arête, notée $\mathrm{e}$
+	%\item (face(tte), notée $\mathrm{f}$)
+	\item triangle, noté $\mathrm{t}$
+	\item suite de n\oe uds connectés par des arêtes : chaîne, notée $\mathrm{C}$ 
+\end{itemize}
+
+\subsection*{Maillage basé sur un modèle \brep}
+\begin{itemize}
+	\item maillage carreau-par-carreau
+	\item maillage trans-carreaux (indépendant des frontières des carreaux du modèle \brep)
+\end{itemize}

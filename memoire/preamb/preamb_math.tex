@@ -4,6 +4,8 @@
 \usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage{amsfonts}
+\newcommand\hmmax{0}
+\newcommand\bmmax{0}
 \usepackage{bm}
 \usepackage{mathtools}
 \usepackage{stmaryrd}
@@ -179,6 +181,7 @@ cal=zapfc, calscaled=1.18%,
 
 \newcommand*{\intervalLoHi}[1]{\left[ \lo{#1}, \hi{#1} \right]}
 \newcommand*{\fullUVdomain}{\lo{\hi{\uvdomain}}}
+\newcommand*{\fullWdomain}{\lo{\hi{\wdomain}}}
 
 % Restriction
 %https://tex.stackexchange.com/questions/351004/typesetting-a-function-restriction-with-a-bar-shorter-than-big

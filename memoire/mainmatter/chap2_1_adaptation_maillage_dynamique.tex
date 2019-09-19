@@ -193,31 +193,40 @@ Motivation : on veut que le maillage respecte la \textit{géométrie} du modèle
 $\to$ on veut s'affranchir de toutes les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes du point de vue du calcul EF/VF
 
 
-\subsection{Décomposition naturelle}
-Comme nous l'avons vu dans la \autoref{section:description_surface_G1_piecewise}, une surface régulière \piecewise\ peut être décrite comme un ensemble de \textit{nappes}, \textit{crêtes} et \textit{coins}. \par 
-On rappelle qu'une nappe correspond à un ensemble connexe et globalement $\contgeom{1}$ de faces \brep. 
-Une crête correspond à un ensemble connexe et globalement $\contgeom{1}$ d'arêtes vives, qui est incident à une seule ou deux nappe(s) et est délimitée par zéro ou deux coin(s).
-Enfin, un coin correspond à un sommet \brep\ vif, et représente l'extrémité d'une ou plusieurs crêtes.\par
-Essentiellement, la différence entre cette décomposition \guillemets{naturelle} et celle induite par le modèle \brep\ est que celle-ci est unique. 
-On ne peut en effet pas assembler deux nappes (resp. crêtes ou coins) pour en former une nouvelle sans en violer la définition donnée dans la \autoref{section:description_surface_G1_piecewise}. 
-Cette décomposition, qui était peu pratique pour concevoir un algorithme d'ordre élevé et efficace de propagation d'interface, s'avère maintenant être un outil intéressant pour imposer au maillage un nombre minimal de contraintes topologiques.\par
+\subsection{Modèle maximal}
+Comme nous l'avons vu dans la \autoref{section:description_surface_G1_piecewise}, une surface régulière \piecewise\ peut être décrite comme un ensemble de \textit{nappes}, \textit{crêtes} et \textit{pics}. \par 
+
+\begin{definition}[Modèle maximale]
+	On dit qu'une nappe $\nappe_a$ (resp. crête $\crete_a$) est \emph{maximale} s'il n'existe aucune nappe $\nappe_b$ (resp. crête $\crete_b$) telle que $\nappe_a \subset \nappe_b$ (resp. $\crete_a \subset \crete_b$). \par
+	On appelle \emph{modèle maximale} d'une surface $\contgeom{1}$ \piecewise\ l'ensemble de ses nappes maximales, crêtes maximales et pics.
+\end{definition}
+
+Ainsi, une nappe maximale correspond à un ensemble connexe et globalement $\contgeom{1}$ de faces \brep. 
+Une crête maximale correspond à un ensemble connexe et globalement $\contgeom{1}$ d'arêtes \brep\ vives, qui est incident à une seule ou deux nappe(s) maximale(s) et est délimitée par zéro, un ou deux pic(s).
+Enfin, un pic correspond à un sommet \brep\ (vif), et représente l'extrémité d'une ou plusieurs crêtes maximales.\par
+%Dans la suite on ne considèrera que des nappes et crêtes maximales.
+%On omettra donc le qualificatif \textit{maximal} afin d'alléger le propos.
+Essentiellement, la différence entre la décomposition maximale et celle induite par le modèle \brep\ est que celle-ci est unique. 
+%On ne peut en effet pas assembler deux nappes (resp. crêtes ou pics) pour en former une nouvelle sans en violer la définition donnée dans la \autoref{section:description_surface_G1_piecewise}. 
+Regrouper les faces et arêtes d'un modèle \brep\ en nappes et crêtes maximales ne modifie ainsi pas la définition géométrique de la surface qu'il décrit, mais permet d'en fournir une nouvelle représentation, dont la topologie est plus simple. 
+Cette représentation, qui était peu pratique pour concevoir un algorithme d'ordre élevé et efficace de propagation d'interface, s'avère maintenant être un outil intéressant pour imposer au maillage un nombre minimal de contraintes topologiques.\par
 On décrit dans les paragraphes suivants les procédures permettant de construire explicitement cette décomposition à partir des entités du modèle \brep.
 
-\subsubsection{Assemblage des faces en nappes}
-Pour constituer les nappes, on procède de la manière suivante. 
+\subsubsection{Assemblage des faces en nappes maximales}
+Pour constituer les nappes maximales, on procède de la manière suivante. 
 On commence par marquer toutes les faces du modèle \brep\ comme \textit{non-visitées}. 
 Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide que l'on remplit en suivante la procédure récursive décrite par l'\autoref{algo:assembler_nappe}.
 
 \begin{algorithm}
 	\caption{Assemblage récursif de faces en une nappe.}\label{algo:assembler_nappe}
 	\begin{algorithmic}[1]
-		\Procedure{Assembler nappe}{$\brepface$, $N$}
+		\Procedure{Assembler nappe}{$\brepface$, $\nappe$}
 			\State marquer $\brepface$ comme visitée
-			\State ajouter $\brepface$ à la nappe $N$
+			\State ajouter $\brepface$ à la nappe $\nappe$
 			\For{chaque contour $\brepwire$ de $\brepface$}
 				\For{chaque co-arête régulière $\brepedge^i$ de $\brepwire$}
 					\If{la face $\brepface_j$ incidente à la co-arête jumelle de $\brepedge^i$ n'a pas déjà été visitée}
-						\State \Call{Assembler nappe}{$\brepface_j$, $N$}
+						\State \Call{Assembler nappe}{$\brepface_j$, $\nappe$}
 					\EndIf
 				\EndFor
 			\EndFor
@@ -226,10 +235,10 @@ Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide qu
 \end{algorithm}
 
 
-\subsubsection{Identification des coins}
-Les coins correspondent à des extrémités de crêtes. 
+\subsubsection{Identification des pics}
+Les pics correspondent à des extrémités de crêtes maximales. 
 On définit la \textit{valence} d'un sommet \brep\ comme le nombre d'arêtes \textit{vives} auxquelles il est incident. 
-Sont des coins les sommets
+Sont des pics les sommets
 \begin{itemize}
 	\item de valence strictement supérieure à 2 ;
 	\item de valence égale à 1 (techniquement un tel sommet est un point régulier de l'interface, mais il délimite tout de même une crête) ;
@@ -237,21 +246,21 @@ Sont des coins les sommets
 \end{itemize}
 
 Pour le dernier cas, on calcule la direction tangente $\bt_i$ ($i = 1,2$) à chaque arête en exploitant la géométrie différentielle de la courbe d'intersection transverse qui la supporte (voir \autoref{section:representation_intersections}). 
-On considère que le sommet commun de ces arêtes est un coin si l'angle entre les directions tangentes dépasse un certain seuil $\epsilon$, \ie si 
+On considère que le sommet commun de ces arêtes est un pic si l'angle entre les directions tangentes dépasse un certain seuil $\epsilon$, \ie si 
 \begin{equation}
 	\left| \dotprod{\bt_1}{\bt_2} \right| < \cos \epsilon.
 \end{equation}
 
 
 
-\subsubsection{Assemblage des arêtes vives en crêtes}
+\subsubsection{Assemblage des arêtes vives en crêtes maximales}
 Afin d'en simplifier le parcours, on donne une orientation consistante aux crêtes. 
 Pour cela, on conçoit une crête comme une suite de \textit{co-arêtes}.
 \par
-Dans un premier temps, on obtient les crêtes \textit{ouvertes}, \ie qui possèdent deux coins distincts comme extrémités. 
-L'\autoref{algo:former_cretes_ouvertes} qui réalise l'assemblage de ces crêtes consiste à \guillemets{marcher} de coin en coin le long d'arêtes vives en prenant soin de ne parcourir chaque arête qu'au plus une fois. 
+Dans un premier temps, on obtient les crêtes maximales \textit{ouvertes}, \ie qui possèdent deux pics (pas nécessairement distincts\footnote{On traite en effet les crêtes ayant leurs deux extrémités au même pic comme des crêtes ouvertes.}) comme extrémités. 
+L'\autoref{algo:former_cretes_ouvertes} qui réalise l'assemblage de ces crêtes consiste à \guillemets{marcher} de pic en pic le long d'arêtes vives en prenant soin de ne parcourir chaque arête qu'au plus une fois. 
 Cette procédure de marche est décrite par l'\autoref{algo:assembler_crete}. 
-On a obtenu toutes les crêtes ouvertes une fois que toutes les arêtes vives incidentes à chaque coin ont été visitées. 
+On a obtenu toutes les crêtes ouvertes une fois que toutes les arêtes vives incidentes à chaque pic ont été visitées. 
 
 
 \begin{algorithm}
@@ -259,11 +268,11 @@ On a obtenu toutes les crêtes ouvertes une fois que toutes les arêtes vives in
 	\begin{algorithmic}[1]
 		%\Procedure{Obtenir crêtes ouvertes}{}
 			%
-			\For{chaque coin $\brepvertex$}
+			\For{chaque pic $\brepvertex$}
 				\For{chaque co-arête vive $\brepedge^i$ non-visitée ayant pour origine $\brepvertex$}
 					% comment? parcourir cycle des co-aretes incidentes (twin(prev))
-					\State $C = $ \Call{Assembler crête}{$\brepedge^i$}
-					\State Ajouter $C$ à la liste des crêtes
+					\State $\crete = $ \Call{Assembler crête}{$\brepedge^i$}
+					\State Ajouter $\crete$ à la liste des crêtes
 				\EndFor
 			\EndFor
 		%\EndProcedure
@@ -271,7 +280,7 @@ On a obtenu toutes les crêtes ouvertes une fois que toutes les arêtes vives in
 \end{algorithm}
 
 \par
-On procède alors à l'assemblage des crêtes \textit{fermées}. 
+On procède alors à l'assemblage des crêtes maximales \textit{fermées}. 
 Celles-ci n'ayant pas d'extrémité, on choisit arbitrairement un de leurs sommets intérieurs comme point de départ pour l'assemblage. 
 L'\autoref{algo:former_cretes_ouvertes} qui réalise l'assemblage des crêtes fermées utilise également la procédure de marche décrite par l'\autoref{algo:assembler_crete}. 
 Cette fois, en revanche, l'assemblage se termine lorsque le sommet destination de la dernière co-arête visitée est identique au sommet de départ. 
@@ -282,10 +291,10 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 	\begin{algorithmic}[1]
 		%\Procedure{Obtenir crêtes fermées}{}
 			%
-			\For{chaque sommet \brep\ $\brepvertex$ de valence égale à 2 qui n'est pas un coin}
+			\For{chaque sommet \brep\ $\brepvertex$ de valence égale à 2 qui n'est pas un pic}
 				\State{$\brepedge^i \gets$ co-arête vive ayant pour origine $\brepvertex$}\Comment{celle-ci est unique et n'a pas encore été visitée}
-				\State $C = $ \Call{Assembler crête}{$\brepedge^i$}
-				\State Ajouter $C$ à la liste des crêtes
+				\State $\crete = $ \Call{Assembler crête}{$\brepedge^i$}
+				\State Ajouter $\crete$ à la liste des crêtes
 			\EndFor
 		%\EndProcedure
 	\end{algorithmic}
@@ -294,27 +303,27 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 
 %
 \begin{algorithm}
-	\caption{Assemblage de (co-)arêtes en une crête.}\label{algo:assembler_crete}
+	\caption{Assemblage de co-arêtes en une crête.}\label{algo:assembler_crete}
 	\begin{algorithmic}[1]
 		\Procedure{Assembler crête}{$\brepedge_0^i$}
 			%
-%			\State initialiser une crête $C = \left\{ \brepedge_0^i \right\}$
+%			\State initialiser une crête $\crete = \left\{ \brepedge_0^i \right\}$
 %			\State marquer la co-arête $\brepedge_0^i$ et sa jumelle comme visitées
 %			\State{$\brepvertex \gets \dest(\brepedge_0^i)$}
-%			\While{$\brepvertex \neq \orig(\brepedge_0^i)$ et $\brepvertex$ n'est pas un coin}
+%			\While{$\brepvertex \neq \orig(\brepedge_0^i)$ et $\brepvertex$ n'est pas un pic}
 %				%
 %				\State{$\brepedge^j \gets$ co-arête vive ayant pour origine $\brepvertex$}\Comment{celle-ci est unique et n'a pas encore été visitée}
 %				% comment? parcourir cycle des co-aretes incidentes (twin(prev))
-%				\State ajouter $\brepedge^j$ à la crête $C$
+%				\State ajouter $\brepedge^j$ à la crête $\crete$
 %				\State marquer la co-arête $\brepedge^j$ et sa jumelle comme visitées
 %				\State{$\brepvertex \gets \dest(\brepedge^i)$}
 %			\EndWhile
-%			\State\Return{$C$}
+%			\State\Return{$\crete$}
 			%
-			\State initialiser une crête vide $C$
+			\State initialiser une crête vide $\crete$
 			\State{$\brepedge^j \gets \brepedge_0^i$}
-			\While{$\dest(\brepedge^j) \neq \orig(\brepedge_0^i)$ et $\dest(\brepedge^j)$ n'est pas un coin}
-				\State ajouter $\brepedge^j$ à la crête $C$
+			\While{$\dest(\brepedge^j) \neq \orig(\brepedge_0^i)$ et $\dest(\brepedge^j)$ n'est pas un pic}
+				\State ajouter $\brepedge^j$ à la crête $\crete$
 				\State marquer la co-arête $\brepedge^j$ et sa jumelle comme visitées
 				\State{$\brepedge^j \gets$ co-arête vive ayant pour origine $\dest(\brepedge^j)$}\Comment{celle-ci est unique et n'a pas encore été visitée}
 %				\Repeat\Comment{$\brepedge^j \gets$ co-arête vive ayant pour origine $\dest(\brepedge^j)$}
@@ -322,17 +331,17 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 %					\State{$\brepedge^j \gets \twin(\brepedge^j)$}
 %				\Until{$\brepedge^j$ est vive et n'a pas encore été visitée}
 			\EndWhile
-			\State\Return{$C$}
+			\State\Return{$\crete$}
 		\EndProcedure
 	\end{algorithmic}
 \end{algorithm}
 
 
-\subsubsection{Association maillage-décomposition naturelle}
+\subsubsection{Liens entre maillage et modèle maximale}
 
 
 
-\subsection{Cohérence/Persistance de la décomposition naturelle}
+\subsection{Cohérence/Persistance du modèle maximale}
 \cf notes ``Virtual topology''
 
 
@@ -351,7 +360,7 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 	\item l'étape d'optimisation prescrit pour chaque n\oe ud un déplacement $\vrm{d}$ dans l'espace physique
 	\item pour chaque n\oe ud, on projette ce déplacement sur l'entité naturelle qui le supporte, en mettant à jour sa localisation sur le modèle \brep
 	\begin{itemize}
-		\item si le n\oe ud est associé à un coin/sommet (zéro degré de liberté), il reste fixe 
+		\item si le n\oe ud est associé à un pic/sommet (zéro degré de liberté), il reste fixe 
 		\item si le n\oe ud fait partie d'une chaîne (un degré de liberté), on projette $\vrm{d}$ sur la crête associée à cette chaîne (procédure décrite dans l'\autoref{algo:projection_crete})
 		\item si le n\oe ud repose sur une nappe (deux degrés de liberté), on projette $\vrm{d}$ sur cette nappe
 	\end{itemize}
@@ -381,7 +390,7 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 				\State $\hi{\bg} \gets$ coordonnées physiques de $\dest(\brepedge^i)$
 				\State $\bt \gets$ direction tangente à $\brepedge^i$ en $\q$
 				\State $\vrm{d} \gets (\dotprod{\vrm{d}}{\bt}) \vrm{d}$
-				\State $\vrm{p}$ vecteur de paramétrisation (Hohmeyer), orienté tel que $\dotprod{\vrm{\p}}{\bt} > 0$
+				\State $\vrm{p}$ vecteur de paramétrisation (Hohmeyer), orienté tel que $\dotprod{\vrm{p}}{\bt} > 0$
 				%\State $\hat{\vrm{p}} \gets \frac{\vrm{p}}{\dotprod{\vrm{p}}{(\hi{\bg} - \lo{\bg})}}$
 				%\State $w \gets \dotprod{\hat{\vrm{p}}}{(\q + \vrm{d} - \lo{\bg})}$
 				\State $w \gets \frac{ \dotprod{ \vrm{p} }{ (\q + \vrm{d} - \lo{\bg}) } }{ \dotprod{ \vrm{p} }{ (\hi{\bg} - \lo{\bg}) } }$

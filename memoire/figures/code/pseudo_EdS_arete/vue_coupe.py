@@ -209,9 +209,9 @@ xystart = o + factor*(xy0 - o)
 astart = degrees(arctan2(xy0[1] - o[1], xy0[0] - o[0]))
 astop = degrees(arctan2(xy1[1] - o[1], xy1[0] - o[0]))
 f.write('\\draw[stylePseudoEdS] (%s, %s) arc (%s:%s:%s) ' % (xystart[0], xystart[1], astart, astop, factor*r))
-f.write('node[above, pos=0.5, inner sep=2pt] {$\\pseudoEdS{\\Gamma}{\\rho}$};\n')
+f.write('node[above, pos=0.5, inner sep=2pt] {$\\pseudoEdS{\\crete}{\\rho}$};\n')
 
-f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSarete, text={{$\\implicitEdB{\\Gamma}$} {$=$} {$0$}{}}, text align={center}}, decorate] ')
+f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSarete, text={{$\\implicitEdB{\\crete}$} {$=$} {$0$}{}}, text align={center}}, decorate] ')
 #f.write('(%s, %s) circle (%s);\n' % (o[0], o[1], r))
 astart = 225#-160
 astop = 310#-210
@@ -227,8 +227,8 @@ for inappe, curve in enumerate(nappes):
     f.write('    styleNappe,\n')
     f.write('    postaction={\n')
     f.write('        decoration={\n')
-    #f.write('            text along path, raise={1ex}, text={{$\\Sigma_%s$}{}}, text align=center, reverse path\n' % sidelabel[inappe])
-    f.write('            text along path, raise={1ex}, text={{$\\%s{\\Sigma}$}{}}, text align=center, reverse path\n' % sidelabel[inappe])
+    #f.write('            text along path, raise={1ex}, text={{$\\nappe_%s$}{}}, text align=center, reverse path\n' % sidelabel[inappe])
+    f.write('            text along path, raise={1ex}, text={{$\\%s{\\nappe}$}{}}, text align=center, reverse path\n' % sidelabel[inappe])
     f.write('        },\n')
     f.write('        decorate\n')
     f.write('    }\n')
@@ -242,15 +242,15 @@ for inappe, curve in enumerate(nappes):
              inappe)
     )
     #
-    #f.write('\\node[colorContourEdSnappe%d, inner sep=0.15\\imagewidth, below] at (labelNappe%d) {$\\implicitEdB{\\Sigma_%s} < 0$};\n' %
-    f.write('\\node[colorContourEdSnappe%d, inner sep=0.15\\imagewidth, below] at (labelNappe%d) {$\\implicitEdB{\\%s{\\Sigma}} < 0$};\n' %
+    #f.write('\\node[colorContourEdSnappe%d, inner sep=0.15\\imagewidth, below] at (labelNappe%d) {$\\implicitEdB{\\nappe_%s} < 0$};\n' %
+    f.write('\\node[colorContourEdSnappe%d, inner sep=0.15\\imagewidth, below] at (labelNappe%d) {$\\implicitEdB{\\%s{\\nappe}} < 0$};\n' %
             (inappe,
              inappe,
              sidelabel[inappe])
     )
     #
-    #f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe%d, text={{$\\implicitEdB{\\Sigma_%s}$} {$=$} {$0$}{}}, text align={center}}, decorate] \n' %
-    f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe%d, text={{$\\implicitEdB{\\%s{\\Sigma}}$} {$=$} {$0$}{}}, text align={center}}, decorate] \n' %
+    #f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe%d, text={{$\\implicitEdB{\\nappe_%s}$} {$=$} {$0$}{}}, text align={center}}, decorate] \n' %
+    f.write('\\path[decoration={text along path, raise={1ex}, text color=colorContourEdSnappe%d, text={{$\\implicitEdB{\\%s{\\nappe}}$} {$=$} {$0$}{}}, text align={center}}, decorate] \n' %
             (inappe,
              sidelabel[inappe])
     )
@@ -263,7 +263,7 @@ for inappe, curve in enumerate(nappes):
 
 f.write('\\coordinate (Gamma) at (%s, %s);\n' % (o[0], o[1]))
 f.write('\\fill[black] (Gamma) circle (1.2pt);\n')
-f.write('\\node[above] at (Gamma) {$\\Gamma$};\n')
+f.write('\\node[above] at (Gamma) {$\\crete$};\n')
 
 f.close()
 
