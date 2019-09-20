@@ -42,7 +42,7 @@ On conclut ce chapitre en introduisant une formulation plus adéquate du problè
 
 
 \section{Description et représentation des surfaces régulières \piecewise}
-%[décomposition en nappes régulières ($\contgeom{1}$), crêtes (crêtes?) et points irréguliers (coins?) (\cf notes Huygens)]
+%[décomposition en nappes régulières ($\contgeom{1}$), crêtes (crêtes?) et points irréguliers (pics?) (\cf notes Huygens)]
 %\par\bigskip
 %(Inspiré par \cite[p.65]{rossignac1985} et \cite[Section 2.6]{rossignac1986}.)\par
 
@@ -58,7 +58,7 @@ introduire notions \cite{rossignac1985} :
 %\begin{enumerate}
 %	\item \textit{nappe (régulière/$\contgeom{1}$)} : variété de dimension 2, connexe, de continuité $\contgeom{1}$ (direction normale continue)
 %	\item \textit{crête} : variété de dimension 1, connexe, de continuité $\contgeom{1}$ (direction tangente continue)
-%	\item \textit{coin} : point qui n'est à l'intérieur d'aucune nappe régulière ou crête
+%	\item \textit{pic} : point qui n'est à l'intérieur d'aucune nappe régulière ou crête
 %\end{enumerate}
 
 \begin{definition}[Nappe régulière]
@@ -69,33 +69,33 @@ introduire notions \cite{rossignac1985} :
 	On appelle \emph{crête} de $\interface$ toute variété $\crete \subset \interface$ de dimension 1, connexe, de continuité globale $\contgeom{1}$ (\ie dont la direction tangente est continue partout) et qui n'est constituée que de points irréguliers de $\interface$.
 \end{definition}
 
-\begin{definition}[Coin]
-	On appelle \emph{coin} de $\interface$ tout point irrégulier de $\interface$ qui n'est à l'intérieur d'aucune crête.
+\begin{definition}[pic]
+	On appelle \emph{pic} de $\interface$ tout point irrégulier de $\interface$ qui n'est à l'intérieur d'aucune crête.
 \end{definition}
 
-Avec ces définitions, tout point d'une surface régulière \piecewise\ est soit un coin, soit contenu à l'intérieur d'une nappe ou d'une crête.
+Avec ces définitions, tout point d'une surface régulière \piecewise\ est soit un pic, soit contenu à l'intérieur d'une nappe ou d'une crête.
 
 %\begin{itemize}
-%	\item la frontière d'une nappe régulière est composée de crêtes et de coins (si elle n'est pas vide)
-%	\item la frontière d'une crête (ses extrémités) est composée de coins (si elle n'est pas vide)
+%	\item la frontière d'une nappe régulière est composée de crêtes et de pics (si elle n'est pas vide)
+%	\item la frontière d'une crête (ses extrémités) est composée de pics (si elle n'est pas vide)
 %	\item tout point d'une surface $\contgeom{1}$ \piecewise\ est
 %	\begin{itemize}
 %		\item soit situé à l'intérieur d'une nappe régulière ;
 %		\item soit situé à l'intérieur d'une crête ;
-%		\item soit un coin.
+%		\item soit un pic.
 %	\end{itemize}
 %\end{itemize}
 
 \begin{figure}
 	\centering
 	\input{figures/code/piecewise_smooth_surface/piecewise_smooth_surface_decomposition}
-	\caption{Surface régulière \piecewise\ dont les crêtes et coins sont mis en évidence.}
+	\caption{Surface régulière \piecewise\ dont les crêtes et pics sont mis en évidence.}
 	\label{fig:piecewise_smooth_surface_decomposition}
 \end{figure}
 
 %La frontière $\boundary{\solide}$ du solide $\solide$ est une surface de continuité $\contgeom{1}$ (\ie possède une direction normale continue) \piecewise. 
 %Les singularités géométriques de $\boundary{\solide}$ peuvent être de dimension 1 (courbes) ou 0 (points).
-%Les crêtes de $\boundary{\solide}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux coins.
+%Les crêtes de $\boundary{\solide}$ sont elle-mêmes des variétés différentielles de continuité $\contgeom{1}$ (\ie possède une direction tangente continue) excepté aux pics.
 
 \subsection{Représentation par les frontières (\brep)}
 %Origine, utilisation, concept, définitions formelles des entités, lien avec la décomposition d'une surface $\contgeom{1}$ \piecewise, (géométrie différentielle des courbes et surfaces paramétriques), structures de données (DCEL)
@@ -170,8 +170,8 @@ En effet,
 \begin{itemize}
 	\item chaque face du modèle \brep\ est une nappe de $\interface$
 	\item chaque arête vive est une crête de $\interface$
-	\item chaque coin de $\interface$ est un sommet \brep
-	%\item l'ensemble des coins de $\interface$ est un sous-ensemble des sommets de son modèle \brep\ ;
+	\item chaque pic de $\interface$ est un sommet \brep
+	%\item l'ensemble des pics de $\interface$ est un sous-ensemble des sommets de son modèle \brep\ ;
 	%\item l'ensemble des crêtes de $\interface$ est un sous-ensemble des arêtes de son modèle \brep\ ;
 	%\item les nappes régulières de $\interface$ sont formées par la réunion des faces de son modèle \brep.
 %	\item chaque arête \brep\ vive est contenue dans une crête
@@ -217,7 +217,7 @@ où $\unv(\bx,t)$ désigne la direction normale à $\interface$ en $\bx$ à l'in
 En principe, les formulations \eqref{eq:lagrange_vecteur_vitesse} et \eqref{eq:lagrange_vitesse_normale} sont équivalentes puisque la composante tangentielle du vecteur vitesse n'affecte pas la forme de l'interface. 
 \par\bigskip
 La formulation lagrangienne ne permet d'obtenir une solution au problème de propagation d'interface que dans le cas où cette dernière est \textit{globalement} régulière et le reste tout au long de sa propagation. 
-En effet, puisque la direction normale $\unv$ n'est pas définie au niveau des crêtes et coins de $\interface$, le déplacement de ces points est ambigu. 
+En effet, puisque la direction normale $\unv$ n'est pas définie au niveau des crêtes et pics de $\interface$, le déplacement de ces points est ambigu. 
 On peut notamment distinguer deux cas \cite{jiao2007}.
 \par
 Premièrement, si l'interface subit un mouvement d'advection (comme le transport d'un fluide ou encore la déformation d'un solide sous l'effet de contraintes mécaniques) alors ses singularités géométriques sont préservées au cours de la propagation.

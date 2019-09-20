@@ -163,12 +163,13 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 
 
 \subsection{Optimisation de maillage surfacique}
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{operations_locales_optimisation_maillage}
-\caption{\ldots}
-\label{fig:operations_locales_optimisation_maillage}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[width=\textwidth]{operations_locales_optimisation_maillage}
+%\caption{\ldots}
+%\label{fig:operations_locales_optimisation_maillage}
+%\end{figure}
+\input{figures/code/mesh_optimization/optimization_operators.tex}
 
 \begin{enumerate}
 	\item bouger de n\oe ud (direct, \ie $xyz$ ou indirect, \ie $uv$)
@@ -188,7 +189,7 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 
 
 
-\section{Maillage trans-carreaux reposant sur un modèle \brep\ dynamique}
+\section{Maillage trans-carreaux reposant sur un modèle \brep\ dynamique (changer)}
 Motivation : on veut que le maillage respecte la \textit{géométrie} du modèle \brep\ (\cf objectif \ref{obj:maillage_geometriquement_fidele}), mais pas nécessairement sa \textit{topologie}\\
 $\to$ on veut s'affranchir de toutes les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes du point de vue du calcul EF/VF
 
@@ -196,9 +197,9 @@ $\to$ on veut s'affranchir de toutes les contraintes topologiques du modèle \br
 \subsection{Modèle maximal}
 Comme nous l'avons vu dans la \autoref{section:description_surface_G1_piecewise}, une surface régulière \piecewise\ peut être décrite comme un ensemble de \textit{nappes}, \textit{crêtes} et \textit{pics}. \par 
 
-\begin{definition}[Modèle maximale]
+\begin{definition}[Modèle maximal]
 	On dit qu'une nappe $\nappe_a$ (resp. crête $\crete_a$) est \emph{maximale} s'il n'existe aucune nappe $\nappe_b$ (resp. crête $\crete_b$) telle que $\nappe_a \subset \nappe_b$ (resp. $\crete_a \subset \crete_b$). \par
-	On appelle \emph{modèle maximale} d'une surface $\contgeom{1}$ \piecewise\ l'ensemble de ses nappes maximales, crêtes maximales et pics.
+	On appelle \emph{modèle maximal} d'une surface $\contgeom{1}$ \piecewise\ l'ensemble de ses nappes maximales, crêtes maximales et pics.
 \end{definition}
 
 Ainsi, une nappe maximale correspond à un ensemble connexe et globalement $\contgeom{1}$ de faces \brep. 
@@ -206,11 +207,11 @@ Une crête maximale correspond à un ensemble connexe et globalement $\contgeom{
 Enfin, un pic correspond à un sommet \brep\ (vif), et représente l'extrémité d'une ou plusieurs crêtes maximales.\par
 %Dans la suite on ne considèrera que des nappes et crêtes maximales.
 %On omettra donc le qualificatif \textit{maximal} afin d'alléger le propos.
-Essentiellement, la différence entre la décomposition maximale et celle induite par le modèle \brep\ est que celle-ci est unique. 
+Essentiellement, la différence entre les modèle \brep\ et maximal est que ce dernier est unique. 
 %On ne peut en effet pas assembler deux nappes (resp. crêtes ou pics) pour en former une nouvelle sans en violer la définition donnée dans la \autoref{section:description_surface_G1_piecewise}. 
 Regrouper les faces et arêtes d'un modèle \brep\ en nappes et crêtes maximales ne modifie ainsi pas la définition géométrique de la surface qu'il décrit, mais permet d'en fournir une nouvelle représentation, dont la topologie est plus simple. 
 Cette représentation, qui était peu pratique pour concevoir un algorithme d'ordre élevé et efficace de propagation d'interface, s'avère maintenant être un outil intéressant pour imposer au maillage un nombre minimal de contraintes topologiques.\par
-On décrit dans les paragraphes suivants les procédures permettant de construire explicitement cette décomposition à partir des entités du modèle \brep.
+On décrit dans les paragraphes suivants les procédures permettant de construire explicitement le modèle maximal à partir des entités du modèle \brep.
 
 \subsubsection{Assemblage des faces en nappes maximales}
 Pour constituer les nappes maximales, on procède de la manière suivante. 
@@ -237,7 +238,7 @@ Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide qu
 
 \subsubsection{Identification des pics}
 Les pics correspondent à des extrémités de crêtes maximales. 
-On définit la \textit{valence} d'un sommet \brep\ comme le nombre d'arêtes \textit{vives} auxquelles il est incident. 
+On définit la \textit{valence} d'un sommet \brep\ comme le nombre d'arêtes \brep\ \textit{vives} auxquelles il est incident. 
 Sont des pics les sommets
 \begin{itemize}
 	\item de valence strictement supérieure à 2 ;
@@ -337,11 +338,11 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 \end{algorithm}
 
 
-\subsubsection{Liens entre maillage et modèle maximale}
+\subsubsection{Liens entre maillage et modèle maximal}
 
 
 
-\subsection{Cohérence/Persistance du modèle maximale}
+\subsection{Cohérence/Persistance du modèle maximal}
 \cf notes ``Virtual topology''
 
 

@@ -1,0 +1,24 @@
+\setlength{\imagewidth}{18mm}%
+\setlength{\imageheight}{\imagewidth}%
+\def\swapbend{66}
+\def\vertexradius{1.5pt}
+\begin{figure}
+	\centering
+	%\includegraphics[width=\textwidth]{operations_locales_optimisation_maillage}
+	\begin{tikzpicture}[
+		x=\imagewidth,
+		y=\imageheight,
+		mesh/.style={draw=black, semithick},
+		label/.style={anchor=south west, inner sep=0},
+		arrow/.style={black!40!white, line width=2.0pt, -stealth}, 
+		move/.style={arrow, shorten <=2pt, shorten >=3pt},
+		swap/.style={arrow, shorten <=1pt, shorten >=1pt},
+		collapse/.style={arrow, -stealth, shorten <=2pt, shorten >=3pt},
+		before/.style={draw=black!30!white, dashed, thin},
+		vertex/.style={fill=black, draw=none, circle, scale=0.3, inner sep=0},
+	]
+		\input{figures/code/mesh_optimization/optimization_operators_tikzcode.tex}
+	\end{tikzpicture}
+	\caption{\ldots}
+	\label{fig:operations_locales_optimisation_maillage}
+\end{figure}
