@@ -54,7 +54,8 @@ On conclut ce chapitre en introduisant une formulation plus adéquate du problè
 %\par
 %Le support $\bs(\uvdomain)$ 
 \label{section:description_surface_G1_piecewise}
-introduire notions \cite{rossignac1985} : 
+%introduire notions 
+(inspiré de \cite{rossignac1985})
 %\begin{enumerate}
 %	\item \textit{nappe (régulière/$\contgeom{1}$)} : variété de dimension 2, connexe, de continuité $\contgeom{1}$ (direction normale continue)
 %	\item \textit{crête} : variété de dimension 1, connexe, de continuité $\contgeom{1}$ (direction tangente continue)
@@ -151,8 +152,8 @@ Un sommet du modèle \brep\ matérialise l'intersection de deux arêtes et a pou
 \subsubsection{Structure de données}
 \begin{enumerate}
 	\item séparation entre topologie (structure) / géométrie (forme)
-	\item connectivité entre les entités capturée à l'aide d'une structure de graphe (homéomorphe à un polyèdre) (notion de \textit{carte combinatoire})
-	\item structure de données adaptée $\to$ \anglais{Doubly Connected Edge List} (DCEL) (\anglais{Halfedges}) \textit{(donner réfs.)}
+	\item connectivité entre les entités capturée à l'aide d'une structure de graphe (\textit{carte combinatoire})%(homéomorphe à un polyèdre) 
+	\item structure de données adaptée $\to$ \anglais{Doubly Connected Edge List} (DCEL) (\anglais{Half-edges}) \textit{(donner réfs.)}
 \end{enumerate}
 
 La \autoref{fig:BRep_hierarchy} présente un diagramme de la hiérarchie des entités qui constituent le modèle \brep.
@@ -244,13 +245,13 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 
 \par\bigskip
 \begin{enumerate}
-	\item distinguer propagation d'une onde et d'une interface entre deux milieux matériels (l'une peut s'auto-intersecter, l'autre non) $\to$ condition d'entropie
+	\item distinguer propagation d'une onde et d'une interface entre deux milieux matériels (l'une peut s'auto-intersecter, l'autre non, voir \autoref{fig:EdS_EdB}) $\to$ condition d'entropie
 	%\item formaliser la notion d'enveloppe des sphères $\EdS{\interface}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère) $\to$ système d'équations avec $\implicitsphere_{\rho} : (\bx,\p) \mapsto \normtwo{\bx - \p}^2 - \rho^2(\p)$
 	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} \defini{=} \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
-	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{H \subseteq \interface}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
+	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{\region \subseteq \interface}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
 	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} \defini{=} \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
-	\item formaliser la notion d'enveloppe des boules (EdB) $\EdB{H \subseteq \interface}{\rho} \defini{=} \boundary{ \left( \ball{H}{\rho} \right) }$
-	\item si $H \subseteq \interface$ est une variété sans bord alors $\EdB{H}{\rho}  = \EdBplus{H}{\rho} \cup \EdBmoins{H}{\rho}$ où $\EdBplus{H}{\rho} \subset \complement{\solide}$ et $\EdBmoins{H}{\rho} \subset \solide$ (car $\rho > 0$) \textit{(illustrer)}\\
+	\item formaliser la notion d'enveloppe des boules (EdB) $\EdB{\region \subseteq \interface}{\rho} \defini{=} \boundary{ \left( \ball{\region}{\rho} \right) }$
+	\item si $\region \subseteq \interface$ est une variété sans bord alors $\EdB{\region}{\rho}  = \EdBplus{\region}{\rho} \cup \EdBmoins{\region}{\rho}$ où $\EdBplus{\region}{\rho} \subset \complement{\solide}$ et $\EdBmoins{\region}{\rho} \subset \solide$ (car $\rho > 0$) \textit{(illustrer)}\\
 	$\Rightarrow$ en particulier, $\EdB{\interface}{\rho}  = \EdBplus{\interface}{\rho} \cup \EdBmoins{\interface}{\rho}$
 	
 	
@@ -259,18 +260,18 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 	\[
 		\implicitsphere(\bx, \p) \defini{=} \normtwo{\bx - \p}^2 - \rho(\p)^2,
 	\]
-	et, pour $H \subseteq \interface$, 
+	et, pour $\region \subseteq \interface$, 
 	\[
-		\implicitEdB{H}(\bx) \defini{=} \min_{\p \in H} \implicitsphere(\bx, \p).
+		\implicitEdB{\region}(\bx) \defini{=} \min_{\p \in \region} \implicitsphere(\bx, \p).
 	\]
 	Alors,
 	\[ 
-		\EdB{H}{\rho} 
-		= \implicitEdB{H}^{-1}(0)
+		\EdB{\region}{\rho} 
+		= \implicitEdB{\region}^{-1}(0)
 		= 
 		\left\{
-			\bx \in \reals^3 \mid \forall \p \in H, \implicitsphere(\bx, \p) \geq 0
-			\text{ et } \exists \q \in H \mid \implicitsphere(\bx, \p) = 0
+			\bx \in \reals^3 \mid \forall \p \in \region, \implicitsphere(\bx, \p) \geq 0
+			\text{ et } \exists \q \in \region \mid \implicitsphere(\bx, \p) = 0
 		\right\}.
 	\]
 	\item après une propagation à vitesse normale $\nu$ constante pendant un intervalle de temps $\tau$ tel que $\nu \tau = \rho$, la nouvelle interface est $\EdBplus{\interface}{\rho}$
@@ -318,7 +319,7 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 		\node[black!30!white] at (0.45,0.45) {$\complement{\solide}$};
 		%\node[above] at (-0.5,0.28) {$\interface$};
 	\end{tikzpicture}
-	\caption{\ldots}
+	\caption{Schéma d'une interface régulière \piecewise\ en deux dimensions.}
 	\label{fig:schema_interface_2d}
 \end{figure}
 	
@@ -347,7 +348,7 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 		\fi
 	}
 	\DTLgdeletedb{dbcircles}
-	\caption{Schéma pour distinguer EdS et EdB (\ldots).}
+	\caption{Schéma pour distinguer EdS (haut) et EdB (bas) (à détailler \ldots).}
 	\label{fig:EdS_EdB}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -355,3 +356,7 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 
 
 
+\par\bigskip
+\textit{
+	[Bilan du chapitre et transition vers le chapitre suivant\ldots]
+}

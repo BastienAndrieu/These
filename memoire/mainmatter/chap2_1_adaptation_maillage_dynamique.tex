@@ -1,18 +1,20 @@
 \chapter{Adaptation d'un maillage de surface dynamique}
 
+
 \textit{Objectif du chapitre: on veut mettre au point une méthodologie pour déformer un maillage de l'interface en propagation en utilisant le modèle \brep\ dynamique comme support géométrique, afin de pouvoir réaliser des simulations EF/VF dans des domaines de géométrie déformable.}
-\par
-(Motivation : les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du (volume du) domaine de calcul)
+%\par
+%(Motivation : les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du (volume du) domaine de calcul)
 
-\section{Problématiques et état de l'art}
 
-\subsection{Simulation numérique dans un domaine à géométrie déformable}
+%\section{Problématiques et état de l'art}
+
+%\subsection{Simulation numérique dans un domaine à géométrie déformable}
 %Motivation :
 %\begin{enumerate}
 %	\item les méthodes (EF, VF, \ldots) employées pour la simulation numérique nécessitent un \textit{maillage} du (volume du) domaine de calcul
 %	%\item la précision et la vitesse de convergence du calcul dépendent fortement de la qualité (forme et taille) des éléments du maillage
 %\end{enumerate}
-
+\section{Simulation numérique dans un domaine à géométrie déformable}
 État de l'art :
 \begin{enumerate}
 	\item maillage volumique (fluide) conforme à l'interface
@@ -52,52 +54,56 @@
 	\end{itemize}
 \end{enumerate}
 
+
+\section{Problématiques}
 Dans cette thèse,
 \begin{enumerate}
 	\item on ne traite que le maillage (surfacique) de l'interface
-	\item on se concentre sur des maillages triangulaires linéaires par morceaux, mais une extension aux maillages hybrides et courbes (high-order) est envisageable
-	\item Objectifs :
-	\begin{enumerate}
-		\item\label{obj:maillage_geometriquement_fidele} Représenter fidèlement la géométrie de l'interface (courbe, décrite par le modèle \brep\ dynamique) par un maillage (linéaire).
-		
-		\item\label{obj:validite_qualite_maillage} Garantir la validité et la qualité du maillage
-		\begin{itemize}
-			\item afin d'assurer le bon déroulement du calcul (vitesse de convergence et précision).
-		\end{itemize}
-		
-		\item\label{obj:preserver_connectivite_maillage} Préserver autant que possible la connectivité du maillage au cours de la propagation de l'interface
-		\begin{itemize}
-			\item afin d'éviter d'avoir à régénérer un nouveau maillage (ce qui impose d'interpoler/projeter la solution et est généralement coûteux, non-conservatif, introduit de la diffusion numérique \ldots) ;
-			\item pas réalisable si l'interface subit des changements de topologie.
-		\end{itemize}
-		
+	\item on se concentre sur des maillages triangulaires linéaires par morceaux, mais une extension aux maillages hybrides et courbes est envisageable
+	%
+	\item on dispose d'un \textit{modèle \brep}
+	\begin{enumerate}[label=(\arabic*)]
+	    \item décrivant une surface $\interfacebrep$ qui est une bonne approximation de la véritable interface $\interface$ ; \label{item:brep_fidele_interface}
+	    \item dynamique, \ie disponible à chaque instant de la propagation ; \label{item:brep_dynamique}
+	    \item dont la topologie (\ie le nombre de face, arêtes et sommets et/ou leurs relations d'adjacence) peut évoluer au cours du temps. \label{item:brep_topologie_variable}
 	\end{enumerate}
+	%
+	\item on veut maintenant un \textit{maillage surfacique}
+	\begin{enumerate}[label=(\alph*)]
+	    \item géométriquement fidèle à l'interface $\interface$ ; \label{item:maillage_fidele_interface}
+	    \item dynamique ; \label{item:maillage_dynamique}
+	    \item valide et de bonne qualité tout au long de la propagation, afin d'assurer le bon déroulement du calcul (vitesse de convergence et précision) ; \label{item:maillage_qualite}
+	    \item dont la connectivité varie le moins possible au cours du temps, afin de ne pas avoir à interpoler/projeter la solution sur un nouveau maillage (généralement coûteux, non-conservatif, introduit de la diffusion numérique \ldots) \label{item:maillage_connectivite_fixe}
+	\end{enumerate}
+	%
+	\item En raison de \ref{item:brep_fidele_interface}, on change le critère \ref{item:maillage_fidele_interface} en : ``géométriquement fidèle à la surface $\interfacebrep$ décrite par le modèle \brep'' \label{item:maillage_fidele_surface_brep}
+	\begin{itemize}[label=$\rightarrow$]
+        \item le maillage interpole $\interfacebrep$ aux n\oe uds : chaque n\oe ud est repéré sur une (ou plusieurs) entité(s) \brep\ par des coordonnées \textit{paramétriques}
+        
+        \item on contrôle/limite l'écart de corde en
+        \begin{itemize}
+            \item spécifiant une carte de taille adaptée à la courbure locale dans les régions régulières\footnote{attention, la continuité $\contgeom{1}$ autorise des discontinuité de courbure, on doit donc assurer la gradation de la carte.}
+            \item \label{item:discretisation_singularites} maillant explicitement les singularités géométriques (pics et crêtes)
+        \end{itemize}
+    \end{itemize}
+    
+    \item Dans cette thèse, on ne s'intéresse pas tant à la génération du maillage initial %(de nombreuses méthodes qui portent sur ce sujet ont déjà fait leurs preuves, y compris dans un contexte de maillage trans-carreaux) 
+    qu'à son évolution au cours du temps. 
+	Dresser un bref état de l'art des méthodes de génération de maillage surfacique basé sur un modèle \brep\ nous permet toutefois de cerner les principales problématiques rencontrées lors la déformation d'un tel maillage.
 \end{enumerate}
-
-
 
 
 \subsection{Génération de maillage surfacique basé sur un modèle \brep}
-
-\begin{enumerate}
-	\item chaîne traditionnelle :
-	\begin{enumerate}
-		\item conception de la géométrie dans un système de CAO $\to$ modèle \brep\ (formats standards : STEP, IGES)
-		\item génération de maillage surfacique utilisant le modèle \brep\ comme support géométrique 
-	\end{enumerate}
-	\item stratégie la plus courante : placer les n\oe uds du maillage exactement sur la surface décrite par le modèle \brep\ (les arêtes et faces du maillage \textit{interpolent} la surface \brep)
-\end{enumerate}
-
-Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancée de front) \deuxD\ plan à des surfaces immergées/plongées dans $\reals^3$
+%Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancée de front) \deuxD\ plan à des surfaces immergées/plongées dans $\reals^3$
 \begin{enumerate}
 	\item méthodes indirectes (Riemanniennes) : on travaille dans l'espace paramétrique en tenant compte de la métrique (anisotrope, Riemannienne) induite par la paramétrisation de façon à ce que le plongement du maillage dans $\reals^3$ respecte les critères prescrits
 	\begin{enumerate}
-		\item conforme à la topologie \brep\ : on exploite directement les paramétrisations locales (carreaux de surface) du modèle \brep\ \cite{borouchaki2000} (on maille d'abord les sommets, puis les arêtes et enfin les faces afin de garantir la conformité du maillage)
+		\item \textit{carreau-par-carreau} (\ie conforme à la topologie du modèle \brep) : on exploite directement les paramétrisations locales (carreaux de surface) du modèle \brep\ \cite{borouchaki2000} (on maille d'abord les sommets, puis les arêtes et enfin les faces afin de garantir la conformité du maillage)
 		\begin{itemize}
 			\item intérêt/avantages : utilisation de méthodes \deuxD\ plan robustes et efficaces
 			\item contraintes/inconvénients : les arêtes \brep\ régulières introduisent des contraintes supplémentaires sur le maillage, sans avoir de signification du point du vue du calcul EF/VF $\Rightarrow$ éléments de mauvaise qualité
 		\end{itemize}
-		\item trans-carreaux par (re-)paramétrisation globale : l'idée générale est de construire une transformation affine par morceaux (par triangles) l'espace $uv$ de chaque face et un espace $uv$ global, sans affecter la définition géométrique du modèle \brep\ sous-jacent
+		\item \textit{trans-carreaux} par (re-)paramétrisation globale : l'idée générale est de construire une transformation affine par morceaux (par triangles) l'espace $uv$ de chaque face et un espace $uv$ global, sans affecter la définition géométrique du modèle \brep\ sous-jacent
 			\begin{enumerate}
 			
 				\item \cite{marcum1999} :
@@ -151,31 +157,71 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 	
 	\item méthodes directes : 
 	\begin{enumerate}
-		\item \cite{lau1996} : avancée de front directement dans $\reals^3$ avec projection sur la surface exacte des n\oe uds au cours de la génération $\to$ limité à une paramétrisation continue (\ie carreau par carreau, conforme à la topologie \brep)
+		\item \cite{lau1996} : avancée de front directement dans $\reals^3$ avec projection sur la surface exacte des n\oe uds au cours de la génération $\to$ limité à une paramétrisation continue (\ie carreau-par-carreau)
 		\item \cite{foucault2013} : avancée de front directe trans-carreaux
 	\end{enumerate}
 \end{enumerate}
 
+Bilan : conformer le maillage à la topologie du modèle \brep\ introduit de nombreuses contraintes \textit{topologiques} qui ne sont pas pertinentes du point de vue du calcul\footnote{d'où le ``géométriquement'' dans le critère \ref{item:maillage_fidele_surface_brep}.}. 
+Ces contraintes nuisent au respect des deux critères \ref{item:maillage_qualite} et \ref{item:maillage_connectivite_fixe}. 
+En effet, 
+\begin{itemize}
+	\item certaines faces \brep\ peuvent comporter des régions (délimitées par des arêtes régulières) plus étroites que la taille de maille prescrite ;
+	\item la topologie \brep\ pouvant varier au cours du temps (\cf \ref{item:brep_topologie_variable}), il n'est généralement pas possible de maintenir la conformité maillage-\brep\ sans modifier la connectivité du maillage (même si la topologie (\ie le genre) de l'interface ne change pas, \eg lorsque des arêtes vives convexes ou des sommets vifs non-concaves engendrent des nouveaux carreaux et donc des nouvelles faces, arêtes et sommets réguliers, comme vu dans la \autoref{section:construction_EdS_partielle}).
+\end{itemize}
 
 
 
+\subsection{Évolution d'un maillage sur un modèle \brep\ dynamique}
+\label{section:evolution_maillage_carreau-par-carreau_sur_brep_dynamique}
 
+Un problème inhérent aux méthodes lagrangiennes de suivi d'interface est la formation d'éléments de maillage dégénérés dans les régions concaves de forte courbure. 
+Ceci est d'autant plus vrai dans le cas d'une interface régulière par morceaux qui ont une courbure infinie aux points irréguliers (crêtes et pics). Ces méthodes doivent en effet mettre en \oe uvre un traitement spécifique afin d'éviter la formation d'éléments de maillage dégénérés (limitation du pas de temps, mouvement tangentiel, \ldots) \textit{(citer références et illustrer)}.\par 
+L'approche décrite dans cette thèse --- qui repose sur l'utilisation d'un modèle \brep\ dynamique composé de carreaux restreints --- permet de résoudre les auto-intersections de l'interface dans ces régions (en délimitant les régions actives des carreaux). 
+Cependant, lorsqu'un maillage est \guillemets{collé} sur le modèle \brep\ dynamique, le problème de la validité des éléments de maillage proche des arêtes vives concaves se pose à nouveau.
+\par
+%La méthode proposée au paragraphe précédent ne permet ainsi pas d'assurer la validité du maillage déformé.
+%On peut décomposer cette évolution en peut être décomposée en 
+%    \begin{itemize}
+%        \item une évolution géométrique (\ie déformation) :
+%        \begin{itemize}
+%            \item mouvement de \textit{propagation} imposé par la surface \brep\ dynamique ; \label{item:deformation_propagation}
+%            \item mouvement de \textit{glissement} (\ie tangentiel) sur la surface \brep\ (phase d'optimisation par bouger de n\oe ud) ; \label{item:deformation_glissement}
+%        \end{itemize}
+%        \item une évolution topologique : modifications locales de la connectivité (à éviter autant que possible, \cf \ref{item:maillage_connectivite_fixe}).
+%    \end{itemize}
+%
+Considérons dans un premier temps le cas d'un maillage carreau-par-carreau. 
+Un moyen simple de faire évoluer un tel maillage au cours du temps consiste à %figer les coordonnées paramétriques des n\oe uds sur les carreaux qui évoluent. 
+\begin{enumerate}
+	\item mettre à jour la position\footnote{\label{foot:position_uv_xyz}non seulement dans l'espace physique mais également dans les espaces paramétriques des carreaux incidents.} des n\oe uds associés aux sommets ;
+	\item pour chaque arête \brep, régénérer une discrétisation\footref{foot:position_uv_xyz} optimale qui préserve le nombre de n\oe uds ;
+	\item figer les coordonnées paramétriques de tous les autres n\oe uds, dont la position dans l'espace physique évolue alors avec la définition des carreaux sous-jacents.
+\end{enumerate}
+On impose ainsi indirectement au maillage le mouvement de propagation de l'interface. 
+%
+En suivant cette approche, si le pas de temps choisi est trop grand (\textit{expliciter contrainte sur le pas de temps}) alors 
+\begin{itemize}
+	\item certains triangles incidents à la singularité peuvent être inversés ;
+	\item les n\oe uds responsables de ces inversions résident dans des régions des carreaux qui sont désormais inactives, et ne sont donc plus supportés par des faces \brep.
+\end{itemize}
+
+Il est donc nécessaire de resituer ces n\oe uds dans des régions actives, tout en veillant à ce que leurs triangles incidents aient la bonne orientation. 
+Afin de remédier à ce problème, on peut par exemple interpoler le mouvement des n\oe uds du contour de chaque face pour déplacer tous les n\oe uds libres à l'intérieur du nouveau domaine paramétrique de la face (\textit{\cf papier IMR}).
+\par
+Avant de considérer le cas d'un maillage trans-carreau, on passe brièvement en revue les méthodes utilisées pour améliorer la qualité du maillage. 
+En effet, si la validité de ce dernier peut être maintenue de la façon décrite plus haut, sa qualité peut fortement être dégradée au cours de la propagation, jusqu'à compromettre le reste de la simulation numérique.
 
 
 \subsection{Optimisation de maillage surfacique}
-%\begin{figure}
-%\centering
-%\includegraphics[width=\textwidth]{operations_locales_optimisation_maillage}
-%\caption{\ldots}
-%\label{fig:operations_locales_optimisation_maillage}
-%\end{figure}
 \input{figures/code/mesh_optimization/optimization_operators.tex}
 
+\subsubsection{Opérateurs élémentaires}
 \begin{enumerate}
 	\item bouger de n\oe ud (direct, \ie $xyz$ ou indirect, \ie $uv$)
 	\begin{enumerate}
-		\item méthodes heuristiques (lissage laplacien, analogies physiques \cite{farhat1998}, interpolation (IDW, RBF, \ldots) \ldots)
-		\item lissage basé sur l'optimisation d'une métrique de qualité \cite{freitag1995, canann1998, jiao2008}, \cite{gargallo2014} $\to$ maillage supporté sur un carreau paramétrique
+		\item méthodes heuristiques : lissage laplacien, analogies physiques \cite{farhat1998}, interpolation (IDW, RBF, \ldots)
+		\item lissage basé sur l'optimisation d'une métrique de qualité \cite{freitag1995, canann1998, jiao2008, gargallo2014}
 	\end{enumerate}
 	\item changements locaux de connectivité
 	\begin{enumerate}
@@ -185,16 +231,35 @@ Essentiellement extension de méthodes standard (\ie quadtree, Delaunay, avancé
 	\end{enumerate}
 \end{enumerate}
 
+\subsubsection{Optimisation de maillage surfacique reposant sur un modèle \brep} 
+\begin{enumerate}
+	\item bouger de n\oe ud carreau-par-carreau : \cite{gargallo2014}
+	\item trans-carreaux : \cite{noel1995}
+\end{enumerate}
 
 
 
 
-\section{Maillage trans-carreaux reposant sur un modèle \brep\ dynamique (changer)}
-Motivation : on veut que le maillage respecte la \textit{géométrie} du modèle \brep\ (\cf objectif \ref{obj:maillage_geometriquement_fidele}), mais pas nécessairement sa \textit{topologie}\\
+
+
+
+
+Bilan : 
+Des méthodes de \textit{génération} et d'\textit{adaptation} de maillage \textit{trans-carreaux} à partir de modèles \brep\ \textit{statiques} \cite{noel1995, foucault2008} ainsi que des méthodes de \textit{déformation (adaptation)} de maillage \textit{carreau-par-carreau} à partir de modèles \brep\ \textit{dynamiques} \cite{martin2017} ont déjà fait l'objet de plusieurs travaux. 
+(Certains travaux \cite{louhichi2015} ont également considéré l'approche inverse, à savoir la reconstitution d'un modèle \brep\ à partir d'un maillage déformé à l'issue d'un calcul EF. 
+Ici aussi, le maillage est conforme aux carreaux et la topologie \brep\ ne change pas, la déformation étant dictée par un champ vectoriel de déplacement continu.)
+\par
+Dans cette thèse, on propose une méthodologie pour \textit{adapter} un maillage \textit{trans-carreaux} basé sur un modèle \brep\ \textit{dynamique} (ce qui, à ma connaissance, n'a pas encore fait l'objet de travaux publiés).
+
+
+
+%\section{Maillage trans-carreaux reposant sur un modèle \brep\ dynamique}
+\section{Modèle maximal}
+Motivation : on veut que le maillage respecte la \textit{géométrie} du modèle \brep\ (\cf objectif \ref{item:maillage_fidele_surface_brep}), mais pas nécessairement sa \textit{topologie}\\
 $\to$ on veut s'affranchir de toutes les contraintes topologiques du modèle \brep\ qui ne sont pas pertinentes du point de vue du calcul EF/VF
 
 
-\subsection{Modèle maximal}
+%\subsection{Modèle maximal}
 Comme nous l'avons vu dans la \autoref{section:description_surface_G1_piecewise}, une surface régulière \piecewise\ peut être décrite comme un ensemble de \textit{nappes}, \textit{crêtes} et \textit{pics}. \par 
 
 \begin{definition}[Modèle maximal]
@@ -213,7 +278,7 @@ Regrouper les faces et arêtes d'un modèle \brep\ en nappes et crêtes maximale
 Cette représentation, qui était peu pratique pour concevoir un algorithme d'ordre élevé et efficace de propagation d'interface, s'avère maintenant être un outil intéressant pour imposer au maillage un nombre minimal de contraintes topologiques.\par
 On décrit dans les paragraphes suivants les procédures permettant de construire explicitement le modèle maximal à partir des entités du modèle \brep.
 
-\subsubsection{Assemblage des faces \brep\ en nappes maximales}
+\subsection{Assemblage des faces \brep\ en nappes maximales}
 Pour constituer les nappes maximales, on procède de la manière suivante. 
 On commence par marquer toutes les faces du modèle \brep\ comme \textit{non-visitées}. 
 Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide que l'on remplit en suivante la procédure récursive décrite par l'\autoref{algo:assembler_nappe}.
@@ -236,7 +301,7 @@ Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide qu
 \end{algorithm}
 
 
-\subsubsection{Identification des pics}
+\subsection{Identification des pics}
 Les pics correspondent à des extrémités de crêtes maximales. 
 On définit la \textit{valence} d'un sommet \brep\ comme le nombre d'arêtes \brep\ \textit{vives} auxquelles il est incident. 
 Sont des pics les sommets
@@ -254,7 +319,7 @@ On considère que le sommet commun de ces arêtes est un pic si l'angle entre le
 
 
 
-\subsubsection{Assemblage des arêtes \brep\ vives en crêtes maximales}
+\subsection{Assemblage des arêtes \brep\ vives en crêtes maximales}
 Afin d'en simplifier le parcours, on donne une orientation consistante aux crêtes. 
 Pour cela, on conçoit une crête comme une suite de \textit{co-arêtes}.
 \par
@@ -338,19 +403,81 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 \end{algorithm}
 
 
-\subsubsection{Liens entre maillage et modèle maximal}
+\subsection{Liens entre maillage trans-carreaux et modèle maximal}
+On choisit donc de conformer le maillage au modèle maximal de $\interfacebrep$, \ie
+    \begin{itemize}
+        \item chaque pic est représenté par un n\oe ud ;
+        \item chaque crête maximale est représentée par une \textit{chaîne} de n\oe uds connectés par une suite d'arêtes ayant la même topologie (\ie mêmes connexité et nombre d'extrémités) ;
+        \item chaque nappe maximale est représentée par un ensemble de triangles ayant la même topologie (\ie mêmes connexité, genre et nombre de bords) ;
+        \item puisque le modèle maximal ne fournit aucune nouvelle définition géométrique, chaque n\oe ud est toujours repéré sur des entités \brep\ (contenues dans l'entité maximale à laquelle est associé le n\oe ud) :
+        \begin{itemize}
+            \item un n\oe ud reposant sur un pic pointe vers le sommet \brep\ qui représente ce pic et, (comme ce dernier) est repéré par ses coordonnées $(u,v)$ dans chacune des faces incidentes ;%\footnote{Objet \texttt{intersection point}} ;
+            \item un n\oe ud reposant une crête pointe vers l'arête (contenue dans cette crête) qui le contient, et est donc repéré par ses coordonnées $(u,v)$ dans chacune des deux faces incidentes ;
+%            \begin{itemize}
+%                \item pointe vers l'arête (contenue dans cette crête) qui le contient, et est donc repéré par ses coordonnées $(u,v)$ dans chacune des deux faces incidentes ;
+%                \item (est associé à la chaîne qui le contient (qui est elle-même associée à cette crête)) ;
+%            \end{itemize}
+            \item un n\oe ud reposant sur une nappe pointe vers la face \brep\ qui le contient, et est repéré par ses coordonnées $(u,v)$ dans cette face.
+        \end{itemize}
+    \end{itemize}
 
 
-
-\subsection{Cohérence/Persistance du modèle maximal}
-\cf notes ``Virtual topology''
-
+%\subsection{Cohérence/Persistance du modèle maximal}
+%\cf notes ``Virtual topology''
 
 
+\section{Évolution d'un maillage trans-carreaux reposant sur un modèle \brep\ dynamique}
+Les contraintes topologiques imposées sur le maillage sont maintenant minimales (si on veut respecter \ref{item:discretisation_singularites}). 
+Afin de satisfaire les exigences \ref{item:maillage_dynamique} et \ref{item:maillage_connectivite_fixe}, il est nécessaire de ré-établir à chaque instant les associations entre les n\oe uds et chaînes du maillage et les entités maximales de l'interface $\interfacebrep$ décrite par le modèle \brep\ dynamique.
+%On suppose que ces associations sont établies à l'état initial (\eg en tant que sous-produit du processus de génération de maillage).
+%Il suffit alors \ldots
 
+\par\bigskip
+\newcommand{\instant}[2]{#1^{(#2)}}
+Dans la suite, on note $\instant{A}{i}$ tout objet $A$ présent à l'instant $\instant{t}{i}$ ($A$ peut par exemple désigner le modèle \brep\ noté $\brepbody$ ou même la surface $\interfacebrep$).\par
 
+Dans l'algorithme présenté au \autoref{chap:algo_general}, 
+\begin{enumerate}
+	\item Chaque arête vive convexe de $\instant{\brepbody}{i}$ engendre 1 carreau de $\instant{\brepbody}{i+1}$ (\cf \autoref{section:parametrisation_pseudo_EdS_arete}). 
+	\item Chaque sommet vif non-concave de $\instant{\brepbody}{i}$ engendre $n \geq 1$ carreaux de $\instant{\brepbody}{i+1}$ (\cf \autoref{section:representation_pseudo-EdS_sommet}).
+	\item Chaque carreau $\instant{\carreau}{i}$ de $\instant{\brepbody}{i}$ engendre $n$ carreaux de $\instant{\brepbody}{i+1}$, où
+	\begin{itemize}
+		\item $n > 1$ si $\instant{\carreau}{i}$ devient localement singulier entre les instants $\instant{t}{i}$ et $\instant{t}{i+1}$ (\cf \autoref{item:découpage_carreau_singulier})
+		\item $n = 0$ si aucune face de $\instant{\brepbody}{i}$ n'est supportée par $\instant{\brepbody}{i}$ ;
+		\item $n = 1$ dans le cas général.
+	\end{itemize}
+	
+	\item On peut donc définir une relation de ``parenté'' entre certaines entités $\instant{\brepbody}{i}$ et celles de $\instant{\brepbody}{i+1}$.
+	
+	\item De ces relations élémentaires, on peut déduire des relations de parenté entre les faces de $\instant{\brepbody}{i}$ de celles de $\instant{\brepbody}{i+1}$, que l'on peut ensuite étendre aux nappes\footnote{maximales.\label{foot:maximal}}, pics et crêtes\footref{foot:maximal} de $\instant{\interfacebrep}{i}$ et ceux de $\instant{\interfacebrep}{i+1}$ (\textit{détailler à partir des notes ``Virtual topology''\ldots}).
+	
+	\item Une fois les entités maximales de $\instant{\interfacebrep}{i}$ et de $\instant{\interfacebrep}{i+1}$ associées, on peut établir les nouvelles associations entre les n\oe uds et chaînes du maillage et les entités maximales de $\instant{\interfacebrep}{i+1}$. 
+	
+	\item comme abordé dans la \autoref{section:evolution_maillage_carreau-par-carreau_sur_brep_dynamique}, l'évolution du maillage est obtenue indirectement.
+	Cependant, assurer la validité (\ie prévenir les inversions de triangles) d'un maillage trans-carreaux est plus délicat.
+	\textit{(développer à partir des notes ``Adaptation d'un maillage de surface dynamique''\ldots)}
 
-
+	\item L'association bijective des entités maximales de $\instant{\interfacebrep}{i}$ et de $\instant{\interfacebrep}{i+1}$ n'est pas toujours possible, car la topologie du modèle maximal peut elle aussi évoluer au cours du temps.
+	C'est le cas si
+    \begin{itemize}
+        \item $\instant{\interfacebrep}{i}$ et $\instant{\interfacebrep}{i+1}$ n'ont pas le même genre topologique ;
+        \item des pics ou crêtes (maximales)
+        \begin{itemize}
+            \item disparaissent, lorsque des singularités convexes \guillemets{rayonnent} suivant le principe de Huygens (cela ne peut se produire qu'au premier instant de la propagation et consiste à éliminer des contraintes sur le maillage, ce qui peut toujours être réalisé sans modifier la connectivité de ce dernier)
+            \item apparaissent, lorsque l'interface s'auto-intersecte
+            \begin{itemize}
+                \item \textit{localement}, \ie le rayon de propagation dépasse le plus petit rayon de courbure concave local dans une nappe ou sur une crête ;
+                \item \textit{globalement}, \eg deux nappes maximales entrent en collision (en passant par un contact tangentiel).
+            \end{itemize} 
+            Dans ce cas, rajouter de nouvelles contraintes sur le maillage n'est pas trivial et peut nécessiter des modifications de la connectivité :
+            \begin{itemize}
+                \item si un nouveau pic se forme, on peut y associer le n\oe ud le plus proche (\textit{snapping}) ;
+                \item pour les crêtes, l'opération est plus délicate puisqu'il faut non seulement ``snapper'' plusieurs n\oe uds mais il faut également que ces derniers soit connectés par une suite d'arêtes.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+	
+\end{enumerate}
 
 
 \section{Optimisation de maillage trans-carreaux}
@@ -365,7 +492,7 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 		\item si le n\oe ud fait partie d'une chaîne (un degré de liberté), on projette $\vrm{d}$ sur la crête associée à cette chaîne (procédure décrite dans l'\autoref{algo:projection_crete})
 		\item si le n\oe ud repose sur une nappe (deux degrés de liberté), on projette $\vrm{d}$ sur cette nappe
 	\end{itemize}
-	\item[$\Rightarrow$] les n\oe uds suivent des trajectoires trans-carreaux \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}
+	\item[$\Rightarrow$] les n\oe uds suivent des trajectoires trans-carreaux \cite{noel1995}, \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}
 \end{enumerate}
 
 \subsubsection{Projection sur une crête}
@@ -379,6 +506,7 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 %	\end{itemize}
 %\end{enumerate}
 
+[\textit{Détailler l'\autoref{algo:projection_crete}}]
 
 \begin{algorithm}
 	\caption{Projection d'un déplacement sur une crête (introduire dans section ``Régénération des chaînes''.}\label{algo:projection_crete}
@@ -426,12 +554,12 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 	\end{algorithmic}
 \end{algorithm}
 
-Ligne \ref{step:projection_arete} de l'\autoref{algo:projection_crete}
+%Ligne \ref{step:projection_arete} de l'\autoref{algo:projection_crete}
 
 
 \subsubsection{Projection sur une nappe}
 
-
+[\textit{\ldots}]
 
 %Décrire la procédure de projection d'un déplacement sur la surface \brep\ (sur une hyper-face ou une hyper-arête)
 %$\rightarrow$ trajectoire trans-carreaux \cite[Section~5.5]{foucault2008}), \cite{thompson2005}, \cite[p.42 et Section~4.4.1]{crozet2017}
@@ -476,3 +604,9 @@ Cette fois, la projection du déplacement se fait en partant du sommet de l'arê
   \caption{Placement du nouveau n\oe ud résultant d'une scission d'arête. Le $\ddl$ de chaque n\oe ud concerné est indiqué à côté de celui-ci. Les flèches représentent les vecteurs déplacement à projeter pour chaque arête scindée.}
   \label{fig:scission_arete_milieu}
 \end{figure}
+
+
+\par\bigskip
+\textit{
+	[Bilan du chapitre et transition vers le chapitre suivant\ldots]
+}

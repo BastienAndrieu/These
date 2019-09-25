@@ -1,9 +1,9 @@
 \chapter{Mise en \oe uvre numérique de l'algorithme de propagation}
 \label{chap:methode_numerique}
 
-Dans ce chapitre, on propose une mise en \oe uvre numérique de l'algorithme présenté au chapitre précédent. 
+Dans ce chapitre, on propose une mise en \oe uvre numérique de l'algorithme présenté au chapitre précédent :
 \begin{enumerate}
-	\item choix de la discrétisation spatiale
+	\item discrétisation spatiale
 	\begin{itemize}
 		\item représentation des carreaux de surface
 		\item représentation (et calcul) des courbes d'intersection entre carreaux
@@ -24,10 +24,10 @@ Dans ce chapitre, on propose une mise en \oe uvre numérique de l'algorithme pr�
 \begin{enumerate}
 	\item harmoniques sphériques \cite{rahimian2015}
 	\item polynômes trigonométriques \cite{gueyffier2015}
-	\item[$\Rightarrow$] limitations géométriques (régularité globale) et topologique (périodicité)
-	\item modèle \brep\ permet une plus grande flexibilité
-	\item polynômes algébriques (en produit tensoriel) adaptés aux carreaux de surface
-	\item CAO : Bezier, NURBS $\to$ base des polynômes de Bernstein
+	\item[$\to$] limitations géométriques (régularité \textit{globale}) et topologique (périodicité)
+	\item un modèle \brep\ constitué de plusieurs carreaux permet une plus grande flexibilité
+	\item polynômes algébriques (en produit tensoriel) adaptés aux carreaux rectangulaires
+	\item CAO : Bézier, NURBS $\to$ base des polynômes de Bernstein
 	\begin{itemize}
 		\item $B_n^N(x) = \binom{N}{n} \left( 1 - x \right)^{N-n} x^n$ pour $0 \leq n \leq N$.
 		\item positivité : pour $0 \leq x \leq 1$, $B_n^N(x) \geq 0$
@@ -39,7 +39,7 @@ Dans ce chapitre, on propose une mise en \oe uvre numérique de l'algorithme pr�
 		\end{itemize}
 		\item inconvénients :
 		\begin{itemize}
-			\item points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas exploitables comme marqueurs lagrangiens
+			\item points de contrôle pas \emph{sur} la courbe/surface $\Rightarrow$ pas directement exploitables comme marqueurs lagrangiens
 			\item algorithme d'évaluation (de Casteljau) numériquement stable mais coûteux $\bigO{N^2}$
 		\end{itemize}
 	\end{itemize}
@@ -435,7 +435,7 @@ Alternativement, il est intéressant de construire explicitement le polynôme d�
 \begin{equation}
 	\interpderiv{f}{N}{k} = \sum_{n=0}^{N-k} \deriv{\tilde{f}}{k}_n T_n.
 \end{equation} 
-\textit{Développer motivation\ldots}
+(\textit{Développer motivation\ldots})
 
 \par
 La relation \eqref{eq:chebyshev_relation_deriv_3termes} implique que, pour tout $n \in \mathbb{N}$,
@@ -525,7 +525,7 @@ et
 	\item Fonctions de base : polynômes de Chebyshev en produit tensoriel
 	\[ \interpolant{f}{M,N}(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \tilde{f}_{m,n} T_m(u) T_n(v). \]
 	\item généralisation des propriétés des polynômes univariés
-	\item paramétrisation d'un carreau de surface
+	\item paramétrisation d'un carreau de surface (voir \autoref{fig:cgl_grid})
 	\begin{equation}
 		\bs(u,v) = \sum_{m=0}^{M} \sum_{n=0}^{N} \tilde{\bs}_{m,n} T_m(u) T_n(v).
 	\end{equation}
@@ -541,9 +541,9 @@ et
 \subsection{Enjeux, État de l'art}
 Enjeux :
 \begin{enumerate}
-	\item le problème du calcul de l'intersection de carreaux paramétriques consiste à résoudre un système de trois équations non-linéaires (ici polynomiales)
+	\item le problème du calcul de l'intersection de deux carreaux paramétriques consiste à résoudre un système de trois équations non-linéaires (ici polynomiales)
 	\begin{equation}
-		\bs^1(u_1,v_1) - \bs^2(u_2, v_2) = \vit{0},
+		\bs_1(u_1,v_1) - \bs_2(u_2, v_2) = \vit{0},
 		\label{eq:intersection_2_carreaux}
 	\end{equation}
 	dont les quatre inconnues (paramètres des deux carreaux), sont soumises aux contraintes
@@ -554,25 +554,25 @@ Enjeux :
 	
 	\item l'intersection non-vide de deux carreaux de surface peut être constituée
 	\begin{itemize}
-		\item d'un ensemble de points isolés 
+		\item d'un ensemble de points isolés :
 		\begin{itemize}
-			\item points de contact (tangentiel) isolés (\autoref{fig:config_intersection_carreaux}(a)) ;
-			\item points d'intersection sur bord d'un carreau (\autoref{fig:config_intersection_carreaux}(b)) ;
+			\item points de contact tangentiel (\autoref{fig:config_intersection_carreaux}(a)) ;
+			\item points d'intersection sur le bord d'un carreau (\autoref{fig:config_intersection_carreaux}(b)) ;
 		\end{itemize}
-		\item d'un ensemble de courbes\\
+		\item d'un ensemble de courbes :\\
 		puisque chaque carreau est une variété différentielle homéomorphe à un disque (\ie avec un bord), les courbes d'intersections sont soit 
 		\begin{itemize}
 			\item \textit{ouvertes} (segments), dont chacune des deux extrémités est située sur le bord d'au moins un des deux carreaux (\autoref{fig:config_intersection_carreaux}(c,d,f)) (ces segments peuvent s'intersecter en des points de branchements (\autoref{fig:config_intersection_carreaux}(d)) );
 			\item \textit{fermées} (boucles), qui sont intérieures aux deux carreaux (\ie n'intersectent aucun bord) (\autoref{fig:config_intersection_carreaux}(e)).
 		\end{itemize}
 	
-		\item d'un ensemble de régions surfaciques (\autoref{fig:config_intersection_carreaux}(g))\\
+		\item d'un ensemble de régions surfaciques (\autoref{fig:config_intersection_carreaux}(g)) :\\
 		si  deux carreaux définis par des équations paramétriques polynomiales ont une intersection de dimension 2 alors ils coïncident partout (la zone d'intersection est délimitée par les bords des carreaux), on peut donc les considérer comme deux régions d'un même carreau polynomial plus grand \cite[Théorème~3]{hu1997}.
 	\end{itemize}
 
 	\item idéalement, l'algorithme de calcul des intersections doit être
 	\begin{itemize}
-		\item \textit{robuste}, \ie capable d'identifier la bonne topologie de l'intersection dans toutes les configurations (délicat en précision finie (arithmétique flottante), car les intersections (quasi-)tangentielles sont par nature instables, \ie une perturbation infinitésimale suffit à modifier leur topologie) ;
+		\item \textit{robuste}, \ie capable d'identifier la bonne topologie de l'intersection dans toutes les configurations (délicat en précision finie, car les intersections (quasi-)tangentielles sont par nature instables, \ie une perturbation infinitésimale suffit à modifier leur topologie) ;
 		\item \textit{précis}, \ie capable de restituer fidèlement la géométrie des éléments d'intersection ;
 		\item \textit{efficace} car il doit être exécuté à chaque instant de la propagation ;
 		\item \textit{autonome}, \ie doit fonctionner sans intervention de l'utilisateur, comme les autres composants de l'outil de propagation d'interface.
@@ -594,70 +594,66 @@ Enjeux :
 %	\item Analytiques : limité aux surfaces de degré algébrique très bas (\eg quadriques)
 %	\item (Implicitisation (approchée) : )
 	\item \anglais{Lattice}.\\
-	Les méthodes de ce type consistent à calculer les intersections entre un réseau de \textit{courbes} iso-paramétriques d'un carreau et la \textit{surface} de l'autre carreau \cite{rossignac1987}. 
+	Les méthodes de ce type consistent à calculer les intersections entre un réseau d'\textit{arcs} iso-paramétriques d'un carreau et la \textit{surface} de l'autre carreau \cite{rossignac1987}. 
 	Les points d'intersection obtenus sont ensuite connectés pour former les différentes courbes d'intersection. 
 	Cette approche, qui présente l'avantage de réduire la complexité du problème, nécessite toutefois de choisir une résolution suffisamment fine pour le réseau des courbes iso-paramétriques afin de capturer correctement la topologie l'intersection. 
 	En effet, si cette résolution est trop grossière, la méthode peut échouer à détecter certains détails tels que des points de contact isolés ou des petites boucles, qui apparaissent lorsque les carreaux s'intersectent de façon tangentielle ou quasi-tangentielle.
 	
 	\item Subdivision.\\
 	Le principe de cette approche est de subdiviser de manière récursive le problème d'intersection original en plusieurs sous-problèmes --- typiquement des intersections de régions planes (\eg triangles) --- pour chacun desquels on peut aisément trouver la solution \cite{houghton1985}. 
-	Ce type de méthodes produit ainsi un ensemble de segments de la courbe d'intersection, qui doivent également être connectés pour en former les branches. 
+	Ce type de méthodes produit ainsi un ensemble de segments, qui doivent également être connectés pour les courbes d'intersection. 
 	Si la position des points d'intersection ainsi calculés peut être corrigée a posteriori afin de les ramener sur la véritable intersection des carreaux, les approximations utilisées ne garantissent pas la restitution exacte de la topologie de la courbe d'intersection, en particulier dans des cas d'intersections tangentielles ou quasi-tangentielles (illustration faux positif/faux négatif).
-	Par ailleurs, le niveau élevé de précision requis par la plupart des applications en CAO nécessite un nombre de subdivisions souvent prohibitif, ce qui disqualifie les méthodes reposant uniquement sur la subdivision.
+	Par ailleurs, le niveau élevé de précision requis nécessite un nombre de subdivisions souvent prohibitif, ce qui disqualifie les méthodes reposant uniquement sur la subdivision.
 	%Toutefois, la combinaison de techniques de subdivision adaptative à d'autres méthodes locales de haute précision --- comme les méthodes dites de \textit{suivi} --- permet de concevoir des algorithmes de calcul d'intersection plus efficaces.
 	%Les techniques de subdivision adaptative peuvent toutefois être utilisées 
 
 	\item Suivi (\anglais{Marching}).\\
-	Les méthodes dites de suivi cherchent dans un premier temps à trouver un point sur chaque branche de la courbe d'intersection. 
-	Ensuite, elles procèdent au tracé de ces branches en marchant dans une direction indiquée par la géométrie différentielle locale de la courbe. 
-	Afin d'identifier toutes les composantes connexes de la courbe d'intersection, il suffit de trouver les points où les branches ouvertes rencontrent le bord d'un des carreaux, ainsi que les paires de points critiques où les carreaux ont des directions normales parallèles.
-	En effet, à chaque branche fermée de la courbe d'intersection est associée une telle paire de points \cite{sederberg1989}.
-	En outre, tous les points singuliers de la courbe d'intersection (points de contact isolés, points \guillemets{doubles}, points de branchement) sont également des points critiques.
+	Les méthodes dites de suivi cherchent dans un premier temps à trouver un point sur chaque courbe d'intersection. 
+	Ensuite, elles procèdent au tracé de ces courbes en marchant dans une direction indiquée par la géométrie différentielle locale. 
+	Certains points particuliers sont utilisés comme point départ pour le tracé.
+	\begin{definition}\label{def:points_critiques}
+		Deux points $\p_1$ et $\p_2$ reposant respectivement sur les carreaux $\carreau_1$ et $\carreau_2$ forment une paire de \emph{points critiques} si, pour $i = 1,2$,
+		\begin{equation}
+			\crossprod{ \unv_{\carreau_i}\!(\p_i) }{(\p_1 - \p_2)} = \vit{0}.
+		\end{equation}
+		(Ce sont en effet des points critiques (au sens où le gradient s'y annule) pour la fonction $(\p_1, \p_2) \mapsto \normtwo{\p_1 - \p_2}^2$. 
+		\cite{yamaguchi1998} caractérise ces points et donne un algorithme pour tous les trouver.)
+	\end{definition}
+	Afin d'identifier toutes les composantes de l'intersection, il suffit ainsi de trouver les points d'intersection situés sur le bord d'au moins un des deux carreaux (d'où partent les segments ouverts), ainsi que les paires de points critiques. 
+	En effet, à chaque boucle fermée de l'intersection est associée une telle paire de points \cite{sederberg1989}.
+	Enfin, tous les points singuliers de la courbe d'intersection (points de contact isolés, points \guillemets{doubles}, points de branchement) sont également des points critiques. \par
+	La plupart des méthodes de suivi formulent l'étape de tracé comme un problème de Cauchy. 
+	Elles peuvent alors échouer si
 	\begin{itemize}
-		\item trouver toutes les branches, sans doublons
+		\item le pas choisi est trop grand et entraîne 
 		\begin{itemize}
-			\item bords, points critiques
+			\item un saut (\anglais{jumping}) sur une autre courbe d'intersection proche ;
+			\item une marche-arrière (\anglais{backtracking}) si la courbe prend un virage serré ;
 		\end{itemize}
-		\item tracer (problème de Cauchy) avec un pas adéquat pour éviter saut/\anglais{jumping}, (\anglais{looping}) et marche-arrière /\anglais{backtracking} et s'arrêter au bon endroit
+		\item un point de branchement est rencontré ou traversé (multiples directions tangentielles)
 	\end{itemize}
+	Enfin, il est nécessaire de tester à chaque pas la proximité des points de départ afin de trouver la bonne extrémité et ainsi déterminer où le tracé de la courbe doit prendre fin.
 \end{enumerate}
-%pas de paramétrisation explicite (définition procédurale), méthode de Hohmeyer revisitée
-%
-%\begin{enumerate}
-%	\item Subdivision : découper chaque surface en surfaces plus simple (\eg triangles) 
-%	\item 
-%\end{enumerate}
-
-\par\bigskip
-
-\begin{definition}
-	Deux points $\p_1$ et $\p_2$ reposant respectivement sur les carreaux $\Sigma_1$ et $\Sigma_2$ forment une paire de \emph{points critiques} si, pour $i = 1,2$,
-	\begin{equation}
-		\crossprod{ \unv_{\Sigma_i}\!(\p_i) }{(\p_1 - \p_2)} = \vit{0}.
-	\end{equation}
-	(Ce sont en effet des points critiques (au sens où le gradient s'y annule) pour la fonction $(\p_1, \p_2) \mapsto \normtwo{\p_1 - \p_2}^2$.)
-\end{definition}
-\cite{yamaguchi1998} caractérise ces points (avec une autre fonction distance) et donne un algorithme pour tous les trouver
 
 
 
 
-\subsection{Présentation/Vue d'ensemble/Caractéristiques de la méthode retenue}
-Adaptation de la méthode préentée dans \cite{hohmeyer1992}, qui est centrée autour du théorème suivant
+\subsection{Méthode retenue}
+Adaptation de la méthode présentée dans \cite{hohmeyer1992}, qui est centrée autour du théorème suivant
 
 \begin{theoreme}[Hohmeyer]
 	\label{theo:detection_boucles_hohmeyer}
-	Soient $\Sigma_1$ et $\Sigma_2$ deux carreaux de continuité $\contdiff{1}$ dont les directions normales sont respectivement contenues dans les ensembles $\mathcal{N}_1$ et $\mathcal{N}_2$. \\
+	Soient $\carreau_1$ et $\carreau_2$ deux carreaux de continuité $\contdiff{1}$ dont les directions normales sont respectivement contenues dans les ensembles $\mathcal{N}_1$ et $\mathcal{N}_2$. \\
 	S'il existe deux vecteurs $\vrm{p}_1$ et $\vrm{p}_2$ tels que, 
 	pour tout $\unv_1 \in \mathcal{N}_1$ et pour tout $\unv_2 \in \mathcal{N}_2$,
 	\begin{align}
 		\dotprod{ \vrm{p}_1 }{ \unv_1 } > 0 &\text{\quad et\quad} \dotprod{ \vrm{p}_1 }{ \unv_2 } < 0, \label{eq:hohmeyer_separation}\\
 		\dotprod{ \vrm{p}_2 }{ \unv_1 } > 0 &\text{\quad et\quad} \dotprod{ \vrm{p}_2 }{ \unv_2 } > 0, \label{eq:hohmeyer_hemisphere}
 	\end{align}
-	alors $\Sigma_1 \cap \Sigma_2$ n'est composée que de 
+	alors $\carreau_1 \cap \carreau_2$ n'est composée que 
 	\begin{itemize}
-		\item points isolés situés sur le bord des carreaux ;
-		\item segments ouverts qui ne contiennent ni point double ni point de branchement.
+		\item de points isolés situés sur le bord des carreaux ;
+		\item et/ou de segments ouverts qui ne contiennent ni point double ni point de branchement.% en leur intérieur.
 	\end{itemize}
 	En outre, la direction tangente $\bt$ d'un tel segment vérifie en tout point
 	\begin{equation}
@@ -672,11 +668,11 @@ Adaptation de la méthode préentée dans \cite{hohmeyer1992}, qui est centrée 
 
 
 Géométriquement, ce théorème peut s'interpréter de la manière suivante. 
-D'une part, l'\autoref{eq:hohmeyer_separation} stipule que les ensembles $\mathcal{N}_1$ et $\mathcal{N}_2$ sont strictement séparables par un plan (passant par l'origine et orthogonal à $\vrm{p}_1$). 
-D'autre part, l'\autoref{eq:hohmeyer_hemisphere} indique que $\mathcal{N}_1$ et $\mathcal{N}_2$ sont strictement contenus dans un même hémisphère (centré sur l'origine et centré autour du pôle $\vrm{p}_2$). 
+D'une part, \eqref{eq:hohmeyer_separation} stipule que les ensembles $\mathcal{N}_1$ et $\mathcal{N}_2$ sont strictement séparables par un plan (passant par l'origine et orthogonal à $\vrm{p}_1$). 
+D'autre part, \eqref{eq:hohmeyer_hemisphere} indique que $\mathcal{N}_1$ et $\mathcal{N}_2$ sont strictement contenus dans un même hémisphère (centré sur l'origine et ayant pour pôle $\vrm{p}_2$). 
 Le \autoref{theo:detection_boucles_hohmeyer} donne ainsi une condition suffisante pour garantir que deux carreaux ne s'intersectent pas en une boucle fermée. 
-Dans cette situation tous les points nécessaires à la détection de tous les éléments d'intersection (non singuliers) peuvent être trouvés en intersectant les bords de chaque carreau avec la surface de l'autre. 
-De plus, l'\autoref{eq:hohmeyer_monotone} simplifie et garantit la validité du tracé des segments d'intersection. [\ldots]
+Dans cette situation les points nécessaires à la détection de tous les éléments d'intersection peuvent être trouvés en intersectant les bords de chaque carreau avec la surface de l'autre. 
+%De plus, l'\autoref{eq:hohmeyer_monotone} simplifie et garantit la validité du tracé des segments d'intersection. [\ldots]
 %En effet, comme décrit dans \cite[Section~3.4]{hohmeyer1992}, le produit scalaire $\dotprod{ \bx }{ (\crossprod{ \vrm{p}_1 }{ \vrm{p}_2 }) }$ 
 %%\begin{equation}
 %%	w \defini{=} \dotprod{\bx}{\vrm{p}},
@@ -684,50 +680,46 @@ De plus, l'\autoref{eq:hohmeyer_monotone} simplifie et garantit la validité du 
 %évolue de façon monotone le long du segment, ce qui permet d'éviter le phénomène de marche-arrière lorsqu'il est choisit comme paramètre.
 
 
-
+\subsubsection{Détection des courbes d'intersection}
 \begin{enumerate}
-	\item Détection des branches (composantes connexes) de la courbe d'intersection
-	\begin{enumerate}
-		\item Subdivision récursive des carreaux en régions qui
-		\begin{itemize}
-			\item sont clairement disjointes (test de séparation de volumes englobants \cite{eberly1999})
-			\item ou bien s'intersectent de façon tangentielle
-			\item ou bien ne peuvent pas s'intersecter en une boucle (critère d'élimination des boucles basé sur les enveloppes des normales basé sur le \autoref{theo:detection_boucles_hohmeyer})
-		\end{itemize}
-		\item Intersection entre les bords d'une région et la surface de l'autre, et vice versa (intersection arc-carreau)
-		\item Subdivision récursive en régions qui
-		\begin{itemize}
-			\item sont clairement disjointes
-			\item ne s'intersectent qu'en un seul segment transverse (pas de singularité), que l'on peut tracer sans ambiguïté (pas de saut d'une branche à l'autre)
-		\end{itemize}
-	\end{enumerate}
+	\item Subdivision récursive (voir \autoref{flowchart:intersect_surface_pair}) des carreaux en régions qui
+	\begin{itemize}
+		\item sont clairement disjointes (test de séparation de volumes englobants convexes \cite{eberly1999})
+		\item ou bien s'intersectent de façon tangentielle
+		\item ou bien ne peuvent pas s'intersecter en une boucle (critère d'élimination des boucles basé sur les enveloppes des normales avec recherche de paire de points critiques, \cf \autoref{theo:detection_boucles_hohmeyer})
+	\end{itemize}
 	
+	\item Subdivision récursive (voir \autoref{flowchart:intersect_simple_surfaces}) en régions qui ne s'intersectent qu'en un seul segment transverse (pas de point de branchement excepté aux extrémités), que l'on peut tracer sans ambiguïté (pas de saut d'une courbe à l'autre)\\
+	$\to$ intersection entre les bords d'une région et la surface de l'autre, et vice versa (intersection arc-carreau) (voir \autoref{flowchart:intersect_curve_surface})\\
+	$\to$ subdivision récursive de l'arc et du carreau en régions qui
+	\begin{itemize}
+		\item sont clairement disjointes
+		\item ou bien ne s'intersectent qu'en un point
+	\end{itemize}
+\end{enumerate}
 
-	\item Représentation des courbes d'intersection
+\subsubsection{Représentation des courbes d'intersection}
+\begin{enumerate}
+	\item le degré algébrique ainsi que le genre topologique des courbes solutions du système \eqref{eq:intersection_2_carreaux} augmentent tellement vite avec le degré des polynômes $\bs_i$ qu'il n'est pas envisageable de les représenter par des arcs paramétriques polynomiaux (\eg la courbe d'intersection de deux carreaux bi-cubiques est de degré 324 et de genre topologique 433 \cite{katz1988}).
+	\item on a tout de même besoin d'un type de représentation permettant une évaluation précise des courbes d'intersection
+	\item (compte tenu du niveau de précision exigé, une approximation paramétrique polynomiale globale ou \piecewise\ (spline) nécessiterait un volume excessif de données)
+	\item on choisit donc d'adopter une représentation \textit{procédurale} (comme décrit dans \cite{hohmeyer1992})
 	\begin{enumerate}
-		\item le degré algébrique ainsi que le genre topologique des courbes solutions du système \eqref{eq:intersection_2_carreaux} augmentent tellement vite avec le degré des polynômes $\bs^i$ qu'il n'est pas envisageable de les représenter par des arcs paramétriques polynomiaux (\eg la courbe d'intersection de deux carreaux bi-cubiques est de degré 324 et de genre topologique 433 \cite{katz1988}).
-		\item on a tout de même besoin d'un type de représentation permettant une évaluation précise des courbes d'intersection
-		\item (compte tenu du niveau de précision exigé, une approximation paramétrique polynomiale globale ou \piecewise\ (spline) nécessiterait un volume excessif de données)
-		\item on choisit donc d'adopter une représentation \textit{procédurale}
-		\begin{enumerate}
-			\item approximation linéaire par morceaux (polyligne) $(x,y,z,u_1,v_1,u_2,v_2)$
-			\item on peut évaluer précisément n'importe quel point sur la courbe en évaluant d'abord la polyligne puis en raffinant le résultat de façon itérative (projection sur la véritable intersection)
-			\item[$\Rightarrow$] un faible volume de données est stocké mais permet d'évaluer la courbe avec une précision arbitraire
-		\end{enumerate}
+		\item approximation linéaire par morceaux (polyligne) $(x,y,z,u_1,v_1,u_2,v_2)$
+		\item on peut évaluer précisément n'importe quel point sur la courbe en évaluant d'abord la polyligne puis en raffinant le résultat de façon itérative (projection sur la véritable intersection)
+		\item[$\Rightarrow$] un faible volume de données est stocké mais permet d'évaluer la courbe avec une précision arbitraire
 	\end{enumerate}
+\end{enumerate}
 	
 	
-	\item Tracé des courbes d'intersection
-	\begin{enumerate}
-		\item le critère d'élimination des boucles assure la monotonie de la paramétrisation de chaque segment d'intersection (pas de marche-arrière)
-		\item problème aux limites (on connaît les deux extrémités du segment avant même de tracer la courbe) au lieu de problème de Cauchy (de valeurs initiales)
-	\end{enumerate}
+\subsubsection{Tracé des courbes d'intersection}
+\begin{enumerate}
+	\item via \eqref{eq:hohmeyer_monotone}, le critère d'élimination des boucles fournit une paramétrisation monotone pour chaque segment d'intersection $\Rightarrow$ pas de marche-arrière ;
+	\item problème \textit{aux limites} (on connaît les deux extrémités du segment avant même de tracer la courbe) $\Rightarrow$ pas besoin d'interroger toutes les extrémités candidates
 \end{enumerate}
 
 
-\par\bigskip
-
-Apports/modifications
+\subsubsection{Apports/modifications}
 \begin{enumerate}
 	\item représentation des polynômes dans les bases de Bernstein \textit{et} Chebyshev (pour les arcs et carreaux) $\to$ on tire parti des avantages de chaque base pour les différentes étapes de l'algorithme :
 	\begin{itemize}
@@ -742,18 +734,18 @@ Apports/modifications
 			\begin{itemize}
 				\item recherche/raffinement d'un point d'intersection arc-carreau
 				\item recherche/raffinement d'une paire de points critiques
-				\item raffinement d'un point d'intersection (entre 2 ou 3 carreaux)
+				\item raffinement d'un point d'intersection (entre 2 carreaux lors du tracé des courbes ou entre 3 carreaux pour scinder les courbes en segments quasi-disjoints)
 			\end{itemize}
 			\item[+] orthogonalité $\to$ économisation
-			\item[+] FFT $\to$ (calcul du carreau pseudo-normal?)
+			\item[+] FFT $\to$ calcul du carreau pseudo-normal (dérivation analytique dans l'espace spectral, \anglais{zero-padding} et transformation inverse sur la grille CGL de taille $(2M - 1) \times (2N - 1)$, produit vectoriel dans l'espace physique, transformation directe et économisation)
 			\item[$\Rightarrow$] utilisée pour décrire le carreau/arc \guillemets{racine}
 		\end{itemize}
-		\item changement de base par un produit matrice vecteur, matrice de passage donnée par \cite{rababah2003}
+		\item changement de base par un produit matrice vecteur, matrice de passage donnée par \cite{rababah2003}, discussion sur l'implémentation (complexité CPU/mémoire, overflow des factorielles en integer, \ldots)
 		\item on dérive des techniques pour les deux bases et pour les arcs et carreaux
 		\begin{enumerate}
 			\item extraction d'un bord de carreau sous la forme d'un arc
 			\item subdivision : De Casteljau/\guillemets{Reparamétrisation affine}, généralisation de \cite{fournier1994} (cas particulier degré 3 et subdivision au milieu, \ie $u = v = 0$), à mettre en annexe
-			\item boîtes englobantes orientées : heuristiques, \cite{munkberg2010} (Bernstein) et extension de \cite{campagna1997} (Chebyshev), à mettre en annexe et comparer complexité de construction et volume des boîtes)
+			\item boîtes englobantes orientées : heuristiques, \cite{munkberg2010} (Bernstein) et extension de \cite{campagna1997} (Chebyshev), à mettre en annexe et comparaison complexité de construction/volume des boîtes)
 		\end{enumerate}
 	\end{itemize}
 \end{enumerate}
@@ -829,9 +821,9 @@ Entrée : vecteur position $\bx_{i,j}^{(k)}$ et vitesse normale $\nu_{i,j}^{(k)}
 \subsubsection{Discrétisation de la pseudo-EdS d'une arête \brep\ convexe}%d'un arc de courbe}
 \begin{enumerate}
 	\item \cf \autoref{section:parametrisation_pseudo_EdS_arete}
-	\item paramétrisation polynomiale
+	\item paramétrisation polynomiale du carreau
 	\begin{enumerate}
-		\item[$\Rightarrow$] approximation (remarque sur les paramétrisations rationnelles exactes \cite{peternell1997})
+		\item[$\Rightarrow$] approximation nécessaire (remarque sur les paramétrisations rationnelles exactes \cite{peternell1997})
 		\item[$\Rightarrow$] degré à choisir
 	\end{enumerate}
 	\item décrire l'échantillonnage de la courbe d'intersection ($\Right{\bp}$, $\Left{\bp}$ et $\bg$) aux n\oe uds CGL pour le paramètre de Hohmeyer $w = \dotprod{\vrm{p}}{\bg}$
@@ -874,13 +866,13 @@ Entrée : vecteur position $\bx_{i,j}^{(k)}$ et vitesse normale $\nu_{i,j}^{(k)}
 
 \subsubsection{Discrétisation de la pseudo-EdS d'un sommet \brep\ non-concave}
 \begin{enumerate}
-	\item polygone sphérique découpé en quadrilatères (\cf \autoref{section:quadrangulation_polygone_spherique})
+	\item polygone sphérique découpé en carreaux non-restreints (\cf \autoref{section:quadrangulation_polygone_spherique})
 	\begin{itemize}
 		\item construction d'un carreau bilinéaire (échantillonnage aux n\oe uds de la grille CGL)
 		\item projection sur la sphère
 		\item[$-$] spectre de Chebyshev plus étalé (degré plus élevé pour une précision donnée)
 	\end{itemize}
-	\item ajustement de carreau sphérique à un nuage de points
+	\item ajustement d'un seul carreau restreint (\cf \autoref{section:ajustement_carreau_spherique})
 	\begin{itemize}
 		\item échantillonnage aux n\oe uds de la grille CGL du carreau obtenu par la méthode décrite dans la \autoref{section:ajustement_carreau_spherique}
 		\item[$+$] spectre de Chebyshev plus compact
@@ -919,7 +911,7 @@ pistes de résolution envisageables
 \begin{enumerate}
 	\item approximation non dégénérée \cite{farouki1986}
 	\item tracé des courbes iso-courbure critique \cite[chap.8]{patrikalakis2009} pour redéfinir les carreaux de surfaces concernés
-	\item redécoupage des carreauxle long des courbes d'auto-intersection \cite{urick2019} 
+	\item redécoupage des carreaux le long des courbes d'auto-intersection \cite{urick2019} \label{item:découpage_carreau_singulier}
 	\begin{itemize}
 		\item élimine les régions problématiques
 		\item produit des nouveaux carreaux non-restreints
@@ -929,4 +921,9 @@ pistes de résolution envisageables
 \end{enumerate}
 
 %bilan : pas de solution simple, reste un gros point faible de l'approche choisie\ldots
-bilan : en l'état actuel, problème non résolu mais idées solutions prometteuses
+En l'état actuel, le problème n'est pas résolu mais on propose des pistes de solutions prometteuses\ldots
+
+\par\bigskip
+\textit{
+	[Bilan du chapitre et transition vers le chapitre suivant\ldots]
+}

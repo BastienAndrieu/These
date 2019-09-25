@@ -1,7 +1,7 @@
-\newcommand{\arc}{\mathcal{A}}%
+\newcommand{\Garc}{\mathcal{A}}%
 \newcommand{\subin}{\ensuremath{_{\mathrm{in}}}}%
 \newcommand{\subout}{\ensuremath{_{\mathrm{out}}}}%
-\newcommand{\noeud}{\mathcal{N}}%
+\newcommand{\Gnoeud}{\mathcal{N}}%
 \newcommand{\cycle}{\mathcal{C}}%
 \newcommand{\graph}{\mathcal{G}}%
 \begin{tikzpicture}[%
@@ -31,15 +31,15 @@
 \node [proc, join] (p1) {Éliminer les branches pendantes de $\graph$};
 \node [test, join] (t1) {$A = \emptyset$ ?};
 
-\node [proc] (startarc) {Choisir un arc $\arc_*$ de $\graph$};
+\node [proc] (startarc) {Choisir un arc $\Garc_*$ de $\graph$};
 
-\node [proc, join] {Démarrer un nouveau cycle $\cycle$ à partir de $\arc_*$};
-\node [proc, join] {$\arc \leftarrow \arc_*$ et\\ $\noeud \leftarrow \dest(\arc)$};
+\node [proc, join] {Démarrer un nouveau cycle $\cycle$ à partir de $\Garc_*$};
+\node [proc, join] {$\Garc \leftarrow \Garc_*$ et\\ $\Gnoeud \leftarrow \dest(\Garc)$};
 
 
-\node [test, join] (t2) {$\noeud = \orig(\arc_*)$?};
+\node [test, join] (t2) {$\Gnoeud = \orig(\Garc_*)$?};
 
-\node [proc] (maxangles) {Identifier $\hi{\alpha}\subin$, $\hi{\alpha}\subout$ et $\hi{\arc}\subout$};
+\node [proc] (maxangles) {Identifier $\hi{\alpha}\subin$, $\hi{\alpha}\subout$ et $\hi{\Garc}\subout$};
 
 
 \node [test, join] (t3) {$\hi{\alpha}\subin > \hi{\alpha}\subout$ ?};
@@ -47,7 +47,7 @@
 
 \node [term, left=of t1, text width=3em] (end) {Fin};
 \node [proc, right=of t2] (completecycle) {Rajouter $\cycle$\\à la liste des cycles\\et l'extraire de $\graph$};
-\node [proc, left=of t3] (appendcycle) {$\arc \leftarrow \hi{\arc}\subout$,\\ $\noeud \leftarrow \dest(\arc)$ et \\ajouter $\arc$ à $\cycle$};
+\node [proc, left=of t3] (appendcycle) {$\Garc \leftarrow \hi{\Garc}\subout$,\\ $\Gnoeud \leftarrow \dest(\Garc)$ et \\ajouter $\Garc$ à $\cycle$};
 
 
 \draw [flow] (t1.west) -- node[above] {oui} (end);

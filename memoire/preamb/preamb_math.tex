@@ -4,8 +4,11 @@
 \usepackage{amsmath}    % amsmath equation env has funny spacing with hyperref :-( so...
 \let\equation\gather \let\endequation\endgather
 \usepackage{amsfonts}
+
+%https://texfaq.org/FAQ-manymathalph
 \newcommand\hmmax{0}
-\newcommand\bmmax{0}
+\newcommand\bmmax{2}
+
 \usepackage{bm}
 \usepackage{mathtools}
 \usepackage{stmaryrd}
@@ -98,15 +101,15 @@ cal=zapfc, calscaled=1.18%,
 \newcommand*{\uvdomain}{\ensuremath{\mathcal{U}}}
 \newcommand*{\wdomain}{\ensuremath{\mathcal{W}}}
 
-\newcommand*{\bx}{\vit{x}}
-\newcommand*{\bu}{\vit{u}}
-\newcommand*{\bd}{\vit{\delta}}
-\newcommand*{\bg}{\vit{\gamma}}
+\newcommand*{\bx}{\bm{x}}
+\newcommand*{\bu}{\bm{u}}
+\newcommand*{\bd}{\bm{\delta}}
+\newcommand*{\bg}{\bm{\gamma}}
 \newcommand*{\bgw}{\bg_{\mkern-2muw}}
-\newcommand*{\bp}{\vit{\psi}}
+\newcommand*{\bp}{\bm{\psi}}
 \newcommand*{\bpw}{\bp_{\mkern-2muw}}
-\newcommand*{\bl}{\vit{\lambda}}
-\renewcommand*{\bs}{\vit{\sigma}} % originally backslash in typewriter font
+\newcommand*{\bl}{\bm{\lambda}}
+\renewcommand*{\bs}{\bm{\sigma}} % originally backslash in typewriter font
 \newcommand*{\bsu}{\bs_{\mkern-3muu}}
 \newcommand*{\bsv}{\bs_{\mkern-2muv}}
 \newcommand{\bt}{\vrm{t}}
@@ -224,7 +227,7 @@ cal=zapfc, calscaled=1.18%,
 %\newcommand*{\influEoS}[2]{\widehat{\influ}^{\!#2}({#1})}      % zone d'influence sur l'EdS
 %\newcommand*{\properEoB}[2]{\influ_*^{\!#2}({#1})}             % EdB propre
 %\newcommand*{\properEoS}[2]{\widehat{\influ}_{*}^{\!#2}({#1})} % EdS propre
-\newcommand*{\eos}{\vit{e}}                                    % paramétrisation de l'EdS (propre)
+\newcommand*{\eos}{\bm{e}}                                    % paramétrisation de l'EdS (propre)
 \newcommand*{\dilation}[2]{{#1}_{\uparrow #2}}                 % "dilatation"
 
 \newcommand*{\envelope}{\mathcal{E}}
