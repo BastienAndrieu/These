@@ -213,7 +213,7 @@ Regrouper les faces et arêtes d'un modèle \brep\ en nappes et crêtes maximale
 Cette représentation, qui était peu pratique pour concevoir un algorithme d'ordre élevé et efficace de propagation d'interface, s'avère maintenant être un outil intéressant pour imposer au maillage un nombre minimal de contraintes topologiques.\par
 On décrit dans les paragraphes suivants les procédures permettant de construire explicitement le modèle maximal à partir des entités du modèle \brep.
 
-\subsubsection{Assemblage des faces en nappes maximales}
+\subsubsection{Assemblage des faces \brep\ en nappes maximales}
 Pour constituer les nappes maximales, on procède de la manière suivante. 
 On commence par marquer toutes les faces du modèle \brep\ comme \textit{non-visitées}. 
 Ensuite, pour chaque face non-visitée, on initialise une nouvelle nappe vide que l'on remplit en suivante la procédure récursive décrite par l'\autoref{algo:assembler_nappe}.
@@ -254,7 +254,7 @@ On considère que le sommet commun de ces arêtes est un pic si l'angle entre le
 
 
 
-\subsubsection{Assemblage des arêtes vives en crêtes maximales}
+\subsubsection{Assemblage des arêtes \brep\ vives en crêtes maximales}
 Afin d'en simplifier le parcours, on donne une orientation consistante aux crêtes. 
 Pour cela, on conçoit une crête comme une suite de \textit{co-arêtes}.
 \par

@@ -381,7 +381,7 @@ quadrature de Clenshaw-Curtis)\par
 
 En posant $x = \cos\theta$, il vient, d'après \eqref{eq:chebyshev_trigo},
 \begin{equation}
-	T_n'(x) := \dfdx{T_n(x)}{x} = \frac{n \sin n\theta}{\sin \theta}.
+	T_n'(x) \defini{=} \dfdx{T_n(x)}{x} = \frac{n \sin n\theta}{\sin \theta}.
 \end{equation}
 
 Ainsi, de l'identité $2 \cos n \theta \sin \theta = \sin(n+1)\theta - \sin(n-1)\theta$, on peut déduire la relation 
@@ -394,7 +394,7 @@ pour $n \geq 2$.
 Soit $f \in \contdiff{k}\chebinterval$.
 On approche la dérivée $k$-ième $\deriv{f}{k}$ de $f$ par la dérivée $k$-ième du polynôme d'interpolation $\interpolant{f}{N}$
 \begin{equation}
-	\interpderiv{f}{N}{k} := \deriv{ \left( \interpolant{f}{N} \right) }{k}.
+	\interpderiv{f}{N}{k} \defini{=} \deriv{ \left( \interpolant{f}{N} \right) }{k}.
 	\label{eq:chebyshev_def_interpderiv}
 \end{equation}
 En général, les opérations de dérivation et d'interpolation ne commutent pas, \ie
@@ -475,7 +475,7 @@ Un moyen simple de remédier à ce problème consiste à mettre à zéro les coe
 \label{section:clenshaw_curtis_quadrature}
 La primitive de $\interpolant{f}{N}$ qui s'annule en $-1$
 \begin{equation}
-	\interpprim{f}{N} := x \mapsto \int_{-1}^{x} \interpolant{f}{N}(t) \dx{t}
+	\interpprim{f}{N} \defini{=} x \mapsto \int_{-1}^{x} \interpolant{f}{N}(t) \dx{t}
 \end{equation}
 
 est un polynôme de degré $N+1$
@@ -679,7 +679,7 @@ Dans cette situation tous les points nécessaires à la détection de tous les �
 De plus, l'\autoref{eq:hohmeyer_monotone} simplifie et garantit la validité du tracé des segments d'intersection. [\ldots]
 %En effet, comme décrit dans \cite[Section~3.4]{hohmeyer1992}, le produit scalaire $\dotprod{ \bx }{ (\crossprod{ \vrm{p}_1 }{ \vrm{p}_2 }) }$ 
 %%\begin{equation}
-%%	w := \dotprod{\bx}{\vrm{p}},
+%%	w \defini{=} \dotprod{\bx}{\vrm{p}},
 %%\end{equation}
 %évolue de façon monotone le long du segment, ce qui permet d'éviter le phénomène de marche-arrière lorsqu'il est choisit comme paramètre.
 

@@ -246,10 +246,10 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 \begin{enumerate}
 	\item distinguer propagation d'une onde et d'une interface entre deux milieux matériels (l'une peut s'auto-intersecter, l'autre non) $\to$ condition d'entropie
 	%\item formaliser la notion d'enveloppe des sphères $\EdS{\interface}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère) $\to$ système d'équations avec $\implicitsphere_{\rho} : (\bx,\p) \mapsto \normtwo{\bx - \p}^2 - \rho^2(\p)$
-	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} := \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
+	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} \defini{=} \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
 	\item formaliser la notion d'enveloppe des sphères (EdS) $\EdS{H \subseteq \interface}{\rho}$ (surface tangente à toutes les sphères et en tout point tangente à une sphère)
-	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} := \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
-	\item formaliser la notion d'enveloppe des boules (EdB) $\EdB{H \subseteq \interface}{\rho} := \boundary{ \left( \ball{H}{\rho} \right) }$
+	%\item formaliser la notion d'enveloppe des boules $\EdB{\interface}{\rho} \defini{=} \boundary{\left\{\solide \cup \sphere[\interface][\rho]\right\}}$
+	\item formaliser la notion d'enveloppe des boules (EdB) $\EdB{H \subseteq \interface}{\rho} \defini{=} \boundary{ \left( \ball{H}{\rho} \right) }$
 	\item si $H \subseteq \interface$ est une variété sans bord alors $\EdB{H}{\rho}  = \EdBplus{H}{\rho} \cup \EdBmoins{H}{\rho}$ où $\EdBplus{H}{\rho} \subset \complement{\solide}$ et $\EdBmoins{H}{\rho} \subset \solide$ (car $\rho > 0$) \textit{(illustrer)}\\
 	$\Rightarrow$ en particulier, $\EdB{\interface}{\rho}  = \EdBplus{\interface}{\rho} \cup \EdBmoins{\interface}{\rho}$
 	
@@ -257,11 +257,11 @@ Le principe de Huygens permet de décrire de nombreux phénomènes analogues à 
 	\item donner définition implicite de l'EdB :\\
 	on pose 
 	\[
-		\implicitsphere(\bx, \p) := \normtwo{\bx - \p}^2 - \rho(\p)^2,
+		\implicitsphere(\bx, \p) \defini{=} \normtwo{\bx - \p}^2 - \rho(\p)^2,
 	\]
 	et, pour $H \subseteq \interface$, 
 	\[
-		\implicitEdB{H}(\bx) := \min_{\p \in H} \implicitsphere(\bx, \p).
+		\implicitEdB{H}(\bx) \defini{=} \min_{\p \in H} \implicitsphere(\bx, \p).
 	\]
 	Alors,
 	\[ 

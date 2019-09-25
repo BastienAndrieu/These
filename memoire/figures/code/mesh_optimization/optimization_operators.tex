@@ -10,15 +10,17 @@
 		y=\imageheight,
 		mesh/.style={draw=black, semithick},
 		label/.style={anchor=south west, inner sep=0},
-		arrow/.style={black!40!white, line width=2.0pt, -stealth}, 
+		optim/.style={mycolor_2, line width=2.0pt},
+		arrow/.style={optim , -stealth}, 
 		move/.style={arrow, shorten <=2pt, shorten >=3pt},
 		swap/.style={arrow, shorten <=1pt, shorten >=1pt},
-		collapse/.style={arrow, -stealth, shorten <=2pt, shorten >=3pt},
+		%collapse/.style={arrow, shorten <=2pt, shorten >=3pt},
+		collapse/.style={optim, dashed},
 		before/.style={draw=black!30!white, dashed, thin},
 		vertex/.style={fill=black, draw=none, circle, scale=0.3, inner sep=0},
 	]
 		\input{figures/code/mesh_optimization/optimization_operators_tikzcode.tex}
 	\end{tikzpicture}
-	\caption{\ldots}
+	\caption{Opérations élémentaires d'optimisation de maillage surfacique. (a) Maillage initial. (b) Bouger de n\oe ud. (c) Bascule d'arête. (d) Contraction d'arête. (e) Scission d'arête (insertion de n\oe ud).}
 	\label{fig:operations_locales_optimisation_maillage}
 \end{figure}

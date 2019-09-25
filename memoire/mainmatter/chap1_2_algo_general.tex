@@ -58,9 +58,9 @@ Dans ce chapitre, on explicite chaque étape de l'algorithme mais les détails d
 définitions : 
 \begin{itemize}
 	\item \textit{zone d'influence}\footnote{\label{note_vocabulaire_notation}vocabulaire et notation à préciser \ldots} de $H \subseteq \interface$ sur l'EdB  (lieu des points de tangence entre $\EdB{\interface}{\rho}$ et $\sphere[H][\rho]$)
-	\[ \influEdB{H}{\rho} := \EdB{\interface}{\rho} \cap \sphere[H][\rho] \]
+	\[ \influEdB{H}{\rho} \defini{=} \EdB{\interface}{\rho} \cap \sphere[H][\rho] \]
 	\item \textit{EdS propre}\footref{note_vocabulaire_notation} de $H \subseteq \interface$ 
-	\[ \EdSpropre{H}{\rho} := \closure{ {\EdS{H}{\rho} \setminus \EdS{\boundary{H}}{\rho}} } \]
+	\[ \EdSpropre{H}{\rho} \defini{=} \closure{ {\EdS{H}{\rho} \setminus \EdS{\boundary{H}}{\rho}} } \]
 \end{itemize}
 arguments :
 \begin{enumerate}
@@ -96,7 +96,7 @@ arguments :
 	\begin{proof}
 		?
 %		Soient $G$ et $H$ deux régions non-vides de $\interface$ dont l'intersection est de dimension strictement inférieure à 2.
-%%On note $G' := \properEoS{G}{\rho} = \levelset_G^{-1}(0)$, $H' := \properEoS{H}{\rho} = \levelset_H^{-1}(0)$ et $\Gamma := G' \cap H'$.
+%%On note $G' \defini{=} \properEoS{G}{\rho} = \levelset_G^{-1}(0)$, $H' \defini{=} \properEoS{H}{\rho} = \levelset_H^{-1}(0)$ et $\Gamma \defini{=} G' \cap H'$.
 	\end{proof}
 	
 	%\item Ces courbes d'intersection servent ensuite de support pour les arêtes du modèle \brep\ de l'EdB : elles en fournissent la définition géométrique ainsi que les relations d'adjacences entre carreaux, qui 
@@ -477,7 +477,7 @@ Dans un premier temps, on suppose que $\rho$ est uniforme sur $\Sigma$.
 	\begin{itemize}
 		\item on note $\vrm{q} = \unitized{\sum_{i=1}^{m-1} \unv_i}$ et $\vrm{m}_i = \unitized{\unv_i + \unv_{\iplus}}$
 		\item on construit $m$ carreaux sphériques $\left\{ \pseudoEdS{\brepvertex}{\rho}[i] \right\}_{i = 1, \ldots, m-1}$ dont les \guillemets{pics} sont $\vrm{q}$, $\vrm{m}_{\imoins}$, $\unv_i$ et $\vrm{m}_i$ (voir \autoref{fig:pseudo_EdS_sommet_quadpoly} droite)
-		\item avec $\iplus := (i+1)\bmod{m}$ et $\imoins := (i-1)\bmod{m}$
+		\item avec $\iplus \defini{=} (i+1)\bmod{m}$ et $\imoins \defini{=} (i-1)\bmod{m}$
 	\end{itemize}
 	\item dans les deux cas, les carreaux sphériques sont construits en projetant sur $\sphere[\v][\rho]$ le carreau bilinéaire qui interpole ses pics
 	\begin{align}
@@ -577,7 +577,7 @@ On suppose maintenant que $\rho$ peut varier continument sur $\Sigma$.
 \begin{enumerate}
 	\item on cherche alors à construire le carreau paramétrique restreint $\pseudoEdS{\brepvertex}{\rho} = (\uvdomain, \eos^{\brepvertex})$
 	\begin{enumerate}
-		\item on trouve une paramétrisation $\eos^{\brepvertex}$ d'un carreau $\Sigma_{\brepvertex} := \eos^{\brepvertex}(\intervalLoHi{u} \times \intervalLoHi{v})$ vérifiant $\pseudoEdS{\brepvertex}{\rho} \subset \Sigma_{\brepvertex}$
+		\item on trouve une paramétrisation $\eos^{\brepvertex}$ d'un carreau $\Sigma_{\brepvertex} \defini{=} \eos^{\brepvertex}(\intervalLoHi{u} \times \intervalLoHi{v})$ vérifiant $\pseudoEdS{\brepvertex}{\rho} \subset \Sigma_{\brepvertex}$
 		\item on détermine les courbes de restriction du domaine paramétrique $\uvdomain \subset \intervalLoHi{u} \times \intervalLoHi{v}$ (\ie la trace des arcs caractéristiques limites dans l'espace paramétrique de $\Sigma_{\brepvertex}$)
 	\end{enumerate}
 	
