@@ -89,7 +89,7 @@ Dans cette thèse,
     
     \item Dans cette thèse, on ne s'intéresse pas tant à la génération du maillage initial %(de nombreuses méthodes qui portent sur ce sujet ont déjà fait leurs preuves, y compris dans un contexte de maillage trans-carreaux) 
     qu'à son évolution au cours du temps. 
-	Dresser un bref état de l'art des méthodes de génération de maillage surfacique basé sur un modèle \brep\ nous permet toutefois de cerner les principales problématiques rencontrées lors la déformation d'un tel maillage.
+	Toutefois, dresser un bref état de l'art des méthodes de génération de maillage surfacique basé sur un modèle \brep\ nous permet de cerner les principales problématiques rencontrées lorsqu'on fait évoluer un tel maillage.
 \end{enumerate}
 
 
@@ -194,23 +194,23 @@ Cependant, lorsqu'un maillage est \guillemets{collé} sur le modèle \brep\ dyna
 Considérons dans un premier temps le cas d'un maillage carreau-par-carreau. 
 Un moyen simple de faire évoluer un tel maillage au cours du temps consiste à %figer les coordonnées paramétriques des n\oe uds sur les carreaux qui évoluent. 
 \begin{enumerate}
-	\item mettre à jour la position\footnote{\label{foot:position_uv_xyz}non seulement dans l'espace physique mais également dans les espaces paramétriques des carreaux incidents.} des n\oe uds associés aux sommets ;
-	\item pour chaque arête \brep, régénérer une discrétisation\footref{foot:position_uv_xyz} optimale qui préserve le nombre de n\oe uds ;
+	\item mettre à jour la position\footnote{\label{foot:position_uv_xyz}non seulement dans l'espace physique mais également dans les espaces paramétriques des carreaux incidents.} des n\oe uds associés aux sommets \brep\ ;
+	\item pour chaque arête \brep, régénérer une discrétisation\footref{foot:position_uv_xyz} optimale qui préserve le nombre de n\oe uds (\eg en revisitant la procédure de tracé des polylignes d'intersection, \cf \autoref{trace_courbes_intersection}) ;
 	\item figer les coordonnées paramétriques de tous les autres n\oe uds, dont la position dans l'espace physique évolue alors avec la définition des carreaux sous-jacents.
 \end{enumerate}
-On impose ainsi indirectement au maillage le mouvement de propagation de l'interface. 
+Ainsi, on impose indirectement au maillage le mouvement de propagation de l'interface. 
 %
-En suivant cette approche, si le pas de temps choisi est trop grand (\textit{expliciter contrainte sur le pas de temps}) alors 
+En suivant cette approche, si le pas de temps choisi est trop grand (\textit{expliciter contrainte sur le pas de temps, \cf figure GeoGebra}) alors 
 \begin{itemize}
 	\item certains triangles incidents à la singularité peuvent être inversés ;
 	\item les n\oe uds responsables de ces inversions résident dans des régions des carreaux qui sont désormais inactives, et ne sont donc plus supportés par des faces \brep.
 \end{itemize}
 
 Il est donc nécessaire de resituer ces n\oe uds dans des régions actives, tout en veillant à ce que leurs triangles incidents aient la bonne orientation. 
-Afin de remédier à ce problème, on peut par exemple interpoler le mouvement des n\oe uds du contour de chaque face pour déplacer tous les n\oe uds libres à l'intérieur du nouveau domaine paramétrique de la face (\textit{\cf papier IMR}).
+Afin de remédier à ce problème, on peut par exemple interpoler le mouvement des n\oe uds du contour de chaque face pour placer tous les n\oe uds libres à l'intérieur du nouveau domaine paramétrique de la face (\textit{\cf papier IMR}).
 \par
 Avant de considérer le cas d'un maillage trans-carreau, on passe brièvement en revue les méthodes utilisées pour améliorer la qualité du maillage. 
-En effet, si la validité de ce dernier peut être maintenue de la façon décrite plus haut, sa qualité peut fortement être dégradée au cours de la propagation, jusqu'à compromettre le reste de la simulation numérique.
+En effet, si la validité de ce dernier peut être maintenue de la façon décrite plus haut, sa qualité peut être sévèrement dégradée au cours de la propagation, jusqu'à compromettre le bon déroulement de la simulation numérique.
 
 
 \subsection{Optimisation de maillage surfacique}
@@ -268,7 +268,7 @@ Comme nous l'avons vu dans la \autoref{section:description_surface_G1_piecewise}
 \end{definition}
 
 Ainsi, une nappe maximale correspond à un ensemble connexe et globalement $\contgeom{1}$ de faces \brep. 
-Une crête maximale correspond à un ensemble connexe et globalement $\contgeom{1}$ d'arêtes \brep\ vives, qui est incident à une seule ou deux nappe(s) maximale(s) et est délimitée par zéro, un ou deux pic(s).
+Une crête maximale correspond à un ensemble connexe et globalement $\contgeom{1}$ d'arêtes \brep\ vives, qui est incident à une ou deux nappe(s) maximale(s) et est délimitée par zéro, un ou deux pic(s).
 Enfin, un pic correspond à un sommet \brep\ (vif), et représente l'extrémité d'une ou plusieurs crêtes maximales.\par
 %Dans la suite on ne considèrera que des nappes et crêtes maximales.
 %On omettra donc le qualificatif \textit{maximal} afin d'alléger le propos.
@@ -404,11 +404,11 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 
 
 \subsection{Liens entre maillage trans-carreaux et modèle maximal}
-On choisit donc de conformer le maillage au modèle maximal de $\interfacebrep$, \ie
+On choisit donc de conformer le maillage $\maillage$ au modèle maximal de $\interfacebrep$, \ie
     \begin{itemize}
-        \item chaque pic est représenté par un n\oe ud ;
-        \item chaque crête maximale est représentée par une \textit{chaîne} de n\oe uds connectés par une suite d'arêtes ayant la même topologie (\ie mêmes connexité et nombre d'extrémités) ;
-        \item chaque nappe maximale est représentée par un ensemble de triangles ayant la même topologie (\ie mêmes connexité, genre et nombre de bords) ;
+        \item chaque pic de $\interfacebrep$ est représenté par un n\oe ud de $\maillage$ ;
+        \item chaque crête maximale de $\interfacebrep$ est représentée par une \textit{chaîne} de n\oe uds de $\maillage$ connectés par une suite d'arêtes ayant la même topologie (\ie mêmes connexité et nombre d'extrémités) ;
+        \item chaque nappe maximale de $\interfacebrep$ est représentée par un ensemble de triangles de $\maillage$ ayant la même topologie (\ie mêmes connexité, genre et nombre de bords) ;
         \item puisque le modèle maximal ne fournit aucune nouvelle définition géométrique, chaque n\oe ud est toujours repéré sur des entités \brep\ (contenues dans l'entité maximale à laquelle est associé le n\oe ud) :
         \begin{itemize}
             \item un n\oe ud reposant sur un pic pointe vers le sommet \brep\ qui représente ce pic et, (comme ce dernier) est repéré par ses coordonnées $(u,v)$ dans chacune des faces incidentes ;%\footnote{Objet \texttt{intersection point}} ;
