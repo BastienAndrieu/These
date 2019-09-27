@@ -402,7 +402,7 @@ On a obtenu toutes les crêtes fermées une fois que chaque arête vive a été 
 	\end{algorithmic}
 \end{algorithm}
 
-
+> > > > > > > > > NOTES ``Classification maillage sur BRep dynamique''
 \subsection{Liens entre maillage trans-carreaux et modèle maximal}
 On choisit donc de conformer le maillage $\maillage$ au modèle maximal de $\interfacebrep$, \ie
     \begin{itemize}
@@ -443,7 +443,7 @@ Dans l'algorithme présenté au \autoref{chap:algo_general},
 	\item Chaque carreau $\instant{\carreau}{i}$ de $\instant{\brepbody}{i}$ engendre $n$ carreaux de $\instant{\brepbody}{i+1}$, où
 	\begin{itemize}
 		\item $n > 1$ si $\instant{\carreau}{i}$ devient localement singulier entre les instants $\instant{t}{i}$ et $\instant{t}{i+1}$ (\cf \autoref{item:découpage_carreau_singulier})
-		\item $n = 0$ si aucune face de $\instant{\brepbody}{i}$ n'est supportée par $\instant{\brepbody}{i}$ ;
+		\item $n = 0$ si aucune face de $\instant{\brepbody}{i}$ n'est supportée par $\instant{\carreau}{i}$ ;
 		\item $n = 1$ dans le cas général.
 	\end{itemize}
 	
@@ -478,6 +478,13 @@ Dans l'algorithme présenté au \autoref{chap:algo_general},
     \end{itemize}
 	
 \end{enumerate}
+
+< < < < < < < < <
+
+
+
+
+
 
 
 \section{Optimisation de maillage trans-carreaux}
