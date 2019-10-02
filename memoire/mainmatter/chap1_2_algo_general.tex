@@ -64,10 +64,10 @@ Aussi, la question de la validité du modèle \brep\ initial --- qui reste un pr
 \par
 définitions : 
 \begin{itemize}
-	\item \textit{zone d'influence}\footnote{\label{note_vocabulaire_notation}vocabulaire et notation temporaires \ldots} de $H \subseteq \interface$ sur l'EdB  (lieu des points de tangence entre $\EdB{\interface}{\rho}$ et $\sphere[H][\rho]$)
-	\[ \influEdB{H}{\rho} \defini{=} \EdB{\interface}{\rho} \cap \sphere[H][\rho] \]
-	\item \textit{EdS propre}\footref{note_vocabulaire_notation} de $H \subseteq \interface$ 
-	\[ \EdSpropre{H}{\rho} \defini{=} \closure{ {\EdS{H}{\rho} \setminus \EdS{\boundary{H}}{\rho}} } \]
+%	\item \textit{zone d'influence}\footnote{\label{note_vocabulaire_notation}vocabulaire et notation temporaires \ldots} de $\region \subseteq \interface$ sur l'EdB  (lieu des points de tangence entre $\EdB{\interface}{\rho}$ et $\EdS{\region}{\rho}$)%$\sphere[\region][\rho]$)
+%	\[ \influEdB{\region}{\rho} \defini{=} \EdB{\interface}{\rho} \cap  \EdS{\region}{\rho} \]
+	\item \textit{EdS propre}\footref{note_vocabulaire_notation} de $\region \subseteq \interface$ 
+	\[ \EdSpropre{\region}{\rho} \defini{=} \closure{ {\EdS{\region}{\rho} \setminus \EdS{\boundary{\region}}{\rho}} } \]
 \end{itemize}
 arguments :
 \begin{enumerate}
@@ -82,35 +82,51 @@ arguments :
         Or, par définition, $\forall \bx \in \EdS{\region}{\rho}, \exists \p \in \region \mid \implicitsphere(\bx, \p) = 0$, donc $\implicitEdB{\region}(\bx) \leq 0$.
     \end{proof}
     
-    \item \label{observ:influ_implicit_zero} $\influEdB{\region}{\rho} = \EdB{\Sigma}{\rho} \cap \EdB{\region}{\rho}$, donc si $\bx \in \influEdB{\region}{\rho}$ alors $\implicitEdB{\region}(\bx) = 0$.
-    \begin{proof}
-        $\EdB{\region}{\rho} \subset \sphere[\region][\rho]$. 
-        Si $\bx \in \sphere[\region][\rho]$ alors $\implicitEdB{\region}(\bx) \leq 0$. 
-        Si $\bx \in \sphere[\region][\rho] \setminus \EdB{\region}{\rho}$ alors $\implicitEdB{\region}(\bx) < 0$ donc $\bx \notin \EdB{\Sigma}{\rho}$.\\
-        %On en déduit également que si $\bx \in \influEdB{\region}{\rho}$ alors $\implicitEdB{\region}(\bx) = 0$.
-    \end{proof}
+%    \item \label{observ:influ_implicit_zero} $\influEdB{\region}{\rho} = \EdB{\Sigma}{\rho} \cap \EdB{\region}{\rho}$, donc si $\bx \in \influEdB{\region}{\rho}$ alors $\implicitEdB{\region}(\bx) = 0$.
+%    \begin{proof}
+%        $\EdB{\region}{\rho} \subset \sphere[\region][\rho]$. 
+%        Si $\bx \in \sphere[\region][\rho]$ alors $\implicitEdB{\region}(\bx) \leq 0$. 
+%        Si $\bx \in \sphere[\region][\rho] \setminus \EdB{\region}{\rho}$ alors $\implicitEdB{\region}(\bx) < 0$ donc $\bx \notin \EdB{\Sigma}{\rho}$.\\
+%        %On en déduit également que si $\bx \in \influEdB{\region}{\rho}$ alors $\implicitEdB{\region}(\bx) = 0$.
+%    \end{proof}
 
 	%\item \cf notes ``Huygens'', section ``Observations et preuves''
 	
-	\item On note $\adherentsDimSup{\region \subset \interface} \defini{=} \left\{ \regionB \subseteq \Sigma \mid \region \in \boundary{\regionB}  \right\}$ l'ensemble des régions de $\interface$ dont la frontière contient $\region$ (en particulier, si $\region$ est une crête (resp. un pic), $\adherentsDimSup{\region}$ est l'ensemble des nappes (resp. nappes et crêtes) adhérentes à $\region$).
+	\item On note $\adherentsDimSup{\region \subset \interface} \defini{=} \left\{ \regionB \subseteq \interface \mid \region \in \boundary{\regionB}  \right\}$ l'ensemble des régions de $\interface$ dont la frontière contient $\region$ (en particulier, si $\region$ est une crête (resp. un pic), $\adherentsDimSup{\region}$ est l'ensemble des nappes (resp. nappes et crêtes) adhérentes à $\region$).
 	
 	\item On appelle ``pseudo-EdS''\footref{note_vocabulaire_notation} et on note $\pseudoEdS{\region}{\rho}$ de $\region \subset \interface$ le lieu des points de tangence entre l'EdS de $\region$ et les EdS des régions de dimension $> \dim \region$ adhérentes à $\region$ (voir \autoref{fig:pseudo_EdS_arete_vue_coupe}), \ie
 	\[
 		\pseudoEdS{\region}{\rho} \defini{=} \EdS{\region}{\rho} \bigcap_{\regionB \in \adherentsDimSup{\region}} \EdS{\regionB}{\rho}.
 	\]
 	
-	\item Si $\dim \region < 2$ alors $\influEdB{\region}{\rho} \subseteq \pseudoEdS{\region}{\rho}$.
+%	\item Si $\dim \region < 2$ alors $\influEdB{\region}{\rho} \subseteq \pseudoEdS{\region}{\rho}$.
+%    \begin{proof}
+%        Soient $\bx \in \influEdB{\region}{\rho}$ et $\regionB \in \adherentsDimSup{\region}$. \\
+%        Puisque $\bx \in \EdB{\interface}{\rho}$, on a d'une part, $\implicitEdB{\regionB}(\bx) \geq \implicitEdB{\interface}(\bx) = 0$ (\cf preuve \ref{observ:EdS_implicit_negative}). 
+%        D'autre part, puisque $\region \subseteq \closure{\regionB}$, on a $\implicitEdB{\regionB}(\bx) \leq \implicitEdB{\region}(\bx) = 0$. 
+%        On en déduit donc que $\implicitEdB{\regionB}(\bx) = 0$ et donc que $\influEdB{\region}{\rho} \subseteq \EdB{\regionB}{\rho} \subseteq \EdS{\regionB}{\rho}$. \\
+%        Or, par définition, $\influEdB{\region}{\rho} \subseteq \EdS{\region}{\rho}$, donc finalement 
+%        \[
+%            \influEdB{\region}{\rho} \subseteq \underbrace{
+%                \left( \EdS{\region}{\rho} \bigcap_{\regionB \in \adherentsDimSup{\region}} \EdS{\regionB}{\rho} \right)
+%            }_{\pseudoEdS{\region}{\rho}} .
+%        \]
+%    \end{proof}
+    
+    
+   % \item MIEUX : Si $\dim \region < 2$ alors $\EdB{\interface}{\rho} \cap \EdS{\region}{\rho} \setminus \pseudoEdS{\region}{\rho} = \varnothing$ ($\Leftrightarrow \EdB{\interface}{\rho} \cap \EdS{\region}{\rho} \subseteq \pseudoEdS{\region}{\rho}$)
+    \item Si $\dim \region < 2$ alors $\EdB{\interface}{\rho} \cap \EdS{\region}{\rho} \subseteq \bigcap_{\regionB \in \adherentsDimSup{\region}} \EdS{\regionB}{\rho}$)
     \begin{proof}
-        Soient $\bx \in \influEdB{\region}{\rho}$ et $\regionB \in \adherentsDimSup{\region}$. \\
-        Puisque $\bx \in \EdB{\interface}{\rho}$, on a d'une part, $\implicitEdB{\regionB}(\bx) \geq \implicitEdB{\interface}(\bx) = 0$ (\cf preuve \ref{observ:EdS_implicit_negative}). 
-        D'autre part, puisque $\region \subseteq \closure{\regionB}$, on a $\implicitEdB{\regionB}(\bx) \leq \implicitEdB{\region}(\bx) = 0$. 
-        On en déduit donc que $\implicitEdB{\regionB}(\bx) = 0$ et donc que $\influEdB{\region}{\rho} \subseteq \EdB{\regionB}{\rho} \subseteq \EdS{\regionB}{\rho}$. \\
-        Or, d'après \ref{observ:influ_implicit_zero}, $\influEdB{\region}{\rho} \subseteq \EdB{\region}{\rho} \subseteq \EdS{\region}{\rho}$, donc finalement 
-        \[
-            \influEdB{\region}{\rho} \subseteq \underbrace{
-                \left( \EdS{\region}{\rho} \bigcap_{\regionB \in \adherentsDimSup{\region}} \EdS{\regionB}{\rho} \right)
-            }_{\pseudoEdS{\region}{\rho}} .
-        \]
+    	Soient $\region \subset \interface$ ($\dim\region < 2$), $\regionB \in \adherentsDimSup{\region}$ et $\bx \in \EdB{\interface}{\rho} \cap \EdS{\region}{\rho}$.
+    	\par
+    	D'après le lemme \ref{observ:EdS_implicit_negative}, on a $\implicitEdB{\region}(\bx) \leq 0$ et, par définition, $\implicitEdB{\interface}(\bx) = 0$.
+    	\par
+    	Or, puisque $\region \subset \interface$, on a également $\implicitEdB{\region} \geq \implicitEdB{\interface}$, donc $\implicitEdB{\region}(\bx) = 0$. 
+    	De même, puisque $\regionB \subset \interface$, on a $\implicitEdB{\regionB} \geq \implicitEdB{\interface}$ et donc $\implicitEdB{\regionB}(\bx) \geq 0$. 
+    	Mais puisque $\region \subseteq \boundary \regionB$, on a aussi $\implicitEdB{\regionB} \leq \implicitEdB{\region}$.
+    	On a alors $\implicitEdB{\regionB}(\bx) = 0$, soit $\bx \in \EdB{\regionB}{\rho} \subseteq \EdS{\regionB}{\rho}$. 
+    	\par
+    	Ceci étant vrai pour tout $\regionB \in \adherentsDimSup{\region}$, on a finalement $\EdB{\interface}{\rho} \cap \EdS{\region}{\rho} \subseteq \bigcap_{\regionB \in \adherentsDimSup{\region}} \EdS{\regionB}{\rho}$.
     \end{proof}
     
     \item Si $\crete$ est une crête concave de $\interface$ alors sa zone d'influence sur l'EdB est vide (donc $\crete$ ne contribue pas à l'EdB et peut être ignorée).
